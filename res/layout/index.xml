@@ -9,11 +9,13 @@
             android:layout_height="wrap_content"
             android:text="@string/form_upload"
             android:id="@+id/uploadFormDetails"
-            android:layout_centerVertical="true" android:layout_alignParentStart="true"/>
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"/>
     <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/show_pets_details"
             android:id="@+id/listOfPets"
-            android:layout_below="@+id/uploadFormDetails" android:layout_alignParentStart="true"/>
+            android:layout_below="@+id/uploadFormDetails"
+            android:layout_alignParentStart="true"/>
 </RelativeLayout>

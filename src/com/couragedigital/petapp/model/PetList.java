@@ -16,7 +16,7 @@ public class PetList {
     }
 
     public void setImage_path(String image_path) {
-        this.image_path = "http://storage.couragedigital.com/"+image_path;
+        this.image_path = "http://storage.couragedigital.com/dev/"+image_path;
     }
 
     public String getPetBreedOrigin() {

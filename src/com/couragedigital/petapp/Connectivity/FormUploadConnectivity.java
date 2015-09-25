@@ -11,12 +11,12 @@ import java.net.URL;
 
 public  class FormUploadConnectivity {
 
-    private static final String SERVER_URL = "http://storage.couragedigital.com/petappapi.php";
+    private static final String SERVER_URL = "http://storage.couragedigital.com/dev/api/petappapi.php";
     //http://storage.couragedigital.com/petappapi.php
     //http://couragedigitalexample.hostingsiteforfree.com/cameraapi.php
-    //http://192.168.0.2/CameraTestAPI/cameraapi.php
+    //http://192.168.0.3/PetAppAPI/api/petappapi.php
 
-    public static int uploadToRemoteServer(String pathOfImageFileOnDevice, String petBreedName) throws Exception{
+    public static int uploadToRemoteServer(String pathOfImageFileOnDevice, String petBreedName) throws Exception {
         int serverResponseCode = 0;
         String upLoadServerUri = SERVER_URL;
         String petBreedOrigin = petBreedName;
@@ -35,7 +35,8 @@ public  class FormUploadConnectivity {
             return 0;
         }
         try { // open a URL connection to the Servlet
-
+            String method = "savePetDetails";
+            String format = "json";
             FileInputStream fileInputStream = new FileInputStream(sourceFile);
             URL url = new URL(upLoadServerUri);
             conn = (HttpURLConnection) url.openConnection(); // Open a HTTP  connection to  the URL
@@ -48,12 +49,26 @@ public  class FormUploadConnectivity {
             conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
             conn.setRequestProperty("uploaded_file", filePath);
             conn.setRequestProperty("petBreedOrigin", petBreedOrigin);
+            conn.setRequestProperty("method", method);
+            conn.setRequestProperty("format", format);
             dos = new DataOutputStream(conn.getOutputStream());
 
             dos.writeBytes(twoHyphens + boundary + lineEnd);
             dos.writeBytes("Content-Disposition: form-data; name=\"petBreedOrigin\";" + lineEnd);
             dos.writeBytes(lineEnd);
             dos.writeBytes(petBreedOrigin);
+            dos.writeBytes(lineEnd);
+
+            dos.writeBytes(twoHyphens + boundary + lineEnd);
+            dos.writeBytes("Content-Disposition: form-data; name=\"method\";" + lineEnd);
+            dos.writeBytes(lineEnd);
+            dos.writeBytes(method);
+            dos.writeBytes(lineEnd);
+
+            dos.writeBytes(twoHyphens + boundary + lineEnd);
+            dos.writeBytes("Content-Disposition: form-data; name=\"format\";" + lineEnd);
+            dos.writeBytes(lineEnd);
+            dos.writeBytes(format);
             dos.writeBytes(lineEnd);
 
             dos.writeBytes(twoHyphens + boundary + lineEnd);
@@ -97,7 +112,7 @@ public  class FormUploadConnectivity {
         } catch (Exception e) {
            //Toast.makeText(formupload.this, "Exception : " + e.getMessage(), Toast.LENGTH_SHORT).show();
             Log.e("Upload file Exception", "Exception : " + e.getMessage(), e);
-            throw new Exception("Exception occired: Possible Cause: "+e.getMessage());
+            throw new Exception("Exception occured: Possible Cause: "+e.getMessage());
         }
         //dialog.dismiss();
         return serverResponseCode;

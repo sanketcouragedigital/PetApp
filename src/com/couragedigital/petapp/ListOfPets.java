@@ -3,7 +3,9 @@ package com.couragedigital.petapp;
 import android.app.Activity;
 import android.os.Bundle;
 
+import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.couragedigital.petapp.adapter.CustomListAdapter;
 import com.couragedigital.petapp.app.AppController;
 import com.couragedigital.petapp.model.PetList;
@@ -29,7 +31,7 @@ public class ListOfPets extends Activity {
 
     private static final String TAG = ListOfPets.class.getSimpleName();
 
-    private static final String url = "http://192.168.0.4/petapp.php";
+    private static final String url = "http://storage.couragedigital.com/dev/api/petappapi.php?method=showPetDetails&format=json";
     private ProgressDialog progressDialog;
     private List<PetList> petLists = new ArrayList<PetList>();
     private ListView listView;
@@ -54,29 +56,32 @@ public class ListOfPets extends Activity {
                 new ColorDrawable(Color.parseColor("#1b1b1b")));
 
         // Creating volley request obj
-        JsonArrayRequest petListReq = new JsonArrayRequest(url,
-                new Response.Listener<JSONArray>() {
+        JsonObjectRequest petListReq = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(JSONObject response) {
                         Log.d(TAG, response.toString());
                         hideProgressDialog();
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("showPetDetailsResponse");
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                try {
 
-                        // Parsing json
-                        for (int i = 0; i < response.length(); i++) {
-                            try {
+                                    JSONObject obj = jsonArray.getJSONObject(i);
+                                    PetList petList = new PetList();
+                                    petList.setPetBreedOrigin(obj.getString("petBreedOrigin"));
+                                    petList.setImage_path(obj.getString("image_path"));
 
-                                JSONObject obj = response.getJSONObject(i);
-                                PetList petList = new PetList();
-                                petList.setPetBreedOrigin(obj.getString("petBreedOrigin"));
-                                petList.setImage_path(obj.getString("image_path"));
+                                    // adding movie to movies array
+                                    petLists.add(petList);
 
-                                // adding movie to movies array
-                                petLists.add(petList);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
 
-                            } catch (JSONException e) {
-                                e.printStackTrace();
                             }
-
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
 
                         // notifying list adapter about data changes
@@ -84,11 +89,10 @@ public class ListOfPets extends Activity {
                         adapter.notifyDataSetChanged();
                     }
                 }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-                hideProgressDialog();
-
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        VolleyLog.d(TAG, "Error: " + error.getMessage());
+                        hideProgressDialog();
             }
         });
 

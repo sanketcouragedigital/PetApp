@@ -19,6 +19,7 @@
             android:layout_alignTop="@+id/petImage"
             android:layout_toEndOf="@+id/petImage"
             android:textSize="@dimen/petName"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/list_pet_origin_text_color" />
 
 </RelativeLayout>

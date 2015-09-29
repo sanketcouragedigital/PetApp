@@ -2,6 +2,7 @@ package com.couragedigital.petapp;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 import android.graphics.Bitmap;
@@ -11,7 +12,11 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.internal.view.ContextThemeWrapper;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 import android.net.Uri;
@@ -23,14 +28,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class FormUpload extends Activity implements View.OnClickListener {
+public class FormUpload extends AppCompatActivity implements View.OnClickListener {
 
     private static final int CAMERA_REQUEST = 1888;
     private ImageView imageView;
-    ProgressDialog dialog = null;
+    ProgressDialog progressDialog = null;
     String mCurrentPhotoPath;
     EditText petBreed;
     String petBreedName;
+    Button photoButton;
+    Button uploadButton;
+    AlertDialog alertDialog;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,40 +47,52 @@ public class FormUpload extends Activity implements View.OnClickListener {
         setContentView(R.layout.formupload);
 
         imageView = (ImageView)this.findViewById(R.id.imageOfPet);
-        Button photoButton = (Button) this.findViewById(R.id.takePhoto);
-        Button uploadButton = (Button) this.findViewById(R.id.uploadButton);
+        photoButton = (Button) this.findViewById(R.id.takePhoto);
+        uploadButton = (Button) this.findViewById(R.id.uploadButton);
         petBreed = (EditText)findViewById(R.id.petBreed);
 
         photoButton.setOnClickListener(this);
         uploadButton.setOnClickListener(this);
         petBreed.setOnClickListener(this);
+
+        final String[] option = new String[] { "Camera", "Gallery"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_item, option);
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom));
+        builder.setTitle("Select Option");
+        builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                if(which == 0) {
+                    Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    // Ensure that there's a camera activity to handle the intent
+                    if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                        // Create the File where the photo should go
+                        File photoFile = null;
+                        try {
+                            photoFile = createImageFile();
+                        } catch (IOException ex) {
+                            // Error occurred while creating the File
+                            ex.printStackTrace();
+                        }
+                        // Continue only if the File was successfully created
+                        if (photoFile != null) {
+                            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                                    Uri.fromFile(photoFile));
+                            startActivityForResult(takePictureIntent, CAMERA_REQUEST);
+                        }
+                    }
+                }
+            }
+        });
+        alertDialog = builder.create();
     }
 
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.takePhoto) {
-
-            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            // Ensure that there's a camera activity to handle the intent
-            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                // Create the File where the photo should go
-                File photoFile = null;
-                try {
-                    photoFile = createImageFile();
-                } catch (IOException ex) {
-                    // Error occurred while creating the File
-                    ex.printStackTrace();
-                }
-                // Continue only if the File was successfully created
-                if (photoFile != null) {
-                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-                            Uri.fromFile(photoFile));
-                    startActivityForResult(takePictureIntent, CAMERA_REQUEST);
-                }
-            }
+            alertDialog.show();
         }
         else if(v.getId() == R.id.uploadButton) {
-            dialog = ProgressDialog.show(FormUpload.this, "", "Uploading file...", true);
+            progressDialog = ProgressDialog.show(FormUpload.this, "", "Uploading file...", true);
             petBreedName = petBreed.getText().toString();
             new UploadToServer().execute();
         }
@@ -129,10 +150,10 @@ public class FormUpload extends Activity implements View.OnClickListener {
                         }
                     });
                 }
-                dialog.dismiss();
+                progressDialog.dismiss();
             } catch (Exception e) {
                 e.printStackTrace();
-                dialog.dismiss();
+                progressDialog.dismiss();
                 Toast.makeText(FormUpload.this, "Exception : " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">petapp</string>
+    <string name="app_name">Pet App</string>
     <string name="form_upload">Upload Pets Details</string>
     <string name="show_pets_details">List of Pets</string>
 </resources>

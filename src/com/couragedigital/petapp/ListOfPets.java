@@ -3,8 +3,8 @@ package com.couragedigital.petapp;
 import android.app.Activity;
 import android.os.Bundle;
 
+import android.support.v7.app.AppCompatActivity;
 import com.android.volley.Request;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.couragedigital.petapp.adapter.CustomListAdapter;
 import com.couragedigital.petapp.app.AppController;
@@ -27,7 +27,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 
-public class ListOfPets extends Activity {
+public class ListOfPets extends AppCompatActivity {
 
     private static final String TAG = ListOfPets.class.getSimpleName();
 
@@ -52,8 +52,8 @@ public class ListOfPets extends Activity {
         progressDialog.show();
 
         // changing action bar color
-        getActionBar().setBackgroundDrawable(
-                new ColorDrawable(Color.parseColor("#1b1b1b")));
+        //getActionBar().setBackgroundDrawable(
+        //        new ColorDrawable(Color.parseColor("#1b1b1b")));
 
         // Creating volley request obj
         JsonObjectRequest petListReq = new JsonObjectRequest(Request.Method.GET, url, null,

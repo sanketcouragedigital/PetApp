@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AlertDialogCustom" parent="@style/Theme.AppCompat.Light.Dialog">
-        <item name="android:textColorSecondary">#000000</item>
+    <style name="AlertDialogCustom" parent="Theme.AppCompat.Light">
         <item name="android:fontFamily">sans-serif-condensed</item>
-        <item name="android:textStyle">italic</item>
+        <item name="android:textStyle">bold|italic</item>
     </style>
 </resources>

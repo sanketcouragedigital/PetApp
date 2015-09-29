@@ -1,5 +1,4 @@
 <resources>
-
     <dimen name="petName">17sp</dimen>
-
+    <dimen name="alertDialogListNames">17sp</dimen>
 </resources>

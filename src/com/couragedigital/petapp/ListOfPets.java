@@ -51,10 +51,6 @@ public class ListOfPets extends AppCompatActivity {
         progressDialog.setMessage("Fetching List Of Pets...");
         progressDialog.show();
 
-        // changing action bar color
-        //getActionBar().setBackgroundDrawable(
-        //        new ColorDrawable(Color.parseColor("#1b1b1b")));
-
         // Creating volley request obj
         JsonObjectRequest petListReq = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {

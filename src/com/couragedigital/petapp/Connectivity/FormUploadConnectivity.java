@@ -15,12 +15,20 @@ public  class FormUploadConnectivity {
     //http://storage.couragedigital.com/petappapi.php
     //http://couragedigitalexample.hostingsiteforfree.com/cameraapi.php
     //http://192.168.0.3/PetAppAPI/api/petappapi.php
+    //http://storage.couragedigital.com/dev/api/petappapi.php
 
-    public static int uploadToRemoteServer(String pathOfImageFileOnDevice, String petBreedName) throws Exception {
+    public static int uploadToRemoteServer(String petCategoryName, String petBreedName, Integer petAge, String petGender, String petDescription, String petAdoption, String petGiveAway, Integer petPrice, String currentPhotoPath) throws Exception {
         int serverResponseCode = 0;
         String upLoadServerUri = SERVER_URL;
-        String petBreedOrigin = petBreedName;
-        String filePath = pathOfImageFileOnDevice;
+        String categoryOfPet = petCategoryName;
+        String breedOfPet = petBreedName;
+        Integer ageOfPet = petAge;
+        String genderOfPet = petGender;
+        String descriptionOfPet = petDescription;
+        String adoptionOfPet = petAdoption;
+        String giveAwayOfPet = petGiveAway;
+        Integer priceOfPet = petPrice;
+        String petImage = currentPhotoPath;
         HttpURLConnection conn = null;
         DataOutputStream dos = null;
         String lineEnd = "\r\n";
@@ -29,7 +37,7 @@ public  class FormUploadConnectivity {
         int bytesRead, bytesAvailable, bufferSize;
         byte[] buffer;
         int maxBufferSize = 1 * 1024 * 1024;
-        File sourceFile = new File(filePath);
+        File sourceFile = new File(petImage);
         if (!sourceFile.isFile()) {
             Log.e("uploadFile", "Source File Does not exist");
             return 0;
@@ -47,16 +55,65 @@ public  class FormUploadConnectivity {
             conn.setRequestProperty("Connection", "Keep-Alive");
             conn.setRequestProperty("ENCTYPE", "multipart/form-data");
             conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
-            conn.setRequestProperty("uploaded_file", filePath);
-            conn.setRequestProperty("petBreedOrigin", petBreedOrigin);
+            conn.setRequestProperty("categoryOfPet", categoryOfPet);
+            conn.setRequestProperty("breedOfPet", breedOfPet);
+            conn.setRequestProperty("ageOfPet", String.valueOf(ageOfPet));
+            conn.setRequestProperty("genderOfPet", genderOfPet);
+            conn.setRequestProperty("descriptionOfPet", descriptionOfPet);
+            conn.setRequestProperty("adoptionOfPet", adoptionOfPet);
+            conn.setRequestProperty("giveAwayOfPet", giveAwayOfPet);
+            conn.setRequestProperty("priceOfPet", String.valueOf(priceOfPet));
+            conn.setRequestProperty("petImage", petImage);
             conn.setRequestProperty("method", method);
             conn.setRequestProperty("format", format);
             dos = new DataOutputStream(conn.getOutputStream());
 
             dos.writeBytes(twoHyphens + boundary + lineEnd);
-            dos.writeBytes("Content-Disposition: form-data; name=\"petBreedOrigin\";" + lineEnd);
+            dos.writeBytes("Content-Disposition: form-data; name=\"categoryOfPet\";" + lineEnd);
             dos.writeBytes(lineEnd);
-            dos.writeBytes(petBreedOrigin);
+            dos.writeBytes(categoryOfPet);
+            dos.writeBytes(lineEnd);
+
+            dos.writeBytes(twoHyphens + boundary + lineEnd);
+            dos.writeBytes("Content-Disposition: form-data; name=\"breedOfPet\";" + lineEnd);
+            dos.writeBytes(lineEnd);
+            dos.writeBytes(breedOfPet);
+            dos.writeBytes(lineEnd);
+
+            dos.writeBytes(twoHyphens + boundary + lineEnd);
+            dos.writeBytes("Content-Disposition: form-data; name=\"ageOfPet\";" + lineEnd);
+            dos.writeBytes(lineEnd);
+            dos.writeBytes(String.valueOf(ageOfPet));
+            dos.writeBytes(lineEnd);
+
+            dos.writeBytes(twoHyphens + boundary + lineEnd);
+            dos.writeBytes("Content-Disposition: form-data; name=\"genderOfPet\";" + lineEnd);
+            dos.writeBytes(lineEnd);
+            dos.writeBytes(genderOfPet);
+            dos.writeBytes(lineEnd);
+
+            dos.writeBytes(twoHyphens + boundary + lineEnd);
+            dos.writeBytes("Content-Disposition: form-data; name=\"descriptionOfPet\";" + lineEnd);
+            dos.writeBytes(lineEnd);
+            dos.writeBytes(descriptionOfPet);
+            dos.writeBytes(lineEnd);
+
+            dos.writeBytes(twoHyphens + boundary + lineEnd);
+            dos.writeBytes("Content-Disposition: form-data; name=\"adoptionOfPet\";" + lineEnd);
+            dos.writeBytes(lineEnd);
+            dos.writeBytes(adoptionOfPet);
+            dos.writeBytes(lineEnd);
+
+            dos.writeBytes(twoHyphens + boundary + lineEnd);
+            dos.writeBytes("Content-Disposition: form-data; name=\"giveAwayOfPet\";" + lineEnd);
+            dos.writeBytes(lineEnd);
+            dos.writeBytes(giveAwayOfPet);
+            dos.writeBytes(lineEnd);
+
+            dos.writeBytes(twoHyphens + boundary + lineEnd);
+            dos.writeBytes("Content-Disposition: form-data; name=\"priceOfPet\";" + lineEnd);
+            dos.writeBytes(lineEnd);
+            dos.writeBytes(String.valueOf(priceOfPet));
             dos.writeBytes(lineEnd);
 
             dos.writeBytes(twoHyphens + boundary + lineEnd);
@@ -72,7 +129,7 @@ public  class FormUploadConnectivity {
             dos.writeBytes(lineEnd);
 
             dos.writeBytes(twoHyphens + boundary + lineEnd);
-            dos.writeBytes("Content-Disposition: form-data; name=\"uploaded_file\";filename=\""+ filePath + "\";" + lineEnd);
+            dos.writeBytes("Content-Disposition: form-data; name=\"petImage\";filename=\""+ petImage + "\";" + lineEnd);
             dos.writeBytes(lineEnd);
 
             bytesAvailable = fileInputStream.available(); // create a buffer of  maximum size

@@ -3,4 +3,8 @@
     <string name="app_name">Pet App</string>
     <string name="form_upload">Upload Pets Details</string>
     <string name="show_pets_details">List of Pets</string>
+
+    <string name="select_gender">Select Gender</string>
+    <string name="pet_gender_male">Male</string>
+    <string name="pet_gender_female">Female</string>
 </resources>

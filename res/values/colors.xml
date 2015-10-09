@@ -11,5 +11,6 @@
     <color name="windowBackground">#DADADA</color>
     <color name="navigationBarColor">#212121</color>
     <color name="textColorPrimary">#212121</color>
+    <color name="buttonColor">#B3B3B3</color>
 
 </resources>

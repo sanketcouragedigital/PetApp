@@ -21,9 +21,9 @@ public class CustomListAdapter extends BaseAdapter {
     private List<PetList> petListItems;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
-    public CustomListAdapter(Activity activity, List<PetList> movieItems) {
+    public CustomListAdapter(Activity activity, List<PetList> petListItems) {
         this.activity = activity;
-        this.petListItems = movieItems;
+        this.petListItems = petListItems;
     }
 
     @Override

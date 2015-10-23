@@ -1,5 +1,7 @@
 <resources>
     <dimen name="petName">17sp</dimen>
     <dimen name="alertDialogListNames">17sp</dimen>
-    <dimen name="spinnerDialogListNames">17sp</dimen>
+    <dimen name="drawernavwidth">280dp</dimen>
+    <dimen name="drawermargintop">1dp</dimen>
+    <dimen name="drawerwidth">250dp</dimen>
 </resources>

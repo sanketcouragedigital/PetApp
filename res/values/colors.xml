@@ -11,6 +11,7 @@
     <color name="windowBackground">#DADADA</color>
     <color name="navigationBarColor">#212121</color>
     <color name="textColorPrimary">#212121</color>
-    <color name="buttonColor">#B3B3B3</color>
-
+    <color name="home_list_subItem_tittletext_color">#000000</color>
+    <color name="home_list_subItem_descriptiontext_color">#212121</color>
+    <color name="drawer_header_text">#EBEEF0</color>
 </resources>

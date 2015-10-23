@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".FormUpload"/>
         <activity android:name=".ListOfPets"/>
+		<activity android:name=".ViewOrListOfPet"/>
+		<activity android:name=".Drawer"/>
     </application>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA"/>

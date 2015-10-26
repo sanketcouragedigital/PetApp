@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+<RelativeLayout
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:fillViewport="true">
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Up"
+            android:id="@+id/txtsignup" android:layout_alignParentTop="true" android:layout_centerHorizontal="true"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="Name"
+            android:id="@+id/txtname"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/txtsignup"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="Building Name"
+            android:id="@+id/txtbuildingname"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/txtname"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="Area "
+            android:id="@+id/txtarea"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/txtbuildingname"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="City "
+            android:id="@+id/txtcity"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/txtarea"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:hint="Mobile No "
+            android:id="@+id/txtmobileno"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/txtcity"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="Email"
+            android:id="@+id/txtemail"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/txtmobileno"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Password"
+            android:id="@+id/txtpassword"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/txtemail"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Confirm Password"
+            android:id="@+id/txtconfirmpassword"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/txtpassword"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Up"
+            android:id="@+id/btnsignup"
+            android:layout_below="@+id/txtconfirmpassword" android:layout_toStartOf="@+id/txtsignup"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:id="@+id/btncancel"
+            android:layout_below="@+id/txtconfirmpassword"
+            android:layout_toEndOf="@+id/txtsignup"/>
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sign In"
+                android:id="@+id/btnsignin"
+                android:layout_below="@+id/btncancel"
+                android:layout_alignEnd="@+id/btncancel"
+                android:layout_alignStart="@+id/btnsignup"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/text"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/btnsignin"/>
+
+</RelativeLayout>
+</ScrollView>

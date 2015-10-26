@@ -2,55 +2,74 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent" android:weightSum="1" >
+              android:layout_height="match_parent">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign In"
+                android:id="@+id/lblsignin"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                />
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Sign In"
-            android:id="@+id/lblsignin" android:layout_gravity="center_horizontal"
-            android:layout_alignParentTop="true" android:layout_centerHorizontal="true"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Email"
-            android:id="@+id/lblusername" android:layout_weight="0.03"
-            android:layout_marginTop="41dp"
-            android:layout_below="@+id/lblsignin" android:layout_alignStart="@+id/lblpassword"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Password"
-            android:id="@+id/lblpassword" android:layout_weight="0.02"
-            android:layout_marginTop="43dp" android:layout_below="@+id/lblusername"
-            android:layout_alignParentStart="true" android:layout_marginStart="37dp"/>
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:id="@+id/txtemail"
-            android:layout_alignTop="@+id/lblusername" android:layout_toEndOf="@+id/btnsignin"/>
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/txtpassword" android:layout_alignTop="@+id/lblpassword"
-            android:layout_toEndOf="@+id/btnsignin"/>
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sign In"
-            android:id="@+id/btnsignin"
-            android:layout_centerVertical="true" android:layout_toStartOf="@+id/lblsignin"/>
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cancel"
-            android:id="@+id/btncancel" android:layout_gravity="center_horizontal"
-            android:layout_alignTop="@+id/btnsignin" android:layout_toEndOf="@+id/lblsignin"/>
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="Email"
+                android:id="@+id/txtemail"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/txtmobileno"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="Password"
+                android:id="@+id/txtpassword"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/txtemail"/>
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign Up"
+                android:id="@+id/btnsignup"
+                android:layout_marginTop="42dp"
+                android:layout_below="@+id/lblforgetpassword" android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"/>
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign In"
+                android:id="@+id/btnsignin"
+                android:layout_below="@+id/txtpassword" android:layout_toStartOf="@+id/lblsignin"
+                android:layout_marginTop="47dp"/>
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:id="@+id/btncancel"
+                android:layout_gravity="center_horizontal"
+                android:layout_alignTop="@+id/btnsignin"
+                android:layout_toEndOf="@+id/lblsignin"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Forget Password ?"
+                android:id="@+id/lblforgetpassword"
+                android:layout_below="@+id/btnsignin"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="37dp"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Skip All"
+                android:id="@+id/lblskipall"
+                android:layout_below="@+id/btnsignup"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="38dp"/>
+
 </RelativeLayout>

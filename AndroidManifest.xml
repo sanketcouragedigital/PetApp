@@ -23,6 +23,10 @@
         <activity android:name=".ListOfPets"/>
 		<activity android:name=".ViewOrListOfPet"/>
 		<activity android:name=".Drawer"/>
+		<activity android:name=".SignIn"/>
+        <activity android:name=".SignUp"/>
+        <activity android:name=".EmailForCode"/>
+        <activity android:name=".SetNewPassword"/>
     </application>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA"/>

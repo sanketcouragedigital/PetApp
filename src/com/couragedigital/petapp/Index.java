@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Index extends Drawer  {
+public class Index extends BaseActivity {
 
     String[] tittleName = new String[] {"View/List Pets","Pet Mate","Pet Doctors","Pet Accessories" };
     int[] imageList = new int[] { R.drawable.pet_view,R.drawable.pet_mate,R.drawable.pet_doctor,R.drawable.pet_accessories };

@@ -1,9 +1,7 @@
 package com.couragedigital.petapp;
 
-import android.app.Activity;
 import android.os.Bundle;
 
-import android.support.v7.app.AppCompatActivity;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.couragedigital.petapp.adapter.CustomListAdapter;
@@ -18,8 +16,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.ProgressDialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.widget.ListView;
 
@@ -27,7 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 
-public class ListOfPets extends AppCompatActivity {
+public class ListOfPets extends BaseActivity {
 
     private static final String TAG = ListOfPets.class.getSimpleName();
 
@@ -65,7 +61,7 @@ public class ListOfPets extends AppCompatActivity {
 
                                     JSONObject obj = jsonArray.getJSONObject(i);
                                     PetList petList = new PetList();
-                                    petList.setPetBreedOrigin(obj.getString("petBreedOrigin"));
+                                    petList.setPetBreedOrigin(obj.getString("pet_breed"));
                                     petList.setImage_path(obj.getString("image_path"));
 
                                     // adding movie to movies array

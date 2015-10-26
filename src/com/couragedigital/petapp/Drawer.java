@@ -1,12 +1,15 @@
 package com.couragedigital.petapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
@@ -27,7 +30,7 @@ public class Drawer extends AppCompatActivity {
         drawerList = (ListView)drawerLayout.findViewById(R.id.leftDrawer);
         View header = getLayoutInflater().inflate(R.layout.drawerheaderimage, null);
         drawerList.addHeaderView(header, null, false);
-        String[] menu={"Home","Profile","Setting","LogOut"};
+        String[] menu={"Home","Profile","Setting","Log In","LogOut"};
         arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,menu);
         drawerList.setSelector(R.color.colorPrimary);
         drawerList.setAdapter(arrayAdapter);
@@ -47,10 +50,25 @@ public class Drawer extends AppCompatActivity {
                 super.onDrawerClosed(drawerView);
             }
         };
+
         drawerToggle.setDrawerIndicatorEnabled(true);
         drawerLayout.setDrawerListener(drawerToggle);
         drawerToggle.syncState();
         getLayoutInflater().inflate(layoutResID, frameLayout, true);
         super.setContentView(drawerLayout);
+
+
+        drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedFromList = (drawerList.getItemAtPosition(position).toString());
+
+                if(selectedFromList.equals("Log In")){
+                    Intent gotoLogin =new Intent(Drawer.this,SignIn.class);
+                    startActivity(gotoLogin);
+                }
+            }
+        });
     }
+
 }

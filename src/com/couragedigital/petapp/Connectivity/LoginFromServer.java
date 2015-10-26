@@ -40,7 +40,7 @@ public class LoginFromServer {
         String username =email;
         String password =confirmpassword;
 
-        final String URL = "http://192.168.0.4/PetAppAPI/api/petappapi.php";
+        final String URL = "http://storage.couragedigital.com/dev/api/petappapi.php";
         JSONObject params = new JSONObject();
         try{
             params.put("method",method);

@@ -1,6 +1,7 @@
 package com.couragedigital.petapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -57,7 +58,7 @@ public class BaseActivity extends AppCompatActivity   {
                 String selectedFromList = (drawerList.getItemAtPosition(position).toString());
 
                 if(selectedFromList.equals("Log In")){
-                    Intent gotoLogin =new Intent(Drawer.this,SignIn.class);
+                    Intent gotoLogin =new Intent(BaseActivity.this,SignIn.class);
                     startActivity(gotoLogin);
                 }
             }

@@ -58,7 +58,6 @@ public class ListOfPets extends BaseActivity {
                             JSONArray jsonArray = response.getJSONArray("showPetDetailsResponse");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 try {
-
                                     JSONObject obj = jsonArray.getJSONObject(i);
                                     PetList petList = new PetList();
                                     petList.setPetBreedOrigin(obj.getString("pet_breed"));
@@ -81,10 +80,10 @@ public class ListOfPets extends BaseActivity {
                         adapter.notifyDataSetChanged();
                     }
                 }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        VolleyLog.d(TAG, "Error: " + error.getMessage());
-                        hideProgressDialog();
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                hideProgressDialog();
             }
         });
 

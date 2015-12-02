@@ -9,7 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public  class FormUploadConnectivity {
+public class FormUploadConnectivity {
 
     private static final String SERVER_URL = "http://storage.couragedigital.com/dev/api/petappapi.php";
     //http://storage.couragedigital.com/petappapi.php
@@ -129,7 +129,7 @@ public  class FormUploadConnectivity {
             dos.writeBytes(lineEnd);
 
             dos.writeBytes(twoHyphens + boundary + lineEnd);
-            dos.writeBytes("Content-Disposition: form-data; name=\"petImage\";filename=\""+ petImage + "\";" + lineEnd);
+            dos.writeBytes("Content-Disposition: form-data; name=\"petImage\";filename=\"" + petImage + "\";" + lineEnd);
             dos.writeBytes(lineEnd);
 
             bytesAvailable = fileInputStream.available(); // create a buffer of  maximum size
@@ -165,11 +165,11 @@ public  class FormUploadConnectivity {
             ex.printStackTrace();
             //Toast.makeText(formupload.this, "MalformedURLException", Toast.LENGTH_SHORT).show();
             Log.e("Upload file to server", "error: " + ex.getMessage(), ex);
-            throw new MalformedURLException("Malformed URL Exception. Possible Cause:"+ex.getMessage());
+            throw new MalformedURLException("Malformed URL Exception. Possible Cause:" + ex.getMessage());
         } catch (Exception e) {
-           //Toast.makeText(formupload.this, "Exception : " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(formupload.this, "Exception : " + e.getMessage(), Toast.LENGTH_SHORT).show();
             Log.e("Upload file Exception", "Exception : " + e.getMessage(), e);
-            throw new Exception("Exception occured: Possible Cause: "+e.getMessage());
+            throw new Exception("Exception occured: Possible Cause: " + e.getMessage());
         }
         //dialog.dismiss();
         return serverResponseCode;

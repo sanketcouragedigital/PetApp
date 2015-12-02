@@ -9,8 +9,9 @@
                  android:name=".app.AppController"
                  android:label="@string/app_name"
                  android:icon="@drawable/ic_launcher">
+
         <activity android:name=".Index"
-                  android:label="@string/app_name">
+                      android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -19,16 +20,21 @@
                     android:name="android.hardware.camera"
                     android:required="true"/>
         </activity>
+
+
+        <activity android:name=".SignIn"
+              android:label="@string/app_name"/>
         <activity android:name=".FormUpload"/>
         <activity android:name=".ListOfPets"/>
-		<activity android:name=".ViewOrListOfPet"/>
-		<activity android:name=".Drawer"/>
-		<activity android:name=".SignIn"/>
-        <activity android:name=".SignUp"/>
-        <activity android:name=".EmailForCode"/>
-        <activity android:name=".SetNewPassword"/>
+        <activity android:name=".BaseActivity"/>
+        <activity android:name=".SignUp"
+                  android:label="Sign Up"/>
+        <activity android:name=".SetNewPassword"
+                  android:label="Set New Password"/>
+        <activity android:name=".EmailForCode"
+                  android:label="Email for Code"/>
     </application>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

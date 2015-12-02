@@ -20,7 +20,7 @@ public class PetBreedsSpinnerListConnectivity {
     private static final String TAG = PetBreedsSpinnerListConnectivity.class.getSimpleName();
 
     public static List fetchPetBreeds(List petBreedsList, String petCategoryName, SpinnerItemsAdapter adapter) {
-        String url = "http://storage.couragedigital.com/dev/api/petappapi.php?petCategory="+petCategoryName+"&method=showPetBreedsAsPerPetCategory&format=json";
+        String url = "http://storage.couragedigital.com/dev/api/petappapi.php?petCategory=" + petCategoryName + "&method=showPetBreedsAsPerPetCategory&format=json";
         JsonObjectRequest petCategoryReq = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override

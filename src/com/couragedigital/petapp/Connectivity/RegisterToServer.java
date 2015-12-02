@@ -12,14 +12,16 @@ import com.couragedigital.petapp.SignUp;
 import com.couragedigital.petapp.app.AppController;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+
 import com.couragedigital.petapp.SignUp;
 
 public class RegisterToServer {
 
-    private static Context context= null;
+    private static Context context = null;
     private static String username;
     private static String userbuildingname;
     private static String userarea;
@@ -33,17 +35,16 @@ public class RegisterToServer {
     private Response.Listener<JSONObject> listener;
     private Map<String, String> params;
 
-    public static String uploadToRemoteServer(String name, String buildingname, String area, String city, String mobileno, String email, String confirmpassword) throws Exception
-    {
-        method ="userRegistration";
-        format ="json";
-        username= name;
-        userbuildingname =buildingname;
-        userarea =area;
-        usercity =city;
-        usermobileno =mobileno;
-        useremail =email;
-        userconfirmpassword =confirmpassword;
+    public static String uploadToRemoteServer(String name, String buildingname, String area, String city, String mobileno, String email, String confirmpassword) throws Exception {
+        method = "userRegistration";
+        format = "json";
+        username = name;
+        userbuildingname = buildingname;
+        userarea = area;
+        usercity = city;
+        usermobileno = mobileno;
+        useremail = email;
+        userconfirmpassword = confirmpassword;
         final String URL = "http://storage.couragedigital.com/dev/api/petappapi.php";
         JSONObject params = new JSONObject();
         try {
@@ -56,13 +57,13 @@ public class RegisterToServer {
             params.put("mobileno", usermobileno);
             params.put("email", useremail);
             params.put("confirmpassword", userconfirmpassword);
-        } catch(Exception e) {
+        } catch (Exception e) {
 
         }
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, URL ,params,
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, URL, params,
                 new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONObject response){
+                    public void onResponse(JSONObject response) {
                         VolleyLog.v("Response:%n %s", response.toString());
                         SignUp signUp = new SignUp();
                         try {
@@ -72,28 +73,28 @@ public class RegisterToServer {
                         }
                     }
                 }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        VolleyLog.e("Error: ", error.getMessage());
-                    }
-                }
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error: ", error.getMessage());
+            }
+        }
         );
         AppController.getInstance().addToRequestQueue(req);
         return signupResponse;
     }
 
-    public RegisterToServer(Context context){
-        this.context=context;
+    public RegisterToServer(Context context) {
+        this.context = context;
     }
 
-    public static void returnResponse(String response){
-        if(response.equals("USERS_DETAILS_SAVED")){
-            Toast.makeText(context,"Successfully Registered.",Toast.LENGTH_SHORT).show();
-            Intent gotologinpage = new Intent(context,SignIn.class);
+    public static void returnResponse(String response) {
+        if (response.equals("USERS_DETAILS_SAVED")) {
+            Toast.makeText(context, "Successfully Registered.", Toast.LENGTH_SHORT).show();
+            Intent gotologinpage = new Intent(context, SignIn.class);
             context.startActivity(gotologinpage);
-        } else if(response.equals("ERROR")){
-            Toast.makeText(context,"",Toast.LENGTH_SHORT).show();
-            Intent gotosignupgae = new Intent(context,SignUp.class);
+        } else if (response.equals("ERROR")) {
+            Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
+            Intent gotosignupgae = new Intent(context, SignUp.class);
             context.startActivity(gotosignupgae);
         }
     }

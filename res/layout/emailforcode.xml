@@ -1,33 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Email To Send Code"
-            android:id="@+id/lblchangepassword"
-            android:layout_gravity="center_horizontal"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"/>
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:hint="Email"
             android:id="@+id/txtemail"
-            android:layout_below="@+id/lblchangepassword"
+            android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="53dp"/>
+            android:layout_marginTop="58dp"
+            android:layout_alignParentEnd="true"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Submit"
             android:id="@+id/btnsubmit"
+            android:layout_below="@+id/txtemail"
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"/>
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"/>
 </RelativeLayout>

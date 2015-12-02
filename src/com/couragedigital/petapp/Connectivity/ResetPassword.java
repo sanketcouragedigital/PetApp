@@ -25,23 +25,23 @@ public class ResetPassword {
     private static String format;
     private static String setnewpasswordResponse;
 
-    public static String SeToRemoteServer(String code,String password,String email) throws Exception {
-        String method ="setNewPassword";
-        String format ="json";
-        String activationcode =code;
-        String newpassword =password;
-        String userEmail= email;
+    public static String SeToRemoteServer(String code, String password, String email) throws Exception {
+        String method = "setNewPassword";
+        String format = "json";
+        String activationcode = code;
+        String newpassword = password;
+        String userEmail = email;
 
         final String URL = "http://storage.couragedigital.com/dev/api/petappapi.php";
         JSONObject params = new JSONObject();
-        try{
-            params.put("method",method);
-            params.put("format",format);
-            params.put("code",activationcode);
-            params.put("password",newpassword);
-            params.put("email",userEmail);
+        try {
+            params.put("method", method);
+            params.put("format", format);
+            params.put("code", activationcode);
+            params.put("password", newpassword);
+            params.put("email", userEmail);
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
         JsonObjectRequest signinReq = new JsonObjectRequest(Request.Method.POST, URL, params,
@@ -67,19 +67,20 @@ public class ResetPassword {
         return setnewpasswordResponse;
 
     }
+
     public ResetPassword(Context context) {
         this.context = context;
     }
+
     public static void returnResponse(String response) {
-        if(response.equals("NEW_PASSWORD_SUCCESSFULLY_SET")) {
-            Intent gotologinpage = new Intent (context, SignIn.class);
+        if (response.equals("NEW_PASSWORD_SUCCESSFULLY_SET")) {
+            Intent gotologinpage = new Intent(context, SignIn.class);
             context.startActivity(gotologinpage);
             Toast.makeText(context, "You Can Login Now", Toast.LENGTH_SHORT).show();
-        }
-        else if(response.equals("ERROR")){
-            Intent gotosetnewpassword = new Intent (context, SetNewPassword.class);
+        } else if (response.equals("ERROR")) {
+            Intent gotosetnewpassword = new Intent(context, SetNewPassword.class);
             context.startActivity(gotosetnewpassword);
-            Toast.makeText(context,"Please Re-Try",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Please Re-Try", Toast.LENGTH_SHORT).show();
         }
     }
 }

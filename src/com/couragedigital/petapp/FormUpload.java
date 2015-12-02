@@ -108,7 +108,7 @@ public class FormUpload extends BaseActivity implements View.OnClickListener {
         petCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position > 0){
+                if (position > 0) {
                     petCategoryName = (String) parent.getItemAtPosition(position);
 
                     petBreedsList = PetBreedsSpinnerListConnectivity.fetchPetBreeds(petBreedsList, petCategoryName, adapter);
@@ -136,7 +136,7 @@ public class FormUpload extends BaseActivity implements View.OnClickListener {
         petBreed.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position > 0){
+                if (position > 0) {
                     petBreedName = (String) parent.getItemAtPosition(position);
                 }
             }
@@ -171,35 +171,31 @@ public class FormUpload extends BaseActivity implements View.OnClickListener {
         public void afterTextChanged(Editable s) {
             String takePetAge = ageOfPet.getText().toString();
             String takePetPrice = priceOfPet.getText().toString();
-            if(!takePetAge.equals("")) {
+            if (!takePetAge.equals("")) {
                 Integer takePetAgeInInteger = Integer.parseInt(takePetAge);
-                if(takePetAgeInInteger >= 100) {
+                if (takePetAgeInInteger >= 100) {
                     ageOfPet.setError("Please enter valid age");
                     ageOfPet.setText(null);
-                }
-                else {
+                } else {
                     petAge = takePetAgeInInteger;
                 }
-            }
-            else if(takePetAge.equals("")) {
+            } else if (takePetAge.equals("")) {
                 petAge = 0;
-            }
-            else if(!takePetPrice.equals("")) {
+            } else if (!takePetPrice.equals("")) {
                 Integer takePetPriceInInteger = Integer.parseInt(takePetPrice);
-                if(takePetPriceInInteger > 0) {
+                if (takePetPriceInInteger > 0) {
                     petPrice = takePetPriceInInteger;
                 }
-            }
-            else if(takePetPrice.equals("")) {
+            } else if (takePetPrice.equals("")) {
                 petPrice = 0;
             }
         }
     };
 
-    private OnCheckedChangeListener checkBoxListener = new OnCheckedChangeListener()  {
+    private OnCheckedChangeListener checkBoxListener = new OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            if(isChecked) {
+            if (isChecked) {
                 if (buttonView.getId() == R.id.forAdoptionOfPet) {
                     giveAwayOfPet.setChecked(false);
                     priceOfPet.setEnabled(false);
@@ -213,8 +209,7 @@ public class FormUpload extends BaseActivity implements View.OnClickListener {
                     petAdoption = "";
                     petGiveAway = giveAwayOfPet.getText().toString();
                 }
-            }
-            else {
+            } else {
                 priceOfPet.setEnabled(true);
                 petAdoption = "";
                 petGiveAway = "";
@@ -225,8 +220,8 @@ public class FormUpload extends BaseActivity implements View.OnClickListener {
     @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.selectImage) {
-            final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_item){
+        if (v.getId() == R.id.selectImage) {
+            final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_item) {
                 @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
                     View view = super.getView(position, convertView, parent);
@@ -244,7 +239,7 @@ public class FormUpload extends BaseActivity implements View.OnClickListener {
             builder.setTitle("Select Image");
             builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
-                    if(which == 0) {
+                    if (which == 0) {
                         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                         // Ensure that there's a camera activity to handle the intent
                         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -263,8 +258,7 @@ public class FormUpload extends BaseActivity implements View.OnClickListener {
                                 startActivityForResult(takePictureIntent, CAMERA_REQUEST);
                             }
                         }
-                    }
-                    else if(which == 1) {
+                    } else if (which == 1) {
                         // Create intent to Open Image applications like Gallery, Google Photos
                         Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                         startActivityForResult(galleryIntent, GALLERY_REQUEST);
@@ -274,8 +268,7 @@ public class FormUpload extends BaseActivity implements View.OnClickListener {
             alertDialog = builder.create();
 
             alertDialog.show();
-        }
-        else if(v.getId() == R.id.uploadButton) {
+        } else if (v.getId() == R.id.uploadButton) {
 
             Integer petAgeInInteger = null;
             Integer petPriceInInteger = null;
@@ -284,24 +277,19 @@ public class FormUpload extends BaseActivity implements View.OnClickListener {
                 Toast.makeText(FormUpload.this, "Please select Pet Category.", Toast.LENGTH_LONG).show();
                 TextView errorText = (TextView) petCategory.getSelectedView();
                 errorText.setError("Please select Pet Category");
-            }
-            else if(petBreedName == null) {
+            } else if (petBreedName == null) {
                 Toast.makeText(FormUpload.this, "Please select Pet Breed.", Toast.LENGTH_LONG).show();
                 TextView errorText = (TextView) petBreed.getSelectedView();
                 errorText.setError("Please select Pet Breed");
-            }
-            else if(genderOfPet.getCheckedRadioButtonId() == -1) {
+            } else if (genderOfPet.getCheckedRadioButtonId() == -1) {
                 Toast.makeText(FormUpload.this, "Please select gender.", Toast.LENGTH_LONG).show();
                 genderSelected = (RadioButton) findViewById(R.id.genderFemale);
                 genderSelected.setError("Please select gender");
-            }
-            else if(Objects.equals(petAdoption, "") && Objects.equals(petGiveAway, "") && priceOfPet.getText().toString().equals("")) {
+            } else if (Objects.equals(petAdoption, "") && Objects.equals(petGiveAway, "") && priceOfPet.getText().toString().equals("")) {
                 Toast.makeText(FormUpload.this, "Please select the adoption or giveaway Or fill the price of pet.", Toast.LENGTH_LONG).show();
-            }
-            else if(currentPhotoPath == null) {
+            } else if (currentPhotoPath == null) {
                 Toast.makeText(FormUpload.this, "Please select image of Pet.", Toast.LENGTH_LONG).show();
-            }
-            else {
+            } else {
                 progressDialog = ProgressDialog.show(FormUpload.this, "", "Uploading file...", true);
 
                 int selectedGender = genderOfPet.getCheckedRadioButtonId();
@@ -325,14 +313,13 @@ public class FormUpload extends BaseActivity implements View.OnClickListener {
                 if (requestCode == CAMERA_REQUEST) {
                     File image = new File(currentPhotoPath);
                     BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-                    Bitmap imageToShow = BitmapFactory.decodeFile(image.getAbsolutePath(),bmOptions);
+                    Bitmap imageToShow = BitmapFactory.decodeFile(image.getAbsolutePath(), bmOptions);
 
                     imageOfPet.setLayoutParams(getLayoutParams());
                     imageOfPet.setImageBitmap(imageToShow);
-                }
-                else if(requestCode == GALLERY_REQUEST) {
+                } else if (requestCode == GALLERY_REQUEST) {
                     Uri uri = intent.getData();
-                    String[] projection = { MediaStore.Images.Media.DATA };
+                    String[] projection = {MediaStore.Images.Media.DATA};
 
                     Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
                     cursor.moveToFirst();
@@ -342,7 +329,7 @@ public class FormUpload extends BaseActivity implements View.OnClickListener {
 
                     File image = new File(currentPhotoPath);
                     BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-                    Bitmap imageToShow = BitmapFactory.decodeFile(image.getAbsolutePath(),bmOptions);
+                    Bitmap imageToShow = BitmapFactory.decodeFile(image.getAbsolutePath(), bmOptions);
 
                     imageOfPet.setLayoutParams(getLayoutParams());
                     imageOfPet.setImageBitmap(imageToShow);
@@ -382,12 +369,13 @@ public class FormUpload extends BaseActivity implements View.OnClickListener {
         Log.e("Getpath", "Cool" + currentPhotoPath);
         return image;
     }
+
     public class UploadToServer extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
             try {
                 int responseFromServer = FormUploadConnectivity.uploadToRemoteServer(petCategoryName, petBreedName, petAge, petGender, petDescription, petAdoption, petGiveAway, petPrice, currentPhotoPath);
-                if(responseFromServer == 200){
+                if (responseFromServer == 200) {
                     runOnUiThread(new Runnable() {
                         public void run() {
                             Toast.makeText(FormUpload.this, "File Upload Complete.", Toast.LENGTH_SHORT).show();

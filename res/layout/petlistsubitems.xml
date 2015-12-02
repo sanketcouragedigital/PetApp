@@ -10,7 +10,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_alignParentStart="true"
-            android:layout_marginEnd="8dp" />
+            android:layout_marginEnd="8dp"/>
 
     <TextView
             android:id="@+id/petName"
@@ -20,6 +20,6 @@
             android:layout_toEndOf="@+id/petImage"
             android:textSize="@dimen/petName"
             android:textStyle="bold"
-            android:textColor="@color/list_pet_origin_text_color" />
+            android:textColor="@color/list_pet_origin_text_color"/>
 
 </RelativeLayout>

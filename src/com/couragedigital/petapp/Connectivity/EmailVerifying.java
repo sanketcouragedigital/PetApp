@@ -17,63 +17,64 @@ import org.json.JSONObject;
 
 public class EmailVerifying {
 
-    private static Context context=null;
+    private static Context context = null;
     private static String emailtochangepass;
     private static String method;
     private static String format;
     private static String changepasswordresponse;
 
     public static String SendEmailForPassword(String email) throws Exception {
-        String method ="checkemail";
-        String format ="json";
-        emailtochangepass =email;
+        String method = "checkemail";
+        String format = "json";
+        emailtochangepass = email;
 
         final String URL = "http://storage.couragedigital.com/dev/api/petappapi.php";
         JSONObject params = new JSONObject();
-        try{
-            params.put("method",method);
-            params.put("format",format);
-            params.put("email",emailtochangepass);
+        try {
+            params.put("method", method);
+            params.put("format", format);
+            params.put("email", emailtochangepass);
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
-    JsonObjectRequest signinReq = new JsonObjectRequest(Request.Method.POST, URL, params,
-            new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    VolleyLog.v("Response: %n %s", response.toString());
-                    try {
-                        returnResponse(response.getString("checkemailResponse"));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+        JsonObjectRequest signinReq = new JsonObjectRequest(Request.Method.POST, URL, params,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        VolleyLog.v("Response: %n %s", response.toString());
+                        try {
+                            returnResponse(response.getString("checkemailResponse"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        VolleyLog.e("Error: ", error.getMessage());
                     }
                 }
-            },
-            new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    VolleyLog.e("Error: ", error.getMessage());
-                }
-            }
-    );
-    AppController.getInstance().addToRequestQueue(signinReq);
-    return changepasswordresponse;
-}
+        );
+        AppController.getInstance().addToRequestQueue(signinReq);
+        return changepasswordresponse;
+    }
+
     public EmailVerifying(Context context) {
         this.context = context;
     }
+
     public static void returnResponse(String response) {
-        if(response.equals("RANDOM_NO_SUCCESSFULLY_UPDATED")) {
-            Intent gotonewpassword = new Intent (context, SetNewPassword.class);
+        if (response.equals("RANDOM_NO_SUCCESSFULLY_UPDATED")) {
+            Intent gotonewpassword = new Intent(context, SetNewPassword.class);
             //gotonewpassword.putExtra("EMAIL", emailtochangepass);
             context.startActivity(gotonewpassword);
             //Toast.makeText(context, "Activation Code sent on your Email..", Toast.LENGTH_SHORT).show();
-        }
-        else if(response.equals("INVALID_EMAIL")){
-            Intent gotologinpage = new Intent (context, EmailForCode.class);
+        } else if (response.equals("INVALID_EMAIL")) {
+            Intent gotologinpage = new Intent(context, EmailForCode.class);
             context.startActivity(gotologinpage);
-            Toast.makeText(context,"Enter Registered Email.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Enter Registered Email.", Toast.LENGTH_SHORT).show();
         }
     }
 }

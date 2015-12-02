@@ -1,108 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-<RelativeLayout
-              android:orientation="vertical"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:fillViewport="true">
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sign Up"
-            android:id="@+id/txtsignup" android:layout_alignParentTop="true" android:layout_centerHorizontal="true"/>
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="Name"
-            android:id="@+id/txtname"
-            android:layout_marginTop="30dp"
-            android:layout_below="@+id/txtsignup"/>
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="Building Name"
-            android:id="@+id/txtbuildingname"
-            android:layout_marginTop="30dp"
-            android:layout_below="@+id/txtname"/>
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="Area "
-            android:id="@+id/txtarea"
-            android:layout_marginTop="30dp"
-            android:layout_below="@+id/txtbuildingname"/>
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="City "
-            android:id="@+id/txtcity"
-            android:layout_marginTop="30dp"
-            android:layout_below="@+id/txtarea"/>
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="phone"
-            android:hint="Mobile No "
-            android:id="@+id/txtmobileno"
-            android:layout_marginTop="30dp"
-            android:layout_below="@+id/txtcity"/>
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:hint="Email"
-            android:id="@+id/txtemail"
-            android:layout_marginTop="30dp"
-            android:layout_below="@+id/txtmobileno"/>
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="Password"
-            android:id="@+id/txtpassword"
-            android:layout_marginTop="30dp"
-            android:layout_below="@+id/txtemail"/>
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="Confirm Password"
-            android:id="@+id/txtconfirmpassword"
-            android:layout_marginTop="30dp"
-            android:layout_below="@+id/txtpassword"/>
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sign Up"
-            android:id="@+id/btnsignup"
-            android:layout_below="@+id/txtconfirmpassword" android:layout_toStartOf="@+id/txtsignup"/>
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cancel"
-            android:id="@+id/btncancel"
-            android:layout_below="@+id/txtconfirmpassword"
-            android:layout_toEndOf="@+id/txtsignup"/>
-        <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="sign In"
-                android:id="@+id/btnsignin"
-                android:layout_below="@+id/btncancel"
-                android:layout_alignEnd="@+id/btncancel"
-                android:layout_alignStart="@+id/btnsignup"/>
-        <TextView
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res/com.couragedigital.petapp"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/text"
-                android:layout_marginTop="30dp"
-                android:layout_below="@+id/btnsignin"/>
+                android:layout_height="match_parent"
+                android:background="@drawable/signinbackground">
+    <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/card_view"
+            android:layout_marginTop="@dimen/signupcard_margintop"
+            android:layout_marginLeft="@dimen/signupcard_marginLeft"
+            android:layout_marginRight="@dimen/signupcard_marginRight"
+            android:layout_width="@dimen/signupcard_width"
+            android:layout_height="@dimen/signupcard_height"
+            card_view:cardCornerRadius="2dp"
+            android:layout_centerHorizontal="true">
 
+        <RelativeLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/signup_relativelayout_padding"
+                android:layout_marginRight="@dimen/signup_relativelayout_padding">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/lblsignin"
+                    android:layout_marginTop="@dimen/lblsignup"
+                    android:layout_centerHorizontal="true"
+                    android:text="SIGN UP"
+                    android:textColor="@color/signinlblcolor"
+                    android:id="@+id/signInTextView"/>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textInputLayoutname"
+                    android:layout_below="@+id/signInTextView"
+                    android:theme="@style/cardTheme">
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:hint="Name"
+                        android:id="@+id/txtname"
+                        android:textSize="@dimen/signuphintbtn_textSize"
+                        android:layout_marginTop="@dimen/signup_editText_marginTop"
+                        android:textColor="@color/edittext"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textInputLayoutbuildingname"
+                    android:theme="@style/cardTheme"
+                    android:layout_below="@+id/textInputLayoutname">
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:hint="Building Name"
+                        android:id="@+id/txtbuildingname"
+                        android:textSize="@dimen/signuphintbtn_textSize"
+                        android:textColor="@color/edittext"
+                        android:layout_marginTop="@dimen/signup_editText_marginTop"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textInputLayoutarea"
+                    android:theme="@style/cardTheme"
+                    android:layout_below="@+id/textInputLayoutbuildingname">
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:hint="Area "
+                        android:id="@+id/txtarea"
+                        android:textSize="@dimen/signuphintbtn_textSize"
+                        android:textColor="@color/edittext"
+                        android:layout_marginTop="@dimen/signup_editText_marginTop"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textInputLayoutcity"
+                    android:theme="@style/cardTheme"
+                    android:layout_below="@+id/textInputLayoutarea">
+
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:hint="City "
+                        android:id="@+id/txtcity"
+                        android:textSize="@dimen/signuphintbtn_textSize"
+                        android:textColor="@color/edittext"
+                        android:layout_marginTop="@dimen/signup_editText_marginTop"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textInputLayoutmobile"
+                    android:theme="@style/cardTheme"
+                    android:layout_below="@+id/textInputLayoutcity">
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:hint="Mobile No "
+                        android:id="@+id/txtmobileno"
+                        android:textSize="@dimen/signuphintbtn_textSize"
+                        android:textColor="@color/edittext"
+                        android:layout_marginTop="@dimen/signup_editText_marginTop"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textInputLayoutemail"
+                    android:theme="@style/cardTheme"
+                    android:layout_below="@+id/textInputLayoutmobile">
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:hint="Email"
+                        android:id="@+id/txtemail"
+                        android:textSize="@dimen/signuphintbtn_textSize"
+                        android:textColor="@color/edittext"
+                        android:layout_marginTop="@dimen/signup_editText_marginTop"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textInputLayoutpassword"
+                    android:theme="@style/cardTheme"
+                    android:layout_below="@+id/textInputLayoutemail">
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:hint="Password"
+                        android:id="@+id/txtpassword"
+                        android:textSize="@dimen/signuphintbtn_textSize"
+                        android:textColor="@color/edittext"
+                        android:layout_marginTop="@dimen/signup_editText_marginTop"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textInputLayoutconfirmpassword"
+                    android:theme="@style/cardTheme"
+                    android:layout_below="@+id/textInputLayoutpassword">
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:hint="Confirm Password"
+                        android:id="@+id/txtconfirmpassword"
+                        android:textSize="@dimen/signuphintbtn_textSize"
+                        android:textColor="@color/edittext"
+                        android:layout_marginTop="@dimen/signup_editText_marginTop"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                    android:layout_width="@dimen/btnsignup_width"
+                    android:layout_height="@dimen/btnsignup_height"
+                    android:text="Submit"
+                    android:id="@+id/btnsignup"
+                    android:layout_below="@+id/textInputLayoutconfirmpassword"
+                    android:layout_toLeftOf="@+id/btncancel"
+                    android:layout_marginRight="@dimen/signup_btnpadding_top"
+                    android:textColor="@color/btnsignuptext"
+                    android:layout_marginTop="@dimen/signup_btnpadding_top"
+                    android:layout_marginBottom="@dimen/signup_btnpadding_top"
+                    android:background="@null"/>
+            <Button
+                    android:layout_width="@dimen/btnsignup_width"
+                    android:layout_height="@dimen/btnsignup_height"
+                    android:text="Cancel"
+                    android:id="@+id/btncancel"
+                    android:layout_below="@+id/textInputLayoutconfirmpassword"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/btnsignuptext"
+                    android:layout_marginTop="@dimen/signup_btnpadding_top"
+                    android:layout_marginBottom="@dimen/signup_btnpadding_top"
+                    android:background="@null"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 </RelativeLayout>
-</ScrollView>

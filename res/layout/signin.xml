@@ -1,75 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sign In"
-                android:id="@+id/lblsignin"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                />
-
-
-        <EditText
+                xmlns:app="http://schemas.android.com/apk/res/com.couragedigital.petapp"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:hint="Email"
-                android:id="@+id/txtemail"
-                android:layout_marginTop="30dp"
-                android:layout_below="@+id/txtmobileno"/>
-        <EditText
+                android:layout_height="match_parent"
+                android:background="@drawable/signinbackground">
+
+    <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view"
+            android:layout_marginTop="@dimen/signincard_margin_top"
+            android:layout_marginLeft="@dimen/signincard_marginLeft"
+            android:layout_marginRight="@dimen/signincard_marginRight"
+            android:layout_width="@dimen/signincard_width"
+            android:layout_height="wrap_content"
+            card_view:cardCornerRadius="2dp"
+            android:layout_centerHorizontal="true">
+
+        <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="Password"
-                android:id="@+id/txtpassword"
-                android:layout_marginTop="30dp"
-                android:layout_below="@+id/txtemail"/>
-
-        <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sign Up"
-                android:id="@+id/btnsignup"
-                android:layout_marginTop="42dp"
-                android:layout_below="@+id/lblforgetpassword" android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"/>
-        <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sign In"
-                android:id="@+id/btnsignin"
-                android:layout_below="@+id/txtpassword" android:layout_toStartOf="@+id/lblsignin"
-                android:layout_marginTop="47dp"/>
-        <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cancel"
-                android:id="@+id/btncancel"
-                android:layout_gravity="center_horizontal"
-                android:layout_alignTop="@+id/btnsignin"
-                android:layout_toEndOf="@+id/lblsignin"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Forget Password ?"
-                android:id="@+id/lblforgetpassword"
-                android:layout_below="@+id/btnsignin"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/signin_relativelayout_padding"
+                android:layout_marginRight="@dimen/signin_relativelayout_padding"
+                android:layout_marginTop="@dimen/signin_relativelayout_padding"
+                android:layout_marginEnd="@dimen/signin_relativelayout_marginBottom"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="37dp"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Skip All"
-                android:id="@+id/lblskipall"
-                android:layout_below="@+id/btnsignup"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="38dp"/>
+                android:id="@+id/cardLayout">
 
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/lblsignin"
+                    android:layout_centerHorizontal="true"
+                    android:text="SIGN IN"
+                    android:textColor="@color/signinlblcolor"
+                    android:id="@+id/signInTextView"/>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textInputLayoutemail"
+                    android:layout_below="@+id/signInTextView"
+                    android:theme="@style/cardTheme">
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:hint="Email"
+                        android:singleLine="true"
+                        android:id="@+id/txtemail"
+                        android:textSize="@dimen/signinhintbtn_textSize"
+                        android:layout_marginTop="@dimen/edittext_margintop"
+                        android:textColor="@color/edittext"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textInputLayoutpassword"
+                    android:layout_below="@+id/textInputLayoutemail"
+                    android:theme="@style/cardTheme">
+
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:hint="Password"
+                        android:textSize="@dimen/signinhintbtn_textSize"
+                        android:textColor="@color/edittext"
+                        android:id="@+id/txtpassword"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Forgot Password ?"
+                    android:textSize="12sp"
+                    android:id="@+id/lblforgetpassword"
+                    android:textColor="@color/edittxtcolor"
+                    android:layout_below="@+id/textInputLayoutpassword"
+                    android:layout_marginTop="@dimen/lblforgetpassword_marginTop"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="24px"/>
+
+            <Button
+                    android:layout_width="@dimen/btnsignin_width"
+                    android:layout_height="@dimen/btnsignin_height"
+                    android:text="Sign Up"
+                    android:id="@+id/btnsignup"
+                    android:layout_toLeftOf="@+id/btnsignin"
+                    android:layout_marginRight="@dimen/btnpadding"
+                    android:layout_marginTop="@dimen/btnsignin_marginTop"
+                    android:background="@null"
+                    android:layout_marginBottom="@dimen/btnpadding"
+                    android:layout_below="@+id/lblforgetpassword"
+                    android:textColor="@color/btnsignuptext"/>
+
+            <Button
+                    android:layout_width="@dimen/btnsignin_width"
+                    android:layout_height="@dimen/btnsignin_height"
+                    android:text="Submit"
+                    android:id="@+id/btnsignin"
+                    android:layout_below="@+id/lblforgetpassword"
+                    android:layout_marginTop="@dimen/btnsignin_marginTop"
+                    android:layout_marginBottom="@dimen/btnpadding"
+                    android:layout_alignParentRight="true"
+                    android:background="@null"
+                    android:textColor="@color/btnsignuptext"/>
+
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <RelativeLayout android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/card_view"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/btnsignin_marginTop">
+        <ImageButton
+                android:layout_width="@dimen/sociallinkbutton_width"
+                android:layout_height="@dimen/sociallinkbutton_height"
+                android:id="@+id/btngoogle"
+                android:background="@color/btngoogle"
+                android:src="@drawable/googlelogo"/>
+        <ImageButton
+                android:layout_width="@dimen/sociallinkbutton_width"
+                android:layout_height="@dimen/sociallinkbutton_height"
+                android:text="Facebook"
+                android:id="@+id/btnfacebook"
+                android:layout_toRightOf="@+id/btngoogle"
+                android:layout_marginLeft="24px"
+                android:background="@color/btnfacebook"
+                android:src="@drawable/facebook_logo"/>
+    </RelativeLayout>
 </RelativeLayout>

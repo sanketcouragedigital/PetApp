@@ -19,7 +19,7 @@ import com.couragedigital.petapp.SHA_256.PasswordConverter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SignUp extends AppCompatActivity {
+public class SignUp extends  BaseActivity {
     private static EditText txt_name;
     private static EditText txt_buildingname;
     private static EditText txt_area;
@@ -50,7 +50,6 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.signup);
         ButtonSignUp();
         ButtonCancel();
-        ButtonSignIn();
     }
     public static boolean isValidEmail(String emailForValidation) {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(emailForValidation).matches();
@@ -140,20 +139,6 @@ public class SignUp extends AppCompatActivity {
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         intent.putExtra("EXIT", true);
                         startActivity(intent);
-                    }
-                }
-        );
-    }
-    public void ButtonSignIn(){
-        btn_signin = (Button)findViewById(R.id.btnsignin);
-
-        btn_signin.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent gotosigninpage = new Intent(SignUp.this,SignIn.class);
-                        startActivity(gotosigninpage);
-
                     }
                 }
         );

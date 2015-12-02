@@ -12,7 +12,7 @@ import com.couragedigital.petapp.Connectivity.LoginFromServer;
 import com.couragedigital.petapp.Connectivity.ResetPassword;
 import com.couragedigital.petapp.SHA_256.PasswordConverter;
 
-public class SetNewPassword extends AppCompatActivity  {
+public class SetNewPassword extends BaseActivity {
     private static EditText userActivationCode;
     private static EditText userNewPassword;
     private static Button submit_btn;
@@ -29,9 +29,10 @@ public class SetNewPassword extends AppCompatActivity  {
         setContentView(R.layout.signin);
         SubmitButton();
     }
-    public void SubmitButton(){
-        userActivationCode =(EditText)findViewById(R.id.txtActivationCode);
-        userNewPassword =(EditText)findViewById(R.id.txtNewPassword);
+
+    public void SubmitButton() {
+        userActivationCode = (EditText) findViewById(R.id.txtActivationCode);
+        userNewPassword = (EditText) findViewById(R.id.txtNewPassword);
 
         //Intent emailIntent = getIntent();
         //email= emailIntent.getStringExtra("EMAIL");
@@ -40,25 +41,25 @@ public class SetNewPassword extends AppCompatActivity  {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(userActivationCode.getText().toString().isEmpty() || userNewPassword.getText().toString().isEmpty()){
+                        if (userActivationCode.getText().toString().isEmpty() || userNewPassword.getText().toString().isEmpty()) {
                             Toast.makeText(SetNewPassword.this, "Enter Activation Code & New Password", Toast.LENGTH_LONG).show();
                             //Snackbar.make(SignIn.this,"Enter Username & Password",Snackbar.LENGTH_LONG).show();
-                        }else {
+                        } else {
                             progressDialog = new ProgressDialog(SetNewPassword.this);
                             progressDialog.setMessage("Login Please Wait...");
                             progressDialog.show();
                             code = userActivationCode.getText().toString();
-                            Intent gotologin=new Intent(SetNewPassword.this,SignIn.class);
+                            Intent gotologin = new Intent(SetNewPassword.this, SignIn.class);
                             startActivity(gotologin);
-                            try{
-                                PasswordConverter passwordConverter=new PasswordConverter();
+                            try {
+                                PasswordConverter passwordConverter = new PasswordConverter();
                                 password = passwordConverter.ConvertPassword(userNewPassword.getText().toString());
                                 ResetPassword resetPassword = new ResetPassword(SetNewPassword.this);
                                 resetPassword.SeToRemoteServer(code, password, email);
-                            } catch (Exception e){
+                            } catch (Exception e) {
                                 e.printStackTrace();
                                 progressDialog.dismiss();
-                                Toast.makeText(SetNewPassword.this,"Exception : "+e.getMessage(),Toast.LENGTH_LONG).show();
+                                Toast.makeText(SetNewPassword.this, "Exception : " + e.getMessage(), Toast.LENGTH_LONG).show();
                             }
                         }
                     }

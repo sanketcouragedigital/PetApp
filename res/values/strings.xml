@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Peto</string>
-    <string name="form_upload">Upload Pets Details</string>
-    <string name="show_pets_details">List of Pets</string>
     <string name="pet_gender_male">Male</string>
     <string name="pet_gender_female">Female</string>
     <string name="drawer_open">Open</string>

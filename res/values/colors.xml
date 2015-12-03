@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="list_divider">#D9D9D9</color>
-    <color name="list_row_start_color">#EEEEEE</color>
-    <color name="list_row_end_color">#EEEEEE</color>
     <color name="list_pet_origin_text_color">#000000</color>
-    <color name="list_row_hover_start_color">#EBEEF0</color>
-    <color name="list_row_hover_end_color">#EBEEF0</color>
     <color name="colorPrimary">#673AB7</color>
     <color name="colorPrimaryDark">#512DA8</color>
     <color name="windowBackground">#DADADA</color>
@@ -24,5 +19,10 @@
     <color name="edittxtcolor">#616161</color>
     <color name="edittext">#000000</color>
 
+    <color name="refresh_progress_1">#0266C8</color>
+    <color name="refresh_progress_2">#F90101</color>
+    <color name="refresh_progress_3">#F2B50F</color>
+    <color name="refresh_progress_4">#00933B</color>
 
+    <color name="list_internal_divider">#D3D3D4</color>
 </resources>

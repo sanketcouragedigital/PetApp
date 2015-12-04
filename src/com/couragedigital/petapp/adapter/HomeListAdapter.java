@@ -1,4 +1,4 @@
-package com.couragedigital.petapp.adapter;
+package com.couragedigital.petapp.Adapter;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -9,15 +9,16 @@ import android.net.Uri;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.internal.view.ContextThemeWrapper;
+import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.*;
 import android.view.View.OnClickListener;
 import android.widget.*;
-import com.couragedigital.petapp.FormUpload;
-import com.couragedigital.petapp.ListOfPets;
+import com.couragedigital.petapp.PetForm;
+import com.couragedigital.petapp.PetList;
+import com.couragedigital.petapp.Adapter.DialogListAdapter;
 import com.couragedigital.petapp.model.DialogListInformaion;
 import com.couragedigital.petapp.model.IndexListInfo;
 import com.couragedigital.petapp.R;
@@ -73,7 +74,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
         public IndexListInfo feed;
         public TextView textDialog;
         private AlertDialog alertDialog;
-        public DialogListAdapter adapter;
+        public com.couragedigital.petapp.Adapter.DialogListAdapter adapter;
         public CardView cv;
         public List<DialogListInformaion> dialogListArrayList1 = new ArrayList<DialogListInformaion>();
         public List<DialogListInformaion> dialogListArrayList2 = new ArrayList<DialogListInformaion>();
@@ -105,10 +106,10 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (i == 0) {
-                            Intent gotoformupload = new Intent(v.getContext(), FormUpload.class);
+                            Intent gotoformupload = new Intent(v.getContext(), PetForm.class);
                             v.getContext().startActivity(gotoformupload);
                         } else if (i == 1) {
-                            Intent gotolistofpet = new Intent(v.getContext(), ListOfPets.class);
+                            Intent gotolistofpet = new Intent(v.getContext(), PetList.class);
                             v.getContext().startActivity(gotolistofpet);
                         }
                     }
@@ -120,10 +121,10 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (i == 0) {
-                            Intent gotoformupload = new Intent(v.getContext(), FormUpload.class);
+                            Intent gotoformupload = new Intent(v.getContext(), PetForm.class);
                             v.getContext().startActivity(gotoformupload);
                         } else if (i == 1) {
-                            Intent gotolistofpet = new Intent(v.getContext(), ListOfPets.class);
+                            Intent gotolistofpet = new Intent(v.getContext(), PetList.class);
                             v.getContext().startActivity(gotolistofpet);
                         }
                     }
@@ -135,10 +136,10 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (i == 0) {
-                            Intent gotoformupload = new Intent(v.getContext(), FormUpload.class);
+                            Intent gotoformupload = new Intent(v.getContext(), PetForm.class);
                             v.getContext().startActivity(gotoformupload);
                         } else if (i == 1) {
-                            Intent gotolistofpet = new Intent(v.getContext(), ListOfPets.class);
+                            Intent gotolistofpet = new Intent(v.getContext(), PetList.class);
                             v.getContext().startActivity(gotolistofpet);
                         }
 
@@ -159,10 +160,10 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (i == 0) {
-                            Intent gotoformupload = new Intent(v.getContext(), FormUpload.class);
+                            Intent gotoformupload = new Intent(v.getContext(), PetForm.class);
                             v.getContext().startActivity(gotoformupload);
                         } else if (i == 1) {
-                            Intent gotolistofpet = new Intent(v.getContext(), ListOfPets.class);
+                            Intent gotolistofpet = new Intent(v.getContext(), PetList.class);
                             v.getContext().startActivity(gotolistofpet);
                         }
                     }

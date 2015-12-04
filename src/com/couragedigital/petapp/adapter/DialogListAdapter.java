@@ -1,4 +1,4 @@
-package com.couragedigital.petapp.adapter;
+package com.couragedigital.petapp.Adapter;
 
 
 import android.content.Context;

@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.couragedigital.petapp.SessionManager.SessionManager;
-import com.couragedigital.petapp.adapter.HomeListAdapter;
+import com.couragedigital.petapp.Adapter.HomeListAdapter;
 import com.couragedigital.petapp.model.DialogListInformaion;
 import com.couragedigital.petapp.model.IndexListInfo;
 

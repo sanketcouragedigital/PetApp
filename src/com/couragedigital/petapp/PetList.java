@@ -21,7 +21,7 @@ import java.util.List;
 
 import android.app.ProgressDialog;
 
-public class PetList extends AppCompatActivity {
+public class PetList extends BaseActivity {
 
     private static final String TAG = PetList.class.getSimpleName();
 
@@ -62,13 +62,13 @@ public class PetList extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        url = "http://192.168.0.10/PetAPI/api/petappapi.php?method=showPetDetails&format=json&currentPage="+current_page+"";
+        url = "http://192.168.0.7/PetAPI/api/petappapi.php?method=showPetDetails&format=json&currentPage="+current_page+"";
 
         recyclerView.addOnScrollListener(new PetFetchListScrollListener(layoutManager, current_page){
 
             @Override
             public void onLoadMore(int current_page) {
-                url = "http://192.168.0.10/PetAPI/api/petappapi.php?method=showPetDetails&format=json&currentPage="+current_page+"";
+                url = "http://192.168.0.7/PetAPI/api/petappapi.php?method=showPetDetails&format=json&currentPage="+current_page+"";
                 grabURL(url);
             }
         });
@@ -120,7 +120,7 @@ public class PetList extends AppCompatActivity {
             String date = petList.getPetPostDate();
             //date = date.replace(" ", "+");
             try {
-                url = "http://192.168.0.10/PetAPI/api/petappapi.php?method=showPetSwipeRefreshList&format=json&date="+ URLEncoder.encode(date, "UTF-8")+"";
+                url = "http://192.168.0.7/PetAPI/api/petappapi.php?method=showPetSwipeRefreshList&format=json&date="+ URLEncoder.encode(date, "UTF-8")+"";
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }

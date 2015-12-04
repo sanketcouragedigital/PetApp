@@ -40,7 +40,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 
-public class PetForm extends AppCompatActivity implements View.OnClickListener {
+public class PetForm extends BaseActivity implements View.OnClickListener {
 
     private static final int CAMERA_REQUEST = 1;
     private static final int GALLERY_REQUEST = 2;

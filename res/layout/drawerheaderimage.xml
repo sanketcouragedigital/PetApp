@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="150dp"
-             android:fitsSystemWindows="true">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="304dp"
+             android:layout_height="172dp"
+             android:fitsSystemWindows="true" android:id="@+id/drawerheaderimage">
 
     <RelativeLayout android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="match_parent"
                     android:background="@drawable/drawerheader"
-                    android:id="@+id/drawerheaderimage"
+                    android:id="@+id/drawerheader"
                     android:fitsSystemWindows="true">
         <TextView android:id="@+id/lblname"
                   android:layout_width="wrap_content"
@@ -23,11 +23,11 @@
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:textColor="#ffffff"
-                  android:layout_marginLeft="16dp"
                   android:textSize="14sp"
+                  android:text="hrishi@gmail.com"
                   android:textStyle="normal"
+                  android:paddingBottom="16dp"
                   android:layout_alignParentBottom="true"
-                  android:layout_alignParentLeft="true"
-                  android:paddingBottom="5dp"/>
+                  android:layout_centerHorizontal="true"/>
     </RelativeLayout>
-</FrameLayout>
+</RelativeLayout>

@@ -32,13 +32,13 @@ public class SessionManager {
     public static final String KEY_EMAIL = "email";
 
 
-    public SessionManager(Context c){
+    public SessionManager(Context c) {
         this.context = c;
-        pref = context.getSharedPreferences(PREF_NAME,PRIVATE_MODE);
+        pref = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
     }
 
-    public void createUserLoginSession(String name, String email){
+    public void createUserLoginSession(String name, String email) {
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
         editor.commit();
@@ -53,7 +53,7 @@ public class SessionManager {
         editor.commit();
     }
 
-    public HashMap<String, String> getUserDetails(){
+    public HashMap<String, String> getUserDetails() {
         HashMap<String, String> user = new HashMap<String, String>();
         // user name
         user.put(KEY_NAME, pref.getString(KEY_NAME, null));
@@ -66,7 +66,7 @@ public class SessionManager {
     }
 
 
-    public void logoutUser(){
+    public void logoutUser() {
         // Clearing all data from Shared Preferences
         editor.clear();
         editor.commit();
@@ -77,7 +77,7 @@ public class SessionManager {
         // Closing all the Activities
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 
         i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
@@ -85,7 +85,7 @@ public class SessionManager {
         context.startActivity(i);
     }
 
-    public boolean isLoggedIn(){
+    public boolean isLoggedIn() {
         return pref.getBoolean(IS_LOGIN, false);
 
     }

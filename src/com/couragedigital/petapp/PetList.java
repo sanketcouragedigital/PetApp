@@ -1,5 +1,6 @@
 package com.couragedigital.petapp;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -62,13 +63,13 @@ public class PetList extends BaseActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        url = "http://192.168.0.7/PetAPI/api/petappapi.php?method=showPetDetails&format=json&currentPage="+current_page+"";
+        url = "http://192.168.0.5/PetAPI/api/petappapi.php?method=showPetDetails&format=json&currentPage="+current_page+"";
 
         recyclerView.addOnScrollListener(new PetFetchListScrollListener(layoutManager, current_page){
 
             @Override
             public void onLoadMore(int current_page) {
-                url = "http://192.168.0.7/PetAPI/api/petappapi.php?method=showPetDetails&format=json&currentPage="+current_page+"";
+                url = "http://192.168.0.5/PetAPI/api/petappapi.php?method=showPetDetails&format=json&currentPage="+current_page+"";
                 grabURL(url);
             }
         });
@@ -120,7 +121,7 @@ public class PetList extends BaseActivity {
             String date = petList.getPetPostDate();
             //date = date.replace(" ", "+");
             try {
-                url = "http://192.168.0.7/PetAPI/api/petappapi.php?method=showPetSwipeRefreshList&format=json&date="+ URLEncoder.encode(date, "UTF-8")+"";
+                url = "http://192.168.0.5/PetAPI/api/petappapi.php?method=showPetSwipeRefreshList&format=json&date="+ URLEncoder.encode(date, "UTF-8")+"";
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
@@ -161,11 +162,9 @@ public class PetList extends BaseActivity {
 
         }
         if (item.getItemId() == R.id.action_filter) {
-            /*PetListInstance petListInstance = new PetListInstance(Adapter, petLists, petlistView);
+            //PetListInstance petListInstance = new PetListInstance(Adapter, petLists, petlistView);
             Intent filterClassIntent = new Intent(PetList.this, PetListFilter.class);
-            //filterClassIntent.putExtra("PET_LISTS", (Parcelable) petLists);
-            //filterClassIntent.putExtra("PET_ADAPTER", (Parcelable) Adapter);
-            startActivity(filterClassIntent);*/
+            startActivity(filterClassIntent);
         }
         return true;
     }

@@ -1,6 +1,7 @@
 package com.couragedigital.petapp.Connectivity;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.DataOutputStream;
 import java.io.File;
@@ -39,7 +40,7 @@ public  class PetListFormUpload {
         int maxBufferSize = 1 * 1024 * 1024;
         File sourceFile = new File(petImage);
         if (!sourceFile.isFile()) {
-            Log.e("uploadFile", "Source File Does not exist");
+            Log.e("uploadFile", "Source File not exist in the phone");
             return 0;
         }
         try { // open a URL connection to the Servlet

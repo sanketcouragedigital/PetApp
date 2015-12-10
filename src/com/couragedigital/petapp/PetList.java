@@ -27,7 +27,7 @@ public class PetList extends BaseActivity {
     private static final String TAG = PetList.class.getSimpleName();
 
     // http://c/dev/api/petappapi.php?method=showPetDetails&format=json
-    private static String url;
+    private static String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
     private ProgressDialog progressDialog;
     public List<com.couragedigital.petapp.model.PetList> petLists = new ArrayList<com.couragedigital.petapp.model.PetList>();
     /*private ListView petlistView;
@@ -63,13 +63,13 @@ public class PetList extends BaseActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        url = "http://192.168.0.5/PetAPI/api/petappapi.php?method=showPetDetails&format=json&currentPage="+current_page+"";
+        url = url+"?method=showPetDetails&format=json&currentPage="+current_page+"";
 
         recyclerView.addOnScrollListener(new PetFetchListScrollListener(layoutManager, current_page){
 
             @Override
             public void onLoadMore(int current_page) {
-                url = "http://192.168.0.5/PetAPI/api/petappapi.php?method=showPetDetails&format=json&currentPage="+current_page+"";
+                url = url+"?method=showPetDetails&format=json&currentPage="+current_page+"";
                 grabURL(url);
             }
         });
@@ -121,7 +121,7 @@ public class PetList extends BaseActivity {
             String date = petList.getPetPostDate();
             //date = date.replace(" ", "+");
             try {
-                url = "http://192.168.0.5/PetAPI/api/petappapi.php?method=showPetSwipeRefreshList&format=json&date="+ URLEncoder.encode(date, "UTF-8")+"";
+                url = url+"?method=showPetSwipeRefreshList&format=json&date="+ URLEncoder.encode(date, "UTF-8")+"";
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }

@@ -2,6 +2,7 @@ package com.couragedigital.petapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
@@ -22,10 +23,10 @@ public class Index extends BaseActivity {
     RecyclerView.LayoutManager layoutManager;
     HomeListAdapter mAdapter;
 
-    public List<DialogListInformaion> dialogListArrayList1 = new ArrayList<DialogListInformaion>();
-    public List<DialogListInformaion> dialogListArrayList2 = new ArrayList<DialogListInformaion>();
-    public List<DialogListInformaion> dialogListArrayList3 = new ArrayList<DialogListInformaion>();
-    public List<DialogListInformaion> dialogListArrayList4 = new ArrayList<DialogListInformaion>();
+    public List<DialogListInformaion> dialogListForViewPets = new ArrayList<DialogListInformaion>();
+    public List<DialogListInformaion> dialogListForViewPetMets = new ArrayList<DialogListInformaion>();
+
+    public CoordinatorLayout homeListCoordinatorLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,8 @@ public class Index extends BaseActivity {
 
     private void homeListMenu() {
 
+        homeListCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.homeListCoordinatorLayout);
+
         //Home menus Tittle Names
         final String[] titlename = new String[]{"View/List Pets", "Mating", "Doctors", "Accessories"};
         final String[] description = new String[]{"sample1", "sample2", "sample3", "sample4", "sample5"};
@@ -59,50 +62,30 @@ public class Index extends BaseActivity {
         }
 
         //View/List of pets Dailogbox Menu tittles Names
-        final String[] title = new String[]{"Upload Pet Detail", "List of Pets", "AddMore"};
+        final String[] title = new String[]{"Upload Pet Detail", "List of Pets"};
         final int[] icons = {R.drawable.addpet, R.drawable.view, R.drawable.ic_launcher};
         for (int i = 0; i < title.length; i++) {
             DialogListInformaion dialogListInformaion1 = new DialogListInformaion();
             dialogListInformaion1.setTittle(title[i]);
             dialogListInformaion1.setIcons(icons[i]);
-            dialogListArrayList1.add(dialogListInformaion1);
+            dialogListForViewPets.add(dialogListInformaion1);
         }
 
         //Mating Dailogbox Menu tittles Names
-        final String[] title2 = new String[]{"Sample 1", "Sample 2"};
+        final String[] title2 = new String[]{"Upload Pet Met Details", "List of Pet Met"};
         final int[] icons2 = {R.drawable.addpet, R.drawable.view};
         for (int i = 0; i < title2.length; i++) {
             DialogListInformaion dialogListInformaion2 = new DialogListInformaion();
             dialogListInformaion2.setTittle(title2[i]);
             dialogListInformaion2.setIcons(icons2[i]);
-            dialogListArrayList2.add(dialogListInformaion2);
-        }
-
-        //Doctors Dailogbox Menu tittles Names
-        final String[] title3 = new String[]{"Sample 3", "Sample 4"};
-        final int[] icons3 = {R.drawable.addpet, R.drawable.view};
-        for (int i = 0; i < title3.length; i++) {
-            DialogListInformaion dialogListInformaion3 = new DialogListInformaion();
-            dialogListInformaion3.setTittle(title3[i]);
-            dialogListInformaion3.setIcons(icons3[i]);
-            dialogListArrayList3.add(dialogListInformaion3);
-        }
-
-        //Accessories Dailogbox Menu tittles Names
-        final String[] title4 = new String[]{"Sample 5", "Sample 6"};
-        final int[] icons4 = {R.drawable.addpet, R.drawable.view};
-        for (int i = 0; i < title4.length; i++) {
-            DialogListInformaion dialogListInformaion4 = new DialogListInformaion();
-            dialogListInformaion4.setTittle(title4[i]);
-            dialogListInformaion4.setIcons(icons4[i]);
-            dialogListArrayList4.add(dialogListInformaion4);
+            dialogListForViewPetMets.add(dialogListInformaion2);
         }
 
         recyclerView = (RecyclerView) findViewById(R.id.indexpagelst);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        mAdapter = new HomeListAdapter(indexListInfosArray, dialogListArrayList1, dialogListArrayList2, dialogListArrayList3, dialogListArrayList4);
+        mAdapter = new HomeListAdapter(indexListInfosArray, dialogListForViewPets, dialogListForViewPetMets, homeListCoordinatorLayout);
         recyclerView.setAdapter(mAdapter);
     }
 

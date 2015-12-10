@@ -17,7 +17,7 @@ import com.couragedigital.petapp.SHA_256.PasswordConverter;
 import com.couragedigital.petapp.SessionManager.SessionManager;
 //import android.support.design.widget.Snackbar;
 
-public class SignIn extends BaseActivity {
+public class SignIn extends AppCompatActivity {
 
 
     private static EditText username;
@@ -41,13 +41,6 @@ public class SignIn extends BaseActivity {
         SignInButton();
         SignUpButton();
         ForgetPassword();
-        drawerLayout = (DrawerLayout) this.findViewById(R.id.drawerLayout);
-        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-        toolbar = (Toolbar) drawerLayout.findViewById(R.id.app_bar);
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
-        }
-        drawerToggle.setDrawerIndicatorEnabled(false);
     }
 
     public void SignInButton() {

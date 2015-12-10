@@ -31,24 +31,23 @@ import java.util.List;
 public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHolder> {
 
     private static ArrayList<IndexListInfo> dataSet;
-    public static List<DialogListInformaion> dialogListInformaionArrayList1 = new ArrayList<DialogListInformaion>();
-    public static List<DialogListInformaion> dialogListInformaionArrayList2 = new ArrayList<DialogListInformaion>();
-    public static List<DialogListInformaion> dialogListInformaionArrayList3 = new ArrayList<DialogListInformaion>();
-    public static List<DialogListInformaion> dialogListInformaionArrayList4 = new ArrayList<DialogListInformaion>();
+    public static List<DialogListInformaion> dialogListForViewPets = new ArrayList<DialogListInformaion>();
+    public static List<DialogListInformaion> dialogListForViewPetMets = new ArrayList<DialogListInformaion>();
 
-    public HomeListAdapter(ArrayList<IndexListInfo> indexListInfoList, List<DialogListInformaion> dialogListInformaionArrayList,
-                           List<DialogListInformaion> dialogListInformaionArrayList2, List<DialogListInformaion> dialogListInformaionArrayList3, List<DialogListInformaion> dialogListInformaionArrayList4) {
+    public static CoordinatorLayout homeListCoordinatorLayout;
+
+    public HomeListAdapter(ArrayList<IndexListInfo> indexListInfoList, List<DialogListInformaion> dialogListForViewPets,
+                           List<DialogListInformaion> dialogListForViewPetMets, CoordinatorLayout homeListCoordinatorLayout) {
         this.dataSet = indexListInfoList;
-        this.dialogListInformaionArrayList1 = dialogListInformaionArrayList;
-        this.dialogListInformaionArrayList2 = dialogListInformaionArrayList2;
-        this.dialogListInformaionArrayList3 = dialogListInformaionArrayList3;
-        this.dialogListInformaionArrayList4 = dialogListInformaionArrayList4;
+        this.dialogListForViewPets = dialogListForViewPets;
+        this.dialogListForViewPetMets = dialogListForViewPetMets;
+        this.homeListCoordinatorLayout = homeListCoordinatorLayout;
     }
 
     @Override
     public HomeListAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.listview_homemenu, viewGroup, false);
-        ViewHolder vh = new ViewHolder(view, dialogListInformaionArrayList1, dialogListInformaionArrayList2, dialogListInformaionArrayList3, dialogListInformaionArrayList4);
+        ViewHolder vh = new ViewHolder(view);
         return vh;
     }
 
@@ -76,18 +75,14 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
         private AlertDialog alertDialog;
         public com.couragedigital.petapp.Adapter.DialogListAdapter adapter;
         public CardView cv;
-        public List<DialogListInformaion> dialogListArrayList1 = new ArrayList<DialogListInformaion>();
-        public List<DialogListInformaion> dialogListArrayList2 = new ArrayList<DialogListInformaion>();
-        public List<DialogListInformaion> dialogListArrayList3 = new ArrayList<DialogListInformaion>();
-        public List<DialogListInformaion> dialogListArrayList4 = new ArrayList<DialogListInformaion>();
 
-        public ViewHolder(View itemView, List<DialogListInformaion> listInformaionArrayList1, List<DialogListInformaion> listInformaionArrayList2,
-                          List<DialogListInformaion> listInformaionArrayList3, List<DialogListInformaion> listInformaionArrayList4) {
+        Snackbar petMetFormSnackBar;
+        Snackbar petMetListSnackBar;
+        Snackbar accessoriesSnackBar;
+        Snackbar doctorSnackBar;
+
+        public ViewHolder(View itemView) {
             super(itemView);
-            dialogListArrayList1 = listInformaionArrayList1;
-            dialogListArrayList2 = listInformaionArrayList2;
-            dialogListArrayList3 = listInformaionArrayList3;
-            dialogListArrayList4 = listInformaionArrayList4;
             cv = (CardView) itemView.findViewById(R.id.card_view);
             tittle = (TextView) itemView.findViewById(R.id.titletxt);
             description = (TextView) itemView.findViewById(R.id.descriptiontext);
@@ -101,7 +96,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
             AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(v.getContext(), R.style.HomePageDialogboxCustom));
 
             if (position == 0) {
-                adapter = new DialogListAdapter(dialogListArrayList1);
+                adapter = new DialogListAdapter(dialogListForViewPets);
                 builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -116,58 +111,61 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                 });
             }
             if (position == 1) {
-                adapter = new DialogListAdapter(dialogListArrayList2);
+                adapter = new DialogListAdapter(dialogListForViewPetMets);
                 builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (i == 0) {
-                            Intent gotoformupload = new Intent(v.getContext(), PetForm.class);
-                            v.getContext().startActivity(gotoformupload);
+                            /*Intent gotoformupload = new Intent(v.getContext(), PetForm.class);
+                            v.getContext().startActivity(gotoformupload);*/
+                            petMetFormSnackBar = Snackbar
+                                    .make(homeListCoordinatorLayout, "This Feature is yet to come!", Snackbar.LENGTH_LONG)
+                                    .setAction("UNDO", new OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            petMetFormSnackBar.dismiss();
+                                        }
+                                    });
+                            petMetFormSnackBar.show();
                         } else if (i == 1) {
-                            Intent gotolistofpet = new Intent(v.getContext(), PetList.class);
-                            v.getContext().startActivity(gotolistofpet);
+                            /*Intent gotolistofpet = new Intent(v.getContext(), PetList.class);
+                            v.getContext().startActivity(gotolistofpet);*/
+                            petMetListSnackBar = Snackbar
+                                    .make(homeListCoordinatorLayout, "This Feature is yet to come!", Snackbar.LENGTH_LONG)
+                                    .setAction("UNDO", new OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            petMetListSnackBar.dismiss();
+                                        }
+                                    });
+                            petMetListSnackBar.show();
                         }
                     }
                 });
             }
             if (position == 2) {
-                adapter = new DialogListAdapter(dialogListArrayList3);
-                builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        if (i == 0) {
-                            Intent gotoformupload = new Intent(v.getContext(), PetForm.class);
-                            v.getContext().startActivity(gotoformupload);
-                        } else if (i == 1) {
-                            Intent gotolistofpet = new Intent(v.getContext(), PetList.class);
-                            v.getContext().startActivity(gotolistofpet);
-                        }
+                doctorSnackBar = Snackbar
+                        .make(homeListCoordinatorLayout, "This Feature is yet to come!", Snackbar.LENGTH_LONG)
+                        .setAction("UNDO", new OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                doctorSnackBar.dismiss();
+                            }
+                        });
 
-                    }
-                });
-            /*  //  Toast.makeText(v.getContext(), Integer.toString(position), Toast.LENGTH_SHORT).show();
-                CoordinatorLayout snackbarCoordinatorLayout = (CoordinatorLayout) v.findViewById(R.id.snackbarPosition);
-                Snackbar snackbar = Snackbar.make(
-                        snackbarCoordinatorLayout,
-                        "Snackbar",
-                        Snackbar.LENGTH_LONG);
-                snackbar.show();*/
-
+                doctorSnackBar.show();
             }
             if (position == 3) {
-                adapter = new DialogListAdapter(dialogListArrayList4);
-                builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        if (i == 0) {
-                            Intent gotoformupload = new Intent(v.getContext(), PetForm.class);
-                            v.getContext().startActivity(gotoformupload);
-                        } else if (i == 1) {
-                            Intent gotolistofpet = new Intent(v.getContext(), PetList.class);
-                            v.getContext().startActivity(gotolistofpet);
-                        }
-                    }
-                });
+                accessoriesSnackBar = Snackbar
+                        .make(homeListCoordinatorLayout, "This Feature is yet to come!", Snackbar.LENGTH_LONG)
+                        .setAction("UNDO", new OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                accessoriesSnackBar.dismiss();
+                            }
+                        });
+
+                accessoriesSnackBar.show();
             }
             alertDialog = builder.create();
             alertDialog.show();

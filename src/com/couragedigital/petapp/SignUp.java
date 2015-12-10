@@ -19,7 +19,7 @@ import com.couragedigital.petapp.SHA_256.PasswordConverter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SignUp extends  BaseActivity {
+public class SignUp extends AppCompatActivity {
     private static EditText txt_name;
     private static EditText txt_buildingname;
     private static EditText txt_area;

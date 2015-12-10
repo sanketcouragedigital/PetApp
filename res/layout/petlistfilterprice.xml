@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/filterPriceFixedRangeValue"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/filterPriceRangeBar"/>
+
+    <com.couragedigital.petapp.RangeBar.RangeBar
+            xmlns:custom="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:id="@+id/filterPriceRangeBar"
+            custom:tickStart="0"
+            custom:tickEnd="100000"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_below="@+id/filterPriceFixedRangeValue"
+            android:layout_centerHorizontal="true"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:id="@+id/filterPriceChangeRangeValue"
+            android:layout_below="@+id/filterPriceRangeBar"
+            android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

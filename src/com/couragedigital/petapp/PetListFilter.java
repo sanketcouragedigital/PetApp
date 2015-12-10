@@ -20,7 +20,7 @@ public class PetListFilter extends BaseActivity {
 
     RecyclerView petFilterRecyclerView;
     LinearLayoutManager layoutManager;
-    RelativeLayout filterMenu;
+    public RelativeLayout filterMenu;
     FloatingActionButton applyFilterFAB;
     final List<FilterOptionList> filterOptionsList = new ArrayList<FilterOptionList>();
     FilterOptionsAdapter filterOptionsAdapter;

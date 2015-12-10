@@ -424,6 +424,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
         try {
             outStream = new FileOutputStream(file);
             imageToShow.compress(Bitmap.CompressFormat.PNG, 100, outStream);
+            currentPhotoPath = file.getAbsolutePath();
             outStream.flush();
             outStream.close();
         } catch (Exception e) {

@@ -20,7 +20,6 @@
               android:id="@+id/drawerItemText"
               android:layout_marginLeft="30dp"
               android:layout_toRightOf="@+id/drawerItemIcon"
-              android:text="Hello"
               android:textColor="@color/list_pet_origin_text_color"
               android:textAppearance="?android:attr/textAppearanceListItemSmall"
               android:layout_marginTop="15dp"

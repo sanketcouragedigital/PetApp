@@ -18,7 +18,7 @@ public  class PetListFormUpload {
     //http://192.168.0.3/PetAppAPI/api/petappapi.php
     //http://storage.couragedigital.com/dev/api/petappapi.php
 
-    public static int uploadToRemoteServer(String petCategoryName, String petBreedName, Integer petAge, String petGender, String petDescription, String petAdoption, String petGiveAway, Integer petPrice, String currentPhotoPath) throws Exception {
+    public static int uploadToRemoteServer(String petCategoryName, String petBreedName, Integer petAge, String petGender, String petDescription, String petAdoption,Integer petPrice, String currentPhotoPath) throws Exception {
         int serverResponseCode = 0;
         String upLoadServerUri = SERVER_URL;
         String categoryOfPet = petCategoryName;
@@ -27,7 +27,6 @@ public  class PetListFormUpload {
         String genderOfPet = petGender;
         String descriptionOfPet = petDescription;
         String adoptionOfPet = petAdoption;
-        String giveAwayOfPet = petGiveAway;
         Integer priceOfPet = petPrice;
         String petImage = currentPhotoPath;
         HttpURLConnection conn = null;
@@ -62,7 +61,6 @@ public  class PetListFormUpload {
             conn.setRequestProperty("genderOfPet", genderOfPet);
             conn.setRequestProperty("descriptionOfPet", descriptionOfPet);
             conn.setRequestProperty("adoptionOfPet", adoptionOfPet);
-            conn.setRequestProperty("giveAwayOfPet", giveAwayOfPet);
             conn.setRequestProperty("priceOfPet", String.valueOf(priceOfPet));
             conn.setRequestProperty("petImage", petImage);
             conn.setRequestProperty("method", method);
@@ -103,12 +101,6 @@ public  class PetListFormUpload {
             dos.writeBytes("Content-Disposition: form-data; name=\"adoptionOfPet\";" + lineEnd);
             dos.writeBytes(lineEnd);
             dos.writeBytes(adoptionOfPet);
-            dos.writeBytes(lineEnd);
-
-            dos.writeBytes(twoHyphens + boundary + lineEnd);
-            dos.writeBytes("Content-Disposition: form-data; name=\"giveAwayOfPet\";" + lineEnd);
-            dos.writeBytes(lineEnd);
-            dos.writeBytes(giveAwayOfPet);
             dos.writeBytes(lineEnd);
 
             dos.writeBytes(twoHyphens + boundary + lineEnd);

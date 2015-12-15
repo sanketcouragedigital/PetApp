@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="172dp"
-                android:fitsSystemWindows="true"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/drawerheaderimage">
 
-    <RelativeLayout android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="172dp"
                     android:background="@drawable/drawerheader"
                     android:id="@+id/drawerheader"
+                    android:clickable="true"
                     android:fitsSystemWindows="true">
         <TextView android:id="@+id/lblname"
                   android:layout_width="wrap_content"

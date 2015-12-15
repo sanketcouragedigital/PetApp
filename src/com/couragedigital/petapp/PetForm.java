@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ContextThemeWrapper;
@@ -56,12 +57,13 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
     RadioGroup genderOfPet;
     RadioButton genderSelected;
     EditText descriptionOfPet;
-    CheckBox adoptionOfPet;
-    CheckBox giveAwayOfPet;
+    RadioGroup giveAwayType;
+    RadioButton petsell;
+    RadioButton adoptionOfPet;
     EditText priceOfPet;
     Button selectImageButton;
     ImageView imageOfPet;
-    Button uploadButton;
+    FloatingActionButton uploadFabButton;
 
     String petCategoryName;
     String petBreedName;
@@ -69,7 +71,6 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
     String petGender;
     String petDescription;
     String petAdoption = "";
-    String petGiveAway = "";
     Integer petPrice;
     String currentPhotoPath;
 
@@ -96,12 +97,11 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
         ageOfPet = (EditText) this.findViewById(R.id.ageOfPet);
         genderOfPet = (RadioGroup) this.findViewById(R.id.genderOfPet);
         descriptionOfPet = (EditText) this.findViewById(R.id.descriptionOfPet);
-        adoptionOfPet = (CheckBox) this.findViewById(R.id.forAdoptionOfPet);
-        giveAwayOfPet = (CheckBox) this.findViewById(R.id.giveAwayOfPet);
+        giveAwayType = (RadioGroup) this.findViewById(R.id.giveAwayOfPet);
         priceOfPet = (EditText) this.findViewById(R.id.priceOfPet);
         selectImageButton = (Button) this.findViewById(R.id.selectImage);
         imageOfPet = (ImageView) this.findViewById(R.id.imageOfPet);
-        uploadButton = (Button) this.findViewById(R.id.uploadButton);
+        uploadFabButton = (FloatingActionButton) this.findViewById(R.id.petFormSubmitFab);
 
         petCategoryArrayList = new String[]{
                 "Select Pet Category"
@@ -159,10 +159,23 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
 
         selectImageButton.setOnClickListener(this);
         ageOfPet.addTextChangedListener(ageChangeListener);
-        adoptionOfPet.setOnCheckedChangeListener(checkBoxListener);
-        giveAwayOfPet.setOnCheckedChangeListener(checkBoxListener);
+        giveAwayType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int i) {
+                if (i == R.id.forAdoptionOfPet) {
+                    petPrice = 0;
+                    adoptionOfPet = (RadioButton) findViewById(R.id.forAdoptionOfPet);
+                    priceOfPet.setEnabled(false);
+                    petAdoption = "For Adoption";
+                } else {
+                    petAdoption = "";
+                    priceOfPet.setEnabled(true);
+                }
+            }
+        });
         priceOfPet.addTextChangedListener(priceChangeListener);
-        uploadButton.setOnClickListener(this);
+        uploadFabButton.setOnClickListener(this);
     }
 
     private TextWatcher ageChangeListener = new TextWatcher() {
@@ -209,40 +222,13 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
         @Override
         public void afterTextChanged(Editable s) {
             String takePetPrice = priceOfPet.getText().toString();
-            if(!takePetPrice.equals("")) {
+            if (!takePetPrice.equals("")) {
                 Integer takePetPriceInInteger = Integer.parseInt(takePetPrice);
-                if(takePetPriceInInteger > 0) {
+                if (takePetPriceInInteger > 0) {
                     petPrice = takePetPriceInInteger;
                 }
-            }
-            else if(takePetPrice.equals("")) {
+            } else if (takePetPrice.equals("")) {
                 petPrice = 0;
-            }
-        }
-    };
-
-    private OnCheckedChangeListener checkBoxListener = new OnCheckedChangeListener()  {
-        @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            if(isChecked) {
-                if (buttonView.getId() == R.id.forAdoptionOfPet) {
-                    giveAwayOfPet.setChecked(false);
-                    priceOfPet.setEnabled(false);
-                    petPrice = 0;
-                    petGiveAway = "";
-                    petAdoption = adoptionOfPet.getText().toString();
-                } else if (buttonView.getId() == R.id.giveAwayOfPet) {
-                    adoptionOfPet.setChecked(false);
-                    priceOfPet.setEnabled(false);
-                    petPrice = 0;
-                    petAdoption = "";
-                    petGiveAway = giveAwayOfPet.getText().toString();
-                }
-            }
-            else {
-                priceOfPet.setEnabled(true);
-                petAdoption = "";
-                petGiveAway = "";
             }
         }
     };
@@ -301,7 +287,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
 
             alertDialog.show();
         }
-        else if(v.getId() == R.id.uploadButton) {
+        else if(v.getId() == R.id.petFormSubmitFab) {
 
             Integer petAgeInInteger = null;
             Integer petPriceInInteger = null;
@@ -321,8 +307,10 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
                 genderSelected = (RadioButton) findViewById(R.id.genderFemale);
                 genderSelected.setError("Please select gender");
             }
-            else if(Objects.equals(petAdoption, "") && Objects.equals(petGiveAway, "") && priceOfPet.getText().toString().equals("")) {
-                Toast.makeText(PetForm.this, "Please select the adoption or giveaway Or fill the price of pet.", Toast.LENGTH_LONG).show();
+            else if(giveAwayType.getCheckedRadioButtonId() == -1) {
+                Toast.makeText(PetForm.this, "Please select Options.", Toast.LENGTH_LONG).show();
+                petsell = (RadioButton) findViewById(R.id.petSell);
+                petsell.setError(("please select Option"));
             }
             else if(currentPhotoPath == null) {
                 Toast.makeText(PetForm.this, "Please select image of Pet.", Toast.LENGTH_LONG).show();
@@ -483,7 +471,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
         @Override
         protected Void doInBackground(Void... params) {
             try {
-                int responseFromServer = PetListFormUpload.uploadToRemoteServer(petCategoryName, petBreedName, petAge, petGender, petDescription, petAdoption, petGiveAway, petPrice, currentPhotoPath);
+                int responseFromServer = PetListFormUpload.uploadToRemoteServer(petCategoryName, petBreedName, petAge, petGender, petDescription, petAdoption, petPrice, currentPhotoPath);
                 if(responseFromServer == 200){
                     runOnUiThread(new Runnable() {
                         public void run() {

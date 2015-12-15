@@ -9,7 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.*;
 import com.couragedigital.petapp.SessionManager.SessionManager;
-import com.couragedigital.petapp.adapter.DrawerAdapter;
+import com.couragedigital.petapp.Adapter.DrawerAdapter;
 import com.couragedigital.petapp.model.DrawerItems;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class BaseActivity extends AppCompatActivity {
     SessionManager sessionManager;
     TextView lblName;
     TextView lblEmail;
-    RecyclerView recyclerView;                           // Declaring RecyclerView
+    RecyclerView listItems;                           // Declaring RecyclerView
     RecyclerView.Adapter adapter;                        // Declaring Adapter For Recycler View
     RecyclerView.LayoutManager layoutManager;            // Declaring Layout Manager as a linear layout manager
     DrawerLayout drawer;
@@ -37,7 +37,7 @@ public class BaseActivity extends AppCompatActivity {
         drawer = (DrawerLayout) getLayoutInflater().inflate(R.layout.drawer, null);
         frameLayout = (FrameLayout) drawer.findViewById(R.id.contentFrame);
         linearLayout = (LinearLayout) drawer.findViewById(R.id.drawerlinearlayout);
-        recyclerView = (RecyclerView) drawer.findViewById(R.id.RecyclerView);
+        listItems = (RecyclerView) drawer.findViewById(R.id.drawerListItem);
 
         final String[] title = new String[]{"Home", "Profile","MyListings" ,"Account Setting" ,"FeedBack" , "Share","LogOut"};
         final int[] icons = {R.drawable.home, R.drawable.profile,R.drawable.mylisting,R.drawable.setting,0,0,0};
@@ -50,12 +50,12 @@ public class BaseActivity extends AppCompatActivity {
         }
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        listItems.setLayoutManager(linearLayoutManager);
         DrawerAdapter mAdapter = new DrawerAdapter(itemDatastArrayList);
         getLayoutInflater().inflate(layoutResID, frameLayout, true);
         getLayoutInflater().inflate(layoutResID, linearLayout, true);
         drawer.setClickable(true);
-        recyclerView.setAdapter(mAdapter);
+        listItems.setAdapter(mAdapter);
 
         toolbar = (Toolbar) drawer.findViewById(R.id.app_bar);
         if (toolbar != null) {

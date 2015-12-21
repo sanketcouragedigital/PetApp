@@ -38,6 +38,8 @@
                   android:label="Email for Code"/>
         <activity android:name=".PetListDetails"/>
         <activity android:name=".PetListFilter"/>
+	<activity android:name=".PetMet"/>
+        <activity android:name=".PetMetList"/>
     </application>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"/>

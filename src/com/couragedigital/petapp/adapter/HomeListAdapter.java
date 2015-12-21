@@ -16,12 +16,10 @@ import android.util.TypedValue;
 import android.view.*;
 import android.view.View.OnClickListener;
 import android.widget.*;
-import com.couragedigital.petapp.PetForm;
-import com.couragedigital.petapp.PetList;
+import com.couragedigital.petapp.*;
 import com.couragedigital.petapp.Adapter.DialogListAdapter;
 import com.couragedigital.petapp.model.DialogListInformaion;
 import com.couragedigital.petapp.model.IndexListInfo;
-import com.couragedigital.petapp.R;
 
 import java.io.File;
 import java.io.IOException;
@@ -116,29 +114,11 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (i == 0) {
-                            /*Intent gotoformupload = new Intent(v.getContext(), PetForm.class);
-                            v.getContext().startActivity(gotoformupload);*/
-                            petMetFormSnackBar = Snackbar
-                                    .make(homeListCoordinatorLayout, "This Feature is yet to come!", Snackbar.LENGTH_LONG)
-                                    .setAction("UNDO", new OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            petMetFormSnackBar.dismiss();
-                                        }
-                                    });
-                            petMetFormSnackBar.show();
+                            Intent gotoformupload = new Intent(v.getContext(), PetMet.class);
+                            v.getContext().startActivity(gotoformupload);
                         } else if (i == 1) {
-                            /*Intent gotolistofpet = new Intent(v.getContext(), PetList.class);
-                            v.getContext().startActivity(gotolistofpet);*/
-                            petMetListSnackBar = Snackbar
-                                    .make(homeListCoordinatorLayout, "This Feature is yet to come!", Snackbar.LENGTH_LONG)
-                                    .setAction("UNDO", new OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            petMetListSnackBar.dismiss();
-                                        }
-                                    });
-                            petMetListSnackBar.show();
+                            Intent gotolistofpet = new Intent(v.getContext(), PetMetList.class);
+                            v.getContext().startActivity(gotolistofpet);
                         }
                     }
                 });

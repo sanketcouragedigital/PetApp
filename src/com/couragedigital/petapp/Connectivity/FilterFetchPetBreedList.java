@@ -24,7 +24,7 @@ public class FilterFetchPetBreedList {
 
 
     public static void fetchPetBreeds(List<String> filterCategoryLists, List<FilterBreedList> filterBreedLists, FilterBreedAdapter filterBreedAdapter) {
-        String url = "http://192.168.0.4/PetAppAPI/api/petappapi.php";
+        String url = "http://192.168.0.8/PetAppAPI/api/petappapi.php";
         filterSelectedCategoryLists = filterCategoryLists;
         method = "filterCategoryWiseBreed";
         format = "json";

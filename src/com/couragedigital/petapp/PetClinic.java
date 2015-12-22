@@ -22,7 +22,7 @@ public class PetClinic extends BaseActivity {
 
     private static String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
     private ProgressDialog progressDialog;
-    public List<PetClinicList> clinicListItemsArrayList = new ArrayList<PetClinicList>();
+    public List<ClinicListItems> clinicListItemsArrayList = new ArrayList<ClinicListItems>();
 
     static String urlForFetch;
     private int current_page = 1;

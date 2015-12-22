@@ -107,6 +107,8 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                         }
                     }
                 });
+                alertDialog = builder.create();
+                alertDialog.show();
             }
             if (position == 1) {
                 adapter = new DialogListAdapter(dialogListForViewPetMets);
@@ -122,18 +124,12 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                         }
                     }
                 });
+                alertDialog = builder.create();
+                alertDialog.show();
             }
             if (position == 2) {
-                doctorSnackBar = Snackbar
-                        .make(homeListCoordinatorLayout, "This Feature is yet to come!", Snackbar.LENGTH_LONG)
-                        .setAction("UNDO", new OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                doctorSnackBar.dismiss();
-                            }
-                        });
-
-                doctorSnackBar.show();
+                Intent gotoPetClinic = new Intent(v.getContext(), PetClinic.class);
+                v.getContext().startActivity(gotoPetClinic);
             }
             if (position == 3) {
                 accessoriesSnackBar = Snackbar
@@ -144,11 +140,8 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                                 accessoriesSnackBar.dismiss();
                             }
                         });
-
                 accessoriesSnackBar.show();
             }
-            alertDialog = builder.create();
-            alertDialog.show();
         }
 
     }

@@ -1,7 +1,7 @@
 package com.couragedigital.petapp.model;
 
 
-public class PetClinicList {
+public class ClinicListItems {
 
     public String image_path;
     public String clinic_name;
@@ -10,10 +10,10 @@ public class PetClinicList {
     public String email;
     public String contact;
 
-    public PetClinicList() {
+    public ClinicListItems() {
     }
 
-    public PetClinicList(String clinicname, String clinicaddress, String doctorname, String email, String contact, String image_path) {
+    public ClinicListItems(String clinicname, String clinicaddress, String doctorname, String email, String contact, String image_path) {
 
         this.clinic_name = clinicname;
         this.clinic_address = clinicaddress;

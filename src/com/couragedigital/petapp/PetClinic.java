@@ -5,12 +5,15 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 import com.couragedigital.petapp.Adapter.ClinicListAdapter;
 import com.couragedigital.petapp.Connectivity.PetFetchClinicList;
 import com.couragedigital.petapp.Listeners.PetFetchClinicListScrollListener;
+import com.couragedigital.petapp.SessionManager.SessionManager;
 import com.couragedigital.petapp.model.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -26,6 +29,10 @@ public class PetClinic extends BaseActivity {
 
     static String urlForFetch;
     private int current_page = 1;
+    SessionManager sessionManager;
+    private  String latitude;
+    private  String longitude;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,14 +44,31 @@ public class PetClinic extends BaseActivity {
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        url = url + "?method=showClinicDetails&format=json&currentPage=" + current_page + "";
+        GPSTracker gpsTracker = new GPSTracker(this);
+
+        if (gpsTracker.getIsGPSTrackingEnabled()) {
+            String stringLatitude = String.valueOf(gpsTracker.latitude);
+            latitude = stringLatitude;
+
+            String stringLongitude = String.valueOf(gpsTracker.longitude);
+            longitude = stringLongitude;
+
+        } else {
+            // can't get location
+            // GPS or Network is not enabled
+            // Ask user to enable GPS/network in settings
+            gpsTracker.showSettingsAlert();
+        }
+
+
+        url = url + "?method=ClinicByCurrentLocation&format=json&currentPage=" + current_page + latitude + longitude + "";
 
         recyclerView.smoothScrollToPosition(0);
         recyclerView.addOnScrollListener(new PetFetchClinicListScrollListener(linearLayoutManager, current_page) {
 
             @Override
             public void onLoadMore(int current_page) {
-                url = url + "?method=showClinicDetails&format=json&currentPage=" + current_page + "";
+                url = url + "?method=ClinicByCurrentLocation&format=json&currentPage=" + current_page + latitude + longitude +"";
                 grabURL(url);
             }
         });

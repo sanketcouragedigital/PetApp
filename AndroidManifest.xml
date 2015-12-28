@@ -9,10 +9,9 @@
                  android:name=".app.AppController"
                  android:label="@string/app_name"
                  android:icon="@drawable/ic_launcher">
-
         <activity android:name=".Index"
-                      android:label="@string/app_name"
-                      android:configChanges="orientation|screenSize">
+                  android:label="@string/app_name"
+                  android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -22,9 +21,8 @@
                     android:required="true"/>
         </activity>
 
-
         <activity android:name=".SignIn"
-              android:label="@string/app_name"/>
+                  android:label="@string/app_name"/>
         <activity android:name=".PetForm"
                   android:configChanges="orientation|screenSize"/>
         <activity android:name=".PetList"
@@ -39,8 +37,16 @@
         <activity android:name=".PetListDetails"/>
         <activity android:name=".PetListFilter"/>
         <activity android:name=".PetClinic"/>
+        <activity android:name=".PetMet"/>
+        <activity android:name=".PetMetList"/>
+        <activity android:name=".LocationTrackerActivity"/>
+
     </application>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 </manifest>

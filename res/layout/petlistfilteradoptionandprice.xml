@@ -6,11 +6,11 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="wrap_content"
                     android:layout_height="56dp"
-                    android:id="@+id/filterBreedLayout">
+                    android:id="@+id/filterAdoptionAndPriceLayout">
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/filterBreedText"
+                android:id="@+id/filterAdoptionAndPriceText"
                 android:padding="10dp"
                 android:textSize="16sp"
                 android:layout_centerVertical="true"
@@ -18,7 +18,7 @@
         <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/filterBreedCheckBox"
+                android:id="@+id/filterAdoptionAndPriceCheckBox"
                 android:padding="10dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="6sp"

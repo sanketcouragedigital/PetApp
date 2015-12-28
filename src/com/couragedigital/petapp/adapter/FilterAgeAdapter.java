@@ -7,8 +7,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.couragedigital.petapp.R;
 import com.couragedigital.petapp.RangeBar.RangeBar;
+import com.couragedigital.petapp.Singleton.FilterPetListInstance;
 import com.couragedigital.petapp.model.FilterAgeList;
+import com.couragedigital.petapp.model.FilterAgeRangeList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FilterAgeAdapter extends RecyclerView.Adapter<FilterAgeAdapter.ViewHolder> {
@@ -18,6 +21,8 @@ public class FilterAgeAdapter extends RecyclerView.Adapter<FilterAgeAdapter.View
 
     String leftValue;
     String rightValue;
+
+    public static FilterPetListInstance filterPetListInstance = new FilterPetListInstance();
 
     public FilterAgeAdapter(List<FilterAgeList> filterAgeLists) {
         this.filterAgeLists = filterAgeLists;
@@ -48,7 +53,10 @@ public class FilterAgeAdapter extends RecyclerView.Adapter<FilterAgeAdapter.View
         RangeBar filterAgeRangeBar;
         TextView filterAgeChangeRangeValue;
 
-        private FilterAgeList filterAgeList;
+        FilterAgeList filterAgeList;
+        FilterAgeRangeList filterAgeRangeList = new FilterAgeRangeList();
+
+        public List<String> filterSelectedAgeList = new ArrayList<String>();
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -56,12 +64,19 @@ public class FilterAgeAdapter extends RecyclerView.Adapter<FilterAgeAdapter.View
             filterAgeRangeBar = (RangeBar) itemView.findViewById(R.id.filterAgeRangeBar);
             filterAgeChangeRangeValue = (TextView) itemView.findViewById(R.id.filterAgeChangeRangeValue);
 
+            filterAgeRangeBar.setDrawTicks(false);
             filterAgeRangeBar.setOnRangeBarChangeListener(new RangeBar.OnRangeBarChangeListener() {
                 @Override
                 public void onRangeChangeListener(RangeBar rangeBar, int leftPinIndex, int rightPinIndex, String leftPinValue, String rightPinValue) {
                     leftValue = leftPinValue;
                     rightValue = rightPinValue;
+                    filterAgeRangeList.setLeftValueOfRangeBar(leftValue);
+                    filterAgeRangeList.setRightValueOfRangeBar(rightValue);
                     filterAgeChangeRangeValue.setText("Selected Range is " + leftValue + "-" + rightValue);
+                    filterSelectedAgeList.clear();
+                    filterSelectedAgeList.add(filterAgeRangeList.getLeftValueOfRangeBar());
+                    filterSelectedAgeList.add(filterAgeRangeList.getRightValueOfRangeBar());
+                    filterPetListInstance.setFilterAgeListInstance(filterSelectedAgeList);
                 }
             });
         }
@@ -69,6 +84,16 @@ public class FilterAgeAdapter extends RecyclerView.Adapter<FilterAgeAdapter.View
         public void bindFilterAgeList(FilterAgeList filterAgeList) {
             this.filterAgeList = filterAgeList;
             filterAgeFixedRangeValue.setText(filterAgeList.getAgeText());
+            filterSelectedAgeList = filterPetListInstance.getFilterAgeListInstance();
+            if(filterSelectedAgeList.isEmpty()) {
+                filterAgeChangeRangeValue.setText("Selected Range is " + 0 + "-" + 100);
+            }
+            else {
+                Float leftValueOfRangeBar = Float.valueOf(filterSelectedAgeList.get(0));
+                Float rightValueOfRangeBar = Float.valueOf(filterSelectedAgeList.get(1));
+                filterAgeRangeBar.setRangePinsByValue(leftValueOfRangeBar, rightValueOfRangeBar);
+                filterAgeChangeRangeValue.setText("Selected Range is " + filterSelectedAgeList.get(0) + "-" + filterSelectedAgeList.get(1));
+            }
         }
     }
 }

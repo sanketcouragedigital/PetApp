@@ -1,7 +1,7 @@
 package com.couragedigital.petapp.Adapter;
 
 import android.content.Context;
-import android.os.AsyncTask;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,24 +9,37 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import com.couragedigital.petapp.Connectivity.FilterFetchPetBreedList;
+import com.couragedigital.petapp.PetListFilter;
 import com.couragedigital.petapp.R;
+import com.couragedigital.petapp.Singleton.FilterPetListInstance;
 import com.couragedigital.petapp.Singleton.PetListInstance;
 import com.couragedigital.petapp.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import android.view.*;
 
 public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdapter.ViewHolder> {
 
     List<FilterOptionList> filterOptionsList;
+    List<FilterOptionList> filterOptionsSelectedList;
     public RelativeLayout filterMenu;
+    PetListFilter petListFilter;
     View v;
     ViewHolder viewHolder;
 
-    public FilterOptionsAdapter(List<FilterOptionList> filterOptionsList, RelativeLayout filterMenu) {
+    int position = 0;
+    int state = 0;
+    int filterState = 0;
+
+    public static FilterPetListInstance filterPetListInstance = new FilterPetListInstance();
+
+    public FilterOptionsAdapter(List<FilterOptionList> filterOptionsList, List<FilterOptionList> filterOptionsSelectedList, RelativeLayout filterMenu, PetListFilter petListFilter) {
         this.filterOptionsList = filterOptionsList;
+        this.filterOptionsSelectedList = filterOptionsSelectedList;
         this.filterMenu = filterMenu;
+        this.petListFilter = petListFilter;
     }
 
     @Override
@@ -40,7 +53,8 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         FilterOptionList filterOptionList = filterOptionsList.get(i);
-        viewHolder.bindFilterOptionList(filterOptionList);
+        FilterOptionList filterOptionSelectedList = filterOptionsSelectedList.get(i);
+        viewHolder.bindFilterOptionList(filterOptionList, filterOptionSelectedList);
     }
 
     @Override
@@ -51,28 +65,38 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public ImageView filterOptionImage;
         private FilterOptionList filterOptionList;
+        private FilterOptionList filterOptionSelectedList;
         public View itemView;
 
         PetListInstance petListInstance;
 
         View inflateFilterMenu;
         RecyclerView filterRecyclerViewMenu;
+        TextView filterBreedEmptyView;
+        FloatingActionButton applyFilterFAB;
         LinearLayoutManager layoutManager;
 
-        final List<FilterCategoryList> filterCategoryLists = new ArrayList<FilterCategoryList>();
+        List<FilterCategoryList> filterCategoryLists = new ArrayList<FilterCategoryList>();
         FilterCategoryAdapter filterCategoryAdapter;
 
-        final List<FilterGenderList> filterGenderLists = new ArrayList<FilterGenderList>();
-        FilterGenderAdapter filterGenderAdapter;
+        List<FilterBreedList> filterBreedLists = new ArrayList<FilterBreedList>();
+        FilterBreedAdapter filterBreedAdapter;
+        List<String> filterSelectedCategoryList = new ArrayList<String>();
 
-        final List<FilterAgeList> filterAgeLists = new ArrayList<FilterAgeList>();
+        List<FilterAgeList> filterAgeLists = new ArrayList<FilterAgeList>();
         FilterAgeAdapter filterAgeAdapter;
 
-        final List<FilterPriceList> filterPriceLists = new ArrayList<FilterPriceList>();
-        FilterPriceAdapter filterPriceAdapter;
+        List<FilterGenderList> filterGenderLists = new ArrayList<FilterGenderList>();
+        FilterGenderAdapter filterGenderAdapter;
 
-        int position = 0;
-        private ViewParent abc;
+        List<FilterAdoptionAndPriceList> filterAdoptionAndPriceLists = new ArrayList<FilterAdoptionAndPriceList>();
+        FilterAdoptionAndPriceAdapter filterAdoptionAndPriceAdapter;
+
+        public List<String> filterSelectedInstanceCategoryList = new ArrayList<String>();
+        public List<String> filterSelectedInstanceBreedList = new ArrayList<String>();
+        public List<String> filterSelectedInstanceAgeList = new ArrayList<String>();
+        public List<String> filterSelectedInstanceGenderList = new ArrayList<String>();
+        public List<String> filterSelectedInstanceAdoptionAndPriceList = new ArrayList<String>();
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -81,153 +105,165 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
             filterOptionImage.setOnClickListener(this);
         }
 
-        public void bindFilterOptionList(FilterOptionList filterOptionList) {
+        public void bindFilterOptionList(FilterOptionList filterOptionList, FilterOptionList filterOptionSelectedList) {
             this.filterOptionList = filterOptionList;
+            this.filterOptionSelectedList = filterOptionSelectedList;
             filterOptionImage.setImageResource(filterOptionList.getImage());
             filterOptionImage.setEnabled(true);
+
+            if(position == 0 && filterOptionList.getImage() == R.drawable.filter_category) {
+                filterOptionImage.setImageResource(filterOptionSelectedList.getImage());
+                if(state == 0) {
+                    state++;
+                    fetchFilterMenusOptionWise(position);
+                }
+            }
+            else if(position == 1 && filterOptionList.getImage() == R.drawable.filter_breed) {
+                filterOptionImage.setImageResource(filterOptionSelectedList.getImage());
+            }
+            else if(position == 2 && filterOptionList.getImage() == R.drawable.filter_age) {
+                filterOptionImage.setImageResource(filterOptionSelectedList.getImage());
+            }
+            else if(position == 3 && filterOptionList.getImage() == R.drawable.filter_gender) {
+                filterOptionImage.setImageResource(filterOptionSelectedList.getImage());
+            }
+            else if(position == 4 && filterOptionList.getImage() == R.drawable.filter_price) {
+                filterOptionImage.setImageResource(filterOptionSelectedList.getImage());
+            }
         }
 
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.filterOptionImage) {
-
-                LayoutInflater inflater = (LayoutInflater) v.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                inflateFilterMenu = inflater.inflate(R.layout.petlistfilterviewmenu, null);
-                filterRecyclerViewMenu = (RecyclerView) inflateFilterMenu.findViewById(R.id.filterRecyclerViewMenu);
-                layoutManager = new LinearLayoutManager(inflateFilterMenu.getContext());
-                filterRecyclerViewMenu.setLayoutManager(layoutManager);
-                if (this.getAdapterPosition() == 0) {
-                    filterMenu.removeAllViews();
-                    filterOptionImage.setEnabled(false);
-                    notifyItemRangeChanged(this.getAdapterPosition(), getItemCount());
-                    filterOptionImage.setImageResource(R.drawable.filter_category_color);
-
-                    filterCategoryAdapter = new FilterCategoryAdapter(filterCategoryLists);
-                    filterRecyclerViewMenu.setAdapter(filterCategoryAdapter);
-
-                    String[] filterCategoryText = new String[]{
-                            "Dog", "Cat", "Rabbit", "Small & Furry", "Horse", "Bird", "Scales, Fins & Others", "Pig", "Barnyard"
-                    };
-                    for (int i = 0; i < filterCategoryText.length; i++) {
-                        FilterCategoryList filterCategoryList = new FilterCategoryList();
-                        filterCategoryList.setCategoryText(filterCategoryText[i]);
-                        filterCategoryLists.add(filterCategoryList);
-                    }
-                    filterCategoryAdapter.notifyDataSetChanged();
-
-                    filterMenu.addView(inflateFilterMenu);
-                } else if (this.getAdapterPosition() == 1) {
-                    filterMenu.removeAllViews();
-                    filterOptionImage.setImageResource(R.drawable.filter_breed_color);
-                } else if (this.getAdapterPosition() == 2) {
-                    filterMenu.removeAllViews();
-                    filterOptionImage.setEnabled(false);
-                    notifyItemRangeChanged(2, getItemCount());
-                    filterOptionImage.setImageResource(R.drawable.filter_age_color);
-
-                    filterAgeAdapter = new FilterAgeAdapter(filterAgeLists);
-                    filterRecyclerViewMenu.setAdapter(filterAgeAdapter);
-                    String[] filterAgeText = new String[]{
-                            "Age 0-100 Years"
-                    };
-                    for (int i = 0; i < filterAgeText.length; i++) {
-                        FilterAgeList filterAgeList = new FilterAgeList();
-                        filterAgeList.setAgeText(filterAgeText[i]);
-                        filterAgeLists.add(filterAgeList);
-                    }
-                    filterAgeAdapter.notifyDataSetChanged();
-
-                    filterMenu.addView(inflateFilterMenu);
-                } else if (this.getAdapterPosition() == 3) {
-                    filterMenu.removeAllViews();
-                    filterOptionImage.setEnabled(false);
-                    notifyItemRangeChanged(this.getAdapterPosition(), getItemCount());
-                    filterOptionImage.setImageResource(R.drawable.filter_gender_color);
-
-                    filterGenderAdapter = new FilterGenderAdapter(filterGenderLists);
-                    filterRecyclerViewMenu.setAdapter(filterGenderAdapter);
-
-                    String[] filterGender = new String[]{
-                            "Male", "Female"
-                    };
-                    for (int i = 0; i < filterGender.length; i++) {
-                        FilterGenderList filterGenderList = new FilterGenderList();
-                        filterGenderList.setGender(filterGender[i]);
-                        filterGenderLists.add(filterGenderList);
-                    }
-                    filterGenderAdapter.notifyDataSetChanged();
-
-                    filterMenu.addView(inflateFilterMenu);
-                } else if (this.getAdapterPosition() == 4) {
-                    filterMenu.removeAllViews();
-                    filterOptionImage.setEnabled(false);
-                    notifyItemRangeChanged(this.getAdapterPosition(), getItemCount());
-                    filterOptionImage.setImageResource(R.drawable.filter_price_color);
-
-                    filterPriceAdapter = new FilterPriceAdapter(filterPriceLists);
-                    filterRecyclerViewMenu.setAdapter(filterPriceAdapter);
-                    String[] filterPriceText = new String[]{
-                            "For Adoption", "Age 0-100 Years"
-                    };
-                    for (int i = 0; i < filterPriceText.length; i++) {
-                        FilterPriceList filterPriceList = new FilterPriceList();
-                        if(i == 0) {
-                            filterPriceList.setAdoptionText(filterPriceText[i]);
-                        }
-                        else {
-                            filterPriceList.setPriceText(filterPriceText[i]);
-                        }
-                        filterPriceLists.add(filterPriceList);
-                    }
-                    filterPriceAdapter.notifyDataSetChanged();
-
-                    filterMenu.addView(inflateFilterMenu);
-                }
+                position = this.getAdapterPosition();
+                fetchFilterMenusOptionWise(position);
+                notifyDataSetChanged();
             }
         }
 
-        /*private class AdapterAsyncTask extends AsyncTask<Void, Void, List<FilterAgeList>> {
+        public void fetchFilterMenusOptionWise(int position) {
+            LayoutInflater inflater = (LayoutInflater) v.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            inflateFilterMenu = inflater.inflate(R.layout.petlistfilterviewmenu, null);
+            filterRecyclerViewMenu = (RecyclerView) inflateFilterMenu.findViewById(R.id.filterRecyclerViewMenu);
+            filterBreedEmptyView = (TextView) inflateFilterMenu.findViewById(R.id.filterBreedEmptyView);
+            applyFilterFAB = (FloatingActionButton) inflateFilterMenu.findViewById(R.id.applyFilterFAB);
 
-            @Override
-            protected List<FilterAgeList> doInBackground(Void... params) {
+            applyFilterFAB.setOnClickListener(applyFilterFABClick);
 
+            layoutManager = new LinearLayoutManager(inflateFilterMenu.getContext());
+            filterRecyclerViewMenu.setLayoutManager(layoutManager);
 
-                return filterAgeLists;
-            }
+            if (this.getAdapterPosition() == 0) {
+                filterMenu.removeAllViews();
 
+                filterCategoryLists.clear();
 
-            @Override
-            protected void onPostExecute(List<FilterAgeList> result) {
-                super.onPostExecute(result);
-                filterAgeAdapter.setListOfAge(result);
-            }
-        }*/
+                filterCategoryAdapter = new FilterCategoryAdapter(filterCategoryLists);
+                filterRecyclerViewMenu.setAdapter(filterCategoryAdapter);
 
-        /*public void changeOtherImageBackground(View v, int position) {
-            if(position == 0) {
-                filterOptionImage = petListInstance.getFilterOptionSelectedImage();
-                if(filterOptionImage == null) {
-                    filterOptionImage = (ImageView) itemView.findViewById(R.id.filterOptionImage);
+                String[] filterCategoryText = new String[]{
+                        "Dog", "Cat", "Rabbit", "Small & Furry", "Horse", "Bird", "Scales, Fins & Others", "Pig", "Barnyard"
+                };
+                for (int i = 0; i < filterCategoryText.length; i++) {
+                    FilterCategoryList filterCategoryList = new FilterCategoryList();
+                    filterCategoryList.setCategoryText(filterCategoryText[i]);
+                    filterCategoryLists.add(filterCategoryList);
                 }
-                filterOptionImage.setImageResource(R.drawable.filter_category);
+                filterCategoryAdapter.notifyDataSetChanged();
+                filterMenu.addView(inflateFilterMenu);
+            } else if (this.getAdapterPosition() == 1) {
+                filterMenu.removeAllViews();
 
-            }
-            else if(position == 1) {
-                filterOptionImage = petListInstance.getFilterOptionSelectedImage();
-                if(filterOptionImage == null) {
-                    filterOptionImage = (ImageView) itemView.findViewById(R.id.filterOptionImage);
+                filterBreedLists.clear();
+
+                filterBreedAdapter = new FilterBreedAdapter(filterBreedLists);
+                filterRecyclerViewMenu.setAdapter(filterBreedAdapter);
+
+                filterSelectedCategoryList = FilterPetListInstance.getFilterCategoryListInstance();
+                FilterFetchPetBreedList.fetchPetBreeds(filterSelectedCategoryList, filterBreedLists, filterBreedAdapter);
+
+                if(filterBreedLists.isEmpty() && filterSelectedCategoryList.isEmpty()) {
+                    filterRecyclerViewMenu.setVisibility(View.GONE);
+                    filterBreedEmptyView.setVisibility(View.VISIBLE);
                 }
-                filterOptionImage.setImageResource(R.drawable.filter_breed);
+                else {
+                    filterRecyclerViewMenu.setVisibility(View.VISIBLE);
+                    filterBreedEmptyView.setVisibility(View.GONE);
+                }
+                filterMenu.addView(inflateFilterMenu);
+            } else if (this.getAdapterPosition() == 2) {
+                filterMenu.removeAllViews();
+
+                filterAgeLists.clear();
+
+                filterAgeAdapter = new FilterAgeAdapter(filterAgeLists);
+                filterRecyclerViewMenu.setAdapter(filterAgeAdapter);
+                String[] filterAgeText = new String[]{
+                        "Age 0-100 Years"
+                };
+                for (int i = 0; i < filterAgeText.length; i++) {
+                    FilterAgeList filterAgeList = new FilterAgeList();
+                    filterAgeList.setAgeText(filterAgeText[i]);
+                    filterAgeLists.add(filterAgeList);
+                }
+                filterAgeAdapter.notifyDataSetChanged();
+                filterMenu.addView(inflateFilterMenu);
+            } else if (this.getAdapterPosition() == 3) {
+                filterMenu.removeAllViews();
+
+                filterGenderLists.clear();
+
+                filterGenderAdapter = new FilterGenderAdapter(filterGenderLists);
+                filterRecyclerViewMenu.setAdapter(filterGenderAdapter);
+
+                String[] filterGender = new String[]{
+                        "Male", "Female"
+                };
+                for (int i = 0; i < filterGender.length; i++) {
+                    FilterGenderList filterGenderList = new FilterGenderList();
+                    filterGenderList.setGender(filterGender[i]);
+                    filterGenderLists.add(filterGenderList);
+                }
+                filterGenderAdapter.notifyDataSetChanged();
+                filterMenu.addView(inflateFilterMenu);
+            } else if (this.getAdapterPosition() == 4) {
+                filterMenu.removeAllViews();
+
+                filterAdoptionAndPriceLists.clear();
+
+                filterAdoptionAndPriceAdapter = new FilterAdoptionAndPriceAdapter(filterAdoptionAndPriceLists);
+                filterRecyclerViewMenu.setAdapter(filterAdoptionAndPriceAdapter);
+                String[] filterPriceText = new String[]{
+                        "For Adoption", "Price", "0 - 10000", "10000 - 25000", "25000 - 50000", "50000 Onwards"
+                };
+                for (int i = 0; i < filterPriceText.length; i++) {
+                    FilterAdoptionAndPriceList filterAdoptionAndPriceList = new FilterAdoptionAndPriceList();
+                    filterAdoptionAndPriceList.setAdoptionAndPriceText(filterPriceText[i]);
+                    filterAdoptionAndPriceLists.add(filterAdoptionAndPriceList);
+                }
+                filterAdoptionAndPriceAdapter.notifyDataSetChanged();
+                filterMenu.addView(inflateFilterMenu);
             }
-            else if(position == 2) {
-                filterOptionImage.setImageResource(R.drawable.filter_age);
+        }
+
+        public View.OnClickListener applyFilterFABClick = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filterSelectedInstanceCategoryList = filterPetListInstance.getFilterCategoryListInstance();
+                filterSelectedInstanceBreedList = filterPetListInstance.getFilterBreedListInstance();
+                filterSelectedInstanceAgeList = filterPetListInstance.getFilterAgeListInstance();
+                filterSelectedInstanceGenderList = filterPetListInstance.getFilterGenderListInstance();
+                filterSelectedInstanceAdoptionAndPriceList = filterPetListInstance.getFilterAdoptionAndPriceListInstance();
+                PetListFilter petListFilter = new PetListFilter();
+                if(filterSelectedInstanceCategoryList.isEmpty() && filterSelectedInstanceBreedList.isEmpty() && filterSelectedInstanceAgeList.isEmpty() && filterSelectedInstanceGenderList.isEmpty() && filterSelectedInstanceAdoptionAndPriceList.isEmpty()) {
+                    filterState = 0;
+                    petListFilter.setFilterState(filterState);
+                }
+                else {
+                    filterState = 1;
+                    petListFilter.setFilterState(filterState);
+                }
             }
-            else if(position == 3) {
-                filterOptionImage.setImageResource(R.drawable.filter_gender);
-            }
-            else if(position == 4) {
-                filterOptionImage.setImageResource(R.drawable.filter_price);
-            }
-        }*/
+        };
     }
 }

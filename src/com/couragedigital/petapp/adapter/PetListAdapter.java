@@ -46,9 +46,6 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
         if(petList.getListingType().equals("For Adoption")) {
             petListingTypeString = "ADOPT";
         }
-        else if(petList.getListingType().equals("Give Away")) {
-            petListingTypeString = "GIVE AWAY";
-        }
         else {
             petListingTypeString = "SELL";
         }
@@ -80,6 +77,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
             }
             petImage = (RoundedNetworkImageView) itemView.findViewById(R.id.petImage);
             petBreed = (TextView) itemView.findViewById(R.id.petBreed);
+            petPostOwner = (TextView) itemView.findViewById(R.id.petPostOwner);
             petListingTypeButton = (Button) itemView.findViewById(R.id.petListingTypeButton);
             petFavourite = (Button) itemView.findViewById(R.id.petFavourite);
             dividerLine = itemView.findViewById(R.id.dividerLine);
@@ -93,6 +91,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
             petImage.setImageUrl(petList.getImage_path(), imageLoader);
 
             petBreed.setText(petList.getPetBreed());
+            petPostOwner.setText(petList.getPetPostOwner());
             petListingTypeButton.setText(setPetListingTypeButtonName(petList));
             petFavourite.setBackgroundResource(R.drawable.favourite_disable);
             dividerLine.setBackgroundResource(R.color.list_internal_divider);
@@ -109,6 +108,8 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
                     petFullInformation.putExtra("PET_AGE", petList.getPetAge());
                     petFullInformation.putExtra("PET_GENDER", petList.getPetGender());
                     petFullInformation.putExtra("PET_DESCRIPTION", petList.getPetDescription());
+                    petFullInformation.putExtra("POST_OWNER_EMAIL", petList.getPetPostOwnerEmail());
+                    petFullInformation.putExtra("POST_OWNER_MOBILENO", petList.getPetPostOwnerMobileNo());
 
                     v.getContext().startActivity(petFullInformation);
                 }

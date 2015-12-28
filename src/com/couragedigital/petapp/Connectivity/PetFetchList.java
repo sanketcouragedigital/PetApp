@@ -32,28 +32,26 @@ public class PetFetchList {
 
                                     JSONObject obj = jsonArray.getJSONObject(i);
                                     PetList petList = new PetList();
-                                    petList.setPetBreed(obj.getString("pet_breed"));
+                                    petList.setPetBreed(replaceSpecialChars(obj.getString("pet_breed")));
+                                    petList.setPetPostOwner(replaceSpecialChars(obj.getString("name")));
                                     petList.setImage_path(obj.getString("image_path"));
                                     if(!obj.getString("pet_adoption").equals("")) {
-                                        petList.setListingType(obj.getString("pet_adoption"));
-                                    }
-                                    else if(!obj.getString("pet_giveaway").equals("")) {
-                                        petList.setListingType(obj.getString("pet_giveaway"));
+                                        petList.setListingType(replaceSpecialChars(obj.getString("pet_adoption")));
                                     }
                                     else if(!obj.getString("pet_price").equals("")) {
-                                        petList.setListingType("Rs. :- " + obj.getString("pet_price"));
+                                        petList.setListingType("Rs. :- " + replaceSpecialChars(obj.getString("pet_price")));
                                     }
-                                    petList.setPetCategory(obj.getString("pet_category"));
-                                    petList.setPetAge(obj.getString("pet_age"));
-                                    petList.setPetGender(obj.getString("pet_gender"));
-                                    petList.setPetDescription(obj.getString("pet_description"));
-                                    petList.setPetPostDate(obj.getString("post_date"));
+                                    petList.setPetCategory(replaceSpecialChars(obj.getString("pet_category")));
+                                    petList.setPetAge(replaceSpecialChars(obj.getString("pet_age")));
+                                    petList.setPetGender(replaceSpecialChars(obj.getString("pet_gender")));
+                                    petList.setPetDescription(replaceSpecialChars(obj.getString("pet_description")));
+                                    petList.setPetPostDate(replaceSpecialChars(obj.getString("post_date")));
+                                    petList.setPetPostOwnerEmail(replaceSpecialChars(obj.getString("email")));
+                                    petList.setPetPostOwnerMobileNo(obj.getString("mobileno"));
 
                                     // adding pet to pets array
                                     petLists.add(petList);
                                     adapter.notifyDataSetChanged();
-
-
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -78,4 +76,8 @@ public class PetFetchList {
         return petLists;
     }
 
+    public static String replaceSpecialChars(String str) {
+        str = str.replaceAll("[+]"," ");
+        return str;
+    }
 }

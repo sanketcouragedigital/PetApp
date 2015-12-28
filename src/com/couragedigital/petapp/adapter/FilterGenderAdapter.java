@@ -8,14 +8,18 @@ import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.couragedigital.petapp.R;
+import com.couragedigital.petapp.Singleton.FilterPetListInstance;
 import com.couragedigital.petapp.model.FilterGenderList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FilterGenderAdapter extends RecyclerView.Adapter<FilterGenderAdapter.ViewHolder> {
     List<FilterGenderList> filterGenderLists;
     View v;
     ViewHolder viewHolder;
+
+    public static FilterPetListInstance filterPetListInstance = new FilterPetListInstance();
 
     public FilterGenderAdapter(List<FilterGenderList> filterGenderLists) {
         this.filterGenderLists = filterGenderLists;
@@ -48,6 +52,8 @@ public class FilterGenderAdapter extends RecyclerView.Adapter<FilterGenderAdapte
 
         private FilterGenderList filterGenderList;
 
+        public List<String> filterSelectedGenderList = new ArrayList<String>();
+
         public ViewHolder(View itemView) {
             super(itemView);
             filterGenderLayout = (RelativeLayout) itemView.findViewById(R.id.filterGenderLayout);
@@ -60,12 +66,30 @@ public class FilterGenderAdapter extends RecyclerView.Adapter<FilterGenderAdapte
         public void bindFilterCategoryList(FilterGenderList filterGenderList) {
             this.filterGenderList = filterGenderList;
             filterGenderText.setText(filterGenderList.getGender());
-            filterGenderCheckBox.setChecked(false);
+            filterSelectedGenderList = filterPetListInstance.getFilterGenderListInstance();
+            if (filterSelectedGenderList.contains(filterGenderList.getGender())) {
+                filterGenderCheckBox.setChecked(true);
+            } else {
+                filterGenderCheckBox.setChecked(false);
+            }
+            filterGenderCheckBox.setClickable(false);
         }
 
         @Override
         public void onClick(View v) {
-
+            if(v.getId() == R.id.filterGenderLayout) {
+                filterSelectedGenderList = filterPetListInstance.getFilterGenderListInstance();
+                String selectedGender = (String) filterGenderText.getText();
+                if(filterSelectedGenderList.contains(selectedGender)) {
+                    filterSelectedGenderList.remove(selectedGender);
+                    filterGenderCheckBox.setChecked(false);
+                }
+                else {
+                    filterSelectedGenderList.add(selectedGender);
+                    filterGenderCheckBox.setChecked(true);
+                }
+                filterPetListInstance.setFilterGenderListInstance(filterSelectedGenderList);
+            }
         }
     }
 }

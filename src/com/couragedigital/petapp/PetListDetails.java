@@ -26,6 +26,8 @@ public class PetListDetails extends AppCompatActivity {
     String age = "";
     String gender = "";
     String description = "";
+    String email = "";
+    String mobileno = "";
 
     ImageView petImage;
     TextView petBreed;
@@ -56,6 +58,8 @@ public class PetListDetails extends AppCompatActivity {
             age = intent.getStringExtra("PET_AGE");
             gender = intent.getStringExtra("PET_GENDER");
             description = intent.getStringExtra("PET_DESCRIPTION");
+            email = intent.getStringExtra("POST_OWNER_EMAIL");
+            mobileno = intent.getStringExtra("POST_OWNER_MOBILENO");
         }
 
         petDetailstoolbar = (Toolbar) findViewById(R.id.petDetailsToolbar);

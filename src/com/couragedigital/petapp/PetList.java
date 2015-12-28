@@ -30,8 +30,6 @@ public class PetList extends BaseActivity {
     private static String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
     private ProgressDialog progressDialog;
     public List<com.couragedigital.petapp.model.PetList> petLists = new ArrayList<com.couragedigital.petapp.model.PetList>();
-    /*private ListView petlistView;
-    public PetListAdapter Adapter;*/
 
     public List<com.couragedigital.petapp.model.PetList> petListsForFilter = new ArrayList<com.couragedigital.petapp.model.PetList>();
     public PetListAdapter adapterForFilter;
@@ -46,6 +44,8 @@ public class PetList extends BaseActivity {
     static String urlForFetch;
 
     private int current_page = 1;
+
+    int filterState;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -158,11 +158,7 @@ public class PetList extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_settings) {
-
-        }
         if (item.getItemId() == R.id.action_filter) {
-            //PetListInstance petListInstance = new PetListInstance(Adapter, petLists, petlistView);
             Intent filterClassIntent = new Intent(PetList.this, PetListFilter.class);
             startActivity(filterClassIntent);
         }

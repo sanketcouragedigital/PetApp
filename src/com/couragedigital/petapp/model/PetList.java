@@ -5,25 +5,31 @@ import java.util.Date;
 public class PetList {
     public String image_path;
     public String petBreed;
+    public String petPostOwner;
     public String listingType;
     public String petCategory;
     public String petAge;
     public String petGender;
     public String petDescription;
     public String petPostDate;
+    public String petPostOwnerEmail;
+    public String petPostOwnerMobileNo;
 
     public PetList() {
     }
 
-    public PetList(String image_path, String petBreed, String listingType, String petCategory, String petAge, String petGender, String petDescription, String petPostDate) {
+    public PetList(String image_path, String petBreed, String petPostOwner, String listingType, String petCategory, String petAge, String petGender, String petDescription, String petPostDate, String petPostOwnerEmail, String petPostOwnerMobileNo) {
         this.image_path = image_path;
         this.petBreed = petBreed;
+        this.petPostOwner = petPostOwner;
         this.listingType = listingType;
         this.petCategory = petCategory;
         this.petAge = petAge;
         this.petGender = petGender;
         this.petDescription = petDescription;
         this.petPostDate = petPostDate;
+        this.petPostOwnerEmail = petPostOwnerEmail;
+        this.petPostOwnerMobileNo = petPostOwnerMobileNo;
     }
 
     public String getImage_path() {
@@ -40,6 +46,14 @@ public class PetList {
 
     public void setPetBreed(String petBreed) {
         this.petBreed = petBreed;
+    }
+
+    public String getPetPostOwner() {
+        return petPostOwner;
+    }
+
+    public void setPetPostOwner(String petPostOwner) {
+        this.petPostOwner = petPostOwner;
     }
 
     public String getListingType() {
@@ -88,5 +102,21 @@ public class PetList {
 
     public void setPetPostDate(String petPostDate) {
         this.petPostDate = petPostDate;
+    }
+
+    public String getPetPostOwnerEmail() {
+        return petPostOwnerEmail;
+    }
+
+    public void setPetPostOwnerEmail(String petPostOwnerEmail) {
+        this.petPostOwnerEmail = petPostOwnerEmail;
+    }
+
+    public String getPetPostOwnerMobileNo() {
+        return petPostOwnerMobileNo;
+    }
+
+    public void setPetPostOwnerMobileNo(String petPostOwnerMobileNo) {
+        this.petPostOwnerMobileNo = petPostOwnerMobileNo;
     }
 }

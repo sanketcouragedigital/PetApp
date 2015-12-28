@@ -8,8 +8,11 @@ import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.couragedigital.petapp.R;
+import com.couragedigital.petapp.Singleton.FilterPetListInstance;
 import com.couragedigital.petapp.model.FilterCategoryList;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FilterCategoryAdapter extends RecyclerView.Adapter<FilterCategoryAdapter.ViewHolder> {
@@ -17,6 +20,8 @@ public class FilterCategoryAdapter extends RecyclerView.Adapter<FilterCategoryAd
     List<FilterCategoryList> filterCategoryLists;
     View v;
     ViewHolder viewHolder;
+
+    public static FilterPetListInstance filterPetListInstance = new FilterPetListInstance();
 
     public FilterCategoryAdapter(List<FilterCategoryList> filterCategoryLists) {
         this.filterCategoryLists = filterCategoryLists;
@@ -49,6 +54,8 @@ public class FilterCategoryAdapter extends RecyclerView.Adapter<FilterCategoryAd
 
         private FilterCategoryList filterCategoryList;
 
+        public List<String> filterSelectedCategoryList = new ArrayList<String>();
+
         public ViewHolder(View itemView) {
             super(itemView);
             filterCategoryLayout = (RelativeLayout) itemView.findViewById(R.id.filterCategoryLayout);
@@ -61,12 +68,31 @@ public class FilterCategoryAdapter extends RecyclerView.Adapter<FilterCategoryAd
         public void bindFilterCategoryList(FilterCategoryList filterCategoryList) {
             this.filterCategoryList = filterCategoryList;
             filterCategoryText.setText(filterCategoryList.getCategoryText());
-            filterCategoryCheckBox.setChecked(false);
+            filterSelectedCategoryList = filterPetListInstance.getFilterCategoryListInstance();
+            if(filterSelectedCategoryList.contains(filterCategoryList.getCategoryText())) {
+                filterCategoryCheckBox.setChecked(true);
+            }
+            else {
+                filterCategoryCheckBox.setChecked(false);
+            }
+            filterCategoryCheckBox.setClickable(false);
         }
 
         @Override
         public void onClick(View v) {
-
+            if(v.getId() == R.id.filterCategoryLayout) {
+                filterSelectedCategoryList = filterPetListInstance.getFilterCategoryListInstance();
+                String selectedCategory = (String) filterCategoryText.getText();
+                if(filterSelectedCategoryList.contains(selectedCategory)) {
+                    filterSelectedCategoryList.remove(selectedCategory);
+                    filterCategoryCheckBox.setChecked(false);
+                }
+                else {
+                    filterSelectedCategoryList.add(selectedCategory);
+                    filterCategoryCheckBox.setChecked(true);
+                }
+                filterPetListInstance.setFilterCategoryListInstance(filterSelectedCategoryList);
+            }
         }
     }
 }

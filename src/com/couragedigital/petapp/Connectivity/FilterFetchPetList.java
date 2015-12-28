@@ -15,12 +15,11 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.List;
 
-public class FilterFetchPetBreedList {
+public class FilterFetchPetList {
     private static final String TAG = PetBreedsSpinnerList.class.getSimpleName();
     private static List<String> filterSelectedCategoryLists;
     private static String method;
     private static String format;
-
 
     //http://storage.couragedigital.com/dev/api/petappapi.php
     public static void fetchPetBreeds(List<String> filterCategoryLists, List<FilterBreedList> filterBreedLists, FilterBreedAdapter filterBreedAdapter) {

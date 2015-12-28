@@ -17,6 +17,7 @@ import android.widget.*;
 import com.couragedigital.petapp.*;
 import com.couragedigital.petapp.Connectivity.PetFetchClinicList;
 import com.couragedigital.petapp.SessionManager.SessionManager;
+import com.couragedigital.petapp.model.ClinicListItems;
 import com.couragedigital.petapp.model.DialogListInformaion;
 import com.couragedigital.petapp.model.IndexListInfo;
 
@@ -31,6 +32,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
     public static List<DialogListInformaion> dialogListForViewPetMets = new ArrayList<DialogListInformaion>();
     public static List<DialogListInformaion> dialogListForPetClinic = new ArrayList<DialogListInformaion>();
     public static CoordinatorLayout homeListCoordinatorLayout;
+
 
     public HomeListAdapter(ArrayList<IndexListInfo> indexListInfoList, List<DialogListInformaion> dialogListForViewPets,
                            List<DialogListInformaion> dialogListForViewPetMets, List<DialogListInformaion> dialogListForpetClinic, CoordinatorLayout homeListCoordinatorLayout) {
@@ -75,16 +77,20 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
 
         private static String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
         private ProgressDialog progressDialog;
+        public List<ClinicListItems> clinicListItemsArrayList = new ArrayList<ClinicListItems>();
 
         static String urlForFetch;
         private int current_page = 1;
         SessionManager sessionManager;
         private String userEmail;
         Context context;
+        RecyclerView.Adapter Radapter;
 
 
         Snackbar accessoriesSnackBar;
         Snackbar doctorSnackBar;
+
+        public int state = 0;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -136,19 +142,18 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
             }
             if (position == 2) {
                 adapter = new DialogListAdapter(dialogListForPetClinic);
+                Intent gotoPetClinic = new Intent(v.getContext(), PetClinic.class);
                 builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (i == 0) {
-                            sessionManager = new SessionManager(context);
-                            HashMap<String, String> user = sessionManager.getUserDetails();
-                            String email = user.get(SessionManager.KEY_EMAIL);
-                            userEmail = email;
-                            url = url + "?method=ClinicByAddress&format=json&currentPage=" + current_page + userEmail + "";
-                            graburl();
+                            state = 0;
+                            gotoPetClinic.putExtra("STATE_OF_CLICK", state);
+                            v.getContext().startActivity(gotoPetClinic);
 
                         } else if (i == 1) {
-                            Intent gotoPetClinic = new Intent(v.getContext(), PetClinic.class);
+                            state = 1;
+                            gotoPetClinic.putExtra("STATE_OF_CLICK", state);
                             v.getContext().startActivity(gotoPetClinic);
                         }
                     }
@@ -167,31 +172,6 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                             }
                         });
                 accessoriesSnackBar.show();
-            }
-        }
-
-        private void graburl() {
-            new FetchListFromServer().execute(url);
-        }
-
-        private class FetchListFromServer extends AsyncTask<String, String, String> {
-            @Override
-            protected String doInBackground(String... url) {
-                try {
-                    urlForFetch = url[0];
-                    //PetFetchClinicList.petFetchClinicList(userEmail,urlForFetch, progressDialog);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    progressDialog.dismiss();
-                }
-                return null;
-            }
-        }
-
-        private void hideProgressDialog() {
-            if (progressDialog != null) {
-                progressDialog.dismiss();
-                progressDialog = null;
             }
         }
 

@@ -35,6 +35,7 @@ import com.couragedigital.petapp.Connectivity.PetBreedsSpinnerList;
 import com.couragedigital.petapp.Connectivity.PetCategorySpinnerList;
 import com.couragedigital.petapp.Adapter.SpinnerItemsAdapter;
 import com.couragedigital.petapp.Connectivity.PetMetFormUpload;
+import com.couragedigital.petapp.SessionManager.SessionManager;
 
 import java.io.*;
 
@@ -60,13 +61,15 @@ public class PetMet extends BaseActivity implements View.OnClickListener {
     Button selectImageButton;
     ImageView imageOfPet;
     Button uploadButton;
-
+    String email;
     String petCategoryName;
     String petBreedName;
     Integer petAge;
     String petGender;
     String petDescription;
     String currentPhotoPath;
+
+    SessionManager sessionManager;
 
     private List<String> petCategoryList = new ArrayList<String>();
     private List<String> petBreedsList = new ArrayList<String>();
@@ -85,6 +88,10 @@ public class PetMet extends BaseActivity implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.petmet);
+
+        sessionManager = new SessionManager(getApplicationContext());
+        HashMap<String, String> user = sessionManager.getUserDetails();
+        email = user.get(SessionManager.KEY_EMAIL);  // get email from session
 
         petCategory = (Spinner) this.findViewById(R.id.petCategory);
         petBreed = (Spinner) this.findViewById(R.id.petBreed);
@@ -415,9 +422,9 @@ public class PetMet extends BaseActivity implements View.OnClickListener {
 
     public class UploadToServer extends AsyncTask<Void, Void, Void> {
         @Override
-        protected Void doInBackground(Void... params) {
+        public Void doInBackground(Void... params) {
             try {
-                int responseFromServer = PetMetFormUpload.uploadToRemoteServer(petCategoryName, petBreedName, petAge, petGender, petDescription, currentPhotoPath);
+                int responseFromServer = PetMetFormUpload.uploadToRemoteServer(email,petCategoryName, petBreedName, petAge, petGender, petDescription, currentPhotoPath);
                 if(responseFromServer == 200){
                     runOnUiThread(new Runnable() {
                         public void run() {

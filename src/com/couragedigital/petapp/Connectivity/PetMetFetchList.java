@@ -25,7 +25,7 @@ public class PetMetFetchList {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            JSONArray jsonArray = response.getJSONArray("showPetDetailsResponse");
+                            JSONArray jsonArray = response.getJSONArray("showPetMetDetailsResponse");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 try {
 

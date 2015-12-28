@@ -11,4 +11,8 @@
     <string name="share_app">Share App</string>
     <string name="logout">LogOut</string>
     <string name="snackbartext">Hello Guys</string>
+    <string name="GPSAlertDialogTitle">Alert</string>
+    <string name="GPSAlertDialogMessage">Check ur Gps setting</string>
+    <string name="action_settings">Ok</string>
+    <string name="cancel">Cancel</string>
 </resources>

@@ -90,9 +90,8 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Vi
             int position = getAdapterPosition();
             if (position == 0) {
                 if (view.getId() == R.id.clinicSeeMoreButton) {
-                    Toast.makeText(view.getContext(), "                                                                                                                  Button selected & Position  " + position, Toast.LENGTH_LONG).show();
+                    Toast.makeText(view.getContext(), "Button selected & Position" + position, Toast.LENGTH_LONG).show();
                 } else if (view.getId() == R.id.clinicFavourite) {
-
                     if (statusOfclinicFavourite == 0) {
                         clinicFavourite.setBackgroundResource(R.drawable.favourite_enable);
                         statusOfclinicFavourite = 1;
@@ -104,7 +103,7 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Vi
             }
             else if (position == 1) {
                 if (view.getId() == R.id.clinicSeeMoreButton) {
-                    Toast.makeText(view.getContext(), " Button selected & Position  " + position, Toast.LENGTH_LONG).show();
+                    Toast.makeText(view.getContext(), "Button selected & Position" + position, Toast.LENGTH_LONG).show();
                 } else if (view.getId() == R.id.clinicFavourite) {
 
                     if (statusOfclinicFavourite == 0) {

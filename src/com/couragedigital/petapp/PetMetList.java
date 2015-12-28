@@ -21,11 +21,13 @@ import com.couragedigital.petapp.Listeners.PetFetchListScrollListener;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import android.app.ProgressDialog;
 import android.app.Activity;
 import android.os.Bundle;
+import com.couragedigital.petapp.SessionManager.SessionManager;
 
 
 public class PetMetList extends BaseActivity {
@@ -46,6 +48,7 @@ public class PetMetList extends BaseActivity {
     LinearLayoutManager layoutManager;
     RecyclerView.Adapter adapter;
     SwipeRefreshLayout petListSwipeRefreshLayout;
+    private String userEmail;
 
     public List<com.couragedigital.petapp.model.PetMetList> originalpetLists = new ArrayList<com.couragedigital.petapp.model.PetMetList>();
 
@@ -69,13 +72,13 @@ public class PetMetList extends BaseActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        url = "http://192.168.0.2/PetAppAPI/api/petappapi.php?method=showPetMetDetails&format=json&currentPage="+current_page+"";
+        url = "http://192.168.0.2/PetAppAPI/api/petappapi.php?method=showPetMetDetails&format=json&currentPage=" + current_page + "";
 
-        recyclerView.addOnScrollListener(new PetFetchListScrollListener(layoutManager, current_page){
+        recyclerView.addOnScrollListener(new PetFetchListScrollListener(layoutManager, current_page) {
 
             @Override
             public void onLoadMore(int current_page) {
-                url = "http://192.168.0.2/PetAppAPI/api/petappapi.php?method=showPetMetDetails&format=json&currentPage="+current_page+"";
+                url = "http://192.168.0.2/PetAppAPI/api/petappapi.php?method=showPetMetDetails&format=json&currentPage=" + current_page + "";
                 grabURL(url);
             }
         });
@@ -123,11 +126,15 @@ public class PetMetList extends BaseActivity {
     private SwipeRefreshLayout.OnRefreshListener petListSwipeRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
+            sessionManager = new SessionManager(getApplicationContext());
+            HashMap<String, String> user = sessionManager.getUserDetails();
+            String email = user.get(SessionManager.KEY_EMAIL);
+            userEmail = email;
             com.couragedigital.petapp.model.PetMetList petMetList = petMetLists.get(0);
             String date = petMetList.getPetPostDate();
             //date = date.replace(" ", "+");
             try {
-                url = "http://192.168.0.2/PetAppAPI/api/petappapi.php?method=showPetMetSwipeRefreshList&format=json&date="+ URLEncoder.encode(date, "UTF-8")+"";
+                url = "http://192.168.0.2/PetAppAPI/api/petappapi.php?method=showPetMetSwipeRefreshList&format=json&date=" + URLEncoder.encode(date, "UTF-8") + "&email=" + userEmail + "";
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }

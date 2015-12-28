@@ -1,13 +1,15 @@
 package com.couragedigital.petapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.TextView;
+import android.util.Log;
 import android.widget.Toast;
-import com.couragedigital.petapp.SessionManager.SessionManager;
 import com.couragedigital.petapp.Adapter.HomeListAdapter;
 import com.couragedigital.petapp.model.DialogListInformaion;
 import com.couragedigital.petapp.model.IndexListInfo;
@@ -23,10 +25,26 @@ public class Index extends BaseActivity {
     RecyclerView.LayoutManager layoutManager;
     HomeListAdapter mAdapter;
 
+    GPSTracker gpsTracker;
+    boolean isGPSEnabled = false;
+    // flag for network status
+    boolean isNetworkEnabled = false;
+    private static Index instance = new Index();
+    static Context context;
+    ConnectivityManager connectivityManager;
+    NetworkInfo wifiInfo, mobileInfo;
+    boolean connected = false;
+
+
     public List<DialogListInformaion> dialogListForViewPets = new ArrayList<DialogListInformaion>();
     public List<DialogListInformaion> dialogListForViewPetMets = new ArrayList<DialogListInformaion>();
-
+    public List<DialogListInformaion> dialogListForpetClinic = new ArrayList<DialogListInformaion>();
     public CoordinatorLayout homeListCoordinatorLayout;
+
+    public static Index getInstance(Context ctx) {
+        context = ctx.getApplicationContext();
+        return instance;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,6 +61,36 @@ public class Index extends BaseActivity {
             this.finish();
         }
     }
+    /*    if (Index.getInstance(this).haveNetworkConnection()) {
+            Toast.makeText(this, "You are online!!!!", Toast.LENGTH_LONG).show();
+
+        } else {
+            Toast.makeText(this, "You are offline!!!!", Toast.LENGTH_LONG).show();
+            Log.v("Home", "############################You are not online!!!!");
+        }*/
+
+
+
+  /*  private boolean haveNetworkConnection() {
+        boolean haveConnectedWifi = false;
+        boolean haveConnectedMobile = false;
+        boolean connected = false;
+
+        try {
+            ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+            connected = networkInfo != null && networkInfo.isAvailable() &&
+                    networkInfo.isConnected();
+            return connected;
+
+
+        } catch (Exception e) {
+            System.out.println("CheckConnectivity Exception: " + e.getMessage());
+            Log.v("connectivity", e.toString());
+        }
+        return connected;
+    }*/
 
     private void homeListMenu() {
 
@@ -81,11 +129,20 @@ public class Index extends BaseActivity {
             dialogListForViewPetMets.add(dialogListInformaion2);
         }
 
+        final String[] petclinictitle = new String[]{"View Home Location","View Current Location"};
+        final int[] petclinicicon = {R.drawable.ic_launcher,R.drawable.ic_launcher};
+        for(int i = 0; i <petclinictitle.length; i++){
+            DialogListInformaion dialogListpetclinic = new DialogListInformaion();
+            dialogListpetclinic.setTittle(petclinictitle[i]);
+            dialogListpetclinic.setIcons(petclinicicon[i]);
+            dialogListForpetClinic.add(dialogListpetclinic);
+        }
+
         recyclerView = (RecyclerView) findViewById(R.id.indexpagelst);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        mAdapter = new HomeListAdapter(indexListInfosArray, dialogListForViewPets, dialogListForViewPetMets, homeListCoordinatorLayout);
+        mAdapter = new HomeListAdapter(indexListInfosArray, dialogListForViewPets, dialogListForViewPetMets, dialogListForpetClinic ,homeListCoordinatorLayout);
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -94,4 +151,6 @@ public class Index extends BaseActivity {
         super.onBackPressed();
         this.finish();
     }
+
+
 }

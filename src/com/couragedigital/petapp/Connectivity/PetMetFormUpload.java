@@ -3,6 +3,7 @@ package com.couragedigital.petapp.Connectivity;
 import android.util.Log;
 import android.widget.Toast;
 import com.couragedigital.petapp.PetMet;
+import com.couragedigital.petapp.SessionManager.SessionManager;
 
 import java.io.DataOutputStream;
 import java.io.File;
@@ -10,6 +11,7 @@ import java.io.FileInputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 
 public class PetMetFormUpload {
     private static final String SERVER_URL = "http://192.168.0.2/PetAppAPI/api/petappapi.php";
@@ -18,7 +20,7 @@ public class PetMetFormUpload {
     //http://192.168.0.3/PetAppAPI/api/petappapi.php
     //http://storage.couragedigital.com/dev/api/petappapi.php
 
-    public static int uploadToRemoteServer(String petCategoryName, String petBreedName, Integer petAge, String petGender, String petDescription, String currentPhotoPath) throws Exception {
+    public static int uploadToRemoteServer(String emailforlatlong, String petCategoryName, String petBreedName, Integer petAge, String petGender, String petDescription, String currentPhotoPath) throws Exception {
         int serverResponseCode = 0;
         String upLoadServerUri = SERVER_URL;
         String categoryOfPet = petCategoryName;
@@ -27,6 +29,9 @@ public class PetMetFormUpload {
         String genderOfPet = petGender;
         String descriptionOfPet = petDescription;
         String petImage = currentPhotoPath;
+        String email = emailforlatlong;
+
+
         HttpURLConnection conn = null;
         DataOutputStream dos = null;
         String lineEnd = "\r\n";
@@ -59,9 +64,11 @@ public class PetMetFormUpload {
             conn.setRequestProperty("genderOfPet", genderOfPet);
             conn.setRequestProperty("descriptionOfPet", descriptionOfPet);
             conn.setRequestProperty("petImage", petImage);
+            conn.setRequestProperty("email", email);
             conn.setRequestProperty("method", method);
             conn.setRequestProperty("format", format);
             dos = new DataOutputStream(conn.getOutputStream());
+
 
             dos.writeBytes(twoHyphens + boundary + lineEnd);
             dos.writeBytes("Content-Disposition: form-data; name=\"categoryOfPet\";" + lineEnd);
@@ -91,6 +98,12 @@ public class PetMetFormUpload {
             dos.writeBytes("Content-Disposition: form-data; name=\"descriptionOfPet\";" + lineEnd);
             dos.writeBytes(lineEnd);
             dos.writeBytes(descriptionOfPet);
+            dos.writeBytes(lineEnd);
+
+            dos.writeBytes(twoHyphens + boundary + lineEnd);
+            dos.writeBytes("Content-Disposition: form-data; name=\"email\";" + lineEnd);
+            dos.writeBytes(lineEnd);
+            dos.writeBytes(email);
             dos.writeBytes(lineEnd);
 
             dos.writeBytes(twoHyphens + boundary + lineEnd);

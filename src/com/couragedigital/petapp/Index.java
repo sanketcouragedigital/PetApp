@@ -88,7 +88,7 @@ public class Index extends BaseActivity {
 
         //View/List of pets Dailogbox Menu tittles Names
         final String[] title = new String[]{"Upload Pet Detail", "List of Pets"};
-        final int[] icons = {R.drawable.addpet, R.drawable.view, R.drawable.ic_launcher};
+        final int[] icons = {R.drawable.addpet, R.drawable.view};
         for (int i = 0; i < title.length; i++) {
             DialogListInformaion dialogListInformaion1 = new DialogListInformaion();
             dialogListInformaion1.setTittle(title[i]);
@@ -107,7 +107,7 @@ public class Index extends BaseActivity {
         }
 
         final String[] petclinictitle = new String[]{"View Home Location", "View Current Location"};
-        final int[] petclinicicon = {R.drawable.ic_launcher, R.drawable.ic_launcher};
+        final int[] petclinicicon = {R.drawable.my_location, R.drawable.location};
         for (int i = 0; i < petclinictitle.length; i++) {
             DialogListInformaion dialogListpetclinic = new DialogListInformaion();
             dialogListpetclinic.setTittle(petclinictitle[i]);

@@ -42,10 +42,10 @@ public class PetRefreshFetchList {
                                         petList.setListingType("Rs. :- " + replaceSpecialChars(obj.getString("pet_price")));
                                     }
                                     petList.setPetCategory(replaceSpecialChars(obj.getString("pet_category")));
-                                    petList.setPetAge(replaceSpecialChars(obj.getString("pet_age")));
+                                    petList.setPetAge(obj.getString("pet_age"));
                                     petList.setPetGender(replaceSpecialChars(obj.getString("pet_gender")));
                                     petList.setPetDescription(replaceSpecialChars(obj.getString("pet_description")));
-                                    petList.setPetPostDate(replaceSpecialChars(obj.getString("post_date")));
+                                    petList.setPetPostDate(obj.getString("post_date"));
                                     petList.setPetPostOwnerEmail(replaceSpecialChars(obj.getString("email")));
                                     petList.setPetPostOwnerMobileNo(obj.getString("mobileno"));
 

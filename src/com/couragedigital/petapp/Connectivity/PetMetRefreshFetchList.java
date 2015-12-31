@@ -33,14 +33,16 @@ public class PetMetRefreshFetchList {
 
                                     JSONObject obj = jsonArray.getJSONObject(i);
                                     PetMetList petMetList = new PetMetList();
-                                    petMetList.setPetBreed(obj.getString("pet_breed"));
+                                    petMetList.setPetMetBreed(replaceSpecialChars(obj.getString("pet_breed")));
+                                    petMetList.setPetMetPostOwner(replaceSpecialChars(obj.getString("name")));
                                     petMetList.setImage_path(obj.getString("image_path"));
-
-                                    petMetList.setPetCategory(obj.getString("pet_category"));
-                                    petMetList.setPetAge(obj.getString("pet_age"));
-                                    petMetList.setPetGender(obj.getString("pet_gender"));
-                                    petMetList.setPetDescription(obj.getString("pet_description"));
-                                    petMetList.setPetPostDate(obj.getString("post_date"));
+                                    petMetList.setPetMetCategory(replaceSpecialChars(obj.getString("pet_category")));
+                                    petMetList.setPetMetAge(obj.getString("pet_age"));
+                                    petMetList.setPetMetGender(replaceSpecialChars(obj.getString("pet_gender")));
+                                    petMetList.setPetMetDescription(replaceSpecialChars(obj.getString("pet_description")));
+                                    petMetList.setPetMetPostDate(obj.getString("post_date"));
+                                    petMetList.setPetMetPostOwnerEmail(replaceSpecialChars(obj.getString("email")));
+                                    petMetList.setPetMetPostOwnerMobileNo(obj.getString("mobileno"));
 
                                     // adding pet to pets array
                                     petMetLists.add(0, petMetList);
@@ -75,5 +77,10 @@ public class PetMetRefreshFetchList {
         });
         AppController.getInstance().addToRequestQueue(petListReq);
         return petMetLists;
+    }
+
+    private static String replaceSpecialChars(String str) {
+        str = str.replaceAll("[+]"," ");
+        return str;
     }
 }

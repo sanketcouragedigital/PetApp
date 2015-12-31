@@ -1,6 +1,10 @@
 package com.couragedigital.petapp.Adapter;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,18 +14,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.couragedigital.petapp.*;
 import com.couragedigital.petapp.SessionManager.SessionManager;
+import com.couragedigital.petapp.model.DialogListInformaion;
 import com.couragedigital.petapp.model.DrawerItems;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.ViewHolder> {
 
     private static ArrayList<DrawerItems> dataset;
     public View v;
     public ViewHolder viewHolder;
+    public DrawerLayout drawer;
 
-    public DrawerAdapter(ArrayList<DrawerItems> dataset) {
+    public DrawerAdapter(ArrayList<DrawerItems> dataset, DrawerLayout drawer) {
         this.dataset = dataset;
+        this.drawer = drawer;
     }
 
     @Override
@@ -96,19 +104,44 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.ViewHolder
                 Intent gotoformupload = new Intent(view.getContext(), Index.class);
                 view.getContext().startActivity(gotoformupload);
             } else if (position == 1) {
-                Toast.makeText(view.getContext(), "You selected Postion " + position, Toast.LENGTH_LONG).show();
+                //Toast.makeText(view.getContext(), "You selected Postion " + position, Toast.LENGTH_LONG).show();
             } else if (position == 2) {
-                Toast.makeText(view.getContext(), "You selected Postion " + position, Toast.LENGTH_LONG).show();
+                //Toast.makeText(view.getContext(), "You selected Postion " + position, Toast.LENGTH_LONG).show();
+                drawer.closeDrawers();
+                AlertDialog alertDialog;
+                AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(v.getContext(), R.style.HomePageDialogboxCustom));
+                List<DialogListInformaion> dialogListForViewPetsAndPetMates = new ArrayList<DialogListInformaion>();
+                final String[] title = new String[]{"List of Pets", "List of Pet Mate"};
+                final int[] icons = {R.drawable.view, R.drawable.view};
+                for (int i = 0; i < title.length; i++) {
+                    DialogListInformaion dialogListInformaion1 = new DialogListInformaion();
+                    dialogListInformaion1.setTittle(title[i]);
+                    dialogListInformaion1.setIcons(icons[i]);
+                    dialogListForViewPetsAndPetMates.add(dialogListInformaion1);
+                }
+                DialogListAdapter adapter = new DialogListAdapter(dialogListForViewPetsAndPetMates);
+                builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (i == 0) {
+                            Intent gotoformupload = new Intent(v.getContext(), PetList.class);
+                            v.getContext().startActivity(gotoformupload);
+                        } else if (i == 1) {
+                            Intent gotolistofpet = new Intent(v.getContext(), PetMetList.class);
+                            v.getContext().startActivity(gotolistofpet);
+                        }
+                    }
+                });
+                alertDialog = builder.create();
+                alertDialog.show();
             } else if (position == 3) {
-                Toast.makeText(view.getContext(), "You selected Postion " + position, Toast.LENGTH_LONG).show();
+                //Toast.makeText(view.getContext(), "You selected Postion " + position, Toast.LENGTH_LONG).show();
             } else if (position == 4) {
-                Toast.makeText(view.getContext(), "You selected Postion " + position, Toast.LENGTH_LONG).show();
+                //Toast.makeText(view.getContext(), "You selected Postion " + position, Toast.LENGTH_LONG).show();
             } else if (position == 5) {
-                Toast.makeText(view.getContext(), "You selected Postion " + position, Toast.LENGTH_LONG).show();
+                //Toast.makeText(view.getContext(), "You selected Postion " + position, Toast.LENGTH_LONG).show();
             } else if (position == 6) {
-                Intent gotosignIn = new Intent(view.getContext(), SignIn.class);
-                view.getContext().startActivity(gotosignIn);
-            } else if (position == 7) {
+                sessionManager = new SessionManager(v.getContext());
                 sessionManager.logoutUser();
             }
         }

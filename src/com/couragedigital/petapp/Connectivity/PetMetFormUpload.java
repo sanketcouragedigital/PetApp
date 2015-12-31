@@ -14,7 +14,7 @@ import java.net.URL;
 import java.util.HashMap;
 
 public class PetMetFormUpload {
-    private static final String SERVER_URL = "http://192.168.0.2/PetAppAPI/api/petappapi.php";
+    private static final String SERVER_URL = "http://storage.couragedigital.com/dev/api/petappapi.php";
     //http://storage.couragedigital.com/petappapi.php
     //http://couragedigitalexample.hostingsiteforfree.com/cameraapi.php
     //http://192.168.0.3/PetAppAPI/api/petappapi.php

@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ContextThemeWrapper;
@@ -35,6 +36,7 @@ import com.couragedigital.petapp.Connectivity.PetBreedsSpinnerList;
 import com.couragedigital.petapp.Connectivity.PetCategorySpinnerList;
 import com.couragedigital.petapp.Adapter.SpinnerItemsAdapter;
 import com.couragedigital.petapp.Connectivity.PetMetFormUpload;
+import com.couragedigital.petapp.CropImage.CropImage;
 import com.couragedigital.petapp.SessionManager.SessionManager;
 
 import java.io.*;
@@ -60,7 +62,7 @@ public class PetMet extends BaseActivity implements View.OnClickListener {
 
     Button selectImageButton;
     ImageView imageOfPet;
-    Button uploadButton;
+    FloatingActionButton uploadButton;
     String email;
     String petCategoryName;
     String petBreedName;
@@ -93,14 +95,14 @@ public class PetMet extends BaseActivity implements View.OnClickListener {
         HashMap<String, String> user = sessionManager.getUserDetails();
         email = user.get(SessionManager.KEY_EMAIL);  // get email from session
 
-        petCategory = (Spinner) this.findViewById(R.id.petCategory);
-        petBreed = (Spinner) this.findViewById(R.id.petBreed);
-        ageOfPet = (EditText) this.findViewById(R.id.ageOfPet);
-        genderOfPet = (RadioGroup) this.findViewById(R.id.genderOfPet);
-        descriptionOfPet = (EditText) this.findViewById(R.id.descriptionOfPet);
-        selectImageButton = (Button) this.findViewById(R.id.selectImage);
-        imageOfPet = (ImageView) this.findViewById(R.id.imageOfPet);
-        uploadButton = (Button) this.findViewById(R.id.uploadButton);
+        petCategory = (Spinner) this.findViewById(R.id.petMetCategorySpinner);
+        petBreed = (Spinner) this.findViewById(R.id.petMetBreedSpinner);
+        ageOfPet = (EditText) this.findViewById(R.id.ageOfPetMet);
+        genderOfPet = (RadioGroup) this.findViewById(R.id.genderOfPetMet);
+        descriptionOfPet = (EditText) this.findViewById(R.id.descriptionOfPetMet);
+        selectImageButton = (Button) this.findViewById(R.id.selectImagePetMet);
+        imageOfPet = (ImageView) this.findViewById(R.id.imageOfPetMet);
+        uploadButton = (FloatingActionButton) this.findViewById(R.id.petMetFormSubmitFab);
 
         petCategoryArrayList = new String[]{
                 "Select Pet Category"
@@ -195,7 +197,7 @@ public class PetMet extends BaseActivity implements View.OnClickListener {
     @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.selectImage) {
+        if(v.getId() == R.id.selectImagePetMet) {
             dialogAdapter = new ArrayAdapter<String>(PetMet.this, android.R.layout.select_dialog_item){
                 @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
@@ -246,7 +248,7 @@ public class PetMet extends BaseActivity implements View.OnClickListener {
 
             alertDialog.show();
         }
-        else if(v.getId() == R.id.uploadButton) {
+        else if(v.getId() == R.id.petMetFormSubmitFab) {
 
             Integer petAgeInInteger = null;
 
@@ -338,9 +340,19 @@ public class PetMet extends BaseActivity implements View.OnClickListener {
     }
 
     private void doCropping(File image, int request_code) {
-        Intent cropIntent = new Intent("com.android.camera.action.CROP");
+        /*Intent cropIntent = new Intent("com.android.camera.action.CROP");
         cropIntent.setDataAndType(Uri.fromFile(image), "image/*");
         cropIntent.putExtra("crop", "true");
+        cropIntent.putExtra("aspectX", 1);
+        cropIntent.putExtra("aspectY", 1);
+        cropIntent.putExtra("outputX", 256);
+        cropIntent.putExtra("outputY", 256);
+        cropIntent.putExtra("return-data", true);*/
+
+        Intent cropIntent = new Intent(this, CropImage.class);
+
+        cropIntent.putExtra("image-path", currentPhotoPath);
+        cropIntent.putExtra("scale", true);
         cropIntent.putExtra("aspectX", 1);
         cropIntent.putExtra("aspectY", 1);
         cropIntent.putExtra("outputX", 256);
@@ -397,7 +409,7 @@ public class PetMet extends BaseActivity implements View.OnClickListener {
     private RelativeLayout.LayoutParams getLayoutParams() {
 
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(300, 300);
-        layoutParams.addRule(RelativeLayout.BELOW, R.id.selectImage);
+        layoutParams.addRule(RelativeLayout.BELOW, R.id.selectImagePetMet);
         layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
         return layoutParams;
     }

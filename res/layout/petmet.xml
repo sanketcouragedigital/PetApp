@@ -1,104 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:orientation="vertical"
-                    android:layout_height="match_parent"
+<android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/applyPetMetScrollView">
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:orientation="vertical"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:focusable="true"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:focusableInTouchMode="true">
+            <Spinner
                     android:layout_width="match_parent"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:layout_marginTop="56dp">
-        <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/petCategory"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="10dp"/>
-        <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/petBreed"
-                android:layout_below="@+id/petCategory"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="10dp"/>
-        <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:ems="2"
-                android:id="@+id/ageOfPet"
-                android:hint="Age"
-                android:layout_alignParentBottom="false"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/petBreed"
-                android:layout_marginTop="10dp"/>
-        <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:orientation="horizontal"
-                android:id="@+id/genderOfPet"
-                android:layout_below="@+id/ageOfPet"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="10dp">
-            <RadioButton
-                    android:id="@+id/genderMale"
+                    android:layout_height="48dp"
+                    android:id="@+id/petMetCategorySpinner"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="16dp"/>
+            <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/petMetBreedSpinner"
+                    android:layout_below="@+id/petMetCategorySpinner"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="16dp"/>
+            <EditText
+                    android:layout_width="84dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="4"
+                    android:id="@+id/ageOfPetMet"
+                    android:hint="Age"
+                    android:textColor="@color/textColorPrimary"
+                    android:layout_alignParentBottom="false"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/petMetBreedSpinner"
+                    android:layout_marginTop="16dp"/>
+            <RadioGroup
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/pet_gender_male"/>
-            <RadioButton
-                    android:id="@+id/genderFemale"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:id="@+id/genderOfPetMet"
+                    android:layout_below="@+id/petMetBreedSpinner"
+                    android:layout_marginTop="27dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_toRightOf="@+id/ageOfPetMet">
+                <RadioButton
+                        android:id="@+id/genderMalePetMet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="16dp"
+                        android:text="@string/pet_gender_male"/>
+                <RadioButton
+                        android:id="@+id/genderFemalePetMet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pet_gender_female"/>
+            </RadioGroup>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:id="@+id/descriptionOfPetMet"
+                    android:hint="Description"
+                    android:textColor="@color/textColorPrimary"
+                    android:lines="2"
+                    android:gravity="top|left"
+                    android:scrollbars="vertical"
+                    android:layout_below="@+id/ageOfPetMet"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="16dp"/>
+            <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/pet_gender_female"/>
-        </RadioGroup>
-        <EditText
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:inputType="textMultiLine"
-                android:id="@+id/descriptionOfPet"
-                android:hint="Description"
-                android:lines="2"
-                android:gravity="top|left"
-                android:scrollbars="vertical"
-                android:layout_below="@+id/genderOfPet"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="10dp"/>
-        <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Select Image"
-                android:id="@+id/selectImage"
-                android:theme="@style/Base.Theme.AppCompat"
-                android:layout_below="@+id/descriptionOfPet"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"/>
+                    android:text="Select Image"
+                    android:textColor="@color/btnsignuptext"
+                    android:background="@null"
+                    android:id="@+id/selectImagePetMet"
+                    android:theme="@style/Base.Theme.AppCompat"
+                    android:layout_below="@+id/descriptionOfPetMet"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="14dp"/>
 
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageOfPet"
-                android:layout_below="@+id/selectImage"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"/>
-
-        <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Upload"
-                android:id="@+id/uploadButton"
-                android:theme="@style/Base.Theme.AppCompat"
-                android:layout_alignParentBottom="false"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/imageOfPet"
-                android:layout_marginTop="10dp"/>
-
-    </RelativeLayout>
-
-</ScrollView>
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageOfPetMet"
+                    android:layout_below="@+id/selectImagePetMet"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"/>
+        </RelativeLayout>
+    </ScrollView>
+    <android.support.design.widget.FloatingActionButton
+            android:id="@+id/petMetFormSubmitFab"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:src="@drawable/form_submit"
+            app:layout_anchor="@id/applyPetMetScrollView"
+            app:layout_anchorGravity="bottom|right|end"
+            app:elevation="6dp"
+            app:fabSize="normal"
+            app:backgroundTint="#DA4836"/>
+</android.support.design.widget.CoordinatorLayout>
 

@@ -47,7 +47,9 @@
                     android:layout_marginLeft="16dp"
                     android:textSize="@dimen/petName"
                     android:textStyle="bold"
-                    android:textColor="@color/list_pet_origin_text_color"/>
+                    android:textColor="@color/list_pet_origin_text_color"
+                    android:singleLine="true"
+                    android:ellipsize="end"/>
 
             <Button
                     style="?android:attr/buttonStyleSmall"
@@ -66,7 +68,9 @@
                     android:layout_toEndOf="@+id/petListImageRelativeLayout"
                     android:text="hi"
                     android:layout_marginTop="12dp"
-                    android:layout_marginLeft="16dp"/>
+                    android:layout_marginLeft="16dp"
+                    android:singleLine="true"
+                    android:ellipsize="end"/>
 
             <View
                     android:layout_width="wrap_content"

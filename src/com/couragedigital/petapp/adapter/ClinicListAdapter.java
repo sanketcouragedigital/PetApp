@@ -1,5 +1,6 @@
 package com.couragedigital.petapp.Adapter;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.toolbox.ImageLoader;
 import com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView;
+import com.couragedigital.petapp.PetClinicDetails;
 import com.couragedigital.petapp.PetListDetails;
 import com.couragedigital.petapp.R;
 import com.couragedigital.petapp.app.AppController;
@@ -53,7 +55,7 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Vi
         public TextView clinicName;
         public TextView clinicAddress;
         public Button clinicFavourite;
-        public Button clinicSeeMore;
+        public Button clinicSeeMoreBtn;
         public View clinicdividerLine;
         private ClinicListItems clinicListItems;
         int statusOfclinicFavourite = 0;
@@ -67,12 +69,12 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Vi
             clinicName = (TextView) itemView.findViewById(R.id.clinicName);
             clinicAddress = (TextView) itemView.findViewById(R.id.clinicAddress);
             clinicImage = (RoundedNetworkImageView) itemView.findViewById(R.id.clinicImage);
-            clinicSeeMore = (Button) itemView.findViewById(R.id.clinicSeeMoreButton);
+            clinicSeeMoreBtn = (Button) itemView.findViewById(R.id.clinicSeeMoreButton);
             clinicFavourite = (Button) itemView.findViewById(R.id.clinicFavourite);
             clinicdividerLine = itemView.findViewById(R.id.clinicDividerLine);
 
-            clinicSeeMore.setOnClickListener(this);
-            clinicFavourite.setOnClickListener(this);
+            clinicSeeMoreBtn.setOnClickListener(this);
+            //clinicFavourite.setOnClickListener(this);
         }
 
         public void bindPetList(ClinicListItems clinicList) {
@@ -81,54 +83,34 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Vi
             clinicName.setText(clinicList.getClinicName());
             clinicAddress.setText(clinicList.getClinicAdress());
 
-            clinicFavourite.setBackgroundResource(R.drawable.favourite_disable);
+            //clinicFavourite.setBackgroundResource(R.drawable.favourite_disable);
+            clinicFavourite.setVisibility(View.GONE);
             clinicdividerLine.setBackgroundResource(R.color.list_internal_divider);
         }
 
         @Override
         public void onClick(View view) {
-            int position = getAdapterPosition();
-            if (position == 0) {
-                if (view.getId() == R.id.clinicSeeMoreButton) {
-                    Toast.makeText(view.getContext(), "Button selected & Position" + position, Toast.LENGTH_LONG).show();
-                } else if (view.getId() == R.id.clinicFavourite) {
-                    if (statusOfclinicFavourite == 0) {
-                        clinicFavourite.setBackgroundResource(R.drawable.favourite_enable);
-                        statusOfclinicFavourite = 1;
-                    } else if (statusOfclinicFavourite == 1) {
-                        clinicFavourite.setBackgroundResource(R.drawable.favourite_disable);
-                        statusOfclinicFavourite = 0;
-                    }
+            if (view.getId() == R.id.clinicSeeMoreButton) {
+                if (this.clinicListItems != null) {
+                    Intent clinicInformation = new Intent(v.getContext(), PetClinicDetails.class);
+                    clinicInformation.putExtra("CLINIC_IMAGE", clinicListItems.getClinicImage_path());
+                    clinicInformation.putExtra("CLINIC_ADDRESS", clinicListItems.getClinicAdress());
+                    clinicInformation.putExtra("DOCTOR_NAME", clinicListItems.getDoctorName());
+                    clinicInformation.putExtra("DOCTOR_EMAIL", clinicListItems.getEmail());
+                    clinicInformation.putExtra("DOCTOR_CONTACT", clinicListItems.getContact());
+                    v.getContext().startActivity(clinicInformation);
                 }
-            }
-            else if (position == 1) {
-                if (view.getId() == R.id.clinicSeeMoreButton) {
-                    Toast.makeText(view.getContext(), "Button selected & Position" + position, Toast.LENGTH_LONG).show();
-                } else if (view.getId() == R.id.clinicFavourite) {
 
-                    if (statusOfclinicFavourite == 0) {
-                        clinicFavourite.setBackgroundResource(R.drawable.favourite_enable);
-                        statusOfclinicFavourite = 1;
-                    } else if (statusOfclinicFavourite == 1) {
-                        clinicFavourite.setBackgroundResource(R.drawable.favourite_disable);
-                        statusOfclinicFavourite = 0;
-                    }
-                }
             }
-            else if (position == 2) {
-                if (view.getId() == R.id.clinicSeeMoreButton) {
-                    Toast.makeText(view.getContext(), "Button selected & Position  " + position, Toast.LENGTH_LONG).show();
-                } else if (view.getId() == R.id.clinicFavourite) {
-
-                    if (statusOfclinicFavourite == 0) {
-                        clinicFavourite.setBackgroundResource(R.drawable.favourite_enable);
-                        statusOfclinicFavourite = 1;
-                    } else if (statusOfclinicFavourite == 1) {
-                        clinicFavourite.setBackgroundResource(R.drawable.favourite_disable);
-                        statusOfclinicFavourite = 0;
-                    }
+            /*else if (view.getId() == R.id.clinicFavourite) {
+                if (statusOfclinicFavourite == 0) {
+                    clinicFavourite.setBackgroundResource(R.drawable.favourite_enable);
+                    statusOfclinicFavourite = 1;
+                } else if (statusOfclinicFavourite == 1) {
+                    clinicFavourite.setBackgroundResource(R.drawable.favourite_disable);
+                    statusOfclinicFavourite = 0;
                 }
-            }
+            }*/
         }
     }
 }

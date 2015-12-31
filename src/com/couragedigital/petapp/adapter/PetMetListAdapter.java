@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.couragedigital.petapp.PetListDetails;
+import com.couragedigital.petapp.PetMetListDetails;
 import com.couragedigital.petapp.model.PetMetList;
 import com.couragedigital.petapp.R;
 import com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView;
@@ -30,7 +31,7 @@ public class PetMetListAdapter  extends RecyclerView.Adapter<PetMetListAdapter.V
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.petlistsubitems, viewGroup, false);
+                .inflate(R.layout.petmetlistsubitems, viewGroup, false);
         viewHolder = new ViewHolder(v);
         return viewHolder;
     }
@@ -49,14 +50,13 @@ public class PetMetListAdapter  extends RecyclerView.Adapter<PetMetListAdapter.V
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        public RoundedNetworkImageView petImage;
-        public TextView petBreed;
-        public TextView petPostOwner;
-        public Button petListingTypeButton;
-        public Button petFavourite;
-        public View dividerLine;
+        public RoundedNetworkImageView petMetImage;
+        public TextView petMetBreed;
+        public TextView petMetPostOwner;
+        public Button petMetSeeMoreButton;
+        public Button petMetFavourite;
+        public View dividerLinePetMet;
 
-        private PetList petList;
         int statusOfFavourite = 0;
         private PetMetList petMetList;
 
@@ -65,40 +65,46 @@ public class PetMetListAdapter  extends RecyclerView.Adapter<PetMetListAdapter.V
             if (imageLoader == null) {
                 imageLoader = AppController.getInstance().getImageLoader();
             }
-            petImage = (RoundedNetworkImageView) itemView.findViewById(R.id.petImage);
-            petBreed = (TextView) itemView.findViewById(R.id.petBreed);
-            petListingTypeButton = (Button) itemView.findViewById(R.id.petListingTypeButton);
-            petFavourite = (Button) itemView.findViewById(R.id.petFavourite);
-            dividerLine = itemView.findViewById(R.id.dividerLine);
+            petMetImage = (RoundedNetworkImageView) itemView.findViewById(R.id.petMetImage);
+            petMetBreed = (TextView) itemView.findViewById(R.id.petMetBreed);
+            petMetPostOwner = (TextView) itemView.findViewById(R.id.petMetPostOwner);
+            petMetSeeMoreButton = (Button) itemView.findViewById(R.id.petMetSeeMoreButton);
+            petMetFavourite = (Button) itemView.findViewById(R.id.petMetFavourite);
+            dividerLinePetMet = itemView.findViewById(R.id.dividerLinePetMet);
 
-            petListingTypeButton.setOnClickListener(this);
-            petFavourite.setOnClickListener(this);
+            petMetSeeMoreButton.setOnClickListener(this);
+            //petMetFavourite.setOnClickListener(this);
         }
 
         public void bindPetList(PetMetList petMetList) {
             this.petMetList = petMetList;
-            petImage.setImageUrl(petMetList.getImage_path(), imageLoader);
+            petMetImage.setImageUrl(petMetList.getImage_path(), imageLoader);
 
-            petBreed.setText(petMetList.getPetBreed());
-            petFavourite.setBackgroundResource(R.drawable.favourite_disable);
-            dividerLine.setBackgroundResource(R.color.list_internal_divider);
+            petMetBreed.setText(petMetList.getPetMetBreed());
+            petMetPostOwner.setText("Posted By : "+ petMetList.getPetMetPostOwner());
+            petMetSeeMoreButton.setText("See More");
+            //petMetFavourite.setBackgroundResource(R.drawable.favourite_disable);
+            petMetFavourite.setVisibility(View.GONE);
+            dividerLinePetMet.setBackgroundResource(R.color.list_internal_divider);
         }
 
         @Override
         public void onClick(View v) {
-            if(v.getId() == R.id.petListingTypeButton) {
+            if(v.getId() == R.id.petMetSeeMoreButton) {
                 if (this.petMetList != null) {
-                    Intent petFullInformation = new Intent(v.getContext(), PetListDetails.class);
-                    petFullInformation.putExtra("PET_IMAGE", petMetList.getImage_path());
-                    petFullInformation.putExtra("PET_BREED", petMetList.getPetBreed());
-                    petFullInformation.putExtra("PET_AGE", petMetList.getPetAge());
-                    petFullInformation.putExtra("PET_GENDER", petMetList.getPetGender());
-                    petFullInformation.putExtra("PET_DESCRIPTION", petMetList.getPetDescription());
+                    Intent petFullInformation = new Intent(v.getContext(), PetMetListDetails.class);
+                    petFullInformation.putExtra("PET_MET_IMAGE", petMetList.getImage_path());
+                    petFullInformation.putExtra("PET_MET_BREED", petMetList.getPetMetBreed());
+                    petFullInformation.putExtra("PET_MET_AGE", petMetList.getPetMetAge());
+                    petFullInformation.putExtra("PET_MET_GENDER", petMetList.getPetMetGender());
+                    petFullInformation.putExtra("PET_MET_DESCRIPTION", petMetList.getPetMetDescription());
+                    petFullInformation.putExtra("POST_OWNER_EMAIL", petMetList.getPetMetPostOwnerEmail());
+                    petFullInformation.putExtra("POST_OWNER_MOBILENO", petMetList.getPetMetPostOwnerMobileNo());
 
                     v.getContext().startActivity(petFullInformation);
                 }
             }
-            else if(v.getId() == R.id.petFavourite) {
+            /*else if(v.getId() == R.id.petFavourite) {
 
                 if(statusOfFavourite == 0) {
                     petFavourite.setBackgroundResource(R.drawable.favourite_enable);
@@ -108,7 +114,7 @@ public class PetMetListAdapter  extends RecyclerView.Adapter<PetMetListAdapter.V
                     petFavourite.setBackgroundResource(R.drawable.favourite_disable);
                     statusOfFavourite = 0;
                 }
-            }
+            }*/
         }
     }
 }

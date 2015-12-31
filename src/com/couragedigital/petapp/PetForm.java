@@ -19,7 +19,6 @@ import android.provider.MediaStore;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ContextThemeWrapper;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -29,11 +28,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import android.net.Uri;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import com.couragedigital.petapp.Connectivity.PetListFormUpload;
 import com.couragedigital.petapp.Connectivity.PetBreedsSpinnerList;
 import com.couragedigital.petapp.Connectivity.PetCategorySpinnerList;
 import com.couragedigital.petapp.Adapter.SpinnerItemsAdapter;
+import com.couragedigital.petapp.CropImage.CropImage;
+import com.couragedigital.petapp.SessionManager.SessionManager;
 
 import java.io.*;
 
@@ -73,6 +73,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
     String petAdoption = "";
     Integer petPrice;
     String currentPhotoPath;
+    String email;
 
     private List<String> petCategoryList = new ArrayList<String>();
     private List<String> petBreedsList = new ArrayList<String>();
@@ -102,6 +103,9 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
         selectImageButton = (Button) this.findViewById(R.id.selectImage);
         imageOfPet = (ImageView) this.findViewById(R.id.imageOfPet);
         uploadFabButton = (FloatingActionButton) this.findViewById(R.id.petFormSubmitFab);
+
+        HashMap<String, String> user = sessionManager.getUserDetails();
+        email = user.get(SessionManager.KEY_EMAIL);
 
         petCategoryArrayList = new String[]{
                 "Select Pet Category"
@@ -385,9 +389,19 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
     }
 
     private void doCropping(File image, int request_code) {
-        Intent cropIntent = new Intent("com.android.camera.action.CROP");
+        /*Intent cropIntent = new Intent("com.android.camera.action.CROP");
         cropIntent.setDataAndType(Uri.fromFile(image), "image/*");
         cropIntent.putExtra("crop", "true");
+        cropIntent.putExtra("aspectX", 1);
+        cropIntent.putExtra("aspectY", 1);
+        cropIntent.putExtra("outputX", 256);
+        cropIntent.putExtra("outputY", 256);
+        cropIntent.putExtra("return-data", true);*/
+
+        Intent cropIntent = new Intent(this, CropImage.class);
+
+        cropIntent.putExtra("image-path", currentPhotoPath);
+        cropIntent.putExtra("scale", true);
         cropIntent.putExtra("aspectX", 1);
         cropIntent.putExtra("aspectY", 1);
         cropIntent.putExtra("outputX", 256);
@@ -397,7 +411,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
         try {
             startActivityForResult(cropIntent, request_code);
         } catch (Exception e) {
-
+            Toast.makeText(PetForm.this, "Camera Crop Error", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -455,15 +469,17 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
         storageDir = Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_DCIM);
 
-
-        image = File.createTempFile(
-                timeStamp,  /* prefix */
-                ".png",         /* suffix */
-                storageDir      /* directory */
-        );
-
-        // Save a file: path for use with ACTION_VIEW intents
-        currentPhotoPath = image.getAbsolutePath();
+        /*image = File.createTempFile(
+                timeStamp,
+                ".png",
+                storageDir
+        );*/
+        image = new File(storageDir, timeStamp + ".png");
+        try {
+            currentPhotoPath = image.getAbsolutePath();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return image;
     }
 
@@ -471,7 +487,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
         @Override
         protected Void doInBackground(Void... params) {
             try {
-                int responseFromServer = PetListFormUpload.uploadToRemoteServer(petCategoryName, petBreedName, petAge, petGender, petDescription, petAdoption, petPrice, currentPhotoPath);
+                int responseFromServer = PetListFormUpload.uploadToRemoteServer(petCategoryName, petBreedName, petAge, petGender, petDescription, petAdoption, petPrice, currentPhotoPath, email);
                 if(responseFromServer == 200){
                     runOnUiThread(new Runnable() {
                         public void run() {

@@ -21,11 +21,13 @@ import com.couragedigital.petapp.Listeners.PetFetchListScrollListener;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import android.app.ProgressDialog;
 import android.app.Activity;
 import android.os.Bundle;
+import com.couragedigital.petapp.SessionManager.SessionManager;
 
 
 public class PetMetList extends BaseActivity {
@@ -53,6 +55,8 @@ public class PetMetList extends BaseActivity {
 
     private int current_page = 1;
 
+    public String email;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,13 +73,16 @@ public class PetMetList extends BaseActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        url = "http://192.168.0.2/PetAppAPI/api/petappapi.php?method=showPetMetDetails&format=json&currentPage="+current_page+"";
+        HashMap<String, String> user = sessionManager.getUserDetails();
+        email = user.get(SessionManager.KEY_EMAIL);
+
+        url = "http://storage.couragedigital.com/dev/api/petappapi.php?method=showPetMetDetails&format=json&email="+email+"&currentPage="+current_page+"";
 
         recyclerView.addOnScrollListener(new PetFetchListScrollListener(layoutManager, current_page){
 
             @Override
             public void onLoadMore(int current_page) {
-                url = "http://192.168.0.2/PetAppAPI/api/petappapi.php?method=showPetMetDetails&format=json&currentPage="+current_page+"";
+                url = "http://storage.couragedigital.com/dev/api/petappapi.php?method=showPetMetDetails&format=json&email="+email+"&currentPage="+current_page+"";
                 grabURL(url);
             }
         });
@@ -124,10 +131,10 @@ public class PetMetList extends BaseActivity {
         @Override
         public void onRefresh() {
             com.couragedigital.petapp.model.PetMetList petMetList = petMetLists.get(0);
-            String date = petMetList.getPetPostDate();
+            String date = petMetList.getPetMetPostDate();
             //date = date.replace(" ", "+");
             try {
-                url = "http://192.168.0.2/PetAppAPI/api/petappapi.php?method=showPetMetSwipeRefreshList&format=json&date="+ URLEncoder.encode(date, "UTF-8")+"";
+                url = "http://storage.couragedigital.com/dev/api/petappapi.php?method=showPetMetSwipeRefreshList&format=json&date="+ URLEncoder.encode(date, "UTF-8")+"&email="+email+"";
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
@@ -155,7 +162,7 @@ public class PetMetList extends BaseActivity {
         }
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.petlistmenu, menu);
@@ -165,14 +172,14 @@ public class PetMetList extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_filter) {
-            /*PetListInstance petListInstance = new PetListInstance(Adapter, petLists, petlistView);
+            PetListInstance petListInstance = new PetListInstance(Adapter, petLists, petlistView);
             Intent filterClassIntent = new Intent(PetList.this, PetListFilter.class);
             //filterClassIntent.putExtra("PET_LISTS", (Parcelable) petLists);
             //filterClassIntent.putExtra("PET_ADAPTER", (Parcelable) Adapter);
-            startActivity(filterClassIntent);*/
+            startActivity(filterClassIntent);
         }
         return true;
-    }
+    }*/
 
     /*@Override
     public void onRestart() {

@@ -51,7 +51,7 @@ public class BaseActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         listItems.setLayoutManager(linearLayoutManager);
-        DrawerAdapter mAdapter = new DrawerAdapter(itemDatastArrayList);
+        DrawerAdapter mAdapter = new DrawerAdapter(itemDatastArrayList, drawer);
         getLayoutInflater().inflate(layoutResID, frameLayout, true);
         getLayoutInflater().inflate(layoutResID, linearLayout, true);
         drawer.setClickable(true);

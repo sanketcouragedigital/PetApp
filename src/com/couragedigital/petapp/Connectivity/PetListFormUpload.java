@@ -18,7 +18,7 @@ public  class PetListFormUpload {
     //http://192.168.0.3/PetAppAPI/api/petappapi.php
     //http://storage.couragedigital.com/dev/api/petappapi.php
 
-    public static int uploadToRemoteServer(String petCategoryName, String petBreedName, Integer petAge, String petGender, String petDescription, String petAdoption,Integer petPrice, String currentPhotoPath) throws Exception {
+    public static int uploadToRemoteServer(String petCategoryName, String petBreedName, Integer petAge, String petGender, String petDescription, String petAdoption, Integer petPrice, String currentPhotoPath, String emailOfUser) throws Exception {
         int serverResponseCode = 0;
         String upLoadServerUri = SERVER_URL;
         String categoryOfPet = petCategoryName;
@@ -29,6 +29,7 @@ public  class PetListFormUpload {
         String adoptionOfPet = petAdoption;
         Integer priceOfPet = petPrice;
         String petImage = currentPhotoPath;
+        String email = emailOfUser;
         HttpURLConnection conn = null;
         DataOutputStream dos = null;
         String lineEnd = "\r\n";
@@ -62,6 +63,7 @@ public  class PetListFormUpload {
             conn.setRequestProperty("descriptionOfPet", descriptionOfPet);
             conn.setRequestProperty("adoptionOfPet", adoptionOfPet);
             conn.setRequestProperty("priceOfPet", String.valueOf(priceOfPet));
+            conn.setRequestProperty("email", email);
             conn.setRequestProperty("petImage", petImage);
             conn.setRequestProperty("method", method);
             conn.setRequestProperty("format", format);
@@ -107,6 +109,12 @@ public  class PetListFormUpload {
             dos.writeBytes("Content-Disposition: form-data; name=\"priceOfPet\";" + lineEnd);
             dos.writeBytes(lineEnd);
             dos.writeBytes(String.valueOf(priceOfPet));
+            dos.writeBytes(lineEnd);
+
+            dos.writeBytes(twoHyphens + boundary + lineEnd);
+            dos.writeBytes("Content-Disposition: form-data; name=\"email\";" + lineEnd);
+            dos.writeBytes(lineEnd);
+            dos.writeBytes(email);
             dos.writeBytes(lineEnd);
 
             dos.writeBytes(twoHyphens + boundary + lineEnd);

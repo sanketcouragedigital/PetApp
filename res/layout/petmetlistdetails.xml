@@ -54,11 +54,11 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_scrollFlags="scroll|enterAlways">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                      android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-                      android:orientation="vertical"
-                      android:paddingTop="16dp">
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingTop="16dp">
 
             <android.support.v7.widget.CardView
                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -73,39 +73,92 @@
                 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/petMetBreedInPetDetails"
-                            android:layout_centerHorizontal="true"
-                            android:textStyle="bold"
-                            android:textSize="17sp"
-                            android:layout_marginTop="10dp"/>
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/petMetAgeInPetDetails"
-                            android:layout_below="@+id/petMetBreedInPetDetails"
-                            android:layout_alignParentStart="true"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"/>
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="match_parent"
+                                  android:orientation="horizontal"
+                                  android:id="@+id/petMetDetailsLinearLayoutOne"
+                                  android:layout_marginTop="16dp"
+                                  android:layout_marginLeft="16dp"
+                                  android:layout_marginRight="16dp">
+                        <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/petMetAgeInPetDetails"
+                                android:text="hi"
+                                android:layout_weight="1"
+                                android:singleLine="true"
+                                android:ellipsize="end"/>
+                        <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/petMetBreedInPetDetails"
+                                android:text="hi"
+                                android:layout_weight="1"
+                                android:singleLine="true"
+                                android:ellipsize="end"/>
+                    </LinearLayout>
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/petMetGenderInPetDetails"
-                            android:layout_below="@+id/petMetBreedInPetDetails"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginTop="10dp"/>
+                            android:layout_below="@+id/petMetDetailsLinearLayoutOne"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:text="hi"
+                            android:singleLine="true"
+                            android:ellipsize="end"/>
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/petMetDescriptionInPetDetails"
-                            android:layout_below="@+id/petMetAgeInPetDetails"
-                            android:layout_centerHorizontal="true"
-                            android:layout_margin="10dp"/>
+                            android:layout_below="@+id/petMetGenderInPetDetails"
+                            android:text="hi"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:ellipsize="end"/>
+
+                    <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="2dp"
+                            android:id="@+id/petMetDetailsDividerLine"
+                            android:layout_below="@+id/petMetDescriptionInPetDetails"
+                            android:layout_marginTop="16dp"/>
+
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="match_parent"
+                                  android:orientation="horizontal"
+                                  android:id="@+id/petMetDetailsLinearLayoutThree"
+                                  android:layout_below="@+id/petMetDetailsDividerLine"
+                                  android:layout_marginTop="4dp">
+                        <Button
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/petMetDetailsCallButton"
+                                android:background="@android:color/transparent"
+                                android:paddingLeft="70dip"
+                                android:paddingRight="30dip"
+                                android:text="Call"
+                                android:textColor="#CF3E3E"
+                                android:textSize="14sp"
+                                android:layout_weight="1"/>
+                        <Button
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/petMetDetailsEmailButton"
+                                android:background="@android:color/transparent"
+                                android:paddingLeft="30dip"
+                                android:paddingRight="70dip"
+                                android:text="Email"
+                                android:textColor="#CF3E3E"
+                                android:textSize="14sp"
+                                android:layout_weight="1"/>
+                    </LinearLayout>
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
-        </LinearLayout>
+        </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

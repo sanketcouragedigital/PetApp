@@ -10,7 +10,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:id="@+id/applyscrollView">
+                android:id="@+id/applyScrollView">
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                         android:orientation="vertical"
                         android:layout_width="match_parent"
@@ -20,13 +20,13 @@
                         android:paddingRight="16dp"
                         android:focusableInTouchMode="true">
             <Spinner
-                    android:layout_width="329dp"
+                    android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:id="@+id/petCategory"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="16dp"/>
             <Spinner
-                    android:layout_width="329dp"
+                    android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:id="@+id/petBreed"
                     android:layout_below="@+id/petCategory"
@@ -103,6 +103,7 @@
                     android:ems="4"
                     android:id="@+id/priceOfPet"
                     android:hint="Price"
+                    android:enabled="false"
                     android:textColor="@color/textColorPrimary"
                     android:layout_below="@+id/ageOfPet"
                     android:layout_marginTop="16dp"/>
@@ -152,7 +153,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:src="@drawable/form_submit"
-            app:layout_anchor="@id/applyscrollView"
+            app:layout_anchor="@id/applyScrollView"
             app:layout_anchorGravity="bottom|right|end"
             app:elevation="6dp"
             app:fabSize="normal"

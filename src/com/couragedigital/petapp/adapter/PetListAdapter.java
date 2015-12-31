@@ -83,7 +83,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
             dividerLine = itemView.findViewById(R.id.dividerLine);
 
             petListingTypeButton.setOnClickListener(this);
-            petFavourite.setOnClickListener(this);
+            //petFavourite.setOnClickListener(this);
         }
 
         public void bindPetList(PetList petList) {
@@ -91,9 +91,10 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
             petImage.setImageUrl(petList.getImage_path(), imageLoader);
 
             petBreed.setText(petList.getPetBreed());
-            petPostOwner.setText(petList.getPetPostOwner());
+            petPostOwner.setText("Posted By : "+ petList.getPetPostOwner());
             petListingTypeButton.setText(setPetListingTypeButtonName(petList));
-            petFavourite.setBackgroundResource(R.drawable.favourite_disable);
+            //petFavourite.setBackgroundResource(R.drawable.favourite_disable);
+            petFavourite.setVisibility(View.GONE);
             dividerLine.setBackgroundResource(R.color.list_internal_divider);
         }
 
@@ -114,7 +115,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
                     v.getContext().startActivity(petFullInformation);
                 }
             }
-            else if(v.getId() == R.id.petFavourite) {
+            /*else if(v.getId() == R.id.petFavourite) {
 
                 if(statusOfFavourite == 0) {
                     petFavourite.setBackgroundResource(R.drawable.favourite_enable);
@@ -124,7 +125,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
                     petFavourite.setBackgroundResource(R.drawable.favourite_disable);
                     statusOfFavourite = 0;
                 }
-            }
+            }*/
         }
     }
 }

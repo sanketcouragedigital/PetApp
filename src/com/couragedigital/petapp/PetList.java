@@ -149,7 +149,7 @@ public class PetList extends BaseActivity {
         }
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.petlistmenu, menu);
@@ -163,7 +163,7 @@ public class PetList extends BaseActivity {
             startActivity(filterClassIntent);
         }
         return true;
-    }
+    }*/
 
     /*@Override
     public void onRestart() {

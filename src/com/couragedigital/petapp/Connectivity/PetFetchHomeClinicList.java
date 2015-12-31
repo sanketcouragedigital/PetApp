@@ -40,7 +40,6 @@ public class PetFetchHomeClinicList {
                                     clinicList.add(clinicListItems);
                                     adapter.notifyDataSetChanged();
 
-
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }

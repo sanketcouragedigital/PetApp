@@ -11,8 +11,7 @@
             android:layout_height="24dp"
             android:id="@+id/drawerItemIcon"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="16dp"
-            android:src="@drawable/ic_launcher"/>
+            android:layout_marginLeft="16dp"/>
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
@@ -32,6 +31,7 @@
                 android:id="@+id/drawerDivider"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/edittxtcolor"/>
+                android:background="@color/edittxtcolor"
+                android:visibility="gone"/>
     </FrameLayout>
 </RelativeLayout>

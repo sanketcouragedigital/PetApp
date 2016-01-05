@@ -17,11 +17,13 @@ public class DrawerItems {
         return title;
     }
 
-    public int getIcon() {
-        return image;
-    }
     public void setTittle(String tittle) {
         this.title = tittle;
+    }
+
+
+    public int getIcon() {
+        return image;
     }
 
     public void setIcons(int icon) {

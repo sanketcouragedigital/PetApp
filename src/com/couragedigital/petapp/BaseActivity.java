@@ -30,7 +30,10 @@ public class BaseActivity extends AppCompatActivity {
     DrawerLayout drawer;
     FrameLayout frameLayout;
     LinearLayout linearLayout;
-    public ArrayList<DrawerItems> itemDatastArrayList;
+    DrawerAdapter drawerAdapter;
+
+    public ArrayList<DrawerItems> itemArrayList;
+    public ArrayList<DrawerItems> itemSelectedArrayList;
 
     @Override
     public void setContentView(int layoutResID) {
@@ -38,24 +41,36 @@ public class BaseActivity extends AppCompatActivity {
         frameLayout = (FrameLayout) drawer.findViewById(R.id.contentFrame);
         linearLayout = (LinearLayout) drawer.findViewById(R.id.drawerlinearlayout);
         listItems = (RecyclerView) drawer.findViewById(R.id.drawerListItem);
-
-        final String[] title = new String[]{"Home", "Profile","MyListings" ,"Account Setting" ,"FeedBack" , "Share","LogOut"};
-        final int[] icons = {R.drawable.home, R.drawable.profile,R.drawable.mylisting,R.drawable.setting,0,0,0};
-        itemDatastArrayList = new ArrayList<DrawerItems>();
-        for (int i = 0; i < title.length; i++) {
-            DrawerItems drawerItems = new DrawerItems();
-            drawerItems.setTittle(title[i]);
-            drawerItems.setIcons(icons[i]);
-            itemDatastArrayList.add(drawerItems);
-        }
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         listItems.setLayoutManager(linearLayoutManager);
-        DrawerAdapter mAdapter = new DrawerAdapter(itemDatastArrayList, drawer);
+
+        final String[] tittle = new String[]{"Home", "Profile","MyListings" ,"Account Setting" ,"FeedBack" , "Share","LogOut"};
+
+        final int[] icons = new int[] {R.drawable.home, R.drawable.profile,R.drawable.mylisting,R.drawable.setting,0,0,0};
+        itemArrayList = new ArrayList<DrawerItems>();
+        for (int i = 0; i < tittle.length; i++) {
+            DrawerItems drawerItems = new DrawerItems();
+            drawerItems.setTittle(tittle[i]);
+            drawerItems.setIcons(icons[i]);
+            itemArrayList.add(drawerItems);
+        }
+
+        final int[] selectedicons = new int[] {R.drawable.home_red, R.drawable.profile_red,R.drawable.mylisting_red,R.drawable.setting_red,0,0,0};
+        itemSelectedArrayList = new ArrayList<DrawerItems>();
+        for (int i = 0; i < tittle.length; i++) {
+            DrawerItems drawerItems = new DrawerItems();
+            drawerItems.setTittle(tittle[i]);
+            drawerItems.setIcons(selectedicons[i]);
+            itemSelectedArrayList.add(drawerItems);
+        }
+//
+        drawerAdapter = new DrawerAdapter(itemArrayList,itemSelectedArrayList ,drawer);
         getLayoutInflater().inflate(layoutResID, frameLayout, true);
         getLayoutInflater().inflate(layoutResID, linearLayout, true);
         drawer.setClickable(true);
-        listItems.setAdapter(mAdapter);
+        drawerAdapter.notifyDataSetChanged();
+        listItems.setAdapter(drawerAdapter);
 
         toolbar = (Toolbar) drawer.findViewById(R.id.app_bar);
         if (toolbar != null) {

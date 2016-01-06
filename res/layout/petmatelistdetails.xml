@@ -4,17 +4,17 @@
                                                  android:layout_width="match_parent"
                                                  android:layout_height="match_parent"
                                                  android:fitsSystemWindows="true"
-                                                 android:id="@+id/clinicDetailsCoordinatorLayout">
+                                                 android:id="@+id/petMateDetailsCoordinatorLayout">
 
     <android.support.design.widget.AppBarLayout
-            android:id="@+id/petClinicDetailsAppBar"
+            android:id="@+id/petMateDetailsAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <android.support.design.widget.CollapsingToolbarLayout
-                android:id="@+id/clinicDetailsCollapsingToolbar"
+                android:id="@+id/petMateListingTypeInPetDetailsCollapsingToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
@@ -22,7 +22,7 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
-                    android:id="@+id/petClicnicHeaderImage"
+                    android:id="@+id/petMateHeaderImage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fitsSystemWindows="true"
@@ -36,17 +36,17 @@
                     android:layout_gravity="center_horizontal|bottom"/>
 
             <android.support.v7.widget.Toolbar
-                    android:id="@+id/petClinicDetailsToolbar"
+                    android:id="@+id/petMateDetailsToolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
-            android:id="@+id/petClinicDetailsNestedScrollView"
+            android:id="@+id/petMateDetailsNestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="fill_vertical"
@@ -54,11 +54,11 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_scrollFlags="scroll|enterAlways">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                      android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-                      android:orientation="vertical"
-                      android:paddingTop="16dp">
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingTop="16dp">
 
             <android.support.v7.widget.CardView
                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -73,51 +73,73 @@
                 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
-                    <ImageView
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:id="@+id/locationview"
-                            android:layout_alignParentTop="true"
-                            android:layout_alignParentStart="true"
-                            android:background="@drawable/location"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"/>
-
-
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="match_parent"
+                                  android:orientation="horizontal"
+                                  android:id="@+id/petMateDetailsLinearLayoutOne"
+                                  android:layout_marginTop="16dp"
+                                  android:layout_marginLeft="16dp"
+                                  android:layout_marginRight="16dp">
+                        <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/petMateAgeInPetDetails"
+                                android:text="hi"
+                                android:layout_weight="1"
+                                android:singleLine="true"
+                                android:ellipsize="end"/>
+                        <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/petMateBreedInPetDetails"
+                                android:text="hi"
+                                android:layout_weight="1"
+                                android:singleLine="true"
+                                android:ellipsize="end"/>
+                    </LinearLayout>
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/petClinicAddress"
-                            android:textStyle="bold"
-                            android:textSize="17sp"
-                            android:layout_alignParentTop="true"
-                            android:layout_marginTop="10dp"
-                            android:layout_toRightOf="@+id/locationview"/>
+                            android:id="@+id/petMateGenderInPetDetails"
+                            android:layout_below="@+id/petMateDetailsLinearLayoutOne"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:text="hi"
+                            android:singleLine="true"
+                            android:ellipsize="end"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/petMateDescriptionInPetDetails"
+                            android:layout_below="@+id/petMateGenderInPetDetails"
+                            android:text="hi"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:ellipsize="end"/>
 
                     <View
-                            android:id="@+id/viewdividerline"
                             android:layout_width="wrap_content"
                             android:layout_height="1dp"
+                            android:id="@+id/petMateDetailsDividerLine"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:background="@color/drawer_header_text"
-                            android:layout_below="@id/locationview"
-                            android:layout_centerHorizontal="true"/>
-
+                            android:layout_below="@+id/petMateDescriptionInPetDetails"
+                            android:layout_marginTop="16dp"/>
 
                     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                   android:layout_width="match_parent"
                                   android:layout_height="match_parent"
                                   android:orientation="horizontal"
-                                  android:id="@+id/petDetailsLinearLayoutThree"
-                                  android:layout_below="@+id/viewdividerline"
+                                  android:id="@+id/petMateDetailsLinearLayoutThree"
+                                  android:layout_below="@+id/petMateDetailsDividerLine"
                                   android:layout_marginTop="4dp">
                         <Button
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/clinicDetailCallButton"
+                                android:id="@+id/petMateDetailsCallButton"
                                 android:background="@android:color/transparent"
                                 android:paddingLeft="70dip"
                                 android:paddingRight="30dip"
@@ -128,7 +150,7 @@
                         <Button
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/clinicDetailsEmailButton"
+                                android:id="@+id/petMateDetailsEmailButton"
                                 android:background="@android:color/transparent"
                                 android:paddingLeft="30dip"
                                 android:paddingRight="70dip"
@@ -137,9 +159,8 @@
                                 android:textSize="14sp"
                                 android:layout_weight="1"/>
                     </LinearLayout>
-
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
-        </LinearLayout>
+        </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

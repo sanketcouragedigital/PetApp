@@ -162,7 +162,7 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.ViewHolder
                             Intent gotoformupload = new Intent(v.getContext(), PetList.class);
                             v.getContext().startActivity(gotoformupload);
                         } else if (i == 1) {
-                            Intent gotolistofpet = new Intent(v.getContext(), PetMetList.class);
+                            Intent gotolistofpet = new Intent(v.getContext(), PetMateList.class);
                             v.getContext().startActivity(gotolistofpet);
                         }
                     }

@@ -11,21 +11,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.couragedigital.petapp.Connectivity.FilterFetchPetBreedList;
-import com.couragedigital.petapp.PetListFilter;
+import com.couragedigital.petapp.Connectivity.FilterFetchPetMateBreedList;
+import com.couragedigital.petapp.PetMateListFilter;
 import com.couragedigital.petapp.R;
-import com.couragedigital.petapp.Singleton.FilterPetListInstance;
+import com.couragedigital.petapp.Singleton.FilterPetMateListInstance;
 import com.couragedigital.petapp.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdapter.ViewHolder> {
-
+public class FilterOptionsPetMateAdapter extends RecyclerView.Adapter<FilterOptionsPetMateAdapter.ViewHolder> {
     List<FilterOptionList> filterOptionsList;
     List<FilterOptionList> filterOptionsSelectedList;
     public RelativeLayout filterMenu;
-    PetListFilter petListFilter;
+    PetMateListFilter petMateListFilter;
     View v;
     ViewHolder viewHolder;
 
@@ -33,13 +32,13 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
     int state = 0;
     int filterState = 0;
 
-    public static FilterPetListInstance filterPetListInstance = new FilterPetListInstance();
+    public static FilterPetMateListInstance filterPetMateListInstance = new FilterPetMateListInstance();
 
-    public FilterOptionsAdapter(List<FilterOptionList> filterOptionsList, List<FilterOptionList> filterOptionsSelectedList, RelativeLayout filterMenu, PetListFilter petListFilter) {
+    public FilterOptionsPetMateAdapter(List<FilterOptionList> filterOptionsList, List<FilterOptionList> filterOptionsSelectedList, RelativeLayout filterMenu, PetMateListFilter petMateListFilter) {
         this.filterOptionsList = filterOptionsList;
         this.filterOptionsSelectedList = filterOptionsSelectedList;
         this.filterMenu = filterMenu;
-        this.petListFilter = petListFilter;
+        this.petMateListFilter = petMateListFilter;
     }
 
     @Override
@@ -74,27 +73,23 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
         FloatingActionButton applyFilterFAB;
         LinearLayoutManager layoutManager;
 
-        List<FilterCategoryList> filterCategoryLists = new ArrayList<FilterCategoryList>();
-        FilterCategoryAdapter filterCategoryAdapter;
+        List<FilterCategoryList> filterCategoryPetMateLists = new ArrayList<FilterCategoryList>();
+        FilterCategoryPetMateAdapter filterCategoryPetMateAdapter;
 
-        List<FilterBreedList> filterBreedLists = new ArrayList<FilterBreedList>();
-        FilterBreedAdapter filterBreedAdapter;
-        List<String> filterSelectedCategoryList = new ArrayList<String>();
+        List<FilterBreedList> filterBreedPetMateLists = new ArrayList<FilterBreedList>();
+        FilterBreedPetMateAdapter filterBreedPetMateAdapter;
+        List<String> filterSelectedCategoryPetMateList = new ArrayList<String>();
 
-        List<FilterAgeList> filterAgeLists = new ArrayList<FilterAgeList>();
-        FilterAgeAdapter filterAgeAdapter;
+        List<FilterAgeList> filterAgePetMateLists = new ArrayList<FilterAgeList>();
+        FilterAgePetMateAdapter filterAgePetMateAdapter;
 
-        List<FilterGenderList> filterGenderLists = new ArrayList<FilterGenderList>();
-        FilterGenderAdapter filterGenderAdapter;
-
-        List<FilterAdoptionAndPriceList> filterAdoptionAndPriceLists = new ArrayList<FilterAdoptionAndPriceList>();
-        FilterAdoptionAndPriceAdapter filterAdoptionAndPriceAdapter;
+        List<FilterGenderList> filterGenderPetMateLists = new ArrayList<FilterGenderList>();
+        FilterGenderPetMateAdapter filterGenderPetMateAdapter;
 
         public List<String> filterSelectedInstanceCategoryList = new ArrayList<String>();
         public List<String> filterSelectedInstanceBreedList = new ArrayList<String>();
         public List<String> filterSelectedInstanceAgeList = new ArrayList<String>();
         public List<String> filterSelectedInstanceGenderList = new ArrayList<String>();
-        public List<String> filterSelectedInstanceAdoptionAndPriceList = new ArrayList<String>();
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -125,9 +120,6 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
             else if(position == 3 && filterOptionList.getImage() == R.drawable.filter_gender) {
                 filterOptionImage.setImageResource(filterOptionSelectedList.getImage());
             }
-            else if(position == 4 && filterOptionList.getImage() == R.drawable.filter_price) {
-                filterOptionImage.setImageResource(filterOptionSelectedList.getImage());
-            }
         }
 
         @Override
@@ -153,27 +145,27 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
 
             if (position == 0) {
                 filterMenu.removeAllViews();
-                filterCategoryLists.clear();
+                filterCategoryPetMateLists.clear();
 
-                filterCategoryAdapter = new FilterCategoryAdapter(filterCategoryLists);
-                filterRecyclerViewMenu.setAdapter(filterCategoryAdapter);
+                filterCategoryPetMateAdapter = new FilterCategoryPetMateAdapter(filterCategoryPetMateLists);
+                filterRecyclerViewMenu.setAdapter(filterCategoryPetMateAdapter);
 
-                new FilterFetchPetCategory(filterCategoryAdapter).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, filterCategoryLists);
+                new FilterFetchPetMateCategory(filterCategoryPetMateAdapter).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, filterCategoryPetMateLists);
 
                 filterMenu.addView(inflateFilterMenu);
             } else if (position == 1) {
                 filterMenu.removeAllViews();
 
-                filterBreedLists.clear();
+                filterBreedPetMateLists.clear();
 
-                filterBreedAdapter = new FilterBreedAdapter(filterBreedLists);
-                filterRecyclerViewMenu.setAdapter(filterBreedAdapter);
+                filterBreedPetMateAdapter = new FilterBreedPetMateAdapter(filterBreedPetMateLists);
+                filterRecyclerViewMenu.setAdapter(filterBreedPetMateAdapter);
 
-                filterSelectedCategoryList = FilterPetListInstance.getFilterCategoryListInstance();
-                new FilterFetchPetBreed(filterBreedAdapter).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, filterSelectedCategoryList, filterBreedLists);
+                filterSelectedCategoryPetMateList = filterPetMateListInstance.getFilterCategoryListInstance();
+                new FilterFetchPetMateBreed(filterBreedPetMateAdapter).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, filterSelectedCategoryPetMateList, filterBreedPetMateLists);
                 //FilterFetchPetBreedList.fetchPetBreeds(filterSelectedCategoryList, filterBreedLists, filterBreedAdapter);
 
-                if(filterBreedLists.isEmpty() && filterSelectedCategoryList.isEmpty()) {
+                if(filterBreedPetMateLists.isEmpty() && filterSelectedCategoryPetMateList.isEmpty()) {
                     filterRecyclerViewMenu.setVisibility(View.GONE);
                     filterBreedEmptyView.setVisibility(View.VISIBLE);
                 }
@@ -185,34 +177,23 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
             } else if (position == 2) {
                 filterMenu.removeAllViews();
 
-                filterAgeLists.clear();
+                filterAgePetMateLists.clear();
 
-                filterAgeAdapter = new FilterAgeAdapter(filterAgeLists);
-                filterRecyclerViewMenu.setAdapter(filterAgeAdapter);
+                filterAgePetMateAdapter = new FilterAgePetMateAdapter(filterAgePetMateLists);
+                filterRecyclerViewMenu.setAdapter(filterAgePetMateAdapter);
 
-                new FilterFetchPetAge(filterAgeAdapter).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, filterAgeLists);
+                new FilterFetchPetMateAge(filterAgePetMateAdapter).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, filterAgePetMateLists);
 
                 filterMenu.addView(inflateFilterMenu);
             } else if (position == 3) {
                 filterMenu.removeAllViews();
 
-                filterGenderLists.clear();
+                filterGenderPetMateLists.clear();
 
-                filterGenderAdapter = new FilterGenderAdapter(filterGenderLists);
-                filterRecyclerViewMenu.setAdapter(filterGenderAdapter);
+                filterGenderPetMateAdapter = new FilterGenderPetMateAdapter(filterGenderPetMateLists);
+                filterRecyclerViewMenu.setAdapter(filterGenderPetMateAdapter);
 
-                new FilterFetchPetGender(filterGenderAdapter).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, filterGenderLists);
-
-                filterMenu.addView(inflateFilterMenu);
-            } else if (position == 4) {
-                filterMenu.removeAllViews();
-
-                filterAdoptionAndPriceLists.clear();
-
-                filterAdoptionAndPriceAdapter = new FilterAdoptionAndPriceAdapter(filterAdoptionAndPriceLists);
-                filterRecyclerViewMenu.setAdapter(filterAdoptionAndPriceAdapter);
-
-                new FilterFetchPetAdoptionAndPrice(filterAdoptionAndPriceAdapter).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, filterAdoptionAndPriceLists);
+                new FilterFetchPetMateGender(filterGenderPetMateAdapter).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, filterGenderPetMateLists);
 
                 filterMenu.addView(inflateFilterMenu);
             }
@@ -221,7 +202,7 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
         public View.OnClickListener applyFilterFABClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new FilterApplyList(filterPetListInstance, filterState).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, filterSelectedInstanceCategoryList, filterSelectedInstanceBreedList, filterSelectedInstanceAgeList, filterSelectedInstanceGenderList, filterSelectedInstanceAdoptionAndPriceList);
+                new FilterApplyList(filterPetMateListInstance, filterState).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, filterSelectedInstanceCategoryList, filterSelectedInstanceBreedList, filterSelectedInstanceAgeList, filterSelectedInstanceGenderList);
             }
         };
 
@@ -231,13 +212,12 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
             List<String> filterSelectedInstanceBreedList = new ArrayList<String>();
             List<String> filterSelectedInstanceAgeList = new ArrayList<String>();
             List<String> filterSelectedInstanceGenderList = new ArrayList<String>();
-            List<String> filterSelectedInstanceAdoptionAndPriceList = new ArrayList<String>();
 
-            FilterPetListInstance filterPetListInstance = new FilterPetListInstance();
+            FilterPetMateListInstance filterPetMateListInstance = new FilterPetMateListInstance();
             Integer filterState;
 
-            public FilterApplyList(FilterPetListInstance mfilterPetListInstance, int filterState) {
-                this.filterPetListInstance = mfilterPetListInstance;
+            public FilterApplyList(FilterPetMateListInstance mfilterPetMateListInstance, int filterState) {
+                this.filterPetMateListInstance = mfilterPetMateListInstance;
                 this.filterState = filterState;
             }
 
@@ -247,14 +227,12 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
                 filterSelectedInstanceBreedList = params[1];
                 filterSelectedInstanceAgeList = params[2];
                 filterSelectedInstanceGenderList = params[3];
-                filterSelectedInstanceAdoptionAndPriceList = params[4];
-                filterSelectedInstanceCategoryList = filterPetListInstance.getFilterCategoryListInstance();
-                filterSelectedInstanceBreedList = filterPetListInstance.getFilterBreedListInstance();
-                filterSelectedInstanceAgeList = filterPetListInstance.getFilterAgeListInstance();
-                filterSelectedInstanceGenderList = filterPetListInstance.getFilterGenderListInstance();
-                filterSelectedInstanceAdoptionAndPriceList = filterPetListInstance.getFilterAdoptionAndPriceListInstance();
+                filterSelectedInstanceCategoryList = filterPetMateListInstance.getFilterCategoryListInstance();
+                filterSelectedInstanceBreedList = filterPetMateListInstance.getFilterBreedListInstance();
+                filterSelectedInstanceAgeList = filterPetMateListInstance.getFilterAgeListInstance();
+                filterSelectedInstanceGenderList = filterPetMateListInstance.getFilterGenderListInstance();
 
-                if(filterSelectedInstanceCategoryList.isEmpty() && filterSelectedInstanceBreedList.isEmpty() && filterSelectedInstanceAgeList.isEmpty() && filterSelectedInstanceGenderList.isEmpty() && filterSelectedInstanceAdoptionAndPriceList.isEmpty()) {
+                if(filterSelectedInstanceCategoryList.isEmpty() && filterSelectedInstanceBreedList.isEmpty() && filterSelectedInstanceAgeList.isEmpty() && filterSelectedInstanceGenderList.isEmpty()) {
                     filterState = 0;
                 }
                 else {
@@ -267,24 +245,24 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
             @Override
             protected void onPostExecute(Integer filterState) {
                 //PetListFilter petListFilter = new PetListFilter();
-                petListFilter.setFilterState(filterState);
+                petMateListFilter.setFilterState(filterState);
                 //petListFilter.finish();
             }
         }
 
-        private class FilterFetchPetCategory extends AsyncTask<List, Void, Void> {
+        private class FilterFetchPetMateCategory extends AsyncTask<List, Void, Void> {
 
-            FilterCategoryAdapter filterCategoryAdapter;
-            List<FilterCategoryList> filterCategoryLists = new ArrayList<FilterCategoryList>();
+            FilterCategoryPetMateAdapter filterCategoryPetMateAdapter;
+            List<FilterCategoryList> filterCategoryPetMateLists = new ArrayList<FilterCategoryList>();
 
-            public FilterFetchPetCategory(FilterCategoryAdapter mfilterCategoryAdapter) {
+            public FilterFetchPetMateCategory(FilterCategoryPetMateAdapter mfilterCategoryPetMateAdapter) {
                 super();
-                this.filterCategoryAdapter = mfilterCategoryAdapter;
+                this.filterCategoryPetMateAdapter = mfilterCategoryPetMateAdapter;
             }
 
             @Override
             protected Void doInBackground(List... params) {
-                filterCategoryLists = params[0];
+                filterCategoryPetMateLists = params[0];
 
                 String[] filterCategoryText = new String[]{
                         "Dog", "Cat", "Rabbit", "Small & Furry", "Horse", "Bird", "Scales, Fins & Others", "Pig", "Barnyard"
@@ -292,46 +270,46 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
                 for (int i = 0; i < filterCategoryText.length; i++) {
                     FilterCategoryList filterCategoryList = new FilterCategoryList();
                     filterCategoryList.setCategoryText(filterCategoryText[i]);
-                    filterCategoryLists.add(filterCategoryList);
+                    filterCategoryPetMateLists.add(filterCategoryList);
                 }
-                filterCategoryAdapter.notifyDataSetChanged();
+                filterCategoryPetMateAdapter.notifyDataSetChanged();
                 return null;
             }
         }
 
-        private class FilterFetchPetBreed extends AsyncTask<List, Void, Void> {
+        private class FilterFetchPetMateBreed extends AsyncTask<List, Void, Void> {
 
-            FilterBreedAdapter filterBreedAdapter;
-            List<FilterBreedList> filterBreedLists = new ArrayList<FilterBreedList>();
-            List<String> filterSelectedCategoryList = new ArrayList<String>();
+            FilterBreedPetMateAdapter filterBreedPetMateAdapter;
+            List<FilterBreedList> filterBreedPetMateLists = new ArrayList<FilterBreedList>();
+            List<String> filterSelectedCategoryPetMateList = new ArrayList<String>();
 
-            public FilterFetchPetBreed(FilterBreedAdapter mfilterBreedAdapter) {
+            public FilterFetchPetMateBreed(FilterBreedPetMateAdapter mfilterBreedPetMateAdapter) {
                 super();
-                this.filterBreedAdapter = mfilterBreedAdapter;
+                this.filterBreedPetMateAdapter = mfilterBreedPetMateAdapter;
             }
 
             @Override
             protected Void doInBackground(List... params) {
-                filterSelectedCategoryList = params[0];
-                filterBreedLists = params[1];
-                FilterFetchPetBreedList.fetchPetBreeds(filterSelectedCategoryList, filterBreedLists, filterBreedAdapter);
+                filterSelectedCategoryPetMateList = params[0];
+                filterBreedPetMateLists = params[1];
+                FilterFetchPetMateBreedList.fetchPetMateBreeds(filterSelectedCategoryPetMateList, filterBreedPetMateLists, filterBreedPetMateAdapter);
                 return null;
             }
         }
 
-        private class FilterFetchPetAge extends AsyncTask<List, Void, Void> {
+        private class FilterFetchPetMateAge extends AsyncTask<List, Void, Void> {
 
-            FilterAgeAdapter filterAgeAdapter;
-            List<FilterAgeList> filterAgeLists = new ArrayList<FilterAgeList>();
+            FilterAgePetMateAdapter filterAgePetMateAdapter;
+            List<FilterAgeList> filterAgePetMateLists = new ArrayList<FilterAgeList>();
 
-            public FilterFetchPetAge(FilterAgeAdapter mfilterAgeAdapter) {
+            public FilterFetchPetMateAge(FilterAgePetMateAdapter mfilterAgePetMateAdapter) {
                 super();
-                this.filterAgeAdapter = mfilterAgeAdapter;
+                this.filterAgePetMateAdapter = mfilterAgePetMateAdapter;
             }
 
             @Override
             protected Void doInBackground(List... params) {
-                filterAgeLists = params[0];
+                filterAgePetMateLists = params[0];
 
                 String[] filterAgeText = new String[]{
                         "Age 0-100 Years"
@@ -339,26 +317,26 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
                 for (int i = 0; i < filterAgeText.length; i++) {
                     FilterAgeList filterAgeList = new FilterAgeList();
                     filterAgeList.setAgeText(filterAgeText[i]);
-                    filterAgeLists.add(filterAgeList);
+                    filterAgePetMateLists.add(filterAgeList);
                 }
-                filterAgeAdapter.notifyDataSetChanged();
+                filterAgePetMateAdapter.notifyDataSetChanged();
                 return null;
             }
         }
 
-        private class FilterFetchPetGender extends AsyncTask<List, Void, Void> {
+        private class FilterFetchPetMateGender extends AsyncTask<List, Void, Void> {
 
-            FilterGenderAdapter filterGenderAdapter;
-            List<FilterGenderList> filterGenderLists = new ArrayList<FilterGenderList>();
+            FilterGenderPetMateAdapter filterGenderPetMateAdapter;
+            List<FilterGenderList> filterGenderPetMateLists = new ArrayList<FilterGenderList>();
 
-            public FilterFetchPetGender(FilterGenderAdapter mfilterGenderAdapter) {
+            public FilterFetchPetMateGender(FilterGenderPetMateAdapter mfilterGenderPetMateAdapter) {
                 super();
-                this.filterGenderAdapter = mfilterGenderAdapter;
+                this.filterGenderPetMateAdapter = mfilterGenderPetMateAdapter;
             }
 
             @Override
             protected Void doInBackground(List... params) {
-                filterGenderLists = params[0];
+                filterGenderPetMateLists = params[0];
 
                 String[] filterGender = new String[]{
                         "Male", "Female"
@@ -366,36 +344,9 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
                 for (int i = 0; i < filterGender.length; i++) {
                     FilterGenderList filterGenderList = new FilterGenderList();
                     filterGenderList.setGender(filterGender[i]);
-                    filterGenderLists.add(filterGenderList);
+                    filterGenderPetMateLists.add(filterGenderList);
                 }
-                filterGenderAdapter.notifyDataSetChanged();
-                return null;
-            }
-        }
-
-        private class FilterFetchPetAdoptionAndPrice extends AsyncTask<List, Void, Void> {
-
-            FilterAdoptionAndPriceAdapter filterAdoptionAndPriceAdapter;
-            List<FilterAdoptionAndPriceList> filterAdoptionAndPriceLists = new ArrayList<FilterAdoptionAndPriceList>();
-
-            public FilterFetchPetAdoptionAndPrice(FilterAdoptionAndPriceAdapter mfilterAdoptionAndPriceAdapter) {
-                super();
-                this.filterAdoptionAndPriceAdapter = mfilterAdoptionAndPriceAdapter;
-            }
-
-            @Override
-            protected Void doInBackground(List... params) {
-                filterAdoptionAndPriceLists = params[0];
-
-                String[] filterPriceText = new String[]{
-                        "For Adoption", "Price", "0 - 10000", "10000 - 25000", "25000 - 50000", "50000 Onwards"
-                };
-                for (int i = 0; i < filterPriceText.length; i++) {
-                    FilterAdoptionAndPriceList filterAdoptionAndPriceList = new FilterAdoptionAndPriceList();
-                    filterAdoptionAndPriceList.setAdoptionAndPriceText(filterPriceText[i]);
-                    filterAdoptionAndPriceLists.add(filterAdoptionAndPriceList);
-                }
-                filterAdoptionAndPriceAdapter.notifyDataSetChanged();
+                filterGenderPetMateAdapter.notifyDataSetChanged();
                 return null;
             }
         }

@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:card_view="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <android.support.v7.widget.CardView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:card_view="http://schemas.android.com/apk/res/com.couragedigital.petapp"
-            android:id="@+id/clinicitems_cardview"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -22,32 +20,32 @@
                         android:layout_height="wrap_content">
 
             <RelativeLayout
-                    android:id="@+id/petClinicImageRelativeLayout"
+                    android:id="@+id/petMateListImageRelativeLayout"
                     android:layout_width="120dp"
                     android:layout_height="120dp">
 
                 <com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView
-                        android:id="@+id/clinicImage"
+                        android:id="@+id/petMateImage"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:adjustViewBounds="true"
                         android:scaleType="centerCrop"
-                        android:layout_marginTop="22dp"
-                        android:layout_marginBottom="22dp"
-                        android:layout_marginLeft="17dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginLeft="16dp"
                         android:layout_marginRight="17dp"/>
+
             </RelativeLayout>
 
             <RelativeLayout
-                    android:id="@+id/petClinicListContentRelativeLayout"
+                    android:id="@+id/petMateListContentRelativeLayout"
                     android:layout_width="fill_parent"
                     android:layout_height="120dp"
-                    android:layout_toRightOf="@+id/petClinicImageRelativeLayout">
-
+                    android:layout_toRightOf="@+id/petMateListImageRelativeLayout">
                 <TextView
+                        android:id="@+id/petMateBreed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/clinicName"
                         android:layout_marginTop="16dp"
                         android:layout_marginLeft="16dp"
                         android:textSize="@dimen/petName"
@@ -59,38 +57,40 @@
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/clinicAddress"
-                        android:textColor="@color/textColorPrimary"
-                        android:layout_below="@+id/clinicName"
+                        android:id="@+id/petMatePostOwner"
+                        android:layout_below="@+id/petMateBreed"
                         android:layout_marginTop="12dp"
-                        android:layout_marginLeft="16dp"/>
+                        android:layout_marginLeft="16dp"
+                        android:singleLine="true"
+                        android:ellipsize="end"/>
 
             </RelativeLayout>
             <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:id="@+id/clinicDividerLine"
-                    android:layout_below="@+id/petClinicImageRelativeLayout"
+                    android:id="@+id/dividerLinePetMate"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"/>
+                    android:layout_marginRight="10dp"
+                    android:layout_alignBottom="@+id/petMateListImageRelativeLayout"/>
 
             <Button
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:id="@+id/clinicFavourite"
+                    android:id="@+id/petMateFavourite"
                     android:layout_marginRight="16dp"
-                    android:layout_alignBottom="@+id/clinicSeeMoreButton"
+                    android:layout_alignBottom="@+id/petMateSeeMoreButton"
                     android:layout_centerHorizontal="true"/>
 
             <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/clinicSeeMoreButton"
-                    android:layout_below="@+id/clinicDividerLine"
+                    android:id="@+id/petMateSeeMoreButton"
+                    android:layout_below="@+id/dividerLinePetMate"
                     android:background="@android:color/transparent"
                     android:textColor="#CF3E3E"
                     android:textSize="14sp"/>
+
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

@@ -129,10 +129,10 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (i == 0) {
-                            Intent gotoformupload = new Intent(v.getContext(), PetMet.class);
+                            Intent gotoformupload = new Intent(v.getContext(), PetMate.class);
                             v.getContext().startActivity(gotoformupload);
                         } else if (i == 1) {
-                            Intent gotolistofpet = new Intent(v.getContext(), PetMetList.class);
+                            Intent gotolistofpet = new Intent(v.getContext(), PetMateList.class);
                             v.getContext().startActivity(gotolistofpet);
                         }
                     }

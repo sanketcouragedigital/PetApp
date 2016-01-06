@@ -12,22 +12,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import com.couragedigital.petapp.Adapter.*;
-import com.couragedigital.petapp.Singleton.FilterPetListInstance;
-import com.couragedigital.petapp.model.*;
+import com.couragedigital.petapp.Singleton.FilterPetMateListInstance;
+import com.couragedigital.petapp.model.FilterOptionList;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PetListFilter extends AppCompatActivity {
-
-    RecyclerView petFilterRecyclerView;
+public class PetMateListFilter extends AppCompatActivity {
+    RecyclerView petMateFilterRecyclerView;
     LinearLayoutManager layoutManager;
     public RelativeLayout filterMenu;
 
-    final List<FilterOptionList> filterOptionsList = new ArrayList<FilterOptionList>();
+    final List<FilterOptionList> filterOptionLists = new ArrayList<FilterOptionList>();
     final List<FilterOptionList> filterOptionsSelectedList = new ArrayList<FilterOptionList>();
-    FilterOptionsAdapter filterOptionsAdapter;
-    private Toolbar petListFilterToolbar;
+    FilterOptionsPetMateAdapter filterOptionsPetMateAdapter;
+    private Toolbar petMateListFilterToolbar;
 
     FilterOptionsAdapter filterViewHolder;
 
@@ -37,13 +36,11 @@ public class PetListFilter extends AppCompatActivity {
     public List<String> filterSelectedInstanceBreedList = new ArrayList<String>();
     public List<String> filterSelectedInstanceAgeList = new ArrayList<String>();
     public List<String> filterSelectedInstanceGenderList = new ArrayList<String>();
-    public List<String> filterSelectedInstanceAdoptionAndPriceList = new ArrayList<String>();
 
     public FilterCategoryAdapter filterCategoryAdapterInstance;
     public FilterBreedAdapter filterBreedAdapterInstance;
     public FilterAgeAdapter filterAgeAdapterInstance;
     public FilterGenderAdapter filterGenderAdapterInstance;
-    public FilterAdoptionAndPriceAdapter filterAdoptionAndPriceAdapterInstance;
 
 
     @Override
@@ -51,34 +48,34 @@ public class PetListFilter extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.petlistfiltermenu);
 
-        petListFilterToolbar = (Toolbar) findViewById(R.id.petListFilterToolbar);
-        setSupportActionBar(petListFilterToolbar);
+        petMateListFilterToolbar = (Toolbar) findViewById(R.id.petListFilterToolbar);
+        setSupportActionBar(petMateListFilterToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.filter_close);
-        petListFilterToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        petMateListFilterToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
 
-        petFilterRecyclerView = (RecyclerView) findViewById(R.id.filterOptions);
+        petMateFilterRecyclerView = (RecyclerView) findViewById(R.id.filterOptions);
         filterMenu = (RelativeLayout) findViewById(R.id.filterMenu);
 
-        petFilterRecyclerView.setHasFixedSize(true);
+        petMateFilterRecyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
-        petFilterRecyclerView.setLayoutManager(layoutManager);
+        petMateFilterRecyclerView.setLayoutManager(layoutManager);
 
-        filterOptionsAdapter = new FilterOptionsAdapter(filterOptionsList, filterOptionsSelectedList, filterMenu, PetListFilter.this);
+        filterOptionsPetMateAdapter = new FilterOptionsPetMateAdapter(filterOptionLists, filterOptionsSelectedList, filterMenu, PetMateListFilter.this);
 
-        petFilterRecyclerView.setAdapter(filterOptionsAdapter);
+        petMateFilterRecyclerView.setAdapter(filterOptionsPetMateAdapter);
 
-        new FilterOptions(filterOptionsAdapter).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, filterOptionsList, filterOptionsSelectedList);
+        new FilterOptionsPetMate(filterOptionsPetMateAdapter).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, filterOptionLists, filterOptionsSelectedList);
     }
 
     @Override
     public void onBackPressed() {
-        PetListFilter.this.finish();
+        PetMateListFilter.this.finish();
     }
 
     @Override
@@ -91,26 +88,23 @@ public class PetListFilter extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_filter_reset) {
             this.filterState = 0;
-            FilterPetListInstance filterPetListInstance = new FilterPetListInstance();
-            filterSelectedInstanceCategoryList = filterPetListInstance.getFilterCategoryListInstance();
-            filterSelectedInstanceBreedList = filterPetListInstance.getFilterBreedListInstance();
-            filterSelectedInstanceAgeList = filterPetListInstance.getFilterAgeListInstance();
-            filterSelectedInstanceGenderList = filterPetListInstance.getFilterGenderListInstance();
-            filterSelectedInstanceAdoptionAndPriceList = filterPetListInstance.getFilterAdoptionAndPriceListInstance();
+            FilterPetMateListInstance filterPetMateListInstance = new FilterPetMateListInstance();
+            filterSelectedInstanceCategoryList = filterPetMateListInstance.getFilterCategoryListInstance();
+            filterSelectedInstanceBreedList = filterPetMateListInstance.getFilterBreedListInstance();
+            filterSelectedInstanceAgeList = filterPetMateListInstance.getFilterAgeListInstance();
+            filterSelectedInstanceGenderList = filterPetMateListInstance.getFilterGenderListInstance();
             filterSelectedInstanceCategoryList.clear();
             filterSelectedInstanceBreedList.clear();
             filterSelectedInstanceAgeList.clear();
             filterSelectedInstanceGenderList.clear();
-            filterSelectedInstanceAdoptionAndPriceList.clear();
-            filterPetListInstance.setFilterCategoryListInstance(filterSelectedInstanceCategoryList);
-            filterPetListInstance.setFilterBreedListInstance(filterSelectedInstanceBreedList);
-            filterPetListInstance.setFilterAgeListInstance(filterSelectedInstanceAgeList);
-            filterPetListInstance.setFilterGenderListInstance(filterSelectedInstanceGenderList);
-            filterPetListInstance.setFilterAdoptionAndPriceListInstance(filterSelectedInstanceAdoptionAndPriceList);
+            filterPetMateListInstance.setFilterCategoryListInstance(filterSelectedInstanceCategoryList);
+            filterPetMateListInstance.setFilterBreedListInstance(filterSelectedInstanceBreedList);
+            filterPetMateListInstance.setFilterAgeListInstance(filterSelectedInstanceAgeList);
+            filterPetMateListInstance.setFilterGenderListInstance(filterSelectedInstanceGenderList);
 
             recreate();
 
-            filterOptionsAdapter.notifyDataSetChanged();
+            filterOptionsPetMateAdapter.notifyDataSetChanged();
         }
         return true;
     }
@@ -120,43 +114,43 @@ public class PetListFilter extends AppCompatActivity {
         Intent filterIntent = new Intent();
         filterIntent.putExtra("Filter_State", this.filterState);
         setResult(RESULT_OK, filterIntent);
-        PetListFilter.this.runOnUiThread(new Runnable() {
+        PetMateListFilter.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                PetListFilter.this.finish();
+                PetMateListFilter.this.finish();
             }
         });
         //PetListFilter.this.finish();
     }
 
-    private class FilterOptions extends AsyncTask<List, Void, Void> {
+    private class FilterOptionsPetMate extends AsyncTask<List, Void, Void> {
 
-        FilterOptionsAdapter filterOptionsAdapter;
-        List<FilterOptionList> filterOptionList = new ArrayList<FilterOptionList>();
+        FilterOptionsPetMateAdapter filterOptionsPetMateAdapter;
+        List<FilterOptionList> filterOptionLists = new ArrayList<FilterOptionList>();
         List<FilterOptionList> filterOptionSelectedList = new ArrayList<FilterOptionList>();
 
-        public FilterOptions(FilterOptionsAdapter mfilterOptionsAdapter) {
+        public FilterOptionsPetMate(FilterOptionsPetMateAdapter mfilterOptionsPetMateAdapter) {
             super();
-            this.filterOptionsAdapter = mfilterOptionsAdapter;
+            this.filterOptionsPetMateAdapter = mfilterOptionsPetMateAdapter;
         }
 
         @Override
         protected Void doInBackground(List... params) {
-            filterOptionList = params[0];
+            filterOptionLists = params[0];
             filterOptionSelectedList = params[1];
 
             int[] filterImages = new int[]{
-                    R.drawable.filter_category, R.drawable.filter_breed, R.drawable.filter_age, R.drawable.filter_gender, R.drawable.filter_price
+                    R.drawable.filter_category, R.drawable.filter_breed, R.drawable.filter_age, R.drawable.filter_gender
             };
 
             for(int i = 0; i < filterImages.length; i++) {
                 FilterOptionList filterOptionList = new FilterOptionList();
                 filterOptionList.setImage(filterImages[i]);
-                filterOptionsList.add(filterOptionList);
+                filterOptionLists.add(filterOptionList);
             }
 
             int[] filterSelectedImages = new int[]{
-                    R.drawable.filter_category_color, R.drawable.filter_breed_color, R.drawable.filter_age_color, R.drawable.filter_gender_color, R.drawable.filter_price_color
+                    R.drawable.filter_category_color, R.drawable.filter_breed_color, R.drawable.filter_age_color, R.drawable.filter_gender_color
             };
 
             for(int i = 0; i < filterSelectedImages.length; i++) {
@@ -164,7 +158,7 @@ public class PetListFilter extends AppCompatActivity {
                 filterOptionList.setImage(filterSelectedImages[i]);
                 filterOptionsSelectedList.add(filterOptionList);
             }
-            filterOptionsAdapter.notifyDataSetChanged();
+            filterOptionsPetMateAdapter.notifyDataSetChanged();
             return null;
         }
     }

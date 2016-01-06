@@ -6,9 +6,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.couragedigital.petapp.PetList;
+import com.couragedigital.petapp.PetMateList;
 import com.couragedigital.petapp.app.AppController;
-import com.couragedigital.petapp.model.PetListItems;
+import com.couragedigital.petapp.model.PetMateListItems;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,72 +16,65 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.List;
 
-public class FilterFetchPetList {
-    private static final String TAG = PetList.class.getSimpleName();
+public class FilterFetchPetMateList {
+    private static final String TAG = PetMateList.class.getSimpleName();
     private static List<String> filterSelectedCategoryLists;
     private static List<String> filterSelectedBreedLists;
     private static List<String> filterSelectedAgeLists;
     private static List<String> filterSelectedGenderLists;
-    private static List<String> filterSelectedAdoptionAndPriceLists;
+    private static String email;
     private static String method;
     private static String format;
 
     //http://storage.couragedigital.com/dev/api/petappapi.php
-    public static void filterFetchPetList(List<PetListItems> petLists, RecyclerView.Adapter adapter, List<String> filterCategoryListInstance, List<String> filterBreedListInstance, List<String> filterAgeListInstance, List<String> filterGenderListInstance, List<String> filterAdoptionAndPriceListInstance) {
-        String url = "http://192.168.0.2/PetAppAPI/api/petappapi.php";
+    public static void filterFetchPetMateList(List<PetMateListItems> petMateLists, RecyclerView.Adapter adapter, List<String> filterCategoryListInstance, List<String> filterBreedListInstance, List<String> filterAgeListInstance, List<String> filterGenderListInstance, String emailOfUser) {
+        String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
         filterSelectedCategoryLists = filterCategoryListInstance;
         filterSelectedBreedLists = filterBreedListInstance;
         filterSelectedAgeLists = filterAgeListInstance;
         filterSelectedGenderLists = filterGenderListInstance;
-        filterSelectedAdoptionAndPriceLists = filterAdoptionAndPriceListInstance;
-        method = "filterPetList";
+        email = emailOfUser;
+        method = "filterPetMateList";
         format = "json";
 
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("method", method);
         params.put("format", format);
+        params.put("email", email);
         JSONArray arrayOfSelectedFilterCategories = new JSONArray(filterSelectedCategoryLists);
         JSONArray arrayOfSelectedFilterBreeds = new JSONArray(filterSelectedBreedLists);
         JSONArray arrayOfSelectedFilterAge = new JSONArray(filterSelectedAgeLists);
         JSONArray arrayOfSelectedFilterGender = new JSONArray(filterSelectedGenderLists);
-        JSONArray arrayOfSelectedFilterAdoptionAndPrice = new JSONArray(filterSelectedAdoptionAndPriceLists);
         params.put("filterSelectedCategories", arrayOfSelectedFilterCategories.toString());
         params.put("filterSelectedBreeds", arrayOfSelectedFilterBreeds.toString());
         params.put("filterSelectedAge", arrayOfSelectedFilterAge.toString());
         params.put("filterSelectedGender", arrayOfSelectedFilterGender.toString());
-        params.put("filterSelectedAdoptionAndPrice", arrayOfSelectedFilterAdoptionAndPrice.toString());
 
         JsonObjectRequest petFilterCategoryReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            petLists.clear();
+                            petMateLists.clear();
                             adapter.notifyDataSetChanged();
-                            JSONArray jsonArray = response.getJSONArray("showPetDetailsResponse");
+                            JSONArray jsonArray = response.getJSONArray("showPetMateDetailsResponse");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 try {
                                     JSONObject obj = jsonArray.getJSONObject(i);
-                                    PetListItems petListItems = new PetListItems();
-                                    petListItems.setPetBreed(replaceSpecialChars(obj.getString("pet_breed")));
-                                    petListItems.setPetPostOwner(replaceSpecialChars(obj.getString("name")));
-                                    petListItems.setImage_path(obj.getString("image_path"));
-                                    if(!obj.getString("pet_adoption").equals("")) {
-                                        petListItems.setListingType(replaceSpecialChars(obj.getString("pet_adoption")));
-                                    }
-                                    else if(!obj.getString("pet_price").equals("")) {
-                                        petListItems.setListingType(replaceSpecialChars(obj.getString("pet_price")));
-                                    }
-                                    petListItems.setPetCategory(replaceSpecialChars(obj.getString("pet_category")));
-                                    petListItems.setPetAge(obj.getString("pet_age"));
-                                    petListItems.setPetGender(replaceSpecialChars(obj.getString("pet_gender")));
-                                    petListItems.setPetDescription(replaceSpecialChars(obj.getString("pet_description")));
-                                    petListItems.setPetPostDate(obj.getString("post_date"));
-                                    petListItems.setPetPostOwnerEmail(replaceSpecialChars(obj.getString("email")));
-                                    petListItems.setPetPostOwnerMobileNo(obj.getString("mobileno"));
+                                    PetMateListItems petMateListItems = new PetMateListItems();
+                                    petMateListItems.setPetMateBreed(replaceSpecialChars(obj.getString("pet_breed")));
+                                    petMateListItems.setPetMatePostOwner(replaceSpecialChars(obj.getString("name")));
+                                    petMateListItems.setImage_path(obj.getString("image_path"));
+                                    petMateListItems.setPetMateCategory(replaceSpecialChars(obj.getString("pet_category")));
+                                    petMateListItems.setPetMateAge(obj.getString("pet_age"));
+                                    petMateListItems.setPetMateGender(replaceSpecialChars(obj.getString("pet_gender")));
+                                    petMateListItems.setPetMateDescription(replaceSpecialChars(obj.getString("pet_description")));
+                                    petMateListItems.setPetMatePostDate(obj.getString("post_date"));
+                                    petMateListItems.setPetMatePostOwnerEmail(replaceSpecialChars(obj.getString("email")));
+                                    petMateListItems.setPetMatePostOwnerMobileNo(obj.getString("mobileno"));
 
                                     // adding pet to pets array
-                                    petLists.add(petListItems);
+                                    petMateLists.add(petMateListItems);
                                     adapter.notifyDataSetChanged();
 
                                 } catch (JSONException e) {

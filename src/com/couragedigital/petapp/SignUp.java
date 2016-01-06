@@ -115,19 +115,7 @@ public class SignUp extends AppCompatActivity {
                 }
         );
     }
-    public void signupResponse(String response) {
-        String responseFromServer = response;
 
-        if(responseFromServer == "USERS_DETAILS_SAVED") {
-            Toast.makeText(SignUp.this, "Registration Complete.", Toast.LENGTH_SHORT).show();
-            Intent gotologinpage =new Intent(SignUp.this,SignIn.class);
-            startActivity(gotologinpage);
-        }
-        else {
-            Toast.makeText(SignUp.this, "Registration Failed.", Toast.LENGTH_SHORT).show();
-        }
-        return;
-    }
     public void ButtonCancel (){
         btn_cancel = (Button)findViewById(R.id.btncancel);
 

@@ -10,7 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import com.couragedigital.petapp.Adapter.PetListAdapter;
 import com.couragedigital.petapp.Connectivity.PetFetchList;
 import com.couragedigital.petapp.Listeners.PetFetchListScrollListener;
-import com.couragedigital.petapp.model.PetList;
+import com.couragedigital.petapp.model.PetListItems;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -24,7 +24,7 @@ public class MyListingPetList extends Activity {
     // http://c/dev/api/petappapi.php?method=showPetDetails&format=json
     private static String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
     private ProgressDialog progressDialog;
-    public List<PetList> petLists = new ArrayList<PetList>();
+    public List<PetListItems> petLists = new ArrayList<PetListItems>();
 
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;

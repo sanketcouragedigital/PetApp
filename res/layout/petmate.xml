@@ -9,7 +9,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:id="@+id/applyPetMetScrollView">
+                android:id="@+id/applyPetMateScrollView">
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                         android:orientation="vertical"
                         android:layout_height="match_parent"
@@ -21,14 +21,14 @@
             <Spinner
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:id="@+id/petMetCategorySpinner"
+                    android:id="@+id/petMateCategorySpinner"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="16dp"/>
             <Spinner
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/petMetBreedSpinner"
-                    android:layout_below="@+id/petMetCategorySpinner"
+                    android:id="@+id/petMateBreedSpinner"
+                    android:layout_below="@+id/petMateCategorySpinner"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="16dp"/>
             <EditText
@@ -36,31 +36,31 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="4"
-                    android:id="@+id/ageOfPetMet"
+                    android:id="@+id/ageOfPetMate"
                     android:hint="Age"
                     android:textColor="@color/textColorPrimary"
                     android:layout_alignParentBottom="false"
                     android:layout_alignParentStart="true"
-                    android:layout_below="@+id/petMetBreedSpinner"
+                    android:layout_below="@+id/petMateBreedSpinner"
                     android:layout_marginTop="16dp"/>
             <RadioGroup
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:orientation="horizontal"
-                    android:id="@+id/genderOfPetMet"
-                    android:layout_below="@+id/petMetBreedSpinner"
+                    android:id="@+id/genderOfPetMate"
+                    android:layout_below="@+id/petMateBreedSpinner"
                     android:layout_marginTop="27dp"
                     android:layout_marginLeft="24dp"
-                    android:layout_toRightOf="@+id/ageOfPetMet">
+                    android:layout_toRightOf="@+id/ageOfPetMate">
                 <RadioButton
-                        android:id="@+id/genderMalePetMet"
+                        android:id="@+id/genderMalePetMate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="16dp"
                         android:text="@string/pet_gender_male"/>
                 <RadioButton
-                        android:id="@+id/genderFemalePetMet"
+                        android:id="@+id/genderFemalePetMate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/pet_gender_female"/>
@@ -69,13 +69,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textMultiLine"
-                    android:id="@+id/descriptionOfPetMet"
+                    android:id="@+id/descriptionOfPetMate"
                     android:hint="Description"
                     android:textColor="@color/textColorPrimary"
                     android:lines="2"
                     android:gravity="top|left"
                     android:scrollbars="vertical"
-                    android:layout_below="@+id/ageOfPetMet"
+                    android:layout_below="@+id/ageOfPetMate"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="16dp"/>
             <Button
@@ -84,17 +84,17 @@
                     android:text="Select Image"
                     android:textColor="@color/btnsignuptext"
                     android:background="@null"
-                    android:id="@+id/selectImagePetMet"
+                    android:id="@+id/selectImagePetMate"
                     android:theme="@style/Base.Theme.AppCompat"
-                    android:layout_below="@+id/descriptionOfPetMet"
+                    android:layout_below="@+id/descriptionOfPetMate"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="14dp"/>
 
             <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageOfPetMet"
-                    android:layout_below="@+id/selectImagePetMet"
+                    android:id="@+id/imageOfPetMate"
+                    android:layout_below="@+id/selectImagePetMate"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:adjustViewBounds="true"
@@ -102,14 +102,14 @@
         </RelativeLayout>
     </ScrollView>
     <android.support.design.widget.FloatingActionButton
-            android:id="@+id/petMetFormSubmitFab"
+            android:id="@+id/petMateFormSubmitFab"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:src="@drawable/form_submit"
-            app:layout_anchor="@id/applyPetMetScrollView"
+            app:layout_anchor="@id/applyPetMateScrollView"
             app:layout_anchorGravity="bottom|right|end"
             app:elevation="6dp"
             app:fabSize="normal"

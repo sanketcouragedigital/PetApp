@@ -10,7 +10,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.couragedigital.petapp.app.AppController;
-import com.couragedigital.petapp.model.PetList;
+import com.couragedigital.petapp.model.PetListItems;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,7 +20,7 @@ import java.util.List;
 public class PetRefreshFetchList {
     private static final String TAG = PetFetchList.class.getSimpleName();
 
-    public static List petRefreshFetchList(List<PetList> petLists, RecyclerView.Adapter adapter, String url, SwipeRefreshLayout petListSwipeRefreshLayout) {
+    public static List petRefreshFetchList(List<PetListItems> petLists, RecyclerView.Adapter adapter, String url, SwipeRefreshLayout petListSwipeRefreshLayout) {
         JsonObjectRequest petListReq = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -31,26 +31,26 @@ public class PetRefreshFetchList {
                                 try {
 
                                     JSONObject obj = jsonArray.getJSONObject(i);
-                                    PetList petList = new PetList();
-                                    petList.setPetBreed(replaceSpecialChars(obj.getString("pet_breed")));
-                                    petList.setPetPostOwner(replaceSpecialChars(obj.getString("name")));
-                                    petList.setImage_path(obj.getString("image_path"));
+                                    PetListItems petListItems = new PetListItems();
+                                    petListItems.setPetBreed(replaceSpecialChars(obj.getString("pet_breed")));
+                                    petListItems.setPetPostOwner(replaceSpecialChars(obj.getString("name")));
+                                    petListItems.setImage_path(obj.getString("image_path"));
                                     if(!obj.getString("pet_adoption").equals("")) {
-                                        petList.setListingType(replaceSpecialChars(obj.getString("pet_adoption")));
+                                        petListItems.setListingType(replaceSpecialChars(obj.getString("pet_adoption")));
                                     }
                                     else if(!obj.getString("pet_price").equals("")) {
-                                        petList.setListingType("Rs. :- " + replaceSpecialChars(obj.getString("pet_price")));
+                                        petListItems.setListingType("Rs. :- " + replaceSpecialChars(obj.getString("pet_price")));
                                     }
-                                    petList.setPetCategory(replaceSpecialChars(obj.getString("pet_category")));
-                                    petList.setPetAge(obj.getString("pet_age"));
-                                    petList.setPetGender(replaceSpecialChars(obj.getString("pet_gender")));
-                                    petList.setPetDescription(replaceSpecialChars(obj.getString("pet_description")));
-                                    petList.setPetPostDate(obj.getString("post_date"));
-                                    petList.setPetPostOwnerEmail(replaceSpecialChars(obj.getString("email")));
-                                    petList.setPetPostOwnerMobileNo(obj.getString("mobileno"));
+                                    petListItems.setPetCategory(replaceSpecialChars(obj.getString("pet_category")));
+                                    petListItems.setPetAge(obj.getString("pet_age"));
+                                    petListItems.setPetGender(replaceSpecialChars(obj.getString("pet_gender")));
+                                    petListItems.setPetDescription(replaceSpecialChars(obj.getString("pet_description")));
+                                    petListItems.setPetPostDate(obj.getString("post_date"));
+                                    petListItems.setPetPostOwnerEmail(replaceSpecialChars(obj.getString("email")));
+                                    petListItems.setPetPostOwnerMobileNo(obj.getString("mobileno"));
 
                                     // adding pet to pets array
-                                    petLists.add(0, petList);
+                                    petLists.add(0, petListItems);
                                     adapter.notifyDataSetChanged();
                                 } catch (JSONException e) {
                                     e.printStackTrace();

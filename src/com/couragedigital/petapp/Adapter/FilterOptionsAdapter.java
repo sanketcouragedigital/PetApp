@@ -1,6 +1,7 @@
 package com.couragedigital.petapp.Adapter;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,7 +15,6 @@ import com.couragedigital.petapp.Connectivity.FilterFetchPetBreedList;
 import com.couragedigital.petapp.PetListFilter;
 import com.couragedigital.petapp.R;
 import com.couragedigital.petapp.Singleton.FilterPetListInstance;
-import com.couragedigital.petapp.Singleton.PetListInstance;
 import com.couragedigital.petapp.model.*;
 
 import java.util.ArrayList;
@@ -67,8 +67,6 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
         private FilterOptionList filterOptionList;
         private FilterOptionList filterOptionSelectedList;
         public View itemView;
-
-        PetListInstance petListInstance;
 
         View inflateFilterMenu;
         RecyclerView filterRecyclerViewMenu;
@@ -153,25 +151,17 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
             layoutManager = new LinearLayoutManager(inflateFilterMenu.getContext());
             filterRecyclerViewMenu.setLayoutManager(layoutManager);
 
-            if (this.getAdapterPosition() == 0) {
+            if (position == 0) {
                 filterMenu.removeAllViews();
-
                 filterCategoryLists.clear();
 
                 filterCategoryAdapter = new FilterCategoryAdapter(filterCategoryLists);
                 filterRecyclerViewMenu.setAdapter(filterCategoryAdapter);
 
-                String[] filterCategoryText = new String[]{
-                        "Dog", "Cat", "Rabbit", "Small & Furry", "Horse", "Bird", "Scales, Fins & Others", "Pig", "Barnyard"
-                };
-                for (int i = 0; i < filterCategoryText.length; i++) {
-                    FilterCategoryList filterCategoryList = new FilterCategoryList();
-                    filterCategoryList.setCategoryText(filterCategoryText[i]);
-                    filterCategoryLists.add(filterCategoryList);
-                }
-                filterCategoryAdapter.notifyDataSetChanged();
+                new FilterFetchPetCategory(filterCategoryAdapter).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, filterCategoryLists);
+
                 filterMenu.addView(inflateFilterMenu);
-            } else if (this.getAdapterPosition() == 1) {
+            } else if (position == 1) {
                 filterMenu.removeAllViews();
 
                 filterBreedLists.clear();
@@ -180,7 +170,8 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
                 filterRecyclerViewMenu.setAdapter(filterBreedAdapter);
 
                 filterSelectedCategoryList = FilterPetListInstance.getFilterCategoryListInstance();
-                FilterFetchPetBreedList.fetchPetBreeds(filterSelectedCategoryList, filterBreedLists, filterBreedAdapter);
+                new FilterFetchPetBreed(filterBreedAdapter).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, filterSelectedCategoryList, filterBreedLists);
+                //FilterFetchPetBreedList.fetchPetBreeds(filterSelectedCategoryList, filterBreedLists, filterBreedAdapter);
 
                 if(filterBreedLists.isEmpty() && filterSelectedCategoryList.isEmpty()) {
                     filterRecyclerViewMenu.setVisibility(View.GONE);
@@ -191,13 +182,157 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
                     filterBreedEmptyView.setVisibility(View.GONE);
                 }
                 filterMenu.addView(inflateFilterMenu);
-            } else if (this.getAdapterPosition() == 2) {
+            } else if (position == 2) {
                 filterMenu.removeAllViews();
 
                 filterAgeLists.clear();
 
                 filterAgeAdapter = new FilterAgeAdapter(filterAgeLists);
                 filterRecyclerViewMenu.setAdapter(filterAgeAdapter);
+
+                new FilterFetchPetAge(filterAgeAdapter).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, filterAgeLists);
+
+                filterMenu.addView(inflateFilterMenu);
+            } else if (position == 3) {
+                filterMenu.removeAllViews();
+
+                filterGenderLists.clear();
+
+                filterGenderAdapter = new FilterGenderAdapter(filterGenderLists);
+                filterRecyclerViewMenu.setAdapter(filterGenderAdapter);
+
+                new FilterFetchPetGender(filterGenderAdapter).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, filterGenderLists);
+
+                filterMenu.addView(inflateFilterMenu);
+            } else if (position == 4) {
+                filterMenu.removeAllViews();
+
+                filterAdoptionAndPriceLists.clear();
+
+                filterAdoptionAndPriceAdapter = new FilterAdoptionAndPriceAdapter(filterAdoptionAndPriceLists);
+                filterRecyclerViewMenu.setAdapter(filterAdoptionAndPriceAdapter);
+
+                new FilterFetchPetAdoptionAndPrice(filterAdoptionAndPriceAdapter).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, filterAdoptionAndPriceLists);
+
+                filterMenu.addView(inflateFilterMenu);
+            }
+        }
+
+        public View.OnClickListener applyFilterFABClick = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new FilterApplyList(filterPetListInstance, filterState).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, filterSelectedInstanceCategoryList, filterSelectedInstanceBreedList, filterSelectedInstanceAgeList, filterSelectedInstanceGenderList, filterSelectedInstanceAdoptionAndPriceList);
+            }
+        };
+
+        private class FilterApplyList extends AsyncTask<List, Void, Integer> {
+
+            List<String> filterSelectedInstanceCategoryList = new ArrayList<String>();
+            List<String> filterSelectedInstanceBreedList = new ArrayList<String>();
+            List<String> filterSelectedInstanceAgeList = new ArrayList<String>();
+            List<String> filterSelectedInstanceGenderList = new ArrayList<String>();
+            List<String> filterSelectedInstanceAdoptionAndPriceList = new ArrayList<String>();
+
+            FilterPetListInstance filterPetListInstance = new FilterPetListInstance();
+            Integer filterState;
+
+            public FilterApplyList(FilterPetListInstance mfilterPetListInstance, int filterState) {
+                this.filterPetListInstance = mfilterPetListInstance;
+                this.filterState = filterState;
+            }
+
+            @Override
+            protected Integer doInBackground(List... params) {
+                filterSelectedInstanceCategoryList = params[0];
+                filterSelectedInstanceBreedList = params[1];
+                filterSelectedInstanceAgeList = params[2];
+                filterSelectedInstanceGenderList = params[3];
+                filterSelectedInstanceAdoptionAndPriceList = params[4];
+                filterSelectedInstanceCategoryList = filterPetListInstance.getFilterCategoryListInstance();
+                filterSelectedInstanceBreedList = filterPetListInstance.getFilterBreedListInstance();
+                filterSelectedInstanceAgeList = filterPetListInstance.getFilterAgeListInstance();
+                filterSelectedInstanceGenderList = filterPetListInstance.getFilterGenderListInstance();
+                filterSelectedInstanceAdoptionAndPriceList = filterPetListInstance.getFilterAdoptionAndPriceListInstance();
+
+                if(filterSelectedInstanceCategoryList.isEmpty() && filterSelectedInstanceBreedList.isEmpty() && filterSelectedInstanceAgeList.isEmpty() && filterSelectedInstanceGenderList.isEmpty() && filterSelectedInstanceAdoptionAndPriceList.isEmpty()) {
+                    filterState = 0;
+                }
+                else {
+                    filterState = 1;
+                }
+                //petListFilter.finish();
+                return filterState;
+            }
+
+            @Override
+            protected void onPostExecute(Integer filterState) {
+                //PetListFilter petListFilter = new PetListFilter();
+                petListFilter.setFilterState(filterState);
+                //petListFilter.finish();
+            }
+        }
+
+        private class FilterFetchPetCategory extends AsyncTask<List, Void, Void> {
+
+            FilterCategoryAdapter filterCategoryAdapter;
+            List<FilterCategoryList> filterCategoryLists = new ArrayList<FilterCategoryList>();
+
+            public FilterFetchPetCategory(FilterCategoryAdapter mfilterCategoryAdapter) {
+                super();
+                this.filterCategoryAdapter = mfilterCategoryAdapter;
+            }
+
+            @Override
+            protected Void doInBackground(List... params) {
+                filterCategoryLists = params[0];
+
+                String[] filterCategoryText = new String[]{
+                        "Dog", "Cat", "Rabbit", "Small & Furry", "Horse", "Bird", "Scales, Fins & Others", "Pig", "Barnyard"
+                };
+                for (int i = 0; i < filterCategoryText.length; i++) {
+                    FilterCategoryList filterCategoryList = new FilterCategoryList();
+                    filterCategoryList.setCategoryText(filterCategoryText[i]);
+                    filterCategoryLists.add(filterCategoryList);
+                }
+                filterCategoryAdapter.notifyDataSetChanged();
+                return null;
+            }
+        }
+
+        private class FilterFetchPetBreed extends AsyncTask<List, Void, Void> {
+
+            FilterBreedAdapter filterBreedAdapter;
+            List<FilterBreedList> filterBreedLists = new ArrayList<FilterBreedList>();
+            List<String> filterSelectedCategoryList = new ArrayList<String>();
+
+            public FilterFetchPetBreed(FilterBreedAdapter mfilterBreedAdapter) {
+                super();
+                this.filterBreedAdapter = mfilterBreedAdapter;
+            }
+
+            @Override
+            protected Void doInBackground(List... params) {
+                filterSelectedCategoryList = params[0];
+                filterBreedLists = params[1];
+                FilterFetchPetBreedList.fetchPetBreeds(filterSelectedCategoryList, filterBreedLists, filterBreedAdapter);
+                return null;
+            }
+        }
+
+        private class FilterFetchPetAge extends AsyncTask<List, Void, Void> {
+
+            FilterAgeAdapter filterAgeAdapter;
+            List<FilterAgeList> filterAgeLists = new ArrayList<FilterAgeList>();
+
+            public FilterFetchPetAge(FilterAgeAdapter mfilterAgeAdapter) {
+                super();
+                this.filterAgeAdapter = mfilterAgeAdapter;
+            }
+
+            @Override
+            protected Void doInBackground(List... params) {
+                filterAgeLists = params[0];
+
                 String[] filterAgeText = new String[]{
                         "Age 0-100 Years"
                 };
@@ -207,14 +342,23 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
                     filterAgeLists.add(filterAgeList);
                 }
                 filterAgeAdapter.notifyDataSetChanged();
-                filterMenu.addView(inflateFilterMenu);
-            } else if (this.getAdapterPosition() == 3) {
-                filterMenu.removeAllViews();
+                return null;
+            }
+        }
 
-                filterGenderLists.clear();
+        private class FilterFetchPetGender extends AsyncTask<List, Void, Void> {
 
-                filterGenderAdapter = new FilterGenderAdapter(filterGenderLists);
-                filterRecyclerViewMenu.setAdapter(filterGenderAdapter);
+            FilterGenderAdapter filterGenderAdapter;
+            List<FilterGenderList> filterGenderLists = new ArrayList<FilterGenderList>();
+
+            public FilterFetchPetGender(FilterGenderAdapter mfilterGenderAdapter) {
+                super();
+                this.filterGenderAdapter = mfilterGenderAdapter;
+            }
+
+            @Override
+            protected Void doInBackground(List... params) {
+                filterGenderLists = params[0];
 
                 String[] filterGender = new String[]{
                         "Male", "Female"
@@ -225,14 +369,24 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
                     filterGenderLists.add(filterGenderList);
                 }
                 filterGenderAdapter.notifyDataSetChanged();
-                filterMenu.addView(inflateFilterMenu);
-            } else if (this.getAdapterPosition() == 4) {
-                filterMenu.removeAllViews();
+                return null;
+            }
+        }
 
-                filterAdoptionAndPriceLists.clear();
+        private class FilterFetchPetAdoptionAndPrice extends AsyncTask<List, Void, Void> {
 
-                filterAdoptionAndPriceAdapter = new FilterAdoptionAndPriceAdapter(filterAdoptionAndPriceLists);
-                filterRecyclerViewMenu.setAdapter(filterAdoptionAndPriceAdapter);
+            FilterAdoptionAndPriceAdapter filterAdoptionAndPriceAdapter;
+            List<FilterAdoptionAndPriceList> filterAdoptionAndPriceLists = new ArrayList<FilterAdoptionAndPriceList>();
+
+            public FilterFetchPetAdoptionAndPrice(FilterAdoptionAndPriceAdapter mfilterAdoptionAndPriceAdapter) {
+                super();
+                this.filterAdoptionAndPriceAdapter = mfilterAdoptionAndPriceAdapter;
+            }
+
+            @Override
+            protected Void doInBackground(List... params) {
+                filterAdoptionAndPriceLists = params[0];
+
                 String[] filterPriceText = new String[]{
                         "For Adoption", "Price", "0 - 10000", "10000 - 25000", "25000 - 50000", "50000 Onwards"
                 };
@@ -242,28 +396,8 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
                     filterAdoptionAndPriceLists.add(filterAdoptionAndPriceList);
                 }
                 filterAdoptionAndPriceAdapter.notifyDataSetChanged();
-                filterMenu.addView(inflateFilterMenu);
+                return null;
             }
         }
-
-        public View.OnClickListener applyFilterFABClick = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                filterSelectedInstanceCategoryList = filterPetListInstance.getFilterCategoryListInstance();
-                filterSelectedInstanceBreedList = filterPetListInstance.getFilterBreedListInstance();
-                filterSelectedInstanceAgeList = filterPetListInstance.getFilterAgeListInstance();
-                filterSelectedInstanceGenderList = filterPetListInstance.getFilterGenderListInstance();
-                filterSelectedInstanceAdoptionAndPriceList = filterPetListInstance.getFilterAdoptionAndPriceListInstance();
-                PetListFilter petListFilter = new PetListFilter();
-                if(filterSelectedInstanceCategoryList.isEmpty() && filterSelectedInstanceBreedList.isEmpty() && filterSelectedInstanceAgeList.isEmpty() && filterSelectedInstanceGenderList.isEmpty() && filterSelectedInstanceAdoptionAndPriceList.isEmpty()) {
-                    filterState = 0;
-                    petListFilter.setFilterState(filterState);
-                }
-                else {
-                    filterState = 1;
-                    petListFilter.setFilterState(filterState);
-                }
-            }
-        };
     }
 }

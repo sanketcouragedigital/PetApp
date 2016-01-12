@@ -2,7 +2,7 @@ package com.couragedigital.petapp.model;
 
 import java.util.Date;
 
-public class PetList {
+public class PetListItems {
     public String image_path;
     public String petBreed;
     public String petPostOwner;
@@ -15,10 +15,10 @@ public class PetList {
     public String petPostOwnerEmail;
     public String petPostOwnerMobileNo;
 
-    public PetList() {
+    public PetListItems() {
     }
 
-    public PetList(String image_path, String petBreed, String petPostOwner, String listingType, String petCategory, String petAge, String petGender, String petDescription, String petPostDate, String petPostOwnerEmail, String petPostOwnerMobileNo) {
+    public PetListItems(String image_path, String petBreed, String petPostOwner, String listingType, String petCategory, String petAge, String petGender, String petDescription, String petPostDate, String petPostOwnerEmail, String petPostOwnerMobileNo) {
         this.image_path = image_path;
         this.petBreed = petBreed;
         this.petPostOwner = petPostOwner;

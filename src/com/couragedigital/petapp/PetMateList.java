@@ -5,49 +5,53 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import com.couragedigital.petapp.Connectivity.FilterFetchPetList;
-import com.couragedigital.petapp.Connectivity.PetFetchList;
-import com.couragedigital.petapp.Connectivity.PetRefreshFetchList;
-import com.couragedigital.petapp.Listeners.PetFetchListScrollListener;
-import com.couragedigital.petapp.Adapter.PetListAdapter;
-import com.couragedigital.petapp.Singleton.FilterPetListInstance;
-import com.couragedigital.petapp.model.PetListItems;
+import com.couragedigital.petapp.Adapter.PetMateListAdapter;
+import com.couragedigital.petapp.Connectivity.FilterFetchPetMateList;
+import com.couragedigital.petapp.Connectivity.PetMateFetchList;
+import com.couragedigital.petapp.Connectivity.PetMateRefreshFetchList;
+import com.couragedigital.petapp.Listeners.PetMateFetchListScrollListener;
+import com.couragedigital.petapp.SessionManager.SessionManager;
+import com.couragedigital.petapp.Singleton.FilterPetMateListInstance;
+import com.couragedigital.petapp.model.PetMateListItems;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import android.app.ProgressDialog;
 
-public class PetList extends BaseActivity {
+public class PetMateList extends BaseActivity {
 
     private static final String TAG = PetList.class.getSimpleName();
 
     // http://c/dev/api/petappapi.php?method=showPetDetails&format=json
     private static String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
     private ProgressDialog progressDialog;
-    public List<PetListItems> petLists = new ArrayList<PetListItems>();
+    public List<PetMateListItems> petMateLists = new ArrayList<PetMateListItems>();
+    /*private ListView petlistView;
+    public PetListAdapter Adapter;*/
 
-    public List<PetListItems> petListsForFilter = new ArrayList<PetListItems>();
-    public PetListAdapter adapterForFilter;
+    public List<PetMateListItems> petMateListForFilter = new ArrayList<PetMateListItems>();
+    public PetMateListAdapter adapterForFilter;
 
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
     RecyclerView.Adapter adapter;
-    SwipeRefreshLayout petListSwipeRefreshLayout;
+    SwipeRefreshLayout petMateListSwipeRefreshLayout;
 
-    public List<PetListItems> originalpetLists = new ArrayList<PetListItems>();
+    public List<PetMateListItems> originalpetLists = new ArrayList<PetMateListItems>();
 
     static String urlForFetch;
 
     private int current_page = 1;
+
+    public String email;
 
     int filterState;
 
@@ -57,31 +61,33 @@ public class PetList extends BaseActivity {
     public List<String> filterSelectedInstanceBreedList = new ArrayList<String>();
     public List<String> filterSelectedInstanceAgeList = new ArrayList<String>();
     public List<String> filterSelectedInstanceGenderList = new ArrayList<String>();
-    public List<String> filterSelectedInstanceAdoptionAndPriceList = new ArrayList<String>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.petlist);
+        setContentView(R.layout.petmatelist);
 
         /*petlistView = (ListView) findViewById(R.id.petList);
         Adapter = new PetListAdapter(this, petLists);
         petlistView.setAdapter(Adapter);*/
 
-        recyclerView = (RecyclerView) findViewById(R.id.petList);
-        petListSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.petListSwipeRefreshLayout);
+        recyclerView = (RecyclerView) findViewById(R.id.petMateList);
+        petMateListSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.petMateListSwipeRefreshLayout);
         recyclerView.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        url = url+"?method=showPetDetails&format=json&currentPage="+current_page+"";
+        HashMap<String, String> user = sessionManager.getUserDetails();
+        email = user.get(SessionManager.KEY_EMAIL);
 
-        recyclerView.addOnScrollListener(new PetFetchListScrollListener(layoutManager, current_page){
+        url = url+"?method=showPetMateDetails&format=json&email="+email+"&currentPage="+current_page+"";
+
+        recyclerView.addOnScrollListener(new PetMateFetchListScrollListener(layoutManager, current_page){
 
             @Override
             public void onLoadMore(int current_page) {
-                url = url+"?method=showPetDetails&format=json&currentPage="+current_page+"";
+                url = url+"?method=showPetMateDetails&format=json&email="+email+"&currentPage="+current_page+"";
                 grabURL(url);
             }
         });
@@ -90,7 +96,7 @@ public class PetList extends BaseActivity {
 
         //recyclerView.fling(0,1);
 
-        adapter = new PetListAdapter(petLists);
+        adapter = new PetMateListAdapter(petMateLists);
         recyclerView.setAdapter(adapter);
 
         progressDialog = new ProgressDialog(this);
@@ -98,8 +104,8 @@ public class PetList extends BaseActivity {
         progressDialog.setMessage("Fetching List Of Pets...");
         progressDialog.show();
 
-        petListSwipeRefreshLayout.setOnRefreshListener(petListSwipeRefreshListener);
-        petListSwipeRefreshLayout.setColorSchemeResources(
+        petMateListSwipeRefreshLayout.setOnRefreshListener(petMateListSwipeRefreshListener);
+        petMateListSwipeRefreshLayout.setColorSchemeResources(
                 R.color.refresh_progress_1,
                 R.color.refresh_progress_2,
                 R.color.refresh_progress_3,
@@ -117,7 +123,7 @@ public class PetList extends BaseActivity {
         protected String doInBackground(String... url) {
             try {
                 urlForFetch = url[0];
-                PetFetchList.petFetchList(petLists, adapter, urlForFetch, progressDialog);
+                PetMateFetchList.petMateFetchList(petMateLists, adapter, urlForFetch, progressDialog);
             } catch (Exception e) {
                 e.printStackTrace();
                 progressDialog.dismiss();
@@ -126,14 +132,14 @@ public class PetList extends BaseActivity {
         }
     }
 
-    private SwipeRefreshLayout.OnRefreshListener petListSwipeRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+    private SwipeRefreshLayout.OnRefreshListener petMateListSwipeRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            PetListItems petListItems = petLists.get(0);
-            String date = petListItems.getPetPostDate();
+            PetMateListItems petMateListItems = petMateLists.get(0);
+            String date = petMateListItems.getPetMatePostDate();
             //date = date.replace(" ", "+");
             try {
-                url = url+"?method=showPetSwipeRefreshList&format=json&date="+ URLEncoder.encode(date, "UTF-8")+"";
+                url = url+"?method=showPetMateSwipeRefreshList&format=json&date="+ URLEncoder.encode(date, "UTF-8")+"&email="+email+"";
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
@@ -146,7 +152,7 @@ public class PetList extends BaseActivity {
         protected String doInBackground(String... url) {
             try {
                 urlForFetch = url[0];
-                PetRefreshFetchList.petRefreshFetchList(petLists, adapter, urlForFetch, petListSwipeRefreshLayout);
+                PetMateRefreshFetchList.petMateRefreshFetchList(petMateLists, adapter, urlForFetch, petMateListSwipeRefreshLayout);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -171,7 +177,7 @@ public class PetList extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_filter) {
-            Intent filterClassIntent = new Intent(PetList.this, PetListFilter.class);
+            Intent filterClassIntent = new Intent(PetMateList.this, PetMateListFilter.class);
             startActivityForResult(filterClassIntent, FILTER_STATE_RESULT);
         }
         return true;
@@ -182,20 +188,20 @@ public class PetList extends BaseActivity {
             Bundle res = data.getExtras();
             filterState = res.getInt("Filter_State");
             if(filterState == 0) {
-                petLists.clear();
+                petMateLists.clear();
                 adapter.notifyDataSetChanged();
-                url = url+"?method=showPetDetails&format=json&currentPage="+current_page+"";
-                recyclerView.addOnScrollListener(new PetFetchListScrollListener(layoutManager, current_page){
+                url = url+"?method=showPetMateDetails&format=json&email="+email+"&currentPage="+current_page+"";
+                recyclerView.addOnScrollListener(new PetMateFetchListScrollListener(layoutManager, current_page){
 
                     @Override
                     public void onLoadMore(int current_page) {
-                        url = url+"?method=showPetDetails&format=json&currentPage="+current_page+"";
+                        url = url+"?method=showPetMateDetails&format=json&email="+email+"&currentPage="+current_page+"";
                         grabURL(url);
                     }
                 });
 
-                petListSwipeRefreshLayout.setOnRefreshListener(petListSwipeRefreshListener);
-                petListSwipeRefreshLayout.setColorSchemeResources(
+                petMateListSwipeRefreshLayout.setOnRefreshListener(petMateListSwipeRefreshListener);
+                petMateListSwipeRefreshLayout.setColorSchemeResources(
                         R.color.refresh_progress_1,
                         R.color.refresh_progress_2,
                         R.color.refresh_progress_3,
@@ -204,28 +210,46 @@ public class PetList extends BaseActivity {
                 grabURL(url);
             }
             else if(filterState == 1) {
-                FilterPetListInstance filterPetListInstance = new FilterPetListInstance();
-                filterSelectedInstanceCategoryList = filterPetListInstance.getFilterCategoryListInstance();
-                filterSelectedInstanceBreedList = filterPetListInstance.getFilterBreedListInstance();
-                filterSelectedInstanceAgeList = filterPetListInstance.getFilterAgeListInstance();
-                filterSelectedInstanceGenderList = filterPetListInstance.getFilterGenderListInstance();
-                filterSelectedInstanceAdoptionAndPriceList = filterPetListInstance.getFilterAdoptionAndPriceListInstance();
-                new FetchFilterPetListFromServer().execute();
+                FilterPetMateListInstance filterPetMateListInstance = new FilterPetMateListInstance();
+                filterSelectedInstanceCategoryList = filterPetMateListInstance.getFilterCategoryListInstance();
+                filterSelectedInstanceBreedList = filterPetMateListInstance.getFilterBreedListInstance();
+                filterSelectedInstanceAgeList = filterPetMateListInstance.getFilterAgeListInstance();
+                filterSelectedInstanceGenderList = filterPetMateListInstance.getFilterGenderListInstance();
+                new FetchFilterPetMateListFromServer().execute();
             }
         }
     }
 
-    public class FetchFilterPetListFromServer extends AsyncTask<Void, Void, Void> {
+    public class FetchFilterPetMateListFromServer extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
             try {
-                FilterFetchPetList.filterFetchPetList(petLists, adapter, filterSelectedInstanceCategoryList, filterSelectedInstanceBreedList, filterSelectedInstanceAgeList, filterSelectedInstanceGenderList, filterSelectedInstanceAdoptionAndPriceList);
+                FilterFetchPetMateList.filterFetchPetMateList(petMateLists, adapter, filterSelectedInstanceCategoryList, filterSelectedInstanceBreedList, filterSelectedInstanceAgeList, filterSelectedInstanceGenderList, email);
             } catch (Exception e) {
                 e.printStackTrace();
             }
             return null;
         }
     }
+
+    /*@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.petlistmenu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_filter) {
+            PetListInstance petListInstance = new PetListInstance(Adapter, petLists, petlistView);
+            Intent filterClassIntent = new Intent(PetList.this, PetListFilter.class);
+            //filterClassIntent.putExtra("PET_LISTS", (Parcelable) petLists);
+            //filterClassIntent.putExtra("PET_ADAPTER", (Parcelable) Adapter);
+            startActivity(filterClassIntent);
+        }
+        return true;
+    }*/
 
     /*@Override
     public void onRestart() {

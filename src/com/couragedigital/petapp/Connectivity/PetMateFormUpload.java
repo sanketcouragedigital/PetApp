@@ -2,7 +2,7 @@ package com.couragedigital.petapp.Connectivity;
 
 import android.util.Log;
 import android.widget.Toast;
-import com.couragedigital.petapp.PetMet;
+import com.couragedigital.petapp.PetMate;
 import com.couragedigital.petapp.SessionManager.SessionManager;
 
 import java.io.DataOutputStream;
@@ -13,7 +13,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 
-public class PetMetFormUpload {
+public class PetMateFormUpload {
     private static final String SERVER_URL = "http://storage.couragedigital.com/dev/api/petappapi.php";
     //http://storage.couragedigital.com/petappapi.php
     //http://couragedigitalexample.hostingsiteforfree.com/cameraapi.php
@@ -46,7 +46,7 @@ public class PetMetFormUpload {
             return 0;
         }
         try { // open a URL connection to the Servlet
-            String method = "savePetMetDetails";
+            String method = "savePetMateDetails";
             String format = "json";
             FileInputStream fileInputStream = new FileInputStream(sourceFile);
             URL url = new URL(upLoadServerUri);

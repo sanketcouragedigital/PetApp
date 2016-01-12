@@ -1,6 +1,5 @@
 package com.couragedigital.petapp;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -24,7 +23,7 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class PetMetListDetails extends AppCompatActivity implements View.OnClickListener {
+public class PetMateListDetails extends AppCompatActivity implements View.OnClickListener {
     String image_path = "";
     String breed = "";
     String age = "";
@@ -33,68 +32,68 @@ public class PetMetListDetails extends AppCompatActivity implements View.OnClick
     String email = "";
     String mobileno = "";
 
-    ImageView petMetImage;
-    TextView petMetBreed;
-    TextView petMetAge;
-    TextView petMetGender;
-    TextView petMetDescription;
-    View petMetDetailsDividerLine;
-    Button petMetDetailsCallButton;
-    Button petMetDetailsEmailButton;
+    ImageView petMateImage;
+    TextView petMateBreed;
+    TextView petMateAge;
+    TextView petMateGender;
+    TextView petMateDescription;
+    View petMateDetailsDividerLine;
+    Button petMateDetailsCallButton;
+    Button petMateDetailsEmailButton;
 
-    Bitmap petMetDetailsbitmap;
-    Toolbar petMetDetailstoolbar;
-    CollapsingToolbarLayout petMetDetailsCollapsingToolbar;
-    CoordinatorLayout petMetDetailsCoordinatorLayout;
-    AppBarLayout petMetDetailsAppBarLayout;
-    NestedScrollView petMetDetailsNestedScrollView;
+    Bitmap petMateDetailsbitmap;
+    Toolbar petMateDetailstoolbar;
+    CollapsingToolbarLayout petMateDetailsCollapsingToolbar;
+    CoordinatorLayout petMateDetailsCoordinatorLayout;
+    AppBarLayout petMateDetailsAppBarLayout;
+    NestedScrollView petMateDetailsNestedScrollView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.petmetlistdetails);
+        setContentView(R.layout.petmatelistdetails);
 
         Intent intent = getIntent();
         if (null != intent) {
-            image_path = intent.getStringExtra("PET_MET_IMAGE");
-            breed = intent.getStringExtra("PET_MET_BREED");
-            age = intent.getStringExtra("PET_MET_AGE");
-            gender = intent.getStringExtra("PET_MET_GENDER");
-            description = intent.getStringExtra("PET_MET_DESCRIPTION");
+            image_path = intent.getStringExtra("PET_MATE_IMAGE");
+            breed = intent.getStringExtra("PET_MATE_BREED");
+            age = intent.getStringExtra("PET_MATE_AGE");
+            gender = intent.getStringExtra("PET_MATE_GENDER");
+            description = intent.getStringExtra("PET_MATE_DESCRIPTION");
             email = intent.getStringExtra("POST_OWNER_EMAIL");
             mobileno = intent.getStringExtra("POST_OWNER_MOBILENO");
         }
 
-        petMetDetailstoolbar = (Toolbar) findViewById(R.id.petMetDetailsToolbar);
-        setSupportActionBar(petMetDetailstoolbar);
+        petMateDetailstoolbar = (Toolbar) findViewById(R.id.petMateDetailsToolbar);
+        setSupportActionBar(petMateDetailstoolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        petMetDetailstoolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        petMateDetailstoolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
 
-        petMetDetailsCollapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.petMetListingTypeInPetDetailsCollapsingToolbar);
+        petMateDetailsCollapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.petMateListingTypeInPetDetailsCollapsingToolbar);
 
-        petMetDetailsCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.petMetDetailsCoordinatorLayout);
+        petMateDetailsCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.petMateDetailsCoordinatorLayout);
 
-        petMetDetailsAppBarLayout = (AppBarLayout) findViewById(R.id.petMetDetailsAppBar);
+        petMateDetailsAppBarLayout = (AppBarLayout) findViewById(R.id.petMateDetailsAppBar);
 
-        petMetDetailsNestedScrollView = (NestedScrollView) findViewById(R.id.petMetDetailsNestedScrollView);
+        petMateDetailsNestedScrollView = (NestedScrollView) findViewById(R.id.petMateDetailsNestedScrollView);
 
-        petMetImage = (ImageView) findViewById(R.id.petMetHeaderImage);
-        petMetBreed = (TextView) findViewById(R.id.petMetBreedInPetDetails);
+        petMateImage = (ImageView) findViewById(R.id.petMateHeaderImage);
+        petMateBreed = (TextView) findViewById(R.id.petMateBreedInPetDetails);
         //petListingType = (TextView) findViewById(R.id.petListingTypeInPetDetails);
-        petMetAge = (TextView) findViewById(R.id.petMetAgeInPetDetails);
-        petMetGender = (TextView) findViewById(R.id.petMetGenderInPetDetails);
-        petMetDescription = (TextView) findViewById(R.id.petMetDescriptionInPetDetails);
-        petMetDetailsDividerLine = findViewById(R.id.petMetDetailsDividerLine);
-        petMetDetailsCallButton = (Button) findViewById(R.id.petMetDetailsCallButton);
-        petMetDetailsEmailButton = (Button) findViewById(R.id.petMetDetailsEmailButton);
+        petMateAge = (TextView) findViewById(R.id.petMateAgeInPetDetails);
+        petMateGender = (TextView) findViewById(R.id.petMateGenderInPetDetails);
+        petMateDescription = (TextView) findViewById(R.id.petMateDescriptionInPetDetails);
+        petMateDetailsDividerLine = findViewById(R.id.petMateDetailsDividerLine);
+        petMateDetailsCallButton = (Button) findViewById(R.id.petMateDetailsCallButton);
+        petMateDetailsEmailButton = (Button) findViewById(R.id.petMateDetailsEmailButton);
 
-        petMetDetailsCallButton.setOnClickListener(this);
-        petMetDetailsEmailButton.setOnClickListener(this);
+        petMateDetailsCallButton.setOnClickListener(this);
+        petMateDetailsEmailButton.setOnClickListener(this);
 
         InputStream in = null;
         try {
@@ -122,24 +121,24 @@ public class PetMetListDetails extends AppCompatActivity implements View.OnClick
         }
 
         final byte[] data = dataStream.toByteArray();
-        petMetDetailsbitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-        petMetImage.setImageBitmap(petMetDetailsbitmap);
-        petMetDetailsCollapsingToolbar.setTitle("For Mating");
+        petMateDetailsbitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+        petMateImage.setImageBitmap(petMateDetailsbitmap);
+        petMateDetailsCollapsingToolbar.setTitle("For Mating");
         String breedOfPet = "<b>Breed: </b>" + breed;
-        petMetBreed.setText(Html.fromHtml(breedOfPet));
+        petMateBreed.setText(Html.fromHtml(breedOfPet));
         String ageOfPet = "<b>Age: </b>" + age;
-        petMetAge.setText(Html.fromHtml(ageOfPet));
+        petMateAge.setText(Html.fromHtml(ageOfPet));
         String genderOfPet = "<b>Gender: </b>" + gender;
-        petMetGender.setText(Html.fromHtml(genderOfPet));
+        petMateGender.setText(Html.fromHtml(genderOfPet));
         String descriptionOfPet = "<b>Description: </b>" + description;
-        petMetDescription.setText(Html.fromHtml(descriptionOfPet));
-        petMetDetailsDividerLine.setBackgroundResource(R.color.list_internal_divider);
+        petMateDescription.setText(Html.fromHtml(descriptionOfPet));
+        petMateDetailsDividerLine.setBackgroundResource(R.color.list_internal_divider);
 
-        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) petMetDetailsAppBarLayout.getLayoutParams();
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) petMateDetailsAppBarLayout.getLayoutParams();
         layoutParams.height = getResources().getDisplayMetrics().widthPixels;
 
 
-        petMetDetailsAppBarLayout.post(new Runnable() {
+        petMateDetailsAppBarLayout.post(new Runnable() {
             @Override
             public void run() {
                 int heightPx = getResources().getDisplayMetrics().heightPixels / 4;
@@ -149,9 +148,9 @@ public class PetMetListDetails extends AppCompatActivity implements View.OnClick
     }
 
     private void setAppBarOffset(int i) {
-        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) petMetDetailsAppBarLayout.getLayoutParams();
+        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) petMateDetailsAppBarLayout.getLayoutParams();
         AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
-        behavior.onNestedPreScroll(petMetDetailsCoordinatorLayout, petMetDetailsAppBarLayout, null, 0, i, new int[]{0, 0});
+        behavior.onNestedPreScroll(petMateDetailsCoordinatorLayout, petMateDetailsAppBarLayout, null, 0, i, new int[]{0, 0});
     }
 
     private static void copy(InputStream in, OutputStream out) throws IOException {
@@ -164,17 +163,17 @@ public class PetMetListDetails extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onBackPressed() {
-        PetMetListDetails.this.finish();
+        PetMateListDetails.this.finish();
     }
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.petMetDetailsCallButton) {
+        if(v.getId() == R.id.petMateDetailsCallButton) {
             Intent callIntent = new Intent(Intent.ACTION_DIAL);
             callIntent.setData(Uri.parse("tel:"+mobileno));
             startActivity(callIntent);
         }
-        else if(v.getId() == R.id.petMetDetailsEmailButton) {
+        else if(v.getId() == R.id.petMateDetailsEmailButton) {
             Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                     "mailto",email, null));
             startActivity(Intent.createChooser(emailIntent, "Choose an Email client :"));

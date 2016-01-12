@@ -1,6 +1,5 @@
 package com.couragedigital.petapp;
 
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -20,7 +19,6 @@ import android.provider.MediaStore;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ContextThemeWrapper;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -30,12 +28,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import android.net.Uri;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import com.couragedigital.petapp.Connectivity.PetListFormUpload;
 import com.couragedigital.petapp.Connectivity.PetBreedsSpinnerList;
 import com.couragedigital.petapp.Connectivity.PetCategorySpinnerList;
 import com.couragedigital.petapp.Adapter.SpinnerItemsAdapter;
-import com.couragedigital.petapp.Connectivity.PetMetFormUpload;
+import com.couragedigital.petapp.Connectivity.PetMateFormUpload;
 import com.couragedigital.petapp.CropImage.CropImage;
 import com.couragedigital.petapp.SessionManager.SessionManager;
 
@@ -43,7 +39,8 @@ import java.io.*;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
-public class PetMet extends BaseActivity implements View.OnClickListener {
+
+public class PetMate extends BaseActivity implements View.OnClickListener {
 
     private static final int CAMERA_REQUEST = 1;
     private static final int GALLERY_REQUEST = 2;
@@ -89,20 +86,20 @@ public class PetMet extends BaseActivity implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.petmet);
+        setContentView(R.layout.petmate);
 
         sessionManager = new SessionManager(getApplicationContext());
         HashMap<String, String> user = sessionManager.getUserDetails();
         email = user.get(SessionManager.KEY_EMAIL);  // get email from session
 
-        petCategory = (Spinner) this.findViewById(R.id.petMetCategorySpinner);
-        petBreed = (Spinner) this.findViewById(R.id.petMetBreedSpinner);
-        ageOfPet = (EditText) this.findViewById(R.id.ageOfPetMet);
-        genderOfPet = (RadioGroup) this.findViewById(R.id.genderOfPetMet);
-        descriptionOfPet = (EditText) this.findViewById(R.id.descriptionOfPetMet);
-        selectImageButton = (Button) this.findViewById(R.id.selectImagePetMet);
-        imageOfPet = (ImageView) this.findViewById(R.id.imageOfPetMet);
-        uploadButton = (FloatingActionButton) this.findViewById(R.id.petMetFormSubmitFab);
+        petCategory = (Spinner) this.findViewById(R.id.petMateCategorySpinner);
+        petBreed = (Spinner) this.findViewById(R.id.petMateBreedSpinner);
+        ageOfPet = (EditText) this.findViewById(R.id.ageOfPetMate);
+        genderOfPet = (RadioGroup) this.findViewById(R.id.genderOfPetMate);
+        descriptionOfPet = (EditText) this.findViewById(R.id.descriptionOfPetMate);
+        selectImageButton = (Button) this.findViewById(R.id.selectImagePetMate);
+        imageOfPet = (ImageView) this.findViewById(R.id.imageOfPetMate);
+        uploadButton = (FloatingActionButton) this.findViewById(R.id.petMateFormSubmitFab);
 
         petCategoryArrayList = new String[]{
                 "Select Pet Category"
@@ -197,8 +194,8 @@ public class PetMet extends BaseActivity implements View.OnClickListener {
     @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.selectImagePetMet) {
-            dialogAdapter = new ArrayAdapter<String>(PetMet.this, android.R.layout.select_dialog_item){
+        if(v.getId() == R.id.selectImagePetMate) {
+            dialogAdapter = new ArrayAdapter<String>(PetMate.this, android.R.layout.select_dialog_item){
                 @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
                     View view = super.getView(position, convertView, parent);
@@ -212,7 +209,7 @@ public class PetMet extends BaseActivity implements View.OnClickListener {
             };
             dialogAdapter.add("Take from Camera");
             dialogAdapter.add("Select from Gallery");
-            AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(PetMet.this, R.style.AlertDialogCustom));
+            AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(PetMate.this, R.style.AlertDialogCustom));
             builder.setTitle("Select Image");
             builder.setAdapter(dialogAdapter, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
@@ -248,30 +245,30 @@ public class PetMet extends BaseActivity implements View.OnClickListener {
 
             alertDialog.show();
         }
-        else if(v.getId() == R.id.petMetFormSubmitFab) {
+        else if(v.getId() == R.id.petMateFormSubmitFab) {
 
             Integer petAgeInInteger = null;
 
             if (petCategoryName == null) {
-                Toast.makeText(PetMet.this, "Please select Pet Category.", Toast.LENGTH_LONG).show();
+                Toast.makeText(PetMate.this, "Please select Pet Category.", Toast.LENGTH_LONG).show();
                 TextView errorText = (TextView) petCategory.getSelectedView();
                 errorText.setError("Please select Pet Category");
             }
             else if(petBreedName == null) {
-                Toast.makeText(PetMet.this, "Please select Pet Breed.", Toast.LENGTH_LONG).show();
+                Toast.makeText(PetMate.this, "Please select Pet Breed.", Toast.LENGTH_LONG).show();
                 TextView errorText = (TextView) petBreed.getSelectedView();
                 errorText.setError("Please select Pet Breed");
             }
             else if(genderOfPet.getCheckedRadioButtonId() == -1) {
-                Toast.makeText(PetMet.this, "Please select gender.", Toast.LENGTH_LONG).show();
+                Toast.makeText(PetMate.this, "Please select gender.", Toast.LENGTH_LONG).show();
                 genderSelected = (RadioButton) findViewById(R.id.genderFemale);
                 genderSelected.setError("Please select gender");
             }
             else if(currentPhotoPath == null) {
-                Toast.makeText(PetMet.this, "Please select image of Pet.", Toast.LENGTH_LONG).show();
+                Toast.makeText(PetMate.this, "Please select image of Pet.", Toast.LENGTH_LONG).show();
             }
             else {
-                progressDialog = ProgressDialog.show(PetMet.this, "", "Uploading file...", true);
+                progressDialog = ProgressDialog.show(PetMate.this, "", "Uploading file...", true);
 
                 int selectedGender = genderOfPet.getCheckedRadioButtonId();
                 View genderSelected = genderOfPet.findViewById(selectedGender);
@@ -331,11 +328,11 @@ public class PetMet extends BaseActivity implements View.OnClickListener {
                     imageOfPet.setImageBitmap(imageToShow);
                 }
             } else if (resultCode == Activity.RESULT_CANCELED) {
-                Toast.makeText(PetMet.this, "Did not taken any image!", Toast.LENGTH_LONG).show();
+                Toast.makeText(PetMate.this, "Did not taken any image!", Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
             Log.i(e.getMessage(), "Error");
-            Toast.makeText(PetMet.this, "Camera Crop Error", Toast.LENGTH_LONG).show();
+            Toast.makeText(PetMate.this, "Camera Crop Error", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -409,7 +406,7 @@ public class PetMet extends BaseActivity implements View.OnClickListener {
     private RelativeLayout.LayoutParams getLayoutParams() {
 
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(300, 300);
-        layoutParams.addRule(RelativeLayout.BELOW, R.id.selectImagePetMet);
+        layoutParams.addRule(RelativeLayout.BELOW, R.id.selectImagePetMate);
         layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
         return layoutParams;
     }
@@ -436,11 +433,11 @@ public class PetMet extends BaseActivity implements View.OnClickListener {
         @Override
         public Void doInBackground(Void... params) {
             try {
-                int responseFromServer = PetMetFormUpload.uploadToRemoteServer(email,petCategoryName, petBreedName, petAge, petGender, petDescription, currentPhotoPath);
+                int responseFromServer = PetMateFormUpload.uploadToRemoteServer(email,petCategoryName, petBreedName, petAge, petGender, petDescription, currentPhotoPath);
                 if(responseFromServer == 200){
                     runOnUiThread(new Runnable() {
                         public void run() {
-                            Toast.makeText(PetMet.this, "File Upload Complete.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(PetMate.this, "File Upload Complete.", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -448,7 +445,7 @@ public class PetMet extends BaseActivity implements View.OnClickListener {
             } catch (Exception e) {
                 e.printStackTrace();
                 progressDialog.dismiss();
-                Toast.makeText(PetMet.this, "Exception : " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(PetMate.this, "Exception : " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
             return null;
         }

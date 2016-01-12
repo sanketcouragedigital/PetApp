@@ -42,9 +42,10 @@
         <activity android:name=".PetListDetails"/>
         <activity android:name=".PetListFilter"/>
         <activity android:name=".PetClinic"/>
-        <activity android:name=".PetMet"/>
-        <activity android:name=".PetMetList"/>
-        <activity android:name=".PetMetListDetails"/>
+        <activity android:name=".PetMate"/>
+        <activity android:name=".PetMateList"/>
+        <activity android:name=".PetMateListDetails"/>
+        <activity android:name=".PetMateListFilter"/>
         <activity android:name=".PetClinicDetails"/>
         <activity android:name=".CropImage.MonitoredActivity"/>
         <activity android:name=".CropImage.CropImage"/>

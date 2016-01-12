@@ -36,5 +36,5 @@
             app:elevation="6dp"
             app:fabSize="normal"
             app:backgroundTint="#DA4836"
-            app:layout_behavior="com.couragedigital.petapp.ScrollAwareFABBehavior"/>
+            app:layout_behavior="com.couragedigital.petapp.Behaviours.ScrollAwareFABBehavior"/>
 </android.support.design.widget.CoordinatorLayout>

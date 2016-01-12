@@ -12,17 +12,17 @@ import com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView;
 import com.couragedigital.petapp.PetListDetails;
 import com.couragedigital.petapp.R;
 import com.couragedigital.petapp.app.AppController;
-import com.couragedigital.petapp.model.PetList;
+import com.couragedigital.petapp.model.PetListItems;
 
 import java.util.List;
 
 public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetListAdapter.ViewHolder> {
-    List<PetList> petLists;
+    List<PetListItems> petLists;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;
     ViewHolder viewHolder;
 
-    public MyListingPetListAdapter(List<PetList> petLists) {
+    public MyListingPetListAdapter(List<PetListItems> petLists) {
         this.petLists = petLists;
     }
 
@@ -36,13 +36,13 @@ public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetLi
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        PetList petList = petLists.get(i);
-        viewHolder.bindPetList(petList);
+        PetListItems petListItems = petLists.get(i);
+        viewHolder.bindPetList(petListItems);
     }
 
-    private String setPetListingTypeButtonName(PetList petList) {
+    private String setPetListingTypeButtonName(PetListItems petListItems) {
         String petListingTypeString = null;
-        if(petList.getListingType().equals("For Adoption")) {
+        if(petListItems.getListingType().equals("For Adoption")) {
             petListingTypeString = "ADOPT";
         }
         else {
@@ -66,7 +66,7 @@ public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetLi
         public Button petFavourite;
         public View dividerLine;
 
-        private PetList petList;
+        private PetListItems petListItems;
         int statusOfFavourite = 0;
 
         public ViewHolder(View itemView) {
@@ -85,13 +85,13 @@ public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetLi
             //petFavourite.setOnClickListener(this);
         }
 
-        public void bindPetList(PetList petList) {
-            this.petList = petList;
-            petImage.setImageUrl(petList.getImage_path(), imageLoader);
+        public void bindPetList(PetListItems petListItems) {
+            this.petListItems = petListItems;
+            petImage.setImageUrl(petListItems.getImage_path(), imageLoader);
 
-            petBreed.setText(petList.getPetBreed());
-            petPostOwner.setText("Posted By : "+ petList.getPetPostOwner());
-            petListingTypeButton.setText(setPetListingTypeButtonName(petList));
+            petBreed.setText(petListItems.getPetBreed());
+            petPostOwner.setText("Posted By : "+ petListItems.getPetPostOwner());
+            petListingTypeButton.setText(setPetListingTypeButtonName(petListItems));
             //petFavourite.setBackgroundResource(R.drawable.favourite_disable);
             petFavourite.setVisibility(View.GONE);
             dividerLine.setBackgroundResource(R.color.list_internal_divider);
@@ -100,16 +100,16 @@ public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetLi
         @Override
         public void onClick(View v) {
             if(v.getId() == R.id.petListingTypeButton) {
-                if (this.petList != null) {
+                if (this.petListItems != null) {
                     Intent petFullInformation = new Intent(v.getContext(), PetListDetails.class);
-                    petFullInformation.putExtra("PET_IMAGE", petList.getImage_path());
-                    petFullInformation.putExtra("PET_BREED", petList.getPetBreed());
-                    petFullInformation.putExtra("PET_LISTING_TYPE", petList.getListingType());
-                    petFullInformation.putExtra("PET_AGE", petList.getPetAge());
-                    petFullInformation.putExtra("PET_GENDER", petList.getPetGender());
-                    petFullInformation.putExtra("PET_DESCRIPTION", petList.getPetDescription());
-                    petFullInformation.putExtra("POST_OWNER_EMAIL", petList.getPetPostOwnerEmail());
-                    petFullInformation.putExtra("POST_OWNER_MOBILENO", petList.getPetPostOwnerMobileNo());
+                    petFullInformation.putExtra("PET_IMAGE", petListItems.getImage_path());
+                    petFullInformation.putExtra("PET_BREED", petListItems.getPetBreed());
+                    petFullInformation.putExtra("PET_LISTING_TYPE", petListItems.getListingType());
+                    petFullInformation.putExtra("PET_AGE", petListItems.getPetAge());
+                    petFullInformation.putExtra("PET_GENDER", petListItems.getPetGender());
+                    petFullInformation.putExtra("PET_DESCRIPTION", petListItems.getPetDescription());
+                    petFullInformation.putExtra("POST_OWNER_EMAIL", petListItems.getPetPostOwnerEmail());
+                    petFullInformation.putExtra("POST_OWNER_MOBILENO", petListItems.getPetPostOwnerMobileNo());
 
                     v.getContext().startActivity(petFullInformation);
                 }

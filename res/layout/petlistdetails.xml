@@ -137,8 +137,10 @@
 
                         <View
                                 android:layout_width="wrap_content"
-                                android:layout_height="2dp"
+                                android:layout_height="1dp"
                                 android:id="@+id/petDetailsDividerLine"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
                                 android:layout_below="@+id/petDescriptionInPetDetails"
                                 android:layout_marginTop="16dp"/>
 

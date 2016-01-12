@@ -9,43 +9,42 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.couragedigital.petapp.model.PetMetList;
+import com.couragedigital.petapp.model.PetMateListItems;
 import com.couragedigital.petapp.app.AppController;
-import com.couragedigital.petapp.model.PetList;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
 
-public class PetMetRefreshFetchList {
+public class PetMateRefreshFetchList {
     private static final String TAG = PetFetchList.class.getSimpleName();
 
-    public static List petMetRefreshFetchList(List<PetMetList> petMetLists, RecyclerView.Adapter adapter, String url, SwipeRefreshLayout petListSwipeRefreshLayout) {
+    public static List petMateRefreshFetchList(List<PetMateListItems> petMateLists, RecyclerView.Adapter adapter, String url, SwipeRefreshLayout petListSwipeRefreshLayout) {
         JsonObjectRequest petListReq = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            JSONArray jsonArray = response.getJSONArray("showPetMetDetailsResponse");
+                            JSONArray jsonArray = response.getJSONArray("showPetMateDetailsResponse");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 try {
 
                                     JSONObject obj = jsonArray.getJSONObject(i);
-                                    PetMetList petMetList = new PetMetList();
-                                    petMetList.setPetMetBreed(replaceSpecialChars(obj.getString("pet_breed")));
-                                    petMetList.setPetMetPostOwner(replaceSpecialChars(obj.getString("name")));
-                                    petMetList.setImage_path(obj.getString("image_path"));
-                                    petMetList.setPetMetCategory(replaceSpecialChars(obj.getString("pet_category")));
-                                    petMetList.setPetMetAge(obj.getString("pet_age"));
-                                    petMetList.setPetMetGender(replaceSpecialChars(obj.getString("pet_gender")));
-                                    petMetList.setPetMetDescription(replaceSpecialChars(obj.getString("pet_description")));
-                                    petMetList.setPetMetPostDate(obj.getString("post_date"));
-                                    petMetList.setPetMetPostOwnerEmail(replaceSpecialChars(obj.getString("email")));
-                                    petMetList.setPetMetPostOwnerMobileNo(obj.getString("mobileno"));
+                                    PetMateListItems petMateListItems = new PetMateListItems();
+                                    petMateListItems.setPetMateBreed(replaceSpecialChars(obj.getString("pet_breed")));
+                                    petMateListItems.setPetMatePostOwner(replaceSpecialChars(obj.getString("name")));
+                                    petMateListItems.setImage_path(obj.getString("image_path"));
+                                    petMateListItems.setPetMateCategory(replaceSpecialChars(obj.getString("pet_category")));
+                                    petMateListItems.setPetMateAge(obj.getString("pet_age"));
+                                    petMateListItems.setPetMateGender(replaceSpecialChars(obj.getString("pet_gender")));
+                                    petMateListItems.setPetMateDescription(replaceSpecialChars(obj.getString("pet_description")));
+                                    petMateListItems.setPetMatePostDate(obj.getString("post_date"));
+                                    petMateListItems.setPetMatePostOwnerEmail(replaceSpecialChars(obj.getString("email")));
+                                    petMateListItems.setPetMatePostOwnerMobileNo(obj.getString("mobileno"));
 
                                     // adding pet to pets array
-                                    petMetLists.add(0, petMetList);
+                                    petMateLists.add(0, petMateListItems);
                                     adapter.notifyDataSetChanged();
 
 
@@ -76,7 +75,7 @@ public class PetMetRefreshFetchList {
             }
         });
         AppController.getInstance().addToRequestQueue(petListReq);
-        return petMetLists;
+        return petMateLists;
     }
 
     private static String replaceSpecialChars(String str) {

@@ -93,7 +93,9 @@
                             android:textStyle="bold"
                             android:textSize="17sp"
                             android:layout_alignParentTop="true"
+                            android:layout_marginRight="20dp"
                             android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
                             android:layout_toRightOf="@+id/locationview"/>
 
                     <View
@@ -101,7 +103,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="2dp"
                             android:background="@color/drawer_header_text"
-                            android:layout_below="@id/locationview"
+                            android:layout_below="@id/petClinicAddress"
                             android:layout_centerHorizontal="true"/>
 
 

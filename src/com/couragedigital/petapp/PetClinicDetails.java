@@ -29,9 +29,10 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
     String image_path = "";
     String clinicaddress = "";
     String doctorname = "";
+    String cliniccity = "";
+    String clinicarea = "";
 
     ImageView clinicImage;
-    TextView doctorName;
     TextView address;
     Button callbutton;
     Button emailbutton;
@@ -154,10 +155,10 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
 
         if (view.getId() == R.id.clinicDetailCallButton) {
             Intent callIntent = new Intent(Intent.ACTION_DIAL);
-            callIntent.setData(Uri.parse("tel:"+phoneno));
+            callIntent.setData(Uri.parse("tel:" + phoneno));
             startActivity(callIntent);
-        }else if(view.getId() == R.id.clinicDetailsEmailButton){
-            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto",email, null));
+        } else if (view.getId() == R.id.clinicDetailsEmailButton) {
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", email, null));
             startActivity(Intent.createChooser(emailIntent, "Choose an Email client :"));
         }
     }

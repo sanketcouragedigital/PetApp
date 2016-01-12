@@ -22,7 +22,7 @@ import java.util.List;
 public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.ViewHolder> {
 
 
-    List<ClinicListItems> clinicListsItem;
+   private List<ClinicListItems> clinicListsItem;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;
     ViewHolder viewHolder;
@@ -57,7 +57,11 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Vi
         public Button clinicFavourite;
         public Button clinicSeeMoreBtn;
         public View clinicdividerLine;
-        private ClinicListItems clinicListItems;
+        private ClinicListItems listItems;
+        String area;
+        String city;
+        String areawithcity;
+
         int statusOfclinicFavourite = 0;
 
         public ViewHolder(View itemView) {
@@ -78,10 +82,15 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Vi
         }
 
         public void bindPetList(ClinicListItems clinicList) {
-            this.clinicListItems = clinicList;
+            this.listItems = clinicList;
+            area = listItems.getArea();
+            city = listItems.getCity();
+
             clinicImage.setImageUrl(clinicList.getClinicImage_path(), imageLoader);
             clinicName.setText(clinicList.getClinicName());
-            clinicAddress.setText(clinicList.getClinicAdress());
+            areawithcity = area + ", " +city;
+            clinicAddress.setText(areawithcity);
+
 
             //clinicFavourite.setBackgroundResource(R.drawable.favourite_disable);
             clinicFavourite.setVisibility(View.GONE);
@@ -91,26 +100,16 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Vi
         @Override
         public void onClick(View view) {
             if (view.getId() == R.id.clinicSeeMoreButton) {
-                if (this.clinicListItems != null) {
+                if (this.listItems != null) {
                     Intent clinicInformation = new Intent(v.getContext(), PetClinicDetails.class);
-                    clinicInformation.putExtra("CLINIC_IMAGE", clinicListItems.getClinicImage_path());
-                    clinicInformation.putExtra("CLINIC_ADDRESS", clinicListItems.getClinicAdress());
-                    clinicInformation.putExtra("DOCTOR_NAME", clinicListItems.getDoctorName());
-                    clinicInformation.putExtra("DOCTOR_EMAIL", clinicListItems.getEmail());
-                    clinicInformation.putExtra("DOCTOR_CONTACT", clinicListItems.getContact());
+                    clinicInformation.putExtra("CLINIC_IMAGE", listItems.getClinicImage_path());
+                    clinicInformation.putExtra("CLINIC_ADDRESS", listItems.getClinicAddress());
+                    clinicInformation.putExtra("DOCTOR_NAME", listItems.getDoctorName());
+                    clinicInformation.putExtra("DOCTOR_EMAIL", listItems.getEmail());
+                    clinicInformation.putExtra("DOCTOR_CONTACT", listItems.getContact());
                     v.getContext().startActivity(clinicInformation);
                 }
-
             }
-            /*else if (view.getId() == R.id.clinicFavourite) {
-                if (statusOfclinicFavourite == 0) {
-                    clinicFavourite.setBackgroundResource(R.drawable.favourite_enable);
-                    statusOfclinicFavourite = 1;
-                } else if (statusOfclinicFavourite == 1) {
-                    clinicFavourite.setBackgroundResource(R.drawable.favourite_disable);
-                    statusOfclinicFavourite = 0;
-                }
-            }*/
         }
     }
 }

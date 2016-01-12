@@ -9,18 +9,21 @@ public class ClinicListItems {
     public String doctor_name;
     public String email;
     public String contact;
+    private String area;
+    private String city;
 
     public ClinicListItems() {
     }
 
-    public ClinicListItems(String clinicname, String clinicaddress, String doctorname, String email, String contact, String image_path) {
+    public ClinicListItems(String clinicname, String clinicaddress, String doctorname, String email, String contact, String image_path , String area ,String city) {
 
         this.clinic_name = clinicname;
-        this.clinic_address = clinicaddress;
         this.doctor_name = doctorname;
         this.email = email;
         this.contact = contact;
         this.image_path = image_path;
+        this.area = area;
+        this.city = city;
     }
 
     public String getClinicImage_path() {
@@ -39,11 +42,11 @@ public class ClinicListItems {
         this.clinic_name = clinicname;
     }
 
-    public String getClinicAdress() {
+    public String getClinicAddress() {
         return clinic_address;
     }
 
-    public void setClinicAdress(String clinicaddress) {
+    public void setClinicAddress(String clinicaddress) {
         this.clinic_address = clinicaddress;
     }
 
@@ -69,6 +72,22 @@ public class ClinicListItems {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
 }

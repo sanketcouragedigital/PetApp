@@ -25,15 +25,8 @@ public class Index extends BaseActivity {
     RecyclerView.LayoutManager layoutManager;
     HomeListAdapter mAdapter;
 
-    GPSTracker gpsTracker;
-    boolean isGPSEnabled = false;
-    // flag for network status
-    boolean isNetworkEnabled = false;
     private static Index instance = new Index();
     static Context context;
-    ConnectivityManager connectivityManager;
-    NetworkInfo wifiInfo, mobileInfo;
-    boolean connected = false;
 
     public List<DialogListInformaion> dialogListForViewPets = new ArrayList<DialogListInformaion>();
     public List<DialogListInformaion> dialogListForViewPetMets = new ArrayList<DialogListInformaion>();
@@ -60,22 +53,13 @@ public class Index extends BaseActivity {
         }
     }
 
-    /*    if (Index.getInstance(this).haveNetworkConnection()) {
-            Toast.makeText(this, "You are online!!!!", Toast.LENGTH_LONG).show();
-
-        } else {
-            Toast.makeText(this, "You are offline!!!!", Toast.LENGTH_LONG).show();
-            Log.v("Home", "############################You are not online!!!!");
-        }*/
-
-
     private void homeListMenu() {
 
         homeListCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.homeListCoordinatorLayout);
 
         //Home menus Tittle Names
-        final String[] titlename = new String[]{"Pets", "Pet Mate", "Clinics", "Services"};
-        final String[] description = new String[]{"Post, Adopt, Buy or Sell", "Your Pets Partner", "Nearby Pet Clinics", "All kinds of services for your pet"};
+        final String[] titlename = new String[]{"View/List Pets", "Mating", "Doctors", "Services"};
+        final String[] description = new String[]{"sample1", "sample2", "sample3", "sample4", "sample5"};
         final int[] background = {R.drawable.pet_view_list, R.drawable.pet_mate, R.drawable.pet_doctors, R.drawable.pet_accessories};
         indexListInfosArray = new ArrayList<IndexListInfo>();
         for (int i = 0; i < titlename.length; i++) {
@@ -97,7 +81,7 @@ public class Index extends BaseActivity {
         }
 
         //Mating Dailogbox Menu tittles Names
-        final String[] title2 = new String[]{"Upload Pet Mate Details", "List of Pet Mate"};
+        final String[] title2 = new String[]{"Upload Pet Met Details", "List of Pet Met"};
         final int[] icons2 = {R.drawable.addpet, R.drawable.view};
         for (int i = 0; i < title2.length; i++) {
             DialogListInformaion dialogListInformaion2 = new DialogListInformaion();

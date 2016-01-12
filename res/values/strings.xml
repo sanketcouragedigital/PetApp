@@ -11,8 +11,7 @@
     <string name="share_app">Share App</string>
     <string name="logout">LogOut</string>
     <string name="snackbartext">Hello Guys</string>
-    <string name="GPSAlertDialogTitle">GPS Alert</string>
-    <string name="GPSAlertDialogMessage">Check your GPS.</string>
-    <string name="action_settings">Ok</string>
-    <string name="cancel">Cancel</string>
+    <string name="no_location_detected">No Location Detected Check Your Location Setting </string>
+    <string name="location_Changed">Location Changed </string>
+
 </resources>

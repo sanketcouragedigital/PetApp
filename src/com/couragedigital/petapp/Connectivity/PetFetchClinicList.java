@@ -32,11 +32,13 @@ public class PetFetchClinicList {
                                     JSONObject obj = jsonArray.getJSONObject(i);
                                     ClinicListItems clinicListItems = new ClinicListItems();
                                     clinicListItems.setClinicName(obj.getString("clinic_name"));
-                                    clinicListItems.setClinicAdress(obj.getString("clinic_address"));
+                                    clinicListItems.setClinicAddress(obj.getString("clinic_address"));
                                     clinicListItems.setDoctorName(obj.getString("doctor_name"));
                                     clinicListItems.setContact(obj.getString("contact"));
                                     clinicListItems.setEmail(obj.getString("email"));
                                     clinicListItems.setClinicImage_path(obj.getString("clinic_image"));
+                                    clinicListItems.setCity(obj.getString("city"));
+                                    clinicListItems.setArea(obj.getString("area"));
 
                                     // adding pet to pets array
                                     clinicList.add(clinicListItems);

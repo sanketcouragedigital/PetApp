@@ -88,7 +88,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
 
         public void bindPetList(PetListItems petListItems) {
             this.petListItems = petListItems;
-            petImage.setImageUrl(petListItems.getImage_path(), imageLoader);
+            petImage.setImageUrl(petListItems.getFirstImagePath(), imageLoader);
 
             petBreed.setText(petListItems.getPetBreed());
             petPostOwner.setText("Posted By : "+ petListItems.getPetPostOwner());
@@ -103,7 +103,9 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
             if(v.getId() == R.id.petListingTypeButton) {
                 if (this.petListItems != null) {
                     Intent petFullInformation = new Intent(v.getContext(), PetListDetails.class);
-                    petFullInformation.putExtra("PET_IMAGE", petListItems.getImage_path());
+                    petFullInformation.putExtra("PET_FIRST_IMAGE", petListItems.getFirstImagePath());
+                    petFullInformation.putExtra("PET_SECOND_IMAGE", petListItems.getSecondImagePath());
+                    petFullInformation.putExtra("PET_THIRD_IMAGE", petListItems.getThirdImagePath());
                     petFullInformation.putExtra("PET_BREED", petListItems.getPetBreed());
                     petFullInformation.putExtra("PET_LISTING_TYPE", petListItems.getListingType());
                     petFullInformation.putExtra("PET_AGE", petListItems.getPetAge());

@@ -17,13 +17,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.couragedigital.petapp.model.PetListItems;
 
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class PetListDetails extends AppCompatActivity implements View.OnClickListener {
-    String image_path = "";
+    String firstImagePath = "";
+    String secondImagePath = "";
+    String thirdImagePath = "";
     String breed = "";
     String listingType = "";
     String age = "";
@@ -32,6 +35,11 @@ public class PetListDetails extends AppCompatActivity implements View.OnClickLis
     String email = "";
     String mobileno = "";
 
+    TextView petDetailsImageText;
+    View petDetailsImagesDividerLine;
+    ImageView petDetailsFirstImageThumbnail;
+    ImageView petDetailsSecondImageThumbnail;
+    ImageView petDetailsThirdImageThumbnail;
     ImageView petImage;
     TextView petBreed;
     TextView petListingType;
@@ -50,6 +58,7 @@ public class PetListDetails extends AppCompatActivity implements View.OnClickLis
     AppBarLayout petDetailsAppBarLayout;
     NestedScrollView petDetailsNestedScrollView;
     private int mutedColor;
+    PetListItems petListItems = new PetListItems();
 
     @TargetApi(23)
     @Override
@@ -59,7 +68,9 @@ public class PetListDetails extends AppCompatActivity implements View.OnClickLis
 
         Intent intent = getIntent();
         if (null != intent) {
-            image_path = intent.getStringExtra("PET_IMAGE");
+            firstImagePath = intent.getStringExtra("PET_FIRST_IMAGE");
+            secondImagePath = intent.getStringExtra("PET_SECOND_IMAGE");
+            thirdImagePath = intent.getStringExtra("PET_THIRD_IMAGE");
             breed = intent.getStringExtra("PET_BREED");
             listingType = intent.getStringExtra("PET_LISTING_TYPE");
             age = intent.getStringExtra("PET_AGE");
@@ -88,6 +99,12 @@ public class PetListDetails extends AppCompatActivity implements View.OnClickLis
         petDetailsNestedScrollView = (NestedScrollView) findViewById(R.id.petDetailsNestedScrollView);
 
         petImage = (ImageView) findViewById(R.id.petHeaderImage);
+        petDetailsImageText = (TextView) findViewById(R.id.petDetailsImageText);
+        petDetailsImagesDividerLine = findViewById(R.id.petDetailsImagesDividerLine);
+        petDetailsFirstImageThumbnail = (ImageView) findViewById(R.id.petDetailsFirstImageThumbnail);
+        petDetailsSecondImageThumbnail = (ImageView) findViewById(R.id.petDetailsSecondImageThumbnail);
+        petDetailsThirdImageThumbnail = (ImageView) findViewById(R.id.petDetailsThirdImageThumbnail);
+
         petBreed = (TextView) findViewById(R.id.petBreedInPetDetails);
         //petListingType = (TextView) findViewById(R.id.petListingTypeInPetDetails);
         petAge = (TextView) findViewById(R.id.petAgeInPetDetails);
@@ -98,38 +115,27 @@ public class PetListDetails extends AppCompatActivity implements View.OnClickLis
         petDetailsCallButton = (Button) findViewById(R.id.petDetailsCallButton);
         petDetailsEmailButton = (Button) findViewById(R.id.petDetailsEmailButton);
 
+        petDetailsFirstImageThumbnail.setOnClickListener(this);
+        petDetailsSecondImageThumbnail.setOnClickListener(this);
+        petDetailsThirdImageThumbnail.setOnClickListener(this);
         petDetailsCallButton.setOnClickListener(this);
         petDetailsEmailButton.setOnClickListener(this);
 
-        InputStream in = null;
-        try {
-            if (android.os.Build.VERSION.SDK_INT > 9) {
-                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                        .permitAll().build();
-
-                StrictMode.setThreadPolicy(policy);
-            }
-            in = new BufferedInputStream(new URL(image_path).openStream(), 4 * 1024);
-        } catch (NetworkOnMainThreadException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        final ByteArrayOutputStream dataStream = new ByteArrayOutputStream();
-        BufferedOutputStream out = new BufferedOutputStream(dataStream, 4 * 1024);
-        try {
-            copy(in, out);
-            out.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        final byte[] data = dataStream.toByteArray();
-        petDetailsbitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+        petDetailsbitmap = getBitmapImageFromURL(firstImagePath);
         petImage.setImageBitmap(petDetailsbitmap);
         petDetailsCollapsingToolbar.setTitle(setListingTypeTitle(listingType));
+
+        petDetailsImageText.setText("Images of " + breed);
+        petDetailsImagesDividerLine.setBackgroundResource(R.color.list_internal_divider);
+        petDetailsFirstImageThumbnail.setImageBitmap(petDetailsbitmap);
+        if(secondImagePath != null) {
+            petDetailsbitmap = getBitmapImageFromURL(secondImagePath);
+            petDetailsSecondImageThumbnail.setImageBitmap(petDetailsbitmap);
+        }
+        if(thirdImagePath != null) {
+            petDetailsbitmap = getBitmapImageFromURL(thirdImagePath);
+            petDetailsThirdImageThumbnail.setImageBitmap(petDetailsbitmap);
+        }
         String breedOfPet = "<b>Breed: </b>" + breed;
         petBreed.setText(Html.fromHtml(breedOfPet));
         String ageOfPet = "<b>Age: </b>" + age;
@@ -158,6 +164,37 @@ public class PetListDetails extends AppCompatActivity implements View.OnClickLis
                 petDetailsCollapsingToolbar.setContentScrimColor(mutedColor);
             }
         });*/
+    }
+
+    private Bitmap getBitmapImageFromURL(String imagePath) {
+        InputStream in = null;
+        try {
+            if (android.os.Build.VERSION.SDK_INT > 9) {
+                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                        .permitAll().build();
+
+                StrictMode.setThreadPolicy(policy);
+            }
+            in = new BufferedInputStream(new URL(imagePath).openStream(), 4 * 1024);
+        } catch (NetworkOnMainThreadException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        final ByteArrayOutputStream dataStream = new ByteArrayOutputStream();
+        BufferedOutputStream out = new BufferedOutputStream(dataStream, 4 * 1024);
+        try {
+            copy(in, out);
+            out.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        final byte[] data = dataStream.toByteArray();
+        petDetailsbitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+        return petDetailsbitmap;
     }
 
     private String setListingTypeTitle(String listingType) {
@@ -205,6 +242,18 @@ public class PetListDetails extends AppCompatActivity implements View.OnClickLis
             Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                     "mailto",email, null));
             startActivity(Intent.createChooser(emailIntent, "Choose an Email client :"));
+        }
+        else if(v.getId() == R.id.petDetailsFirstImageThumbnail) {
+            petDetailsbitmap = getBitmapImageFromURL(firstImagePath);
+            petImage.setImageBitmap(petDetailsbitmap);
+        }
+        else if(v.getId() == R.id.petDetailsSecondImageThumbnail) {
+            petDetailsbitmap = getBitmapImageFromURL(secondImagePath);
+            petImage.setImageBitmap(petDetailsbitmap);
+        }
+        else if(v.getId() == R.id.petDetailsThirdImageThumbnail) {
+            petDetailsbitmap = getBitmapImageFromURL(thirdImagePath);
+            petImage.setImageBitmap(petDetailsbitmap);
         }
     }
 }

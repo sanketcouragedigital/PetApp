@@ -76,7 +76,7 @@ public class PetMateListAdapter  extends RecyclerView.Adapter<PetMateListAdapter
 
         public void bindPetList(PetMateListItems petMateListItems) {
             this.petMateListItems = petMateListItems;
-            petMateImage.setImageUrl(petMateListItems.getImage_path(), imageLoader);
+            petMateImage.setImageUrl(petMateListItems.getFirstImagePath(), imageLoader);
 
             petMateBreed.setText(petMateListItems.getPetMateBreed());
             petMatePostOwner.setText("Posted By : "+ petMateListItems.getPetMatePostOwner());
@@ -91,7 +91,9 @@ public class PetMateListAdapter  extends RecyclerView.Adapter<PetMateListAdapter
             if(v.getId() == R.id.petMateSeeMoreButton) {
                 if (this.petMateListItems != null) {
                     Intent petFullInformation = new Intent(v.getContext(), PetMateListDetails.class);
-                    petFullInformation.putExtra("PET_MATE_IMAGE", petMateListItems.getImage_path());
+                    petFullInformation.putExtra("PET_FIRST_IMAGE", petMateListItems.getFirstImagePath());
+                    petFullInformation.putExtra("PET_SECOND_IMAGE", petMateListItems.getSecondImagePath());
+                    petFullInformation.putExtra("PET_THIRD_IMAGE", petMateListItems.getThirdImagePath());
                     petFullInformation.putExtra("PET_MATE_BREED", petMateListItems.getPetMateBreed());
                     petFullInformation.putExtra("PET_MATE_AGE", petMateListItems.getPetMateAge());
                     petFullInformation.putExtra("PET_MATE_GENDER", petMateListItems.getPetMateGender());

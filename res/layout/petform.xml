@@ -132,16 +132,38 @@
                     android:layout_below="@+id/descriptionOfPet"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="14dp"/>
-
-            <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageOfPet"
-                    android:layout_below="@+id/selectImage"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"/>
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/selectImage">
+                <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/firstImageOfPet"
+                        android:layout_marginTop="10dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:layout_weight="1"/>
+                <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/secondImageOfPet"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:layout_weight="1"/>
+                <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/thirdImageOfPet"
+                        android:layout_marginTop="10dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:layout_weight="1"/>
+            </LinearLayout>
         </RelativeLayout>
     </ScrollView>
 

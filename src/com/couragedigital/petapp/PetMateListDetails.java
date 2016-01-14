@@ -18,13 +18,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.couragedigital.petapp.model.PetMateListItems;
 
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class PetMateListDetails extends AppCompatActivity implements View.OnClickListener {
-    String image_path = "";
+    String firstImagePath = "";
+    String secondImagePath = "";
+    String thirdImagePath = "";
     String breed = "";
     String age = "";
     String gender = "";
@@ -32,6 +35,11 @@ public class PetMateListDetails extends AppCompatActivity implements View.OnClic
     String email = "";
     String mobileno = "";
 
+    TextView petMateDetailsImageText;
+    View petMateDetailsImagesDividerLine;
+    ImageView petMateDetailsFirstImageThumbnail;
+    ImageView petMateDetailsSecondImageThumbnail;
+    ImageView petMateDetailsThirdImageThumbnail;
     ImageView petMateImage;
     TextView petMateBreed;
     TextView petMateAge;
@@ -48,6 +56,8 @@ public class PetMateListDetails extends AppCompatActivity implements View.OnClic
     AppBarLayout petMateDetailsAppBarLayout;
     NestedScrollView petMateDetailsNestedScrollView;
 
+    PetMateListItems petMateListItems = new PetMateListItems();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +65,9 @@ public class PetMateListDetails extends AppCompatActivity implements View.OnClic
 
         Intent intent = getIntent();
         if (null != intent) {
-            image_path = intent.getStringExtra("PET_MATE_IMAGE");
+            firstImagePath = intent.getStringExtra("PET_FIRST_IMAGE");
+            secondImagePath = intent.getStringExtra("PET_SECOND_IMAGE");
+            thirdImagePath = intent.getStringExtra("PET_THIRD_IMAGE");
             breed = intent.getStringExtra("PET_MATE_BREED");
             age = intent.getStringExtra("PET_MATE_AGE");
             gender = intent.getStringExtra("PET_MATE_GENDER");
@@ -83,6 +95,12 @@ public class PetMateListDetails extends AppCompatActivity implements View.OnClic
         petMateDetailsNestedScrollView = (NestedScrollView) findViewById(R.id.petMateDetailsNestedScrollView);
 
         petMateImage = (ImageView) findViewById(R.id.petMateHeaderImage);
+        petMateDetailsImageText = (TextView) findViewById(R.id.petMateDetailsImageText);
+        petMateDetailsImagesDividerLine = findViewById(R.id.petMateDetailsImagesDividerLine);
+        petMateDetailsFirstImageThumbnail = (ImageView) findViewById(R.id.petMateDetailsFirstImageThumbnail);
+        petMateDetailsSecondImageThumbnail = (ImageView) findViewById(R.id.petMateDetailsSecondImageThumbnail);
+        petMateDetailsThirdImageThumbnail = (ImageView) findViewById(R.id.petMateDetailsThirdImageThumbnail);
+
         petMateBreed = (TextView) findViewById(R.id.petMateBreedInPetDetails);
         //petListingType = (TextView) findViewById(R.id.petListingTypeInPetDetails);
         petMateAge = (TextView) findViewById(R.id.petMateAgeInPetDetails);
@@ -95,35 +113,21 @@ public class PetMateListDetails extends AppCompatActivity implements View.OnClic
         petMateDetailsCallButton.setOnClickListener(this);
         petMateDetailsEmailButton.setOnClickListener(this);
 
-        InputStream in = null;
-        try {
-            if (android.os.Build.VERSION.SDK_INT > 9) {
-                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                        .permitAll().build();
-
-                StrictMode.setThreadPolicy(policy);
-            }
-            in = new BufferedInputStream(new URL(image_path).openStream(), 4 * 1024);
-        } catch (NetworkOnMainThreadException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        final ByteArrayOutputStream dataStream = new ByteArrayOutputStream();
-        BufferedOutputStream out = new BufferedOutputStream(dataStream, 4 * 1024);
-        try {
-            copy(in, out);
-            out.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        final byte[] data = dataStream.toByteArray();
-        petMateDetailsbitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+        petMateDetailsbitmap = getBitmapImageFromURL(firstImagePath);
         petMateImage.setImageBitmap(petMateDetailsbitmap);
         petMateDetailsCollapsingToolbar.setTitle("For Mating");
+
+        petMateDetailsImageText.setText("Images of " + breed);
+        petMateDetailsImagesDividerLine.setBackgroundResource(R.color.list_internal_divider);
+        petMateDetailsFirstImageThumbnail.setImageBitmap(petMateDetailsbitmap);
+        if(secondImagePath != null) {
+            petMateDetailsbitmap = getBitmapImageFromURL(secondImagePath);
+            petMateDetailsSecondImageThumbnail.setImageBitmap(petMateDetailsbitmap);
+        }
+        if(thirdImagePath != null) {
+            petMateDetailsbitmap = getBitmapImageFromURL(thirdImagePath);
+            petMateDetailsThirdImageThumbnail.setImageBitmap(petMateDetailsbitmap);
+        }
         String breedOfPet = "<b>Breed: </b>" + breed;
         petMateBreed.setText(Html.fromHtml(breedOfPet));
         String ageOfPet = "<b>Age: </b>" + age;
@@ -145,6 +149,37 @@ public class PetMateListDetails extends AppCompatActivity implements View.OnClic
                 setAppBarOffset(heightPx);
             }
         });
+    }
+
+    private Bitmap getBitmapImageFromURL(String imagePath) {
+        InputStream in = null;
+        try {
+            if (android.os.Build.VERSION.SDK_INT > 9) {
+                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                        .permitAll().build();
+
+                StrictMode.setThreadPolicy(policy);
+            }
+            in = new BufferedInputStream(new URL(imagePath).openStream(), 4 * 1024);
+        } catch (NetworkOnMainThreadException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        final ByteArrayOutputStream dataStream = new ByteArrayOutputStream();
+        BufferedOutputStream out = new BufferedOutputStream(dataStream, 4 * 1024);
+        try {
+            copy(in, out);
+            out.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        final byte[] data = dataStream.toByteArray();
+        petMateDetailsbitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+        return petMateDetailsbitmap;
     }
 
     private void setAppBarOffset(int i) {
@@ -177,6 +212,18 @@ public class PetMateListDetails extends AppCompatActivity implements View.OnClic
             Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                     "mailto",email, null));
             startActivity(Intent.createChooser(emailIntent, "Choose an Email client :"));
+        }
+        else if(v.getId() == R.id.petMateDetailsFirstImageThumbnail) {
+            petMateDetailsbitmap = getBitmapImageFromURL(firstImagePath);
+            petMateImage.setImageBitmap(petMateDetailsbitmap);
+        }
+        else if(v.getId() == R.id.petMateDetailsSecondImageThumbnail) {
+            petMateDetailsbitmap = getBitmapImageFromURL(secondImagePath);
+            petMateImage.setImageBitmap(petMateDetailsbitmap);
+        }
+        else if(v.getId() == R.id.petMateDetailsThirdImageThumbnail) {
+            petMateDetailsbitmap = getBitmapImageFromURL(thirdImagePath);
+            petMateImage.setImageBitmap(petMateDetailsbitmap);
         }
     }
 }

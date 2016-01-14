@@ -28,9 +28,10 @@ import android.app.ProgressDialog;
 
 public class PetMateList extends BaseActivity {
 
-    private static final String TAG = PetList.class.getSimpleName();
+    private static final String TAG = PetMateList.class.getSimpleName();
 
     // http://c/dev/api/petappapi.php?method=showPetDetails&format=json
+    // "http://storage.couragedigital.com/dev/api/petappapi.php"
     private static String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
     private ProgressDialog progressDialog;
     public List<PetMateListItems> petMateLists = new ArrayList<PetMateListItems>();

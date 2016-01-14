@@ -62,7 +62,9 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
     RadioButton adoptionOfPet;
     EditText priceOfPet;
     Button selectImageButton;
-    ImageView imageOfPet;
+    ImageView firstImageOfPet;
+    ImageView secondImageOfPet;
+    ImageView thirdImageOfPet;
     FloatingActionButton uploadFabButton;
 
     String petCategoryName;
@@ -87,6 +89,10 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
     String timeStamp;
     File image;
     File storageDir;
+    File cropFile;
+    String firstImagePath = "";
+    String secondImagePath = "";
+    String thirdImagePath = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -101,7 +107,9 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
         giveAwayType = (RadioGroup) this.findViewById(R.id.giveAwayOfPet);
         priceOfPet = (EditText) this.findViewById(R.id.priceOfPet);
         selectImageButton = (Button) this.findViewById(R.id.selectImage);
-        imageOfPet = (ImageView) this.findViewById(R.id.imageOfPet);
+        firstImageOfPet = (ImageView) this.findViewById(R.id.firstImageOfPet);
+        secondImageOfPet = (ImageView) this.findViewById(R.id.secondImageOfPet);
+        thirdImageOfPet = (ImageView) this.findViewById(R.id.thirdImageOfPet);
         uploadFabButton = (FloatingActionButton) this.findViewById(R.id.petFormSubmitFab);
 
         HashMap<String, String> user = sessionManager.getUserDetails();
@@ -241,55 +249,60 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.selectImage) {
-            dialogAdapter = new ArrayAdapter<String>(PetForm.this, android.R.layout.select_dialog_item){
-                @Override
-                public View getView(int position, View convertView, ViewGroup parent) {
-                    View view = super.getView(position, convertView, parent);
-                    TextView text = (TextView) view.findViewById(android.R.id.text1);
-                    text.setTextColor(Color.BLACK);
-                    text.setTextSize(TypedValue.COMPLEX_UNIT_PX,
-                            getResources().getDimension(R.dimen.alertDialogListNames));
-                    text.setTypeface(null, Typeface.ITALIC);
-                    return view;
-                }
-            };
-            dialogAdapter.add("Take from Camera");
-            dialogAdapter.add("Select from Gallery");
-            AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(PetForm.this, R.style.AlertDialogCustom));
-            builder.setTitle("Select Image");
-            builder.setAdapter(dialogAdapter, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    if(which == 0) {
-                        alertDialog.dismiss();
-                        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        // Ensure that there's a camera activity to handle the intent
-                        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                            // Create the File where the photo should go
-                            File photoFile = null;
-                            try {
-                                photoFile = createImageFile();
-                            } catch (IOException ex) {
-                                // Error occurred while creating the File
-                                ex.printStackTrace();
+            if(thirdImageOfPet.getDrawable() != null) {
+                Toast.makeText(PetForm.this, "Can not select more than 3 images", Toast.LENGTH_LONG).show();
+                selectImageButton.setClickable(false);
+            }
+            else {
+                dialogAdapter = new ArrayAdapter<String>(PetForm.this, android.R.layout.select_dialog_item) {
+                    @Override
+                    public View getView(int position, View convertView, ViewGroup parent) {
+                        View view = super.getView(position, convertView, parent);
+                        TextView text = (TextView) view.findViewById(android.R.id.text1);
+                        text.setTextColor(Color.BLACK);
+                        text.setTextSize(TypedValue.COMPLEX_UNIT_PX,
+                                getResources().getDimension(R.dimen.alertDialogListNames));
+                        text.setTypeface(null, Typeface.ITALIC);
+                        return view;
+                    }
+                };
+                dialogAdapter.add("Take from Camera");
+                dialogAdapter.add("Select from Gallery");
+                AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(PetForm.this, R.style.AlertDialogCustom));
+                builder.setTitle("Select Image");
+                builder.setAdapter(dialogAdapter, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (which == 0) {
+                            alertDialog.dismiss();
+                            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            // Ensure that there's a camera activity to handle the intent
+                            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                                // Create the File where the photo should go
+                                File photoFile = null;
+                                try {
+                                    photoFile = createImageFile();
+                                } catch (IOException ex) {
+                                    // Error occurred while creating the File
+                                    ex.printStackTrace();
+                                }
+                                // Continue only if the File was successfully created
+                                if (photoFile != null) {
+                                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
+                                    startActivityForResult(takePictureIntent, CAMERA_REQUEST);
+                                }
                             }
-                            // Continue only if the File was successfully created
-                            if (photoFile != null) {
-                                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
-                                startActivityForResult(takePictureIntent, CAMERA_REQUEST);
-                            }
+                        } else if (which == 1) {
+                            alertDialog.dismiss();
+                            // Create intent to Open Image applications like Gallery, Google Photos
+                            Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                            startActivityForResult(galleryIntent, GALLERY_REQUEST);
                         }
                     }
-                    else if(which == 1) {
-                        alertDialog.dismiss();
-                        // Create intent to Open Image applications like Gallery, Google Photos
-                        Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                        startActivityForResult(galleryIntent, GALLERY_REQUEST);
-                    }
-                }
-            });
-            alertDialog = builder.create();
+                });
+                alertDialog = builder.create();
 
-            alertDialog.show();
+                alertDialog.show();
+            }
         }
         else if(v.getId() == R.id.petFormSubmitFab) {
 
@@ -316,7 +329,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
                 petsell = (RadioButton) findViewById(R.id.petSell);
                 petsell.setError(("please select Option"));
             }
-            else if(currentPhotoPath == null) {
+            else if(firstImagePath == null) {
                 Toast.makeText(PetForm.this, "Please select image of Pet.", Toast.LENGTH_LONG).show();
             }
             else {
@@ -369,15 +382,13 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
                     this.imageToShow = extras.getParcelable("data");
                     String filename=currentPhotoPath.substring(currentPhotoPath.lastIndexOf("/")+1);
                     this.imageToShow = saveCameraCropBitmap(filename, imageToShow);
-                    imageOfPet.setLayoutParams(getLayoutParams());
-                    imageOfPet.setImageBitmap(imageToShow);
+                    setBitmapToImage(this.imageToShow);
                 }
                 else if(requestCode == PIC_GALLERY_CROP) {
                     Bundle extras = intent.getExtras();
                     this.imageToShow = extras.getParcelable("data");
                     this.imageToShow = saveGalleryCropBitmap(imageToShow);
-                    imageOfPet.setLayoutParams(getLayoutParams());
-                    imageOfPet.setImageBitmap(imageToShow);
+                    setBitmapToImage(this.imageToShow);
                 }
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 Toast.makeText(PetForm.this, "Did not taken any image!", Toast.LENGTH_LONG).show();
@@ -385,6 +396,25 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
         } catch (Exception e) {
             Log.i(e.getMessage(), "Error");
             Toast.makeText(PetForm.this, "Camera Crop Error", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void setBitmapToImage(Bitmap imageToShow) {
+        if(firstImageOfPet.getDrawable() == null) {
+            //firstImageOfPet.setLayoutParams(getLayoutParams());
+            firstImageOfPet.setImageBitmap(imageToShow);
+            firstImagePath = cropFile.getAbsolutePath();
+            selectImageButton.setText("Select More Images");
+        }
+        else if(secondImageOfPet.getDrawable() == null) {
+            //secondImageOfPet.setLayoutParams(getLayoutParams());
+            secondImageOfPet.setImageBitmap(imageToShow);
+            secondImagePath = cropFile.getAbsolutePath();
+        }
+        else if(thirdImageOfPet.getDrawable() == null) {
+            //thirdImageOfPet.setLayoutParams(getLayoutParams());
+            thirdImageOfPet.setImageBitmap(imageToShow);
+            thirdImagePath = cropFile.getAbsolutePath();
         }
     }
 
@@ -418,15 +448,14 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
     private Bitmap saveCameraCropBitmap(String filename, Bitmap imageToShow) {
         FileOutputStream outStream = null;
 
-        File file = new File(currentPhotoPath);
-        if (file.exists()) {
-            file.delete();
-            file = new File(storageDir, timeStamp + ".png");
+        cropFile = new File(currentPhotoPath);
+        if (cropFile.exists()) {
+            cropFile.delete();
+            cropFile = new File(storageDir, timeStamp + ".png");
         }
         try {
-            outStream = new FileOutputStream(file);
+            outStream = new FileOutputStream(cropFile);
             imageToShow.compress(Bitmap.CompressFormat.PNG, 100, outStream);
-            currentPhotoPath = file.getAbsolutePath();
             outStream.flush();
             outStream.close();
         } catch (Exception e) {
@@ -442,11 +471,10 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
         storageDir = Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_DCIM);
 
-        File file = new File(storageDir, timeStamp + ".png");
+        cropFile = new File(storageDir, timeStamp + ".png");
         try {
-            outStream = new FileOutputStream(file);
+            outStream = new FileOutputStream(cropFile);
             imageToShow.compress(Bitmap.CompressFormat.PNG, 100, outStream);
-            currentPhotoPath = file.getAbsolutePath();
             outStream.flush();
             outStream.close();
         } catch (Exception e) {
@@ -487,7 +515,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
         @Override
         protected Void doInBackground(Void... params) {
             try {
-                int responseFromServer = PetListFormUpload.uploadToRemoteServer(petCategoryName, petBreedName, petAge, petGender, petDescription, petAdoption, petPrice, currentPhotoPath, email);
+                int responseFromServer = PetListFormUpload.uploadToRemoteServer(petCategoryName, petBreedName, petAge, petGender, petDescription, petAdoption, petPrice, firstImagePath, secondImagePath, thirdImagePath, email, PetForm.this);
                 if(responseFromServer == 200){
                     runOnUiThread(new Runnable() {
                         public void run() {

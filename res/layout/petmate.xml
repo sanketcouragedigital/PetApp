@@ -90,15 +90,38 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="14dp"/>
 
-            <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageOfPetMate"
-                    android:layout_below="@+id/selectImagePetMate"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"/>
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                          android:orientation="horizontal"
+                          android:layout_width="match_parent"
+                          android:layout_height="match_parent"
+                          android:layout_below="@+id/selectImagePetMate">
+                <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/firstImageOfPetMate"
+                        android:layout_marginTop="10dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:layout_weight="1"/>
+                <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/secondImageOfPetMate"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:layout_weight="1"/>
+                <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/thirdImageOfPetMate"
+                        android:layout_marginTop="10dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:layout_weight="1"/>
+            </LinearLayout>
         </RelativeLayout>
     </ScrollView>
     <android.support.design.widget.FloatingActionButton

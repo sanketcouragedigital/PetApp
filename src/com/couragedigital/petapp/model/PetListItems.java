@@ -3,7 +3,9 @@ package com.couragedigital.petapp.model;
 import java.util.Date;
 
 public class PetListItems {
-    public String image_path;
+    public String firstImagePath;
+    public String secondImagePath;
+    public String thirdImagePath;
     public String petBreed;
     public String petPostOwner;
     public String listingType;
@@ -18,8 +20,10 @@ public class PetListItems {
     public PetListItems() {
     }
 
-    public PetListItems(String image_path, String petBreed, String petPostOwner, String listingType, String petCategory, String petAge, String petGender, String petDescription, String petPostDate, String petPostOwnerEmail, String petPostOwnerMobileNo) {
-        this.image_path = image_path;
+    public PetListItems(String firstImagePath, String secondImagePath, String thirdImagePath, String petBreed, String petPostOwner, String listingType, String petCategory, String petAge, String petGender, String petDescription, String petPostDate, String petPostOwnerEmail, String petPostOwnerMobileNo) {
+        this.firstImagePath = firstImagePath;
+        this.secondImagePath = secondImagePath;
+        this.thirdImagePath = thirdImagePath;
         this.petBreed = petBreed;
         this.petPostOwner = petPostOwner;
         this.listingType = listingType;
@@ -32,12 +36,28 @@ public class PetListItems {
         this.petPostOwnerMobileNo = petPostOwnerMobileNo;
     }
 
-    public String getImage_path() {
-        return image_path;
+    public String getFirstImagePath() {
+        return firstImagePath;
     }
 
-    public void setImage_path(String image_path) {
-        this.image_path = "http://storage.couragedigital.com/dev/pet_images/"+image_path;
+    public void setFirstImagePath(String firstImagePath) {
+        this.firstImagePath = "http://storage.couragedigital.com/dev/pet_images/"+firstImagePath;
+    }
+
+    public String getSecondImagePath() {
+        return secondImagePath;
+    }
+
+    public void setSecondImagePath(String secondImagePath) {
+        this.secondImagePath = "http://storage.couragedigital.com/dev/pet_images/"+secondImagePath;
+    }
+
+    public String getThirdImagePath() {
+        return thirdImagePath;
+    }
+
+    public void setThirdImagePath(String thirdImagePath) {
+        this.thirdImagePath = "http://storage.couragedigital.com/dev/pet_images/"+thirdImagePath;
     }
 
     public String getPetBreed() {

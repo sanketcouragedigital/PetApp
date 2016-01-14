@@ -13,5 +13,4 @@
     <string name="snackbartext">Hello Guys</string>
     <string name="no_location_detected">No Location Detected Check Your Location Setting </string>
     <string name="location_Changed">Location Changed </string>
-
 </resources>

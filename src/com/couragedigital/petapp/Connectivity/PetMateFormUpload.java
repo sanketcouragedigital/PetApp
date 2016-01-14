@@ -20,7 +20,7 @@ public class PetMateFormUpload {
     //http://192.168.0.3/PetAppAPI/api/petappapi.php
     //http://storage.couragedigital.com/dev/api/petappapi.php
 
-    public static int uploadToRemoteServer(String emailforlatlong, String petCategoryName, String petBreedName, Integer petAge, String petGender, String petDescription, String currentPhotoPath) throws Exception {
+    public static int uploadToRemoteServer(String emailforlatlong, String petCategoryName, String petBreedName, Integer petAge, String petGender, String petDescription, String firstImagePath, String secondImagePath, String thirdImagePath) throws Exception {
         int serverResponseCode = 0;
         String upLoadServerUri = SERVER_URL;
         String categoryOfPet = petCategoryName;
@@ -28,9 +28,10 @@ public class PetMateFormUpload {
         Integer ageOfPet = petAge;
         String genderOfPet = petGender;
         String descriptionOfPet = petDescription;
-        String petImage = currentPhotoPath;
+        String firstPetImage = firstImagePath;
+        String secondPetImage = secondImagePath;
+        String thirdPetImage = thirdImagePath;
         String email = emailforlatlong;
-
 
         HttpURLConnection conn = null;
         DataOutputStream dos = null;
@@ -40,15 +41,44 @@ public class PetMateFormUpload {
         int bytesRead, bytesAvailable, bufferSize;
         byte[] buffer;
         int maxBufferSize = 1 * 1024 * 1024;
-        File sourceFile = new File(petImage);
-        if (!sourceFile.isFile()) {
-            Log.e("uploadFile", "Source File Does not exist");
-            return 0;
+        File firstSourceFile = null;
+        File secondSourceFile = null;
+        File thirdSourceFile = null;
+        FileInputStream firstFileInputStream = null;
+        FileInputStream secondFileInputStream = null;
+        FileInputStream thirdFileInputStream = null;
+
+        if(!firstPetImage.isEmpty() && firstPetImage != null) {
+            firstSourceFile = new File(firstPetImage);
+            if (!firstSourceFile.isFile()) {
+                Log.e("uploadFile", "First source File not exist in the phone");
+                return 0;
+            }
+        }
+        if(!secondPetImage.isEmpty() && secondPetImage != null) {
+            secondSourceFile = new File(secondPetImage);
+            if (!secondSourceFile.isFile()) {
+                Log.e("uploadFile", "Second source File not exist in the phone");
+                return 0;
+            }
+        }
+        if(!thirdPetImage.isEmpty() && thirdPetImage != null) {
+            thirdSourceFile = new File(thirdPetImage);
+            if (!thirdSourceFile.isFile()) {
+                Log.e("uploadFile", "Third source File not exist in the phone");
+                return 0;
+            }
         }
         try { // open a URL connection to the Servlet
             String method = "savePetMateDetails";
             String format = "json";
-            FileInputStream fileInputStream = new FileInputStream(sourceFile);
+            firstFileInputStream = new FileInputStream(firstSourceFile);
+            if(!secondPetImage.isEmpty()) {
+                secondFileInputStream = new FileInputStream(secondSourceFile);
+            }
+            if(!thirdPetImage.isEmpty()) {
+                thirdFileInputStream = new FileInputStream(thirdSourceFile);
+            }
             URL url = new URL(upLoadServerUri);
             conn = (HttpURLConnection) url.openConnection(); // Open a HTTP  connection to  the URL
             conn.setDoInput(true); // Allow Inputs
@@ -63,7 +93,9 @@ public class PetMateFormUpload {
             conn.setRequestProperty("ageOfPet", String.valueOf(ageOfPet));
             conn.setRequestProperty("genderOfPet", genderOfPet);
             conn.setRequestProperty("descriptionOfPet", descriptionOfPet);
-            conn.setRequestProperty("petImage", petImage);
+            conn.setRequestProperty("thirdPetImage", thirdPetImage);
+            conn.setRequestProperty("secondPetImage", secondPetImage);
+            conn.setRequestProperty("firstPetImage", firstPetImage);
             conn.setRequestProperty("email", email);
             conn.setRequestProperty("method", method);
             conn.setRequestProperty("format", format);
@@ -118,23 +150,73 @@ public class PetMateFormUpload {
             dos.writeBytes(format);
             dos.writeBytes(lineEnd);
 
+            if(!thirdPetImage.isEmpty()) {
+                dos.writeBytes(twoHyphens + boundary + lineEnd);
+                dos.writeBytes("Content-Disposition: form-data; name=\"thirdPetImage\";filename=\""+ thirdPetImage + "\";" + lineEnd);
+                dos.writeBytes(lineEnd);
+                dos.writeBytes(format);
+                dos.writeBytes(lineEnd);
+            }
+
+            if(!secondPetImage.isEmpty()) {
+                dos.writeBytes(twoHyphens + boundary + lineEnd);
+                dos.writeBytes("Content-Disposition: form-data; name=\"secondPetImage\";filename=\""+ secondPetImage + "\";" + lineEnd);
+                dos.writeBytes(lineEnd);
+                dos.writeBytes(format);
+                dos.writeBytes(lineEnd);
+            }
+
             dos.writeBytes(twoHyphens + boundary + lineEnd);
-            dos.writeBytes("Content-Disposition: form-data; name=\"petImage\";filename=\""+ petImage + "\";" + lineEnd);
+            dos.writeBytes("Content-Disposition: form-data; name=\"firstPetImage\";filename=\""+ firstPetImage + "\";" + lineEnd);
             dos.writeBytes(lineEnd);
 
-            bytesAvailable = fileInputStream.available(); // create a buffer of  maximum size
+            bytesAvailable = firstFileInputStream.available(); // create a buffer of  maximum size
 
             bufferSize = Math.min(bytesAvailable, maxBufferSize);
             buffer = new byte[bufferSize];
 
             // read file and write it into form...
-            bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+            bytesRead = firstFileInputStream.read(buffer, 0, bufferSize);
 
             while (bytesRead > 0) {
                 dos.write(buffer, 0, bufferSize);
-                bytesAvailable = fileInputStream.available();
+                bytesAvailable = firstFileInputStream.available();
                 bufferSize = Math.min(bytesAvailable, maxBufferSize);
-                bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+                bytesRead = firstFileInputStream.read(buffer, 0, bufferSize);
+            }
+
+            if(!secondPetImage.isEmpty()) {
+                bytesAvailable = secondFileInputStream.available(); // create a buffer of  maximum size
+
+                bufferSize = Math.min(bytesAvailable, maxBufferSize);
+                buffer = new byte[bufferSize];
+
+                // read file and write it into form...
+                bytesRead = secondFileInputStream.read(buffer, 0, bufferSize);
+
+                while (bytesRead > 0) {
+                    dos.write(buffer, 0, bufferSize);
+                    bytesAvailable = secondFileInputStream.available();
+                    bufferSize = Math.min(bytesAvailable, maxBufferSize);
+                    bytesRead = secondFileInputStream.read(buffer, 0, bufferSize);
+                }
+            }
+
+            if(!thirdPetImage.isEmpty()) {
+                bytesAvailable = thirdFileInputStream.available(); // create a buffer of  maximum size
+
+                bufferSize = Math.min(bytesAvailable, maxBufferSize);
+                buffer = new byte[bufferSize];
+
+                // read file and write it into form...
+                bytesRead = thirdFileInputStream.read(buffer, 0, bufferSize);
+
+                while (bytesRead > 0) {
+                    dos.write(buffer, 0, bufferSize);
+                    bytesAvailable = thirdFileInputStream.available();
+                    bufferSize = Math.min(bytesAvailable, maxBufferSize);
+                    bytesRead = thirdFileInputStream.read(buffer, 0, bufferSize);
+                }
             }
 
             // send multipart form data necesssary after file data...
@@ -147,7 +229,13 @@ public class PetMateFormUpload {
 
             Log.i("uploadFile", "HTTP Response is : " + serverResponseMessage + ": " + serverResponseCode);
             //close the streams //
-            fileInputStream.close();
+            firstFileInputStream.close();
+            if(!secondPetImage.isEmpty()) {
+                secondFileInputStream.close();
+            }
+            if(!thirdPetImage.isEmpty()) {
+                thirdFileInputStream.close();
+            }
             dos.flush();
             dos.close();
 

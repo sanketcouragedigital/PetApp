@@ -34,7 +34,13 @@ public class PetRefreshFetchList {
                                     PetListItems petListItems = new PetListItems();
                                     petListItems.setPetBreed(replaceSpecialChars(obj.getString("pet_breed")));
                                     petListItems.setPetPostOwner(replaceSpecialChars(obj.getString("name")));
-                                    petListItems.setImage_path(obj.getString("image_path"));
+                                    petListItems.setFirstImagePath(obj.getString("first_image_path"));
+                                    if(!obj.getString("second_image_path").isEmpty() && obj.getString("second_image_path") != null) {
+                                        petListItems.setSecondImagePath(obj.getString("second_image_path"));
+                                    }
+                                    if(!obj.getString("third_image_path").isEmpty() && obj.getString("third_image_path") != null) {
+                                        petListItems.setThirdImagePath(obj.getString("third_image_path"));
+                                    }
                                     if(!obj.getString("pet_adoption").equals("")) {
                                         petListItems.setListingType(replaceSpecialChars(obj.getString("pet_adoption")));
                                     }

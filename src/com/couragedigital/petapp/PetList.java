@@ -31,7 +31,8 @@ public class PetList extends BaseActivity {
     private static final String TAG = PetList.class.getSimpleName();
 
     // http://c/dev/api/petappapi.php?method=showPetDetails&format=json
-    private static String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
+    // "http://storage.couragedigital.com/dev/api/petappapi.php"
+    private static String url = "http://192.168.0.5/PetAppAPI/api/petappapi.php";
     private ProgressDialog progressDialog;
     public List<PetListItems> petLists = new ArrayList<PetListItems>();
 

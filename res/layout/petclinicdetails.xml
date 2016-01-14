@@ -72,38 +72,54 @@
 
                 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-                    <ImageView
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:id="@+id/locationview"
-                            android:layout_alignParentTop="true"
-                            android:layout_alignParentStart="true"
-                            android:background="@drawable/location"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"/>
+                                android:layout_height="wrap_content">
 
+                    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/adresslayout"
+                                    android:orientation="horizontal"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp">
+                        <ImageView
+                                android:layout_width="48dp"
+                                android:layout_height="50dp"
+                                android:id="@+id/locationview"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentStart="true"
+                                android:background="@drawable/location"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginRight="20dp"/>
 
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/petClinicAddress"
-                            android:textStyle="bold"
-                            android:textSize="17sp"
-                            android:layout_alignParentTop="true"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_toRightOf="@+id/locationview"/>
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/petClinicAddress"
+                                android:textStyle="bold"
+                                android:textSize="17sp"
+                                android:layout_marginTop="5dp"
+                                android:layout_toRightOf="@+id/locationview"/>
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/petClinicNotes"
+                                android:textStyle="bold"
+                                android:textSize="17sp"
+                                android:layout_marginTop="10dp"
+                                android:layout_toRightOf="@+id/locationview"
+                                android:layout_below="@id/petClinicAddress"
+                                android:layout_marginBottom="5dp"/>
+                    </RelativeLayout>
 
                     <View
                             android:id="@+id/viewdividerline"
                             android:layout_width="wrap_content"
                             android:layout_height="2dp"
                             android:background="@color/drawer_header_text"
-                            android:layout_below="@id/petClinicAddress"
+                            android:layout_below="@id/adresslayout"
                             android:layout_centerHorizontal="true"/>
 
 

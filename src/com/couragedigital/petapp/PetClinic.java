@@ -46,7 +46,7 @@ public class PetClinic extends BaseActivity implements
     private int current_page = 1;
 
     private String userEmail;
-    int value;
+    int homeornearbyLocationValue;
     SessionManager sessionManager;
 
     private String latitudeValue;
@@ -125,12 +125,12 @@ public class PetClinic extends BaseActivity implements
                 isGPSLocationSet = true;
             }
 
-            if (getDistance(latitudeValue, longitudeValue) > 1000 && isGPSLocationSet) {
+            if (getDistanceFromPreviousLocation(latitudeValue, longitudeValue) > 1000 && isGPSLocationSet) {
                 //person has moved 1 km away than his prev location. Update The GPS location.
                 gpsCoordinates.setLatitude(latitudeValue);
                 gpsCoordinates.setLongitude(longitudeValue);
                 movedgreaterthanonekm = true;
-                Toast.makeText(this, R.string.no_location_detected, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.location_Changed, Toast.LENGTH_LONG).show();
             }
 
         } else {
@@ -138,19 +138,19 @@ public class PetClinic extends BaseActivity implements
         }
     }
 
-    private float getDistance(String latitudeValue, String longitudeValue) {
+    private float getDistanceFromPreviousLocation(String currentLatitudeValue, String currentLongitudeValue) {
 
-        Location locationA = new Location("point A");
+        Location currentLocation = new Location("point A");
 
-        locationA.setLatitude(Double.parseDouble(latitudeValue));
-        locationA.setLongitude(Double.parseDouble(longitudeValue));
+        currentLocation.setLatitude(Double.parseDouble(currentLatitudeValue));
+        currentLocation.setLongitude(Double.parseDouble(currentLongitudeValue));
 
-        Location locationB = new Location("point B");
+        Location previousLocation = new Location("point B");
 
-        locationB.setLatitude(Double.parseDouble(gpsCoordinates.getLatitude()));
-        locationB.setLongitude(Double.parseDouble(gpsCoordinates.getLongitude()));
+        previousLocation.setLatitude(Double.parseDouble(gpsCoordinates.getLatitude()));
+        previousLocation.setLongitude(Double.parseDouble(gpsCoordinates.getLongitude()));
 
-        float distance = locationA.distanceTo(locationB);
+        float distance = currentLocation.distanceTo(previousLocation);
 
         return distance;
     }
@@ -162,7 +162,6 @@ public class PetClinic extends BaseActivity implements
             case RequestLocationId: {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     //gpsCoordinates = locationDetector.getLocation();
-
                     getLocation();
                 } else {
                     // permission denied, boo! Disable the
@@ -178,8 +177,10 @@ public class PetClinic extends BaseActivity implements
         new FetchListFromServer().execute(url);
     }
 
+
     @Override
     public void onConnected(@Nullable Bundle bundle) {
+
         if (Build.VERSION.SDK_INT >= 23) {
             if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                     ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -189,6 +190,7 @@ public class PetClinic extends BaseActivity implements
                 lastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
                 getLocation();
             }
+
         } else {
             lastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
             getLocation();
@@ -199,14 +201,14 @@ public class PetClinic extends BaseActivity implements
 
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
-                value = extras.getInt("STATE_OF_CLICK");
+                homeornearbyLocationValue = extras.getInt("STATE_OF_CLICK");
             }
 
             // Showing progress dialog before making http request
             progressDialog.setMessage("Fetching List Of Clinics...");
             progressDialog.show();
 
-            if (value == 0) {
+            if (homeornearbyLocationValue == 0) {
                 sessionManager = new SessionManager(getApplicationContext());
                 HashMap<String, String> user = sessionManager.getUserDetails();
                 String email = user.get(SessionManager.KEY_EMAIL);
@@ -221,7 +223,7 @@ public class PetClinic extends BaseActivity implements
                     }
                 });
                 grabURLOfHome(url);
-            } else if (value == 1) {
+            } else if (homeornearbyLocationValue == 1) {
                 url = url + "?method=ClinicByCurrentLocation&format=json&currentPage=" + current_page + "&latitude=" + gpsCoordinates.getLatitude() + "&longitude=" + gpsCoordinates.getLongitude() + "";
                 recyclerView.smoothScrollToPosition(0);
                 recyclerView.addOnScrollListener(new PetFetchClinicListScrollListener(linearLayoutManager, current_page) {

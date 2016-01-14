@@ -22,7 +22,7 @@ import java.util.List;
 public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.ViewHolder> {
 
 
-   private List<ClinicListItems> clinicListsItem;
+    private List<ClinicListItems> clinicListsItem;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;
     ViewHolder viewHolder;
@@ -62,8 +62,6 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Vi
         String city;
         String areawithcity;
 
-        int statusOfclinicFavourite = 0;
-
         public ViewHolder(View itemView) {
             super(itemView);
             if (imageLoader == null) {
@@ -74,7 +72,6 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Vi
             clinicAddress = (TextView) itemView.findViewById(R.id.clinicAddress);
             clinicImage = (RoundedNetworkImageView) itemView.findViewById(R.id.clinicImage);
             clinicSeeMoreBtn = (Button) itemView.findViewById(R.id.clinicSeeMoreButton);
-            clinicFavourite = (Button) itemView.findViewById(R.id.clinicFavourite);
             clinicdividerLine = itemView.findViewById(R.id.clinicDividerLine);
 
             clinicSeeMoreBtn.setOnClickListener(this);
@@ -88,12 +85,9 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Vi
 
             clinicImage.setImageUrl(clinicList.getClinicImage_path(), imageLoader);
             clinicName.setText(clinicList.getClinicName());
-            areawithcity = area + ", " +city;
+            areawithcity = area + ", " + city;
             clinicAddress.setText(areawithcity);
 
-
-            //clinicFavourite.setBackgroundResource(R.drawable.favourite_disable);
-            clinicFavourite.setVisibility(View.GONE);
             clinicdividerLine.setBackgroundResource(R.color.list_internal_divider);
         }
 
@@ -107,6 +101,7 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Vi
                     clinicInformation.putExtra("DOCTOR_NAME", listItems.getDoctorName());
                     clinicInformation.putExtra("DOCTOR_EMAIL", listItems.getEmail());
                     clinicInformation.putExtra("DOCTOR_CONTACT", listItems.getContact());
+                    clinicInformation.putExtra("CLINIC_NOTES", listItems.getNotes());
                     v.getContext().startActivity(clinicInformation);
                 }
             }

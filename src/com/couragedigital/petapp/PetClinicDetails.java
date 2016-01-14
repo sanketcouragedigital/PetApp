@@ -31,9 +31,11 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
     String doctorname = "";
     String cliniccity = "";
     String clinicarea = "";
+    String clinicnotes;
 
     ImageView clinicImage;
     TextView address;
+    TextView clinicnotestxt;
     Button callbutton;
     Button emailbutton;
     String email;
@@ -57,6 +59,7 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
             image_path = intent.getStringExtra("CLINIC_IMAGE");
             clinicaddress = intent.getStringExtra("CLINIC_ADDRESS");
             doctorname = intent.getStringExtra("DOCTOR_NAME");
+            clinicnotes = intent.getStringExtra("CLINIC_NOTES");
             email = intent.getStringExtra("DOCTOR_EMAIL");
             phoneno = intent.getStringExtra("DOCTOR_CONTACT");
         }
@@ -81,6 +84,7 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
 
         clinicImage = (ImageView) findViewById(R.id.petClicnicHeaderImage);
         address = (TextView) findViewById(R.id.petClinicAddress);
+        clinicnotestxt = (TextView) findViewById(R.id.petClinicNotes);
         callbutton = (Button) findViewById(R.id.clinicDetailCallButton);
         emailbutton = (Button) findViewById(R.id.clinicDetailsEmailButton);
 
@@ -115,6 +119,7 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
         clinicImage.setImageBitmap(clinicDetailsbitmap);
         clinicDetailsCollapsingToolbar.setTitle(doctorname);
         address.setText(clinicaddress);
+        clinicnotestxt.setText(clinicnotes);
 
         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) clinicDetailsAppBaLayoutr.getLayoutParams();
         layoutParams.height = getResources().getDisplayMetrics().widthPixels;

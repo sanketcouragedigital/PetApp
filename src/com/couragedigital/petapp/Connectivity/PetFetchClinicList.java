@@ -39,6 +39,7 @@ public class PetFetchClinicList {
                                     clinicListItems.setClinicImage_path(obj.getString("clinic_image"));
                                     clinicListItems.setCity(obj.getString("city"));
                                     clinicListItems.setArea(obj.getString("area"));
+                                    clinicListItems.setNotes(obj.getString("notes"));
 
                                     // adding pet to pets array
                                     clinicList.add(clinicListItems);

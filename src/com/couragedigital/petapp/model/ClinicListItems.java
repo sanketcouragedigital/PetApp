@@ -11,11 +11,12 @@ public class ClinicListItems {
     public String contact;
     private String area;
     private String city;
+    private  String notes;
 
     public ClinicListItems() {
     }
 
-    public ClinicListItems(String clinicname, String clinicaddress, String doctorname, String email, String contact, String image_path , String area ,String city) {
+    public ClinicListItems(String clinicname, String clinicaddress, String doctorname, String email, String contact, String image_path , String area ,String city,String notes) {
 
         this.clinic_name = clinicname;
         this.doctor_name = doctorname;
@@ -24,6 +25,7 @@ public class ClinicListItems {
         this.image_path = image_path;
         this.area = area;
         this.city = city;
+        this.notes = notes;
     }
 
     public String getClinicImage_path() {
@@ -88,6 +90,13 @@ public class ClinicListItems {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public  String getNotes(){
+        return  notes;
+    }
+    public  void  setNotes(String notes){
+        this.notes = notes;
     }
 
 }

@@ -121,7 +121,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
         petCategoryList = new ArrayList<>(Arrays.asList(petCategoryArrayList));
         adapter = new SpinnerItemsAdapter(this, R.layout.spinneritem, petCategoryList);
 
-        petCategoryList = PetCategorySpinnerList.fetchPetCategory(petCategoryList, adapter);
+        new FetchCategoryListFromServer().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         petCategory.setAdapter(adapter);
@@ -132,7 +132,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
                 if(position > 0){
                     petCategoryName = (String) parent.getItemAtPosition(position);
 
-                    petBreedsList = PetBreedsSpinnerList.fetchPetBreeds(petBreedsList, petCategoryName, adapter);
+                    new FetchBreedListCategoryWiseFromServer().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
 
                     petBreed.setSelection(petBreedsList.indexOf(0));
                     adapter.notifyDataSetChanged();
@@ -203,20 +203,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
 
         @Override
         public void afterTextChanged(Editable s) {
-            String takePetAge = ageOfPet.getText().toString();
-            if(!takePetAge.equals("")) {
-                Integer takePetAgeInInteger = Integer.parseInt(takePetAge);
-                if(takePetAgeInInteger >= 100) {
-                    ageOfPet.setError("Please enter valid age");
-                    ageOfPet.setText(null);
-                }
-                else {
-                    petAge = takePetAgeInInteger;
-                }
-            }
-            else if(takePetAge.equals("")) {
-                petAge = 0;
-            }
+            new GetPetAge().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
         }
     };
 
@@ -233,15 +220,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
 
         @Override
         public void afterTextChanged(Editable s) {
-            String takePetPrice = priceOfPet.getText().toString();
-            if (!takePetPrice.equals("")) {
-                Integer takePetPriceInInteger = Integer.parseInt(takePetPrice);
-                if (takePetPriceInInteger > 0) {
-                    petPrice = takePetPriceInInteger;
-                }
-            } else if (takePetPrice.equals("")) {
-                petPrice = 0;
-            }
+            new GetPetPrice().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
         }
     };
 
@@ -274,28 +253,10 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
                     public void onClick(DialogInterface dialog, int which) {
                         if (which == 0) {
                             alertDialog.dismiss();
-                            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                            // Ensure that there's a camera activity to handle the intent
-                            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                                // Create the File where the photo should go
-                                File photoFile = null;
-                                try {
-                                    photoFile = createImageFile();
-                                } catch (IOException ex) {
-                                    // Error occurred while creating the File
-                                    ex.printStackTrace();
-                                }
-                                // Continue only if the File was successfully created
-                                if (photoFile != null) {
-                                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
-                                    startActivityForResult(takePictureIntent, CAMERA_REQUEST);
-                                }
-                            }
+                            new SelectCameraImage().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
                         } else if (which == 1) {
                             alertDialog.dismiss();
-                            // Create intent to Open Image applications like Gallery, Google Photos
-                            Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                            startActivityForResult(galleryIntent, GALLERY_REQUEST);
+                            new SelectGalleryImage().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
                         }
                     }
                 });
@@ -305,16 +266,12 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
             }
         }
         else if(v.getId() == R.id.petFormSubmitFab) {
-
-            Integer petAgeInInteger = null;
-            Integer petPriceInInteger = null;
-
-            if (petCategoryName == null) {
+            if (petCategoryName.isEmpty()) {
                 Toast.makeText(PetForm.this, "Please select Pet Category.", Toast.LENGTH_LONG).show();
                 TextView errorText = (TextView) petCategory.getSelectedView();
                 errorText.setError("Please select Pet Category");
             }
-            else if(petBreedName == null) {
+            else if(petBreedName.isEmpty()) {
                 Toast.makeText(PetForm.this, "Please select Pet Breed.", Toast.LENGTH_LONG).show();
                 TextView errorText = (TextView) petBreed.getSelectedView();
                 errorText.setError("Please select Pet Breed");
@@ -329,7 +286,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
                 petsell = (RadioButton) findViewById(R.id.petSell);
                 petsell.setError(("please select Option"));
             }
-            else if(firstImagePath == null) {
+            else if(firstImagePath.isEmpty()) {
                 Toast.makeText(PetForm.this, "Please select image of Pet.", Toast.LENGTH_LONG).show();
             }
             else {
@@ -343,7 +300,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
 
                 petDescription = descriptionOfPet.getText().toString();
 
-                new UploadToServer().execute();
+                new UploadToServer().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
             }
         }
     }
@@ -509,6 +466,123 @@ public class PetForm extends BaseActivity implements View.OnClickListener {
             e.printStackTrace();
         }
         return image;
+    }
+
+    public class GetPetAge extends AsyncTask<Void, Void, Void> {
+        String takePetAge;
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        takePetAge = ageOfPet.getText().toString();
+                        if(!takePetAge.equals("")) {
+                            Integer takePetAgeInInteger = Integer.parseInt(takePetAge);
+                            if(takePetAgeInInteger >= 100) {
+                                ageOfPet.setError("Please enter valid age");
+                                ageOfPet.setText(null);
+                            }
+                            else {
+                                petAge = takePetAgeInInteger;
+                            }
+                        }
+                        else if(takePetAge.equals("")) {
+                            petAge = 0;
+                        }
+                    }
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+
+    public class GetPetPrice extends AsyncTask<Void, Void, Void> {
+        String takePetPrice;
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        takePetPrice = priceOfPet.getText().toString();
+                        if (!takePetPrice.equals("")) {
+                            Integer takePetPriceInInteger = Integer.parseInt(takePetPrice);
+                            if (takePetPriceInInteger > 0) {
+                                petPrice = takePetPriceInInteger;
+                            }
+                        } else if (takePetPrice.equals("")) {
+                            petPrice = 0;
+                        }
+                    }
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+
+    public class FetchCategoryListFromServer extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                petCategoryList = PetCategorySpinnerList.fetchPetCategory(petCategoryList, adapter);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+
+    public class FetchBreedListCategoryWiseFromServer extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                petBreedsList = PetBreedsSpinnerList.fetchPetBreeds(petBreedsList, petCategoryName, adapter);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+
+    public class SelectCameraImage extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            // Ensure that there's a camera activity to handle the intent
+            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                // Create the File where the photo should go
+                File photoFile = null;
+                try {
+                    photoFile = createImageFile();
+                } catch (IOException ex) {
+                    // Error occurred while creating the File
+                    ex.printStackTrace();
+                }
+                // Continue only if the File was successfully created
+                if (photoFile != null) {
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
+                    startActivityForResult(takePictureIntent, CAMERA_REQUEST);
+                }
+            }
+            return null;
+        }
+    }
+
+    public class SelectGalleryImage extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            // Create intent to Open Image applications like Gallery, Google Photos
+            Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(galleryIntent, GALLERY_REQUEST);
+            return null;
+        }
     }
 
     public class UploadToServer extends AsyncTask<Void, Void, Void> {

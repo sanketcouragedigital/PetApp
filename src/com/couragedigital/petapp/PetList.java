@@ -32,7 +32,7 @@ public class PetList extends BaseActivity {
 
     // http://c/dev/api/petappapi.php?method=showPetDetails&format=json
     // "http://storage.couragedigital.com/dev/api/petappapi.php"
-    private static String url = "http://192.168.0.5/PetAppAPI/api/petappapi.php";
+    private static String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
     private ProgressDialog progressDialog;
     public List<PetListItems> petLists = new ArrayList<PetListItems>();
 

@@ -53,6 +53,11 @@
         <activity android:name=".CropImage.MonitoredActivity"/>
         <activity android:name=".CropImage.CropImage"/>
         <activity android:name=".MyListingPetList"/>
+	<activity android:name=".PetServices" android:label="petservices"/>
+	<activity android:name=".TabFragmentTrainerDetails"/>
+        <activity android:name=".TabFragmentGroomerDetails"/>
+        <activity android:name=".TabFragmentShelterDetails"/>
+        <activity android:name=".TabFragmentStoresDetails"/>
 
     </application>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+                                                 android:fitsSystemWindows="true"
+                                                 android:id="@+id/storesDetailsCoordinatorLayout">
+
+    <android.support.design.widget.AppBarLayout
+            android:id="@+id/petStoresDetailsAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/storesDetailsCollapsingToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <ImageView
+                    android:id="@+id/petStoresHeaderImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    app:layout_collapseMode="parallax"/>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:background="@drawable/petdetail_image_background_gradient"
+                    android:layout_gravity="center_horizontal|bottom"/>
+
+            <android.support.v7.widget.Toolbar
+                    android:id="@+id/petStoresDetailsToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+            android:id="@+id/petStoresDetailsNestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="fill_vertical"
+            android:clipToPadding="false"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:orientation="vertical"
+                      android:paddingTop="16dp">
+
+            <android.support.v7.widget.CardView
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    card_view:cardCornerRadius="2dp"
+                    card_view:cardElevation="2dp">
+
+                <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+                    <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:id="@+id/locationview"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentStart="true"
+                            android:background="@drawable/location"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"/>
+
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/petStoresAddress"
+                            android:textStyle="bold"
+                            android:textSize="17sp"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_toRightOf="@+id/locationview"/>
+
+                    <View
+                            android:id="@+id/viewdividerline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@color/drawer_header_text"
+                            android:layout_below="@id/locationview"
+                            android:layout_centerHorizontal="true"/>
+
+
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="match_parent"
+                                  android:orientation="horizontal"
+                                  android:id="@+id/petDetailsLinearLayoutThree"
+                                  android:layout_below="@+id/viewdividerline"
+                                  android:layout_marginTop="4dp">
+                        <Button
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/storesDetailCallButton"
+                                android:background="@android:color/transparent"
+                                android:paddingLeft="70dip"
+                                android:paddingRight="30dip"
+                                android:text="Call"
+                                android:textColor="#CF3E3E"
+                                android:textSize="14sp"
+                                android:layout_weight="1"/>
+                        <Button
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/storesDetailsEmailButton"
+                                android:background="@android:color/transparent"
+                                android:paddingLeft="30dip"
+                                android:paddingRight="70dip"
+                                android:text="Email"
+                                android:textColor="#CF3E3E"
+                                android:textSize="14sp"
+                                android:layout_weight="1"/>
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

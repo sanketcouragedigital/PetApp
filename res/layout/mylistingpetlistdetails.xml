@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+                                                 android:fitsSystemWindows="true"
+                                                 android:id="@+id/myListingPetDetailsCoordinatorLayout">
+
+    <android.support.design.widget.AppBarLayout
+            android:id="@+id/myListingPetDetailsAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/myListingPetInPetDetailsCollapsingToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <ImageView
+                    android:id="@+id/myListingPetHeaderImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    app:layout_collapseMode="parallax"/>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:background="@drawable/petdetail_image_background_gradient"
+                    android:layout_gravity="center_horizontal|bottom"/>
+
+            <android.support.v7.widget.Toolbar
+                    android:id="@+id/myListingPetDetailsToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+            android:id="@+id/myListingPetDetailsNestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="fill_vertical"
+            android:clipToPadding="false"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:orientation="vertical">
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:paddingTop="8dp">
+
+                <android.support.v7.widget.CardView
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        card_view:cardCornerRadius="2dp"
+                        card_view:cardElevation="2dp">
+
+                    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/myListingPetDetailsImageText"
+                                android:textStyle="bold"
+                                android:layout_marginTop="16dp"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginRight="16dp"/>
+
+                        <View
+                                android:layout_width="wrap_content"
+                                android:layout_height="1dp"
+                                android:id="@+id/myListingPetDetailsImagesDividerLine"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_below="@+id/myListingPetDetailsImageText"
+                                android:layout_marginTop="16dp"/>
+
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:id="@+id/petDetailsImagesLinearLayout"
+                                      android:layout_below="@+id/myListingPetDetailsImagesDividerLine"
+                                      android:layout_marginTop="16dp"
+                                      android:layout_marginLeft="16dp"
+                                      android:layout_marginRight="16dp">
+
+                            <ImageView
+                                    android:layout_width="75dp"
+                                    android:layout_height="75dp"
+                                    android:id="@+id/myListingPetDetailsFirstImageThumbnail"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitCenter"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="5dp"/>
+
+                            <ImageView
+                                    android:layout_width="75dp"
+                                    android:layout_height="75dp"
+                                    android:id="@+id/myListingPetDetailsSecondImageThumbnail"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitCenter"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="5dp"/>
+
+                            <ImageView
+                                    android:layout_width="75dp"
+                                    android:layout_height="75dp"
+                                    android:id="@+id/myListingPetDetailsThirdImageThumbnail"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitCenter"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="5dp"/>
+
+                        </LinearLayout>
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+            </RelativeLayout>
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:paddingTop="8dp">
+
+                <android.support.v7.widget.CardView
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        card_view:cardCornerRadius="2dp"
+                        card_view:cardElevation="2dp">
+
+                    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:id="@+id/myListingPetDetailsLinearLayoutOne"
+                                      android:layout_marginTop="16dp"
+                                      android:layout_marginLeft="16dp"
+                                      android:layout_marginRight="16dp">
+                            <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/myListingPetAgeInPetDetails"
+                                    android:text="hi"
+                                    android:layout_weight="1"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"/>
+                            <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/myListingPetBreedInPetDetails"
+                                    android:text="hi"
+                                    android:layout_weight="1"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"/>
+                        </LinearLayout>
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:id="@+id/myListingPetDetailsLinearLayoutTwo"
+                                      android:layout_below="@+id/myListingPetDetailsLinearLayoutOne"
+                                      android:layout_marginTop="4dp"
+                                      android:layout_marginLeft="16dp"
+                                      android:layout_marginRight="16dp">
+                            <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/myListingPetGenderInPetDetails"
+                                    android:text="hi"
+                                    android:layout_weight="1"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"/>
+                            <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/myListingPetPriceInPetDetails"
+                                    android:text="hi"
+                                    android:layout_weight="1"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"/>
+                        </LinearLayout>
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/myListingPetDescriptionInPetDetails"
+                                android:layout_below="@+id/myListingPetDetailsLinearLayoutTwo"
+                                android:text="hi"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginRight="16dp"
+                                android:ellipsize="end"/>
+
+                        <View
+                                android:layout_width="wrap_content"
+                                android:layout_height="1dp"
+                                android:id="@+id/myListingPetDetailsDividerLine"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_below="@+id/myListingPetDescriptionInPetDetails"
+                                android:layout_marginTop="16dp"/>
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+            </RelativeLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

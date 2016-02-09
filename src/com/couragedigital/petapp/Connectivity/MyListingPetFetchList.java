@@ -21,7 +21,7 @@ public class MyListingPetFetchList {
 
     private static final String TAG = PetFetchList.class.getSimpleName();
 
-    public static List myListingPetFetchList(List<MyListingPetListItems> myListingPet, RecyclerView.Adapter adapter, String url, ProgressDialog progressDialog) {
+    public static List myListingPetFetchList(List<MyListingPetListItems> myListingPet, RecyclerView.Adapter adapter, String url) {
         JsonObjectRequest petListReq = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -65,16 +65,11 @@ public class MyListingPetFetchList {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        progressDialog.hide();
-                        // notifying list Adapter about data changes
-                        // so that it renders the list view with updated data
-
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
-                progressDialog.hide();
             }
         });
         AppController.getInstance().addToRequestQueue(petListReq);

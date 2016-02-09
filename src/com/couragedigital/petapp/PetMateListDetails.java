@@ -110,6 +110,9 @@ public class PetMateListDetails extends AppCompatActivity implements View.OnClic
         petMateDetailsCallButton = (Button) findViewById(R.id.petMateDetailsCallButton);
         petMateDetailsEmailButton = (Button) findViewById(R.id.petMateDetailsEmailButton);
 
+        petMateDetailsFirstImageThumbnail.setOnClickListener(this);
+        petMateDetailsSecondImageThumbnail.setOnClickListener(this);
+        petMateDetailsThirdImageThumbnail.setOnClickListener(this);
         petMateDetailsCallButton.setOnClickListener(this);
         petMateDetailsEmailButton.setOnClickListener(this);
 

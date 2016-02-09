@@ -25,7 +25,7 @@ public class TabFragmentShelter extends Fragment {
     RecyclerView.Adapter adapter;
     RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
-    private String url = "http://192.168.0.4/PetAPI/api/petappapi.php";
+    private String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
     //private String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
 
     int current_page = 1;
@@ -60,6 +60,8 @@ public class TabFragmentShelter extends Fragment {
         recyclerView.addOnScrollListener(new PetFetchShelterListScrollListener(linearLayoutManager, current_page) {
             @Override
             public void onLoadMore(int current_page) {
+                url = "";
+                url = "http://storage.couragedigital.com/dev/api/petappapi.php";
                 url = url + "?method=showPetShelter&format=json&currentPage=" + current_page + " ";
                 grabURL(url);
             }

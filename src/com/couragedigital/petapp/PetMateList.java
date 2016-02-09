@@ -196,6 +196,8 @@ public class PetMateList extends BaseActivity {
 
                     @Override
                     public void onLoadMore(int current_page) {
+                        url = "";
+                        url = "http://storage.couragedigital.com/dev/api/petappapi.php";
                         url = url+"?method=showPetMateDetails&format=json&email="+email+"&currentPage="+current_page+"";
                         grabURL(url);
                     }

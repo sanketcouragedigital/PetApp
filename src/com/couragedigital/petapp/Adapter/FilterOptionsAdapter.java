@@ -388,7 +388,7 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
                 filterAdoptionAndPriceLists = params[0];
 
                 String[] filterPriceText = new String[]{
-                        "For Adoption", "Price", "0 - 10000", "10000 - 25000", "25000 - 50000", "50000 Onwards"
+                        "For Adoption", "Price", "1 - 10000", "10000 - 25000", "25000 - 50000", "50000 Onwards"
                 };
                 for (int i = 0; i < filterPriceText.length; i++) {
                     FilterAdoptionAndPriceList filterAdoptionAndPriceList = new FilterAdoptionAndPriceList();

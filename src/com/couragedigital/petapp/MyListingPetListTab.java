@@ -27,7 +27,6 @@ public class MyListingPetListTab extends Fragment {
     RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
 
-    ProgressDialog progressDialog;
     String urlForFetch;
     List<MyListingPetListItems> myListingPetArrayList = new ArrayList<MyListingPetListItems>();
 
@@ -64,11 +63,6 @@ public class MyListingPetListTab extends Fragment {
         adapter = new MyListingPetListAdapter(myListingPetArrayList);
         recyclerView.setAdapter(adapter);
 
-        progressDialog = new ProgressDialog(getActivity());
-        // Showing progress dialog before making http request
-        progressDialog.setMessage("Fetching List Of Pets...");
-        progressDialog.show();
-
         SessionManager sessionManager = new SessionManager(v.getContext());
         HashMap<String, String> user = sessionManager.getUserDetails();
         email = user.get(SessionManager.KEY_EMAIL);
@@ -98,19 +92,11 @@ public class MyListingPetListTab extends Fragment {
             try {
                 urlForFetch = url[0];
 
-                MyListingPetFetchList.myListingPetFetchList(myListingPetArrayList, adapter, urlForFetch, progressDialog);
+                MyListingPetFetchList.myListingPetFetchList(myListingPetArrayList, adapter, urlForFetch);
             } catch (Exception e) {
                 e.printStackTrace();
-                progressDialog.dismiss();
             }
             return null;
-        }
-    }
-
-    private void hideProgressDialog() {
-        if (progressDialog != null) {
-            progressDialog.dismiss();
-            progressDialog = null;
         }
     }
 }

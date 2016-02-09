@@ -218,6 +218,8 @@ public class PetClinic extends BaseActivity implements
                 recyclerView.addOnScrollListener(new PetFetchClinicListScrollListener(linearLayoutManager, current_page) {
                     @Override
                     public void onLoadMore(int current_page) {
+                        url = "";
+                        url = "http://storage.couragedigital.com/dev/api/petappapi.php";
                         url = url + "?method=ClinicByAddress&format=json&currentPage=" + current_page + "&email=" + userEmail + "";
                         grabURLOfHome(url);
                     }
@@ -230,6 +232,8 @@ public class PetClinic extends BaseActivity implements
 
                     @Override
                     public void onLoadMore(int current_page) {
+                        url = "";
+                        url = "http://storage.couragedigital.com/dev/api/petappapi.php";
                         url = url + "?method=ClinicByCurrentLocation&format=json&currentPage=" + current_page + "&latitude=" + gpsCoordinates.getLatitude() + "&longitude=" + gpsCoordinates.getLongitude() + "";
                         grabURL(url);
                     }

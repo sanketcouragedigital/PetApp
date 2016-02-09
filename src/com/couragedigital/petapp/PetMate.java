@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,7 +18,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.view.ContextThemeWrapper;
 import android.text.Editable;
@@ -43,6 +46,7 @@ import java.util.*;
 public class PetMate extends BaseActivity implements View.OnClickListener {
 
     private static final int CAMERA_REQUEST = 1;
+    private static final int CAMERA_PERMISSION_REQUEST = 3;
     private static final int GALLERY_REQUEST = 2;
 
     private ProgressDialog progressDialog = null;
@@ -66,7 +70,7 @@ public class PetMate extends BaseActivity implements View.OnClickListener {
     String petCategoryName;
     String petBreedName;
     Integer petAge;
-    String petGender;
+    String petGender = "";
     String petDescription;
     String currentPhotoPath;
 
@@ -104,9 +108,9 @@ public class PetMate extends BaseActivity implements View.OnClickListener {
         genderOfPet = (RadioGroup) this.findViewById(R.id.genderOfPetMate);
         descriptionOfPet = (EditText) this.findViewById(R.id.descriptionOfPetMate);
         selectImageButton = (Button) this.findViewById(R.id.selectImagePetMate);
-        firstImageOfPetMate = (ImageView) this.findViewById(R.id.firstImageOfPet);
-        secondImageOfPetMate = (ImageView) this.findViewById(R.id.secondImageOfPet);
-        thirdImageOfPetMate = (ImageView) this.findViewById(R.id.thirdImageOfPet);
+        firstImageOfPetMate = (ImageView) this.findViewById(R.id.firstImageOfPetMate);
+        secondImageOfPetMate = (ImageView) this.findViewById(R.id.secondImageOfPetMate);
+        thirdImageOfPetMate = (ImageView) this.findViewById(R.id.thirdImageOfPetMate);
         uploadButton = (FloatingActionButton) this.findViewById(R.id.petMateFormSubmitFab);
 
         petCategoryArrayList = new String[]{
@@ -215,7 +219,13 @@ public class PetMate extends BaseActivity implements View.OnClickListener {
                     public void onClick(DialogInterface dialog, int which) {
                         if(which == 0) {
                             alertDialog.dismiss();
-                            new SelectCameraImage().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
+                            if(ActivityCompat.checkSelfPermission(PetMate.this, android.Manifest.permission.CAMERA)
+                                    != PackageManager.PERMISSION_GRANTED) {
+                                requestCameraPermission();
+                            }
+                            else {
+                                new SelectCameraImage().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
+                            }
                         }
                         else if(which == 1) {
                             alertDialog.dismiss();
@@ -229,25 +239,17 @@ public class PetMate extends BaseActivity implements View.OnClickListener {
             }
         }
         else if(v.getId() == R.id.petMateFormSubmitFab) {
-
-            Integer petAgeInInteger = null;
-
-            if (petCategoryName == null) {
+            if (petCategoryName == null || petCategoryName.isEmpty()) {
                 Toast.makeText(PetMate.this, "Please select Pet Category.", Toast.LENGTH_LONG).show();
                 TextView errorText = (TextView) petCategory.getSelectedView();
                 errorText.setError("Please select Pet Category");
             }
-            else if(petBreedName == null) {
+            else if(petBreedName == null || petBreedName.isEmpty()) {
                 Toast.makeText(PetMate.this, "Please select Pet Breed.", Toast.LENGTH_LONG).show();
                 TextView errorText = (TextView) petBreed.getSelectedView();
                 errorText.setError("Please select Pet Breed");
             }
-            else if(genderOfPet.getCheckedRadioButtonId() == -1) {
-                Toast.makeText(PetMate.this, "Please select gender.", Toast.LENGTH_LONG).show();
-                genderSelected = (RadioButton) findViewById(R.id.genderFemale);
-                genderSelected.setError("Please select gender");
-            }
-            else if(firstImagePath == null) {
+            else if(firstImagePath == null || firstImagePath.isEmpty()) {
                 Toast.makeText(PetMate.this, "Please select image of Pet.", Toast.LENGTH_LONG).show();
             }
             else {
@@ -401,14 +403,6 @@ public class PetMate extends BaseActivity implements View.OnClickListener {
         return imageToShow;
     }
 
-    private RelativeLayout.LayoutParams getLayoutParams() {
-
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(300, 300);
-        layoutParams.addRule(RelativeLayout.BELOW, R.id.selectImagePetMate);
-        layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-        return layoutParams;
-    }
-
     private File createImageFile() throws IOException {
         // Create an image file name
         timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
@@ -439,7 +433,7 @@ public class PetMate extends BaseActivity implements View.OnClickListener {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        String takePetAge = ageOfPet.getText().toString();
+                        takePetAge = ageOfPet.getText().toString();
                         if(!takePetAge.equals("")) {
                             Integer takePetAgeInInteger = Integer.parseInt(takePetAge);
                             if(takePetAgeInInteger >= 100) {
@@ -487,6 +481,19 @@ public class PetMate extends BaseActivity implements View.OnClickListener {
         }
     }
 
+    private void requestCameraPermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                android.Manifest.permission.CAMERA)) {
+            ActivityCompat.requestPermissions(PetMate.this,
+                    new String[]{android.Manifest.permission.CAMERA},
+                    CAMERA_PERMISSION_REQUEST);
+        } else {
+            // Camera permission has not been granted yet. Request it directly.
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.CAMERA},
+                    CAMERA_PERMISSION_REQUEST);
+        }
+    }
+
     public class SelectCameraImage extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
@@ -521,18 +528,27 @@ public class PetMate extends BaseActivity implements View.OnClickListener {
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+
+        if (requestCode == CAMERA_PERMISSION_REQUEST) {
+            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                new SelectCameraImage().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
+            } else {
+                Toast.makeText(PetMate.this, "CAMERA permission was NOT granted.", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
     public class UploadToServer extends AsyncTask<Void, Void, Void> {
         @Override
         public Void doInBackground(Void... params) {
             try {
-                int responseFromServer = PetMateFormUpload.uploadToRemoteServer(email, petCategoryName, petBreedName, petAge, petGender, petDescription, firstImagePath, secondImagePath, thirdImagePath, PetMate.this);
-                if(responseFromServer == 200){
-                    runOnUiThread(new Runnable() {
-                        public void run() {
-                            Toast.makeText(PetMate.this, "File Upload Complete.", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
+                PetMateFormUpload.uploadToRemoteServer(email, petCategoryName, petBreedName, petAge, petGender, petDescription, firstImagePath, secondImagePath, thirdImagePath, PetMate.this);
                 progressDialog.dismiss();
             } catch (Exception e) {
                 e.printStackTrace();

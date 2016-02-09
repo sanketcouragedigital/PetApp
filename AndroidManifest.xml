@@ -20,6 +20,8 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <uses-feature
                     android:name="android.hardware.camera"
@@ -52,12 +54,15 @@
         <activity android:name=".PetClinicDetails"/>
         <activity android:name=".CropImage.MonitoredActivity"/>
         <activity android:name=".CropImage.CropImage"/>
-        <activity android:name=".MyListingPetList"/>
-	<activity android:name=".PetServices" android:label="petservices"/>
-	<activity android:name=".TabFragmentTrainerDetails"/>
+        <activity android:name=".PetServices" android:label="petservices"/>
+        <activity android:name=".TabFragmentTrainerDetails"/>
         <activity android:name=".TabFragmentGroomerDetails"/>
         <activity android:name=".TabFragmentShelterDetails"/>
         <activity android:name=".TabFragmentStoresDetails"/>
+        <activity android:name=".Feedback"/>
+        <activity android:name=".MyListing"/>
+        <activity android:name=".MyListingPetListDetails"/>
+        <activity android:name=".MyListingPetMateListDetails"/>
 
     </application>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>

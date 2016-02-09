@@ -22,7 +22,7 @@ public class PetMateFormUpload {
     //http://192.168.0.3/PetAppAPI/api/petappapi.php
     //http://storage.couragedigital.com/dev/api/petappapi.php
 
-    public static int uploadToRemoteServer(String emailforlatlong, String petCategoryName, String petBreedName, Integer petAge, String petGender, String petDescription, String firstImagePath, String secondImagePath, String thirdImagePath, PetMate petMate) throws Exception {
+    public static void uploadToRemoteServer(String emailforlatlong, String petCategoryName, String petBreedName, Integer petAge, String petGender, String petDescription, String firstImagePath, String secondImagePath, String thirdImagePath, PetMate petMate) throws Exception {
 
         context = petMate.getApplicationContext();
         int serverResponseCode = 0;
@@ -64,8 +64,6 @@ public class PetMateFormUpload {
         stringPart.put("format", format);
 
         new UploadToServerCustomRequest().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
-
-        return serverResponseCode;
     }
 
     public static class UploadToServerCustomRequest extends AsyncTask<Void, Void, Void> {

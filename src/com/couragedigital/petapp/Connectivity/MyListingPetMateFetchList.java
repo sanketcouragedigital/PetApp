@@ -18,7 +18,7 @@ import java.util.List;
 public class MyListingPetMateFetchList {
     private static final String TAG = MyListingPetMateFetchList.class.getSimpleName();
 
-    public static List myListingPetMateFetchList(List<MyListingPetMateListItem> petMateLists, RecyclerView.Adapter adapter, String url, ProgressDialog progressDialog) {
+    public static List myListingPetMateFetchList(List<MyListingPetMateListItem> petMateLists, RecyclerView.Adapter adapter, String url) {
         JsonObjectRequest petMateListReq = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -60,16 +60,11 @@ public class MyListingPetMateFetchList {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        progressDialog.hide();
-                        // notifying list Adapter about data changes
-                        // so that it renders the list view with updated data
-
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
-                progressDialog.hide();
             }
         });
         AppController.getInstance().addToRequestQueue(petMateListReq);

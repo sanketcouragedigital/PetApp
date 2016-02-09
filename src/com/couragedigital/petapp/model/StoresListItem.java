@@ -24,7 +24,7 @@ public class StoresListItem {
     }
 
     public void setStoresImage_path(String image_path) {
-        this.image_path = "http://storage.couragedigital.com/dev/shelter_images/" + image_path;
+        this.image_path = "http://storage.couragedigital.com/dev/store_images/" + image_path;
     }
 
     public String getStoresName() {

@@ -162,16 +162,8 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                 alertDialog.show();
             }
             if (position == 3) {
-
-                accessoriesSnackBar = Snackbar
-                        .make(homeListCoordinatorLayout, "This Feature is yet to come!", Snackbar.LENGTH_LONG)
-                        .setAction("UNDO", new OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                accessoriesSnackBar.dismiss();
-                            }
-                        });
-                accessoriesSnackBar.show();
+                Intent gotoPetServices = new Intent(v.getContext(), PetServices.class);
+                v.getContext().startActivity(gotoPetServices);
             }
         }
 

@@ -82,6 +82,8 @@ public class PetList extends BaseActivity {
 
             @Override
             public void onLoadMore(int current_page) {
+                url = "";
+                url = "http://storage.couragedigital.com/dev/api/petappapi.php";
                 url = url+"?method=showPetDetails&format=json&currentPage="+current_page+"";
                 grabURL(url);
             }

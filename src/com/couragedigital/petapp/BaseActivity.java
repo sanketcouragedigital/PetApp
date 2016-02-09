@@ -45,9 +45,9 @@ public class BaseActivity extends AppCompatActivity {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         listItems.setLayoutManager(linearLayoutManager);
 
-        final String[] tittle = new String[]{"Home", "Profile","MyListings" ,"Account Setting" ,"FeedBack" , "Share","LogOut"};
+        final String[] tittle = new String[]{"Home","MyListings","FeedBack" , "Share","LogOut"};
 
-        final int[] icons = new int[] {R.drawable.home, R.drawable.profile,R.drawable.mylisting,R.drawable.setting,0,0,0};
+        final int[] icons = new int[] {R.drawable.home,R.drawable.mylisting,0,0,0};
         itemArrayList = new ArrayList<DrawerItems>();
         for (int i = 0; i < tittle.length; i++) {
             DrawerItems drawerItems = new DrawerItems();
@@ -56,7 +56,7 @@ public class BaseActivity extends AppCompatActivity {
             itemArrayList.add(drawerItems);
         }
 
-        final int[] selectedicons = new int[] {R.drawable.home_red, R.drawable.profile_red,R.drawable.mylisting_red,R.drawable.setting_red,0,0,0};
+        final int[] selectedicons = new int[] {R.drawable.home_red,R.drawable.mylisting_red,0,0,0};
         itemSelectedArrayList = new ArrayList<DrawerItems>();
         for (int i = 0; i < tittle.length; i++) {
             DrawerItems drawerItems = new DrawerItems();

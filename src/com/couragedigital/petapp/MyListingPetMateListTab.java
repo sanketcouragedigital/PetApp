@@ -27,7 +27,6 @@ public class MyListingPetMateListTab extends Fragment {
     LinearLayoutManager linearLayoutManager;
 
     SessionManager sessionManager;
-    ProgressDialog progressDialog;
     String urlForFetch;
     List<MyListingPetMateListItem> myListingPetMateArrayList = new ArrayList<MyListingPetMateListItem>();
 
@@ -67,11 +66,6 @@ public class MyListingPetMateListTab extends Fragment {
         adapter = new MyListingPetMateListAdapter(myListingPetMateArrayList);
         recyclerView.setAdapter(adapter);
 
-        progressDialog = new ProgressDialog(getActivity());
-        // Showing progress dialog before making http request
-        progressDialog.setMessage("Fetching List Of Pets Mate...");
-        progressDialog.show();
-
         url = url+"?method=showMyListingPetMateList&format=json&email="+email+"&currentPage="+current_page+"";
         recyclerView.smoothScrollToPosition(0);
         recyclerView.addOnScrollListener(new MyListingPetMateFetchListScrollListener(linearLayoutManager, current_page) {
@@ -95,19 +89,11 @@ public class MyListingPetMateListTab extends Fragment {
             try {
                 urlForFetch = url[0];
 
-                MyListingPetMateFetchList.myListingPetMateFetchList(myListingPetMateArrayList, adapter, urlForFetch, progressDialog);
+                MyListingPetMateFetchList.myListingPetMateFetchList(myListingPetMateArrayList, adapter, urlForFetch);
             } catch (Exception e) {
                 e.printStackTrace();
-                progressDialog.dismiss();
             }
             return null;
-        }
-    }
-
-    private void hideProgressDialog() {
-        if (progressDialog != null) {
-            progressDialog.dismiss();
-            progressDialog = null;
         }
     }
 }

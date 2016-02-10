@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:context=".SplashScreen" >
+
+    <com.innovattic.view.FontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This uses my font in bold italic style" />
+
+    <com.innovattic.view.FontTextView
+            style="@style/MyTextAppearance"
+            android:fontFamily="someFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This also uses another font in normal style" />
+
+</LinearLayout>

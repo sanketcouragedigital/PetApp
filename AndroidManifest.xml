@@ -35,7 +35,7 @@
                   android:label="@string/app_name"/>
         <activity android:name=".PetForm"
                   android:configChanges="orientation|screenSize"/>
-        <activity android:name=".PetList"
+        <activity android:name=".PetList" android:label="Pet List"
                   android:configChanges="orientation|screenSize"/>
         <activity android:name=".BaseActivity"/>
         <activity android:name=".SignUp"
@@ -46,15 +46,15 @@
                   android:label="Email for Code"/>
         <activity android:name=".PetListDetails"/>
         <activity android:name=".PetListFilter"/>
-        <activity android:name=".PetClinic"/>
-        <activity android:name=".PetMate"/>
-        <activity android:name=".PetMateList"/>
+        <activity android:name=".PetClinic" android:label="Pet Clinics"/>
+        <activity android:name=".PetMate" android:label="Pet Mate Form"/>
+        <activity android:name=".PetMateList" android:label="Pet Mate List"/>
         <activity android:name=".PetMateListDetails"/>
         <activity android:name=".PetMateListFilter"/>
         <activity android:name=".PetClinicDetails"/>
         <activity android:name=".CropImage.MonitoredActivity"/>
         <activity android:name=".CropImage.CropImage"/>
-        <activity android:name=".PetServices" android:label="petservices"/>
+        <activity android:name=".PetServices" android:label="Pet Services"/>
         <activity android:name=".TabFragmentTrainerDetails"/>
         <activity android:name=".TabFragmentGroomerDetails"/>
         <activity android:name=".TabFragmentShelterDetails"/>

@@ -47,7 +47,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
             petListingTypeString = "ADOPT";
         }
         else {
-            petListingTypeString = "SELL";
+            petListingTypeString = "To SELL";
         }
         return petListingTypeString;
     }

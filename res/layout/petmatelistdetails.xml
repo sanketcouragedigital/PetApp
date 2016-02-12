@@ -171,7 +171,15 @@
                             <TextView
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:id="@+id/petMateAgeInPetDetails"
+                                    android:id="@+id/petMateAgeInMonthInPetDetails"
+                                    android:text="hi"
+                                    android:layout_weight="1"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"/>
+                            <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/petMateAgeInYearInPetDetails"
                                     android:text="hi"
                                     android:layout_weight="1"
                                     android:singleLine="true"

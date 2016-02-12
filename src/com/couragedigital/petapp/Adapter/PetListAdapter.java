@@ -47,7 +47,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
             petListingTypeString = "ADOPT";
         }
         else {
-            petListingTypeString = "To SELL";
+            petListingTypeString = "SELL";
         }
         return petListingTypeString;
     }
@@ -108,7 +108,8 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
                     petFullInformation.putExtra("PET_THIRD_IMAGE", petListItems.getThirdImagePath());
                     petFullInformation.putExtra("PET_BREED", petListItems.getPetBreed());
                     petFullInformation.putExtra("PET_LISTING_TYPE", petListItems.getListingType());
-                    petFullInformation.putExtra("PET_AGE", petListItems.getPetAge());
+                    petFullInformation.putExtra("PET_AGE_INYEAR", petListItems.getPetAgeInYear());
+                    petFullInformation.putExtra("PET_AGE_INMONTH", petListItems.getPetAgeInMonth());
                     petFullInformation.putExtra("PET_GENDER", petListItems.getPetGender());
                     petFullInformation.putExtra("PET_DESCRIPTION", petListItems.getPetDescription());
                     petFullInformation.putExtra("POST_OWNER_EMAIL", petListItems.getPetPostOwnerEmail());

@@ -68,7 +68,8 @@ public class FilterFetchPetMateList {
                                     petMateListItems.setSecondImagePath(obj.getString("second_image_path"));
                                     petMateListItems.setThirdImagePath(obj.getString("third_image_path"));
                                     petMateListItems.setPetMateCategory(replaceSpecialChars(obj.getString("pet_category")));
-                                    petMateListItems.setPetMateAge(obj.getString("pet_age"));
+                                    petMateListItems.setPetMateAgeInYear(obj.getString("pet_age_inYear"));
+                                    petMateListItems.setPetMateAgeInMonth(obj.getString("pet_age_inMonth"));
                                     petMateListItems.setPetMateGender(replaceSpecialChars(obj.getString("pet_gender")));
                                     petMateListItems.setPetMateDescription(replaceSpecialChars(obj.getString("pet_description")));
                                     petMateListItems.setPetMatePostDate(obj.getString("post_date"));

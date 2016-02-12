@@ -39,6 +39,7 @@ import com.couragedigital.petapp.Connectivity.PetCategorySpinnerList;
 import com.couragedigital.petapp.Adapter.SpinnerItemsAdapter;
 import com.couragedigital.petapp.CropImage.CropImage;
 import com.couragedigital.petapp.SessionManager.SessionManager;
+import org.w3c.dom.Node;
 
 import java.io.*;
 
@@ -59,7 +60,9 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
 
     Spinner petCategory;
     Spinner petBreed;
-    EditText ageOfPet;
+    Spinner petAgeInMonths;
+    Spinner petAgeInYears;
+    //EditText ageOfPet;
     RadioGroup genderOfPet;
     RadioButton genderSelected;
     EditText descriptionOfPet;
@@ -75,7 +78,9 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
 
     String petCategoryName;
     String petBreedName;
-    Integer petAge;
+    String petAgeMonthSpinner = "0";
+    String petAgeYearSpinner = "0";
+    //Integer petAge;
     String petGender = "";
     String petDescription;
     String petAdoption = "";
@@ -88,6 +93,11 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
     private SpinnerItemsAdapter adapter;
     String[] petCategoryArrayList;
     String[] petBreedArrayList;
+
+    private  List<String> petAgeListInMonth = new ArrayList<String>();
+    private List<String> petAgeListInYear = new ArrayList<String>();
+    String[] stringArrayListForMonth;
+    String[] stringArrayListForYear;
 
     Bitmap imageToShow;
     final int PIC_CAMERA_CROP = 3;
@@ -107,7 +117,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
 
         petCategory = (Spinner) this.findViewById(R.id.petCategory);
         petBreed = (Spinner) this.findViewById(R.id.petBreed);
-        ageOfPet = (EditText) this.findViewById(R.id.ageOfPet);
+        //ageOfPet = (EditText) this.findViewById(R.id.ageOfPet);
         genderOfPet = (RadioGroup) this.findViewById(R.id.genderOfPet);
         descriptionOfPet = (EditText) this.findViewById(R.id.descriptionOfPet);
         giveAwayType = (RadioGroup) this.findViewById(R.id.giveAwayOfPet);
@@ -117,8 +127,11 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
         secondImageOfPet = (ImageView) this.findViewById(R.id.secondImageOfPet);
         thirdImageOfPet = (ImageView) this.findViewById(R.id.thirdImageOfPet);
         uploadFabButton = (FloatingActionButton) this.findViewById(R.id.petFormSubmitFab);
-
+        petAgeInMonths = (Spinner) this.findViewById(R.id.ageInMonths);
+        petAgeInYears = (Spinner) this.findViewById(R.id.ageInYears);
         petsell = (RadioButton) findViewById(R.id.petSell);
+
+        GenarateSpinerForAge();
 
         HashMap<String, String> user = sessionManager.getUserDetails();
         email = user.get(SessionManager.KEY_EMAIL);
@@ -176,11 +189,10 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
             }
         });
 
-
         selectImageButton.setOnClickListener(this);
-        ageOfPet.addTextChangedListener(ageChangeListener);
-        giveAwayType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        //ageOfPet.addTextChangedListener(ageChangeListener);
 
+        giveAwayType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int i) {
                 if (i == R.id.forAdoptionOfPet) {
@@ -200,8 +212,59 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
         priceOfPet.addTextChangedListener(priceChangeListener);
         uploadFabButton.setOnClickListener(this);
     }
+    public void GenarateSpinerForAge(){
+        stringArrayListForMonth = new String[]{
+                "Months"
+        };
+        petAgeListInMonth = new ArrayList<>(Arrays.asList(stringArrayListForMonth));
+        for(int i=0;i<=11;i++){
+            String j=String.valueOf(i);
+            petAgeListInMonth.add(j);
+        }
+        SpinnerItemsAdapter monthAdapter = new SpinnerItemsAdapter(this, R.layout.spinneritem, petAgeListInMonth);
+        monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        petAgeInMonths.setAdapter(monthAdapter);
+        petAgeInMonths.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // On selecting a spinner item
+                if(position > 0) {
+                    petAgeMonthSpinner = parent.getItemAtPosition(position).toString();
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        stringArrayListForYear = new String[]{
+                "Years"
+        };
+        petAgeListInYear = new ArrayList<>(Arrays.asList(stringArrayListForYear));
+        for(int i=0;i<=11;i++){
+            String j=String.valueOf(i);
+            petAgeListInYear.add(j);
+        }
+        SpinnerItemsAdapter yearAdapter = new SpinnerItemsAdapter(this, R.layout.spinneritem, petAgeListInYear);
+        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        petAgeInYears.setAdapter(yearAdapter);
+        petAgeInYears.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // On selecting a spinner item
+                if(position > 0) {
+                    petAgeYearSpinner = parent.getItemAtPosition(position).toString();
+                }
+                //petAgeYearSpinner = parent.getItemAtPosition(position).toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-    private TextWatcher ageChangeListener = new TextWatcher() {
+            }
+        });
+    }
+
+
+    /*private TextWatcher ageChangeListener = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -216,7 +279,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
         public void afterTextChanged(Editable s) {
             new GetPetAge().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
         }
-    };
+    };*/
 
     private TextWatcher priceChangeListener = new TextWatcher() {
         @Override
@@ -471,7 +534,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
         return image;
     }
 
-    public class GetPetAge extends AsyncTask<Void, Void, Void> {
+/*    public class GetPetAge extends AsyncTask<Void, Void, Void> {
         String takePetAge;
         @Override
         protected Void doInBackground(Void... params) {
@@ -501,7 +564,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
             }
             return null;
         }
-    }
+    }*/
 
     public class GetPetPrice extends AsyncTask<Void, Void, Void> {
         String takePetPrice;
@@ -621,7 +684,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
         @Override
         protected Void doInBackground(Void... params) {
             try {
-                PetListFormUpload.uploadToRemoteServer(petCategoryName, petBreedName, petAge, petGender, petDescription, petAdoption, petPrice, firstImagePath, secondImagePath, thirdImagePath, email, PetForm.this);
+                PetListFormUpload.uploadToRemoteServer(petCategoryName, petBreedName, petAgeMonthSpinner,petAgeYearSpinner,petGender, petDescription, petAdoption, petPrice, firstImagePath, secondImagePath, thirdImagePath, email, PetForm.this);
                 progressDialog.dismiss();
             } catch (Exception e) {
                 e.printStackTrace();

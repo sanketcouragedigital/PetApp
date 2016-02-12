@@ -20,13 +20,15 @@ public  class PetListFormUpload {
     //http://192.168.0.3/PetAppAPI/api/petappapi.php
     //http://storage.couragedigital.com/dev/api/petappapi.php
 
-    public static void uploadToRemoteServer(String petCategoryName, String petBreedName, Integer petAge, String petGender, String petDescription, String petAdoption, Integer petPrice, String firstImagePath, String secondImagePath, String thirdImagePath, String emailOfUser, PetForm petForm) throws Exception {
+    public static void uploadToRemoteServer(String petCategoryName, String petBreedName, String petAgeMonthSpinner, String petAgeYearSpinner, String petGender, String petDescription, String petAdoption, Integer petPrice, String firstImagePath, String secondImagePath, String thirdImagePath, String emailOfUser, PetForm petForm) throws Exception {
 
         context = petForm.getApplicationContext();
         int serverResponseCode = 0;
         String categoryOfPet = petCategoryName;
         String breedOfPet = petBreedName;
-        Integer ageOfPet = petAge;
+        //Integer ageOfPet = petAge;
+        String petAgeInMonth= petAgeMonthSpinner;
+        String petAgeInYear= petAgeYearSpinner;
         String genderOfPet = petGender;
         String descriptionOfPet = petDescription;
         String adoptionOfPet = petAdoption;
@@ -56,7 +58,9 @@ public  class PetListFormUpload {
         stringPart = new HashMap<>();
         stringPart.put("categoryOfPet", categoryOfPet);
         stringPart.put("breedOfPet", breedOfPet);
-        stringPart.put("ageOfPet", String.valueOf(ageOfPet));
+        //stringPart.put("ageOfPet", String.valueOf(ageOfPet));
+        stringPart.put("petAgeInMonth", petAgeInMonth);
+        stringPart.put("petAgeInYear", petAgeInYear);
         stringPart.put("genderOfPet", genderOfPet);
         stringPart.put("descriptionOfPet", descriptionOfPet);
         stringPart.put("adoptionOfPet", adoptionOfPet);

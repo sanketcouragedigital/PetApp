@@ -48,7 +48,9 @@ public class PetFetchList {
                                         petListItems.setListingType(replaceSpecialChars(obj.getString("pet_price")));
                                     }
                                     petListItems.setPetCategory(replaceSpecialChars(obj.getString("pet_category")));
-                                    petListItems.setPetAge(obj.getString("pet_age"));
+                                    //petListItems.setPetAge(obj.getString("pet_age"));
+                                    petListItems.setPetAgeInMonth(obj.getString("pet_age_inMonth"));
+                                    petListItems.setPetAgeInYear(obj.getString("pet_age_inYear"));
                                     petListItems.setPetGender(replaceSpecialChars(obj.getString("pet_gender")));
                                     petListItems.setPetDescription(replaceSpecialChars(obj.getString("pet_description")));
                                     petListItems.setPetPostDate(obj.getString("post_date"));

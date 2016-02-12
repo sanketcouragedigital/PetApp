@@ -31,25 +31,49 @@
                     android:layout_below="@+id/petMateCategorySpinner"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="16dp"/>
-            <EditText
+            <TextView
                     android:layout_width="84dp"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
                     android:ems="4"
+                    android:textSize="20sp"
+                    android:textColor="@color/edittxtcolor"
                     android:id="@+id/ageOfPetMate"
                     android:hint="Age"
-                    android:textColor="@color/textColorPrimary"
                     android:layout_alignParentBottom="false"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/petMateBreedSpinner"
                     android:layout_marginTop="16dp"/>
+            <Spinner
+                    android:id="@+id/ageOfPetMateInMonths"
+                    android:layout_width="100dp"
+                    android:layout_height="48dp"
+                    android:layout_alignTop="@+id/ageOfPetMate"
+                    android:layout_toRightOf="@+id/ageOfPetMate"
+            />
+            <Spinner
+                    android:id="@+id/ageOfPetMateInYears"
+                    android:layout_width="100dp"
+                    android:layout_height="48dp"
+                    android:layout_alignTop="@+id/ageOfPetMate"
+                    android:layout_toRightOf="@+id/ageOfPetMateInMonths"
+            />
+            <TextView
+                    android:id="@+id/petMateGender"
+                    android:layout_width="84dp"
+                    android:layout_height="wrap_content"
+                    android:ems="4"
+                    android:text="Gender"
+                    android:textSize="20sp"
+                    android:textColor="@color/edittxtcolor"
+                    android:layout_alignTop="@+id/genderOfPetMate"
+                    android:layout_alignParentStart="true"/>
             <RadioGroup
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:orientation="horizontal"
                     android:id="@+id/genderOfPetMate"
-                    android:layout_below="@+id/petMateBreedSpinner"
+                    android:layout_below="@+id/ageOfPetMateInMonths"
                     android:layout_marginTop="27dp"
                     android:layout_marginLeft="24dp"
                     android:layout_toRightOf="@+id/ageOfPetMate">
@@ -75,7 +99,7 @@
                     android:lines="2"
                     android:gravity="top|left"
                     android:scrollbars="vertical"
-                    android:layout_below="@+id/ageOfPetMate"
+                    android:layout_below="@+id/petMateGender"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="16dp"/>
             <Button

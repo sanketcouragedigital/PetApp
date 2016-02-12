@@ -95,7 +95,8 @@ public class PetMateListAdapter  extends RecyclerView.Adapter<PetMateListAdapter
                     petFullInformation.putExtra("PET_SECOND_IMAGE", petMateListItems.getSecondImagePath());
                     petFullInformation.putExtra("PET_THIRD_IMAGE", petMateListItems.getThirdImagePath());
                     petFullInformation.putExtra("PET_MATE_BREED", petMateListItems.getPetMateBreed());
-                    petFullInformation.putExtra("PET_MATE_AGE", petMateListItems.getPetMateAge());
+                    petFullInformation.putExtra("PET_MATE_AGE_INMONTH", petMateListItems.getPetMateAgeInMonth());
+                    petFullInformation.putExtra("PET_MATE_AGE_INYEAR", petMateListItems.getPetMateAgeInYear());
                     petFullInformation.putExtra("PET_MATE_GENDER", petMateListItems.getPetMateGender());
                     petFullInformation.putExtra("PET_MATE_DESCRIPTION", petMateListItems.getPetMateDescription());
                     petFullInformation.putExtra("POST_OWNER_EMAIL", petMateListItems.getPetMatePostOwnerEmail());

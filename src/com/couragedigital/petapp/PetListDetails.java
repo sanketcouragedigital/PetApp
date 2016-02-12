@@ -29,7 +29,9 @@ public class PetListDetails extends AppCompatActivity implements View.OnClickLis
     String thirdImagePath = "";
     String breed = "";
     String listingType = "";
-    String age = "";
+    //String age = "";
+    String ageInMonth = "";
+    String ageInYear = "";
     String gender = "";
     String description = "";
     String email = "";
@@ -44,6 +46,8 @@ public class PetListDetails extends AppCompatActivity implements View.OnClickLis
     TextView petBreed;
     TextView petListingType;
     TextView petAge;
+    TextView petAgeInMonth;
+    TextView petAgeInYear;
     TextView petGender;
     TextView petPrice;
     TextView petDescription;
@@ -73,7 +77,9 @@ public class PetListDetails extends AppCompatActivity implements View.OnClickLis
             thirdImagePath = intent.getStringExtra("PET_THIRD_IMAGE");
             breed = intent.getStringExtra("PET_BREED");
             listingType = intent.getStringExtra("PET_LISTING_TYPE");
-            age = intent.getStringExtra("PET_AGE");
+            //age = intent.getStringExtra("PET_AGE");
+            ageInMonth = intent.getStringExtra("PET_AGE_INMONTH");
+            ageInYear = intent.getStringExtra("PET_AGE_INYEAR");
             gender = intent.getStringExtra("PET_GENDER");
             description = intent.getStringExtra("PET_DESCRIPTION");
             email = intent.getStringExtra("POST_OWNER_EMAIL");
@@ -107,7 +113,9 @@ public class PetListDetails extends AppCompatActivity implements View.OnClickLis
 
         petBreed = (TextView) findViewById(R.id.petBreedInPetDetails);
         //petListingType = (TextView) findViewById(R.id.petListingTypeInPetDetails);
-        petAge = (TextView) findViewById(R.id.petAgeInPetDetails);
+        //petAge = (TextView) findViewById(R.id.petAgeInPetDetails);
+        petAgeInMonth = (TextView) findViewById(R.id.petAgeInMonthInPetDetails);
+        petAgeInYear = (TextView) findViewById(R.id.petAgeInYearInPetDetails);
         petGender = (TextView) findViewById(R.id.petGenderInPetDetails);
         petPrice = (TextView) findViewById(R.id.petPriceInPetDetails);
         petDescription = (TextView) findViewById(R.id.petDescriptionInPetDetails);
@@ -138,8 +146,12 @@ public class PetListDetails extends AppCompatActivity implements View.OnClickLis
         }
         String breedOfPet = "<b>Breed: </b>" + breed;
         petBreed.setText(Html.fromHtml(breedOfPet));
-        String ageOfPet = "<b>Age: </b>" + age;
-        petAge.setText(Html.fromHtml(ageOfPet));
+//        String age = "<b>Age: </b>";
+//        petAge.setText(Html.fromHtml(age));
+        String ageOfPetInMonth = "<b>Month: </b>" + ageInMonth;
+        petAgeInMonth.setText(Html.fromHtml(ageOfPetInMonth));
+        String ageOfPetInYear = "<b>Year: </b>" + ageInYear;
+        petAgeInYear.setText(Html.fromHtml(ageOfPetInYear));
         String genderOfPet = "<b>Gender: </b>" + gender;
         petGender.setText(Html.fromHtml(genderOfPet));
         String descriptionOfPet = "<b>Description: </b>" + description;

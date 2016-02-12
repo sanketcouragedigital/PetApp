@@ -11,6 +11,9 @@ public class PetListItems {
     public String listingType;
     public String petCategory;
     public String petAge;
+    public String petAgeInMonth;
+    public String petAgeInYear;
+
     public String petGender;
     public String petDescription;
     public String petPostDate;
@@ -20,7 +23,7 @@ public class PetListItems {
     public PetListItems() {
     }
 
-    public PetListItems(String firstImagePath, String secondImagePath, String thirdImagePath, String petBreed, String petPostOwner, String listingType, String petCategory, String petAge, String petGender, String petDescription, String petPostDate, String petPostOwnerEmail, String petPostOwnerMobileNo) {
+    public PetListItems(String firstImagePath, String secondImagePath, String thirdImagePath, String petBreed, String petPostOwner, String listingType, String petCategory,String petAgeInMonth, String petAgeInYear, String petGender, String petDescription, String petPostDate, String petPostOwnerEmail, String petPostOwnerMobileNo) {
         this.firstImagePath = firstImagePath;
         this.secondImagePath = secondImagePath;
         this.thirdImagePath = thirdImagePath;
@@ -28,7 +31,9 @@ public class PetListItems {
         this.petPostOwner = petPostOwner;
         this.listingType = listingType;
         this.petCategory = petCategory;
-        this.petAge = petAge;
+        //this.petAge = petAge;
+        this.petAgeInMonth = petAgeInMonth;
+        this.petAgeInYear = petAgeInYear;
         this.petGender = petGender;
         this.petDescription = petDescription;
         this.petPostDate = petPostDate;
@@ -92,13 +97,22 @@ public class PetListItems {
         this.petCategory = petCategory;
     }
 
-    public String getPetAge() {
-        return petAge;
+    public String getPetAgeInMonth() {
+        return petAgeInMonth;
     }
 
-    public void setPetAge(String petAge) {
-        this.petAge = petAge;
+    public void setPetAgeInMonth(String petAgeInMonth) {
+        this.petAgeInMonth = petAgeInMonth;
     }
+
+    public String getPetAgeInYear() {
+        return petAgeInYear;
+    }
+
+    public void setPetAgeInYear(String petAgeInYear) {
+        this.petAgeInYear = petAgeInYear;
+    }
+
 
     public String getPetGender() {
         return petGender;

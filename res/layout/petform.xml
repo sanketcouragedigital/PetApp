@@ -32,29 +32,59 @@
                     android:layout_below="@+id/petCategory"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="16dp"/>
-            <EditText
+            <TextView
+                    android:id="@+id/ageOfPet"
                     android:layout_width="84dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="4"
-                    android:id="@+id/ageOfPet"
-                    android:hint="Age"
-                    android:textColor="@color/textColorPrimary"
+                    android:text="Age"
+                    android:textSize="22sp"
+                    android:textColor="@color/edittxtcolor"
                     android:layout_alignParentBottom="false"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/petBreed"
-                    android:layout_marginTop="16dp"/>
+                    android:layout_marginTop="16dp"
+            />
+            <Spinner
+                    android:id="@+id/ageInMonths"
+                    android:layout_width="100dp"
+                    android:layout_height="48dp"
+                    android:layout_alignTop="@+id/ageOfPet"
+                    android:layout_toRightOf="@+id/ageOfPet"
+                    />
+            <Spinner
+                    android:id="@+id/ageInYears"
+                    android:layout_width="100dp"
+                    android:layout_height="48dp"
+                    android:layout_alignTop="@+id/ageOfPet"
+                    android:layout_toRightOf="@+id/ageInMonths"
+            />
+
+            <TextView
+                    android:id="@+id/petGender"
+                    android:layout_width="84dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="4"
+                    android:text="Gender"
+                    android:textSize="22sp"
+                    android:textColor="@color/edittxtcolor"
+                    android:layout_above="@+id/giveAwayOfPet"
+                    android:layout_alignParentStart="true"/>
+
             <RadioGroup
+                    android:id="@+id/genderOfPet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:orientation="horizontal"
-                    android:id="@+id/genderOfPet"
-                    android:layout_below="@+id/petBreed"
+                    android:layout_below="@+id/ageInMonths"
                     android:layout_marginTop="27dp"
                     android:layout_marginLeft="24dp"
                     android:layout_toEndOf="@+id/priceOfPet"
                     android:layout_toRightOf="@+id/ageOfPet">
+
                 <RadioButton android:id="@+id/genderMale"
                              android:layout_width="wrap_content"
                              android:layout_height="wrap_content"
@@ -105,8 +135,8 @@
                     android:hint="Price"
                     android:enabled="false"
                     android:textColor="@color/textColorPrimary"
-                    android:layout_below="@+id/ageOfPet"
-                    android:layout_marginTop="16dp"/>
+                    android:layout_alignBottom="@+id/giveAwayOfPet"
+                    android:layout_alignParentStart="true"/>
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -133,10 +163,10 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="14dp"/>
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_below="@+id/selectImage">
+                          android:orientation="horizontal"
+                          android:layout_width="match_parent"
+                          android:layout_height="match_parent"
+                          android:layout_below="@+id/selectImage">
                 <ImageView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"

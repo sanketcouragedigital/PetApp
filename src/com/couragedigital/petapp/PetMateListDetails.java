@@ -29,7 +29,6 @@ public class PetMateListDetails extends AppCompatActivity implements View.OnClic
     String secondImagePath = "";
     String thirdImagePath = "";
     String breed = "";
-    String age = "";
     String ageInMonthForPetMate = "";
     String ageInYearForPetMate = "";
     String gender = "";
@@ -44,7 +43,6 @@ public class PetMateListDetails extends AppCompatActivity implements View.OnClic
     ImageView petMateDetailsThirdImageThumbnail;
     ImageView petMateImage;
     TextView petMateBreed;
-    TextView petMateAge;
     TextView petMateAgeInMonth;
     TextView petMateAgeInYear;
     TextView petMateGender;
@@ -73,7 +71,6 @@ public class PetMateListDetails extends AppCompatActivity implements View.OnClic
             secondImagePath = intent.getStringExtra("PET_SECOND_IMAGE");
             thirdImagePath = intent.getStringExtra("PET_THIRD_IMAGE");
             breed = intent.getStringExtra("PET_MATE_BREED");
-            //age = intent.getStringExtra("PET_MATE_AGE");
             ageInMonthForPetMate = intent.getStringExtra("PET_MATE_AGE_INMONTH");
             ageInYearForPetMate = intent.getStringExtra("PET_MATE_AGE_INYEAR");
             gender = intent.getStringExtra("PET_MATE_GENDER");
@@ -108,8 +105,6 @@ public class PetMateListDetails extends AppCompatActivity implements View.OnClic
         petMateDetailsThirdImageThumbnail = (ImageView) findViewById(R.id.petMateDetailsThirdImageThumbnail);
 
         petMateBreed = (TextView) findViewById(R.id.petMateBreedInPetDetails);
-        //petListingType = (TextView) findViewById(R.id.petListingTypeInPetDetails);
-        //petMateAge = (TextView) findViewById(R.id.petMateAgeInPetDetails);
         petMateAgeInMonth = (TextView) findViewById(R.id.petMateAgeInMonthInPetDetails);
         petMateAgeInYear = (TextView) findViewById(R.id.petMateAgeInYearInPetDetails);
         petMateGender = (TextView) findViewById(R.id.petMateGenderInPetDetails);

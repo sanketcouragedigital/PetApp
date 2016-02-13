@@ -91,7 +91,7 @@ public class Index extends BaseActivity {
         }
 
         final String[] petclinictitle = new String[]{"View Home Location", "View Current Location"};
-        final int[] petclinicicon = {R.drawable.my_location, R.drawable.location};
+        final int[] petclinicicon = {R.drawable.home_location, R.drawable.current_location};
         for (int i = 0; i < petclinictitle.length; i++) {
             DialogListInformaion dialogListpetclinic = new DialogListInformaion();
             dialogListpetclinic.setTittle(petclinictitle[i]);

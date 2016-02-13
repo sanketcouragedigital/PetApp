@@ -6,8 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
+import com.couragedigital.petapp.ExpandableText;
 import com.couragedigital.petapp.PetMateListDetails;
 import com.couragedigital.petapp.model.PetMateListItems;
 import com.couragedigital.petapp.R;
@@ -16,7 +18,7 @@ import com.couragedigital.petapp.app.AppController;
 
 import java.util.List;
 
-public class PetMateListAdapter  extends RecyclerView.Adapter<PetMateListAdapter.ViewHolder>{
+public class PetMateListAdapter extends RecyclerView.Adapter<PetMateListAdapter.ViewHolder> {
     List<PetMateListItems> petMateLists;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;
@@ -46,14 +48,18 @@ public class PetMateListAdapter  extends RecyclerView.Adapter<PetMateListAdapter
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public RoundedNetworkImageView petMateImage;
         public TextView petMateBreed;
         public TextView petMatePostOwner;
-        public Button petMateSeeMoreButton;
+        //  public TextView petMateDescription;
+        public Button petFavourite;
         public Button petMateFavourite;
         public View dividerLinePetMate;
+        public View cardView;
+        public ImageButton petMateShareImageButton;
+        public ExpandableText petMateListDescription;
 
         int statusOfFavourite = 0;
         private PetMateListItems petMateListItems;
@@ -66,29 +72,45 @@ public class PetMateListAdapter  extends RecyclerView.Adapter<PetMateListAdapter
             petMateImage = (RoundedNetworkImageView) itemView.findViewById(R.id.petMateImage);
             petMateBreed = (TextView) itemView.findViewById(R.id.petMateBreed);
             petMatePostOwner = (TextView) itemView.findViewById(R.id.petMatePostOwner);
-            petMateSeeMoreButton = (Button) itemView.findViewById(R.id.petMateSeeMoreButton);
+            petMateListDescription = (ExpandableText) itemView.findViewById(R.id.petMateListDescription);
+            petMateShareImageButton = (ImageButton) itemView.findViewById(R.id.petMateShareImageButton);
             petMateFavourite = (Button) itemView.findViewById(R.id.petMateFavourite);
-            dividerLinePetMate = itemView.findViewById(R.id.dividerLinePetMate);
+            dividerLinePetMate = itemView.findViewById(R.id.petMateListDividerLine);
 
-            petMateSeeMoreButton.setOnClickListener(this);
-            //petMateFavourite.setOnClickListener(this);
+            cardView = itemView;
+            cardView.setOnClickListener(this);
+            petMateShareImageButton.setOnClickListener(this);
+            petMateFavourite.setOnClickListener(this);
         }
 
         public void bindPetList(PetMateListItems petMateListItems) {
             this.petMateListItems = petMateListItems;
             petMateImage.setImageUrl(petMateListItems.getFirstImagePath(), imageLoader);
-
             petMateBreed.setText(petMateListItems.getPetMateBreed());
-            petMatePostOwner.setText("Posted By : "+ petMateListItems.getPetMatePostOwner());
-            petMateSeeMoreButton.setText("See More");
-            //petMateFavourite.setBackgroundResource(R.drawable.favourite_disable);
-            petMateFavourite.setVisibility(View.GONE);
+            petMatePostOwner.setText("Posted By : " + petMateListItems.getPetMatePostOwner());
+            petMateListDescription.setText(petMateListItems.getPetMateDescription());
+            petMateFavourite.setBackgroundResource(R.drawable.favourite_disable);
+            //      petMateFavourite.setVisibility(View.GONE);
             dividerLinePetMate.setBackgroundResource(R.color.list_internal_divider);
         }
 
         @Override
         public void onClick(View v) {
-            if(v.getId() == R.id.petMateSeeMoreButton) {
+            if (v.getId() == R.id.petMateShareImageButton) {
+                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                String sharingText = "I want to share  Peto App Download it from Google PlayStore.";
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, sharingText);
+                v.getContext().startActivity(Intent.createChooser(sharingIntent, "Share using"));
+            }  else if (v.getId() == R.id.petMateFavourite) {
+                if (statusOfFavourite == 0) {
+                    petMateFavourite.setBackgroundResource(R.drawable.favourite_enable);
+                    statusOfFavourite = 1;
+                } else if (statusOfFavourite == 1) {
+                    petMateFavourite.setBackgroundResource(R.drawable.favourite_disable);
+                    statusOfFavourite = 0;
+                }
+            } else {
                 if (this.petMateListItems != null) {
                     Intent petFullInformation = new Intent(v.getContext(), PetMateListDetails.class);
                     petFullInformation.putExtra("PET_FIRST_IMAGE", petMateListItems.getFirstImagePath());
@@ -105,17 +127,6 @@ public class PetMateListAdapter  extends RecyclerView.Adapter<PetMateListAdapter
                     v.getContext().startActivity(petFullInformation);
                 }
             }
-            /*else if(v.getId() == R.id.petFavourite) {
-
-                if(statusOfFavourite == 0) {
-                    petFavourite.setBackgroundResource(R.drawable.favourite_enable);
-                    statusOfFavourite = 1;
-                }
-                else if(statusOfFavourite == 1) {
-                    petFavourite.setBackgroundResource(R.drawable.favourite_disable);
-                    statusOfFavourite = 0;
-                }
-            }*/
         }
     }
 }

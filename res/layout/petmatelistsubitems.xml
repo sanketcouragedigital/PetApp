@@ -19,77 +19,107 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content">
 
-            <RelativeLayout
-                    android:id="@+id/petMateListImageRelativeLayout"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp">
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                          android:layout_width="fill_parent"
+                          android:layout_height="wrap_content"
+                          android:id="@+id/petMateListImageAndTittleContentLayout">
 
-                <com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView
-                        android:id="@+id/petMateImage"
+                <RelativeLayout
+                        android:id="@+id/petMateListImageRelativeLayout"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp">
+
+                    <com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView
+                            android:id="@+id/petMateImage"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerCrop"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="17dp"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                        android:id="@+id/petMateListContentRelativeLayout"
                         android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:adjustViewBounds="true"
-                        android:scaleType="centerCrop"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="17dp"/>
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/petMateListImageRelativeLayout">
 
+                    <TextView
+                            android:id="@+id/petMateBreed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginLeft="16dp"
+                            android:textSize="@dimen/petName"
+                            android:textStyle="bold"
+                            android:textColor="@color/list_pet_origin_text_color"
+                            android:ellipsize="end"/>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/petMatePostOwner"
+                            android:layout_below="@+id/petMateBreed"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginLeft="16dp"
+                            android:singleLine="true"
+                            android:ellipsize="end"/>
+
+                </RelativeLayout>
             </RelativeLayout>
 
-            <RelativeLayout
-                    android:id="@+id/petMateListContentRelativeLayout"
-                    android:layout_width="fill_parent"
-                    android:layout_height="120dp"
-                    android:layout_toRightOf="@+id/petMateListImageRelativeLayout">
-                <TextView
-                        android:id="@+id/petMateBreed"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:textSize="@dimen/petName"
-                        android:textStyle="bold"
-                        android:textColor="@color/list_pet_origin_text_color"
-                        android:singleLine="true"
-                        android:ellipsize="end"/>
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                          android:layout_width="fill_parent"
+                          android:layout_height="wrap_content"
+                          android:id="@+id/petMateDescriptionLayout"
+                          android:layout_below="@+id/petMateListImageAndTittleContentLayout">
 
-                <TextView
-                        android:layout_width="wrap_content"
+                <com.couragedigital.petapp.ExpandableText
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/petMatePostOwner"
-                        android:layout_below="@+id/petMateBreed"
-                        android:layout_marginTop="12dp"
+                        android:id="@+id/petMateListDescription"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="10dp"
                         android:layout_marginLeft="16dp"
-                        android:singleLine="true"
+                        android:layout_marginRight="16dp"
+                        android:text="This is owner Description"
                         android:ellipsize="end"/>
-
             </RelativeLayout>
             <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:id="@+id/dividerLinePetMate"
+                    android:id="@+id/petMateListDividerLine"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_alignBottom="@+id/petMateListImageRelativeLayout"/>
+                    android:layout_below="@+id/petMateDescriptionLayout"/>
 
-            <Button
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:id="@+id/petMateFavourite"
-                    android:layout_marginRight="16dp"
-                    android:layout_alignBottom="@+id/petMateSeeMoreButton"
-                    android:layout_centerHorizontal="true"/>
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/petMateListDividerLine">
+                <Button
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:id="@+id/petMateFavourite"
+                        android:background="@drawable/favourite_enable"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="92dp"/>
 
-            <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/petMateSeeMoreButton"
-                    android:layout_below="@+id/dividerLinePetMate"
-                    android:background="@android:color/transparent"
-                    android:textColor="#CF3E3E"
-                    android:textSize="14sp"/>
+                <ImageButton
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:id="@+id/petMateShareImageButton"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="92dp"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/share_icon"
+                        android:layout_alignParentRight="true"/>
+            </RelativeLayout>
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>

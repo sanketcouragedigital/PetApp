@@ -16,17 +16,18 @@ public class PetMateListItems {
     public String petMatePostOwnerEmail;
     public String petMatePostOwnerMobileNo;
 
+
     public PetMateListItems() {
     }
 
-    public PetMateListItems(String firstImagePath, String secondImagePath, String thirdImagePath, String petMateBreed, String petMatePostOwner, String petMateCategory, String petMateAgeInMonth, String petMateAgeInYear, String petMateGender, String petMateDescription, String petMatePostDate, String petMatePostOwnerEmail, String petMatePostOwnerMobileNo) {
+    public PetMateListItems(String firstImagePath, String secondImagePath, String thirdImagePath, String petMateBreed, String petMatePostOwner, String petMateCategory,String petMateAgeInMonth,
+                                    String petMateAgeInYear, String petMateGender, String petMateDescription, String petMatePostDate, String petMatePostOwnerEmail, String petMatePostOwnerMobileNo) {
         this.firstImagePath = firstImagePath;
         this.secondImagePath = secondImagePath;
         this.thirdImagePath = thirdImagePath;
         this.petMateBreed = petMateBreed;
         this.petMatePostOwner = petMatePostOwner;
         this.petMateCategory = petMateCategory;
-
         this.petMateAgeInMonth = petMateAgeInMonth;
         this.petMateAgeInYear = petMateAgeInYear;
         this.petMateGender = petMateGender;

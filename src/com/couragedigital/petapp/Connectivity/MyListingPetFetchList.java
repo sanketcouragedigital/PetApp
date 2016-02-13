@@ -48,7 +48,8 @@ public class MyListingPetFetchList {
                                         myListingPetItems.setListingType(replaceSpecialChars(obj.getString("pet_price")));
                                     }
                                     myListingPetItems.setPetCategory(replaceSpecialChars(obj.getString("pet_category")));
-                                    myListingPetItems.setPetAge(obj.getString("pet_age"));
+                                    myListingPetItems.setPetAgeInMonth(obj.getString("pet_age_inMonth"));
+                                    myListingPetItems.setPetAgeInYear(obj.getString("pet_age_inYear"));
                                     myListingPetItems.setPetGender(replaceSpecialChars(obj.getString("pet_gender")));
                                     myListingPetItems.setPetDescription(replaceSpecialChars(obj.getString("pet_description")));
                                     myListingPetItems.setPetPostDate(obj.getString("post_date"));

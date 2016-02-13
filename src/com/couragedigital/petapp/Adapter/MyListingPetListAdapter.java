@@ -8,9 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.android.volley.toolbox.ImageLoader;
 import com.couragedigital.petapp.Connectivity.MyListingPetListDelete;
 import com.couragedigital.petapp.Connectivity.PetRefreshFetchList;
+import com.couragedigital.petapp.ExpandableText;
 import com.couragedigital.petapp.MyListingPetListDetails;
 import com.couragedigital.petapp.PetListDetails;
 import com.couragedigital.petapp.R;
@@ -68,9 +70,11 @@ public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetLi
 
         public RoundedNetworkImageView petImage;
         public TextView petBreed;
-        public Button seeMoreButton;
+        public Button modify;
         public Button deletebutton;
         public View dividerLine;
+        public ExpandableText myListingPetListDescription;
+        public  View cardView;
 
         private MyListingPetListItems myListingPetListItem;
 
@@ -83,10 +87,15 @@ public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetLi
             }
             petImage = (RoundedNetworkImageView) itemView.findViewById(R.id.myListingViewImage);
             petBreed = (TextView) itemView.findViewById(R.id.myListingViewBreed);
-            seeMoreButton = (Button) itemView.findViewById(R.id.myListingPetListSeeMore);
+            modify = (Button) itemView.findViewById(R.id.myListingPetListModifyButton);
             dividerLine = itemView.findViewById(R.id.myListingDividerLine);
             deletebutton = (Button) itemView.findViewById(R.id.myListingPetListDelete);
-            seeMoreButton.setOnClickListener(this);
+
+            myListingPetListDescription = (ExpandableText) itemView.findViewById(R.id.myListingPetListDescription);
+
+            cardView = itemView;
+            cardView.setOnClickListener(this);
+            modify.setOnClickListener(this);
             deletebutton.setOnClickListener(this);
         }
 
@@ -94,7 +103,9 @@ public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetLi
             this.myListingPetListItem = myListingPetListItems;
             petImage.setImageUrl(myListingPetListItems.getFirstImagePath(), imageLoader);
             petBreed.setText(myListingPetListItems.getPetBreed());
-            seeMoreButton.setText("See More");
+            myListingPetListDescription.setText(myListingPetListItems.getPetDescription());
+
+            modify.setText("Modify");
             deletebutton.setText("Delete");
             //petListingTypeButton.setText(setPetListingTypeButtonName(myListingPetListItems));
             //petFavourite.setBackgroundResource(R.drawable.favourite_disable);
@@ -104,20 +115,9 @@ public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetLi
 
         @Override
         public void onClick(View v) {
-            if (v.getId() == R.id.myListingPetListSeeMore) {
-                if (this.myListingPetListItem != null) {
-                    Intent myListingpetdetail = new Intent(v.getContext(), MyListingPetListDetails.class);
-                    myListingpetdetail.putExtra("PET_FIRST_IMAGE", myListingPetListItem.getFirstImagePath());
-                    myListingpetdetail.putExtra("PET_SECOND_IMAGE", myListingPetListItem.getSecondImagePath());
-                    myListingpetdetail.putExtra("PET_THIRD_IMAGE", myListingPetListItem.getThirdImagePath());
-                    myListingpetdetail.putExtra("PET_BREED", myListingPetListItem.getPetBreed());
-                    myListingpetdetail.putExtra("PET_LISTING_TYPE", myListingPetListItem.getListingType());
-                    myListingpetdetail.putExtra("PET_AGE", myListingPetListItem.getPetAge());
-                    myListingpetdetail.putExtra("PET_GENDER", myListingPetListItem.getPetGender());
-                    myListingpetdetail.putExtra("PET_DESCRIPTION", myListingPetListItem.getPetDescription());
+            if (v.getId() == R.id.myListingPetListModifyButton) {
 
-                    v.getContext().startActivity(myListingpetdetail);
-                }
+                Toast.makeText(v.getContext(),"you clicked on Modify Button",Toast.LENGTH_LONG).show();
             }
             else if (v.getId() == R.id.myListingPetListDelete) {
                 if(this.myListingPetListItem != null) {
@@ -128,7 +128,22 @@ public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetLi
                     new DeletePetListFromServer().execute(url);
                     deletebutton.setText("Deleted");
                     deletebutton.setEnabled(false);
-                    seeMoreButton.setEnabled(false);
+                    modify.setEnabled(false);
+                }
+            }
+            else{
+                if (this.myListingPetListItem != null) {
+                    Intent myListingpetdetail = new Intent(v.getContext(), MyListingPetListDetails.class);
+                    myListingpetdetail.putExtra("PET_FIRST_IMAGE", myListingPetListItem.getFirstImagePath());
+                    myListingpetdetail.putExtra("PET_SECOND_IMAGE", myListingPetListItem.getSecondImagePath());
+                    myListingpetdetail.putExtra("PET_THIRD_IMAGE", myListingPetListItem.getThirdImagePath());
+                    myListingpetdetail.putExtra("PET_BREED", myListingPetListItem.getPetBreed());
+                    myListingpetdetail.putExtra("PET_LISTING_TYPE", myListingPetListItem.getListingType());
+                    myListingpetdetail.putExtra("PET_AGE", myListingPetListItem.getPetAgeInMonth());
+                    myListingpetdetail.putExtra("PET_GENDER", myListingPetListItem.getPetGender());
+                    myListingpetdetail.putExtra("PET_DESCRIPTION", myListingPetListItem.getPetDescription());
+
+                    v.getContext().startActivity(myListingpetdetail);
                 }
             }
         }

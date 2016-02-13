@@ -8,10 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.android.volley.toolbox.ImageLoader;
 import com.couragedigital.petapp.Connectivity.MyListingPetMateDelete;
 import com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView;
+import com.couragedigital.petapp.ExpandableText;
 import com.couragedigital.petapp.MyListing;
 import com.couragedigital.petapp.MyListingPetMateListDetails;
 import com.couragedigital.petapp.R;
@@ -59,9 +62,11 @@ public class MyListingPetMateListAdapter extends RecyclerView.Adapter
 
         public RoundedNetworkImageView mlPetMateImage;
         public TextView mlPetMateBreed;
-        public Button seeMoreButton;
+        public Button modify;
         public Button deletebutton;
-        public View mlDividerLinePetMate;
+        public View myListingPetMateDivider;
+        public View cardView;
+        public ExpandableText petMateListDescription;
 
         int statusOfFavourite = 0;
         private MyListingPetMateListItem myListingPetMateListItem;
@@ -74,10 +79,15 @@ public class MyListingPetMateListAdapter extends RecyclerView.Adapter
             }
             mlPetMateImage = (RoundedNetworkImageView) itemView.findViewById(R.id.myListingPetMateImage);
             mlPetMateBreed = (TextView) itemView.findViewById(R.id.myListingPetMateBreed);
-            seeMoreButton = (Button) itemView.findViewById(R.id.myListingPetMateSeeMore);
-            mlDividerLinePetMate = itemView.findViewById(R.id.myListingPetMateDividerLine);
+            modify = (Button) itemView.findViewById(R.id.myListingPetMateModify);
+            myListingPetMateDivider = itemView.findViewById(R.id.myListingPetMateDividerLine);
             deletebutton = (Button) itemView.findViewById(R.id.myListingPetMateDelete);
-            seeMoreButton.setOnClickListener(this);
+
+            petMateListDescription = (ExpandableText) itemView.findViewById(R.id.myListingPetMateListDescription);
+
+            cardView = itemView;
+            cardView.setOnClickListener(this);
+            modify.setOnClickListener(this);
             deletebutton.setOnClickListener(this);
         }
 
@@ -86,28 +96,18 @@ public class MyListingPetMateListAdapter extends RecyclerView.Adapter
 
             mlPetMateImage.setImageUrl(myListingPetMateListItem.getFirstImagePath(), imageLoader);
             mlPetMateBreed.setText(myListingPetMateListItem.getPetMateBreed());
-            seeMoreButton.setText("See More");
+            petMateListDescription.setText(myListingPetMateListItem.getPetMateDescription());
+            modify.setText("Modify");
             deletebutton.setText("Delete");
             //petMateFavourite.setBackgroundResource(R.drawable.favourite_disable);
 //            mlPetMateFavourite.setVisibility(View.GONE);
-            mlDividerLinePetMate.setBackgroundResource(R.color.list_internal_divider);
+            myListingPetMateDivider.setBackgroundResource(R.color.list_internal_divider);
         }
 
         @Override
         public void onClick(View v) {
-            if(v.getId() == R.id.myListingPetMateSeeMore) {
-                if (this.myListingPetMateListItem != null) {
-                    Intent petFullInformation = new Intent(v.getContext(), MyListingPetMateListDetails.class);
-                    petFullInformation.putExtra("PET_FIRST_IMAGE", myListingPetMateListItem.getFirstImagePath());
-                    petFullInformation.putExtra("PET_SECOND_IMAGE", myListingPetMateListItem.getSecondImagePath());
-                    petFullInformation.putExtra("PET_THIRD_IMAGE", myListingPetMateListItem.getThirdImagePath());
-                    petFullInformation.putExtra("PET_MATE_BREED", myListingPetMateListItem.getPetMateBreed());
-                    petFullInformation.putExtra("PET_MATE_AGE", myListingPetMateListItem.getPetMateAge());
-                    petFullInformation.putExtra("PET_MATE_GENDER", myListingPetMateListItem.getPetMateGender());
-                    petFullInformation.putExtra("PET_MATE_DESCRIPTION", myListingPetMateListItem.getPetMateDescription());
-
-                    v.getContext().startActivity(petFullInformation);
-                }
+            if(v.getId() == R.id.myListingPetMateModify) {
+                Toast.makeText(v.getContext(),"you clicked on Modify Button",Toast.LENGTH_LONG).show();
             }
             else if(v.getId() == R.id.myListingPetMateDelete) {
                 if(this.myListingPetMateListItem != null) {
@@ -118,7 +118,21 @@ public class MyListingPetMateListAdapter extends RecyclerView.Adapter
                     new DeletePetMateFromServer().execute(url);
                     deletebutton.setText("Deleted");
                     deletebutton.setEnabled(false);
-                    seeMoreButton.setEnabled(false);
+                    modify.setEnabled(false);
+                }
+            }
+            else {
+                if (this.myListingPetMateListItem != null) {
+                    Intent petFullInformation = new Intent(v.getContext(), MyListingPetMateListDetails.class);
+                    petFullInformation.putExtra("PET_FIRST_IMAGE", myListingPetMateListItem.getFirstImagePath());
+                    petFullInformation.putExtra("PET_SECOND_IMAGE", myListingPetMateListItem.getSecondImagePath());
+                    petFullInformation.putExtra("PET_THIRD_IMAGE", myListingPetMateListItem.getThirdImagePath());
+                    petFullInformation.putExtra("PET_MATE_BREED", myListingPetMateListItem.getPetMateBreed());
+                    petFullInformation.putExtra("PET_MATE_AGE", myListingPetMateListItem.getPetMateAgeInMonth());
+                    petFullInformation.putExtra("PET_MATE_GENDER", myListingPetMateListItem.getPetMateGender());
+                    petFullInformation.putExtra("PET_MATE_DESCRIPTION", myListingPetMateListItem.getPetMateDescription());
+
+                    v.getContext().startActivity(petFullInformation);
                 }
             }
         }

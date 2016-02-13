@@ -11,7 +11,9 @@ public class MyListingPetListItems {
     public String petBreed;
     public String listingType;
     public String petCategory;
-    public String petAge;
+    //    public String petAge;
+    public String petAgeInMonth;
+    public String petAgeInYear;
     public String petGender;
     public String petDescription;
     public String petPostDate;
@@ -20,7 +22,7 @@ public class MyListingPetListItems {
     public MyListingPetListItems() {
     }
 
-    public MyListingPetListItems(int id, String firstImagePath, String secondImagePath, String thirdImagePath, String petBreed, String petPostOwner, String listingType, String petCategory, String petAge, String petGender, String petDescription, String petPostDate, String petPostOwnerEmail, String petPostOwnerMobileNo) {
+    public MyListingPetListItems(int id, String firstImagePath, String secondImagePath, String thirdImagePath, String petBreed, String petPostOwner, String listingType, String petCategory, String petAgeInMonth, String petAgeInYear, String petGender, String petDescription, String petPostDate, String petPostOwnerEmail, String petPostOwnerMobileNo) {
         this.id = id;
         this.firstImagePath = firstImagePath;
         this.secondImagePath = secondImagePath;
@@ -28,7 +30,8 @@ public class MyListingPetListItems {
         this.petBreed = petBreed;
         this.listingType = listingType;
         this.petCategory = petCategory;
-        this.petAge = petAge;
+        this.petAgeInMonth = petAgeInMonth;
+        this.petAgeInYear = petAgeInYear;
         this.petGender = petGender;
         this.petDescription = petDescription;
         this.petPostDate = petPostDate;
@@ -48,7 +51,7 @@ public class MyListingPetListItems {
     }
 
     public void setFirstImagePath(String firstImagePath) {
-        this.firstImagePath = "http://storage.couragedigital.com/dev/pet_images/"+firstImagePath;
+        this.firstImagePath = "http://storage.couragedigital.com/dev/pet_images/" + firstImagePath;
     }
 
     public String getSecondImagePath() {
@@ -56,7 +59,7 @@ public class MyListingPetListItems {
     }
 
     public void setSecondImagePath(String secondImagePath) {
-        this.secondImagePath = "http://storage.couragedigital.com/dev/pet_images/"+secondImagePath;
+        this.secondImagePath = "http://storage.couragedigital.com/dev/pet_images/" + secondImagePath;
     }
 
     public String getThirdImagePath() {
@@ -64,7 +67,7 @@ public class MyListingPetListItems {
     }
 
     public void setThirdImagePath(String thirdImagePath) {
-        this.thirdImagePath = "http://storage.couragedigital.com/dev/pet_images/"+thirdImagePath;
+        this.thirdImagePath = "http://storage.couragedigital.com/dev/pet_images/" + thirdImagePath;
     }
 
     public String getPetBreed() {
@@ -90,13 +93,20 @@ public class MyListingPetListItems {
     public void setPetCategory(String petCategory) {
         this.petCategory = petCategory;
     }
-
-    public String getPetAge() {
-        return petAge;
+    public String getPetAgeInMonth() {
+        return petAgeInMonth;
     }
 
-    public void setPetAge(String petAge) {
-        this.petAge = petAge;
+    public void setPetAgeInMonth(String petAgeInMonth) {
+        this.petAgeInMonth = petAgeInMonth;
+    }
+
+    public String getPetAgeInYear() {
+        return petAgeInYear;
+    }
+
+    public void setPetAgeInYear(String petAgeInYear) {
+        this.petAgeInYear = petAgeInYear;
     }
 
     public String getPetGender() {

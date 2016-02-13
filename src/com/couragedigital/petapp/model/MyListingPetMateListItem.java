@@ -10,7 +10,8 @@ public class MyListingPetMateListItem {
     public String thirdImagePath;
     public String petMateBreed;
     public String petMateCategory;
-    public String petMateAge;
+    public String petMateAgeInMonth;
+    public String petMateAgeInYear;
     public String petMateGender;
     public String petMateDescription;
     public String petMatePostDate;
@@ -21,14 +22,16 @@ public class MyListingPetMateListItem {
 
     }
 
-    public MyListingPetMateListItem(int id, String firstImagePath, String secondImagePath, String thirdImagePath, String petMateBreed, String petMatePostOwner, String petMateCategory, String petMateAge, String petMateGender, String petMateDescription, String petMatePostDate, String petMatePostOwnerEmail, String petMatePostOwnerMobileNo) {
+    public MyListingPetMateListItem(int id, String firstImagePath, String secondImagePath, String thirdImagePath, String petMateBreed, String petMatePostOwner,
+                                    String petMateCategory, String petMateAgeInMonth, String petMateAgeInYear, String petMateGender, String petMateDescription, String petMatePostDate, String petMatePostOwnerEmail, String petMatePostOwnerMobileNo) {
         this.id = id;
         this.firstImagePath = firstImagePath;
         this.secondImagePath = secondImagePath;
         this.thirdImagePath = thirdImagePath;
         this.petMateBreed = petMateBreed;
         this.petMateCategory = petMateCategory;
-        this.petMateAge = petMateAge;
+        this.petMateAgeInMonth = petMateAgeInMonth;
+        this.petMateAgeInYear = petMateAgeInYear;
         this.petMateGender = petMateGender;
         this.petMateDescription = petMateDescription;
         this.petMatePostDate = petMatePostDate;
@@ -83,12 +86,21 @@ public class MyListingPetMateListItem {
         this.petMateCategory = petMateCategory;
     }
 
-    public String getPetMateAge() {
-        return petMateAge;
+
+    public String getPetMateAgeInMonth() {
+        return petMateAgeInMonth;
     }
 
-    public void setPetMateAge(String petMateAge) {
-        this.petMateAge = petMateAge;
+    public void setPetMateAgeInMonth(String petMateAgeInMonth) {
+        this.petMateAgeInMonth = petMateAgeInMonth;
+    }
+
+    public String getPetMateAgeInYear() {
+        return petMateAgeInYear;
+    }
+
+    public void setPetMateAgeInYear(String petMateAgeInYear) {
+        this.petMateAgeInYear = petMateAgeInYear;
     }
 
     public String getPetMateGender() {

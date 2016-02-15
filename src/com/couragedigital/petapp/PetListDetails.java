@@ -36,8 +36,10 @@ public class PetListDetails extends AppCompatActivity implements View.OnClickLis
     String description = "";
     String email = "";
     String mobileno = "";
+    String AdoptionOrSellLabel = "";
 
     TextView petDetailsImageText;
+    TextView petAdoptOrSell;
     View petDetailsImagesDividerLine;
     ImageView petDetailsFirstImageThumbnail;
     ImageView petDetailsSecondImageThumbnail;
@@ -53,7 +55,7 @@ public class PetListDetails extends AppCompatActivity implements View.OnClickLis
     TextView petDescription;
     View petDetailsDividerLine;
     Button petDetailsCallButton;
-    Button petDetailsEmailButton;
+    //Button petDetailsEmailButton;
 
     Bitmap petDetailsbitmap;
     Toolbar petDetailstoolbar;
@@ -82,7 +84,7 @@ public class PetListDetails extends AppCompatActivity implements View.OnClickLis
             ageInYear = intent.getStringExtra("PET_AGE_INYEAR");
             gender = intent.getStringExtra("PET_GENDER");
             description = intent.getStringExtra("PET_DESCRIPTION");
-            email = intent.getStringExtra("POST_OWNER_EMAIL");
+            //email = intent.getStringExtra("POST_OWNER_EMAIL");
             mobileno = intent.getStringExtra("POST_OWNER_MOBILENO");
         }
 
@@ -112,6 +114,7 @@ public class PetListDetails extends AppCompatActivity implements View.OnClickLis
         petDetailsThirdImageThumbnail = (ImageView) findViewById(R.id.petDetailsThirdImageThumbnail);
 
         petBreed = (TextView) findViewById(R.id.petBreedInPetDetails);
+        petAdoptOrSell = (TextView) findViewById(R.id.petForaAdoptionOrSell);
         //petListingType = (TextView) findViewById(R.id.petListingTypeInPetDetails);
         //petAge = (TextView) findViewById(R.id.petAgeInPetDetails);
         petAgeInMonth = (TextView) findViewById(R.id.petAgeInMonthInPetDetails);
@@ -121,19 +124,23 @@ public class PetListDetails extends AppCompatActivity implements View.OnClickLis
         petDescription = (TextView) findViewById(R.id.petDescriptionInPetDetails);
         petDetailsDividerLine = findViewById(R.id.petDetailsDividerLine);
         petDetailsCallButton = (Button) findViewById(R.id.petDetailsCallButton);
-        petDetailsEmailButton = (Button) findViewById(R.id.petDetailsEmailButton);
+       // petDetailsEmailButton = (Button) findViewById(R.id.petDetailsEmailButton);
 
         petDetailsFirstImageThumbnail.setOnClickListener(this);
         petDetailsSecondImageThumbnail.setOnClickListener(this);
         petDetailsThirdImageThumbnail.setOnClickListener(this);
         petDetailsCallButton.setOnClickListener(this);
-        petDetailsEmailButton.setOnClickListener(this);
+        //petDetailsEmailButton.setOnClickListener(this);
 
         petDetailsbitmap = getBitmapImageFromURL(firstImagePath);
         petImage.setImageBitmap(petDetailsbitmap);
-        petDetailsCollapsingToolbar.setTitle(setListingTypeTitle(listingType));
+        //petDetailsCollapsingToolbar.setTitle(setListingTypeTitle(listingType));
 
+        petDetailsCollapsingToolbar.setTitle(breed);
+
+        petAdoptOrSell.setText(setListingTypeTitle(listingType));
         petDetailsImageText.setText("Images of " + breed);
+
         petDetailsImagesDividerLine.setBackgroundResource(R.color.list_internal_divider);
         petDetailsFirstImageThumbnail.setImageBitmap(petDetailsbitmap);
         if(secondImagePath != null) {
@@ -144,17 +151,17 @@ public class PetListDetails extends AppCompatActivity implements View.OnClickLis
             petDetailsbitmap = getBitmapImageFromURL(thirdImagePath);
             petDetailsThirdImageThumbnail.setImageBitmap(petDetailsbitmap);
         }
-        String breedOfPet = "<b>Breed: </b>" + breed;
+        String breedOfPet =  breed;
         petBreed.setText(Html.fromHtml(breedOfPet));
 //        String age = "<b>Age: </b>";
 //        petAge.setText(Html.fromHtml(age));
-        String ageOfPetInMonth = "<b>Month: </b>" + ageInMonth;
+        String ageOfPetInMonth =  "Months: "+ageInMonth;
         petAgeInMonth.setText(Html.fromHtml(ageOfPetInMonth));
-        String ageOfPetInYear = "<b>Year: </b>" + ageInYear;
+        String ageOfPetInYear = "Years: "+ageInYear;
         petAgeInYear.setText(Html.fromHtml(ageOfPetInYear));
-        String genderOfPet = "<b>Gender: </b>" + gender;
+        String genderOfPet =  gender;
         petGender.setText(Html.fromHtml(genderOfPet));
-        String descriptionOfPet = "<b>Description: </b>" + description;
+        String descriptionOfPet =  description;
         petDescription.setText(Html.fromHtml(descriptionOfPet));
         petDetailsDividerLine.setBackgroundResource(R.color.list_internal_divider);
 
@@ -213,13 +220,13 @@ public class PetListDetails extends AppCompatActivity implements View.OnClickLis
         String setListingType;
         if(listingType.equals("For Adoption")) {
             setListingType = "For Adoption";
-            String priceOfPet = "<b>Price: N/A</b>";
-            petPrice.setText(Html.fromHtml(priceOfPet));
+          //String priceOfPet = "<b>Price: N/A</b>";
+           // petPrice.setText(Html.fromHtml(priceOfPet));
         }
         else {
-            String priceOfPet = "<b>Price: </b>" + listingType;
+            String priceOfPet = "Price: " + listingType;
             petPrice.setText(Html.fromHtml(priceOfPet));
-            setListingType = "For Sell";
+            setListingType = "To Sell";
         }
         return setListingType;
     }
@@ -250,7 +257,7 @@ public class PetListDetails extends AppCompatActivity implements View.OnClickLis
             callIntent.setData(Uri.parse("tel:"+mobileno));
             startActivity(callIntent);
         }
-        else if(v.getId() == R.id.petDetailsEmailButton) {
+       /* else if(v.getId() == R.id.petDetailsEmailButton) {
             Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                     "mailto",email, null));
             startActivity(Intent.createChooser(emailIntent, "Choose an Email client :"));
@@ -266,6 +273,6 @@ public class PetListDetails extends AppCompatActivity implements View.OnClickLis
         else if(v.getId() == R.id.petDetailsThirdImageThumbnail) {
             petDetailsbitmap = getBitmapImageFromURL(thirdImagePath);
             petImage.setImageBitmap(petDetailsbitmap);
-        }
+        }*/
     }
 }

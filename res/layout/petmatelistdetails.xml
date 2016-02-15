@@ -145,13 +145,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
-                            android:paddingTop="8dp">
+                            android:paddingTop="4dp">
 
                 <android.support.v7.widget.CardView
                         xmlns:card_view="http://schemas.android.com/apk/res-auto"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="4dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
                         card_view:cardCornerRadius="2dp"
@@ -160,56 +160,124 @@
                     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent">
+                        <!--Detaiils Label -->
                         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                       android:layout_width="match_parent"
                                       android:layout_height="match_parent"
                                       android:orientation="horizontal"
-                                      android:id="@+id/petMateDetailsLinearLayoutOne"
+                                      android:id="@+id/petMateDetailsLabelForLinearLayout"
                                       android:layout_marginTop="16dp"
                                       android:layout_marginLeft="16dp"
                                       android:layout_marginRight="16dp">
                             <TextView
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:id="@+id/petMateAgeInMonthInPetDetails"
-                                    android:text="hi"
+                                    android:id="@+id/petMateDetailsLabel"
+                                    android:text="Details"
+                                    android:textStyle="bold"
                                     android:layout_weight="1"
                                     android:singleLine="true"
                                     android:ellipsize="end"/>
-                            <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:id="@+id/petMateAgeInYearInPetDetails"
-                                    android:text="hi"
-                                    android:layout_weight="1"
-                                    android:singleLine="true"
-                                    android:ellipsize="end"/>
-                            <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:id="@+id/petMateBreedInPetDetails"
-                                    android:text="hi"
-                                    android:layout_weight="1"
-                                    android:singleLine="true"
-                                    android:ellipsize="end"/>
+
                         </LinearLayout>
-                        <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/petMateGenderInPetDetails"
-                                android:layout_below="@+id/petMateDetailsLinearLayoutOne"
-                                android:layout_marginTop="4dp"
-                                android:layout_marginLeft="16dp"
-                                android:layout_marginRight="16dp"
-                                android:text="hi"
-                                android:singleLine="true"
-                                android:ellipsize="end"/>
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_marginTop="16dp"
+                                      android:layout_marginLeft="16dp"
+                                      android:layout_marginRight="16dp"
+                                      android:id="@+id/petMateBreedNameLinearLayout"
+                                      android:layout_below="@+id/petMateDetailsLabelForLinearLayout">
+                            <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="Breed"
+                                    android:layout_weight="0.50"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
+                                    android:id="@+id/petMateBreedLabelInPetDetails"
+                                    android:layout_below="@+id/petMateDetailsLinearLayoutOne"/>
+                            <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="Breed Name"
+                                    android:layout_weight="1"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
+                                    android:id="@+id/petMateBreedInPetDetails"
+                                    android:layout_below="@+id/petMateDetailsLinearLayoutOne"/>
+                        </LinearLayout>
+                        <!--Age -->
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_marginTop="4dp"
+                                      android:layout_marginLeft="16dp"
+                                      android:layout_marginRight="16dp"
+                                      android:layout_below="@+id/petMateBreedNameLinearLayout"
+                                      android:id="@+id/petMateDetailsLinearLayoutOne">
+                            <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="Age"
+                                    android:layout_weight="1"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
+                                    android:id="@+id/petMateAgeLabelInPetDetails"/>
+                            <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="Month"
+                                    android:layout_weight="1"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
+                                    android:id="@+id/petMateAgeInMonthInPetDetails"/>
+                            <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="Year"
+                                    android:layout_weight="1"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
+                                    android:id="@+id/petMateAgeInYearInPetDetails"/>
+                        </LinearLayout>
+                        <!--Gender-->
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_marginTop="4dp"
+                                      android:layout_marginLeft="16dp"
+                                      android:layout_marginRight="16dp"
+                                      android:id="@+id/petMateDetailsLinearLayoutTwo"
+                                      android:layout_below="@+id/petMateDetailsLinearLayoutOne">
+                            <TextView
+                                    android:id="@+id/petMateGenderLabelInPetDetails"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="Gender"
+                                    android:layout_weight="0.27"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"/>
+                            <TextView
+                                    android:id="@+id/petMateGenderInPetDetails"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="Male/Female"
+                                    android:layout_weight="0.54"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"/>
+
+                        </LinearLayout>
+
                         <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/petMateDescriptionInPetDetails"
-                                android:layout_below="@+id/petMateGenderInPetDetails"
-                                android:text="hi"
+                                android:layout_below="@+id/petMateDetailsLinearLayoutTwo"
+                                android:text="Description"
                                 android:layout_marginTop="4dp"
                                 android:layout_marginLeft="16dp"
                                 android:layout_marginRight="16dp"
@@ -241,18 +309,19 @@
                                     android:text="Call"
                                     android:textColor="#CF3E3E"
                                     android:textSize="14sp"
-                                    android:layout_weight="1"/>
-                            <Button
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:id="@+id/petMateDetailsEmailButton"
-                                    android:background="@android:color/transparent"
-                                    android:paddingLeft="30dip"
-                                    android:paddingRight="70dip"
-                                    android:text="Email"
-                                    android:textColor="#CF3E3E"
-                                    android:textSize="14sp"
-                                    android:layout_weight="1"/>
+                                    android:layout_weight="1"
+                            />
+                            <!--<Button-->
+                                    <!--android:layout_width="0dp"-->
+                                    <!--android:layout_height="wrap_content"-->
+                                    <!--android:id="@+id/petMateDetailsEmailButton"-->
+                                    <!--android:background="@android:color/transparent"-->
+                                    <!--android:paddingLeft="30dip"-->
+                                    <!--android:paddingRight="70dip"-->
+                                    <!--android:text="Email"-->
+                                    <!--android:textColor="#CF3E3E"-->
+                                    <!--android:textSize="14sp"-->
+                                    <!--android:layout_weight="1"/>-->
                         </LinearLayout>
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>

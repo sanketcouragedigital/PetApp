@@ -55,8 +55,9 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Vi
         public TextView clinicName;
         public TextView clinicAddress;
         public Button clinicFavourite;
-        public Button clinicSeeMoreBtn;
+        //  public Button clinicSeeMoreBtn;
         public View clinicdividerLine;
+        public View cardViewclinicList;
         private ClinicListItems listItems;
         String area;
         String city;
@@ -71,11 +72,13 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Vi
             clinicName = (TextView) itemView.findViewById(R.id.clinicName);
             clinicAddress = (TextView) itemView.findViewById(R.id.clinicAddress);
             clinicImage = (RoundedNetworkImageView) itemView.findViewById(R.id.clinicImage);
-            clinicSeeMoreBtn = (Button) itemView.findViewById(R.id.clinicSeeMoreButton);
-            clinicdividerLine = itemView.findViewById(R.id.clinicDividerLine);
+            // clinicSeeMoreBtn = (Button) itemView.findViewById(R.id.clinicSeeMoreButton);
+            // clinicdividerLine = itemView.findViewById(R.id.clinicDividerLine);
 
-            clinicSeeMoreBtn.setOnClickListener(this);
-            //clinicFavourite.setOnClickListener(this);
+            cardViewclinicList = itemView;
+            cardViewclinicList.setOnClickListener(this);
+            // clinicSeeMoreBtn.setOnClickListener(this);
+            // clinicFavourite.setOnClickListener(this);
         }
 
         public void bindPetList(ClinicListItems clinicList) {
@@ -88,22 +91,20 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Vi
             areawithcity = area + ", " + city;
             clinicAddress.setText(areawithcity);
 
-            clinicdividerLine.setBackgroundResource(R.color.list_internal_divider);
+            // clinicdividerLine.setBackgroundResource(R.color.list_internal_divider);
         }
 
         @Override
         public void onClick(View view) {
-            if (view.getId() == R.id.clinicSeeMoreButton) {
-                if (this.listItems != null) {
-                    Intent clinicInformation = new Intent(v.getContext(), PetClinicDetails.class);
-                    clinicInformation.putExtra("CLINIC_IMAGE", listItems.getClinicImage_path());
-                    clinicInformation.putExtra("CLINIC_ADDRESS", listItems.getClinicAddress());
-                    clinicInformation.putExtra("DOCTOR_NAME", listItems.getDoctorName());
-                    clinicInformation.putExtra("DOCTOR_EMAIL", listItems.getEmail());
-                    clinicInformation.putExtra("DOCTOR_CONTACT", listItems.getContact());
-                    clinicInformation.putExtra("CLINIC_NOTES", listItems.getNotes());
-                    v.getContext().startActivity(clinicInformation);
-                }
+            if (this.listItems != null) {
+                Intent clinicInformation = new Intent(v.getContext(), PetClinicDetails.class);
+                clinicInformation.putExtra("CLINIC_IMAGE", listItems.getClinicImage_path());
+                clinicInformation.putExtra("CLINIC_ADDRESS", listItems.getClinicAddress());
+                clinicInformation.putExtra("DOCTOR_NAME", listItems.getDoctorName());
+              //  clinicInformation.putExtra("DOCTOR_EMAIL", listItems.getEmail());
+                clinicInformation.putExtra("DOCTOR_CONTACT", listItems.getContact());
+                clinicInformation.putExtra("CLINIC_NOTES", listItems.getNotes());
+                v.getContext().startActivity(clinicInformation);
             }
         }
     }

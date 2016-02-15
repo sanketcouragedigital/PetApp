@@ -22,4 +22,7 @@
         <attr name="connectingLineColor" format="reference|color" />
         <attr name="pinRadius" format="dimension" />
     </declare-styleable>
+	<declare-styleable name="ExpandableText">
+        <attr name="trimLength" format="integer"/>
+    </declare-styleable>
 </resources>

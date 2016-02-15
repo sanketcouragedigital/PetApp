@@ -52,8 +52,12 @@ public class ShelterListAdapter extends RecyclerView.Adapter<ShelterListAdapter.
         public Button shelterFavourite;
         public Button shelterSeeMoreBtn;
         public View shelterdividerLine;
+        public View shelterCardView;
         private ShelterListItem shelterListItems;
         int statusOfshelterFavourite = 0;
+        String area;
+        String city;
+        String areawithcity;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -64,38 +68,45 @@ public class ShelterListAdapter extends RecyclerView.Adapter<ShelterListAdapter.
             shelterName = (TextView) itemView.findViewById(R.id.shelterName);
             shelterAddress = (TextView) itemView.findViewById(R.id.shelterAddress);
             shelterImage = (RoundedNetworkImageView) itemView.findViewById(R.id.shelterImage);
-            shelterSeeMoreBtn = (Button) itemView.findViewById(R.id.shelterSeeMoreButton);
-            shelterFavourite = (Button) itemView.findViewById(R.id.shelterFavourite);
-            shelterdividerLine = itemView.findViewById(R.id.shelterDividerLine);
+            //shelterSeeMoreBtn = (Button) itemView.findViewById(R.id.shelterSeeMoreButton);
+            //shelterFavourite = (Button) itemView.findViewById(R.id.shelterFavourite);
+            //shelterdividerLine = itemView.findViewById(R.id.shelterDividerLine);
 
-            shelterSeeMoreBtn.setOnClickListener(this);
+            shelterCardView = itemView;
+            shelterCardView.setOnClickListener(this);
+            //shelterSeeMoreBtn.setOnClickListener(this);
             //shelterFavourite.setOnClickListener(this);
         }
 
         public void bindShelterList(ShelterListItem shelterList) {
             this.shelterListItems = shelterList;
+            area = shelterList.getArea();
+            city = shelterList.getCity();
+
             shelterImage.setImageUrl(shelterListItems.getShelterImage_path(), imageLoader);
             shelterName.setText(shelterListItems.getShelterName());
-            shelterAddress.setText(shelterListItems.getShelterAdress());
-            shelterSeeMoreBtn.setText("See More");
+            areawithcity = area + ", " + city;
+            shelterAddress.setText(areawithcity);
+
+
+            //shelterSeeMoreBtn.setText("See More");
             //shelterFavourite.setBackgroundResource(R.drawable.favourite_disable);
-            shelterFavourite.setVisibility(View.GONE);
-            shelterdividerLine.setBackgroundResource(R.color.list_internal_divider);
+            //shelterFavourite.setVisibility(View.GONE);
+            //shelterdividerLine.setBackgroundResource(R.color.list_internal_divider);
         }
 
         @Override
         public void onClick(View view) {
-            if (view.getId() == R.id.shelterSeeMoreButton) {
-                if (this.shelterListItems != null) {
-                    Intent shelterInformation = new Intent(v.getContext(), TabFragmentShelterDetails.class);
-                    shelterInformation.putExtra("SHELTER_IMAGE", shelterListItems.getShelterImage_path());
-                    shelterInformation.putExtra("SHELTER_NAME", shelterListItems.getShelterName());
-                    shelterInformation.putExtra("SHELTER_ADDRESS", shelterListItems.getShelterAdress());
-                    shelterInformation.putExtra("SHELTER_EMAIL", shelterListItems.getEmail());
-                    shelterInformation.putExtra("SHELTER_CONTACT", shelterListItems.getContact());
-                    v.getContext().startActivity(shelterInformation);
-                }
-
+            if (this.shelterListItems != null) {
+                Intent shelterInformation = new Intent(v.getContext(), TabFragmentShelterDetails.class);
+                shelterInformation.putExtra("SHELTER_IMAGE", shelterListItems.getShelterImage_path());
+                shelterInformation.putExtra("SHELTER_NAME", shelterListItems.getShelterName());
+                shelterInformation.putExtra("SHELTER_ADDRESS", shelterListItems.getShelterAdress());
+                shelterInformation.putExtra("SHELTER_EMAIL", shelterListItems.getEmail());
+                shelterInformation.putExtra("GROOMER_CITY", shelterListItems.getCity());
+                shelterInformation.putExtra("GROOMER_AREA", shelterListItems.getArea());
+                shelterInformation.putExtra("SHELTER_CONTACT", shelterListItems.getContact());
+                v.getContext().startActivity(shelterInformation);
             }
         }
     }

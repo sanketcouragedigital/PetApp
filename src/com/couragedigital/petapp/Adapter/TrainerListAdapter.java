@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView;
+import com.couragedigital.petapp.ExpandableText;
 import com.couragedigital.petapp.PetClinicDetails;
 import com.couragedigital.petapp.R;
 import com.couragedigital.petapp.TabFragmentTrainerDetails;
@@ -53,6 +54,8 @@ public class TrainerListAdapter extends RecyclerView.Adapter<TrainerListAdapter.
         public Button trainerFavourite;
         public Button trainerSeeMoreBtn;
         public View trainerdividerLine;
+        public View cardViewPetTrainer;
+        public ExpandableText trainerDescription;
         private TrainerListItem trainerListItems;
         int statusOftrainerFavourite = 0;
 
@@ -63,13 +66,17 @@ public class TrainerListAdapter extends RecyclerView.Adapter<TrainerListAdapter.
             }
 
             trainerName = (TextView) itemView.findViewById(R.id.trainerName);
-            trainerAddress = (TextView) itemView.findViewById(R.id.trainerAddress);
             trainerImage = (RoundedNetworkImageView) itemView.findViewById(R.id.trainerImage);
-            trainerSeeMoreBtn = (Button) itemView.findViewById(R.id.trainerSeeMoreButton);
-            trainerFavourite = (Button) itemView.findViewById(R.id.trainerFavourite);
-            trainerdividerLine = itemView.findViewById(R.id.trainerDividerLine);
+            trainerDescription = (ExpandableText) itemView.findViewById(R.id.petServiceTrainerDescription);
 
-            trainerSeeMoreBtn.setOnClickListener(this);
+            //  trainerAddress = (TextView) itemView.findViewById(R.id.trainerAddress);
+            //  trainerSeeMoreBtn = (Button) itemView.findViewById(R.id.trainerSeeMoreButton);
+            //  trainerFavourite = (Button) itemView.findViewById(R.id.trainerFavourite);
+            //  trainerdividerLine = itemView.findViewById(R.id.trainerDividerLine);
+
+            cardViewPetTrainer = itemView;
+            cardViewPetTrainer.setOnClickListener(this);
+            //trainerSeeMoreBtn.setOnClickListener(this);
             //trainerFavourite.setOnClickListener(this);
         }
 
@@ -77,26 +84,26 @@ public class TrainerListAdapter extends RecyclerView.Adapter<TrainerListAdapter.
             this.trainerListItems = trainerList;
             trainerImage.setImageUrl(trainerListItems.getTrainerImage_path(), imageLoader);
             trainerName.setText(trainerListItems.getTrainerName());
-            trainerAddress.setText(trainerListItems.getTrainerAdress());
-            trainerSeeMoreBtn.setText("See More");
-            //trainerFavourite.setBackgroundResource(R.drawable.favourite_disable);
-            trainerFavourite.setVisibility(View.GONE);
-            trainerdividerLine.setBackgroundResource(R.color.list_internal_divider);
+           // trainerAddress.setText(trainerListItems.getTrainerAdress());
+            trainerDescription.setText(trainerListItems.getTrainerDescription());
+
+           // trainerSeeMoreBtn.setText("See More");
+            //  trainerFavourite.setBackgroundResource(R.drawable.favourite_disable);
+            //  trainerFavourite.setVisibility(View.GONE);
+            //  trainerdividerLine.setBackgroundResource(R.color.list_internal_divider);
         }
 
         @Override
         public void onClick(View view) {
-            if (view.getId() == R.id.trainerSeeMoreButton) {
-                if (this.trainerListItems != null) {
-                    Intent trainerInformation = new Intent(v.getContext(), TabFragmentTrainerDetails.class);
-                    trainerInformation.putExtra("TRAINER_IMAGE", trainerListItems.getTrainerImage_path());
-                    trainerInformation.putExtra("TRAINER_NAME", trainerListItems.getTrainerName());
-                    trainerInformation.putExtra("TRAINER_ADDRESS", trainerListItems.getTrainerAdress());
-                    trainerInformation.putExtra("TRAINER_EMAIL", trainerListItems.getEmail());
-                    trainerInformation.putExtra("TRAINER_CONTACT", trainerListItems.getContact());
-                    v.getContext().startActivity(trainerInformation);
-                }
-
+            if (this.trainerListItems != null) {
+                Intent trainerInformation = new Intent(v.getContext(), TabFragmentTrainerDetails.class);
+                trainerInformation.putExtra("TRAINER_IMAGE", trainerListItems.getTrainerImage_path());
+                trainerInformation.putExtra("TRAINER_NAME", trainerListItems.getTrainerName());
+                trainerInformation.putExtra("TRAINER_ADDRESS", trainerListItems.getTrainerAdress());
+                trainerInformation.putExtra("TRAINER_EMAIL", trainerListItems.getEmail());
+                trainerInformation.putExtra("TRAINER_CONTACT", trainerListItems.getContact());
+                trainerInformation.putExtra("TRAINER_DESCRIPTION", trainerListItems.getTrainerDescription());
+                v.getContext().startActivity(trainerInformation);
             }
         }
     }

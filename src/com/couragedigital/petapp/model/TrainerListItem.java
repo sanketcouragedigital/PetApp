@@ -6,17 +6,19 @@ public class TrainerListItem {
     public String trainer_address;
     public String email;
     public String contact;
+    public String trainerDescription;
 
     public TrainerListItem() {
     }
 
-    public TrainerListItem(String trainername, String traineraddress, String email, String contact, String image_path) {
+    public TrainerListItem(String trainername, String traineraddress, String email, String contact, String image_path, String trainerDescription) {
 
         this.trainer_name = trainername;
         this.trainer_address = traineraddress;
         this.email = email;
         this.contact = contact;
         this.image_path = image_path;
+        this.trainerDescription = trainerDescription;
     }
 
     public String getTrainerImage_path() {
@@ -59,4 +61,14 @@ public class TrainerListItem {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public void setTrainerDescription(String trainerDescription) {
+        this.trainerDescription = trainerDescription;
+    }
+
+    public String getTrainerDescription() {
+        return trainerDescription;
+    }
+
+
 }

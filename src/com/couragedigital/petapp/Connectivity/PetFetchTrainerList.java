@@ -31,6 +31,7 @@ public class PetFetchTrainerList {
                                     trainerListItem.setContact(obj.getString("contact"));
                                     trainerListItem.setEmail(obj.getString("email"));
                                     trainerListItem.setTrainerImage_path(obj.getString("image"));
+                                    trainerListItem.setTrainerDescription(obj.getString("description"));
 
                                     // adding pet to pets array
                                     trainerList.add(trainerListItem);

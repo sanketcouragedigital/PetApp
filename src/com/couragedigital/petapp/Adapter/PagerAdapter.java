@@ -1,4 +1,5 @@
 package com.couragedigital.petapp.Adapter;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -44,9 +45,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
             case 2:
                 TabFragmentShelter tab3 = new TabFragmentShelter();
                 return tab3;
-            case 3:
-                TabFragmentStores tab4 = new TabFragmentStores();
-                return tab4;
+
             default:
                 return null;
         }

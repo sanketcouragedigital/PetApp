@@ -31,6 +31,8 @@ public class PetFetchShelterList {
                                     shelterListItem.setContact(obj.getString("contact"));
                                     shelterListItem.setEmail(obj.getString("email"));
                                     shelterListItem.setShelterImage_path(obj.getString("image"));
+                                    shelterListItem.setArea(obj.getString("area"));
+                                    shelterListItem.setCity(obj.getString("city"));
 
                                     // adding pet to pets array
                                     shelterList.add(shelterListItem);

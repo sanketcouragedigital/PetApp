@@ -20,7 +20,6 @@ public class PetServices extends BaseActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Pet Trainer"));
         tabLayout.addTab(tabLayout.newTab().setText("Pet Groomer"));
         tabLayout.addTab(tabLayout.newTab().setText("Pet Shelter"));
-        tabLayout.addTab(tabLayout.newTab().setText("Pet Store"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);

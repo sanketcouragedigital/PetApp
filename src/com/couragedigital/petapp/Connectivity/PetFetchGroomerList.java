@@ -31,6 +31,8 @@ public class PetFetchGroomerList {
                                     groomerListItem.setContact(obj.getString("contact"));
                                     groomerListItem.setEmail(obj.getString("email"));
                                     groomerListItem.setGroomerImage_path(obj.getString("image"));
+                                    groomerListItem.setCity(obj.getString("city"));
+                                    groomerListItem.setArea(obj.getString("area"));
 
                                     // adding pet to pets array
                                     groomerList.add(groomerListItem);

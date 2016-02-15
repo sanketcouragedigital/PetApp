@@ -49,11 +49,16 @@ public class GroomerListAdapter extends RecyclerView.Adapter<GroomerListAdapter.
         public RoundedNetworkImageView groomerImage;
         public TextView groomerName;
         public TextView groomerAddress;
+        public View groomerCardView;
         public Button groomerFavourite;
         public Button groomerSeeMoreBtn;
         public View groomerdividerLine;
         private GroomerListItem groomerListItems;
         int statusOfgroomerFavourite = 0;
+
+        String area;
+        String city;
+        String areawithcity;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -64,39 +69,46 @@ public class GroomerListAdapter extends RecyclerView.Adapter<GroomerListAdapter.
             groomerName = (TextView) itemView.findViewById(R.id.groomerName);
             groomerAddress = (TextView) itemView.findViewById(R.id.groomerAddress);
             groomerImage = (RoundedNetworkImageView) itemView.findViewById(R.id.groomerImage);
-            groomerSeeMoreBtn = (Button) itemView.findViewById(R.id.groomerSeeMoreButton);
-            groomerFavourite = (Button) itemView.findViewById(R.id.groomerFavourite);
-            groomerdividerLine = itemView.findViewById(R.id.groomerDividerLine);
+            //    groomerSeeMoreBtn = (Button) itemView.findViewById(R.id.groomerSeeMoreButton);
+            //   groomerFavourite = (Button) itemView.findViewById(R.id.groomerFavourite);
+            //   groomerdividerLine = itemView.findViewById(R.id.groomerDividerLine);
 
-            groomerSeeMoreBtn.setOnClickListener(this);
+            groomerCardView = itemView;
+            groomerCardView.setOnClickListener(this);
+            //groomerSeeMoreBtn.setOnClickListener(this);
             //groomerFavourite.setOnClickListener(this);
         }
 
         public void bindGroomerList(GroomerListItem groomerList) {
             this.groomerListItems = groomerList;
+            area = groomerList.getArea();
+            city = groomerList.getCity();
+
             groomerImage.setImageUrl(groomerListItems.getGroomerImage_path(), imageLoader);
             groomerName.setText(groomerListItems.getGroomerName());
-            groomerAddress.setText(groomerListItems.getGroomerAdress());
-            groomerSeeMoreBtn.setText("See More");
-            //groomerFavourite.setBackgroundResource(R.drawable.favourite_disable);
-            groomerFavourite.setVisibility(View.GONE);
-            groomerdividerLine.setBackgroundResource(R.color.list_internal_divider);
+            areawithcity = area + ", " + city;
+            groomerAddress.setText(areawithcity);
+
+            //  groomerSeeMoreBtn.setText("See More");
+            //  groomerFavourite.setBackgroundResource(R.drawable.favourite_disable);
+            //  groomerFavourite.setVisibility(View.GONE);
+            //  groomerdividerLine.setBackgroundResource(R.color.list_internal_divider);
         }
 
         @Override
         public void onClick(View view) {
-            if (view.getId() == R.id.groomerSeeMoreButton) {
-                if (this.groomerListItems != null) {
-                    Intent groomerInformation = new Intent(v.getContext(), TabFragmentGroomerDetails.class);
-                    groomerInformation.putExtra("GROOMER_IMAGE", groomerListItems.getGroomerImage_path());
-                    groomerInformation.putExtra("GROOMER_NAME", groomerListItems.getGroomerName());
-                    groomerInformation.putExtra("GROOMER_ADDRESS", groomerListItems.getGroomerAdress());
-                    groomerInformation.putExtra("GROOMER_EMAIL", groomerListItems.getEmail());
-                    groomerInformation.putExtra("GROOMER_CONTACT", groomerListItems.getContact());
-                    v.getContext().startActivity(groomerInformation);
-                }
-
+            if (this.groomerListItems != null) {
+                Intent groomerInformation = new Intent(v.getContext(), TabFragmentGroomerDetails.class);
+                groomerInformation.putExtra("GROOMER_IMAGE", groomerListItems.getGroomerImage_path());
+                groomerInformation.putExtra("GROOMER_NAME", groomerListItems.getGroomerName());
+                groomerInformation.putExtra("GROOMER_ADDRESS", groomerListItems.getGroomerAdress());
+                groomerInformation.putExtra("GROOMER_EMAIL", groomerListItems.getEmail());
+                groomerInformation.putExtra("GROOMER_CITY", groomerListItems.getCity());
+                groomerInformation.putExtra("GROOMER_AREA", groomerListItems.getArea());
+                groomerInformation.putExtra("GROOMER_CONTACT", groomerListItems.getContact());
+                v.getContext().startActivity(groomerInformation);
             }
+
         }
     }
 }

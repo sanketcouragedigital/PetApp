@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class MyListingPetListItems {
 
-    public int id;
+    public Integer id;
     public String firstImagePath;
     public String secondImagePath;
     public String thirdImagePath;
@@ -22,7 +22,7 @@ public class MyListingPetListItems {
     public MyListingPetListItems() {
     }
 
-    public MyListingPetListItems(int id, String firstImagePath, String secondImagePath, String thirdImagePath, String petBreed, String petPostOwner, String listingType, String petCategory, String petAgeInMonth, String petAgeInYear, String petGender, String petDescription, String petPostDate, String petPostOwnerEmail, String petPostOwnerMobileNo) {
+    public MyListingPetListItems(Integer id, String firstImagePath, String secondImagePath, String thirdImagePath, String petBreed, String petPostOwner, String listingType, String petCategory, String petAgeInMonth, String petAgeInYear, String petGender, String petDescription, String petPostDate, String petPostOwnerEmail, String petPostOwnerMobileNo) {
         this.id = id;
         this.firstImagePath = firstImagePath;
         this.secondImagePath = secondImagePath;

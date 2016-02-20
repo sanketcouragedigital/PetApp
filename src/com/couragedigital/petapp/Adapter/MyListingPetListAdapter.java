@@ -8,18 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.android.volley.toolbox.ImageLoader;
+import com.couragedigital.petapp.*;
 import com.couragedigital.petapp.Connectivity.MyListingPetListDelete;
-import com.couragedigital.petapp.Connectivity.PetRefreshFetchList;
-import com.couragedigital.petapp.ExpandableText;
-import com.couragedigital.petapp.MyListingPetListDetails;
-import com.couragedigital.petapp.PetListDetails;
-import com.couragedigital.petapp.R;
 import com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView;
 import com.couragedigital.petapp.app.AppController;
 import com.couragedigital.petapp.model.MyListingPetListItems;
-import com.couragedigital.petapp.model.MyListingPetMateListItem;
 
 import java.util.List;
 
@@ -74,7 +68,7 @@ public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetLi
         public Button deletebutton;
         public View dividerLine;
         public ExpandableText myListingPetListDescription;
-        public  View cardView;
+        public View cardView;
 
         private MyListingPetListItems myListingPetListItem;
 
@@ -116,22 +110,29 @@ public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetLi
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.myListingPetListModifyButton) {
-
-                Toast.makeText(v.getContext(),"you clicked on Modify Button",Toast.LENGTH_LONG).show();
-            }
-            else if (v.getId() == R.id.myListingPetListDelete) {
-                if(this.myListingPetListItem != null) {
+                //Toast.makeText(v.getContext(),"you clicked on Modify Button",Toast.LENGTH_LONG).show();
+                Intent gotoEditPetList = new Intent(v.getContext(), MyListingModifyPetDetails.class);
+                gotoEditPetList.putExtra("ID",myListingPetListItem.getId());
+                gotoEditPetList.putExtra("PET_CATEGORY",myListingPetListItem.getPetCategory());
+                gotoEditPetList.putExtra("PET_BREED", myListingPetListItem.getPetBreed());
+                gotoEditPetList.putExtra("PET_AGE_IN_MONTH", myListingPetListItem.getPetAgeInMonth());
+                gotoEditPetList.putExtra("PET_AGE_IN_YEAR", myListingPetListItem.getPetAgeInYear());
+                gotoEditPetList.putExtra("PET_GENDER", myListingPetListItem.getPetGender());
+                gotoEditPetList.putExtra("PET_LISTING_TYPE",myListingPetListItem.getListingType());
+                gotoEditPetList.putExtra("PET_DESCRIPTION", myListingPetListItem.getPetDescription());
+                v.getContext().startActivity(gotoEditPetList);
+            } else if (v.getId() == R.id.myListingPetListDelete) {
+                if (this.myListingPetListItem != null) {
                     String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
                     int id = myListingPetListItem.getId();
                     String email = myListingPetListItem.getPetPostOwnerEmail();
-                    url = url + "?method=deleteMyListingPetList&format=json&id="+ id +"&email="+ email +"";
+                    url = url + "?method=deleteMyListingPetList&format=json&id=" + id + "&email=" + email + "";
                     new DeletePetListFromServer().execute(url);
                     deletebutton.setText("Deleted");
                     deletebutton.setEnabled(false);
                     modify.setEnabled(false);
                 }
-            }
-            else{
+            } else {
                 if (this.myListingPetListItem != null) {
                     Intent myListingpetdetail = new Intent(v.getContext(), MyListingPetListDetails.class);
                     myListingpetdetail.putExtra("PET_FIRST_IMAGE", myListingPetListItem.getFirstImagePath());
@@ -151,6 +152,7 @@ public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetLi
         public class DeletePetListFromServer extends AsyncTask<String, String, String> {
 
             String urlForFetch;
+
             @Override
             protected String doInBackground(String... url) {
                 try {

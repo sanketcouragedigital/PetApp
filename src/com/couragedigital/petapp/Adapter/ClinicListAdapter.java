@@ -96,8 +96,11 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Vi
 
         @Override
         public void onClick(View view) {
+			
             if (this.listItems != null) {
                 Intent clinicInformation = new Intent(v.getContext(), PetClinicDetails.class);
+				clinicInformation.putExtra("CLINIC_ID", listItems.getClinicId());
+                clinicInformation.putExtra("CLINIC_NAME", listItems.getClinicName());
                 clinicInformation.putExtra("CLINIC_IMAGE", listItems.getClinicImage_path());
                 clinicInformation.putExtra("CLINIC_ADDRESS", listItems.getClinicAddress());
                 clinicInformation.putExtra("DOCTOR_NAME", listItems.getDoctorName());

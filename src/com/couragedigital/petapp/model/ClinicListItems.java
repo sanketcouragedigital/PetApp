@@ -5,6 +5,7 @@ public class ClinicListItems {
 
     public String image_path;
     public String clinic_name;
+    public String clinic_Id;
     public String clinic_address;
     public String doctor_name;
     public String email;
@@ -16,10 +17,12 @@ public class ClinicListItems {
     public ClinicListItems() {
     }
 
-    public ClinicListItems(String clinicname, String clinicaddress, String doctorname, String email, String contact, String image_path , String area ,String city,String notes) {
+    public ClinicListItems(String clinicId,String clinicname, String clinicaddress, String doctorname, String email, String contact, String image_path , String area ,String city,String notes) {
 
+        this.clinic_Id = clinicId;
         this.clinic_name = clinicname;
         this.doctor_name = doctorname;
+        this.clinic_address = clinicaddress;
         this.email = email;
         this.contact = contact;
         this.image_path = image_path;
@@ -34,6 +37,14 @@ public class ClinicListItems {
 
     public void setClinicImage_path(String image_path) {
         this.image_path = "http://storage.couragedigital.com/dev/clinic_images/" + image_path;
+    }
+
+    public String getClinicId() {
+        return clinic_Id;
+    }
+
+    public void setClinicId(String clinicId) {
+        this.clinic_Id = clinicId;
     }
 
     public String getClinicName() {

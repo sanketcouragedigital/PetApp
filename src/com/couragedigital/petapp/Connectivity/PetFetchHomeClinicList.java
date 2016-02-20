@@ -29,6 +29,7 @@ public class PetFetchHomeClinicList {
                                 try {
                                     JSONObject obj = jsonArray.getJSONObject(i);
                                     ClinicListItems clinicListItems = new ClinicListItems();
+                                    clinicListItems.setClinicId(obj.getString("clinic_id"));
                                     clinicListItems.setClinicName(obj.getString("clinic_name"));
                                     clinicListItems.setClinicAddress(obj.getString("clinic_address"));
                                     clinicListItems.setArea(obj.getString("area"));

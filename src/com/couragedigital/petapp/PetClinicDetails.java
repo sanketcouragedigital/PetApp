@@ -1,10 +1,12 @@
 package com.couragedigital.petapp;
 
 import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.NetworkOnMainThreadException;
 import android.os.StrictMode;
@@ -13,16 +15,20 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.*;
+import com.couragedigital.petapp.Adapter.ClinicReviewsListAdapter;
+import com.couragedigital.petapp.Connectivity.ShowClinicFeedback;
+import com.couragedigital.petapp.model.ClinicReviewsListItems;
 
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PetClinicDetails extends AppCompatActivity implements View.OnClickListener {
 
@@ -36,9 +42,10 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
     ImageView clinicImage;
     TextView address;
     TextView clinicnotestxt;
-    Button callbutton;
+    ImageButton callbutton;
+    ImageButton rateAndReviewButton;
+    //ImageButton mapButton;
     Button emailbutton;
-    String email;
     String phoneno;
 
     Bitmap clinicDetailsbitmap;
@@ -48,6 +55,21 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
     AppBarLayout clinicDetailsAppBaLayoutr;
     NestedScrollView clinicDetailsNestedScrollView;
 
+    String clinicRatingValue;
+    String clinicFeebback;
+    String clinicName;
+    String clinicId;
+    String email;
+    ProgressDialog progressDialog = null;
+
+    RecyclerView recyclerView;
+    RecyclerView.Adapter adapter;
+    LinearLayoutManager linearLayoutManager;
+    private int current_page = 1;
+
+    private String url;
+    public List<ClinicReviewsListItems> clinicReviewsListItemsArrayList = new ArrayList<ClinicReviewsListItems>();
+
     @TargetApi(23)
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,13 +78,16 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
 
         Intent intent = getIntent();
         if (null != intent) {
+            clinicId = intent.getStringExtra("CLINIC_ID");
+            clinicName = intent.getStringExtra("CLINIC_NAME");
             image_path = intent.getStringExtra("CLINIC_IMAGE");
             clinicaddress = intent.getStringExtra("CLINIC_ADDRESS");
             doctorname = intent.getStringExtra("DOCTOR_NAME");
             clinicnotes = intent.getStringExtra("CLINIC_NOTES");
-            email = intent.getStringExtra("DOCTOR_EMAIL");
+            //email = intent.getStringExtra("DOCTOR_EMAIL");
             phoneno = intent.getStringExtra("DOCTOR_CONTACT");
         }
+        //to create Reviews List
 
         clinicDetailsToolbar = (Toolbar) findViewById(R.id.petClinicDetailsToolbar);
         setSupportActionBar(clinicDetailsToolbar);
@@ -85,10 +110,13 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
         clinicImage = (ImageView) findViewById(R.id.petClicnicHeaderImage);
         address = (TextView) findViewById(R.id.petClinicAddress);
         clinicnotestxt = (TextView) findViewById(R.id.petClinicNotes);
-        callbutton = (Button) findViewById(R.id.clinicDetailCallButton);
-        emailbutton = (Button) findViewById(R.id.clinicDetailsEmailButton);
+        callbutton = (ImageButton) findViewById(R.id.clinicDetailCallButton);
+        rateAndReviewButton= (ImageButton) findViewById(R.id.clinicDetailsRateNReviewButton);
+        //mapButton= (ImageButton) findViewById(R.id.clinicDetailsMapButton);
+       // emailbutton = (Button) findViewById(R.id.clinicDetailsEmailButton);
+        recyclerView = (RecyclerView) findViewById(R.id.clinicRateNReview);
 
-
+        //new FetchImageFromServer().execute();
         InputStream in = null;
         try {
             if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -117,6 +145,7 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
         final byte[] data = dataStream.toByteArray();
         clinicDetailsbitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
         clinicImage.setImageBitmap(clinicDetailsbitmap);
+
         clinicDetailsCollapsingToolbar.setTitle(doctorname);
         address.setText(clinicaddress);
         clinicnotestxt.setText(clinicnotes);
@@ -133,8 +162,79 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
         });
 
         callbutton.setOnClickListener(this);
-        emailbutton.setOnClickListener(this);
-    }
+        //mapButton.setOnClickListener(this);
+        rateAndReviewButton.setOnClickListener(this);
+        //emailbutton.setOnClickListener(this);
+
+        /*recyclerView.setHasFixedSize(true);
+        linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        adapter = new ClinicReviewsListAdapter(clinicReviewsListItemsArrayList);
+        url= "http://192.168.0.7/PetAppAPI/api/petappapi.php?method=showClinicReviews&format=json&currentPage=" + current_page + "&clinicId=" + clinicId + "";
+
+        new FetchClinicReviewListFromServer().execute(url);
+        recyclerView.setAdapter(adapter);*/
+
+   }
+
+   /*public class FetchImageFromServer extends AsyncTask<String, String, Bitmap> {
+
+       @Override
+        protected Bitmap doInBackground(String... url) {
+            try {
+                InputStream in = null;
+                try {
+                    if (android.os.Build.VERSION.SDK_INT > 9) {
+                        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                                .permitAll().build();
+
+                        StrictMode.setThreadPolicy(policy);
+                    }
+                    in = new BufferedInputStream(new URL(image_path).openStream(), 4 * 1024);
+                } catch (NetworkOnMainThreadException e) {
+                    e.printStackTrace();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                final ByteArrayOutputStream dataStream = new ByteArrayOutputStream();
+                BufferedOutputStream out = new BufferedOutputStream(dataStream, 4 * 1024);
+                try {
+                    copy(in, out);
+                    out.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                final byte[] data = dataStream.toByteArray();
+                clinicDetailsbitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+            } catch (Exception e) {
+                e.printStackTrace();
+                progressDialog.dismiss();
+            }
+            return clinicDetailsbitmap;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            super.onPostExecute(bitmap);
+            clinicImage.setImageBitmap(bitmap);
+        }
+    }*/
+
+   public class FetchClinicReviewListFromServer extends AsyncTask<String, String, String> {
+        @Override
+        protected String doInBackground(String... url) {
+            try {
+               ShowClinicFeedback.showClinicReviews(clinicReviewsListItemsArrayList,adapter, url[0]);
+            } catch (Exception e) {
+                e.printStackTrace();
+                progressDialog.dismiss();
+            }
+            return null;
+        }
+   }
 
     private void copy(InputStream in, BufferedOutputStream out) throws IOException {
         byte[] b = new byte[4 * 1024];
@@ -162,10 +262,16 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
             Intent callIntent = new Intent(Intent.ACTION_DIAL);
             callIntent.setData(Uri.parse("tel:" + phoneno));
             startActivity(callIntent);
-        } else if (view.getId() == R.id.clinicDetailsEmailButton) {
-            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", email, null));
-            startActivity(Intent.createChooser(emailIntent, "Choose an Email client :"));
+        }else if (view.getId() == R.id.clinicDetailsRateNReviewButton) {
+           Intent gotorateAndReviewPage = new Intent(PetClinicDetails.this,ClinicRateNReview.class);
+            gotorateAndReviewPage.putExtra("selectedClinicId",clinicId);
+            gotorateAndReviewPage.putExtra("selectedClinicName",clinicName);
+            startActivity(gotorateAndReviewPage);
         }
+//          else if (view.getId() == R.id.clinicDetailsEmailButton) {
+//            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", email, null));
+//            startActivity(Intent.createChooser(emailIntent, "Choose an Email client :"));
+//        }
     }
 }
 

@@ -273,6 +273,7 @@ public class MyListingModifyPetDetails extends BaseActivity implements View.OnCl
         }
 
         myListingEditPriceOfPet.addTextChangedListener(priceChangeListener);
+        myListingEditDescriptionOfPet.addTextChangedListener(descriptionChangeListener);
         myListingUploadFabButton.setOnClickListener(this);
     }
 
@@ -321,6 +322,40 @@ public class MyListingModifyPetDetails extends BaseActivity implements View.OnCl
         }
     }
 
+    private TextWatcher descriptionChangeListener = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            new GetPetDescription().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
+        }
+    };
+
+    public class GetPetDescription extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        petDescription = myListingEditDescriptionOfPet.getText().toString();
+                    }
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
 
     public void GenarateSpinerForAge() {
         stringArrayListForMonth = new String[]{

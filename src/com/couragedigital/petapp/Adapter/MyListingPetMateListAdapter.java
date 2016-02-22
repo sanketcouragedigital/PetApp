@@ -12,12 +12,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.toolbox.ImageLoader;
+import com.couragedigital.petapp.*;
 import com.couragedigital.petapp.Connectivity.MyListingPetMateDelete;
 import com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView;
-import com.couragedigital.petapp.ExpandableText;
-import com.couragedigital.petapp.MyListing;
-import com.couragedigital.petapp.MyListingPetMateListDetails;
-import com.couragedigital.petapp.R;
 import com.couragedigital.petapp.app.AppController;
 import com.couragedigital.petapp.model.MyListingPetMateListItem;
 import com.couragedigital.petapp.model.PetMateListItems;
@@ -107,7 +104,15 @@ public class MyListingPetMateListAdapter extends RecyclerView.Adapter
         @Override
         public void onClick(View v) {
             if(v.getId() == R.id.myListingPetMateModify) {
-                Toast.makeText(v.getContext(),"you clicked on Modify Button",Toast.LENGTH_LONG).show();
+                Intent petMateInformation = new Intent(v.getContext(), MyListingModifyPetMateDetails.class);
+                petMateInformation.putExtra("PET_MATE_CATEGORY", myListingPetMateListItem.getPetMateCategory());
+                petMateInformation.putExtra("PET_MATE_BREED", myListingPetMateListItem.getPetMateBreed());
+                petMateInformation.putExtra("PET_MATE_IN_MONTH", myListingPetMateListItem.getPetMateAgeInMonth());
+                petMateInformation.putExtra("PET_MATE_IN_YEAR", myListingPetMateListItem.getPetMateAgeInYear());
+                petMateInformation.putExtra("PET_MATE_GENDER", myListingPetMateListItem.getPetMateGender());
+                petMateInformation.putExtra("PET_MATE_DESCRIPTION", myListingPetMateListItem.getPetMateDescription());
+                petMateInformation.putExtra("ID",myListingPetMateListItem.getId());
+                v.getContext().startActivity(petMateInformation);
             }
             else if(v.getId() == R.id.myListingPetMateDelete) {
                 if(this.myListingPetMateListItem != null) {

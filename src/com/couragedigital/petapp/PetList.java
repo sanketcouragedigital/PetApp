@@ -12,16 +12,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import com.couragedigital.petapp.Connectivity.FilterFetchPetList;
+import com.couragedigital.petapp.Connectivity.FilterPetListDeleteMemCacheObject;
 import com.couragedigital.petapp.Connectivity.PetFetchList;
 import com.couragedigital.petapp.Connectivity.PetRefreshFetchList;
 import com.couragedigital.petapp.Listeners.PetFetchListScrollListener;
 import com.couragedigital.petapp.Adapter.PetListAdapter;
+import com.couragedigital.petapp.SessionManager.SessionManager;
 import com.couragedigital.petapp.Singleton.FilterPetListInstance;
+import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.model.PetListItems;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import android.app.ProgressDialog;
@@ -32,7 +36,7 @@ public class PetList extends BaseActivity {
 
     // http://c/dev/api/petappapi.php?method=showPetDetails&format=json
     // "http://storage.couragedigital.com/dev/api/petappapi.php"
-    private static String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
+    private static String url = URLInstance.getUrl();
     private ProgressDialog progressDialog;
     public List<PetListItems> petLists = new ArrayList<PetListItems>();
 
@@ -50,9 +54,11 @@ public class PetList extends BaseActivity {
 
     private int current_page = 1;
 
-    int filterState;
+    int filterState = 0;
 
     int FILTER_STATE_RESULT = 1;
+
+    public String email;
 
     public List<String> filterSelectedInstanceCategoryList = new ArrayList<String>();
     public List<String> filterSelectedInstanceBreedList = new ArrayList<String>();
@@ -76,16 +82,21 @@ public class PetList extends BaseActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
+        HashMap<String, String> user = sessionManager.getUserDetails();
+        email = user.get(SessionManager.KEY_EMAIL);
+
         url = url+"?method=showPetDetails&format=json&currentPage="+current_page+"";
 
         recyclerView.addOnScrollListener(new PetFetchListScrollListener(layoutManager, current_page){
 
             @Override
             public void onLoadMore(int current_page) {
-                url = "";
-                url = "http://storage.couragedigital.com/dev/api/petappapi.php";
-                url = url+"?method=showPetDetails&format=json&currentPage="+current_page+"";
-                grabURL(url);
+                if(filterState == 0) {
+                    url = "";
+                    url = URLInstance.getUrl();
+                    url = url+"?method=showPetDetails&format=json&currentPage="+current_page+"";
+                    grabURL(url);
+                }
             }
         });
 
@@ -136,6 +147,8 @@ public class PetList extends BaseActivity {
             String date = petListItems.getPetPostDate();
             //date = date.replace(" ", "+");
             try {
+                url = "";
+                url = URLInstance.getUrl();
                 url = url+"?method=showPetSwipeRefreshList&format=json&date="+ URLEncoder.encode(date, "UTF-8")+"";
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
@@ -185,13 +198,18 @@ public class PetList extends BaseActivity {
             Bundle res = data.getExtras();
             filterState = res.getInt("Filter_State");
             if(filterState == 0) {
+                petListSwipeRefreshLayout.setEnabled(true);
                 petLists.clear();
                 adapter.notifyDataSetChanged();
+                url = "";
+                url = URLInstance.getUrl();
                 url = url+"?method=showPetDetails&format=json&currentPage="+current_page+"";
                 recyclerView.addOnScrollListener(new PetFetchListScrollListener(layoutManager, current_page){
 
                     @Override
                     public void onLoadMore(int current_page) {
+                        url = "";
+                        url = URLInstance.getUrl();
                         url = url+"?method=showPetDetails&format=json&currentPage="+current_page+"";
                         grabURL(url);
                     }
@@ -207,6 +225,7 @@ public class PetList extends BaseActivity {
                 grabURL(url);
             }
             else if(filterState == 1) {
+                petListSwipeRefreshLayout.setEnabled(false);
                 FilterPetListInstance filterPetListInstance = new FilterPetListInstance();
                 filterSelectedInstanceCategoryList = filterPetListInstance.getFilterCategoryListInstance();
                 filterSelectedInstanceBreedList = filterPetListInstance.getFilterBreedListInstance();
@@ -214,6 +233,14 @@ public class PetList extends BaseActivity {
                 filterSelectedInstanceGenderList = filterPetListInstance.getFilterGenderListInstance();
                 filterSelectedInstanceAdoptionAndPriceList = filterPetListInstance.getFilterAdoptionAndPriceListInstance();
                 new FetchFilterPetListFromServer().execute();
+
+                recyclerView.addOnScrollListener(new PetFetchListScrollListener(layoutManager, current_page){
+
+                    @Override
+                    public void onLoadMore(int current_page) {
+                        FilterFetchPetList.filterFetchPetList(petLists, adapter, email, current_page, filterSelectedInstanceCategoryList, filterSelectedInstanceBreedList, filterSelectedInstanceAgeList, filterSelectedInstanceGenderList, filterSelectedInstanceAdoptionAndPriceList);
+                    }
+                });
             }
         }
     }
@@ -222,7 +249,7 @@ public class PetList extends BaseActivity {
         @Override
         protected Void doInBackground(Void... params) {
             try {
-                FilterFetchPetList.filterFetchPetList(petLists, adapter, filterSelectedInstanceCategoryList, filterSelectedInstanceBreedList, filterSelectedInstanceAgeList, filterSelectedInstanceGenderList, filterSelectedInstanceAdoptionAndPriceList);
+                FilterFetchPetList.filterFetchPetList(petLists, adapter, email, current_page, filterSelectedInstanceCategoryList, filterSelectedInstanceBreedList, filterSelectedInstanceAgeList, filterSelectedInstanceGenderList, filterSelectedInstanceAdoptionAndPriceList);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -230,23 +257,38 @@ public class PetList extends BaseActivity {
         }
     }
 
-    /*@Override
-    public void onRestart() {
-        super.onRestart();
-        /*if(PetListInstance.getListInstance() != originalpetLists) {
-            petLists = PetListInstance.getListInstance();
-            Adapter = new PetListAdapter(petLists);
-            recyclerView.setAdapter(Adapter);
-            Adapter.notifyDataSetChanged();
-        }
-        Bundle savedInstanceState = null;
-        onCreate(savedInstanceState);
-
-    }*/
-
     @Override
     public void onDestroy() {
         super.onDestroy();
         hideProgressDialog();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(filterState == 1) {
+            FilterPetListDeleteMemCacheObject.deletePetListFilterObject(email);
+            FilterPetListInstance filterPetListInstance = new FilterPetListInstance();
+            filterSelectedInstanceCategoryList = filterPetListInstance.getFilterCategoryListInstance();
+            filterSelectedInstanceBreedList = filterPetListInstance.getFilterBreedListInstance();
+            filterSelectedInstanceAgeList = filterPetListInstance.getFilterAgeListInstance();
+            filterSelectedInstanceGenderList = filterPetListInstance.getFilterGenderListInstance();
+            filterSelectedInstanceAdoptionAndPriceList = filterPetListInstance.getFilterAdoptionAndPriceListInstance();
+            filterSelectedInstanceCategoryList.clear();
+            filterSelectedInstanceBreedList.clear();
+            filterSelectedInstanceAgeList.clear();
+            filterSelectedInstanceGenderList.clear();
+            filterSelectedInstanceAdoptionAndPriceList.clear();
+            filterPetListInstance.setFilterCategoryListInstance(filterSelectedInstanceCategoryList);
+            filterPetListInstance.setFilterBreedListInstance(filterSelectedInstanceBreedList);
+            filterPetListInstance.setFilterAgeListInstance(filterSelectedInstanceAgeList);
+            filterPetListInstance.setFilterGenderListInstance(filterSelectedInstanceGenderList);
+            filterPetListInstance.setFilterAdoptionAndPriceListInstance(filterSelectedInstanceAdoptionAndPriceList);
+        }
+        PetList.this.finish();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
     }
 }

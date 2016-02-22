@@ -113,6 +113,7 @@ public class TabFragmentStoresDetails extends AppCompatActivity implements View.
         storesDetailsbitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
         storesImage.setImageBitmap(storesDetailsbitmap);
         address.setText(storesaddress);
+        storesDetailsCollapsingToolbar.setTitle(storesname);
 
         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) storesDetailsAppBaLayoutr.getLayoutParams();
         layoutParams.height = getResources().getDisplayMetrics().widthPixels;

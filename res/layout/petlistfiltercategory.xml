@@ -13,7 +13,6 @@
                 android:id="@+id/filterCategoryText"
                 android:padding="10dp"
                 android:textSize="16sp"
-                android:text="hi"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="16dp"/>
         <CheckBox

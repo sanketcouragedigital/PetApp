@@ -11,6 +11,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.couragedigital.petapp.EmailForCode;
 import com.couragedigital.petapp.SetNewPassword;
 import com.couragedigital.petapp.SignIn;
+import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.app.AppController;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,7 +29,7 @@ public class EmailVerifying {
         String format = "json";
         emailtochangepass = email;
 
-        final String URL = "http://storage.couragedigital.com/dev/api/petappapi.php";
+        final String url = URLInstance.getUrl();
         JSONObject params = new JSONObject();
         try {
             params.put("method", method);
@@ -38,7 +39,7 @@ public class EmailVerifying {
         } catch (Exception e) {
 
         }
-        JsonObjectRequest signinReq = new JsonObjectRequest(Request.Method.POST, URL, params,
+        JsonObjectRequest signinReq = new JsonObjectRequest(Request.Method.POST, url, params,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {

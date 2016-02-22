@@ -9,6 +9,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.couragedigital.petapp.MyListingModifyPetMateDetails;
+import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.app.AppController;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,7 +18,7 @@ import java.util.Map;
 
 public class MyListingModifyPetMateDetailUpload {
     //private static final String SERVER_URL = "http://storage.couragedigital.com/dev/api/petappapi.php";
-     private static final String SERVER_URL = "http://192.168.0.3/PetAppAPI/api/petappapi.php";
+     private static final String SERVER_URL = URLInstance.getUrl();
 
     private static Context context = null;
     int serverResponseCode;

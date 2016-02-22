@@ -108,6 +108,7 @@ public class TabFragmentGroomerDetails extends AppCompatActivity implements View
         groomerDetailsbitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
         groomerImage.setImageBitmap(groomerDetailsbitmap);
         address.setText(groomeraddress);
+        groomerDetailsCollapsingToolbar.setTitle(groomername);
 
         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) groomerDetailsAppBaLayoutr.getLayoutParams();
         layoutParams.height = getResources().getDisplayMetrics().widthPixels;

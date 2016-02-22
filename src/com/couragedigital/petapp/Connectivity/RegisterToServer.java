@@ -9,6 +9,7 @@ import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.couragedigital.petapp.SignIn;
 import com.couragedigital.petapp.SignUp;
+import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.app.AppController;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,7 +46,7 @@ public class RegisterToServer {
         usermobileno = mobileno;
         useremail = email;
         userconfirmpassword = confirmpassword;
-        final String URL = "http://storage.couragedigital.com/dev/api/petappapi.php";
+        final String URL = URLInstance.getUrl();
         JSONObject params = new JSONObject();
         try {
             params.put("method", method);

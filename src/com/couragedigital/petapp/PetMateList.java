@@ -11,11 +11,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import com.couragedigital.petapp.Adapter.PetMateListAdapter;
 import com.couragedigital.petapp.Connectivity.FilterFetchPetMateList;
+import com.couragedigital.petapp.Connectivity.FilterPetMateListDeleteMemCacheObject;
 import com.couragedigital.petapp.Connectivity.PetMateFetchList;
 import com.couragedigital.petapp.Connectivity.PetMateRefreshFetchList;
 import com.couragedigital.petapp.Listeners.PetMateFetchListScrollListener;
 import com.couragedigital.petapp.SessionManager.SessionManager;
+import com.couragedigital.petapp.Singleton.FilterPetListInstance;
 import com.couragedigital.petapp.Singleton.FilterPetMateListInstance;
+import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.model.PetMateListItems;
 
 import java.io.UnsupportedEncodingException;
@@ -32,7 +35,7 @@ public class PetMateList extends BaseActivity {
 
     // http://c/dev/api/petappapi.php?method=showPetDetails&format=json
     // "http://storage.couragedigital.com/dev/api/petappapi.php"
-    private static String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
+    private static String url = URLInstance.getUrl();
     private ProgressDialog progressDialog;
     public List<PetMateListItems> petMateLists = new ArrayList<PetMateListItems>();
     /*private ListView petlistView;
@@ -54,7 +57,7 @@ public class PetMateList extends BaseActivity {
 
     public String email;
 
-    int filterState;
+    int filterState = 0;
 
     int FILTER_STATE_RESULT = 1;
 
@@ -88,8 +91,12 @@ public class PetMateList extends BaseActivity {
 
             @Override
             public void onLoadMore(int current_page) {
-                url = url+"?method=showPetMateDetails&format=json&email="+email+"&currentPage="+current_page+"";
-                grabURL(url);
+                if(filterState == 0) {
+                    url = "";
+                    url = URLInstance.getUrl();
+                    url = url+"?method=showPetMateDetails&format=json&email="+email+"&currentPage="+current_page+"";
+                    grabURL(url);
+                }
             }
         });
 
@@ -140,6 +147,8 @@ public class PetMateList extends BaseActivity {
             String date = petMateListItems.getPetMatePostDate();
             //date = date.replace(" ", "+");
             try {
+                url = "";
+                url = URLInstance.getUrl();
                 url = url+"?method=showPetMateSwipeRefreshList&format=json&date="+ URLEncoder.encode(date, "UTF-8")+"&email="+email+"";
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
@@ -189,15 +198,19 @@ public class PetMateList extends BaseActivity {
             Bundle res = data.getExtras();
             filterState = res.getInt("Filter_State");
             if(filterState == 0) {
+                petMateListSwipeRefreshLayout.setEnabled(true);
                 petMateLists.clear();
                 adapter.notifyDataSetChanged();
-                url = url+"?method=showPetMateDetails&format=json&email="+email+"&currentPage="+current_page+"";
+                url = "";
+                url = URLInstance.getUrl();
+                url = url+"?method=showPetMateDetails&format=json&" +
+                        "email="+email+"&currentPage="+current_page+"";
                 recyclerView.addOnScrollListener(new PetMateFetchListScrollListener(layoutManager, current_page){
 
                     @Override
                     public void onLoadMore(int current_page) {
                         url = "";
-                        url = "http://storage.couragedigital.com/dev/api/petappapi.php";
+                        url = URLInstance.getUrl();
                         url = url+"?method=showPetMateDetails&format=json&email="+email+"&currentPage="+current_page+"";
                         grabURL(url);
                     }
@@ -213,12 +226,21 @@ public class PetMateList extends BaseActivity {
                 grabURL(url);
             }
             else if(filterState == 1) {
+                petMateListSwipeRefreshLayout.setEnabled(false);
                 FilterPetMateListInstance filterPetMateListInstance = new FilterPetMateListInstance();
                 filterSelectedInstanceCategoryList = filterPetMateListInstance.getFilterCategoryListInstance();
                 filterSelectedInstanceBreedList = filterPetMateListInstance.getFilterBreedListInstance();
                 filterSelectedInstanceAgeList = filterPetMateListInstance.getFilterAgeListInstance();
                 filterSelectedInstanceGenderList = filterPetMateListInstance.getFilterGenderListInstance();
                 new FetchFilterPetMateListFromServer().execute();
+
+                recyclerView.addOnScrollListener(new PetMateFetchListScrollListener(layoutManager, current_page){
+
+                    @Override
+                    public void onLoadMore(int current_page) {
+                        FilterFetchPetMateList.filterFetchPetMateList(petMateLists, adapter, email, current_page, filterSelectedInstanceCategoryList, filterSelectedInstanceBreedList, filterSelectedInstanceAgeList, filterSelectedInstanceGenderList);
+                    }
+                });
             }
         }
     }
@@ -227,7 +249,7 @@ public class PetMateList extends BaseActivity {
         @Override
         protected Void doInBackground(Void... params) {
             try {
-                FilterFetchPetMateList.filterFetchPetMateList(petMateLists, adapter, filterSelectedInstanceCategoryList, filterSelectedInstanceBreedList, filterSelectedInstanceAgeList, filterSelectedInstanceGenderList, email);
+                FilterFetchPetMateList.filterFetchPetMateList(petMateLists, adapter, email, current_page, filterSelectedInstanceCategoryList, filterSelectedInstanceBreedList, filterSelectedInstanceAgeList, filterSelectedInstanceGenderList);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -235,42 +257,30 @@ public class PetMateList extends BaseActivity {
         }
     }
 
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.petlistmenu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_filter) {
-            PetListInstance petListInstance = new PetListInstance(Adapter, petLists, petlistView);
-            Intent filterClassIntent = new Intent(PetList.this, PetListFilter.class);
-            //filterClassIntent.putExtra("PET_LISTS", (Parcelable) petLists);
-            //filterClassIntent.putExtra("PET_ADAPTER", (Parcelable) Adapter);
-            startActivity(filterClassIntent);
-        }
-        return true;
-    }*/
-
-    /*@Override
-    public void onRestart() {
-        super.onRestart();
-        /*if(PetListInstance.getListInstance() != originalpetLists) {
-            petLists = PetListInstance.getListInstance();
-            Adapter = new PetListAdapter(petLists);
-            recyclerView.setAdapter(Adapter);
-            Adapter.notifyDataSetChanged();
-        }
-        Bundle savedInstanceState = null;
-        onCreate(savedInstanceState);
-
-    }*/
-
     @Override
     public void onDestroy() {
         super.onDestroy();
         hideProgressDialog();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(filterState == 1) {
+            FilterPetMateListDeleteMemCacheObject.deletePetMateListFilterObject(email);
+            FilterPetMateListInstance filterPetMateListInstance = new FilterPetMateListInstance();
+            filterSelectedInstanceCategoryList = filterPetMateListInstance.getFilterCategoryListInstance();
+            filterSelectedInstanceBreedList = filterPetMateListInstance.getFilterBreedListInstance();
+            filterSelectedInstanceAgeList = filterPetMateListInstance.getFilterAgeListInstance();
+            filterSelectedInstanceGenderList = filterPetMateListInstance.getFilterGenderListInstance();
+            filterSelectedInstanceCategoryList.clear();
+            filterSelectedInstanceBreedList.clear();
+            filterSelectedInstanceAgeList.clear();
+            filterSelectedInstanceGenderList.clear();
+            filterPetMateListInstance.setFilterCategoryListInstance(filterSelectedInstanceCategoryList);
+            filterPetMateListInstance.setFilterBreedListInstance(filterSelectedInstanceBreedList);
+            filterPetMateListInstance.setFilterAgeListInstance(filterSelectedInstanceAgeList);
+            filterPetMateListInstance.setFilterGenderListInstance(filterSelectedInstanceGenderList);
+        }
+        PetMateList.this.finish();
     }
 }

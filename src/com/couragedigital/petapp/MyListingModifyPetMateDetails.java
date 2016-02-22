@@ -64,7 +64,7 @@ public class MyListingModifyPetMateDetails extends BaseActivity implements View.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mylistingeditypetmatedetails);
+        setContentView(R.layout.mylistingeditpetmatedetails);
 
 
         SessionManager sessionManager = new SessionManager(MyListingModifyPetMateDetails.this);

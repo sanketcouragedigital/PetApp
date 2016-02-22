@@ -15,7 +15,6 @@ import com.couragedigital.petapp.R;
 import com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView;
 import com.couragedigital.petapp.app.AppController;
 import com.couragedigital.petapp.model.PetListItems;
-import com.couragedigital.petapp.ExpandText;
 
 import java.util.List;
 
@@ -43,16 +42,6 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         PetListItems petListItems = petLists.get(i);
         viewHolder.bindPetList(petListItems);
-    }
-
-    private String setPetListingTypeButtonName(PetListItems petListItems) {
-        String petListingTypeString = null;
-        if (petListItems.getListingType().equals("For Adoption")) {
-            petListingTypeString = "ADOPT";
-        } else {
-            petListingTypeString = "SELL";
-        }
-        return petListingTypeString;
     }
 
     @Override

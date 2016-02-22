@@ -1,5 +1,7 @@
 package com.couragedigital.petapp.model;
 
+import com.couragedigital.petapp.Singleton.ImageURLInstance;
+
 import java.util.Date;
 
 public class PetListItems {
@@ -46,7 +48,7 @@ public class PetListItems {
     }
 
     public void setFirstImagePath(String firstImagePath) {
-        this.firstImagePath = "http://storage.couragedigital.com/dev/pet_images/"+firstImagePath;
+        this.firstImagePath = ImageURLInstance.getUrl()+"pet_images/"+firstImagePath;
     }
 
     public String getSecondImagePath() {
@@ -54,7 +56,7 @@ public class PetListItems {
     }
 
     public void setSecondImagePath(String secondImagePath) {
-        this.secondImagePath = "http://storage.couragedigital.com/dev/pet_images/"+secondImagePath;
+        this.secondImagePath = ImageURLInstance.getUrl()+"pet_images/"+secondImagePath;
     }
 
     public String getThirdImagePath() {
@@ -62,7 +64,7 @@ public class PetListItems {
     }
 
     public void setThirdImagePath(String thirdImagePath) {
-        this.thirdImagePath = "http://storage.couragedigital.com/dev/pet_images/"+thirdImagePath;
+        this.thirdImagePath = ImageURLInstance.getUrl()+"pet_images/"+thirdImagePath;
     }
 
     public String getPetBreed() {

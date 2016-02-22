@@ -113,6 +113,7 @@ public class TabFragmentShelterDetails extends AppCompatActivity implements View
         shelterDetailsbitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
         shelterImage.setImageBitmap(shelterDetailsbitmap);
         address.setText(shelteraddress);
+        shelterDetailsCollapsingToolbar.setTitle(sheltername);
 
         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) shelterDetailsAppBaLayoutr.getLayoutParams();
         layoutParams.height = getResources().getDisplayMetrics().widthPixels;

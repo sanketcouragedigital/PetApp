@@ -113,6 +113,7 @@ public class TabFragmentTrainerDetails extends AppCompatActivity implements View
         trainerDetailsbitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
         trainerImage.setImageBitmap(trainerDetailsbitmap);
         address.setText(traineraddress);
+        trainerDetailsCollapsingToolbar.setTitle(trainername);
 
         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) trainerDetailsAppBaLayoutr.getLayoutParams();
         layoutParams.height = getResources().getDisplayMetrics().widthPixels;

@@ -15,6 +15,7 @@ import com.couragedigital.petapp.Adapter.TrainerListAdapter;
 import com.couragedigital.petapp.Connectivity.PetFetchGroomerList;
 import com.couragedigital.petapp.Connectivity.PetFetchTrainerList;
 import com.couragedigital.petapp.Listeners.PetFetchTrainerListScrollListener;
+import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.model.GroomerListItem;
 import com.couragedigital.petapp.model.TrainerListItem;
 
@@ -28,7 +29,7 @@ public class TabFragmentGroomer extends Fragment {
     RecyclerView.Adapter adapter;
     RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
-    private String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
+    private String url = URLInstance.getUrl();
     //private String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
 
     int current_page = 1;
@@ -64,7 +65,7 @@ public class TabFragmentGroomer extends Fragment {
             @Override
             public void onLoadMore(int current_page) {
                 url = "";
-                url = "http://storage.couragedigital.com/dev/api/petappapi.php";
+                url = URLInstance.getUrl();
                 url = url + "?method=showPetGroomer&format=json&currentPage=" + current_page + " ";
                 grabURL(url);
             }

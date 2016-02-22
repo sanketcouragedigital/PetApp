@@ -1,5 +1,7 @@
 package com.couragedigital.petapp.model;
 
+import com.couragedigital.petapp.Singleton.ImageURLInstance;
+
 public class TrainerListItem {
     public String image_path;
     public String trainer_name;
@@ -26,7 +28,7 @@ public class TrainerListItem {
     }
 
     public void setTrainerImage_path(String image_path) {
-        this.image_path = "http://storage.couragedigital.com/dev/trainer_images/" + image_path;
+        this.image_path = ImageURLInstance.getUrl()+"trainer_images/" + image_path;
     }
 
     public String getTrainerName() {

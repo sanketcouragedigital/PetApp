@@ -14,7 +14,9 @@
             tools:listitem="@android:layout/simple_list_item_1"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true">
+            android:layout_alignParentEnd="true"
+            android:paddingBottom="8dp"
+            android:clipToPadding="false">
     </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

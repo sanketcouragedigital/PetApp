@@ -1,6 +1,8 @@
 package com.couragedigital.petapp.model;
 
 
+import com.couragedigital.petapp.Singleton.ImageURLInstance;
+
 public class ClinicListItems {
 
     public String image_path;
@@ -36,7 +38,7 @@ public class ClinicListItems {
     }
 
     public void setClinicImage_path(String image_path) {
-        this.image_path = "http://storage.couragedigital.com/dev/clinic_images/" + image_path;
+        this.image_path = ImageURLInstance.getUrl()+"clinic_images/" + image_path;
     }
 
     public String getClinicId() {

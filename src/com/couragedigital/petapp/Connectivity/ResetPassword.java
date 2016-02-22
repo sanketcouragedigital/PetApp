@@ -12,6 +12,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.couragedigital.petapp.Index;
 import com.couragedigital.petapp.SetNewPassword;
 import com.couragedigital.petapp.SignIn;
+import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.app.AppController;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,7 +33,7 @@ public class ResetPassword {
         String newpassword = password;
         String userEmail = email;
 
-        final String URL = "http://storage.couragedigital.com/dev/api/petappapi.php";
+        final String URL = URLInstance.getUrl();
         JSONObject params = new JSONObject();
         try {
             params.put("method", method);

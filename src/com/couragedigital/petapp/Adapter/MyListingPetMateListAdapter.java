@@ -15,6 +15,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.couragedigital.petapp.*;
 import com.couragedigital.petapp.Connectivity.MyListingPetMateDelete;
 import com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView;
+import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.app.AppController;
 import com.couragedigital.petapp.model.MyListingPetMateListItem;
 import com.couragedigital.petapp.model.PetMateListItems;
@@ -116,7 +117,7 @@ public class MyListingPetMateListAdapter extends RecyclerView.Adapter
             }
             else if(v.getId() == R.id.myListingPetMateDelete) {
                 if(this.myListingPetMateListItem != null) {
-                    String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
+                    String url = URLInstance.getUrl();
                     int id = myListingPetMateListItem.getId();
                     String email = myListingPetMateListItem.getPetMatePostOwnerEmail();
                     url = url + "?method=deleteMyListingPetMateList&format=json&id="+ id +"&email="+ email +"";
@@ -133,7 +134,8 @@ public class MyListingPetMateListAdapter extends RecyclerView.Adapter
                     petFullInformation.putExtra("PET_SECOND_IMAGE", myListingPetMateListItem.getSecondImagePath());
                     petFullInformation.putExtra("PET_THIRD_IMAGE", myListingPetMateListItem.getThirdImagePath());
                     petFullInformation.putExtra("PET_MATE_BREED", myListingPetMateListItem.getPetMateBreed());
-                    petFullInformation.putExtra("PET_MATE_AGE", myListingPetMateListItem.getPetMateAgeInMonth());
+                    petFullInformation.putExtra("PET_MATE_IN_MONTH", myListingPetMateListItem.getPetMateAgeInMonth());
+                    petFullInformation.putExtra("PET_MATE_IN_YEAR", myListingPetMateListItem.getPetMateAgeInYear());
                     petFullInformation.putExtra("PET_MATE_GENDER", myListingPetMateListItem.getPetMateGender());
                     petFullInformation.putExtra("PET_MATE_DESCRIPTION", myListingPetMateListItem.getPetMateDescription());
 

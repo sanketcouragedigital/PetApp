@@ -16,7 +16,7 @@
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                         android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:focusable="true"
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp"
@@ -24,180 +24,174 @@
             <TextView
                     android:id="@+id/myListingPetListSelectedCategory"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="16dp"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:textSize="15sp"
+                    android:layout_marginTop="16dp"
+                    android:textSize="16sp"
                     android:textColor="@color/edittxtcolor"/>
 
-            <TextView
-                    android:id="@+id/myListingPetListChangeCategory"
-                    android:layout_width="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginRight="16dp"
-                    android:text="Change To"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:textSize="15sp"
-                    android:textColor="@color/edittxtcolor"
-                    android:layout_below="@+id/myListingPetListSelectedCategory"/>
-
-            <Spinner
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:id="@+id/myListingEditPetCategory"
-                    android:layout_toRightOf="@+id/myListingPetListChangeCategory"
-                    android:layout_marginTop="16dp"
-                    android:layout_below="@+id/myListingPetListSelectedCategory"/>
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:id="@+id/myListingPetListChangeCategoryLayout"
+                          android:layout_below="@id/myListingPetListSelectedCategory"
+                          android:layout_marginTop="16dp">
+                <TextView
+                        android:id="@+id/myListingPetListChangeCategory"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="@color/edittxtcolor"
+                        android:layout_weight="0.8"/>
+                <Spinner
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/myListingEditPetCategory"
+                        android:layout_weight="1.2"/>
+            </LinearLayout>
 
             <TextView
                     android:id="@+id/myListingPetListSelectedBreed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="breed"
-                    android:inputType="number"
-                    android:textSize="15sp"
+                    android:textSize="16sp"
                     android:textColor="@color/edittxtcolor"
-                    android:layout_below="@+id/myListingEditPetCategory"/>
-            <TextView
-                    android:id="@+id/myListingPetListChangeBreed"
-                    android:layout_width="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginRight="16dp"
-                    android:text="Change To"
-                    android:inputType="number"
-                    android:textSize="15sp"
-                    android:textColor="@color/edittxtcolor"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/myListingPetListSelectedBreed" />
+                    android:layout_below="@id/myListingPetListChangeCategoryLayout"/>
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:id="@+id/myListingPetListChangeBreedLayout"
+                          android:layout_below="@id/myListingPetListSelectedBreed"
+                          android:layout_marginTop="16dp">
+                <TextView
+                        android:id="@+id/myListingPetListChangeBreed"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="@color/edittxtcolor"
+                        android:layout_weight="0.8"/>
+
+                <Spinner
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/myListingEditPetBreed"
+                        android:layout_weight="1.2"/>
+            </LinearLayout>
 
             <TextView
                     android:id="@+id/myListingPetListCurrentAge"
-                    android:layout_width="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginRight="16dp"
-                    android:text="Current Age"
-                    android:inputType="number"
-                    android:textSize="15sp"
-                    android:textColor="@color/edittxtcolor"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/myListingPetListChangeBreed" />
-
-
-            <Spinner
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:id="@+id/myListingEditPetBreed"
-                    android:layout_below="@+id/myListingPetListSelectedBreed"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:layout_toRightOf="@+id/myListingPetListChangeBreed"/>
-
+                    android:textSize="16sp"
+                    android:textColor="@color/edittxtcolor"
+                    android:layout_below="@+id/myListingPetListChangeBreedLayout"/>
 
             <TextView
                     android:id="@+id/myListingEditAgeOfPet"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Change Age To"
-                    android:inputType="number"
-                    android:textSize="15sp"
+                    android:textSize="16sp"
+                    android:text="Change Age To :"
                     android:textColor="@color/edittxtcolor"
-                    android:layout_alignParentBottom="false"
-                    android:layout_below="@+id/myListingPetListCurrentAge"
-                    android:layout_marginTop="16dp"/>
-            <Spinner
-                    android:id="@+id/myListingEditPetAgeInMonths"
-                    android:layout_width="70dp"
-                    android:layout_height="48dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_alignTop="@+id/myListingEditAgeOfPet"
-                    android:layout_toRightOf="@+id/myListingEditAgeOfPet"/>
-            <Spinner
-                    android:id="@+id/myListingEditPetAgeInYears"
-                    android:layout_width="70dp"
-                    android:layout_height="48dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_alignTop="@+id/myListingEditAgeOfPet"
-                    android:layout_toRightOf="@+id/myListingEditPetAgeInMonths"/>
+                    android:layout_marginTop="16dp"
+                    android:layout_below="@id/myListingPetListCurrentAge"/>
 
-            <TextView
-                    android:id="@+id/myListingEditPetGender"
-                    android:layout_width="84dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:ems="4"
-                    android:text="Gender"
-                    android:textSize="22sp"
-                    android:textColor="@color/edittxtcolor"
-                    android:layout_above="@+id/myListingEditPetGiveAwayOfPet"
-                    android:layout_alignParentStart="true"/>
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:id="@+id/myListingPetListChangeAgeLayout"
+                          android:layout_below="@id/myListingEditAgeOfPet"
+                          android:layout_marginTop="16dp">
+                <Spinner
+                        android:id="@+id/myListingEditPetAgeInMonths"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"/>
+                <Spinner
+                        android:id="@+id/myListingEditPetAgeInYears"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"/>
+            </LinearLayout>
 
-            <RadioGroup
-                    android:id="@+id/myListingEditPetGenderRadioGroup"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="horizontal"
-                    android:layout_below="@+id/myListingEditPetAgeInMonths"
-                    android:layout_marginTop="27dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_toEndOf="@+id/priceOfPet"
-                    android:layout_toRightOf="@+id/myListingEditAgeOfPet">
-
-                <RadioButton android:id="@+id/myListingEditPetGenderMale"
-                             android:layout_width="wrap_content"
-                             android:layout_height="wrap_content"
-                             android:layout_marginRight="16dp"
-                             android:text="@string/pet_gender_male"/>
-
-                <RadioButton android:id="@+id/myListingEditPetGenderFemale"
-                             android:layout_width="wrap_content"
-                             android:layout_height="wrap_content"
-                             android:text="@string/pet_gender_female"/>
-            </RadioGroup>
-
-            <RadioGroup
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/myListingEditPetGiveAwayOfPet"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="horizontal"
-                    android:layout_below="@+id/myListingEditPetGenderRadioGroup"
-                    android:layout_marginTop="27dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_toEndOf="@+id/priceOfPet"
-                    android:layout_toRightOf="@+id/myListingEditAgeOfPet">
-
-                <RadioButton
-                        android:layout_width="wrap_content"
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:id="@+id/myListingPetListChangeGenderLayout"
+                          android:layout_below="@id/myListingPetListChangeAgeLayout"
+                          android:layout_marginTop="16dp">
+                <TextView
+                        android:id="@+id/myListingEditPetGender"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Adoption"
-                        android:id="@+id/myListingEditPetForAdoption"
-                        android:layout_marginRight="16dp"
-                        android:layout_below="@+id/myListingEditGenderOfPet"
-                        android:layout_alignStart="@+id/myListingEditGenderOfPet"/>
+                        android:ems="4"
+                        android:text="Gender"
+                        android:textSize="16sp"
+                        android:textColor="@color/edittxtcolor"
+                        android:layout_weight="0.6"/>
 
-                <RadioButton
-                        android:layout_width="wrap_content"
+                <RadioGroup
+                        android:id="@+id/myListingEditPetGenderRadioGroup"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Sell"
-                        android:id="@+id/myListingEditPetSell"
-                        android:ems="5"
-                        android:layout_below="@+id/myListingEditGenderOfPet"
-                        android:layout_toRightOf="@+id/forAdoptionOfPet"/>
-            </RadioGroup>
+                        android:orientation="horizontal"
+                        android:layout_weight="1.4">
 
-            <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:ems="4"
-                    android:id="@+id/myListingEditPriceOfPet"
-                    android:hint="Price"
-                    android:enabled="false"
-                    android:textColor="@color/textColorPrimary"
-                    android:layout_alignBottom="@+id/myListingEditPetGiveAwayOfPet"
-                    android:layout_alignParentStart="true"/>
+                    <RadioButton android:id="@+id/myListingEditPetGenderMale"
+                                 android:layout_width="0dp"
+                                 android:layout_height="wrap_content"
+                                 android:text="@string/pet_gender_male"
+                                 android:layout_weight="1"/>
+
+                    <RadioButton android:id="@+id/myListingEditPetGenderFemale"
+                                 android:layout_width="0dp"
+                                 android:layout_height="wrap_content"
+                                 android:text="@string/pet_gender_female"
+                                 android:layout_weight="1"/>
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:id="@+id/myListingPetListChangePriceLayout"
+                          android:layout_below="@id/myListingPetListChangeGenderLayout"
+                          android:layout_marginTop="16dp">
+                <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:ems="4"
+                        android:id="@+id/myListingEditPriceOfPet"
+                        android:hint="Price"
+                        android:enabled="false"
+                        android:textColor="@color/textColorPrimary"
+                        android:layout_weight="0.6"/>
+
+                <RadioGroup
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/myListingEditPetGiveAwayOfPet"
+                        android:orientation="horizontal"
+                        android:layout_weight="1.4">
+
+                    <RadioButton
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/myListingEditPetForAdoption"
+                            android:text="Adoption"
+                            android:layout_weight="1"/>
+
+                    <RadioButton
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/myListingEditPetSell"
+                            android:text="Sell"
+                            android:layout_weight="1"/>
+                </RadioGroup>
+            </LinearLayout>
 
             <EditText
                     android:layout_width="match_parent"
@@ -206,11 +200,9 @@
                     android:id="@+id/myListingEditPetDescriptionOfPet"
                     android:hint="Description"
                     android:textColor="@color/textColorPrimary"
-                    android:lines="2"
                     android:gravity="top|left"
                     android:scrollbars="vertical"
-                    android:layout_below="@+id/myListingEditPriceOfPet"
-                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/myListingPetListChangePriceLayout"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"/>
         </RelativeLayout>

@@ -31,64 +31,67 @@
                     android:layout_below="@+id/petMateCategorySpinner"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="16dp"/>
-            <TextView
-                    android:layout_width="84dp"
-                    android:layout_height="wrap_content"
-                    android:ems="4"
-                    android:textSize="20sp"
-                    android:textColor="@color/edittxtcolor"
-                    android:id="@+id/ageOfPetMate"
-                    android:hint="Age"
-                    android:layout_alignParentBottom="false"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/petMateBreedSpinner"
-                    android:layout_marginTop="16dp"/>
-            <Spinner
-                    android:id="@+id/ageOfPetMateInMonths"
-                    android:layout_width="100dp"
-                    android:layout_height="48dp"
-                    android:layout_alignTop="@+id/ageOfPetMate"
-                    android:layout_toRightOf="@+id/ageOfPetMate"
-            />
-            <Spinner
-                    android:id="@+id/ageOfPetMateInYears"
-                    android:layout_width="100dp"
-                    android:layout_height="48dp"
-                    android:layout_alignTop="@+id/ageOfPetMate"
-                    android:layout_toRightOf="@+id/ageOfPetMateInMonths"
-            />
-            <TextView
-                    android:id="@+id/petMateGender"
-                    android:layout_width="84dp"
-                    android:layout_height="wrap_content"
-                    android:ems="4"
-                    android:text="Gender"
-                    android:textSize="20sp"
-                    android:textColor="@color/edittxtcolor"
-                    android:layout_alignTop="@+id/genderOfPetMate"
-                    android:layout_alignParentStart="true"/>
-            <RadioGroup
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="horizontal"
-                    android:id="@+id/genderOfPetMate"
-                    android:layout_below="@+id/ageOfPetMateInMonths"
-                    android:layout_marginTop="27dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_toRightOf="@+id/ageOfPetMate">
-                <RadioButton
-                        android:id="@+id/genderMalePetMate"
-                        android:layout_width="wrap_content"
+            <LinearLayout android:layout_width="fill_parent"
+                          android:layout_height="wrap_content"
+                          android:id="@+id/petMateAgeLayout"
+                          android:orientation="horizontal"
+                          android:layout_marginTop="16dp"
+                          android:layout_below="@id/petMateBreedSpinner">
+                <TextView
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="16dp"
-                        android:text="@string/pet_gender_male"/>
-                <RadioButton
-                        android:id="@+id/genderFemalePetMate"
-                        android:layout_width="wrap_content"
+                        android:ems="4"
+                        android:textSize="16sp"
+                        android:textColor="@color/edittxtcolor"
+                        android:id="@+id/ageOfPetMate"
+                        android:hint="Age"
+                        android:layout_weight="0.6"/>
+                <Spinner
+                        android:id="@+id/ageOfPetMateInMonths"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1.2"/>
+                <Spinner
+                        android:id="@+id/ageOfPetMateInYears"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1.2"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="fill_parent"
+                          android:layout_height="wrap_content"
+                          android:id="@+id/petMateGenderLayout"
+                          android:orientation="horizontal"
+                          android:layout_marginTop="16dp"
+                          android:layout_below="@id/petMateAgeLayout">
+                <TextView
+                        android:id="@+id/petMateGender"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/pet_gender_female"/>
-            </RadioGroup>
+                        android:ems="4"
+                        android:text="Gender"
+                        android:textSize="16sp"
+                        android:textColor="@color/edittxtcolor"
+                        android:layout_weight="0.6"/>
+                <RadioGroup
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:id="@+id/genderOfPetMate"
+                        android:layout_weight="1.4">
+                    <RadioButton
+                            android:id="@+id/genderMalePetMate"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pet_gender_male"
+                            android:layout_weight="1"/>
+                    <RadioButton
+                            android:id="@+id/genderFemalePetMate"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pet_gender_female"
+                            android:layout_weight="1"/>
+                </RadioGroup>
+            </LinearLayout>
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -99,7 +102,7 @@
                     android:lines="2"
                     android:gravity="top|left"
                     android:scrollbars="vertical"
-                    android:layout_below="@+id/petMateGender"
+                    android:layout_below="@+id/petMateGenderLayout"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="16dp"/>
             <Button
@@ -118,6 +121,7 @@
                           android:orientation="horizontal"
                           android:layout_width="match_parent"
                           android:layout_height="match_parent"
+                          android:layout_marginBottom="30dp"
                           android:layout_below="@+id/selectImagePetMate">
                 <ImageView
                         android:layout_width="0dp"

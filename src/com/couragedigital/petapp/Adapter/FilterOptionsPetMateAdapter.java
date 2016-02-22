@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.couragedigital.petapp.Connectivity.FilterFetchPetMateBreedList;
+import com.couragedigital.petapp.Connectivity.FilterFetchPetMateCategoryList;
 import com.couragedigital.petapp.PetMateListFilter;
 import com.couragedigital.petapp.R;
 import com.couragedigital.petapp.Singleton.FilterPetMateListInstance;
@@ -232,7 +233,7 @@ public class FilterOptionsPetMateAdapter extends RecyclerView.Adapter<FilterOpti
                 filterSelectedInstanceAgeList = filterPetMateListInstance.getFilterAgeListInstance();
                 filterSelectedInstanceGenderList = filterPetMateListInstance.getFilterGenderListInstance();
 
-                if(filterSelectedInstanceCategoryList.isEmpty() && filterSelectedInstanceBreedList.isEmpty() && filterSelectedInstanceAgeList.isEmpty() && filterSelectedInstanceGenderList.isEmpty()) {
+                if(filterSelectedInstanceCategoryList.isEmpty() && filterSelectedInstanceAgeList.isEmpty() && filterSelectedInstanceGenderList.isEmpty()) {
                     filterState = 0;
                 }
                 else {
@@ -263,8 +264,8 @@ public class FilterOptionsPetMateAdapter extends RecyclerView.Adapter<FilterOpti
             @Override
             protected Void doInBackground(List... params) {
                 filterCategoryPetMateLists = params[0];
-
-                String[] filterCategoryText = new String[]{
+                FilterFetchPetMateCategoryList.fetchPetMateCategory(filterCategoryPetMateLists, filterCategoryPetMateAdapter);
+                /*String[] filterCategoryText = new String[]{
                         "Dog", "Cat", "Rabbit", "Small & Furry", "Horse", "Bird", "Scales, Fins & Others", "Pig", "Barnyard"
                 };
                 for (int i = 0; i < filterCategoryText.length; i++) {
@@ -272,7 +273,7 @@ public class FilterOptionsPetMateAdapter extends RecyclerView.Adapter<FilterOpti
                     filterCategoryList.setCategoryText(filterCategoryText[i]);
                     filterCategoryPetMateLists.add(filterCategoryList);
                 }
-                filterCategoryPetMateAdapter.notifyDataSetChanged();
+                filterCategoryPetMateAdapter.notifyDataSetChanged();*/
                 return null;
             }
         }

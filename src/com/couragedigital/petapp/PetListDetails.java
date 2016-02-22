@@ -80,8 +80,8 @@ public class PetListDetails extends AppCompatActivity implements View.OnClickLis
             breed = intent.getStringExtra("PET_BREED");
             listingType = intent.getStringExtra("PET_LISTING_TYPE");
             //age = intent.getStringExtra("PET_AGE");
-            ageInMonth = intent.getStringExtra("PET_AGE_INMONTH");
-            ageInYear = intent.getStringExtra("PET_AGE_INYEAR");
+            ageInMonth = intent.getStringExtra("PET_AGE_MONTH");
+            ageInYear = intent.getStringExtra("PET_AGE_YEAR");
             gender = intent.getStringExtra("PET_GENDER");
             description = intent.getStringExtra("PET_DESCRIPTION");
             //email = intent.getStringExtra("POST_OWNER_EMAIL");
@@ -261,7 +261,7 @@ public class PetListDetails extends AppCompatActivity implements View.OnClickLis
             Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                     "mailto",email, null));
             startActivity(Intent.createChooser(emailIntent, "Choose an Email client :"));
-        }
+        }*/
         else if(v.getId() == R.id.petDetailsFirstImageThumbnail) {
             petDetailsbitmap = getBitmapImageFromURL(firstImagePath);
             petImage.setImageBitmap(petDetailsbitmap);
@@ -273,6 +273,6 @@ public class PetListDetails extends AppCompatActivity implements View.OnClickLis
         else if(v.getId() == R.id.petDetailsThirdImageThumbnail) {
             petDetailsbitmap = getBitmapImageFromURL(thirdImagePath);
             petImage.setImageBitmap(petDetailsbitmap);
-        }*/
+        }
     }
 }

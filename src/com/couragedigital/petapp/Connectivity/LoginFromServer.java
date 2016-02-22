@@ -20,6 +20,7 @@ import com.couragedigital.petapp.Index;
 import com.couragedigital.petapp.R;
 import com.couragedigital.petapp.SessionManager.SessionManager;
 import com.couragedigital.petapp.SignIn;
+import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.app.AppController;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,7 +54,7 @@ public class LoginFromServer {
 
         this.email = email;
 
-        final String URL = "http://storage.couragedigital.com/dev/api/petappapi.php";
+        final String URL = URLInstance.getUrl();
         JSONObject params = new JSONObject();
         try {
             params.put("method", method);

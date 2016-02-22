@@ -14,6 +14,7 @@ import com.couragedigital.petapp.Adapter.MyListingPetMateListAdapter;
 import com.couragedigital.petapp.Connectivity.MyListingPetMateFetchList;
 import com.couragedigital.petapp.Listeners.MyListingPetMateFetchListScrollListener;
 import com.couragedigital.petapp.SessionManager.SessionManager;
+import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.model.MyListingPetMateListItem;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class MyListingPetMateListTab extends Fragment {
     String urlForFetch;
     List<MyListingPetMateListItem> myListingPetMateArrayList = new ArrayList<MyListingPetMateListItem>();
 
-       private String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
+       private String url = URLInstance.getUrl();
  //   private String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
 
     int current_page = 1;
@@ -72,7 +73,7 @@ public class MyListingPetMateListTab extends Fragment {
             @Override
             public void onLoadMore(int current_page) {
                 url = "";
-                url = "http://storage.couragedigital.com/dev/api/petappapi.php";
+                url = URLInstance.getUrl();
                 url = url + "?method=showMyListingPetMateList&format=json&email="+email+"&currentPage="+current_page+"";
                 grabURL(url);
             }

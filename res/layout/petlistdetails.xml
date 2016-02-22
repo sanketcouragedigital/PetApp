@@ -48,9 +48,10 @@
     <android.support.v4.widget.NestedScrollView
             android:id="@+id/petDetailsNestedScrollView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="fill_vertical"
-            android:clipToPadding="false"
+            android:paddingBottom="8dp"
+            android:clipToPadding="true"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_scrollFlags="scroll|enterAlways">
 
@@ -343,13 +344,10 @@
                                     android:layout_height="wrap_content"
                                     android:id="@+id/petDetailsCallButton"
                                     android:background="@android:color/transparent"
-                                    android:paddingLeft="70dip"
-                                    android:paddingRight="30dip"
                                     android:text="Call"
                                     android:textColor="#CF3E3E"
                                     android:textSize="14sp"
-                                    android:layout_weight="1"
-                                    />
+                                    android:layout_weight="1"/>
                             <!--<Button-->
                                     <!--android:layout_width="0dp"-->
                                     <!--android:layout_height="wrap_content"-->

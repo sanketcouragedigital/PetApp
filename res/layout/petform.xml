@@ -32,111 +32,110 @@
                     android:layout_below="@+id/petCategory"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="16dp"/>
-            <TextView
-                    android:id="@+id/ageOfPet"
-                    android:layout_width="84dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:ems="4"
-                    android:text="Age"
-                    android:textSize="22sp"
-                    android:textColor="@color/edittxtcolor"
-                    android:layout_alignParentBottom="false"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/petBreed"
-                    android:layout_marginTop="16dp"
-            />
-            <Spinner
-                    android:id="@+id/ageInMonths"
-                    android:layout_width="100dp"
-                    android:layout_height="48dp"
-                    android:layout_alignTop="@+id/ageOfPet"
-                    android:layout_toRightOf="@+id/ageOfPet"
-                    />
-            <Spinner
-                    android:id="@+id/ageInYears"
-                    android:layout_width="100dp"
-                    android:layout_height="48dp"
-                    android:layout_alignTop="@+id/ageOfPet"
-                    android:layout_toRightOf="@+id/ageInMonths"
-            />
-
-            <TextView
-                    android:id="@+id/petGender"
-                    android:layout_width="84dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:ems="4"
-                    android:text="Gender"
-                    android:textSize="22sp"
-                    android:textColor="@color/edittxtcolor"
-                    android:layout_above="@+id/giveAwayOfPet"
-                    android:layout_alignParentStart="true"/>
-
-            <RadioGroup
-                    android:id="@+id/genderOfPet"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="horizontal"
-                    android:layout_below="@+id/ageInMonths"
-                    android:layout_marginTop="27dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_toEndOf="@+id/priceOfPet"
-                    android:layout_toRightOf="@+id/ageOfPet">
-
-                <RadioButton android:id="@+id/genderMale"
-                             android:layout_width="wrap_content"
-                             android:layout_height="wrap_content"
-                             android:layout_marginRight="16dp"
-                             android:text="@string/pet_gender_male"/>
-                <RadioButton android:id="@+id/genderFemale"
-                             android:layout_width="wrap_content"
-                             android:layout_height="wrap_content"
-                             android:text="@string/pet_gender_female"/>
-            </RadioGroup>
-
-            <RadioGroup
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/giveAwayOfPet"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="horizontal"
-                    android:layout_below="@+id/genderOfPet"
-                    android:layout_marginTop="27dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_toEndOf="@+id/priceOfPet"
-                    android:layout_toRightOf="@+id/ageOfPet">
-                <RadioButton
-                        android:layout_width="wrap_content"
+            <LinearLayout android:layout_width="fill_parent"
+                          android:layout_height="wrap_content"
+                          android:id="@+id/petAgeLayout"
+                          android:orientation="horizontal"
+                          android:layout_marginTop="16dp"
+                          android:layout_below="@id/petBreed">
+                <TextView
+                        android:id="@+id/ageOfPet"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Adoption"
-                        android:id="@+id/forAdoptionOfPet"
-                        android:layout_marginRight="16dp"
-                        android:layout_below="@+id/genderOfPet"
-                        android:layout_alignStart="@+id/genderOfPet"/>
-
-                <RadioButton
-                        android:layout_width="wrap_content"
+                        android:inputType="number"
+                        android:ems="4"
+                        android:text="Age"
+                        android:textSize="16sp"
+                        android:textColor="@color/edittxtcolor"
+                        android:layout_weight="0.6"/>
+                <Spinner
+                        android:id="@+id/ageInMonths"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1.2"/>
+                <Spinner
+                        android:id="@+id/ageInYears"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1.2"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="fill_parent"
+                          android:layout_height="wrap_content"
+                          android:id="@+id/petGenderLayout"
+                          android:orientation="horizontal"
+                          android:layout_marginTop="16dp"
+                          android:layout_below="@id/petAgeLayout">
+                <TextView
+                        android:id="@+id/petGender"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Sell"
-                        android:id="@+id/petSell"
-                        android:ems="5"
-                        android:layout_below="@+id/genderOfPet"
-                        android:layout_toRightOf="@+id/forAdoptionOfPet"/>
-            </RadioGroup>
+                        android:inputType="number"
+                        android:ems="4"
+                        android:text="Gender"
+                        android:textSize="16sp"
+                        android:textColor="@color/edittxtcolor"
+                        android:layout_weight="0.6"/>
 
-            <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:ems="4"
-                    android:id="@+id/priceOfPet"
-                    android:hint="Price"
-                    android:enabled="false"
-                    android:textColor="@color/textColorPrimary"
-                    android:layout_alignBottom="@+id/giveAwayOfPet"
-                    android:layout_alignParentStart="true"/>
+                <RadioGroup
+                        android:id="@+id/genderOfPet"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1.4">
+
+                    <RadioButton android:id="@+id/genderMale"
+                                 android:layout_width="0dp"
+                                 android:layout_height="wrap_content"
+                                 android:text="@string/pet_gender_male"
+                                 android:layout_weight="1"/>
+                    <RadioButton android:id="@+id/genderFemale"
+                                 android:layout_width="0dp"
+                                 android:layout_height="wrap_content"
+                                 android:text="@string/pet_gender_female"
+                                 android:layout_weight="1"/>
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="fill_parent"
+                          android:layout_height="wrap_content"
+                          android:id="@+id/petPriceLayout"
+                          android:orientation="horizontal"
+                          android:layout_marginTop="16dp"
+                          android:layout_below="@id/petGenderLayout">
+                <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:ems="4"
+                        android:id="@+id/priceOfPet"
+                        android:hint="Price"
+                        android:enabled="false"
+                        android:textColor="@color/textColorPrimary"
+                        android:layout_weight="0.6"/>
+
+                <RadioGroup
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/giveAwayOfPet"
+                        android:orientation="horizontal"
+                        android:layout_weight="1.4">
+                    <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Adoption"
+                            android:id="@+id/forAdoptionOfPet"
+                            android:layout_weight="1"/>
+
+                    <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Sell"
+                            android:id="@+id/petSell"
+                            android:ems="5"
+                            android:layout_weight="1"/>
+                </RadioGroup>
+            </LinearLayout>
+
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -147,10 +146,9 @@
                     android:lines="2"
                     android:gravity="top|left"
                     android:scrollbars="vertical"
-                    android:layout_below="@+id/priceOfPet"
+                    android:layout_below="@+id/petPriceLayout"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="16dp"/>
-
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -166,6 +164,7 @@
                           android:orientation="horizontal"
                           android:layout_width="match_parent"
                           android:layout_height="match_parent"
+                          android:layout_marginBottom="30dp"
                           android:layout_below="@+id/selectImage">
                 <ImageView
                         android:layout_width="0dp"

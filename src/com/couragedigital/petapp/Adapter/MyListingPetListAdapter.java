@@ -12,6 +12,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.couragedigital.petapp.*;
 import com.couragedigital.petapp.Connectivity.MyListingPetListDelete;
 import com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView;
+import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.app.AppController;
 import com.couragedigital.petapp.model.MyListingPetListItems;
 
@@ -123,7 +124,7 @@ public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetLi
                 v.getContext().startActivity(gotoEditPetList);
             } else if (v.getId() == R.id.myListingPetListDelete) {
                 if (this.myListingPetListItem != null) {
-                    String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
+                    String url = URLInstance.getUrl();
                     int id = myListingPetListItem.getId();
                     String email = myListingPetListItem.getPetPostOwnerEmail();
                     url = url + "?method=deleteMyListingPetList&format=json&id=" + id + "&email=" + email + "";
@@ -140,7 +141,8 @@ public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetLi
                     myListingpetdetail.putExtra("PET_THIRD_IMAGE", myListingPetListItem.getThirdImagePath());
                     myListingpetdetail.putExtra("PET_BREED", myListingPetListItem.getPetBreed());
                     myListingpetdetail.putExtra("PET_LISTING_TYPE", myListingPetListItem.getListingType());
-                    myListingpetdetail.putExtra("PET_AGE", myListingPetListItem.getPetAgeInMonth());
+                    myListingpetdetail.putExtra("PET_AGE_IN_MONTH", myListingPetListItem.getPetAgeInMonth());
+                    myListingpetdetail.putExtra("PET_AGE_IN_YEAR", myListingPetListItem.getPetAgeInYear());
                     myListingpetdetail.putExtra("PET_GENDER", myListingPetListItem.getPetGender());
                     myListingpetdetail.putExtra("PET_DESCRIPTION", myListingPetListItem.getPetDescription());
 

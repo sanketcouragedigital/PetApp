@@ -3,7 +3,10 @@ package com.couragedigital.petapp;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
@@ -59,6 +62,9 @@ public class ExpandableText extends TextView {
     }
 
     private CharSequence getTrimmedText(CharSequence text) {
+        SpannableString graySpannable= new SpannableString(ShowMoreELLIPSIS);
+        graySpannable.setSpan(new ForegroundColorSpan(Color.GRAY), 0, ShowMoreELLIPSIS.length(), 0);
+
         if (originalText != null && originalText.length() > trimLength) {
             return new SpannableStringBuilder(originalText, 0, trimLength + 1).append(ShowMoreELLIPSIS);
         } else {

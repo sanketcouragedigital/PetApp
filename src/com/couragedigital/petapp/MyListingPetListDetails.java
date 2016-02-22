@@ -32,7 +32,8 @@ public class MyListingPetListDetails extends AppCompatActivity implements View.O
     String thirdImagePath = "";
     String breed = "";
     String listingType = "";
-    String age = "";
+    String ageInMonth = "";
+    String ageInYear = "";
     String gender = "";
     String description = "";
 
@@ -44,7 +45,8 @@ public class MyListingPetListDetails extends AppCompatActivity implements View.O
     ImageView mlPetImage;
     TextView mlPetBreed;
     TextView mlPetListingType;
-    TextView mlPetAge;
+    TextView mlPetAgeInMonth;
+    TextView mlPetAgeInYear;
     TextView mlPetGender;
     TextView mlPetPrice;
     TextView mlPetDescription;
@@ -71,7 +73,8 @@ public class MyListingPetListDetails extends AppCompatActivity implements View.O
             thirdImagePath = intent.getStringExtra("PET_THIRD_IMAGE");
             breed = intent.getStringExtra("PET_BREED");
             listingType = intent.getStringExtra("PET_LISTING_TYPE");
-            age = intent.getStringExtra("PET_AGE");
+            ageInMonth = intent.getStringExtra("PET_AGE_IN_MONTH");
+            ageInYear = intent.getStringExtra("PET_AGE_IN_YEAR");
             gender = intent.getStringExtra("PET_GENDER");
             description = intent.getStringExtra("PET_DESCRIPTION");
         }
@@ -102,7 +105,8 @@ public class MyListingPetListDetails extends AppCompatActivity implements View.O
 
         mlPetBreed = (TextView) findViewById(R.id.myListingPetBreedInPetDetails);
         //petListingType = (TextView) findViewById(R.id.petListingTypeInPetDetails);
-        mlPetAge = (TextView) findViewById(R.id.myListingPetAgeInPetDetails);
+        mlPetAgeInMonth = (TextView) findViewById(R.id.myListingPetAgeInMonthPetDetails);
+        mlPetAgeInYear = (TextView) findViewById(R.id.myListingPetAgeInYearPetDetails);
         mlPetGender = (TextView) findViewById(R.id.myListingPetGenderInPetDetails);
         mlPetPrice = (TextView) findViewById(R.id.myListingPetPriceInPetDetails);
         mlPetDescription = (TextView) findViewById(R.id.myListingPetDescriptionInPetDetails);
@@ -129,8 +133,10 @@ public class MyListingPetListDetails extends AppCompatActivity implements View.O
         }
         String breedOfPet = "<b>Breed: </b>" + breed;
         mlPetBreed.setText(Html.fromHtml(breedOfPet));
-        String ageOfPet = "<b>Age: </b>" + age;
-        mlPetAge.setText(Html.fromHtml(ageOfPet));
+        String ageInMonthOfPet = "<b>Month: </b>" + ageInMonth;
+        mlPetAgeInMonth.setText(Html.fromHtml(ageInMonthOfPet));
+        String ageInYearOfPet = "<b>Year: </b>" + ageInYear;
+        mlPetAgeInYear.setText(Html.fromHtml(ageInYearOfPet));
         String genderOfPet = "<b>Gender: </b>" + gender;
         mlPetGender.setText(Html.fromHtml(genderOfPet));
         String descriptionOfPet = "<b>Description: </b>" + description;

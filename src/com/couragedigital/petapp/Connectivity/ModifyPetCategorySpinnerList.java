@@ -8,6 +8,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.couragedigital.petapp.Adapter.ModifySpinnerItemsAdapter;
 import com.couragedigital.petapp.Adapter.SpinnerItemsAdapter;
+import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.app.AppController;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,7 +18,7 @@ import java.util.List;
 
 public class ModifyPetCategorySpinnerList {
     private static final String TAG = ModifyPetCategorySpinnerList.class.getSimpleName();
-    private static final String url = "http://storage.couragedigital.com/dev/api/petappapi.php?method=showPetCategories&format=json";
+    private static final String url = URLInstance.getUrl()+"?method=showPetCategories&format=json";
 
     public static List fetchPetCategory(List petCategoryList, ModifySpinnerItemsAdapter adapter) {
         JsonObjectRequest petCategoryReq = new JsonObjectRequest(Request.Method.GET, url, null,

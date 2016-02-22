@@ -1,5 +1,7 @@
 package com.couragedigital.petapp.model;
 
+import com.couragedigital.petapp.Singleton.ImageURLInstance;
+
 public class GroomerListItem {
     public String image_path;
     public String groomer_name;
@@ -28,7 +30,7 @@ public class GroomerListItem {
     }
 
     public void setGroomerImage_path(String image_path) {
-        this.image_path = "http://storage.couragedigital.com/dev/groomer_images/" + image_path;
+        this.image_path = ImageURLInstance.getUrl()+"groomer_images/" + image_path;
     }
 
     public String getGroomerName() {

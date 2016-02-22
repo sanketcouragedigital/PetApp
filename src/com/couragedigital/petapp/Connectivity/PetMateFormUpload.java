@@ -7,6 +7,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.couragedigital.petapp.PetMate;
+import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.app.AppController;
 import org.json.JSONObject;
 import java.io.File;
@@ -14,16 +15,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PetMateFormUpload {
-    private static final String SERVER_URL = "http://storage.couragedigital.com/dev/api/petappapi.php";
+    private static final String SERVER_URL = URLInstance.getUrl();
     private static Context context;
     private static Map<String, String> headerPart;
     private static Map<String, File> filePartData;
     private static Map<String, String> stringPart;
+    public static PetMate petMateActivity;
     //http://192.168.0.3/PetAppAPI/api/petappapi.php
     //http://storage.couragedigital.com/dev/api/petappapi.php
 
     public static void uploadToRemoteServer(String emailforlatlong, String petCategoryName, String petBreedName,String petMateAgeMonthSpinner,String petMateAgeYearSpinner, String petGender, String petDescription, String firstImagePath, String secondImagePath, String thirdImagePath, PetMate petMate) throws Exception {
 
+        petMateActivity = petMate;
         context = petMate.getApplicationContext();
         int serverResponseCode = 0;
         String categoryOfPet = petCategoryName;
@@ -77,6 +80,7 @@ public class PetMateFormUpload {
                 @Override
                 public void onResponse(JSONObject jsonObject) {
                     Toast.makeText(context, "Succefully Uploaded", Toast.LENGTH_LONG).show();
+                    petMateActivity.finish();
                 }
             }, new Response.ErrorListener() {
                 @Override

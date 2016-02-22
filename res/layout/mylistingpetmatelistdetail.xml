@@ -171,7 +171,15 @@
                             <TextView
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:id="@+id/myListingPetMateAgeInPetDetails"
+                                    android:id="@+id/myListingPetMateAgeInMonthPetDetails"
+                                    android:text="hi"
+                                    android:layout_weight="1"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"/>
+                            <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/myListingPetMateAgeInYearPetDetails"
                                     android:text="hi"
                                     android:layout_weight="1"
                                     android:singleLine="true"
@@ -191,6 +199,16 @@
                                       android:orientation="horizontal"
                                       android:id="@+id/myListingPetMateDetailsLinearLayoutTwo"
                                       android:layout_below="@+id/myListingPetMateDetailsLinearLayoutOne"
+                                      android:layout_marginTop="4dp"
+                                      android:layout_marginLeft="16dp"
+                                      android:layout_marginRight="16dp">
+                        </LinearLayout>
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:id="@+id/myListingPetMateDetailsLinearLayoutThree"
+                                      android:layout_below="@+id/myListingPetMateDetailsLinearLayoutTwo"
                                       android:layout_marginTop="4dp"
                                       android:layout_marginLeft="16dp"
                                       android:layout_marginRight="16dp">
@@ -215,7 +233,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/myListingPetMateDescriptionInPetDetails"
-                                android:layout_below="@+id/myListingPetMateDetailsLinearLayoutTwo"
+                                android:layout_below="@+id/myListingPetMateDetailsLinearLayoutThree"
                                 android:text="hi"
                                 android:layout_marginTop="4dp"
                                 android:layout_marginLeft="16dp"

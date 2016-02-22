@@ -7,6 +7,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.couragedigital.petapp.PetMateList;
+import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.app.AppController;
 import com.couragedigital.petapp.model.PetMateListItems;
 import org.json.JSONArray;
@@ -22,18 +23,16 @@ public class FilterFetchPetMateList {
     private static List<String> filterSelectedBreedLists;
     private static List<String> filterSelectedAgeLists;
     private static List<String> filterSelectedGenderLists;
-    private static String email;
     private static String method;
     private static String format;
 
     //http://storage.couragedigital.com/dev/api/petappapi.php
-    public static void filterFetchPetMateList(List<PetMateListItems> petMateLists, RecyclerView.Adapter adapter, List<String> filterCategoryListInstance, List<String> filterBreedListInstance, List<String> filterAgeListInstance, List<String> filterGenderListInstance, String emailOfUser) {
-        String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
+    public static void filterFetchPetMateList(List<PetMateListItems> petMateLists, RecyclerView.Adapter adapter, String email, int current_page, List<String> filterCategoryListInstance, List<String> filterBreedListInstance, List<String> filterAgeListInstance, List<String> filterGenderListInstance) {
+        String url = URLInstance.getUrl();
         filterSelectedCategoryLists = filterCategoryListInstance;
         filterSelectedBreedLists = filterBreedListInstance;
         filterSelectedAgeLists = filterAgeListInstance;
         filterSelectedGenderLists = filterGenderListInstance;
-        email = emailOfUser;
         method = "filterPetMateList";
         format = "json";
 
@@ -41,6 +40,7 @@ public class FilterFetchPetMateList {
         params.put("method", method);
         params.put("format", format);
         params.put("email", email);
+        params.put("currentPage", String.valueOf(current_page));
         JSONArray arrayOfSelectedFilterCategories = new JSONArray(filterSelectedCategoryLists);
         JSONArray arrayOfSelectedFilterBreeds = new JSONArray(filterSelectedBreedLists);
         JSONArray arrayOfSelectedFilterAge = new JSONArray(filterSelectedAgeLists);
@@ -55,8 +55,10 @@ public class FilterFetchPetMateList {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            petMateLists.clear();
-                            adapter.notifyDataSetChanged();
+                            if(current_page == 1) {
+                                petMateLists.clear();
+                                adapter.notifyDataSetChanged();
+                            }
                             JSONArray jsonArray = response.getJSONArray("showPetMateDetailsResponse");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 try {

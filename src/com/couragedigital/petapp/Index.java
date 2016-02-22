@@ -59,7 +59,7 @@ public class Index extends BaseActivity {
 
         //Home menus Tittle Names
         final String[] titlename = new String[]{"Pets", "Pet Mate", "Clinics", "Services"};
-        final String[] description = new String[]{"Post, Adopt, Buy or Sell", "Your Pets Partner", "Nearby Pet Clinics", "All kinds of services for your pet"};
+        final String[] description = new String[]{"Buy, Adopt or Sell", "Find your pet the perfect partner", "Nearby Pet Clinics", "All kinds of services for your pet"};
         final int[] background = {R.drawable.pet_view_list, R.drawable.pet_mate, R.drawable.pet_doctors, R.drawable.pet_accessories};
         indexListInfosArray = new ArrayList<IndexListInfo>();
         for (int i = 0; i < titlename.length; i++) {
@@ -71,7 +71,7 @@ public class Index extends BaseActivity {
         }
 
         //View/List of pets Dailogbox Menu tittles Names
-        final String[] title = new String[]{"Upload Pet Detail", "List of Pets"};
+        final String[] title = new String[]{"Upload Details for adoption or selling", "List of Pets for sale & adoption"};
         final int[] icons = {R.drawable.addpet, R.drawable.view};
         for (int i = 0; i < title.length; i++) {
             DialogListInformaion dialogListInformaion1 = new DialogListInformaion();
@@ -81,7 +81,7 @@ public class Index extends BaseActivity {
         }
 
         //Mating Dailogbox Menu tittles Names
-        final String[] title2 = new String[]{"Upload Pet Mate Details", "List of Pet Mate"};
+        final String[] title2 = new String[]{"Register your pet", "Browse partner for your pet"};
         final int[] icons2 = {R.drawable.addpet, R.drawable.view};
         for (int i = 0; i < title2.length; i++) {
             DialogListInformaion dialogListInformaion2 = new DialogListInformaion();

@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.couragedigital.petapp.Adapter.ShelterListAdapter;
 import com.couragedigital.petapp.Connectivity.PetFetchShelterList;
 import com.couragedigital.petapp.Listeners.PetFetchShelterListScrollListener;
+import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.model.ShelterListItem;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class TabFragmentShelter extends Fragment {
     RecyclerView.Adapter adapter;
     RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
-    private String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
+    private String url = URLInstance.getUrl();
     //private String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
 
     int current_page = 1;
@@ -61,7 +62,7 @@ public class TabFragmentShelter extends Fragment {
             @Override
             public void onLoadMore(int current_page) {
                 url = "";
-                url = "http://storage.couragedigital.com/dev/api/petappapi.php";
+                url = URLInstance.getUrl();
                 url = url + "?method=showPetShelter&format=json&currentPage=" + current_page + " ";
                 grabURL(url);
             }

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.couragedigital.petapp.Connectivity.FilterFetchPetBreedList;
+import com.couragedigital.petapp.Connectivity.FilterFetchPetCategoryList;
 import com.couragedigital.petapp.PetListFilter;
 import com.couragedigital.petapp.R;
 import com.couragedigital.petapp.Singleton.FilterPetListInstance;
@@ -254,7 +255,7 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
                 filterSelectedInstanceGenderList = filterPetListInstance.getFilterGenderListInstance();
                 filterSelectedInstanceAdoptionAndPriceList = filterPetListInstance.getFilterAdoptionAndPriceListInstance();
 
-                if(filterSelectedInstanceCategoryList.isEmpty() && filterSelectedInstanceBreedList.isEmpty() && filterSelectedInstanceAgeList.isEmpty() && filterSelectedInstanceGenderList.isEmpty() && filterSelectedInstanceAdoptionAndPriceList.isEmpty()) {
+                if(filterSelectedInstanceCategoryList.isEmpty() && filterSelectedInstanceAgeList.isEmpty() && filterSelectedInstanceGenderList.isEmpty() && filterSelectedInstanceAdoptionAndPriceList.isEmpty()) {
                     filterState = 0;
                 }
                 else {
@@ -285,8 +286,9 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
             @Override
             protected Void doInBackground(List... params) {
                 filterCategoryLists = params[0];
+                FilterFetchPetCategoryList.fetchPetCategory(filterCategoryLists, filterCategoryAdapter);
 
-                String[] filterCategoryText = new String[]{
+                /*String[] filterCategoryText = new String[]{
                         "Dog", "Cat", "Rabbit", "Small & Furry", "Horse", "Bird", "Scales, Fins & Others", "Pig", "Barnyard"
                 };
                 for (int i = 0; i < filterCategoryText.length; i++) {
@@ -294,7 +296,7 @@ public class FilterOptionsAdapter extends RecyclerView.Adapter<FilterOptionsAdap
                     filterCategoryList.setCategoryText(filterCategoryText[i]);
                     filterCategoryLists.add(filterCategoryList);
                 }
-                filterCategoryAdapter.notifyDataSetChanged();
+                filterCategoryAdapter.notifyDataSetChanged();*/
                 return null;
             }
         }

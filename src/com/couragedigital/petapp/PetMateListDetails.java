@@ -74,8 +74,8 @@ public class PetMateListDetails extends AppCompatActivity implements View.OnClic
             thirdImagePath = intent.getStringExtra("PET_THIRD_IMAGE");
             breed = intent.getStringExtra("PET_MATE_BREED");
             //age = intent.getStringExtra("PET_MATE_AGE");
-            ageInMonthForPetMate = intent.getStringExtra("PET_MATE_AGE_INMONTH");
-            ageInYearForPetMate = intent.getStringExtra("PET_MATE_AGE_INYEAR");
+            ageInMonthForPetMate = intent.getStringExtra("PET_MATE_AGE_MONTH");
+            ageInYearForPetMate = intent.getStringExtra("PET_MATE_AGE_YEAR");
             gender = intent.getStringExtra("PET_MATE_GENDER");
             description = intent.getStringExtra("PET_MATE_DESCRIPTION");
             //email = intent.getStringExtra("POST_OWNER_EMAIL");
@@ -227,7 +227,7 @@ public class PetMateListDetails extends AppCompatActivity implements View.OnClic
             Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                     "mailto",email, null));
             startActivity(Intent.createChooser(emailIntent, "Choose an Email client :"));
-        }
+        }*/
         else if(v.getId() == R.id.petMateDetailsFirstImageThumbnail) {
             petMateDetailsbitmap = getBitmapImageFromURL(firstImagePath);
             petMateImage.setImageBitmap(petMateDetailsbitmap);
@@ -239,6 +239,6 @@ public class PetMateListDetails extends AppCompatActivity implements View.OnClic
         else if(v.getId() == R.id.petMateDetailsThirdImageThumbnail) {
             petMateDetailsbitmap = getBitmapImageFromURL(thirdImagePath);
             petMateImage.setImageBitmap(petMateDetailsbitmap);
-        }*/
+        }
     }
 }

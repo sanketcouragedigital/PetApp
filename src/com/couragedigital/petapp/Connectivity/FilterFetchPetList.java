@@ -7,6 +7,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.couragedigital.petapp.PetList;
+import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.app.AppController;
 import com.couragedigital.petapp.model.PetListItems;
 import org.json.JSONArray;
@@ -27,8 +28,8 @@ public class FilterFetchPetList {
     private static String format;
 
     //http://storage.couragedigital.com/dev/api/petappapi.php
-    public static void filterFetchPetList(List<PetListItems> petLists, RecyclerView.Adapter adapter, List<String> filterCategoryListInstance, List<String> filterBreedListInstance, List<String> filterAgeListInstance, List<String> filterGenderListInstance, List<String> filterAdoptionAndPriceListInstance) {
-        String url = "http://192.168.0.2/PetAppAPI/api/petappapi.php";
+    public static void filterFetchPetList(List<PetListItems> petLists, RecyclerView.Adapter adapter, String email, int current_page, List<String> filterCategoryListInstance, List<String> filterBreedListInstance, List<String> filterAgeListInstance, List<String> filterGenderListInstance, List<String> filterAdoptionAndPriceListInstance) {
+        String url = URLInstance.getUrl();
         filterSelectedCategoryLists = filterCategoryListInstance;
         filterSelectedBreedLists = filterBreedListInstance;
         filterSelectedAgeLists = filterAgeListInstance;
@@ -40,6 +41,8 @@ public class FilterFetchPetList {
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("method", method);
         params.put("format", format);
+        params.put("email", email);
+        params.put("currentPage", String.valueOf(current_page));
         JSONArray arrayOfSelectedFilterCategories = new JSONArray(filterSelectedCategoryLists);
         JSONArray arrayOfSelectedFilterBreeds = new JSONArray(filterSelectedBreedLists);
         JSONArray arrayOfSelectedFilterAge = new JSONArray(filterSelectedAgeLists);
@@ -56,8 +59,10 @@ public class FilterFetchPetList {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            petLists.clear();
-                            adapter.notifyDataSetChanged();
+                            if(current_page == 1) {
+                                petLists.clear();
+                                adapter.notifyDataSetChanged();
+                            }
                             JSONArray jsonArray = response.getJSONArray("showPetDetailsResponse");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 try {

@@ -6,6 +6,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.couragedigital.petapp.Adapter.FilterBreedAdapter;
+import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.app.AppController;
 import com.couragedigital.petapp.model.FilterBreedList;
 import org.json.JSONArray;
@@ -24,7 +25,7 @@ public class FilterFetchPetBreedList {
 
     //http://storage.couragedigital.com/dev/api/petappapi.php
     public static void fetchPetBreeds(List<String> filterCategoryLists, List<FilterBreedList> filterBreedLists, FilterBreedAdapter filterBreedAdapter) {
-        String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
+        String url = URLInstance.getUrl();
         filterSelectedCategoryLists = filterCategoryLists;
         method = "filterCategoryWiseBreed";
         format = "json";

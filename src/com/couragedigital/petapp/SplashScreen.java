@@ -1,10 +1,14 @@
 package com.couragedigital.petapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+
+import java.lang.reflect.Field;
 
 public class SplashScreen extends AppCompatActivity {
 

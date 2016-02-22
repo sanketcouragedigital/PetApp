@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 import com.android.volley.*;
 import com.couragedigital.petapp.PetForm;
+import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.app.AppController;
 import org.json.JSONObject;
 import java.io.File;
@@ -12,16 +13,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public  class PetListFormUpload {
-    private static final String SERVER_URL = "http://storage.couragedigital.com/dev/api/petappapi.php";
+    private static final String SERVER_URL = URLInstance.getUrl();
     private static Context context;
     private static Map<String, String> headerPart;
     private static Map<String, File> filePartData;
     private static Map<String, String> stringPart;
+    public static PetForm petFormActivity;
     //http://192.168.0.3/PetAppAPI/api/petappapi.php
     //http://storage.couragedigital.com/dev/api/petappapi.php
 
     public static void uploadToRemoteServer(String petCategoryName, String petBreedName, String petAgeMonthSpinner, String petAgeYearSpinner, String petGender, String petDescription, String petAdoption, Integer petPrice, String firstImagePath, String secondImagePath, String thirdImagePath, String emailOfUser, PetForm petForm) throws Exception {
 
+        petFormActivity = petForm;
         context = petForm.getApplicationContext();
         int serverResponseCode = 0;
         String categoryOfPet = petCategoryName;
@@ -79,6 +82,7 @@ public  class PetListFormUpload {
                 @Override
                 public void onResponse(JSONObject jsonObject) {
                     Toast.makeText(context, "Succefully Uploaded", Toast.LENGTH_LONG).show();
+                    petFormActivity.finish();
                 }
             }, new Response.ErrorListener() {
                 @Override

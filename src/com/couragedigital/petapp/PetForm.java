@@ -1,8 +1,11 @@
 package com.couragedigital.petapp;
 
+import android.*;
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 
@@ -50,8 +53,12 @@ import java.util.*;
 public class PetForm extends BaseActivity implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
 
     private static final int CAMERA_REQUEST = 1;
-    private static final int CAMERA_PERMISSION_REQUEST = 3;
     private static final int GALLERY_REQUEST = 2;
+    private static final int PIC_CAMERA_CROP = 3;
+    private static final int PIC_GALLERY_CROP = 4;
+    private static final int CAMERA_PERMISSION_REQUEST = 5;
+    private static final int READ_STORAGE_PERMISSION_REQUEST = 6;
+    private static final int WRITE_STORAGE_PERMISSION_REQUEST = 7;
 
     private ProgressDialog progressDialog = null;
 
@@ -100,8 +107,6 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
     String[] stringArrayListForYear;
 
     Bitmap imageToShow;
-    final int PIC_CAMERA_CROP = 3;
-    final int PIC_GALLERY_CROP = 4;
     String timeStamp;
     File image;
     File storageDir;
@@ -109,6 +114,8 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
     String firstImagePath = "";
     String secondImagePath = "";
     String thirdImagePath = "";
+
+    //ContentResolver contentResolver = getContentResolver();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -307,42 +314,19 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
                 selectImageButton.setClickable(false);
             }
             else {
-                dialogAdapter = new ArrayAdapter<String>(PetForm.this, android.R.layout.select_dialog_item) {
-                    @Override
-                    public View getView(int position, View convertView, ViewGroup parent) {
-                        View view = super.getView(position, convertView, parent);
-                        TextView text = (TextView) view.findViewById(android.R.id.text1);
-                        text.setTextColor(Color.BLACK);
-                        text.setTextSize(TypedValue.COMPLEX_UNIT_PX,
-                                getResources().getDimension(R.dimen.alertDialogListNames));
-                        text.setTypeface(null, Typeface.ITALIC);
-                        return view;
+                if(ActivityCompat.checkSelfPermission(PetForm.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    requestWriteStoragePermission();
+                }
+                else {
+                    if(ActivityCompat.checkSelfPermission(PetForm.this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                            != PackageManager.PERMISSION_GRANTED) {
+                        requestReadStoragePermission();
                     }
-                };
-                dialogAdapter.add("Take from Camera");
-                dialogAdapter.add("Select from Gallery");
-                AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(PetForm.this, R.style.AlertDialogCustom));
-                builder.setTitle("Select Image");
-                builder.setAdapter(dialogAdapter, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (which == 0) {
-                            alertDialog.dismiss();
-                            if(ActivityCompat.checkSelfPermission(PetForm.this, android.Manifest.permission.CAMERA)
-                                    != PackageManager.PERMISSION_GRANTED) {
-                                requestCameraPermission();
-                            }
-                            else {
-                                new SelectCameraImage().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
-                            }
-                        } else if (which == 1) {
-                            alertDialog.dismiss();
-                            new SelectGalleryImage().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
-                        }
+                    else {
+                            createPetFormSelectImageDialogChooser();
                     }
-                });
-                alertDialog = builder.create();
-
-                alertDialog.show();
+                }
             }
         }
         else if(v.getId() == R.id.petFormSubmitFab) {
@@ -377,6 +361,45 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
                 new UploadToServer().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
             }
         }
+    }
+
+    private void createPetFormSelectImageDialogChooser() {
+        dialogAdapter = new ArrayAdapter<String>(PetForm.this, android.R.layout.select_dialog_item) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView text = (TextView) view.findViewById(android.R.id.text1);
+                text.setTextColor(Color.BLACK);
+                text.setTextSize(TypedValue.COMPLEX_UNIT_PX,
+                        getResources().getDimension(R.dimen.alertDialogListNames));
+                text.setTypeface(null, Typeface.ITALIC);
+                return view;
+            }
+        };
+        dialogAdapter.add("Take from Camera");
+        dialogAdapter.add("Select from Gallery");
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(PetForm.this, R.style.AlertDialogCustom));
+        builder.setTitle("Select Image");
+        builder.setAdapter(dialogAdapter, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                if (which == 0) {
+                    alertDialog.dismiss();
+                    if(ActivityCompat.checkSelfPermission(PetForm.this, android.Manifest.permission.CAMERA)
+                            != PackageManager.PERMISSION_GRANTED) {
+                        requestCameraPermission();
+                    }
+                    else {
+                        new SelectCameraImage().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
+                    }
+                } else if (which == 1) {
+                    alertDialog.dismiss();
+                    new SelectGalleryImage().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
+                }
+            }
+        });
+        alertDialog = builder.create();
+
+        alertDialog.show();
     }
 
     @TargetApi(23)
@@ -426,7 +449,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
             }
         } catch (Exception e) {
             Log.i(e.getMessage(), "Error");
-            Toast.makeText(PetForm.this, "Camera Crop Error", Toast.LENGTH_LONG).show();
+            Toast.makeText(PetForm.this, "Error", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -462,6 +485,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
         Intent cropIntent = new Intent(this, CropImage.class);
 
         cropIntent.putExtra("image-path", currentPhotoPath);
+        cropIntent.putExtra("crop", true);
         cropIntent.putExtra("scale", true);
         cropIntent.putExtra("aspectX", 1);
         cropIntent.putExtra("aspectY", 1);
@@ -472,7 +496,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
         try {
             startActivityForResult(cropIntent, request_code);
         } catch (Exception e) {
-            Toast.makeText(PetForm.this, "Camera Crop Error", Toast.LENGTH_LONG).show();
+            Toast.makeText(PetForm.this, "Crop Error", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -617,6 +641,32 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
         }
     }
 
+    private void requestReadStoragePermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            ActivityCompat.requestPermissions(PetForm.this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    READ_STORAGE_PERMISSION_REQUEST);
+        } else {
+            // Camera permission has not been granted yet. Request it directly.
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    READ_STORAGE_PERMISSION_REQUEST);
+        }
+    }
+
+    private void requestWriteStoragePermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            ActivityCompat.requestPermissions(PetForm.this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    WRITE_STORAGE_PERMISSION_REQUEST);
+        } else {
+            // Camera permission has not been granted yet. Request it directly.
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    WRITE_STORAGE_PERMISSION_REQUEST);
+        }
+    }
+
     private void requestCameraPermission() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                 android.Manifest.permission.CAMERA)) {
@@ -673,6 +723,20 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
                 new SelectCameraImage().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
             } else {
                 Toast.makeText(PetForm.this, "CAMERA permission was NOT granted.", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else if(requestCode == WRITE_STORAGE_PERMISSION_REQUEST) {
+            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                requestReadStoragePermission();
+            } else {
+                Toast.makeText(PetForm.this, "Write storage permission was NOT granted.", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else if(requestCode == READ_STORAGE_PERMISSION_REQUEST) {
+            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                createPetFormSelectImageDialogChooser();
+            } else {
+                Toast.makeText(PetForm.this, "Read storage permission was NOT granted.", Toast.LENGTH_SHORT).show();
             }
         }
         else {

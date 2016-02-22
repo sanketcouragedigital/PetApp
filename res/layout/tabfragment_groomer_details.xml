@@ -73,28 +73,32 @@
                 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
-                    <ImageView
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:id="@+id/locationview"
-                            android:layout_alignParentTop="true"
-                            android:layout_alignParentStart="true"
-                            android:background="@drawable/location"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"/>
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="match_parent"
+                                  android:orientation="horizontal"
+                                  android:id="@+id/groomerLayoutOfImageAndAddress"
+                                  android:layout_marginTop="10dp">
+                        <ImageView
+                                android:layout_width="0dp"
+                                android:layout_height="48dp"
+                                android:id="@+id/locationview"
+                                android:background="@drawable/location"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_weight="0.3"/>
 
-
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/petGroomerAddress"
-                            android:textStyle="bold"
-                            android:textSize="17sp"
-                            android:layout_alignParentTop="true"
-                            android:layout_marginTop="10dp"
-                            android:layout_toRightOf="@+id/locationview"/>
+                        <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/petGroomerAddress"
+                                android:textStyle="bold"
+                                android:textSize="16sp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_marginBottom="8dp"
+                                android:layout_weight="1.7"/>
+                    </LinearLayout>
 
                     <View
                             android:id="@+id/viewdividerline"
@@ -102,8 +106,9 @@
                             android:layout_height="1dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
                             android:background="@color/drawer_header_text"
-                            android:layout_below="@id/locationview"
+                            android:layout_below="@id/groomerLayoutOfImageAndAddress"
                             android:layout_centerHorizontal="true"/>
 
 
@@ -119,8 +124,6 @@
                                 android:layout_height="wrap_content"
                                 android:id="@+id/groomerDetailCallButton"
                                 android:background="@android:color/transparent"
-                                android:paddingLeft="70dip"
-                                android:paddingRight="30dip"
                                 android:text="Call"
                                 android:textColor="#CF3E3E"
                                 android:textSize="14sp"
@@ -130,8 +133,6 @@
                                 android:layout_height="wrap_content"
                                 android:id="@+id/groomerDetailsEmailButton"
                                 android:background="@android:color/transparent"
-                                android:paddingLeft="30dip"
-                                android:paddingRight="70dip"
                                 android:text="Email"
                                 android:textColor="#CF3E3E"
                                 android:textSize="14sp"

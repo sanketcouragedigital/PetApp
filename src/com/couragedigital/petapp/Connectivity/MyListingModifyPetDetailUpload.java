@@ -5,8 +5,10 @@ import android.content.Intent;
 import com.couragedigital.petapp.MyListing;
 import com.couragedigital.petapp.MyListingModifyPetDetails;
 import com.couragedigital.petapp.MyListingPetListTab;
+import com.couragedigital.petapp.Singleton.URLInstance;
 import org.json.JSONObject;
 
+import java.net.URL;
 import java.util.Map;
 
 import android.widget.Toast;
@@ -18,7 +20,7 @@ import org.json.JSONException;
 public class MyListingModifyPetDetailUpload {
 
     //private static final String SERVER_URL = "http://storage.couragedigital.com/dev/api/petappapi.php";
-    private static final String SERVER_URL = "http://192.168.0.12/PetAppAPI/api/petappapi.php";
+    private static final String SERVER_URL = URLInstance.getUrl();
 
     private static Context context = null;
     int serverResponseCode;

@@ -70,25 +70,9 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
         public TextView description;
         public RelativeLayout background;
         public IndexListInfo feed;
-        public TextView textDialog;
         private AlertDialog alertDialog;
         public com.couragedigital.petapp.Adapter.DialogListAdapter adapter;
         public CardView cv;
-
-        private static String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
-        private ProgressDialog progressDialog;
-        public List<ClinicListItems> clinicListItemsArrayList = new ArrayList<ClinicListItems>();
-
-        static String urlForFetch;
-        private int current_page = 1;
-        SessionManager sessionManager;
-        private String userEmail;
-        Context context;
-        RecyclerView.Adapter Radapter;
-
-
-        Snackbar accessoriesSnackBar;
-        Snackbar doctorSnackBar;
 
         public int state = 0;
 

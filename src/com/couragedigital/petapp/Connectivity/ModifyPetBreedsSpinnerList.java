@@ -6,6 +6,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.couragedigital.petapp.Adapter.ModifySpinnerItemsAdapter;
+import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.app.AppController;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,7 +19,7 @@ public class ModifyPetBreedsSpinnerList {
     private static final String TAG = ModifyPetBreedsSpinnerList.class.getSimpleName();
 
     public static List fetchPetBreeds(List petBreedsList, String petCategoryName, ModifySpinnerItemsAdapter adapter) {
-        String url = "http://storage.couragedigital.com/dev/api/petappapi.php?petCategory="+petCategoryName+"&method=showPetBreedsAsPerPetCategory&format=json";
+        String url = URLInstance.getUrl()+"?petCategory="+petCategoryName+"&method=showPetBreedsAsPerPetCategory&format=json";
         JsonObjectRequest petCategoryReq = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
 

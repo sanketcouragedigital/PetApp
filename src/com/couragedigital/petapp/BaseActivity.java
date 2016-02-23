@@ -1,5 +1,8 @@
 package com.couragedigital.petapp;
 
+import android.content.Context;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +15,7 @@ import com.couragedigital.petapp.SessionManager.SessionManager;
 import com.couragedigital.petapp.Adapter.DrawerAdapter;
 import com.couragedigital.petapp.model.DrawerItems;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -31,6 +35,7 @@ public class BaseActivity extends AppCompatActivity {
     FrameLayout frameLayout;
     LinearLayout linearLayout;
     DrawerAdapter drawerAdapter;
+    FontFamily fontFamily;
 
     public ArrayList<DrawerItems> itemArrayList;
     public ArrayList<DrawerItems> itemSelectedArrayList;
@@ -101,5 +106,34 @@ public class BaseActivity extends AppCompatActivity {
         String email = user.get(SessionManager.KEY_EMAIL);  // get email
      //   lblName.setText(name);   // Show user data on activity
         lblEmail.setText(email);
+        changeAppFont();
+    }
+
+    public void changeAppFont() {
+        setDefaultFont(this, "MONOSPACE", "fonts/Montserrat-Regular.ttf");
+
+    }
+
+    public static void setDefaultFont(Context context,
+                                      String staticTypefaceFieldName, String fontAssetName) {
+        final Typeface regular = Typeface.createFromAsset(context.getAssets(),
+                fontAssetName);
+        replaceFont(staticTypefaceFieldName, regular);
+    }
+
+    public static void replaceFont(String staticTypefaceFieldName,
+                                   final Typeface newTypeface) {
+
+        if (Build.VERSION.SDK_INT > 16) {
+            try {
+                final Field staticField = Typeface.class.getDeclaredField(staticTypefaceFieldName);
+                staticField.setAccessible(true);
+                staticField.set(null, newTypeface);
+            } catch (NoSuchFieldException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

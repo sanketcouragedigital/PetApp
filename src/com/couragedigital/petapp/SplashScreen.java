@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -38,32 +41,5 @@ public class SplashScreen extends AppCompatActivity {
                 finish();
             }
         }, SPLASH_TIME_OUT);
-		 changeAppFont();
-    }
-
-    private void changeAppFont() {
-        setDefaultFont(this, "MONOSPACE", "fonts/Montserrat-Regular.ttf");
-
-    }
-
-    public static void setDefaultFont(Context context,
-                                      String staticTypefaceFieldName, String fontAssetName) {
-        final Typeface regular = Typeface.createFromAsset(context.getAssets(),
-                fontAssetName);
-        replaceFont(staticTypefaceFieldName, regular);
-    }
-
-    protected static void replaceFont(String staticTypefaceFieldName,
-                                      final Typeface newTypeface) {
-        try {
-            final Field staticField = Typeface.class
-                    .getDeclaredField(staticTypefaceFieldName);
-            staticField.setAccessible(true);
-            staticField.set(null, newTypeface);
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
     }
 }

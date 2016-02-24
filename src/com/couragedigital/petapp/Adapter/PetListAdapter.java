@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.couragedigital.petapp.ExpandableText;
+import com.couragedigital.petapp.PetList;
 import com.couragedigital.petapp.PetListDetails;
 import com.couragedigital.petapp.R;
 import com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView;
@@ -49,12 +50,25 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
         return petLists.size();
     }
 
+    private String setListingType(PetListItems petListItems) {
+        String petListingTypeString = null;
+        if(petListItems.getListingType().equals("For Adoption")) {
+            petListingTypeString = "TO ADOPT";
+        }
+        else {
+            petListingTypeString = "TO SELL";
+        }
+        return petListingTypeString;
+    }
+
+
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public RoundedNetworkImageView petImage;
         public TextView petBreed;
         public TextView petPostOwner;
+        public TextView petAdoptOrSell;
         public ImageButton shareImageButton;
         public Button petFavourite;
         public View dividerLine;
@@ -74,6 +88,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
             }
             petImage = (RoundedNetworkImageView) itemView.findViewById(R.id.petImage);
             petBreed = (TextView) itemView.findViewById(R.id.petBreed);
+            petAdoptOrSell = (TextView) itemView.findViewById(R.id.petAdoptOrSell);
             petPostOwner = (TextView) itemView.findViewById(R.id.petPostOwner);
             shareImageButton = (ImageButton) itemView.findViewById(R.id.petListShareImageButton);
             petFavourite = (Button) itemView.findViewById(R.id.petListFavourite);
@@ -91,6 +106,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
             petImage.setImageUrl(petListItems.getFirstImagePath(), imageLoader);
             petBreed.setText(petListItems.getPetBreed());
             petPostOwner.setText("Posted By : " + petListItems.getPetPostOwner());
+            petAdoptOrSell.setText(setListingType(petListItems));
             petListDescription.setText(petListItems.getPetDescription());
             dividerLine.setBackgroundResource(R.color.list_internal_divider);
             petFavourite.setBackgroundResource(R.drawable.favourite_disable);

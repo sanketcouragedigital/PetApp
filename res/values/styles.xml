@@ -11,9 +11,9 @@
         <item name="android:typeface">monospace</item>
     </style>
     <style name="MyTextAppearance">
-
         <item name="android:fontFamily">montserrat</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/TextView_Color</item>
     </style>
 </resources>

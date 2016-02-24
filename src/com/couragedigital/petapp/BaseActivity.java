@@ -35,7 +35,6 @@ public class BaseActivity extends AppCompatActivity {
     FrameLayout frameLayout;
     LinearLayout linearLayout;
     DrawerAdapter drawerAdapter;
-    FontFamily fontFamily;
 
     public ArrayList<DrawerItems> itemArrayList;
     public ArrayList<DrawerItems> itemSelectedArrayList;

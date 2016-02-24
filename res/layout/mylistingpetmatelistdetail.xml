@@ -95,7 +95,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="10dp"
                                 android:layout_below="@+id/myListingPetMateDetailsImageText"
-                                android:layout_marginTop="16dp"/>
+                                android:layout_marginTop="7dp"/>
 
                         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                       android:layout_width="match_parent"
@@ -160,94 +160,162 @@
                     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent">
+
+                        <!--Details Label -->
                         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:id="@+id/myListingPetMateDetailsLabelLinearLayout"
                                       android:layout_width="match_parent"
                                       android:layout_height="match_parent"
                                       android:orientation="horizontal"
-                                      android:id="@+id/myListingPetMateDetailsLinearLayoutOne"
                                       android:layout_marginTop="16dp"
                                       android:layout_marginLeft="16dp"
                                       android:layout_marginRight="16dp">
-                            <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:id="@+id/myListingPetMateAgeInMonthPetDetails"
-                                    android:text="hi"
-                                    android:layout_weight="1"
-                                    android:singleLine="true"
-                                    android:ellipsize="end"/>
-                            <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:id="@+id/myListingPetMateAgeInYearPetDetails"
-                                    android:text="hi"
-                                    android:layout_weight="1"
-                                    android:singleLine="true"
-                                    android:ellipsize="end"/>
-                            <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:id="@+id/myListingPetMateBreedInPetDetails"
-                                    android:text="hi"
-                                    android:layout_weight="1"
-                                    android:singleLine="true"
-                                    android:ellipsize="end"/>
-                        </LinearLayout>
-                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                      android:layout_width="match_parent"
-                                      android:layout_height="match_parent"
-                                      android:orientation="horizontal"
-                                      android:id="@+id/myListingPetMateDetailsLinearLayoutTwo"
-                                      android:layout_below="@+id/myListingPetMateDetailsLinearLayoutOne"
-                                      android:layout_marginTop="4dp"
-                                      android:layout_marginLeft="16dp"
-                                      android:layout_marginRight="16dp">
-                        </LinearLayout>
-                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                      android:layout_width="match_parent"
-                                      android:layout_height="match_parent"
-                                      android:orientation="horizontal"
-                                      android:id="@+id/myListingPetMateDetailsLinearLayoutThree"
-                                      android:layout_below="@+id/myListingPetMateDetailsLinearLayoutTwo"
-                                      android:layout_marginTop="4dp"
-                                      android:layout_marginLeft="16dp"
-                                      android:layout_marginRight="16dp">
-                            <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:id="@+id/myListingPetMateGenderInPetDetails"
-                                    android:text="hi"
-                                    android:layout_weight="1"
-                                    android:singleLine="true"
-                                    android:ellipsize="end"/>
-                            <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:id="@+id/myListingPetMatePriceInPetDetails"
-                                    android:text="hi"
-                                    android:layout_weight="1"
-                                    android:singleLine="true"
-                                    android:ellipsize="end"/>
-                        </LinearLayout>
-                        <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/myListingPetMateDescriptionInPetDetails"
-                                android:layout_below="@+id/myListingPetMateDetailsLinearLayoutThree"
-                                android:text="hi"
-                                android:layout_marginTop="4dp"
-                                android:layout_marginLeft="16dp"
-                                android:layout_marginRight="16dp"
-                                android:ellipsize="end"/>
 
-                        <View
-                                android:layout_width="wrap_content"
-                                android:layout_height="1dp"
-                                android:id="@+id/myListingPetMateDetailsDividerLine"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:layout_below="@+id/myListingPetMateDescriptionInPetDetails"
-                                android:layout_marginTop="16dp"/>
+                            <TextView
+                                    android:id="@+id/myListingPetMateDetailsLabel"
+                                    android:text="Details"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold"
+                                    android:layout_weight="1"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:id="@+id/myListingPetMateDetailsContentDividerLayout"
+                                      android:layout_below="@+id/myListingPetMateDetailsLabelLinearLayout"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_marginTop="7dp"
+                                      android:layout_marginLeft="10dp"
+                                      android:layout_marginRight="10dp">
+                            <View
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="1dp"
+                                    android:id="@+id/myListingPetMateDetailsContentDividerLine"
+                                    android:background="#000000"/>
+                        </LinearLayout>
+                        <!-- Breed -->
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:id="@+id/myListingPetMateDetailsBreedLayout"
+                                      android:layout_below="@+id/myListingPetMateDetailsContentDividerLayout"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_marginTop="16dp"
+                                      android:layout_marginLeft="16dp"
+                                      android:layout_marginRight="16dp">
+
+                            <TextView
+                                    android:id="@+id/myListingPetBreedLabelInPetDetails"
+                                    android:text="Breed"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.52"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"/>
+
+                            <TextView
+                                    android:id="@+id/myListingPetMateBreedInPetDetails"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"/>
+
+                        </LinearLayout>
+
+                        <!-- Age -->
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:id="@+id/myListingPetMateDetailsAgeLayout"
+                                      android:layout_below="@+id/myListingPetMateDetailsBreedLayout"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_marginTop="4dp"
+                                      android:layout_marginLeft="16dp"
+                                      android:layout_marginRight="16dp">
+
+                            <TextView
+                                    android:id="@+id/myListingPetAgeLabelInPetDetails"
+                                    android:text="Age"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.52"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"/>
+
+                            <TextView
+                                    android:id="@+id/myListingPetAgeInMonthPetDetails"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.52"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"/>
+
+                            <TextView
+                                    android:id="@+id/myListingPetAgeInYearPetDetails"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.52"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"/>
+                        </LinearLayout>
+                        <!-- Gender -->
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:id="@+id/myListingPetMateDetailsGenderLayout"
+                                      android:layout_below="@+id/myListingPetMateDetailsAgeLayout"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_marginTop="4dp"
+                                      android:layout_marginLeft="16dp"
+                                      android:layout_marginRight="16dp">
+
+                            <TextView
+
+                                    android:id="@+id/myListingPetMateGenderLabelInPetDetails"
+                                    android:text="Gender"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.52"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"/>
+
+                            <TextView
+                                    android:id="@+id/myListingPetMateGenderInPetDetails"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"/>
+
+                        </LinearLayout>
+
+                        <!-- Description -->
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:id="@+id/myListingPetMateDetailsDescriptionLayout"
+                                      android:layout_below="@+id/myListingPetMateDetailsGenderLayout"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_marginTop="4dp"
+                                      android:layout_marginBottom="16dp"
+                                      android:layout_marginLeft="16dp"
+                                      android:layout_marginRight="16dp">
+                            <TextView
+                                    android:id="@+id/myListingPetMateDescriptionInPetDetails"
+                                    android:text="Description"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"/>
+                        </LinearLayout>
+
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>
             </RelativeLayout>

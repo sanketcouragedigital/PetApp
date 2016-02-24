@@ -63,11 +63,13 @@
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/myListingOwnerName"
-                            android:textColor="@color/textColorPrimary"
-                            android:layout_below="@+id/myListingViewBreed"
+                            android:id="@+id/myListingPetAdoptOrSell"
                             android:layout_marginTop="12dp"
-                            android:layout_marginLeft="16dp"/>
+                            android:layout_marginLeft="16dp"
+                            android:text="FOR ADOPTION"
+                            android:layout_below="@+id/myListingViewBreed"
+                            android:textSize="13sp"
+                            android:textColor="#da4836"/>
 
                 </RelativeLayout>
             </RelativeLayout>
@@ -76,6 +78,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/myListingPetListDescriptionLayout"
+                            android:layout_marginTop="5dp"
                             android:layout_below="@+id/myListingPetListImageAndTittleContentLayout">
 
                 <com.couragedigital.petapp.ExpandableText

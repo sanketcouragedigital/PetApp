@@ -15,6 +15,7 @@ import com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView;
 import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.app.AppController;
 import com.couragedigital.petapp.model.MyListingPetListItems;
+import com.couragedigital.petapp.model.PetListItems;
 
 import java.util.List;
 
@@ -45,26 +46,29 @@ public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetLi
         viewHolder.bindPetList(itemList);
     }
 
-    private String setPetListingTypeButtonName(MyListingPetListItems myListingPetListItems) {
-        String petListingTypeString = null;
-        if (myListingPetListItems.getListingType().equals("For Adoption")) {
-            petListingTypeString = "ADOPT";
-        } else {
-            petListingTypeString = "SELL";
-        }
-        return petListingTypeString;
-    }
-
     @Override
     public int getItemCount() {
         return myListingpetLists.size();
     }
+
+    private String setListingType(MyListingPetListItems myListingPetListItems) {
+        String petListingTypeString = null;
+        if(myListingPetListItems.getListingType().equals("For Adoption")) {
+            petListingTypeString = "TO ADOPT";
+        }
+        else {
+            petListingTypeString = "TO SELL";
+        }
+        return petListingTypeString;
+    }
+
 
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public RoundedNetworkImageView petImage;
         public TextView petBreed;
+        public TextView petAdoptOrSell;
         public Button modify;
         public Button deletebutton;
         public View dividerLine;
@@ -82,10 +86,10 @@ public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetLi
             }
             petImage = (RoundedNetworkImageView) itemView.findViewById(R.id.myListingViewImage);
             petBreed = (TextView) itemView.findViewById(R.id.myListingViewBreed);
+            petAdoptOrSell = (TextView) itemView.findViewById(R.id.myListingPetAdoptOrSell);
             modify = (Button) itemView.findViewById(R.id.myListingPetListModifyButton);
             dividerLine = itemView.findViewById(R.id.myListingDividerLine);
             deletebutton = (Button) itemView.findViewById(R.id.myListingPetListDelete);
-
             myListingPetListDescription = (ExpandableText) itemView.findViewById(R.id.myListingPetListDescription);
 
             cardView = itemView;
@@ -102,10 +106,10 @@ public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetLi
 
             modify.setText("Modify");
             deletebutton.setText("Delete");
-            //petListingTypeButton.setText(setPetListingTypeButtonName(myListingPetListItems));
+            petAdoptOrSell.setText(setListingType(myListingPetListItem));
+            dividerLine.setBackgroundResource(R.color.list_internal_divider);
             //petFavourite.setBackgroundResource(R.drawable.favourite_disable);
             //petFavourite.setVisibility(View.GONE);
-            dividerLine.setBackgroundResource(R.color.list_internal_divider);
         }
 
         @Override

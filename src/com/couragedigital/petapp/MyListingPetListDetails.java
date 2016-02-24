@@ -44,13 +44,13 @@ public class MyListingPetListDetails extends AppCompatActivity implements View.O
     ImageView mlPetDetailsThirdImageThumbnail;
     ImageView mlPetImage;
     TextView mlPetBreed;
-    TextView mlPetListingType;
+    TextView mlPetForAdoptionOrSell;
     TextView mlPetAgeInMonth;
     TextView mlPetAgeInYear;
     TextView mlPetGender;
     TextView mlPetPrice;
     TextView mlPetDescription;
-    View mlPetDetailsDividerLine;
+    View mlPetDetailsContentDividerLine;
 
     Bitmap mlPetDetailsbitmap;
     Toolbar mlPetDetailstoolbar;
@@ -103,14 +103,14 @@ public class MyListingPetListDetails extends AppCompatActivity implements View.O
         mlPetDetailsSecondImageThumbnail = (ImageView) findViewById(R.id.myListingPetDetailsSecondImageThumbnail);
         mlPetDetailsThirdImageThumbnail = (ImageView) findViewById(R.id.myListingPetDetailsThirdImageThumbnail);
 
+        mlPetDetailsContentDividerLine = findViewById(R.id.myListingPetListDetailsContentDividerLine);
         mlPetBreed = (TextView) findViewById(R.id.myListingPetBreedInPetDetails);
-        //petListingType = (TextView) findViewById(R.id.petListingTypeInPetDetails);
+        mlPetForAdoptionOrSell = (TextView) findViewById(R.id.myListingPetForAdoptionOrSell);
         mlPetAgeInMonth = (TextView) findViewById(R.id.myListingPetAgeInMonthPetDetails);
         mlPetAgeInYear = (TextView) findViewById(R.id.myListingPetAgeInYearPetDetails);
         mlPetGender = (TextView) findViewById(R.id.myListingPetGenderInPetDetails);
         mlPetPrice = (TextView) findViewById(R.id.myListingPetPriceInPetDetails);
         mlPetDescription = (TextView) findViewById(R.id.myListingPetDescriptionInPetDetails);
-        mlPetDetailsDividerLine = findViewById(R.id.myListingPetDetailsDividerLine);
 
         mlPetDetailsFirstImageThumbnail.setOnClickListener(this);
         mlPetDetailsSecondImageThumbnail.setOnClickListener(this);
@@ -118,7 +118,7 @@ public class MyListingPetListDetails extends AppCompatActivity implements View.O
 
         mlPetDetailsbitmap = getBitmapImageFromURL(firstImagePath);
         mlPetImage.setImageBitmap(mlPetDetailsbitmap);
-        mlPetDetailsCollapsingToolbar.setTitle(setListingTypeTitle(listingType));
+        mlPetDetailsCollapsingToolbar.setTitle(breed);
 
         mlPetDetailsImageText.setText("Images of " + breed);
         mlPetDetailsImagesDividerLine.setBackgroundResource(R.color.list_internal_divider);
@@ -131,17 +131,15 @@ public class MyListingPetListDetails extends AppCompatActivity implements View.O
             mlPetDetailsbitmap = getBitmapImageFromURL(thirdImagePath);
             mlPetDetailsThirdImageThumbnail.setImageBitmap(mlPetDetailsbitmap);
         }
-        String breedOfPet = "<b>Breed: </b>" + breed;
-        mlPetBreed.setText(Html.fromHtml(breedOfPet));
-        String ageInMonthOfPet = "<b>Month: </b>" + ageInMonth;
-        mlPetAgeInMonth.setText(Html.fromHtml(ageInMonthOfPet));
-        String ageInYearOfPet = "<b>Year: </b>" + ageInYear;
-        mlPetAgeInYear.setText(Html.fromHtml(ageInYearOfPet));
-        String genderOfPet = "<b>Gender: </b>" + gender;
-        mlPetGender.setText(Html.fromHtml(genderOfPet));
-        String descriptionOfPet = "<b>Description: </b>" + description;
-        mlPetDescription.setText(Html.fromHtml(descriptionOfPet));
-        mlPetDetailsDividerLine.setBackgroundResource(R.color.list_internal_divider);
+
+
+        mlPetDetailsContentDividerLine.setBackgroundResource(R.color.list_internal_divider);
+        mlPetForAdoptionOrSell.setText(setListingTypeTitle(listingType));
+        mlPetBreed.setText(breed);
+        mlPetAgeInMonth.setText("Month : " + ageInMonth);
+        mlPetAgeInYear.setText("Year : " + ageInYear);
+        mlPetGender.setText(gender);
+        mlPetDescription.setText(description);
 
         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) mlPetDetailsAppBarLayout.getLayoutParams();
         layoutParams.height = getResources().getDisplayMetrics().widthPixels;
@@ -153,7 +151,6 @@ public class MyListingPetListDetails extends AppCompatActivity implements View.O
                 setAppBarOffset(heightPx);
             }
         });
-
     }
 
     private Bitmap getBitmapImageFromURL(String imagePath) {
@@ -190,13 +187,13 @@ public class MyListingPetListDetails extends AppCompatActivity implements View.O
     private String setListingTypeTitle(String listingType) {
         String setListingType;
         if (listingType.equals("For Adoption")) {
-            setListingType = "For Adoption";
-            String priceOfPet = "<b>Price: N/A</b>";
-            mlPetPrice.setText(Html.fromHtml(priceOfPet));
+            setListingType = "To Adoption";
+            //String priceOfPet = "<b>Price: N/A</b>";
+            // petPrice.setText(Html.fromHtml(priceOfPet));
         } else {
-            String priceOfPet = "<b>Price: </b>" + listingType;
+            String priceOfPet = "Price: " + listingType;
             mlPetPrice.setText(Html.fromHtml(priceOfPet));
-            setListingType = "For Sell";
+            setListingType = "To Sell";
         }
         return setListingType;
     }

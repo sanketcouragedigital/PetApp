@@ -61,15 +61,6 @@
                             android:textColor="@color/list_pet_origin_text_color"
                             android:ellipsize="end"/>
 
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/myListingPetMateOwnerName"
-                            android:textColor="@color/textColorPrimary"
-                            android:layout_below="@+id/myListingPetMateBreed"
-                            android:layout_marginTop="12dp"
-                            android:layout_marginLeft="16dp"/>
-
                 </RelativeLayout>
             </RelativeLayout>
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"

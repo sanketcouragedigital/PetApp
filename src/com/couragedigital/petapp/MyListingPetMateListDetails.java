@@ -47,7 +47,7 @@ public class MyListingPetMateListDetails extends AppCompatActivity implements Vi
     TextView mlPetMateAgeInYear;
     TextView mlPetMateGender;
     TextView mlPetMateDescription;
-    View mlPetMateDetailsDividerLine;
+    View mlPetMateDetailsContentDividerLine;
 
     Bitmap mlPetMateDetailsbitmap;
     Toolbar mlPetMateDetailstoolbar;
@@ -102,12 +102,11 @@ public class MyListingPetMateListDetails extends AppCompatActivity implements Vi
         mlPetMateDetailsThirdImageThumbnail = (ImageView) findViewById(R.id.myListingPetMateDetailsThirdImageThumbnail);
 
         mlPetMateBreed = (TextView) findViewById(R.id.myListingPetMateBreedInPetDetails);
-        //petListingType = (TextView) findViewById(R.id.petListingTypeInPetDetails);
-        mlPetMateAgeInMonth = (TextView) findViewById(R.id.myListingPetMateAgeInMonthPetDetails);
-        mlPetMateAgeInYear = (TextView) findViewById(R.id.myListingPetMateAgeInYearPetDetails);
+        mlPetMateAgeInMonth = (TextView) findViewById(R.id.myListingPetAgeInMonthPetDetails);
+        mlPetMateAgeInYear = (TextView) findViewById(R.id.myListingPetAgeInYearPetDetails);
         mlPetMateGender = (TextView) findViewById(R.id.myListingPetMateGenderInPetDetails);
         mlPetMateDescription = (TextView) findViewById(R.id.myListingPetMateDescriptionInPetDetails);
-        mlPetMateDetailsDividerLine = findViewById(R.id.myListingPetMateDetailsDividerLine);
+        mlPetMateDetailsContentDividerLine = findViewById(R.id.myListingPetMateDetailsContentDividerLine);
 
         mlPetMateDetailsFirstImageThumbnail.setOnClickListener(this);
         mlPetMateDetailsSecondImageThumbnail.setOnClickListener(this);
@@ -128,21 +127,16 @@ public class MyListingPetMateListDetails extends AppCompatActivity implements Vi
             mlPetMateDetailsbitmap = getBitmapImageFromURL(thirdImagePath);
             mlPetMateDetailsThirdImageThumbnail.setImageBitmap(mlPetMateDetailsbitmap);
         }
-        String breedOfPet = "<b>Breed: </b>" + breed;
-        mlPetMateBreed.setText(Html.fromHtml(breedOfPet));
-        String ageInMonthOfPet = "<b>Month: </b>" + ageInMonth;
-        mlPetMateAgeInMonth.setText(Html.fromHtml(ageInMonthOfPet));
-        String ageInYearOfPet = "<b>Year: </b>" + ageInYear;
-        mlPetMateAgeInYear.setText(Html.fromHtml(ageInYearOfPet));
-        String genderOfPet = "<b>Gender: </b>" + gender;
-        mlPetMateGender.setText(Html.fromHtml(genderOfPet));
-        String descriptionOfPet = "<b>Description: </b>" + description;
-        mlPetMateDescription.setText(Html.fromHtml(descriptionOfPet));
-        mlPetMateDetailsDividerLine.setBackgroundResource(R.color.list_internal_divider);
+        mlPetMateDetailsContentDividerLine.setBackgroundResource(R.color.list_internal_divider);
+        mlPetMateBreed.setText(breed);
+        mlPetMateAgeInMonth.setText("Month : " + ageInMonth);
+        mlPetMateAgeInYear.setText(" Year : " + ageInYear);
+        mlPetMateGender.setText(gender);
+        mlPetMateDescription.setText(description);
+
 
         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) mlPetMateDetailsAppBarLayout.getLayoutParams();
         layoutParams.height = getResources().getDisplayMetrics().widthPixels;
-
 
         mlPetMateDetailsAppBarLayout.post(new Runnable() {
             @Override

@@ -36,11 +36,11 @@ public class ExpandableText extends TextView {
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-               if( trim = !trim) {
-                   getDisplayableText();
-               }else {
-                   setText();
-               }
+                if (trim = !trim) {
+                    getDisplayableText();
+                } else {
+                    setText();
+                }
             }
         });
     }
@@ -50,7 +50,7 @@ public class ExpandableText extends TextView {
     }
 
     private CharSequence getDisplayableText() {
-        return trim ? trimmedText : originalText ;
+        return trim ? trimmedText : originalText;
     }
 
     @Override
@@ -62,18 +62,17 @@ public class ExpandableText extends TextView {
     }
 
     private CharSequence getTrimmedText(CharSequence text) {
-        SpannableString graySpannable= new SpannableString(ShowMoreELLIPSIS);
-        graySpannable.setSpan(new ForegroundColorSpan(Color.GRAY), 0, ShowMoreELLIPSIS.length(), 0);
+        SpannableString graySpannable = new SpannableString(ShowMoreELLIPSIS);
+        graySpannable.setSpan(new ForegroundColorSpan(Color.LTGRAY), 0, ShowMoreELLIPSIS.length(), 0);
 
         if (originalText != null && originalText.length() > trimLength) {
-            return new SpannableStringBuilder(originalText, 0, trimLength + 1).append(ShowMoreELLIPSIS);
+            return new SpannableStringBuilder(originalText, 0, trimLength + 1).append(graySpannable);
         } else {
             return originalText;
         }
     }
 
-    public CharSequence getOriginalText() {
-        return originalText;
+    public CharSequence getOriginalText() {        return originalText;
     }
 
     public void setTrimLength(int trimLength) {

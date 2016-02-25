@@ -6,16 +6,18 @@ public class ClinicReviewsListItems {
     public String clinic_ratings;
     public String clinic_reviews;
     public String email;
+    public String time;
 
     public ClinicReviewsListItems() {
     }
 
-    public ClinicReviewsListItems(String clinicId,String clinicRatings, String clinicReviewseviews  ,String email) {
+    public ClinicReviewsListItems(String clinicId,String clinicRatings, String clinicReviews  ,String email, String time) {
 
         this.clinic_Id = clinicId;
-        this.clinic_reviews = clinicReviewseviews;
+        this.clinic_reviews = clinicReviews;
         this.clinic_ratings = clinicRatings;
         this.email = email;
+        this.time = time;
 
     }
 
@@ -50,6 +52,13 @@ public class ClinicReviewsListItems {
     }
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getTime() {
+        return time;
+    }
+    public void setTime(String time) {
+        this.time = time;
     }
 
 

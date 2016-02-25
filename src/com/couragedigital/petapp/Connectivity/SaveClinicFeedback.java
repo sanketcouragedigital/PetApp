@@ -13,7 +13,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.couragedigital.petapp.ClinicRateNReview;
 import com.couragedigital.petapp.PetClinicDetails;
 import com.couragedigital.petapp.SignUp;
-import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.app.AppController;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,8 +40,8 @@ public class SaveClinicFeedback {
         selectedClinicId = clinicId;
         userEmail = email;
 
-        final String URL = URLInstance.getUrl();
-        JSONObject params = new JSONObject();
+        final String URL="http://192.168.0.7/PetAppAPI/api/petappapi.php";
+        JSONObject params=new JSONObject();
         try{
             params.put("method",method);
             params.put("format",format);

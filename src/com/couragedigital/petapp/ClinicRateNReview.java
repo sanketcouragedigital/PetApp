@@ -93,7 +93,7 @@ public class ClinicRateNReview extends BaseActivity {
     }
     public void addListenerOnSubmitButton(){
         clinicRating = (RatingBar) findViewById(R.id.clinicRatingBar);
-        txtFeedback=(EditText)findViewById(R.id.clinicFeedback);
+        txtFeedback = (EditText)findViewById(R.id.clinicFeedback);
         btnSubmitFeedback = (Button)findViewById(R.id.btnFeedbackSubmit);
 
         btnSubmitFeedback.setOnClickListener(new View.OnClickListener() {

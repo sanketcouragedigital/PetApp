@@ -20,7 +20,6 @@ import com.couragedigital.petapp.Connectivity.PetFetchClinicList;
 import com.couragedigital.petapp.Connectivity.PetFetchHomeClinicList;
 import com.couragedigital.petapp.Listeners.PetFetchClinicListScrollListener;
 import com.couragedigital.petapp.SessionManager.SessionManager;
-import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.model.*;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -39,7 +38,8 @@ public class PetClinic extends BaseActivity implements
     RecyclerView.Adapter adapter;
     LinearLayoutManager linearLayoutManager;
 
-    private static String url = URLInstance.getUrl();
+   // private String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
+   private String url = "http://192.168.0.7/PetAppAPI/api/petappapi.php";
     private ProgressDialog progressDialog;
     public List<ClinicListItems> clinicListItemsArrayList = new ArrayList<ClinicListItems>();
 
@@ -220,15 +220,14 @@ public class PetClinic extends BaseActivity implements
                     @Override
                     public void onLoadMore(int current_page) {
                         url = "";
-                        url = URLInstance.getUrl();
+                        //url = "http://storage.couragedigital.com/dev/api/petappapi.php";
+                        url ="http://192.168.0.7/PetAppAPI/api/petappapi.php";
                         url = url + "?method=ClinicByAddress&format=json&currentPage=" + current_page + "&email=" + userEmail + "";
                         grabURLOfHome(url);
                     }
                 });
                 grabURLOfHome(url);
             } else if (homeornearbyLocationValue == 1) {
-                url = "";
-                url = URLInstance.getUrl();
                 url = url + "?method=ClinicByCurrentLocation&format=json&currentPage=" + current_page + "&latitude=" + gpsCoordinates.getLatitude() + "&longitude=" + gpsCoordinates.getLongitude() + "";
                 recyclerView.smoothScrollToPosition(0);
                 recyclerView.addOnScrollListener(new PetFetchClinicListScrollListener(linearLayoutManager, current_page) {
@@ -236,7 +235,8 @@ public class PetClinic extends BaseActivity implements
                     @Override
                     public void onLoadMore(int current_page) {
                         url = "";
-                        url = URLInstance.getUrl();
+                        //url = "http://storage.couragedigital.com/dev/api/petappapi.php";
+                        url ="http://192.168.0.7/PetAppAPI/api/petappapi.php";
                         url = url + "?method=ClinicByCurrentLocation&format=json&currentPage=" + current_page + "&latitude=" + gpsCoordinates.getLatitude() + "&longitude=" + gpsCoordinates.getLongitude() + "";
                         grabURL(url);
                     }

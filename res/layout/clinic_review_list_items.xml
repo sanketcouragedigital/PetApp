@@ -3,21 +3,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-    <android.support.v7.widget.CardView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:card_view="http://schemas.android.com/apk/res/com.couragedigital.petapp"
-            android:id="@+id/clinicReviewsitems_cardview"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            card_view:cardCornerRadius="2dp"
-            card_view:cardElevation="2dp">
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/reviewLayout">
+            android:id="@+id/reviewLayout"
+            android:background="#FFFFFF">
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -50,5 +40,4 @@
             android:background="@color/drawer_header_text"
             android:layout_below="@id/reviewLayout"
             android:layout_centerHorizontal="true"/>
-    </android.support.v7.widget.CardView>
 </LinearLayout>

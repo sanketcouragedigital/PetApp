@@ -24,7 +24,7 @@ public class ClinicReviewsListAdapter extends RecyclerView.Adapter<ClinicReviews
     ViewHolder viewHolder;
 
     public ClinicReviewsListAdapter(List<ClinicReviewsListItems> clinicReviewsListArrayList) {
-        clinicReviewsListsItem = clinicReviewsListArrayList;
+        this.clinicReviewsListsItem = clinicReviewsListArrayList;
     }
 
     @Override
@@ -67,7 +67,7 @@ public class ClinicReviewsListAdapter extends RecyclerView.Adapter<ClinicReviews
             this.listItems = clinicReviewsList;
             clinicRatings.setText(clinicReviewsList.getClinicRatings());
             clinicReviews.setText(clinicReviewsList.getClinicReviews());
-            email.setText(clinicReviewsList.getClinicRatings());
+            email.setText(clinicReviewsList.getEmail());
             clinicListDividerLine.setBackgroundResource(R.color.list_internal_divider);
         }
 

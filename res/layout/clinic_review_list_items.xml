@@ -15,7 +15,7 @@
                 android:id="@+id/reviews"
                 android:layout_marginTop="16dp"
                 android:layout_alignParentStart="true"
-                android:layout_marginStart="16dp"/>
+                />
 
         <TextView
                 android:layout_width="match_parent"
@@ -24,7 +24,7 @@
                 android:id="@+id/ratingLabel"
                 android:layout_marginTop="16dp"
                 android:layout_below="@+id/reviews"
-                android:layout_marginStart="16dp"
+
         />
         <TextView
                 android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                 android:id="@+id/userNameLabel"
                 android:layout_below="@+id/ratingNos"
                 android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp"
+
         />
         <TextView
                 android:layout_width="wrap_content"

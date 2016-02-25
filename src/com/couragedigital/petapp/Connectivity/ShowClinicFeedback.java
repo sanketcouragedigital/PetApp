@@ -47,8 +47,9 @@ public class ShowClinicFeedback {
         contactNo = ClinicContact;
         clinicTiming = clinicNotes;
 
-        String url= "http://192.168.0.7/PetAppAPI/api/petappapi.php?method=showClinicReviews&format=json&currentPage=" + current_page + "&clinicId=" + clinicId + "";
-       // String url = URLInstance.getUrl();
+        //String url= "http://192.168.0.7/PetAppAPI/api/petappapi.php?method=showClinicReviews&format=json&currentPage=" + current_page + "&clinicId=" + clinicId + "";
+        String url= "http://storage.couragedigital.com/dev/api/petappapi.php?method=showClinicReviews&format=json&currentPage=" + current_page + "&clinicId=" + clinicId + "";
+        // String url = URLInstance.getUrl();
         method = "showClinicReviews";
         format = "json";
 

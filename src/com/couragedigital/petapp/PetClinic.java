@@ -38,8 +38,8 @@ public class PetClinic extends BaseActivity implements
     RecyclerView.Adapter adapter;
     LinearLayoutManager linearLayoutManager;
 
-   // private String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
-   private String url = "http://192.168.0.7/PetAppAPI/api/petappapi.php";
+    private String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
+   //private String url = "http://192.168.0.7/PetAppAPI/api/petappapi.php";
     private ProgressDialog progressDialog;
     public List<ClinicListItems> clinicListItemsArrayList = new ArrayList<ClinicListItems>();
 
@@ -220,8 +220,8 @@ public class PetClinic extends BaseActivity implements
                     @Override
                     public void onLoadMore(int current_page) {
                         url = "";
-                        //url = "http://storage.couragedigital.com/dev/api/petappapi.php";
-                        url ="http://192.168.0.7/PetAppAPI/api/petappapi.php";
+                        url = "http://storage.couragedigital.com/dev/api/petappapi.php";
+                        //url ="http://192.168.0.7/PetAppAPI/api/petappapi.php";
                         url = url + "?method=ClinicByAddress&format=json&currentPage=" + current_page + "&email=" + userEmail + "";
                         grabURLOfHome(url);
                     }
@@ -235,8 +235,8 @@ public class PetClinic extends BaseActivity implements
                     @Override
                     public void onLoadMore(int current_page) {
                         url = "";
-                        //url = "http://storage.couragedigital.com/dev/api/petappapi.php";
-                        url ="http://192.168.0.7/PetAppAPI/api/petappapi.php";
+                        url = "http://storage.couragedigital.com/dev/api/petappapi.php";
+                        //url ="http://192.168.0.7/PetAppAPI/api/petappapi.php";
                         url = url + "?method=ClinicByCurrentLocation&format=json&currentPage=" + current_page + "&latitude=" + gpsCoordinates.getLatitude() + "&longitude=" + gpsCoordinates.getLongitude() + "";
                         grabURL(url);
                     }

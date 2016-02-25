@@ -4,34 +4,53 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
     <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/reviewLayout"
             android:background="#FFFFFF">
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Medium Text"
-                android:id="@+id/usersName"
+                android:text="Reviews"
+                android:id="@+id/reviews"
                 android:layout_marginTop="16dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"/>
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="16dp"/>
+
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Medium Text"
-                android:id="@+id/ratingNos"
+                android:text="Rating:"
+                android:id="@+id/ratingLabel"
                 android:layout_marginTop="16dp"
-                android:layout_below="@+id/usersName"
+                android:layout_below="@+id/reviews"
+                android:layout_marginStart="16dp"
         />
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Medium Text"
-                android:id="@+id/reviews"
-                android:layout_marginTop="16dp"
+                android:id="@+id/ratingNos"
+                android:layout_alignTop="@+id/ratingLabel"
+                android:layout_marginStart="112dp"
+                />
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="By:"
+                android:id="@+id/userNameLabel"
                 android:layout_below="@+id/ratingNos"
-                android:layout_alignParentStart="true"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+        />
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Medium Text"
+                android:id="@+id/usersName"
+                android:layout_alignTop="@+id/userNameLabel"
+                android:layout_alignStart="@+id/ratingNos"/>
+
     </RelativeLayout>
     <View
             android:id="@+id/viewdividerline"

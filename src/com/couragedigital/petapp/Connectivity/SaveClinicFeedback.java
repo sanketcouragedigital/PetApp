@@ -40,7 +40,8 @@ public class SaveClinicFeedback {
         selectedClinicId = clinicId;
         userEmail = email;
 
-        final String URL="http://192.168.0.7/PetAppAPI/api/petappapi.php";
+        //final String URL="http://192.168.0.7/PetAppAPI/api/petappapi.php";
+        final String URL="http://storage.couragedigital.com/dev/api/petappapi.php";
         JSONObject params=new JSONObject();
         try{
             params.put("method",method);

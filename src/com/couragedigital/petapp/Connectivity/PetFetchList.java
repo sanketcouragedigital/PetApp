@@ -32,6 +32,7 @@ public class PetFetchList {
 
                                     JSONObject obj = jsonArray.getJSONObject(i);
                                     PetListItems petListItems = new PetListItems();
+                                    petListItems.setListId(obj.getString("id"));
                                     petListItems.setPetBreed(replaceSpecialChars(obj.getString("pet_breed")));
                                     petListItems.setPetPostOwner(replaceSpecialChars(obj.getString("name")));
                                     petListItems.setFirstImagePath(obj.getString("first_image_path"));
@@ -55,7 +56,7 @@ public class PetFetchList {
                                     petListItems.setPetDescription(replaceSpecialChars(obj.getString("pet_description")));
                                     petListItems.setPetPostDate(obj.getString("post_date"));
                                     petListItems.setPetPostOwnerEmail(replaceSpecialChars(obj.getString("email")));
-                                    petListItems.setPetPostOwnerMobileNo(obj.getString("mobileno"));
+                                    petListItems.setPetPostOwnerMobileNo(obj.getString("alternateNo"));
 
                                     // adding pet to pets array
                                     petLists.add(petListItems);

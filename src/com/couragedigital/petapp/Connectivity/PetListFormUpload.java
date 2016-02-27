@@ -22,7 +22,7 @@ public  class PetListFormUpload {
     //http://192.168.0.3/PetAppAPI/api/petappapi.php
     //http://storage.couragedigital.com/dev/api/petappapi.php
 
-    public static void uploadToRemoteServer(String petCategoryName, String petBreedName, String petAgeMonthSpinner, String petAgeYearSpinner, String petGender, String petDescription, String petAdoption, Integer petPrice, String firstImagePath, String secondImagePath, String thirdImagePath, String emailOfUser, PetForm petForm) throws Exception {
+    public static void uploadToRemoteServer(String petCategoryName, String petBreedName, String petAgeMonthSpinner, String petAgeYearSpinner, String petGender, String petDescription, String petAdoption, Integer petPrice, String firstImagePath, String secondImagePath, String thirdImagePath, String emailOfUser, String txtAlternateNo, PetForm petForm) throws Exception {
 
         petFormActivity = petForm;
         context = petForm.getApplicationContext();
@@ -40,6 +40,7 @@ public  class PetListFormUpload {
         String secondPetImage = secondImagePath;
         String thirdPetImage = thirdImagePath;
         String email = emailOfUser;
+        String alternateNo=txtAlternateNo;
         String method = "savePetDetails";
         String format = "json";
 
@@ -69,6 +70,7 @@ public  class PetListFormUpload {
         stringPart.put("adoptionOfPet", adoptionOfPet);
         stringPart.put("priceOfPet", String.valueOf(priceOfPet));
         stringPart.put("email", email);
+        stringPart.put("alternateNo", alternateNo);
         stringPart.put("method", method);
         stringPart.put("format", format);
 

@@ -149,6 +149,27 @@
                     android:layout_below="@+id/petPriceLayout"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="16dp"/>
+            <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Use Registered Contact No"
+                    android:id="@+id/contactNocheckBox"
+                    android:layout_below="@+id/descriptionOfPet"
+                    android:checked="true"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:id="@+id/alternateNotxt"
+                    android:hint="Alternate No"
+                    android:textColor="@color/textColorPrimary"
+                    android:lines="2"
+                    android:enabled="false"
+                    android:gravity="top|left"
+                    android:scrollbars="vertical"
+                    android:layout_below="@+id/contactNocheckBox"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="16dp"/>
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -157,7 +178,7 @@
                     android:background="@null"
                     android:id="@+id/selectImage"
                     android:theme="@style/Base.Theme.AppCompat"
-                    android:layout_below="@+id/descriptionOfPet"
+                    android:layout_below="@+id/alternateNotxt"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="14dp"/>
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

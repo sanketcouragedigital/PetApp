@@ -29,6 +29,7 @@ public class PetMateFetchList {
 
                                     JSONObject obj = jsonArray.getJSONObject(i);
                                     PetMateListItems petMateListItems = new PetMateListItems();
+                                    petMateListItems.setListId(replaceSpecialChars(obj.getString("id")));
                                     petMateListItems.setPetMateBreed(replaceSpecialChars(obj.getString("pet_breed")));
                                     petMateListItems.setPetMatePostOwner(replaceSpecialChars(obj.getString("name")));
                                     petMateListItems.setFirstImagePath(obj.getString("first_image_path"));
@@ -45,7 +46,7 @@ public class PetMateFetchList {
                                     petMateListItems.setPetMateDescription(replaceSpecialChars(obj.getString("pet_description")));
                                     petMateListItems.setPetMatePostDate(obj.getString("post_date"));
                                     petMateListItems.setPetMatePostOwnerEmail(replaceSpecialChars(obj.getString("email")));
-                                    petMateListItems.setPetMatePostOwnerMobileNo(obj.getString("mobileno"));
+                                    petMateListItems.setPetMatePostOwnerMobileNo(obj.getString("alternateNo"));
 
                                     // adding pet to pets array
                                     petMateLists.add(petMateListItems);

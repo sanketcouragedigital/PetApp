@@ -8,15 +8,19 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.android.volley.toolbox.ImageLoader;
-import com.couragedigital.petapp.ExpandableText;
-import com.couragedigital.petapp.PetList;
-import com.couragedigital.petapp.PetListDetails;
-import com.couragedigital.petapp.R;
+import com.couragedigital.petapp.*;
+import com.couragedigital.petapp.Connectivity.ShowClinicFeedback;
+import com.couragedigital.petapp.Connectivity.WishListPetListAdd;
 import com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView;
+import com.couragedigital.petapp.SessionManager.SessionManager;
 import com.couragedigital.petapp.app.AppController;
+import com.couragedigital.petapp.model.ClinicReviewsListItems;
 import com.couragedigital.petapp.model.PetListItems;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -26,6 +30,10 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;
     ViewHolder viewHolder;
+    String petListId;
+    String email;
+    SessionManager sessionManager;
+
 
     public PetListAdapter(List<PetListItems> petLists) {
         this.petLists = petLists;
@@ -43,6 +51,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         PetListItems petListItems = petLists.get(i);
         viewHolder.bindPetList(petListItems);
+
     }
 
     @Override
@@ -121,6 +130,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
                 String sharingText = "I want to share  Peto App Download it from Google PlayStore.";
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, sharingText);
                 v.getContext().startActivity(Intent.createChooser(sharingIntent, "Share using"));
+
             } else if (v.getId() == R.id.petListFavourite) {
                 if (statusOfFavourite == 0) {
                     petFavourite.setBackgroundResource(R.drawable.favourite_enable);
@@ -132,6 +142,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
             } else {
                 if (this.petListItems != null) {
                     Intent petFullInformation = new Intent(v.getContext(), PetListDetails.class);
+                    petFullInformation.putExtra("LIST_ID", petListItems.getListId());
                     petFullInformation.putExtra("PET_FIRST_IMAGE", petListItems.getFirstImagePath());
                     petFullInformation.putExtra("PET_SECOND_IMAGE", petListItems.getSecondImagePath());
                     petFullInformation.putExtra("PET_THIRD_IMAGE", petListItems.getThirdImagePath());

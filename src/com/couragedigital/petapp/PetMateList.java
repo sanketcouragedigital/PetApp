@@ -9,11 +9,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 import com.couragedigital.petapp.Adapter.PetMateListAdapter;
-import com.couragedigital.petapp.Connectivity.FilterFetchPetMateList;
-import com.couragedigital.petapp.Connectivity.FilterPetMateListDeleteMemCacheObject;
-import com.couragedigital.petapp.Connectivity.PetMateFetchList;
-import com.couragedigital.petapp.Connectivity.PetMateRefreshFetchList;
+import com.couragedigital.petapp.Connectivity.*;
 import com.couragedigital.petapp.Listeners.PetMateFetchListScrollListener;
 import com.couragedigital.petapp.SessionManager.SessionManager;
 import com.couragedigital.petapp.Singleton.FilterPetListInstance;
@@ -48,6 +48,7 @@ public class PetMateList extends BaseActivity {
     LinearLayoutManager layoutManager;
     RecyclerView.Adapter adapter;
     SwipeRefreshLayout petMateListSwipeRefreshLayout;
+    private static Button btnFavourite;
 
     public List<PetMateListItems> originalpetLists = new ArrayList<PetMateListItems>();
 
@@ -56,6 +57,7 @@ public class PetMateList extends BaseActivity {
     private int current_page = 1;
 
     public String email;
+    public String petListId;
 
     int filterState = 0;
 
@@ -99,6 +101,9 @@ public class PetMateList extends BaseActivity {
                 }
             }
         });
+        btnFavourite = (Button) findViewById(R.id.petListFavourite);
+        //btnFavourite.setOnClickListener(this);
+        ButtonFavourite();
 
         recyclerView.smoothScrollToPosition(0);
 
@@ -282,5 +287,28 @@ public class PetMateList extends BaseActivity {
             filterPetMateListInstance.setFilterGenderListInstance(filterSelectedInstanceGenderList);
         }
         PetMateList.this.finish();
+    }
+    public void ButtonFavourite (){
+        btnFavourite = (Button) findViewById(R.id.petListFavourite);
+
+        btnFavourite.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = getIntent();
+                        if (null != intent) {
+                            petListId = intent.getStringExtra("LIST_ID");
+                        }
+                        try {
+                            WishListPetMateListAdd wishListPetMateListAdd = new WishListPetMateListAdd(PetMateList.this);
+                            wishListPetMateListAdd.addPetMateListToWishList(petListId,email);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            progressDialog.dismiss();
+                            Toast.makeText(PetMateList.this, "Exception : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+        );
     }
 }

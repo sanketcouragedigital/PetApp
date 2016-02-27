@@ -67,6 +67,11 @@
         <activity android:name=".EditProfile"/>
         <activity android:name=".MyListingModifyPetDetails"/>
         <activity android:name=".MyListingModifyPetMateDetails"/>
+		<activity android:name=".WishList"/>
+        <activity android:name=".WishListPetList"/>
+        <activity android:name=".WishListPetListDetails"/>
+        <activity android:name=".WishListPetMateList"/>
+        <activity android:name=".WishListPetMateDetails"/>
 		
 
     </application>

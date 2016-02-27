@@ -2,13 +2,12 @@ package com.couragedigital.petapp.model;
 
 import com.couragedigital.petapp.Singleton.ImageURLInstance;
 
-import java.util.Date;
-public class PetMateListItems {
+public class WishListPetMateListItem {
+    public int id;
     public String firstImagePath;
     public String secondImagePath;
     public String thirdImagePath;
     public String petMateBreed;
-    public String petMatePostOwner;
     public String petMateCategory;
     public String petMateAgeInMonth;
     public String petMateAgeInYear;
@@ -16,23 +15,19 @@ public class PetMateListItems {
     public String petMateDescription;
     public String petMatePostDate;
     public String petMatePostOwnerEmail;
-    public String petMatePostOwnerMobileNo;
-    public String listId;
 
 
+    public WishListPetMateListItem() {
 
-    public PetMateListItems() {
     }
 
-    public PetMateListItems(String listId, String firstImagePath, String secondImagePath, String thirdImagePath, String petMateBreed, String petMatePostOwner, String petMateCategory,String petMateAgeInMonth,
-                                    String petMateAgeInYear, String petMateGender, String petMateDescription, String petMatePostDate, String petMatePostOwnerEmail, String petMatePostOwnerMobileNo) {
-
-        this.listId = listId;
+    public WishListPetMateListItem(int id, String firstImagePath, String secondImagePath, String thirdImagePath, String petMateBreed, String petMatePostOwner,
+                                    String petMateCategory, String petMateAgeInMonth, String petMateAgeInYear, String petMateGender, String petMateDescription, String petMatePostDate, String petMatePostOwnerEmail, String petMatePostOwnerMobileNo) {
+        this.id = id;
         this.firstImagePath = firstImagePath;
         this.secondImagePath = secondImagePath;
         this.thirdImagePath = thirdImagePath;
         this.petMateBreed = petMateBreed;
-        this.petMatePostOwner = petMatePostOwner;
         this.petMateCategory = petMateCategory;
         this.petMateAgeInMonth = petMateAgeInMonth;
         this.petMateAgeInYear = petMateAgeInYear;
@@ -40,7 +35,14 @@ public class PetMateListItems {
         this.petMateDescription = petMateDescription;
         this.petMatePostDate = petMatePostDate;
         this.petMatePostOwnerEmail = petMatePostOwnerEmail;
-        this.petMatePostOwnerMobileNo = petMatePostOwnerMobileNo;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstImagePath() {
@@ -48,7 +50,7 @@ public class PetMateListItems {
     }
 
     public void setFirstImagePath(String firstImagePath) {
-        this.firstImagePath = ImageURLInstance.getUrl()+"pet_mate_images/"+firstImagePath;
+        this.firstImagePath = ImageURLInstance.getUrl()+"pet_mate_images/" + firstImagePath;
     }
 
     public String getSecondImagePath() {
@@ -56,7 +58,7 @@ public class PetMateListItems {
     }
 
     public void setSecondImagePath(String secondImagePath) {
-        this.secondImagePath = ImageURLInstance.getUrl()+"pet_mate_images/"+secondImagePath;
+        this.secondImagePath = ImageURLInstance.getUrl()+"pet_mate_images/" + secondImagePath;
     }
 
     public String getThirdImagePath() {
@@ -64,7 +66,7 @@ public class PetMateListItems {
     }
 
     public void setThirdImagePath(String thirdImagePath) {
-        this.thirdImagePath = ImageURLInstance.getUrl()+"pet_mate_images/"+thirdImagePath;
+        this.thirdImagePath = ImageURLInstance.getUrl()+"pet_mate_images/" + thirdImagePath;
     }
 
     public String getPetMateBreed() {
@@ -75,21 +77,6 @@ public class PetMateListItems {
         this.petMateBreed = petMateBreed;
     }
 
-    public String getListId() {
-        return listId;
-    }
-    public void setListId(String listId) {
-        this.listId = listId;
-    }
-
-    public String getPetMatePostOwner() {
-        return petMatePostOwner;
-    }
-    public void setPetMatePostOwner(String petMatePostOwner) {
-        this.petMatePostOwner = petMatePostOwner;
-    }
-
-
     public String getPetMateCategory() {
         return petMateCategory;
     }
@@ -97,6 +84,7 @@ public class PetMateListItems {
     public void setPetMateCategory(String petMateCategory) {
         this.petMateCategory = petMateCategory;
     }
+
 
     public String getPetMateAgeInMonth() {
         return petMateAgeInMonth;
@@ -144,13 +132,5 @@ public class PetMateListItems {
 
     public void setPetMatePostOwnerEmail(String petMatePostOwnerEmail) {
         this.petMatePostOwnerEmail = petMatePostOwnerEmail;
-    }
-
-    public String getPetMatePostOwnerMobileNo() {
-        return petMatePostOwnerMobileNo;
-    }
-
-    public void setPetMatePostOwnerMobileNo(String petMatePostOwnerMobileNo) {
-        this.petMatePostOwnerMobileNo = petMatePostOwnerMobileNo;
     }
 }

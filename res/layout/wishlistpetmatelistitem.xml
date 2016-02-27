@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:card_view="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+
+    <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res/com.couragedigital.petapp"
+            android:id="@+id/wishlistPetMateCardview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            card_view:cardCornerRadius="2dp"
+            card_view:cardElevation="2dp">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/wishlistPetMateImageAndTittleContentLayout">
+
+                <RelativeLayout
+                        android:id="@+id/wishlistPetMateImageLayout"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp">
+
+                    <com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView
+                            android:id="@+id/wishlistPetMateImage"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerCrop"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="17dp"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                        android:id="@+id/wishlistPetMateContentLayout"
+                        android:layout_width="fill_parent"
+                        android:layout_height="120dp"
+                        android:layout_toRightOf="@+id/wishlistPetMateImageLayout">
+
+                    <TextView
+                            android:id="@+id/wishlistPetMateBreed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginLeft="16dp"
+                            android:textSize="@dimen/petName"
+                            android:textStyle="bold"
+                            android:textColor="@color/list_pet_origin_text_color"
+                            android:ellipsize="end"/>
+
+                </RelativeLayout>
+            </RelativeLayout>
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/wishlistPetMateListDescriptionLayout"
+                            android:layout_below="@+id/wishlistPetMateImageAndTittleContentLayout">
+
+                <com.couragedigital.petapp.ExpandableText
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/wishlistPetMateListDescription"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:text="This is owner Description"
+                        android:ellipsize="end"/>
+            </RelativeLayout>
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:id="@+id/wishlistPetMateDividerLine"
+                    android:layout_below="@+id/wishlistPetMateListDescriptionLayout"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"/>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:id="@+id/petMateDetailsLinearLayoutThree"
+                          android:layout_below="@+id/wishlistPetMateDividerLine"
+                          android:layout_marginTop="4dp">
+
+                <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/wishlistPetMateDelete"
+                        android:background="@android:color/transparent"
+                        android:text="delete"
+                        android:textColor="#CF3E3E"
+                        android:textSize="14sp"
+                        android:layout_weight="1"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

@@ -1,49 +1,49 @@
 package com.couragedigital.petapp.model;
 
+
 import com.couragedigital.petapp.Singleton.ImageURLInstance;
 
-import java.util.Date;
-
-public class PetListItems {
+public class WishListPetListItem {
+    public Integer id;
     public String firstImagePath;
     public String secondImagePath;
     public String thirdImagePath;
     public String petBreed;
-    public String petPostOwner;
     public String listingType;
     public String petCategory;
-    public String petAge;
+    //    public String petAge;
     public String petAgeInMonth;
     public String petAgeInYear;
-
     public String petGender;
     public String petDescription;
     public String petPostDate;
     public String petPostOwnerEmail;
-    public String petPostOwnerMobileNo;
-    public String listId;
 
-
-    public PetListItems() {
+    public WishListPetListItem() {
     }
 
-    public PetListItems(String listId, String firstImagePath, String secondImagePath, String thirdImagePath, String petBreed, String petPostOwner, String listingType, String petCategory,String petAgeInMonth, String petAgeInYear, String petGender, String petDescription, String petPostDate, String petPostOwnerEmail, String petPostOwnerMobileNo) {
-        this.listId = listId;
+    public WishListPetListItem(Integer id, String firstImagePath, String secondImagePath, String thirdImagePath, String petBreed, String petPostOwner, String listingType, String petCategory, String petAgeInMonth, String petAgeInYear, String petGender, String petDescription, String petPostDate, String petPostOwnerEmail, String petPostOwnerMobileNo) {
+        this.id = id;
         this.firstImagePath = firstImagePath;
         this.secondImagePath = secondImagePath;
         this.thirdImagePath = thirdImagePath;
         this.petBreed = petBreed;
-        this.petPostOwner = petPostOwner;
         this.listingType = listingType;
         this.petCategory = petCategory;
-        //this.petAge = petAge;
         this.petAgeInMonth = petAgeInMonth;
         this.petAgeInYear = petAgeInYear;
         this.petGender = petGender;
         this.petDescription = petDescription;
         this.petPostDate = petPostDate;
         this.petPostOwnerEmail = petPostOwnerEmail;
-        this.petPostOwnerMobileNo = petPostOwnerMobileNo;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstImagePath() {
@@ -51,7 +51,7 @@ public class PetListItems {
     }
 
     public void setFirstImagePath(String firstImagePath) {
-        this.firstImagePath = ImageURLInstance.getUrl()+"pet_images/"+firstImagePath;
+        this.firstImagePath = ImageURLInstance.getUrl()+"pet_images/" + firstImagePath;
     }
 
     public String getSecondImagePath() {
@@ -59,7 +59,7 @@ public class PetListItems {
     }
 
     public void setSecondImagePath(String secondImagePath) {
-        this.secondImagePath = ImageURLInstance.getUrl()+"pet_images/"+secondImagePath;
+        this.secondImagePath = ImageURLInstance.getUrl()+"pet_images/" + secondImagePath;
     }
 
     public String getThirdImagePath() {
@@ -67,14 +67,7 @@ public class PetListItems {
     }
 
     public void setThirdImagePath(String thirdImagePath) {
-        this.thirdImagePath = ImageURLInstance.getUrl()+"pet_images/"+thirdImagePath;
-    }
-
-    public String getListId() {
-        return listId;
-    }
-    public void setListId(String listId) {
-        this.listId = listId;
+        this.thirdImagePath = ImageURLInstance.getUrl()+"pet_images/" + thirdImagePath;
     }
 
     public String getPetBreed() {
@@ -83,14 +76,6 @@ public class PetListItems {
 
     public void setPetBreed(String petBreed) {
         this.petBreed = petBreed;
-    }
-
-    public String getPetPostOwner() {
-        return petPostOwner;
-    }
-
-    public void setPetPostOwner(String petPostOwner) {
-        this.petPostOwner = petPostOwner;
     }
 
     public String getListingType() {
@@ -108,7 +93,6 @@ public class PetListItems {
     public void setPetCategory(String petCategory) {
         this.petCategory = petCategory;
     }
-
     public String getPetAgeInMonth() {
         return petAgeInMonth;
     }
@@ -124,7 +108,6 @@ public class PetListItems {
     public void setPetAgeInYear(String petAgeInYear) {
         this.petAgeInYear = petAgeInYear;
     }
-
 
     public String getPetGender() {
         return petGender;
@@ -157,15 +140,4 @@ public class PetListItems {
     public void setPetPostOwnerEmail(String petPostOwnerEmail) {
         this.petPostOwnerEmail = petPostOwnerEmail;
     }
-
-    public String getPetPostOwnerMobileNo() {
-        return petPostOwnerMobileNo;
-    }
-
-    public void setPetPostOwnerMobileNo(String petPostOwnerMobileNo) {
-        this.petPostOwnerMobileNo = petPostOwnerMobileNo;
-    }
-
-
-
 }

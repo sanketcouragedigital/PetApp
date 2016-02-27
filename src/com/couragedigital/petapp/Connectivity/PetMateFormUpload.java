@@ -24,7 +24,7 @@ public class PetMateFormUpload {
     //http://192.168.0.3/PetAppAPI/api/petappapi.php
     //http://storage.couragedigital.com/dev/api/petappapi.php
 
-    public static void uploadToRemoteServer(String emailforlatlong, String petCategoryName, String petBreedName,String petMateAgeMonthSpinner,String petMateAgeYearSpinner, String petGender, String petDescription, String firstImagePath, String secondImagePath, String thirdImagePath, PetMate petMate) throws Exception {
+    public static void uploadToRemoteServer(String emailforlatlong, String petCategoryName, String petBreedName,String petMateAgeMonthSpinner,String petMateAgeYearSpinner, String petGender, String petDescription, String firstImagePath, String secondImagePath, String thirdImagePath, String txtAlternateNo, PetMate petMate) throws Exception {
 
         petMateActivity = petMate;
         context = petMate.getApplicationContext();
@@ -40,6 +40,7 @@ public class PetMateFormUpload {
         String secondPetImage = secondImagePath;
         String thirdPetImage = thirdImagePath;
         String email = emailforlatlong;
+        String alternateNo=txtAlternateNo;
         String method = "savePetMateDetails";
         String format = "json";
 
@@ -67,6 +68,7 @@ public class PetMateFormUpload {
         stringPart.put("genderOfPet", genderOfPet);
         stringPart.put("descriptionOfPet", descriptionOfPet);
         stringPart.put("email", email);
+        stringPart.put("alternateNo", alternateNo);
         stringPart.put("method", method);
         stringPart.put("format", format);
 

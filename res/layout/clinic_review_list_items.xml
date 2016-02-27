@@ -7,7 +7,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/reviewLayout"
-            android:background="#FFFFFF">
+            android:background="#FFFFFF"
+            >
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -49,7 +50,8 @@
                 android:text="Medium Text"
                 android:id="@+id/usersName"
                 android:layout_alignTop="@+id/userNameLabel"
-                android:layout_alignStart="@+id/ratingNos"/>
+                android:layout_alignStart="@+id/ratingNos"
+                android:layout_marginBottom="16dp"/>
 
     </RelativeLayout>
     <View

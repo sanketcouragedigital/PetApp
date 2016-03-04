@@ -8,44 +8,64 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.couragedigital.petapp.Singleton.UserPetListWishList;
 import com.couragedigital.petapp.app.AppController;
 import com.couragedigital.petapp.model.PetListItems;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PetFetchList {
 
     private static final String TAG = PetFetchList.class.getSimpleName();
+    private static ArrayList<String> wishListPetListId = new ArrayList<String>();
+    private static  int checkRequestState;
 
-    public static List petFetchList(List<PetListItems> petLists, RecyclerView.Adapter adapter, String url, ProgressDialog progressDialog) {
+    public static List petFetchList(List<PetListItems> petLists, RecyclerView.Adapter adapter, String url,int requestState,ProgressDialog progressDialog) {
+        checkRequestState=requestState;
         JsonObjectRequest petListReq = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+
+                            if (checkRequestState == 0) {
+                                JSONArray wishListjsonArray = response.getJSONArray("showWishListResponse");
+
+                                for (int i = 0; i < wishListjsonArray.length(); i++) {
+                                    try {
+                                        JSONObject obj = wishListjsonArray.getJSONObject(i);
+                                        String item = (obj.getString("listId"));
+                                        wishListPetListId.add(item);
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                                UserPetListWishList userPetListWishList = new UserPetListWishList();
+                                userPetListWishList.setPetListId(wishListPetListId);
+                                checkRequestState=1;
+                            }
                             JSONArray jsonArray = response.getJSONArray("showPetDetailsResponse");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 try {
-
                                     JSONObject obj = jsonArray.getJSONObject(i);
                                     PetListItems petListItems = new PetListItems();
                                     petListItems.setListId(obj.getString("id"));
                                     petListItems.setPetBreed(replaceSpecialChars(obj.getString("pet_breed")));
                                     petListItems.setPetPostOwner(replaceSpecialChars(obj.getString("name")));
                                     petListItems.setFirstImagePath(obj.getString("first_image_path"));
-                                    if(!obj.getString("second_image_path").isEmpty() && obj.getString("second_image_path") != null) {
+                                    if (!obj.getString("second_image_path").isEmpty() && obj.getString("second_image_path") != null) {
                                         petListItems.setSecondImagePath(obj.getString("second_image_path"));
                                     }
-                                    if(!obj.getString("third_image_path").isEmpty() && obj.getString("third_image_path") != null) {
+                                    if (!obj.getString("third_image_path").isEmpty() && obj.getString("third_image_path") != null) {
                                         petListItems.setThirdImagePath(obj.getString("third_image_path"));
                                     }
-                                    if(!obj.getString("pet_adoption").equals("")) {
+                                    if (!obj.getString("pet_adoption").equals("")) {
                                         petListItems.setListingType(replaceSpecialChars(obj.getString("pet_adoption")));
-                                    }
-                                    else if(!obj.getString("pet_price").equals("")) {
+                                    } else if (!obj.getString("pet_price").equals("")) {
                                         petListItems.setListingType(replaceSpecialChars(obj.getString("pet_price")));
                                     }
                                     petListItems.setPetCategory(replaceSpecialChars(obj.getString("pet_category")));
@@ -66,6 +86,7 @@ public class PetFetchList {
                                 }
 
                             }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

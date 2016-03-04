@@ -1,6 +1,7 @@
 package com.couragedigital.petapp;
 
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -28,7 +29,6 @@ public class WishListPetListTab extends Fragment {
 
     String urlForFetch;
     List<WishListPetListItem> wishlistPetArrayList = new ArrayList<WishListPetListItem>();
-
     private String url = URLInstance.getUrl();
 
     int current_page = 1;
@@ -78,15 +78,12 @@ public class WishListPetListTab extends Fragment {
 
     private void grabURL(String url) {
         new FetchListFromServer().execute(url);
-
     }
-
     private class FetchListFromServer extends AsyncTask<String, String, String> {
         @Override
         protected String doInBackground(String... url) {
             try {
                 urlForFetch = url[0];
-
                 WishListPetFetchList.wishListPetFetchList(wishlistPetArrayList, adapter, urlForFetch);
             } catch (Exception e) {
                 e.printStackTrace();

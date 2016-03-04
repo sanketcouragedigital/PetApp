@@ -18,10 +18,8 @@ public class WishListPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int i) {
         if (i == 0) {
-
             WishListPetListTab viewPetTab = new WishListPetListTab();
             return viewPetTab;
-
         } else if (i == 1) {
             WishListPetMateListTab petMateTab= new WishListPetMateListTab();
             return petMateTab;

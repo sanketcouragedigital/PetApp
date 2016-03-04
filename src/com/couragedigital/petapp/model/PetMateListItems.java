@@ -17,8 +17,7 @@ public class PetMateListItems {
     public String petMatePostDate;
     public String petMatePostOwnerEmail;
     public String petMatePostOwnerMobileNo;
-    public String listId;
-
+public String listId;
 
 
     public PetMateListItems() {
@@ -26,8 +25,7 @@ public class PetMateListItems {
 
     public PetMateListItems(String listId, String firstImagePath, String secondImagePath, String thirdImagePath, String petMateBreed, String petMatePostOwner, String petMateCategory,String petMateAgeInMonth,
                                     String petMateAgeInYear, String petMateGender, String petMateDescription, String petMatePostDate, String petMatePostOwnerEmail, String petMatePostOwnerMobileNo) {
-
-        this.listId = listId;
+		this.listId = listId;
         this.firstImagePath = firstImagePath;
         this.secondImagePath = secondImagePath;
         this.thirdImagePath = thirdImagePath;
@@ -74,21 +72,20 @@ public class PetMateListItems {
     public void setPetMateBreed(String petMateBreed) {
         this.petMateBreed = petMateBreed;
     }
-
-    public String getListId() {
+	
+  public String getListId() {
         return listId;
     }
     public void setListId(String listId) {
         this.listId = listId;
     }
-
     public String getPetMatePostOwner() {
         return petMatePostOwner;
     }
+
     public void setPetMatePostOwner(String petMatePostOwner) {
         this.petMatePostOwner = petMatePostOwner;
     }
-
 
     public String getPetMateCategory() {
         return petMateCategory;

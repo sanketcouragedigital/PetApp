@@ -153,16 +153,22 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.ViewHolder
                 Intent gotomylisting = new Intent(v.getContext(), MyListing.class);
                 v.getContext().startActivity(gotomylisting);
             } else if (this.getAdapterPosition() == 3) {
+                drawer.closeDrawers();
+                Intent gotoWishList = new Intent(v.getContext(), WishList.class);
+                v.getContext().startActivity(gotoWishList);
+            }
+
+            else if (this.getAdapterPosition() == 4) {
                 Intent gotofeedback = new Intent(v.getContext(), Feedback.class);
                 v.getContext().startActivity(gotofeedback);
-            } else if (this.getAdapterPosition() == 4) {
+            } else if (this.getAdapterPosition() == 5) {
                 drawer.closeDrawers();
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
                 String sharingText = "I want to share this text.";
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, sharingText);
                 v.getContext().startActivity(Intent.createChooser(sharingIntent, "Share using"));
-            } else if (this.getAdapterPosition() == 5) {
+            } else if (this.getAdapterPosition() == 6) {
                 sessionManager = new SessionManager(v.getContext());
                 sessionManager.logoutUser();
             }

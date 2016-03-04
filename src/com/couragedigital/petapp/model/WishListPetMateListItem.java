@@ -15,6 +15,7 @@ public class WishListPetMateListItem {
     public String petMateDescription;
     public String petMatePostDate;
     public String petMatePostOwnerEmail;
+    public String alternateNo;
 
 
     public WishListPetMateListItem() {
@@ -22,7 +23,7 @@ public class WishListPetMateListItem {
     }
 
     public WishListPetMateListItem(int id, String firstImagePath, String secondImagePath, String thirdImagePath, String petMateBreed, String petMatePostOwner,
-                                    String petMateCategory, String petMateAgeInMonth, String petMateAgeInYear, String petMateGender, String petMateDescription, String petMatePostDate, String petMatePostOwnerEmail, String petMatePostOwnerMobileNo) {
+                                    String petMateCategory, String petMateAgeInMonth, String petMateAgeInYear, String petMateGender, String petMateDescription, String petMatePostDate, String petMatePostOwnerEmail,String alternateNo,String petMatePostOwnerMobileNo) {
         this.id = id;
         this.firstImagePath = firstImagePath;
         this.secondImagePath = secondImagePath;
@@ -35,6 +36,7 @@ public class WishListPetMateListItem {
         this.petMateDescription = petMateDescription;
         this.petMatePostDate = petMatePostDate;
         this.petMatePostOwnerEmail = petMatePostOwnerEmail;
+        this.alternateNo = alternateNo;
     }
 
     public int getId() {
@@ -132,5 +134,12 @@ public class WishListPetMateListItem {
 
     public void setPetMatePostOwnerEmail(String petMatePostOwnerEmail) {
         this.petMatePostOwnerEmail = petMatePostOwnerEmail;
+    }
+    public String getAlternateNo() {
+        return alternateNo;
+    }
+
+    public void setAlternateNo(String alternateNo) {
+        this.alternateNo = alternateNo;
     }
 }

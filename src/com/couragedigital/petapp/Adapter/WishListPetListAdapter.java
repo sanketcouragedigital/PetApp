@@ -1,5 +1,6 @@
 package com.couragedigital.petapp.Adapter;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
@@ -9,16 +10,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
-import com.couragedigital.petapp.Connectivity.MyListingPetListDelete;
+import com.couragedigital.petapp.*;
+import com.couragedigital.petapp.Connectivity.WishListPetListDelete;
 import com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView;
-import com.couragedigital.petapp.ExpandableText;
-import com.couragedigital.petapp.MyListingModifyPetDetails;
-import com.couragedigital.petapp.MyListingPetListDetails;
-import com.couragedigital.petapp.R;
+import com.couragedigital.petapp.SessionManager.SessionManager;
 import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.app.AppController;
 import com.couragedigital.petapp.model.WishListPetListItem;
 
+
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -27,10 +28,11 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;
     ViewHolder viewHolder;
-
+    String petListId;
+    String email;
+    ProgressDialog progressDialog = null;
     public WishListPetListAdapter() {
     }
-
     public WishListPetListAdapter(List<WishListPetListItem> petLists) {
         this.wishListPetListItem = petLists;
     }
@@ -64,19 +66,15 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
         return petListingTypeString;
     }
 
-
-
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public RoundedNetworkImageView petImage;
         public TextView petBreed;
         public TextView petAdoptOrSell;
-        public Button modify;
         public Button deletebutton;
         public View dividerLine;
         public ExpandableText wishlistPetListDescription;
         public View cardView;
-
         private WishListPetListItem wishListPetListItem;
 
         int statusOfFavourite = 0;
@@ -89,24 +87,19 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
             petImage = (RoundedNetworkImageView) itemView.findViewById(R.id.wishlistViewImage);
             petBreed = (TextView) itemView.findViewById(R.id.wishlistViewBreed);
             petAdoptOrSell = (TextView) itemView.findViewById(R.id.wishlistPetAdoptOrSell);
-            //modify = (Button) itemView.findViewById(R.id.wishlistPetListModifyButton);
             dividerLine = itemView.findViewById(R.id.wishlistDividerLine);
             deletebutton = (Button) itemView.findViewById(R.id.wishlistPetListDelete);
             wishlistPetListDescription = (ExpandableText) itemView.findViewById(R.id.wishlistPetListDescription);
 
             cardView = itemView;
             cardView.setOnClickListener(this);
-            modify.setOnClickListener(this);
             deletebutton.setOnClickListener(this);
         }
-
         public void bindPetList(WishListPetListItem wishListPetListItem) {
             this.wishListPetListItem = wishListPetListItem;
             petImage.setImageUrl(wishListPetListItem.getFirstImagePath(), imageLoader);
             petBreed.setText(wishListPetListItem.getPetBreed());
             wishlistPetListDescription.setText(wishListPetListItem.getPetDescription());
-
-            modify.setText("Modify");
             deletebutton.setText("Delete");
             petAdoptOrSell.setText(setListingType(wishListPetListItem));
             dividerLine.setBackgroundResource(R.color.list_internal_divider);
@@ -116,56 +109,54 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
 
         @Override
         public void onClick(View v) {
-            /*if (v.getId() == R.id.myListingPetListModifyButton) {
-                //Toast.makeText(v.getContext(),"you clicked on Modify Button",Toast.LENGTH_LONG).show();
-                Intent gotoEditPetList = new Intent(v.getContext(), MyListingModifyPetDetails.class);
-                gotoEditPetList.putExtra("ID",wishListPetListItem.getId());
-                gotoEditPetList.putExtra("PET_CATEGORY",wishListPetListItem.getPetCategory());
-                gotoEditPetList.putExtra("PET_BREED", wishListPetListItem.getPetBreed());
-                gotoEditPetList.putExtra("PET_AGE_IN_MONTH", wishListPetListItem.getPetAgeInMonth());
-                gotoEditPetList.putExtra("PET_AGE_IN_YEAR", wishListPetListItem.getPetAgeInYear());
-                gotoEditPetList.putExtra("PET_GENDER", wishListPetListItem.getPetGender());
-                gotoEditPetList.putExtra("PET_LISTING_TYPE",wishListPetListItem.getListingType());
-                gotoEditPetList.putExtra("PET_DESCRIPTION", wishListPetListItem.getPetDescription());
-                v.getContext().startActivity(gotoEditPetList);
-            } else */ if (v.getId() == R.id.wishlistPetListDelete) {
+            if (v.getId() == R.id.wishlistPetListDelete) {
+                SessionManager sessionManager = new SessionManager(v.getContext());
+                HashMap<String, String> user = sessionManager.getUserDetails();
+                email = user.get(SessionManager.KEY_EMAIL);
+                petListId= String.valueOf(wishListPetListItem.getId());
+
                 if (this.wishListPetListItem != null) {
-                    String url = URLInstance.getUrl();
-                    int id = wishListPetListItem.getId();
-                    String email = wishListPetListItem.getPetPostOwnerEmail();
-                    url = url + "?method=deleteMyListingPetList&format=json&id=" + id + "&email=" + email + "";
-                    new DeletePetListFromServer().execute(url);
+//                    String url = URLInstance.getUrl();
+//                    int id = wishListPetListItem.getId();
+//                    String email = wishListPetListItem.getPetPostOwnerEmail();
+//                    url = url + "?method=deleteWishListPetList&format=json&id=" + id + "&email=" + email + "";
+                    new DeletePetListFromServer().execute();
                     deletebutton.setText("Deleted");
                     deletebutton.setEnabled(false);
-                    modify.setEnabled(false);
+//                    try {
+//                        WishListPetListDelete.deleteWishListPetListFromServer(email,petListId);
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                        progressDialog.dismiss();
+//                    }
                 }
             } else {
                 if (this.wishListPetListItem != null) {
-                    Intent myListingpetdetail = new Intent(v.getContext(), MyListingPetListDetails.class);
-                    myListingpetdetail.putExtra("PET_FIRST_IMAGE", wishListPetListItem.getFirstImagePath());
-                    myListingpetdetail.putExtra("PET_SECOND_IMAGE", wishListPetListItem.getSecondImagePath());
-                    myListingpetdetail.putExtra("PET_THIRD_IMAGE", wishListPetListItem.getThirdImagePath());
-                    myListingpetdetail.putExtra("PET_BREED", wishListPetListItem.getPetBreed());
-                    myListingpetdetail.putExtra("PET_LISTING_TYPE", wishListPetListItem.getListingType());
-                    myListingpetdetail.putExtra("PET_AGE_IN_MONTH", wishListPetListItem.getPetAgeInMonth());
-                    myListingpetdetail.putExtra("PET_AGE_IN_YEAR", wishListPetListItem.getPetAgeInYear());
-                    myListingpetdetail.putExtra("PET_GENDER", wishListPetListItem.getPetGender());
-                    myListingpetdetail.putExtra("PET_DESCRIPTION", wishListPetListItem.getPetDescription());
+                    Intent wishListPetDetail = new Intent(v.getContext(), WishListPetListDetails.class);
+                    wishListPetDetail.putExtra("ID", wishListPetListItem.getId());
+                    wishListPetDetail.putExtra("PET_FIRST_IMAGE", wishListPetListItem.getFirstImagePath());
+                    wishListPetDetail.putExtra("PET_SECOND_IMAGE", wishListPetListItem.getSecondImagePath());
+                    wishListPetDetail.putExtra("PET_THIRD_IMAGE", wishListPetListItem.getThirdImagePath());
+                    wishListPetDetail.putExtra("PET_BREED", wishListPetListItem.getPetBreed());
+                    wishListPetDetail.putExtra("PET_LISTING_TYPE", wishListPetListItem.getListingType());
+                    wishListPetDetail.putExtra("PET_AGE_IN_MONTH", wishListPetListItem.getPetAgeInMonth());
+                    wishListPetDetail.putExtra("PET_AGE_IN_YEAR", wishListPetListItem.getPetAgeInYear());
+                    wishListPetDetail.putExtra("PET_GENDER", wishListPetListItem.getPetGender());
+                    wishListPetDetail.putExtra("PET_DESCRIPTION", wishListPetListItem.getPetDescription());
+                    wishListPetDetail.putExtra("ALTERNATE_NO", wishListPetListItem.getAlternateNo());
 
-                    v.getContext().startActivity(myListingpetdetail);
+                    v.getContext().startActivity(wishListPetDetail);
                 }
             }
         }
 
         public class DeletePetListFromServer extends AsyncTask<String, String, String> {
-
-            String urlForFetch;
-
+            //String urlForFetch;
             @Override
             protected String doInBackground(String... url) {
                 try {
-                    urlForFetch = url[0];
-                    MyListingPetListDelete.deleteFromRemoteServer(urlForFetch, v);
+                    //urlForFetch = url[0];
+                    WishListPetListDelete.deleteWishListPetListFromServer(email,petListId);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

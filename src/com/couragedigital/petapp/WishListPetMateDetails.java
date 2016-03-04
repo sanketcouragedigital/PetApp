@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.NetworkOnMainThreadException;
 import android.os.StrictMode;
@@ -14,6 +15,7 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.couragedigital.petapp.model.MyListingPetMateListItem;
@@ -32,6 +34,7 @@ public class WishListPetMateDetails extends AppCompatActivity implements View.On
     String ageInYear = "";
     String gender = "";
     String description = "";
+    String alternateNo = "";
 
     TextView wlPetMateDetailsImageText;
     View wlPetMateDetailsImagesDividerLine;
@@ -45,6 +48,7 @@ public class WishListPetMateDetails extends AppCompatActivity implements View.On
     TextView wlPetMateGender;
     TextView wlPetMateDescription;
     View wlPetMateDetailsContentDividerLine;
+    Button wlPetListalternateNo;
 
     Bitmap wlPetMateDetailsbitmap;
     Toolbar wlPetMateDetailstoolbar;
@@ -71,6 +75,7 @@ public class WishListPetMateDetails extends AppCompatActivity implements View.On
             ageInYear = intent.getStringExtra("PET_MATE_IN_YEAR");
             gender = intent.getStringExtra("PET_MATE_GENDER");
             description = intent.getStringExtra("PET_MATE_DESCRIPTION");
+            alternateNo=intent.getStringExtra("ALTERNATE_NO");
         }
 
         wlPetMateDetailstoolbar = (Toolbar) findViewById(R.id.wishlistPetMateDetailsToolbar);
@@ -104,10 +109,12 @@ public class WishListPetMateDetails extends AppCompatActivity implements View.On
         wlPetMateGender = (TextView) findViewById(R.id.wishlistPetMateGenderInPetDetails);
         wlPetMateDescription = (TextView) findViewById(R.id.wishlistPetMateDescriptionInPetDetails);
         wlPetMateDetailsContentDividerLine = findViewById(R.id.wishlistPetMateDetailsContentDividerLine);
+        wlPetListalternateNo =(Button) findViewById(R.id.pmWishListCallButton);
 
         wlPetMateDetailsFirstImageThumbnail.setOnClickListener(this);
         wlPetMateDetailsSecondImageThumbnail.setOnClickListener(this);
         wlPetMateDetailsThirdImageThumbnail.setOnClickListener(this);
+        wlPetListalternateNo.setOnClickListener(this);
 
         wlPetMateDetailsbitmap = getBitmapImageFromURL(firstImagePath);
         wlPetMateImage.setImageBitmap(wlPetMateDetailsbitmap);
@@ -205,6 +212,10 @@ public class WishListPetMateDetails extends AppCompatActivity implements View.On
         } else if (v.getId() == R.id.wishlistPetMateDetailsThirdImageThumbnail) {
             wlPetMateDetailsbitmap = getBitmapImageFromURL(thirdImagePath);
             wlPetMateImage.setImageBitmap(wlPetMateDetailsbitmap);
+        } else if (v.getId() == R.id.pmWishListCallButton) {
+            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+            callIntent.setData(Uri.parse("tel:" + alternateNo));
+            startActivity(callIntent);
         }
     }
 

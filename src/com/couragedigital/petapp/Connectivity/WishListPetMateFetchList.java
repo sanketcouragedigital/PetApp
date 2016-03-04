@@ -30,7 +30,6 @@ public class WishListPetMateFetchList {
                                     JSONObject obj = jsonArray.getJSONObject(i);
                                     WishListPetMateListItem wishListPetMateListItem = new WishListPetMateListItem();
                                     wishListPetMateListItem.setId(obj.getInt("id"));
-                                    wishListPetMateListItem.setPetMateBreed(replaceSpecialChars(obj.getString("pet_breed")));
                                     wishListPetMateListItem.setFirstImagePath(obj.getString("first_image_path"));
                                     if(!obj.getString("second_image_path").isEmpty() && obj.getString("second_image_path") != null) {
                                         wishListPetMateListItem.setSecondImagePath(obj.getString("second_image_path"));
@@ -39,13 +38,14 @@ public class WishListPetMateFetchList {
                                         wishListPetMateListItem.setThirdImagePath(obj.getString("third_image_path"));
                                     }
                                     wishListPetMateListItem.setPetMateCategory(replaceSpecialChars(obj.getString("pet_category")));
+                                    wishListPetMateListItem.setPetMateBreed(replaceSpecialChars(obj.getString("pet_breed")));
                                     wishListPetMateListItem.setPetMateAgeInMonth(obj.getString("pet_age_inMonth"));
                                     wishListPetMateListItem.setPetMateAgeInYear(obj.getString("pet_age_inYear"));
                                     wishListPetMateListItem.setPetMateGender(replaceSpecialChars(obj.getString("pet_gender")));
                                     wishListPetMateListItem.setPetMateDescription(replaceSpecialChars(obj.getString("pet_description")));
                                     wishListPetMateListItem.setPetMatePostDate(obj.getString("post_date"));
-                                    wishListPetMateListItem.setPetMatePostOwnerEmail(replaceSpecialChars(obj.getString("email")));
-
+                                   // wishListPetMateListItem.setPetMatePostOwnerEmail(replaceSpecialChars(obj.getString("email")));
+                                    wishListPetMateListItem.setAlternateNo(obj.getString("alternateNo"));
 
                                     // adding pet to pets array
                                     petMateLists.add(wishListPetMateListItem);

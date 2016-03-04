@@ -20,17 +20,17 @@ import java.util.Map;
 public class WishListPetListAdd {
     private static Context context = null;
     private static String petlistId;
-    private static String useremail;
+    private static String email;
     private static String method;
     private static String format;
     private static String addPetWishList;
     private Response.Listener<JSONObject> listener;
     private Map<String, String> params;
 
-    public static String addPetListToWishList( String email,String petListId) throws Exception {
+    public static String addPetListToWishList( String useremail,String petListId) throws Exception {
         method = "saveWishListForPetList";
         format = "json";
-        useremail = email;
+        email= useremail;
         petlistId = petListId;
         final String URL = URLInstance.getUrl();
         //final String URL = "http://192.168.0.6/PetAppAPI/api/petappapi.php";
@@ -38,8 +38,8 @@ public class WishListPetListAdd {
         try {
             params.put("method", method);
             params.put("format", format);
-            params.put("email", useremail);
-            params.put("listId", petlistId);
+            params.put("userEmail", email);
+            params.put("petListId", petlistId);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -48,12 +48,12 @@ public class WishListPetListAdd {
                     @Override
                     public void onResponse(JSONObject response) {
                         VolleyLog.v("Response:%n %s", response.toString());
-                        EditProfile editProfile = new EditProfile();
-                        try {
-                            returnResponse(response.getString("savePetWishListResponse"));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        PetList petList = new PetList();
+//                        try {
+//                            returnResponse(response.getString("savePetWishListResponse"));
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -70,15 +70,15 @@ public class WishListPetListAdd {
         this.context = context;
     }
 
-    public static void returnResponse(String response) {
-        if (response.equals("LIST_ADDED_SUCCESSFULLY")) {
-            Toast.makeText(context, "Successfully AddedTto Wishlist .", Toast.LENGTH_SHORT).show();
-            Intent gotoPetListPage = new Intent(context, PetList.class);
-            context.startActivity(gotoPetListPage);
-        } else if (response.equals("ERROR")) {
-            Toast.makeText(context, "Please Try Again", Toast.LENGTH_SHORT).show();
-            Intent gotopetistage = new Intent(context, PetList.class);
-            context.startActivity(gotopetistage);
-        }
-    }
+//    public static void returnResponse(String response) {
+//        if (response.equals("LIST_ADDED_SUCCESSFULLY")) {
+//            Toast.makeText(context, "Successfully AddedTto Wishlist .", Toast.LENGTH_SHORT).show();
+//            Intent gotoPetListPage = new Intent(context, PetList.class);
+//            context.startActivity(gotoPetListPage);
+//        } else if (response.equals("ERROR")) {
+//            Toast.makeText(context, "Please Try Again", Toast.LENGTH_SHORT).show();
+//            Intent gotopetistage = new Intent(context, PetList.class);
+//            context.startActivity(gotopetistage);
+//        }
+//    }
 }

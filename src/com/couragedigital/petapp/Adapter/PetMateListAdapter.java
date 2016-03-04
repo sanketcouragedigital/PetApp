@@ -1,5 +1,6 @@
 package com.couragedigital.petapp.Adapter;
-
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,17 +9,19 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.android.volley.toolbox.ImageLoader;
-import com.couragedigital.petapp.Connectivity.WishListPetListAdd;
 import com.couragedigital.petapp.Connectivity.WishListPetMateListAdd;
+import com.couragedigital.petapp.Connectivity.WishListPetMateListDelete;
 import com.couragedigital.petapp.ExpandableText;
 import com.couragedigital.petapp.PetMateListDetails;
 import com.couragedigital.petapp.SessionManager.SessionManager;
+import com.couragedigital.petapp.Singleton.UserPetMateListWishList;
 import com.couragedigital.petapp.model.PetMateListItems;
 import com.couragedigital.petapp.R;
 import com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView;
 import com.couragedigital.petapp.app.AppController;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,10 +30,11 @@ public class PetMateListAdapter extends RecyclerView.Adapter<PetMateListAdapter.
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;
     ViewHolder viewHolder;
-    String petListId;
+	String petMateListId;
     String email;
     SessionManager sessionManager;
-
+	ProgressDialog progressDialog = null;
+    private Context Context;
     public PetMateListAdapter(List<PetMateListItems> petMateLists) {
         this.petMateLists = petMateLists;
     }
@@ -71,6 +75,9 @@ public class PetMateListAdapter extends RecyclerView.Adapter<PetMateListAdapter.
         int statusOfFavourite = 0;
         private PetMateListItems petMateListItems;
 
+		public ArrayList<String> wlPetMateListIdArray;
+        public String PetMateListIdWishList;
+        UserPetMateListWishList userPetMateListWishList= new UserPetMateListWishList();
         public ViewHolder(View itemView) {
             super(itemView);
             if (imageLoader == null) {
@@ -92,6 +99,14 @@ public class PetMateListAdapter extends RecyclerView.Adapter<PetMateListAdapter.
 
         public void bindPetList(PetMateListItems petMateListItems) {
             this.petMateListItems = petMateListItems;
+				wlPetMateListIdArray = userPetMateListWishList.getPetMateListId();
+            PetMateListIdWishList = petMateListItems.getListId();
+
+            if(wlPetMateListIdArray.contains(PetMateListIdWishList) ){
+                petFavourite.setBackgroundResource(R.drawable.favourite_enable);
+            }else{
+                petFavourite.setBackgroundResource(R.drawable.favourite_disable);
+            }
             petMateImage.setImageUrl(petMateListItems.getFirstImagePath(), imageLoader);
             petMateBreed.setText(petMateListItems.getPetMateBreed());
             petMatePostOwner.setText("Posted By : " + petMateListItems.getPetMatePostOwner());
@@ -110,27 +125,32 @@ public class PetMateListAdapter extends RecyclerView.Adapter<PetMateListAdapter.
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, sharingText);
                 v.getContext().startActivity(Intent.createChooser(sharingIntent, "Share using"));
             }  else if (v.getId() == R.id.petMateFavourite) {
-//                HashMap<String, String> user = sessionManager.getUserDetails();
-//                email = user.get(SessionManager.KEY_EMAIL);
-//
-//                petListId=petMateListItems.getListId();
-//                try {
-//                    WishListPetMateListAdd.addPetMateListToWishList(petListId,email);
-//
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
+				SessionManager sessionManager = new SessionManager(v.getContext());
+                HashMap<String, String> user = sessionManager.getUserDetails();
+                email = user.get(SessionManager.KEY_EMAIL);
+                petMateListId=petMateListItems.getListId();
                 if (statusOfFavourite == 0) {
                     petMateFavourite.setBackgroundResource(R.drawable.favourite_enable);
                     statusOfFavourite = 1;
+					try {
+                        WishListPetMateListAdd.addPetMateListToWishList(petMateListId,email);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 } else if (statusOfFavourite == 1) {
                     petMateFavourite.setBackgroundResource(R.drawable.favourite_disable);
                     statusOfFavourite = 0;
+					try {
+                        WishListPetMateListDelete.deleteWishListPetMateFromServer(petMateListId,email);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             } else {
                 if (this.petMateListItems != null) {
                     Intent petFullInformation = new Intent(v.getContext(), PetMateListDetails.class);
-                    petFullInformation.putExtra("LIST_ID", petMateListItems.getListId());
+					 petFullInformation.putExtra("LIST_ID", petMateListItems.getListId());
                     petFullInformation.putExtra("PET_FIRST_IMAGE", petMateListItems.getFirstImagePath());
                     petFullInformation.putExtra("PET_SECOND_IMAGE", petMateListItems.getSecondImagePath());
                     petFullInformation.putExtra("PET_THIRD_IMAGE", petMateListItems.getThirdImagePath());

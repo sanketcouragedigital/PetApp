@@ -1,9 +1,10 @@
 package com.couragedigital.petapp;
 
-import android.app.Activity;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.NetworkOnMainThreadException;
 import android.os.StrictMode;
@@ -15,17 +16,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.couragedigital.petapp.model.MyListingPetListItems;
+import com.couragedigital.petapp.model.WishListPetListItem;
 
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-
-
 public class WishListPetListDetails extends AppCompatActivity implements View.OnClickListener {
-    String firstImagePath = "";
+    
+	String firstImagePath = "";
     String secondImagePath = "";
     String thirdImagePath = "";
     String breed = "";
@@ -34,6 +35,7 @@ public class WishListPetListDetails extends AppCompatActivity implements View.On
     String ageInYear = "";
     String gender = "";
     String description = "";
+    String alternateNo = "";
 
     TextView wlPetDetailsImageText;
     View wlPetDetailsImagesDividerLine;
@@ -49,6 +51,7 @@ public class WishListPetListDetails extends AppCompatActivity implements View.On
     TextView wlPetPrice;
     TextView wlPetDescription;
     View wlPetDetailsContentDividerLine;
+    Button wlalternateNo;
 
     Bitmap wlPetDetailsbitmap;
     Toolbar wlPetDetailstoolbar;
@@ -57,7 +60,7 @@ public class WishListPetListDetails extends AppCompatActivity implements View.On
     AppBarLayout wlPetDetailsAppBarLayout;
     NestedScrollView wlPetDetailsNestedScrollView;
     private int wlMutedColor;
-    MyListingPetListItems petListItems = new MyListingPetListItems();
+    WishListPetListItem petListItems = new WishListPetListItem();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,6 +78,7 @@ public class WishListPetListDetails extends AppCompatActivity implements View.On
             ageInYear = intent.getStringExtra("PET_AGE_IN_YEAR");
             gender = intent.getStringExtra("PET_GENDER");
             description = intent.getStringExtra("PET_DESCRIPTION");
+            alternateNo = intent.getStringExtra("ALTERNATE_NO");
         }
         wlPetDetailstoolbar = (Toolbar) findViewById(R.id.wishlistPetDetailsToolbar);
         setSupportActionBar(wlPetDetailstoolbar);
@@ -109,10 +113,12 @@ public class WishListPetListDetails extends AppCompatActivity implements View.On
         wlPetGender = (TextView) findViewById(R.id.wishlistPetGenderInPetDetails);
         wlPetPrice = (TextView) findViewById(R.id.wishlistPetPriceInPetDetails);
         wlPetDescription = (TextView) findViewById(R.id.wishlistPetDescriptionInPetDetails);
+        wlalternateNo=(Button)findViewById(R.id.pWishListCallButton);
 
         wlPetDetailsFirstImageThumbnail.setOnClickListener(this);
         wlPetDetailsSecondImageThumbnail.setOnClickListener(this);
         wlPetDetailsThirdImageThumbnail.setOnClickListener(this);
+        wlalternateNo.setOnClickListener(this);
 
         wlPetDetailsbitmap = getBitmapImageFromURL(firstImagePath);
         wlPetImage.setImageBitmap(wlPetDetailsbitmap);
@@ -226,6 +232,10 @@ public class WishListPetListDetails extends AppCompatActivity implements View.On
         } else if (view.getId() == R.id.wishlistPetDetailsThirdImageThumbnail) {
             wlPetDetailsbitmap = getBitmapImageFromURL(thirdImagePath);
             wlPetImage.setImageBitmap(wlPetDetailsbitmap);
+        }else if (view.getId() == R.id.pWishListCallButton) {
+            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+            callIntent.setData(Uri.parse("tel:" + alternateNo));
+            startActivity(callIntent);
         }
     }
 

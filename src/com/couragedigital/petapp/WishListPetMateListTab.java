@@ -53,18 +53,18 @@ public class WishListPetMateListTab extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-
         recyclerView = (RecyclerView) getView().findViewById(R.id.wishlistPetMateListView);
         recyclerView.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
+        adapter = new WishListPetMateListAdapter(wishListPetMateArrayList);
+        recyclerView.setAdapter(adapter);
 
         sessionManager = new SessionManager(v.getContext());
         HashMap<String, String> user = sessionManager.getUserDetails();
         email = user.get(SessionManager.KEY_EMAIL);
 
-        adapter = new WishListPetMateListAdapter(wishListPetMateArrayList);
-        recyclerView.setAdapter(adapter);
+
 
         url = url+"?method=showPetMateWishList&format=json&email="+email+"&currentPage="+current_page+"";
         recyclerView.smoothScrollToPosition(0);
@@ -79,6 +79,7 @@ public class WishListPetMateListTab extends Fragment {
         });
         grabURL(url);
     }
+
     private void grabURL(String url) {
         new FetchListFromServer().execute(url);
     }
@@ -88,7 +89,6 @@ public class WishListPetMateListTab extends Fragment {
         protected String doInBackground(String... url) {
             try {
                 urlForFetch = url[0];
-
                 WishListPetMateFetchList.wishListPetMateFetchList(wishListPetMateArrayList, adapter, urlForFetch);
             } catch (Exception e) {
                 e.printStackTrace();

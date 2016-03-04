@@ -22,26 +22,27 @@ public class WishListPetMateListAdd {
 
     private static Context context = null;
     private static String petMatelistId;
-    private static String useremail;
+    private static String email;
     private static String method;
     private static String format;
     private static String addPetMateWishList;
     private Response.Listener<JSONObject> listener;
     private Map<String, String> params;
 
-    public static String addPetMateListToWishList( String email,String listId ) throws Exception {
+    public static String addPetMateListToWishList( String useremail,String petMateListId ) throws Exception {
         method = "saveWishListForPetMateList";
         format = "json";
-        useremail = email;
-        petMatelistId = listId;
+        email= useremail;
+        petMatelistId = petMateListId;
+
         final String URL = URLInstance.getUrl();
         //final String URL = "http://192.168.0.6/PetAppAPI/api/petappapi.php";
         JSONObject params = new JSONObject();
         try {
             params.put("method", method);
             params.put("format", format);
-            params.put("email", useremail);
-            params.put("listId", petMatelistId);
+            params.put("userEmail", email);
+            params.put("petMateListId", petMatelistId);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -50,12 +51,12 @@ public class WishListPetMateListAdd {
                     @Override
                     public void onResponse(JSONObject response) {
                         VolleyLog.v("Response:%n %s", response.toString());
-                        EditProfile editProfile = new EditProfile();
-                        try {
-                            returnResponse(response.getString("savePetMateWishListResponse"));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        PetList petList = new PetList();
+//                        try {
+//                            returnResponse(response.getString("savePetMateWishListResponse"));
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -72,15 +73,15 @@ public class WishListPetMateListAdd {
         this.context = context;
     }
 
-    public static void returnResponse(String response) {
-        if (response.equals("LIST_ADDED_SUCCESSFULLY")) {
-            Toast.makeText(context, "Successfully AddedTto Wishlist .", Toast.LENGTH_SHORT).show();
-            Intent gotoPetMateListPage = new Intent(context, PetMate.class);
-            context.startActivity(gotoPetMateListPage);
-        } else if (response.equals("ERROR")) {
-            Toast.makeText(context, "Please Try Again", Toast.LENGTH_SHORT).show();
-            Intent gotoPetMateListPage = new Intent(context, PetMate.class);
-            context.startActivity(gotoPetMateListPage);
-        }
-    }
+//    public static void returnResponse(String response) {
+//        if (response.equals("LIST_ADDED_SUCCESSFULLY")) {
+//            Toast.makeText(context, "Successfully AddedTto Wishlist .", Toast.LENGTH_SHORT).show();
+//            Intent gotoPetMateListPage = new Intent(context, PetMate.class);
+//            context.startActivity(gotoPetMateListPage);
+//        } else if (response.equals("ERROR")) {
+//            Toast.makeText(context, "Please Try Again", Toast.LENGTH_SHORT).show();
+//            Intent gotoPetMateListPage = new Intent(context, PetMate.class);
+//            context.startActivity(gotoPetMateListPage);
+//        }
+//    }
 }

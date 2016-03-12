@@ -52,6 +52,7 @@ public class WishListPetListDetails extends AppCompatActivity implements View.On
     TextView wlPetDescription;
     TextView wlPetName;
     View wlPetDetailsContentDividerLine;
+    View wlPetDetailsButtonDividerLine;
     Button wlalternateNo;
 
     Bitmap wlPetDetailsbitmap;
@@ -108,6 +109,7 @@ public class WishListPetListDetails extends AppCompatActivity implements View.On
         wlPetDetailsThirdImageThumbnail = (ImageView) findViewById(R.id.wishlistPetDetailsThirdImageThumbnail);
 
         wlPetDetailsContentDividerLine = findViewById(R.id.wishlistPetListDetailsContentDividerLine);
+        wlPetDetailsButtonDividerLine = findViewById(R.id.wishlistPetButonDividerLine);
         wlPetBreed = (TextView) findViewById(R.id.wishlistPetBreedInPetDetails);
         wlPetForAdoptionOrSell = (TextView) findViewById(R.id.wishlistPetForAdoptionOrSell);
         wlPetAgeInMonth = (TextView) findViewById(R.id.wishlistPetAgeInMonthPetDetails);
@@ -142,6 +144,7 @@ public class WishListPetListDetails extends AppCompatActivity implements View.On
 
 
         wlPetDetailsContentDividerLine.setBackgroundResource(R.color.list_internal_divider);
+        wlPetDetailsButtonDividerLine.setBackgroundResource(R.color.list_internal_divider);
         wlPetForAdoptionOrSell.setText(setListingTypeTitle(listingType));
         wlPetBreed.setText(breed);
         wlPetAgeInMonth.setText("Month : " + ageInMonth);

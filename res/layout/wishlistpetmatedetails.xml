@@ -314,6 +314,22 @@
                                     android:layout_weight="1"
                                     android:singleLine="true"
                                     android:ellipsize="end"/>
+
+                        </LinearLayout>
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:id="@+id/wishlistPetMateButtonDividerLayout"
+                                      android:layout_below="@+id/wishlistPetMateDetailsDescriptionLayout"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_marginTop="7dp"
+                                      android:layout_marginLeft="10dp"
+                                      android:layout_marginRight="10dp">
+                            <View
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="1dp"
+                                    android:id="@+id/wishlistPetMateButonDividerLine"
+                                    />
                         </LinearLayout>
 
                         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -323,12 +339,14 @@
                                       android:id="@+id/petMateDetailsLinearLayoutThree"
                                       android:layout_below="@+id/wishlistPetMateDetailsDescriptionLayout"
                                       android:layout_marginTop="4dp">
+
                             <Button
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/pmWishListCallButton"
                                     android:background="@android:color/transparent"
                                     android:text="Call"
+                                    android:layout_below="@+id/petMateDetailsDividerLine"
                                     android:textColor="#CF3E3E"
                                     android:textSize="14sp"
                                     android:layout_weight="1"/>

@@ -50,6 +50,7 @@ public class WishListPetMateDetails extends AppCompatActivity implements View.On
     TextView wlPetMateDescription;
     TextView wlPetMateName;
     View wlPetMateDetailsContentDividerLine;
+    View wlPetMateDetailsButtonDividerLine;
     Button wlPetListalternateNo;
 
     Bitmap wlPetMateDetailsbitmap;
@@ -102,6 +103,8 @@ public class WishListPetMateDetails extends AppCompatActivity implements View.On
         wlPetMateImage = (ImageView) findViewById(R.id.wishlistPetMateDetailHeaderImage);
         wlPetMateDetailsImageText = (TextView) findViewById(R.id.wishlistPetMateDetailsImageText);
         wlPetMateDetailsImagesDividerLine = findViewById(R.id.wishlistPetMateDetailsImagesDividerLine);
+        wlPetMateDetailsButtonDividerLine = findViewById(R.id.wishlistPetMateButonDividerLine);
+
         wlPetMateDetailsFirstImageThumbnail = (ImageView) findViewById(R.id.wishlistPetMateDetailsFirstImageThumbnail);
         wlPetMateDetailsSecondImageThumbnail = (ImageView) findViewById(R.id.wishlistPetMateDetailsSecondImageThumbnail);
         wlPetMateDetailsThirdImageThumbnail = (ImageView) findViewById(R.id.wishlistPetMateDetailsThirdImageThumbnail);
@@ -137,6 +140,7 @@ public class WishListPetMateDetails extends AppCompatActivity implements View.On
             wlPetMateDetailsThirdImageThumbnail.setImageBitmap(wlPetMateDetailsbitmap);
         }
         wlPetMateDetailsContentDividerLine.setBackgroundResource(R.color.list_internal_divider);
+        wlPetMateDetailsButtonDividerLine.setBackgroundResource(R.color.list_internal_divider);
         wlPetMateBreed.setText(breed);
         wlPetMateAgeInMonth.setText("Month : " + ageInMonth);
         wlPetMateAgeInYear.setText(" Year : " + ageInYear);

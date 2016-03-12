@@ -1,19 +1,12 @@
 package com.couragedigital.petapp.Adapter;
 
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-import com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView;
-import com.couragedigital.petapp.PetClinicDetails;
+import android.widget.*;
 import com.couragedigital.petapp.R;
-import com.couragedigital.petapp.app.AppController;
-import com.couragedigital.petapp.model.ClinicListItems;
 import com.couragedigital.petapp.model.ClinicReviewsListItems;
-import android.support.v7.widget.RecyclerView;
 
 import java.util.List;
 
@@ -22,6 +15,7 @@ public class ClinicReviewsListAdapter extends RecyclerView.Adapter<ClinicReviews
     List<ClinicReviewsListItems> clinicReviewsListsItem;
     View v;
     ViewHolder viewHolder;
+    LinearLayout layout;
 
     public ClinicReviewsListAdapter(List<ClinicReviewsListItems> clinicReviewsListArrayList) {
         this.clinicReviewsListsItem = clinicReviewsListArrayList;
@@ -47,15 +41,17 @@ public class ClinicReviewsListAdapter extends RecyclerView.Adapter<ClinicReviews
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView clinicRatings;
+        public ImageView clinicRatings;
         public TextView clinicReviews;
         public TextView email;
         public View clinicListDividerLine;
         private ClinicReviewsListItems listItems;
-
+        public int userRatings;
         public ViewHolder(View itemView) {
             super(itemView);
-            clinicRatings = (TextView) itemView.findViewById(R.id.ratingNos);
+
+            layout = (LinearLayout)itemView.findViewById(R.id.ratingNos);
+            //clinicRatings = (ImageView) itemView.findViewById(R.id.ratingNos);
             clinicReviews = (TextView) itemView.findViewById(R.id.reviews);
             email = (TextView) itemView.findViewById(R.id.usersName);
             clinicListDividerLine = itemView.findViewById(R.id.viewdividerline);
@@ -63,9 +59,24 @@ public class ClinicReviewsListAdapter extends RecyclerView.Adapter<ClinicReviews
             //cardViewclinicReviewsList.setOnClickListener(this);
         }
 
+       // @TargetApi(Build.VERSION_CODES.M)
         public void bindClinicReviewsList(ClinicReviewsListItems clinicReviewsList) {
             this.listItems = clinicReviewsList;
-            clinicRatings.setText(clinicReviewsList.getClinicRatings());
+            userRatings=Integer.parseInt(clinicReviewsList.getClinicRatings());
+
+
+            for(int i=0;i<userRatings;i++)
+            {
+                ImageView image = new ImageView(v.getContext());
+                image.setLayoutParams(new android.view.ViewGroup.LayoutParams(80,60));
+                image.setMaxHeight(20);
+                image.setMaxWidth(20);
+                image.setId(i);
+                image.setImageResource(R.drawable.ratingstar_yellow);
+                // Adds the view to the layout
+                image.setPadding(3, 3, 3, 3);
+                layout.addView(image);
+            }
             clinicReviews.setText(clinicReviewsList.getClinicReviews());
             email.setText(clinicReviewsList.getEmail());
             clinicListDividerLine.setBackgroundResource(R.color.list_internal_divider);

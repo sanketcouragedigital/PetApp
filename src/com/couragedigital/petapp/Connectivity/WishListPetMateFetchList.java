@@ -46,6 +46,7 @@ public class WishListPetMateFetchList {
                                     wishListPetMateListItem.setPetMatePostDate(obj.getString("post_date"));
                                    // wishListPetMateListItem.setPetMatePostOwnerEmail(replaceSpecialChars(obj.getString("email")));
                                     wishListPetMateListItem.setAlternateNo(obj.getString("alternateNo"));
+                                    wishListPetMateListItem.setName(obj.getString("name"));
 
                                     // adding pet to pets array
                                     petMateLists.add(wishListPetMateListItem);

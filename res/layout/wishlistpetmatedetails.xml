@@ -316,6 +316,23 @@
                                     android:ellipsize="end"/>
                         </LinearLayout>
 
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:id="@+id/petMateDetailsLinearLayoutThree"
+                                      android:layout_below="@+id/wishlistPetMateDetailsDescriptionLayout"
+                                      android:layout_marginTop="4dp">
+                            <Button
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/pmWishListCallButton"
+                                    android:background="@android:color/transparent"
+                                    android:text="Call"
+                                    android:textColor="#CF3E3E"
+                                    android:textSize="14sp"
+                                    android:layout_weight="1"/>
+                        </LinearLayout>
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>
             </RelativeLayout>

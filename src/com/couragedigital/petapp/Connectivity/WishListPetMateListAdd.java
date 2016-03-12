@@ -29,10 +29,10 @@ public class WishListPetMateListAdd {
     private Response.Listener<JSONObject> listener;
     private Map<String, String> params;
 
-    public static String addPetMateListToWishList( String useremail,String petMateListId ) throws Exception {
+    public static String addPetMateListToWishList( String useremail, String petMateListId) throws Exception {
         method = "saveWishListForPetMateList";
         format = "json";
-        email= useremail;
+        email = useremail;
         petMatelistId = petMateListId;
 
         final String URL = URLInstance.getUrl();
@@ -72,16 +72,4 @@ public class WishListPetMateListAdd {
     public WishListPetMateListAdd(Context context) {
         this.context = context;
     }
-
-//    public static void returnResponse(String response) {
-//        if (response.equals("LIST_ADDED_SUCCESSFULLY")) {
-//            Toast.makeText(context, "Successfully AddedTto Wishlist .", Toast.LENGTH_SHORT).show();
-//            Intent gotoPetMateListPage = new Intent(context, PetMate.class);
-//            context.startActivity(gotoPetMateListPage);
-//        } else if (response.equals("ERROR")) {
-//            Toast.makeText(context, "Please Try Again", Toast.LENGTH_SHORT).show();
-//            Intent gotoPetMateListPage = new Intent(context, PetMate.class);
-//            context.startActivity(gotoPetMateListPage);
-//        }
-//    }
 }

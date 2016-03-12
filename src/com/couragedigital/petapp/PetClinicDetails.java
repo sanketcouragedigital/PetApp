@@ -32,7 +32,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PetClinicDetails extends BaseActivity implements View.OnClickListener {
+public class PetClinicDetails extends AppCompatActivity implements View.OnClickListener {
 
     String image_path = "";
     String clinicaddress = "";
@@ -80,21 +80,23 @@ public class PetClinicDetails extends BaseActivity implements View.OnClickListen
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.clinic_details_new);
-        setContentView(R.layout.clinic_details_new);
+
+        //setContentView(R.layout.petclinicdetails);
+        //setContentView(R.layout.aaa);
+         setContentView(R.layout.clinic_details_new);
 
         ClinicReviewInstance clinicReviewInstance =new ClinicReviewInstance();
         clinicReviewsListItemsArrayList=clinicReviewInstance.getClinicReviewsListItemsArrayList();
 
         recyclerView = (RecyclerView) findViewById(R.id.clinicRateNReview);
-        recyclerView.setHasFixedSize(false);
-        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setHasFixedSize(true);
+        //recyclerView.setNestedScrollingEnabled(false);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         adapter = new ClinicReviewsListAdapter(clinicReviewsListItemsArrayList);
         // url= "http://192.168.0.7/PetAppAPI/api/petappapi.php?method=showClinicReviews&format=json&currentPage=" + current_page + "&clinicId=" + clinicId + "";
-        //new FetchClinicReviewListFromServer().execute(url);
+        // new FetchClinicReviewListFromServer().execute(url);
         recyclerView.setAdapter(adapter);
 //        LinearLayout.LayoutParams params = new
 //                LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -116,25 +118,24 @@ public class PetClinicDetails extends BaseActivity implements View.OnClickListen
             //email = intent.getStringExtra("DOCTOR_EMAIL");
             phoneno = intent.getStringExtra("DOCTOR_CONTACT");
         }
-        //to create Reviews List
 
-       // clinicDetailsToolbar = (Toolbar) findViewById(R.id.petClinicDetailsToolbar);
-//        setSupportActionBar(clinicDetailsToolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        clinicDetailsToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                onBackPressed();
-//            }
-//        });
+        clinicDetailsToolbar = (Toolbar) findViewById(R.id.petClinicDetailsToolbar);
+        setSupportActionBar(clinicDetailsToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        clinicDetailsToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
-//       clinicDetailsCollapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.clinicDetailsCollapsingToolbar);
-//        clinicDetailsCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.clinicDetailsCoordinatorLayout);
-//        clinicDetailsAppBaLayoutr = (AppBarLayout) findViewById(R.id.petClinicDetailsAppBar);
-//       clinicDetailsNestedScrollView = (NestedScrollView) findViewById(R.id.petClinicDetailsNestedScrollView);
+        clinicDetailsCollapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.clinicDetailsCollapsingToolbar);
+        clinicDetailsCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.clinicDetailsCoordinatorLayout);
+        clinicDetailsAppBaLayoutr = (AppBarLayout) findViewById(R.id.petClinicDetailsAppBar);
+        clinicDetailsNestedScrollView = (NestedScrollView) findViewById(R.id.petClinicDetailsNestedScrollView);
 
         clinicImage = (ImageView) findViewById(R.id.petClicnicHeaderImage);
-       // clinicDoctorName = (TextView) findViewById(R.id.clinicDoctorName);
+        clinicDoctorName = (TextView) findViewById(R.id.clinicDoctorName);
         address = (TextView) findViewById(R.id.petClinicAddress);
         clinicnotestxt = (TextView) findViewById(R.id.petClinicNotes);
         callbutton = (ImageButton) findViewById(R.id.clinicDetailCallButton);
@@ -171,31 +172,38 @@ public class PetClinicDetails extends BaseActivity implements View.OnClickListen
         final byte[] data = dataStream.toByteArray();
         clinicDetailsbitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
         clinicImage.setImageBitmap(clinicDetailsbitmap);
-
-
-        //clinicDoctorName.setText(doctorname);
         address.setText(clinicaddress);
         clinicnotestxt.setText(clinicnotes);
+        clinicDetailsCollapsingToolbar.setTitle(doctorname);
 
-//        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) clinicDetailsAppBaLayoutr.getLayoutParams();
-//        layoutParams.height = getResources().getDisplayMetrics().widthPixels;
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) clinicDetailsAppBaLayoutr.getLayoutParams();
+        layoutParams.height = getResources().getDisplayMetrics().widthPixels;
 
-//        clinicDetailsAppBaLayoutr.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                int heightPx = getResources().getDisplayMetrics().heightPixels / 4;
-//                setAppBarOffset(heightPx);
-//            }
-//        });
+        clinicDetailsAppBaLayoutr.post(new Runnable() {
+            @Override
+            public void run() {
+                int heightPx = getResources().getDisplayMetrics().heightPixels / 4;
+                setAppBarOffset(heightPx);
+            }
+        });
 
         callbutton.setOnClickListener(this);
         //mapButton.setOnClickListener(this);
         rateAndReviewButton.setOnClickListener(this);
         //emailbutton.setOnClickListener(this);
-
-
    }
-
+    private void copy(InputStream in, BufferedOutputStream out) throws IOException {
+        byte[] b = new byte[4 * 1024];
+        int read;
+        while ((read = in.read(b)) != -1) {
+            out.write(b, 0, read);
+        }
+    }
+    private void setAppBarOffset(int i) {
+        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) clinicDetailsAppBaLayoutr.getLayoutParams();
+        AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
+        behavior.onNestedPreScroll(clinicDetailsCoordinatorLayout, clinicDetailsAppBaLayoutr, null, 0, i, new int[]{0, 0});
+    }
    /*public class FetchImageFromServer extends AsyncTask<String, String, Bitmap> {
 
        @Override
@@ -255,19 +263,8 @@ public class PetClinicDetails extends BaseActivity implements View.OnClickListen
 //        }
 //   }
 
-    private void copy(InputStream in, BufferedOutputStream out) throws IOException {
-        byte[] b = new byte[4 * 1024];
-        int read;
-        while ((read = in.read(b)) != -1) {
-            out.write(b, 0, read);
-        }
-    }
 
-//    private void setAppBarOffset(int i) {
-//        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) clinicDetailsAppBaLayoutr.getLayoutParams();
-//        AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
-//        behavior.onNestedPreScroll(clinicDetailsCoordinatorLayout, clinicDetailsAppBaLayoutr, null, 0, i, new int[]{0, 0});
-//    }
+
 
     @Override
     public void onBackPressed() {

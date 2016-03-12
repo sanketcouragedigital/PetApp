@@ -35,6 +35,7 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
     }
     public WishListPetListAdapter(List<WishListPetListItem> petLists) {
         this.wishListPetListItem = petLists;
+
     }
 
     @Override
@@ -73,6 +74,7 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
         public TextView petAdoptOrSell;
         public Button deletebutton;
         public View dividerLine;
+        public TextView nameForPetPost;
         public ExpandableText wishlistPetListDescription;
         public View cardView;
         private WishListPetListItem wishListPetListItem;
@@ -86,6 +88,7 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
             }
             petImage = (RoundedNetworkImageView) itemView.findViewById(R.id.wishlistViewImage);
             petBreed = (TextView) itemView.findViewById(R.id.wishlistViewBreed);
+            nameForPetPost  = (TextView) itemView.findViewById(R.id.petPostedBy);
             petAdoptOrSell = (TextView) itemView.findViewById(R.id.wishlistPetAdoptOrSell);
             dividerLine = itemView.findViewById(R.id.wishlistDividerLine);
             deletebutton = (Button) itemView.findViewById(R.id.wishlistPetListDelete);
@@ -101,6 +104,7 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
             petBreed.setText(wishListPetListItem.getPetBreed());
             wishlistPetListDescription.setText(wishListPetListItem.getPetDescription());
             deletebutton.setText("Delete");
+            nameForPetPost.setText(wishListPetListItem.getName());
             petAdoptOrSell.setText(setListingType(wishListPetListItem));
             dividerLine.setBackgroundResource(R.color.list_internal_divider);
             //petFavourite.setBackgroundResource(R.drawable.favourite_disable);
@@ -144,6 +148,7 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
                     wishListPetDetail.putExtra("PET_GENDER", wishListPetListItem.getPetGender());
                     wishListPetDetail.putExtra("PET_DESCRIPTION", wishListPetListItem.getPetDescription());
                     wishListPetDetail.putExtra("ALTERNATE_NO", wishListPetListItem.getAlternateNo());
+                    wishListPetDetail.putExtra("NAME", wishListPetListItem.getName());
 
                     v.getContext().startActivity(wishListPetDetail);
                 }

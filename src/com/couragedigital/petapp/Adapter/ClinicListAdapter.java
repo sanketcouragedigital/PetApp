@@ -2,7 +2,10 @@ package com.couragedigital.petapp.Adapter;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.toolbox.ImageLoader;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.couragedigital.petapp.Connectivity.ShowClinicFeedback;
 import com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView;
 import com.couragedigital.petapp.PetClinicDetails;
@@ -63,7 +68,7 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public RoundedNetworkImageView clinicImage;
+        public ImageView clinicImage;
         public TextView clinicName;
         public TextView clinicAddress;
         public Button clinicFavourite;
@@ -84,7 +89,7 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Vi
 
             clinicName = (TextView) itemView.findViewById(R.id.clinicName);
             clinicAddress = (TextView) itemView.findViewById(R.id.clinicAddress);
-            clinicImage = (RoundedNetworkImageView) itemView.findViewById(R.id.clinicImage);
+            clinicImage = (ImageView) itemView.findViewById(R.id.clinicImage);
             // clinicSeeMoreBtn = (Button) itemView.findViewById(R.id.clinicSeeMoreButton);
             // clinicdividerLine = itemView.findViewById(R.id.clinicDividerLine);
 
@@ -99,7 +104,15 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Vi
             area = listItems.getArea();
             city = listItems.getCity();
 
-            clinicImage.setImageUrl(clinicList.getClinicImage_path(), imageLoader);
+            Glide.with(clinicImage.getContext()).load(clinicList.getClinicImage_path()).asBitmap().centerCrop().into(new BitmapImageViewTarget(clinicImage) {
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(clinicImage.getContext().getResources(), resource);
+                    circularBitmapDrawable.setCircular(true);
+                    clinicImage.setImageDrawable(circularBitmapDrawable);
+                }
+            });
             clinicName.setText(clinicList.getClinicName());
             areawithcity = area + ", " + city;
             clinicAddress.setText(areawithcity);

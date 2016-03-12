@@ -17,7 +17,7 @@ public class WishListPetMateListDelete {
     private static String URL = URLInstance.getUrl();
 
 //    public static void deleteFromRemoteServer(String urlForFetch, View v) throws Exception {
-public static void deleteWishListPetMateFromServer(String useremail,String petMateListId) throws Exception {
+public static void deleteWishListPetMateFromServer(String useremail, String petMateListId) throws Exception {
 
         url = URL + "?method=deleteWishListPetMateList&format=json&id=" + petMateListId + "&email=" + useremail + "";
         JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, url, null,

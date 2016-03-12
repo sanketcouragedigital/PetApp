@@ -19,11 +19,12 @@ public class WishListPetListItem {
     public String petPostDate;
     public String petPostOwnerEmail;
     public String alternateNo;
+    public String name;
 
     public WishListPetListItem() {
     }
 
-    public WishListPetListItem(Integer id, String firstImagePath, String secondImagePath, String thirdImagePath, String petBreed, String petPostOwner, String listingType, String petCategory, String petAgeInMonth, String petAgeInYear, String petGender, String petDescription, String petPostDate, String petPostOwnerEmail,String alternateNo, String petPostOwnerMobileNo) {
+    public WishListPetListItem(Integer id, String firstImagePath, String secondImagePath, String thirdImagePath, String petBreed, String petPostOwner, String listingType, String petCategory, String petAgeInMonth, String petAgeInYear, String petGender, String petDescription, String petPostDate, String petPostOwnerEmail,String alternateNo, String name) {
         this.id = id;
         this.firstImagePath = firstImagePath;
         this.secondImagePath = secondImagePath;
@@ -38,6 +39,7 @@ public class WishListPetListItem {
         this.petPostDate = petPostDate;
         this.petPostOwnerEmail = petPostOwnerEmail;
         this.alternateNo = alternateNo;
+        this.name = name;
     }
 
     public int getId() {
@@ -146,8 +148,13 @@ public class WishListPetListItem {
     public String getAlternateNo() {
         return alternateNo;
     }
-
     public void setAlternateNo(String alternateNo) {
         this.alternateNo = alternateNo;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
 }

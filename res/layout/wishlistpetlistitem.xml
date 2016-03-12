@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:card_view="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="wrap_content">
 
 
     <android.support.v7.widget.CardView
@@ -70,7 +70,16 @@
                             android:layout_below="@+id/wishlistViewBreed"
                             android:textSize="13sp"
                             android:textColor="#da4836"/>
-
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/petPostedBy"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginLeft="16dp"
+                            android:text="Posted By"
+                            android:layout_below="@+id/wishlistPetAdoptOrSell"
+                            android:textSize="13sp"
+                            android:textColor="#da4836"/>
                 </RelativeLayout>
             </RelativeLayout>
 

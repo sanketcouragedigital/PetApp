@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
     <RelativeLayout
             android:layout_width="wrap_content"
@@ -13,6 +13,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Reviews"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:id="@+id/reviews"
                 android:layout_marginTop="16dp"
                 android:layout_alignParentStart="true"
@@ -22,26 +24,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Rating:"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:id="@+id/ratingLabel"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="10dp"
                 android:layout_below="@+id/reviews"
 
         />
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Medium Text"
-                android:id="@+id/ratingNos"
-                android:layout_alignTop="@+id/ratingLabel"
-                android:layout_marginStart="112dp"
-                />
+        <LinearLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="112dp"
+                        android:layout_alignTop="@+id/ratingLabel"
+                        android:id="@+id/ratingNos"
+                        android:orientation="horizontal">
+
+
+        <!--<ImageView-->
+                <!--android:layout_width="24dp"-->
+                <!--android:layout_height="24dp"-->
+                <!--android:text="Medium Text"-->
+                <!--android:id="@+id/ratingNos1"-->
+                <!--android:layout_marginStart="112dp"-->
+                <!--android:background="@drawable/favourite_enable"-->
+                <!--/>-->
+        </LinearLayout>
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="By:"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:id="@+id/userNameLabel"
                 android:layout_below="@+id/ratingNos"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
 
         />
         <TextView
@@ -51,7 +66,7 @@
                 android:id="@+id/usersName"
                 android:layout_alignTop="@+id/userNameLabel"
                 android:layout_alignStart="@+id/ratingNos"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginBottom="10dp"/>
 
     </RelativeLayout>
     <View

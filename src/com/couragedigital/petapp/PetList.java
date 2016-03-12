@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,11 +12,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-import com.couragedigital.petapp.Connectivity.*;
+import android.widget.TextView;
+import com.couragedigital.petapp.Connectivity.FilterFetchPetList;
+import com.couragedigital.petapp.Connectivity.FilterPetListDeleteMemCacheObject;
+import com.couragedigital.petapp.Connectivity.PetFetchList;
+import com.couragedigital.petapp.Connectivity.PetRefreshFetchList;
 import com.couragedigital.petapp.Listeners.PetFetchListScrollListener;
 import com.couragedigital.petapp.Adapter.PetListAdapter;
-import com.couragedigital.petapp.SHA_256.PasswordConverter;
 import com.couragedigital.petapp.SessionManager.SessionManager;
 import com.couragedigital.petapp.Singleton.FilterPetListInstance;
 import com.couragedigital.petapp.Singleton.URLInstance;
@@ -31,8 +32,7 @@ import java.util.List;
 
 import android.app.ProgressDialog;
 
-//public class PetList extends BaseActivity implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
-public class PetList extends BaseActivity  {
+public class PetList extends BaseActivity {
 
     private static final String TAG = PetList.class.getSimpleName();
 
@@ -45,12 +45,11 @@ public class PetList extends BaseActivity  {
     public List<PetListItems> petListsForFilter = new ArrayList<PetListItems>();
     public PetListAdapter adapterForFilter;
 
-    RecyclerView recyclerView;
+    public static RecyclerView recyclerView;
+    public static TextView emptyTextView;
     LinearLayoutManager layoutManager;
     RecyclerView.Adapter adapter;
     SwipeRefreshLayout petListSwipeRefreshLayout;
-    private static Button btnFavourite;
-
 
     public List<PetListItems> originalpetLists = new ArrayList<PetListItems>();
 
@@ -62,8 +61,11 @@ public class PetList extends BaseActivity  {
 
     int FILTER_STATE_RESULT = 1;
 
-    public String email;
+    int requestState;
+
     public String petListId;
+
+    public String email;
 
     public List<String> filterSelectedInstanceCategoryList = new ArrayList<String>();
     public List<String> filterSelectedInstanceBreedList = new ArrayList<String>();
@@ -76,13 +78,10 @@ public class PetList extends BaseActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.petlist);
 
-        /*petlistView = (ListView) findViewById(R.id.petList);
-        Adapter = new PetListAdapter(this, petLists);
-        petlistView.setAdapter(Adapter);*/
-
-
         recyclerView = (RecyclerView) findViewById(R.id.petList);
+        emptyTextView = (TextView) findViewById(R.id.petListEmptyView);
         petListSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.petListSwipeRefreshLayout);
+
         recyclerView.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(this);
@@ -91,7 +90,9 @@ public class PetList extends BaseActivity  {
         HashMap<String, String> user = sessionManager.getUserDetails();
         email = user.get(SessionManager.KEY_EMAIL);
 
-        url = url+"?method=showPetDetails&format=json&currentPage="+current_page+"";
+        url = url+"?method=showPetDetails&format=json&currentPage="+current_page+"&email="+email+"";
+
+        requestState=0;
 
         recyclerView.addOnScrollListener(new PetFetchListScrollListener(layoutManager, current_page){
 
@@ -105,12 +106,8 @@ public class PetList extends BaseActivity  {
                 }
             }
         });
-        btnFavourite = (Button) findViewById(R.id.petListFavourite);
-        //btnFavourite.setOnClickListener(this);
-        ButtonFavourite();
-        recyclerView.smoothScrollToPosition(0);
 
-        //recyclerView.fling(0,1);
+        recyclerView.smoothScrollToPosition(0);
 
         adapter = new PetListAdapter(petLists);
         recyclerView.setAdapter(adapter);
@@ -139,7 +136,7 @@ public class PetList extends BaseActivity  {
         protected String doInBackground(String... url) {
             try {
                 urlForFetch = url[0];
-                PetFetchList.petFetchList(petLists, adapter, urlForFetch, progressDialog);
+                PetFetchList.petFetchList(petLists, adapter, urlForFetch, requestState, progressDialog);
             } catch (Exception e) {
                 e.printStackTrace();
                 progressDialog.dismiss();
@@ -299,47 +296,4 @@ public class PetList extends BaseActivity  {
     public void onPause() {
         super.onPause();
     }
-//    @Override
-//    public void onClick(View view) {
-//        if (view.getId() == R.id.petListFavourite) {
-//            Intent intent = getIntent();
-//            if (null != intent) {
-//                petListId = intent.getStringExtra("LIST_ID");
-//            }
-//            try {
-//                WishListPetListAdd wishListPetListAdd = new WishListPetListAdd(PetList.this);
-//                wishListPetListAdd.addPetListToWishList(petListId,email);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//                progressDialog.dismiss();
-//                Toast.makeText(PetList.this, "Exception : " + e.getMessage(), Toast.LENGTH_LONG).show();
-//            }
-//        }
-//    }
-
-
-    public void ButtonFavourite (){
-        btnFavourite = (Button) findViewById(R.id.petListFavourite);
-
-        btnFavourite.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = getIntent();
-                        if (null != intent) {
-                            petListId = intent.getStringExtra("LIST_ID");
-                        }
-                        try {
-                            WishListPetListAdd wishListPetListAdd = new WishListPetListAdd(PetList.this);
-                            wishListPetListAdd.addPetListToWishList(petListId,email);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            progressDialog.dismiss();
-                            Toast.makeText(PetList.this, "Exception : " + e.getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    }
-                }
-        );
-    }
-
 }

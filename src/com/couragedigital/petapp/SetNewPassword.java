@@ -26,14 +26,14 @@ public class SetNewPassword extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.signin);
+        setContentView(R.layout.setnewpassword);
         SubmitButton();
     }
 
     public void SubmitButton() {
         userActivationCode = (EditText) findViewById(R.id.txtActivationCode);
         userNewPassword = (EditText) findViewById(R.id.txtNewPassword);
-
+        submit_btn = (Button) findViewById(R.id.btnsubmit);
         //Intent emailIntent = getIntent();
         //email= emailIntent.getStringExtra("EMAIL");
 

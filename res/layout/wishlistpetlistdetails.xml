@@ -348,17 +348,36 @@
                                       android:id="@+id/wishlistPetDetailsDescriptionLayout"
                                       android:layout_below="@+id/wishlistPetPriceDetailsLayout">
                             <TextView
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:id="@+id/wishlistPetDescriptionInPetDetails"/>
+                                    android:id="@+id/wishlistPetDescriptionInPetDetails"
+                                    android:text="this is description of pet"
+                                    android:ellipsize="end"/>
+
+                        </LinearLayout>
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:id="@+id/wishlistPetButtonDividerLayout"
+                                      android:layout_below="@+id/wishlistPetDetailsDescriptionLayout"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_marginTop="7dp"
+                                      android:layout_marginLeft="10dp"
+                                      android:layout_marginRight="10dp">
+                            <View
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="1dp"
+                                    android:id="@+id/wishlistPetButonDividerLine"
+                                    />
                         </LinearLayout>
                         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                       android:layout_width="match_parent"
                                       android:layout_height="match_parent"
                                       android:orientation="horizontal"
                                       android:id="@+id/petMateDetailsLinearLayoutThree"
-                                      android:layout_below="@+id/wishlistPetDetailsDescriptionLayout"
+                                      android:layout_below="@+id/wishlistPetButtonDividerLayout"
                                       android:layout_marginTop="4dp">
+
                             <Button
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
@@ -369,6 +388,7 @@
                                     android:textSize="14sp"
                                     android:layout_weight="1"/>
                         </LinearLayout>
+
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>
             </RelativeLayout>

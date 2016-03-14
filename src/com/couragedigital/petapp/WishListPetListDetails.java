@@ -1,6 +1,5 @@
 package com.couragedigital.petapp;
 
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,7 +25,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 public class WishListPetListDetails extends AppCompatActivity implements View.OnClickListener {
     
-	String firstImagePath = "";
+    String firstImagePath = "";
     String secondImagePath = "";
     String thirdImagePath = "";
     String breed = "";
@@ -36,6 +35,7 @@ public class WishListPetListDetails extends AppCompatActivity implements View.On
     String gender = "";
     String description = "";
     String alternateNo = "";
+    String name = "";
 
     TextView wlPetDetailsImageText;
     View wlPetDetailsImagesDividerLine;
@@ -50,7 +50,9 @@ public class WishListPetListDetails extends AppCompatActivity implements View.On
     TextView wlPetGender;
     TextView wlPetPrice;
     TextView wlPetDescription;
+    TextView wlPetName;
     View wlPetDetailsContentDividerLine;
+    View wlPetDetailsButtonDividerLine;
     Button wlalternateNo;
 
     Bitmap wlPetDetailsbitmap;
@@ -79,6 +81,7 @@ public class WishListPetListDetails extends AppCompatActivity implements View.On
             gender = intent.getStringExtra("PET_GENDER");
             description = intent.getStringExtra("PET_DESCRIPTION");
             alternateNo = intent.getStringExtra("ALTERNATE_NO");
+            name = intent.getStringExtra("NAME");
         }
         wlPetDetailstoolbar = (Toolbar) findViewById(R.id.wishlistPetDetailsToolbar);
         setSupportActionBar(wlPetDetailstoolbar);
@@ -106,6 +109,7 @@ public class WishListPetListDetails extends AppCompatActivity implements View.On
         wlPetDetailsThirdImageThumbnail = (ImageView) findViewById(R.id.wishlistPetDetailsThirdImageThumbnail);
 
         wlPetDetailsContentDividerLine = findViewById(R.id.wishlistPetListDetailsContentDividerLine);
+        wlPetDetailsButtonDividerLine = findViewById(R.id.wishlistPetButonDividerLine);
         wlPetBreed = (TextView) findViewById(R.id.wishlistPetBreedInPetDetails);
         wlPetForAdoptionOrSell = (TextView) findViewById(R.id.wishlistPetForAdoptionOrSell);
         wlPetAgeInMonth = (TextView) findViewById(R.id.wishlistPetAgeInMonthPetDetails);
@@ -114,6 +118,7 @@ public class WishListPetListDetails extends AppCompatActivity implements View.On
         wlPetPrice = (TextView) findViewById(R.id.wishlistPetPriceInPetDetails);
         wlPetDescription = (TextView) findViewById(R.id.wishlistPetDescriptionInPetDetails);
         wlalternateNo = (Button)findViewById(R.id.pWishListCallButton);
+        wlPetName = (TextView) findViewById(R.id.petPostedBy);
 
         wlPetDetailsFirstImageThumbnail.setOnClickListener(this);
         wlPetDetailsSecondImageThumbnail.setOnClickListener(this);
@@ -124,7 +129,8 @@ public class WishListPetListDetails extends AppCompatActivity implements View.On
         wlPetImage.setImageBitmap(wlPetDetailsbitmap);
         wlPetDetailsCollapsingToolbar.setTitle(breed);
 
-        wlPetDetailsImageText.setText("Images of " + breed);
+        wlPetDetailsImageText.setText("Images of :" + breed);
+        //wlPetName.setText("Posted By :" + name);
         wlPetDetailsImagesDividerLine.setBackgroundResource(R.color.list_internal_divider);
         wlPetDetailsFirstImageThumbnail.setImageBitmap(wlPetDetailsbitmap);
         if (secondImagePath != null) {
@@ -138,6 +144,7 @@ public class WishListPetListDetails extends AppCompatActivity implements View.On
 
 
         wlPetDetailsContentDividerLine.setBackgroundResource(R.color.list_internal_divider);
+        wlPetDetailsButtonDividerLine.setBackgroundResource(R.color.list_internal_divider);
         wlPetForAdoptionOrSell.setText(setListingTypeTitle(listingType));
         wlPetBreed.setText(breed);
         wlPetAgeInMonth.setText("Month : " + ageInMonth);

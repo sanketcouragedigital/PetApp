@@ -1,12 +1,18 @@
 package com.couragedigital.petapp.Adapter;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.CardView;
@@ -20,6 +26,7 @@ import com.couragedigital.petapp.SessionManager.SessionManager;
 import com.couragedigital.petapp.model.ClinicListItems;
 import com.couragedigital.petapp.model.DialogListInformaion;
 import com.couragedigital.petapp.model.IndexListInfo;
+import com.google.android.gms.location.LocationServices;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,7 +39,6 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
     public static List<DialogListInformaion> dialogListForViewPetMets = new ArrayList<DialogListInformaion>();
     public static List<DialogListInformaion> dialogListForPetClinic = new ArrayList<DialogListInformaion>();
     public static CoordinatorLayout homeListCoordinatorLayout;
-
 
     public HomeListAdapter(ArrayList<IndexListInfo> indexListInfoList, List<DialogListInformaion> dialogListForViewPets,
                            List<DialogListInformaion> dialogListForViewPetMets, List<DialogListInformaion> dialogListForpetClinic, CoordinatorLayout homeListCoordinatorLayout) {
@@ -73,6 +79,13 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
         private AlertDialog alertDialog;
         public com.couragedigital.petapp.Adapter.DialogListAdapter adapter;
         public CardView cv;
+
+        String[] permissions =
+                {
+                        android.Manifest.permission.ACCESS_FINE_LOCATION,
+                        android.Manifest.permission.ACCESS_COARSE_LOCATION
+                };
+        private static final int RequestLocationId = 0;
 
         public int state = 0;
 
@@ -150,7 +163,6 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                 v.getContext().startActivity(gotoPetServices);
             }
         }
-
     }
 }
 

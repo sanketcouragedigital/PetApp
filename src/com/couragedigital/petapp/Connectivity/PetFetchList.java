@@ -25,30 +25,36 @@ public class PetFetchList {
     private static  int checkRequestState;
 
     public static List petFetchList(List<PetListItems> petLists, RecyclerView.Adapter adapter, String url,int requestState,ProgressDialog progressDialog) {
-        checkRequestState=requestState;
+        checkRequestState = requestState;
         JsonObjectRequest petListReq = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+                            if(!response.getJSONArray("showWishListResponse").equals(JSONObject.NULL)) {
+                                if (checkRequestState == 0) {
+                                    JSONArray wishListjsonArray = response.getJSONArray("showWishListResponse");
 
-                            if (checkRequestState == 0) {
-                                JSONArray wishListjsonArray = response.getJSONArray("showWishListResponse");
-
-                                for (int i = 0; i < wishListjsonArray.length(); i++) {
-                                    try {
-                                        JSONObject obj = wishListjsonArray.getJSONObject(i);
-                                        String item = (obj.getString("listId"));
-                                        wishListPetListId.add(item);
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
+                                    for (int i = 0; i < wishListjsonArray.length(); i++) {
+                                        try {
+                                            JSONObject obj = wishListjsonArray.getJSONObject(i);
+                                            String item = (obj.getString("listId"));
+                                            wishListPetListId.add(item);
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
                                     }
+                                    UserPetListWishList userPetListWishList = new UserPetListWishList();
+                                    userPetListWishList.setPetWishList(wishListPetListId);
+                                    checkRequestState = 1;
                                 }
-                                UserPetListWishList userPetListWishList = new UserPetListWishList();
-                                userPetListWishList.setPetListId(wishListPetListId);
-                                checkRequestState=1;
                             }
-                            JSONArray jsonArray = response.getJSONArray("showPetDetailsResponse");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        JSONArray jsonArray = null;
+                        try {
+                            jsonArray = response.getJSONArray("showPetDetailsResponse");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 try {
                                     JSONObject obj = jsonArray.getJSONObject(i);
@@ -84,15 +90,11 @@ public class PetFetchList {
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-
                             }
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                         progressDialog.hide();
-                        // notifying list Adapter about data changes
-                        // so that it renders the list view with updated data
 
                     }
                 }, new Response.ErrorListener() {

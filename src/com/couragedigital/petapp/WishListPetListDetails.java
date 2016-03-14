@@ -1,5 +1,6 @@
 package com.couragedigital.petapp;
 
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -35,7 +36,6 @@ public class WishListPetListDetails extends AppCompatActivity implements View.On
     String gender = "";
     String description = "";
     String alternateNo = "";
-    String name = "";
 
     TextView wlPetDetailsImageText;
     View wlPetDetailsImagesDividerLine;
@@ -50,7 +50,6 @@ public class WishListPetListDetails extends AppCompatActivity implements View.On
     TextView wlPetGender;
     TextView wlPetPrice;
     TextView wlPetDescription;
-    TextView wlPetName;
     View wlPetDetailsContentDividerLine;
     Button wlalternateNo;
 
@@ -80,7 +79,6 @@ public class WishListPetListDetails extends AppCompatActivity implements View.On
             gender = intent.getStringExtra("PET_GENDER");
             description = intent.getStringExtra("PET_DESCRIPTION");
             alternateNo = intent.getStringExtra("ALTERNATE_NO");
-            name = intent.getStringExtra("NAME");
         }
         wlPetDetailstoolbar = (Toolbar) findViewById(R.id.wishlistPetDetailsToolbar);
         setSupportActionBar(wlPetDetailstoolbar);
@@ -116,7 +114,6 @@ public class WishListPetListDetails extends AppCompatActivity implements View.On
         wlPetPrice = (TextView) findViewById(R.id.wishlistPetPriceInPetDetails);
         wlPetDescription = (TextView) findViewById(R.id.wishlistPetDescriptionInPetDetails);
         wlalternateNo = (Button)findViewById(R.id.pWishListCallButton);
-        wlPetName = (TextView) findViewById(R.id.petPostedBy);
 
         wlPetDetailsFirstImageThumbnail.setOnClickListener(this);
         wlPetDetailsSecondImageThumbnail.setOnClickListener(this);
@@ -127,8 +124,7 @@ public class WishListPetListDetails extends AppCompatActivity implements View.On
         wlPetImage.setImageBitmap(wlPetDetailsbitmap);
         wlPetDetailsCollapsingToolbar.setTitle(breed);
 
-        wlPetDetailsImageText.setText("Images of :" + breed);
-        //wlPetName.setText("Posted By :" + name);
+        wlPetDetailsImageText.setText("Images of " + breed);
         wlPetDetailsImagesDividerLine.setBackgroundResource(R.color.list_internal_divider);
         wlPetDetailsFirstImageThumbnail.setImageBitmap(wlPetDetailsbitmap);
         if (secondImagePath != null) {

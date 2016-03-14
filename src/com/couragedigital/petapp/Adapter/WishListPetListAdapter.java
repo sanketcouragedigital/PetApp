@@ -30,12 +30,12 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
     ViewHolder viewHolder;
     String petListId;
     String email;
+    String name;
     ProgressDialog progressDialog = null;
     public WishListPetListAdapter() {
     }
     public WishListPetListAdapter(List<WishListPetListItem> petLists) {
         this.wishListPetListItem = petLists;
-
     }
 
     @Override
@@ -71,10 +71,10 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
 
         public RoundedNetworkImageView petImage;
         public TextView petBreed;
+        public TextView petPostedBy;
         public TextView petAdoptOrSell;
         public Button deletebutton;
         public View dividerLine;
-        public TextView nameForPetPost;
         public ExpandableText wishlistPetListDescription;
         public View cardView;
         private WishListPetListItem wishListPetListItem;
@@ -87,8 +87,8 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
                 imageLoader = AppController.getInstance().getImageLoader();
             }
             petImage = (RoundedNetworkImageView) itemView.findViewById(R.id.wishlistViewImage);
+            petPostedBy = (TextView) itemView.findViewById(R.id.petPostedBy);
             petBreed = (TextView) itemView.findViewById(R.id.wishlistViewBreed);
-            nameForPetPost  = (TextView) itemView.findViewById(R.id.petPostedBy);
             petAdoptOrSell = (TextView) itemView.findViewById(R.id.wishlistPetAdoptOrSell);
             dividerLine = itemView.findViewById(R.id.wishlistDividerLine);
             deletebutton = (Button) itemView.findViewById(R.id.wishlistPetListDelete);
@@ -102,9 +102,9 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
             this.wishListPetListItem = wishListPetListItem;
             petImage.setImageUrl(wishListPetListItem.getFirstImagePath(), imageLoader);
             petBreed.setText(wishListPetListItem.getPetBreed());
+            petPostedBy.setText("Posted By :"+wishListPetListItem.getName());
             wishlistPetListDescription.setText(wishListPetListItem.getPetDescription());
             deletebutton.setText("Delete");
-            nameForPetPost.setText(wishListPetListItem.getName());
             petAdoptOrSell.setText(setListingType(wishListPetListItem));
             dividerLine.setBackgroundResource(R.color.list_internal_divider);
             //petFavourite.setBackgroundResource(R.drawable.favourite_disable);
@@ -148,7 +148,6 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
                     wishListPetDetail.putExtra("PET_GENDER", wishListPetListItem.getPetGender());
                     wishListPetDetail.putExtra("PET_DESCRIPTION", wishListPetListItem.getPetDescription());
                     wishListPetDetail.putExtra("ALTERNATE_NO", wishListPetListItem.getAlternateNo());
-                    wishListPetDetail.putExtra("NAME", wishListPetListItem.getName());
 
                     v.getContext().startActivity(wishListPetDetail);
                 }

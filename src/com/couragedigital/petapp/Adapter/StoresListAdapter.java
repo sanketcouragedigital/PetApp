@@ -1,13 +1,19 @@
 package com.couragedigital.petapp.Adapter;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView;
 import com.couragedigital.petapp.R;
 import com.couragedigital.petapp.TabFragmentStoresDetails;
@@ -46,7 +52,7 @@ public class StoresListAdapter extends RecyclerView.Adapter<StoresListAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public RoundedNetworkImageView storesImage;
+        public ImageView storesImage;
         public TextView storesName;
         public TextView storesAddress;
         public Button storesFavourite;
@@ -63,7 +69,7 @@ public class StoresListAdapter extends RecyclerView.Adapter<StoresListAdapter.Vi
 
             storesName = (TextView) itemView.findViewById(R.id.storesName);
             storesAddress = (TextView) itemView.findViewById(R.id.storesAddress);
-            storesImage = (RoundedNetworkImageView) itemView.findViewById(R.id.storesImage);
+            storesImage = (ImageView) itemView.findViewById(R.id.storesImage);
             storesSeeMoreBtn = (Button) itemView.findViewById(R.id.storesSeeMoreButton);
             storesFavourite = (Button) itemView.findViewById(R.id.storesFavourite);
             storesdividerLine = itemView.findViewById(R.id.storesDividerLine);
@@ -74,7 +80,15 @@ public class StoresListAdapter extends RecyclerView.Adapter<StoresListAdapter.Vi
 
         public void bindStoresList(StoresListItem storesList) {
             this.storesListItems = storesList;
-            storesImage.setImageUrl(storesListItems.getStoresImage_path(), imageLoader);
+            Glide.with(storesImage.getContext()).load(storesListItems.getStoresImage_path()).asBitmap().centerCrop().into(new BitmapImageViewTarget(storesImage) {
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(storesImage.getContext().getResources(), resource);
+                    circularBitmapDrawable.setCircular(true);
+                    storesImage.setImageDrawable(circularBitmapDrawable);
+                }
+            });
             storesName.setText(storesListItems.getStoresName());
             storesAddress.setText(storesListItems.getStoresAdress());
             storesSeeMoreBtn.setText("See More");

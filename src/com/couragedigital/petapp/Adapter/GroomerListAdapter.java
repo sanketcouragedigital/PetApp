@@ -1,13 +1,19 @@
 package com.couragedigital.petapp.Adapter;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView;
 import com.couragedigital.petapp.R;
 import com.couragedigital.petapp.TabFragmentGroomerDetails;
@@ -46,7 +52,7 @@ public class GroomerListAdapter extends RecyclerView.Adapter<GroomerListAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public RoundedNetworkImageView groomerImage;
+        public ImageView groomerImage;
         public TextView groomerName;
         public TextView groomerAddress;
         public View groomerCardView;
@@ -68,7 +74,7 @@ public class GroomerListAdapter extends RecyclerView.Adapter<GroomerListAdapter.
 
             groomerName = (TextView) itemView.findViewById(R.id.groomerName);
             groomerAddress = (TextView) itemView.findViewById(R.id.groomerAddress);
-            groomerImage = (RoundedNetworkImageView) itemView.findViewById(R.id.groomerImage);
+            groomerImage = (ImageView) itemView.findViewById(R.id.groomerImage);
             //    groomerSeeMoreBtn = (Button) itemView.findViewById(R.id.groomerSeeMoreButton);
             //   groomerFavourite = (Button) itemView.findViewById(R.id.groomerFavourite);
             //   groomerdividerLine = itemView.findViewById(R.id.groomerDividerLine);
@@ -84,9 +90,22 @@ public class GroomerListAdapter extends RecyclerView.Adapter<GroomerListAdapter.
             area = groomerList.getArea();
             city = groomerList.getCity();
 
-            groomerImage.setImageUrl(groomerListItems.getGroomerImage_path(), imageLoader);
+            Glide.with(groomerImage.getContext()).load(groomerList.getGroomerImage_path()).asBitmap().centerCrop().into(new BitmapImageViewTarget(groomerImage) {
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(groomerImage.getContext().getResources(), resource);
+                    circularBitmapDrawable.setCircular(true);
+                    groomerImage.setImageDrawable(circularBitmapDrawable);
+                }
+            });
             groomerName.setText(groomerListItems.getGroomerName());
-            areawithcity = area + ", " + city;
+            if(area.equals("")) {
+                areawithcity = city;
+            }
+            else {
+                areawithcity = area + " " + city;
+            }
             groomerAddress.setText(areawithcity);
 
             //  groomerSeeMoreBtn.setText("See More");

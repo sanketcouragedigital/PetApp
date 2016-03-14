@@ -59,7 +59,15 @@
                             android:textStyle="bold"
                             android:textColor="@color/list_pet_origin_text_color"
                             android:ellipsize="end"/>
-
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/petPostedBy"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginLeft="16dp"
+                            android:text="Posted By "
+                            android:layout_below="@+id/wishlistViewBreed"
+                            android:textSize="13sp"/>
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -67,19 +75,11 @@
                             android:layout_marginTop="12dp"
                             android:layout_marginLeft="16dp"
                             android:text="FOR ADOPTION"
-                            android:layout_below="@+id/wishlistViewBreed"
+                            android:layout_below="@+id/petPostedBy"
                             android:textSize="13sp"
                             android:textColor="#da4836"/>
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/petPostedBy"
-                            android:layout_marginTop="12dp"
-                            android:layout_marginLeft="16dp"
-                            android:text="Posted By"
-                            android:layout_below="@+id/wishlistPetAdoptOrSell"
-                            android:textSize="13sp"
-                            android:textColor="#da4836"/>
+
+
                 </RelativeLayout>
             </RelativeLayout>
 

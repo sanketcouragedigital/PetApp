@@ -21,8 +21,6 @@ public class PetMateFormUpload {
     private static Map<String, File> filePartData;
     private static Map<String, String> stringPart;
     public static PetMate petMateActivity;
-    //http://192.168.0.3/PetAppAPI/api/petappapi.php
-    //http://storage.couragedigital.com/dev/api/petappapi.php
 
     public static void uploadToRemoteServer(String emailforlatlong, String petCategoryName, String petBreedName,String petMateAgeMonthSpinner,String petMateAgeYearSpinner, String petGender, String petDescription, String firstImagePath, String secondImagePath, String thirdImagePath, String txtAlternateNo, PetMate petMate) throws Exception {
 

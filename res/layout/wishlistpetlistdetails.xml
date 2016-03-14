@@ -348,11 +348,9 @@
                                       android:id="@+id/wishlistPetDetailsDescriptionLayout"
                                       android:layout_below="@+id/wishlistPetPriceDetailsLayout">
                             <TextView
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:id="@+id/wishlistPetDescriptionInPetDetails"
-                                    android:text="this is description of pet"
-                                    android:ellipsize="end"/>
+                                    android:id="@+id/wishlistPetDescriptionInPetDetails"/>
                         </LinearLayout>
                         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                       android:layout_width="match_parent"

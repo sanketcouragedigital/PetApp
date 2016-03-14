@@ -28,9 +28,9 @@ public class BaseActivity extends AppCompatActivity {
     SessionManager sessionManager;
     TextView lblName;
     TextView lblEmail;
-    RecyclerView listItems;                           // Declaring RecyclerView
-    RecyclerView.Adapter adapter;                        // Declaring Adapter For Recycler View
-    RecyclerView.LayoutManager layoutManager;            // Declaring Layout Manager as a linear layout manager
+    RecyclerView listItems;
+    RecyclerView.Adapter adapter;
+    RecyclerView.LayoutManager layoutManager;
     DrawerLayout drawer;
     FrameLayout frameLayout;
     LinearLayout linearLayout;
@@ -49,9 +49,9 @@ public class BaseActivity extends AppCompatActivity {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         listItems.setLayoutManager(linearLayoutManager);
 
-        final String[] tittle = new String[]{"Home", "Edit Profile", "MyListings", "FeedBack" , "Share", "LogOut"};
+        final String[] tittle = new String[]{"Home", "Edit Profile", "My Listings", "WishList", "FeedBack" , "Share", "LogOut"};
 
-        final int[] icons = new int[] {R.drawable.home,R.drawable.profile,R.drawable.mylisting,0,0,0};
+        final int[] icons = new int[] {R.drawable.home,R.drawable.profile,R.drawable.mylisting,R.drawable.favourite,0,0,0};
         itemArrayList = new ArrayList<DrawerItems>();
         for (int i = 0; i < tittle.length; i++) {
             DrawerItems drawerItems = new DrawerItems();
@@ -60,7 +60,7 @@ public class BaseActivity extends AppCompatActivity {
             itemArrayList.add(drawerItems);
         }
 
-        final int[] selectedicons = new int[] {R.drawable.home_red,R.drawable.profile_red,R.drawable.mylisting_red,0,0,0};
+        final int[] selectedicons = new int[] {R.drawable.home_red,R.drawable.profile_red,R.drawable.mylisting_red,R.drawable.favourite_enable,0,0,0};
         itemSelectedArrayList = new ArrayList<DrawerItems>();
         for (int i = 0; i < tittle.length; i++) {
             DrawerItems drawerItems = new DrawerItems();

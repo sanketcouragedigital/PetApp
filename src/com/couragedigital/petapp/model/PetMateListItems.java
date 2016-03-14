@@ -17,7 +17,7 @@ public class PetMateListItems {
     public String petMatePostDate;
     public String petMatePostOwnerEmail;
     public String petMatePostOwnerMobileNo;
-public String listId;
+    public String listId;
 
 
     public PetMateListItems() {
@@ -73,12 +73,14 @@ public String listId;
         this.petMateBreed = petMateBreed;
     }
 	
-  public String getListId() {
+    public String getListId() {
         return listId;
     }
+
     public void setListId(String listId) {
         this.listId = listId;
     }
+
     public String getPetMatePostOwner() {
         return petMatePostOwner;
     }

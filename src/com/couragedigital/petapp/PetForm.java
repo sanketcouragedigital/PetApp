@@ -82,7 +82,10 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
     ImageView secondImageOfPet;
     ImageView thirdImageOfPet;
     FloatingActionButton uploadFabButton;
+    CheckBox labelForRegisterdNo;
+    EditText alternateNo;
 
+    String txtAlternateNo="";
     String petCategoryName;
     String petBreedName;
     String petAgeMonthSpinner = "0";
@@ -137,8 +140,23 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
         petAgeInMonths = (Spinner) this.findViewById(R.id.ageInMonths);
         petAgeInYears = (Spinner) this.findViewById(R.id.ageInYears);
         petsell = (RadioButton) findViewById(R.id.petSell);
+        alternateNo = (EditText) findViewById(R.id.alternateNotxt);
+        labelForRegisterdNo =(CheckBox) this.findViewById(R.id.contactNocheckBox);
 
         GenarateSpinerForAge();
+
+        labelForRegisterdNo.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (((CheckBox) v).isChecked()){
+                    //CheckBox is checked
+                    txtAlternateNo="";
+                    alternateNo.setEnabled(false);
+                }else{
+                    //CheckBox is unchecked
+                    alternateNo.setEnabled(true);
+                }
+            }
+        });
 
         HashMap<String, String> user = sessionManager.getUserDetails();
         email = user.get(SessionManager.KEY_EMAIL);
@@ -196,9 +214,6 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
             }
         });
 
-        selectImageButton.setOnClickListener(this);
-        //ageOfPet.addTextChangedListener(ageChangeListener);
-
         giveAwayType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int i) {
@@ -216,7 +231,10 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
                 }
             }
         });
+
+        alternateNo.addTextChangedListener(alternatePhoneNoChangeListener);
         priceOfPet.addTextChangedListener(priceChangeListener);
+        selectImageButton.setOnClickListener(this);
         uploadFabButton.setOnClickListener(this);
     }
     public void GenarateSpinerForAge(){
@@ -270,8 +288,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
         });
     }
 
-
-    /*private TextWatcher ageChangeListener = new TextWatcher() {
+    private TextWatcher alternatePhoneNoChangeListener = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -284,9 +301,9 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
 
         @Override
         public void afterTextChanged(Editable s) {
-            new GetPetAge().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
+            new GetPetAlternateNo().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
         }
-    };*/
+    };
 
     private TextWatcher priceChangeListener = new TextWatcher() {
         @Override
@@ -558,28 +575,14 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
         return image;
     }
 
-/*    public class GetPetAge extends AsyncTask<Void, Void, Void> {
-        String takePetAge;
+    public class GetPetAlternateNo extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
             try {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        takePetAge = ageOfPet.getText().toString();
-                        if(!takePetAge.equals("")) {
-                            Integer takePetAgeInInteger = Integer.parseInt(takePetAge);
-                            if(takePetAgeInInteger >= 100) {
-                                ageOfPet.setError("Please enter valid age");
-                                ageOfPet.setText(null);
-                            }
-                            else {
-                                petAge = takePetAgeInInteger;
-                            }
-                        }
-                        else if(takePetAge.equals("")) {
-                            petAge = 0;
-                        }
+                        txtAlternateNo = alternateNo.getText().toString();
                     }
                 });
 
@@ -588,7 +591,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
             }
             return null;
         }
-    }*/
+    }
 
     public class GetPetPrice extends AsyncTask<Void, Void, Void> {
         String takePetPrice;
@@ -748,7 +751,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
         @Override
         protected Void doInBackground(Void... params) {
             try {
-                PetListFormUpload.uploadToRemoteServer(petCategoryName, petBreedName, petAgeMonthSpinner,petAgeYearSpinner,petGender, petDescription, petAdoption, petPrice, firstImagePath, secondImagePath, thirdImagePath, email, PetForm.this);
+                PetListFormUpload.uploadToRemoteServer(petCategoryName, petBreedName, petAgeMonthSpinner,petAgeYearSpinner,petGender, petDescription, petAdoption, petPrice, firstImagePath, secondImagePath, thirdImagePath, email, txtAlternateNo, PetForm.this);
                 progressDialog.dismiss();
             } catch (Exception e) {
                 e.printStackTrace();

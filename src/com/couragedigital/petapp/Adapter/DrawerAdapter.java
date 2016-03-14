@@ -70,9 +70,9 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.ViewHolder
     @Override
     public int getItemViewType(int position) {
         int viewType = 0;
-        if (position <= 2) {
+        if (position <= 3) {
             viewType = 0;
-        } else if (position > 2) {
+        } else if (position > 3) {
             viewType = 1;
         }
         return viewType;
@@ -109,11 +109,11 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.ViewHolder
             if (drawerListInstance.getDrawerItemListImagePositionInstances() != null) {
                 positionOfItem = drawerListInstance.getDrawerItemListImagePositionInstances();
             }
-            if (i <= 2) {
+            if (i <= 3) {
                 vimageView.setImageResource(itemsList.getIcon());
                 vtextView.setText(itemsList.getTittle());
                 //vimageView.setEnabled(true);
-                if (i == 2) {
+                if (i == 3) {
                     drawerDivider.setVisibility(View.VISIBLE);
                 }
                 if (positionOfItem == 0 && itemsList.getIcon() == R.drawable.home) {
@@ -129,9 +129,13 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.ViewHolder
                 else if (positionOfItem == 2 && itemsList.getIcon() == R.drawable.mylisting) {
                     vtextView.setText(itemsSelectedList.getTittle());
                     vimageView.setImageResource(itemsSelectedList.getIcon());
+                }
+                else if (positionOfItem == 3 && itemsList.getIcon() == R.drawable.favourite) {
+                    vtextView.setText(itemsSelectedList.getTittle());
+                    vimageView.setImageResource(itemsSelectedList.getIcon());
                     drawerDivider.setVisibility(View.VISIBLE);
                 }
-            } else if (i > 2) {
+            } else if (i > 3) {
                 vtext.setText(itemsList.getTittle());
             }
         }
@@ -142,33 +146,37 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.ViewHolder
             if (this.getAdapterPosition() == 0) {
                 Intent gotoformupload = new Intent(view.getContext(), Index.class);
                 view.getContext().startActivity(gotoformupload);
-            } else if (this.getAdapterPosition() == 1) {
+            }
+            else if (this.getAdapterPosition() == 1) {
                 drawer.closeDrawers();
                 SessionManager sessionManager = new SessionManager(v.getContext());
                 HashMap<String, String> user = sessionManager.getUserDetails();
                 oldEmail = user.get(SessionManager.KEY_EMAIL);
                 new FetchUserDetailFromServer().execute();
-            } else if (this.getAdapterPosition() == 2) {
+            }
+            else if (this.getAdapterPosition() == 2) {
                 drawer.closeDrawers();
                 Intent gotomylisting = new Intent(v.getContext(), MyListing.class);
                 v.getContext().startActivity(gotomylisting);
-            } else if (this.getAdapterPosition() == 3) {
+            }
+            else if (this.getAdapterPosition() == 3) {
                 drawer.closeDrawers();
                 Intent gotoWishList = new Intent(v.getContext(), WishList.class);
                 v.getContext().startActivity(gotoWishList);
             }
-
             else if (this.getAdapterPosition() == 4) {
                 Intent gotofeedback = new Intent(v.getContext(), Feedback.class);
                 v.getContext().startActivity(gotofeedback);
-            } else if (this.getAdapterPosition() == 5) {
+            }
+            else if (this.getAdapterPosition() == 5) {
                 drawer.closeDrawers();
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
                 String sharingText = "I want to share this text.";
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, sharingText);
                 v.getContext().startActivity(Intent.createChooser(sharingIntent, "Share using"));
-            } else if (this.getAdapterPosition() == 6) {
+            }
+            else if (this.getAdapterPosition() == 6) {
                 sessionManager = new SessionManager(v.getContext());
                 sessionManager.logoutUser();
             }

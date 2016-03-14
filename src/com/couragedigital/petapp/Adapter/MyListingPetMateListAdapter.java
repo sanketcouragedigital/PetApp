@@ -2,16 +2,18 @@ package com.couragedigital.petapp.Adapter;
 
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 import com.android.volley.toolbox.ImageLoader;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.couragedigital.petapp.*;
 import com.couragedigital.petapp.Connectivity.MyListingPetMateDelete;
 import com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView;
@@ -58,7 +60,7 @@ public class MyListingPetMateListAdapter extends RecyclerView.Adapter
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public RoundedNetworkImageView mlPetMateImage;
+        public ImageView mlPetMateImage;
         public TextView mlPetMateBreed;
         public Button modify;
         public Button deletebutton;
@@ -75,7 +77,7 @@ public class MyListingPetMateListAdapter extends RecyclerView.Adapter
             if (imageLoader == null) {
                 imageLoader = AppController.getInstance().getImageLoader();
             }
-            mlPetMateImage = (RoundedNetworkImageView) itemView.findViewById(R.id.myListingPetMateImage);
+            mlPetMateImage = (ImageView) itemView.findViewById(R.id.myListingPetMateImage);
             mlPetMateBreed = (TextView) itemView.findViewById(R.id.myListingPetMateBreed);
             modify = (Button) itemView.findViewById(R.id.myListingPetMateModify);
             myListingPetMateDivider = itemView.findViewById(R.id.myListingPetMateDividerLine);
@@ -92,7 +94,15 @@ public class MyListingPetMateListAdapter extends RecyclerView.Adapter
         public void bindPetList(MyListingPetMateListItem myListingPetMateListItem) {
             this.myListingPetMateListItem = myListingPetMateListItem;
 
-            mlPetMateImage.setImageUrl(myListingPetMateListItem.getFirstImagePath(), imageLoader);
+            Glide.with(mlPetMateImage.getContext()).load(myListingPetMateListItem.getFirstImagePath()).asBitmap().centerCrop().into(new BitmapImageViewTarget(mlPetMateImage) {
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(mlPetMateImage.getContext().getResources(), resource);
+                    circularBitmapDrawable.setCircular(true);
+                    mlPetMateImage.setImageDrawable(circularBitmapDrawable);
+                }
+            });
             mlPetMateBreed.setText(myListingPetMateListItem.getPetMateBreed());
             petMateListDescription.setText(myListingPetMateListItem.getPetMateDescription());
             modify.setText("Modify");

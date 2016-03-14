@@ -308,12 +308,8 @@
                                       android:layout_marginRight="16dp">
                             <TextView
                                     android:id="@+id/wishlistPetMateDescriptionInPetDetails"
-                                    android:text="Description"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:singleLine="true"
-                                    android:ellipsize="end"/>
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
                         </LinearLayout>
 
                         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

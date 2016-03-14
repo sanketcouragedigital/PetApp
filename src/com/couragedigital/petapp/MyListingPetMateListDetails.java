@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.NetworkOnMainThreadException;
 import android.os.StrictMode;
@@ -16,9 +17,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.*;
+import com.bumptech.glide.Glide;
 import com.couragedigital.petapp.model.MyListingPetMateListItem;
 
 import java.io.*;
@@ -58,6 +58,9 @@ public class MyListingPetMateListDetails extends AppCompatActivity implements Vi
 
     MyListingPetMateListItem petMateListItems = new MyListingPetMateListItem();
 
+    LinearLayout myListingPetMateListDetailsLinearLayout;
+    RelativeLayout myListingPetMateListDetailsFirstRelativeLayout;
+    RelativeLayout myListingPetMateListDetailsSecondRelativeLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -108,24 +111,24 @@ public class MyListingPetMateListDetails extends AppCompatActivity implements Vi
         mlPetMateDescription = (TextView) findViewById(R.id.myListingPetMateDescriptionInPetDetails);
         mlPetMateDetailsContentDividerLine = findViewById(R.id.myListingPetMateDetailsContentDividerLine);
 
+        myListingPetMateListDetailsLinearLayout = (LinearLayout) findViewById(R.id.myListingPetMateListDetailsLinearLayout);
+        myListingPetMateListDetailsFirstRelativeLayout = (RelativeLayout) findViewById(R.id.myListingPetMateListDetailsFirstRelativeLayout);
+        myListingPetMateListDetailsSecondRelativeLayout = (RelativeLayout) findViewById(R.id.myListingPetMateListDetailsSecondRelativeLayout);
+
         mlPetMateDetailsFirstImageThumbnail.setOnClickListener(this);
         mlPetMateDetailsSecondImageThumbnail.setOnClickListener(this);
         mlPetMateDetailsThirdImageThumbnail.setOnClickListener(this);
 
-        mlPetMateDetailsbitmap = getBitmapImageFromURL(firstImagePath);
-        mlPetMateImage.setImageBitmap(mlPetMateDetailsbitmap);
-        mlPetMateDetailsCollapsingToolbar.setTitle("For Mating");
+        new FetchImageFromServer().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, firstImagePath);
+        mlPetMateDetailsCollapsingToolbar.setTitle(breed);
 
-        mlPetMateDetailsImageText.setText("Images of " + breed);
+        mlPetMateDetailsImageText.setText("Images");
         mlPetMateDetailsImagesDividerLine.setBackgroundResource(R.color.list_internal_divider);
-        mlPetMateDetailsFirstImageThumbnail.setImageBitmap(mlPetMateDetailsbitmap);
-        if (secondImagePath != null) {
-            mlPetMateDetailsbitmap = getBitmapImageFromURL(secondImagePath);
-            mlPetMateDetailsSecondImageThumbnail.setImageBitmap(mlPetMateDetailsbitmap);
+        if(secondImagePath != null) {
+            new FetchImageFromServer().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, secondImagePath);
         }
-        if (thirdImagePath != null) {
-            mlPetMateDetailsbitmap = getBitmapImageFromURL(thirdImagePath);
-            mlPetMateDetailsThirdImageThumbnail.setImageBitmap(mlPetMateDetailsbitmap);
+        if(thirdImagePath != null) {
+            new FetchImageFromServer().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, thirdImagePath);
         }
         mlPetMateDetailsContentDividerLine.setBackgroundResource(R.color.list_internal_divider);
         mlPetMateBreed.setText(breed);
@@ -145,37 +148,47 @@ public class MyListingPetMateListDetails extends AppCompatActivity implements Vi
                 setAppBarOffset(heightPx);
             }
         });
+
+        myListingPetMateListDetailsLinearLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                Integer heightOfFirstRelativeLayout = myListingPetMateListDetailsFirstRelativeLayout.getHeight();
+                Integer heightOfSecondRelativeLayout = myListingPetMateListDetailsSecondRelativeLayout.getHeight();
+
+                myListingPetMateListDetailsLinearLayout.setMinimumHeight(heightOfFirstRelativeLayout + heightOfSecondRelativeLayout + 200);
+            }
+        });
     }
 
-    private Bitmap getBitmapImageFromURL(String imagePath) {
-        InputStream in = null;
-        try {
-            if (android.os.Build.VERSION.SDK_INT > 9) {
-                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                        .permitAll().build();
-
-                StrictMode.setThreadPolicy(policy);
+    public class FetchImageFromServer extends AsyncTask<String, String, String> {
+        String urlForFetch;
+        @Override
+        protected String doInBackground(String... url) {
+            try {
+                urlForFetch = url[0];
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            in = new BufferedInputStream(new URL(imagePath).openStream(), 4 * 1024);
-        } catch (NetworkOnMainThreadException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        final ByteArrayOutputStream dataStream = new ByteArrayOutputStream();
-        BufferedOutputStream out = new BufferedOutputStream(dataStream, 4 * 1024);
-        try {
-            copy(in, out);
-            out.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
+            return urlForFetch;
         }
 
-        final byte[] data = dataStream.toByteArray();
-        mlPetMateDetailsbitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-        return mlPetMateDetailsbitmap;
+        @Override
+        protected void onPostExecute(String url) {
+            super.onPostExecute(url);
+            if(urlForFetch.equals(firstImagePath)) {
+                Glide.with(mlPetMateImage.getContext()).load(url).centerCrop().crossFade().into(mlPetMateImage);
+                Glide.with(mlPetMateDetailsFirstImageThumbnail.getContext()).load(url).centerCrop().crossFade().into(mlPetMateDetailsFirstImageThumbnail);
+                mlPetMateDetailsFirstImageThumbnail.setOnClickListener(MyListingPetMateListDetails.this);
+            }
+            if(urlForFetch.equals(secondImagePath)) {
+                Glide.with(mlPetMateDetailsSecondImageThumbnail.getContext()).load(url).centerCrop().crossFade().into(mlPetMateDetailsSecondImageThumbnail);
+                mlPetMateDetailsSecondImageThumbnail.setOnClickListener(MyListingPetMateListDetails.this);
+            }
+            if(urlForFetch.equals(thirdImagePath)) {
+                Glide.with(mlPetMateDetailsThirdImageThumbnail.getContext()).load(url).centerCrop().crossFade().into(mlPetMateDetailsThirdImageThumbnail);
+                mlPetMateDetailsThirdImageThumbnail.setOnClickListener(MyListingPetMateListDetails.this);
+            }
+        }
     }
 
     private void setAppBarOffset(int i) {
@@ -200,14 +213,11 @@ public class MyListingPetMateListDetails extends AppCompatActivity implements Vi
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.myListingPetMateDetailsFirstImageThumbnail) {
-            mlPetMateDetailsbitmap = getBitmapImageFromURL(firstImagePath);
-            mlPetMateImage.setImageBitmap(mlPetMateDetailsbitmap);
+            Glide.with(mlPetMateImage.getContext()).load(firstImagePath).centerCrop().crossFade().into(mlPetMateImage);
         } else if (v.getId() == R.id.myListingPetMateDetailsSecondImageThumbnail) {
-            mlPetMateDetailsbitmap = getBitmapImageFromURL(secondImagePath);
-            mlPetMateImage.setImageBitmap(mlPetMateDetailsbitmap);
+            Glide.with(mlPetMateImage.getContext()).load(secondImagePath).centerCrop().crossFade().into(mlPetMateImage);
         } else if (v.getId() == R.id.myListingPetMateDetailsThirdImageThumbnail) {
-            mlPetMateDetailsbitmap = getBitmapImageFromURL(thirdImagePath);
-            mlPetMateImage.setImageBitmap(mlPetMateDetailsbitmap);
+            Glide.with(mlPetMateImage.getContext()).load(thirdImagePath).centerCrop().crossFade().into(mlPetMateImage);
         }
     }
 }

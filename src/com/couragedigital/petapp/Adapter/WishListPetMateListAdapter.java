@@ -62,7 +62,7 @@ public class WishListPetMateListAdapter extends RecyclerView.Adapter
 
         public RoundedNetworkImageView mlPetMateImage;
         public TextView mlPetMateBreed;
-        public TextView nameForPetPost;
+        public TextView petMatePostedBy;
         public Button deletebutton;
         public View wishlistPetMateDivider;
         public View cardView;
@@ -79,11 +79,10 @@ public class WishListPetMateListAdapter extends RecyclerView.Adapter
             }
             mlPetMateImage = (RoundedNetworkImageView) itemView.findViewById(R.id.wishlistPetMateImage);
             mlPetMateBreed = (TextView) itemView.findViewById(R.id.wishlistPetMateBreed);
-            nameForPetPost  = (TextView) itemView.findViewById(R.id.petMatePostedBy);
+            petMatePostedBy = (TextView) itemView.findViewById(R.id.petMatePostedBy);
             //modify = (Button) itemView.findViewById(R.id.wishlistPetMateModify);
             wishlistPetMateDivider = itemView.findViewById(R.id.wishlistPetMateDividerLine);
             deletebutton = (Button) itemView.findViewById(R.id.wishlistPetMateDelete);
-
             petMateListDescription = (ExpandableText) itemView.findViewById(R.id.wishlistPetMateListDescription);
 
             cardView = itemView;
@@ -96,8 +95,8 @@ public class WishListPetMateListAdapter extends RecyclerView.Adapter
 
             mlPetMateImage.setImageUrl(wishListPetMateListItem.getFirstImagePath(), imageLoader);
             mlPetMateBreed.setText(wishListPetMateListItem.getPetMateBreed());
+            petMatePostedBy.setText("Posted By :"+wishListPetMateListItem.getName());
             petMateListDescription.setText(wishListPetMateListItem.getPetMateDescription());
-            nameForPetPost.setText(wishListPetMateListItem.getName());
             deletebutton.setText("Delete");
             //petMateFavourite.setBackgroundResource(R.drawable.favourite_disable);
 //            mlPetMateFavourite.setVisibility(View.GONE);
@@ -141,7 +140,6 @@ public class WishListPetMateListAdapter extends RecyclerView.Adapter
                     petFullInformation.putExtra("PET_MATE_GENDER", wishListPetMateListItem.getPetMateGender());
                     petFullInformation.putExtra("PET_MATE_DESCRIPTION", wishListPetMateListItem.getPetMateDescription());
                     petFullInformation.putExtra("ALTERNATE_NO", wishListPetMateListItem.getAlternateNo());
-                    petFullInformation.putExtra("NAME", wishListPetMateListItem.getName());
 
                     v.getContext().startActivity(petFullInformation);
                 }

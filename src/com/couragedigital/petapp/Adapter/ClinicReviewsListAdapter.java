@@ -15,7 +15,6 @@ public class ClinicReviewsListAdapter extends RecyclerView.Adapter<ClinicReviews
     List<ClinicReviewsListItems> clinicReviewsListsItem;
     View v;
     ViewHolder viewHolder;
-    LinearLayout layout;
 
     public ClinicReviewsListAdapter(List<ClinicReviewsListItems> clinicReviewsListArrayList) {
         this.clinicReviewsListsItem = clinicReviewsListArrayList;
@@ -39,31 +38,25 @@ public class ClinicReviewsListAdapter extends RecyclerView.Adapter<ClinicReviews
         return clinicReviewsListsItem.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public ImageView clinicRatings;
         public TextView clinicReviews;
         public TextView email;
         public View clinicListDividerLine;
-        private ClinicReviewsListItems listItems;
         public int userRatings;
+        LinearLayout layout;
+
         public ViewHolder(View itemView) {
             super(itemView);
 
-            layout = (LinearLayout)itemView.findViewById(R.id.ratingNos);
-            //clinicRatings = (ImageView) itemView.findViewById(R.id.ratingNos);
+            layout = (LinearLayout) itemView.findViewById(R.id.ratingNos);
             clinicReviews = (TextView) itemView.findViewById(R.id.reviews);
             email = (TextView) itemView.findViewById(R.id.usersName);
             clinicListDividerLine = itemView.findViewById(R.id.viewdividerline);
-            //cardViewclinicReviewsList = itemView;
-            //cardViewclinicReviewsList.setOnClickListener(this);
         }
 
-       // @TargetApi(Build.VERSION_CODES.M)
         public void bindClinicReviewsList(ClinicReviewsListItems clinicReviewsList) {
-            this.listItems = clinicReviewsList;
             userRatings=Integer.parseInt(clinicReviewsList.getClinicRatings());
-
 
             for(int i=0;i<userRatings;i++)
             {
@@ -80,19 +73,6 @@ public class ClinicReviewsListAdapter extends RecyclerView.Adapter<ClinicReviews
             clinicReviews.setText(clinicReviewsList.getClinicReviews());
             email.setText(clinicReviewsList.getEmail());
             clinicListDividerLine.setBackgroundResource(R.color.list_internal_divider);
-        }
-
-        @Override
-        public void onClick(View view) {
-
-//            if (this.listItems != null) {
-//                Intent clinicInformation = new Intent(v.getContext(), PetClinicDetails.class);
-//                clinicInformation.putExtra("CLINIC_ID", listItems.getClinicId());
-//                clinicInformation.putExtra("DOCTOR_EMAIL", listItems.getEmail());
-//                clinicInformation.putExtra("CLINIC_RATINGS", listItems.getClinicRatings());
-//                clinicInformation.putExtra("CLINIC_REVIEWS", listItems.getClinicReviews());
-//                v.getContext().startActivity(clinicInformation);
-//            }
         }
     }
 

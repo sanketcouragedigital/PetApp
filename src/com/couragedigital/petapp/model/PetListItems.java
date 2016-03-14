@@ -73,6 +73,7 @@ public class PetListItems {
     public String getListId() {
         return listId;
     }
+
     public void setListId(String listId) {
         this.listId = listId;
     }

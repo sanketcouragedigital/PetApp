@@ -9,7 +9,6 @@
     <android.support.v7.widget.CardView
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:id="@+id/card_view"
-            android:layout_marginTop="@dimen/signincard_margin_top"
             android:layout_marginLeft="@dimen/signincard_marginLeft"
             android:layout_marginRight="@dimen/signincard_marginRight"
             android:layout_width="@dimen/signincard_width"

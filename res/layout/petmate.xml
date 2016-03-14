@@ -7,13 +7,14 @@
         android:layout_height="match_parent">
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:id="@+id/applyPetMateScrollView">
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                         android:orientation="vertical"
-                        android:layout_height="match_parent"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/petMateFormLayout"
                         android:focusable="true"
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp"
@@ -105,18 +106,20 @@
                     android:layout_below="@+id/petMateGenderLayout"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="16dp"/>
+
             <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Use Registered Contact No"
                     android:id="@+id/contactNocheckBox"
                     android:layout_below="@+id/descriptionOfPetMate"
-                    android:checked="true"
-                    />
+                    android:layout_marginTop="16dp"
+                    android:checked="true"/>
+
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
+                    android:inputType="phone"
                     android:id="@+id/alternateNotxt"
                     android:hint="Alternate No"
                     android:enabled="false"
@@ -127,7 +130,6 @@
                     android:layout_below="@+id/contactNocheckBox"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="16dp"/>
-
 
             <Button
                     android:layout_width="wrap_content"
@@ -174,8 +176,6 @@
                         android:scaleType="fitCenter"
                         android:layout_weight="1"/>
             </LinearLayout>
-
-
         </RelativeLayout>
     </ScrollView>
     <android.support.design.widget.FloatingActionButton
@@ -186,10 +186,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:src="@drawable/form_submit"
-            app:layout_anchor="@id/applyPetMateScrollView"
+            app:layout_anchor="@id/petMateFormLayout"
             app:layout_anchorGravity="bottom|right|end"
             app:elevation="6dp"
             app:fabSize="normal"
-            app:backgroundTint="#DA4836"/>
+            app:backgroundTint="#DA4836"
+            app:layout_behavior="com.couragedigital.petapp.Behaviours.ScrollAwareFABBehavior"/>
 </android.support.design.widget.CoordinatorLayout>
 

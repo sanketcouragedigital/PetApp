@@ -10,6 +10,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.couragedigital.petapp.PetClinicDetails;
 import com.couragedigital.petapp.Singleton.ClinicReviewInstance;
+import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.app.AppController;
 import com.couragedigital.petapp.model.ClinicReviewsListItems;
 import org.json.JSONArray;
@@ -33,6 +34,7 @@ public class ShowClinicFeedback {
     public static String current_page;
     private static final String TAG = PetFetchList.class.getSimpleName();
     private  static  String clinicReviews;
+    private static String url = URLInstance.getUrl();
 
 
     //public static List showClinicReviews(List<ClinicReviewsListItems> clinicReviewsList, RecyclerView.Adapter adapter, String url) {
@@ -48,7 +50,7 @@ public class ShowClinicFeedback {
         clinicTiming = clinicNotes;
 
         //String url= "http://192.168.0.7/PetAppAPI/api/petappapi.php?method=showClinicReviews&format=json&currentPage=" + current_page + "&clinicId=" + clinicId + "";
-        String url= "http://storage.couragedigital.com/dev/api/petappapi.php?method=showClinicReviews&format=json&currentPage=" + current_page + "&clinicId=" + clinicId + "";
+        url = url + "?method=showClinicReviews&format=json&currentPage=" + current_page + "&clinicId=" + clinicId + "";
         // String url = URLInstance.getUrl();
         method = "showClinicReviews";
         format = "json";
@@ -60,38 +62,38 @@ public class ShowClinicFeedback {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            JSONArray jsonArray = response.getJSONArray("showClinicReviewssResponse");
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                try {
-                                    JSONObject obj = jsonArray.getJSONObject(i);
-                                    ClinicReviewsListItems clinicReviewsListItems = new ClinicReviewsListItems();
-                                    clinicReviewsListItems.setEmail(obj.getString("name"));
-                                    clinicReviewsListItems.setClinicRatings(obj.getString("ratings"));
-                                    clinicReviewsListItems.setClinicReviews(obj.getString("reviews"));
-                                   // clinicReviewsListItems.setTime(obj.getString("time"));
+                            if(!response.getJSONArray("showClinicReviewsResponse").equals(JSONObject.NULL)) {
+                                JSONArray jsonArray = response.getJSONArray("showClinicReviewsResponse");
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    try {
+                                        JSONObject obj = jsonArray.getJSONObject(i);
+                                        ClinicReviewsListItems clinicReviewsListItems = new ClinicReviewsListItems();
+                                        clinicReviewsListItems.setEmail(obj.getString("name"));
+                                        clinicReviewsListItems.setClinicRatings(obj.getString("ratings"));
+                                        clinicReviewsListItems.setClinicReviews(obj.getString("reviews"));
+                                        // clinicReviewsListItems.setTime(obj.getString("time"));
 
-                                    clinicReviewsList.add(clinicReviewsListItems);
+                                        clinicReviewsList.add(clinicReviewsListItems);
 
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
                                 }
+                                ClinicReviewInstance clinicReviewInstance = new ClinicReviewInstance();
+                                clinicReviewInstance.setClinicReviewsListItemsArrayList(clinicReviewsList);
                             }
-                            ClinicReviewInstance clinicReviewInstance = new ClinicReviewInstance();
-                            clinicReviewInstance.setClinicReviewsListItemsArrayList(clinicReviewsList);
-
-                                Intent clinicInformation = new Intent(view.getContext(), PetClinicDetails.class);
-                                clinicInformation.putExtra("CLINIC_ID",clinicId );
-                                clinicInformation.putExtra("CLINIC_NAME",nameOfClinic);
-                                clinicInformation.putExtra("CLINIC_IMAGE",clinicImage);
-                                clinicInformation.putExtra("CLINIC_ADDRESS",addressOfClinic);
-                                clinicInformation.putExtra("DOCTOR_NAME",email);
-                                clinicInformation.putExtra("DOCTOR_CONTACT",contactNo);
-                                clinicInformation.putExtra("CLINIC_NOTES",clinicTiming );
-                                view.getContext().startActivity(clinicInformation);
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                        Intent clinicInformation = new Intent(view.getContext(), PetClinicDetails.class);
+                        clinicInformation.putExtra("CLINIC_ID",clinicId);
+                        clinicInformation.putExtra("CLINIC_NAME",nameOfClinic);
+                        clinicInformation.putExtra("CLINIC_IMAGE",clinicImage);
+                        clinicInformation.putExtra("CLINIC_ADDRESS",addressOfClinic);
+                        clinicInformation.putExtra("DOCTOR_NAME",email);
+                        clinicInformation.putExtra("DOCTOR_CONTACT",contactNo);
+                        clinicInformation.putExtra("CLINIC_NOTES",clinicTiming);
+                        view.getContext().startActivity(clinicInformation);
                     }
                 }, new Response.ErrorListener() {
             @Override

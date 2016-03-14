@@ -8,13 +8,14 @@
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res/com.couragedigital.petapp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:id="@+id/applyScrollView">
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                         android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/petFormLayout"
                         android:focusable="true"
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp"
@@ -149,17 +150,20 @@
                     android:layout_below="@+id/petPriceLayout"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="16dp"/>
+
             <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Use Registered Contact No"
                     android:id="@+id/contactNocheckBox"
                     android:layout_below="@+id/descriptionOfPet"
-                    android:checked="true"/>
+                    android:checked="true"
+                    android:layout_marginTop="16dp"/>
+
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
+                    android:inputType="phone"
                     android:id="@+id/alternateNotxt"
                     android:hint="Alternate No"
                     android:textColor="@color/textColorPrimary"
@@ -170,6 +174,7 @@
                     android:layout_below="@+id/contactNocheckBox"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="16dp"/>
+
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -225,10 +230,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:src="@drawable/form_submit"
-            app:layout_anchor="@id/applyScrollView"
+            app:layout_anchor="@id/petFormLayout"
             app:layout_anchorGravity="bottom|right|end"
             app:elevation="6dp"
             app:fabSize="normal"
-            app:backgroundTint="#DA4836"/>
+            app:backgroundTint="#DA4836"
+            app:layout_behavior="com.couragedigital.petapp.Behaviours.ScrollAwareFABBehavior"/>
 </android.support.design.widget.CoordinatorLayout>
 

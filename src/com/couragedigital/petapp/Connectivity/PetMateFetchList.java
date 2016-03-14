@@ -23,33 +23,41 @@ public class PetMateFetchList {
     private static  int checkRequestState;
 
     public static List petMateFetchList(List<PetMateListItems> petMateLists, RecyclerView.Adapter adapter, String url, int requestState,ProgressDialog progressDialog) {
+        checkRequestState = requestState;
         JsonObjectRequest petMateListReq = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-								  if (checkRequestState == 0) {
-                                JSONArray wishListjsonArray = response.getJSONArray("showWishListResponse");
-                                for (int i = 0; i < wishListjsonArray.length(); i++) {
-                                    try {
-                                        JSONObject obj = wishListjsonArray.getJSONObject(i);
-                                        String item = (obj.getString("listId"));
-                                        wishListPetMateListId.add(item);
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
+                            if(!response.getJSONArray("showWishListResponse").equals(JSONObject.NULL)) {
+                                if (checkRequestState == 0) {
+                                    JSONArray wishListjsonArray = response.getJSONArray("showWishListResponse");
+                                    for (int i = 0; i < wishListjsonArray.length(); i++) {
+                                        try {
+                                            JSONObject obj = wishListjsonArray.getJSONObject(i);
+                                            String item = (obj.getString("listId"));
+                                            wishListPetMateListId.add(item);
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
                                     }
+                                    UserPetMateListWishList userPetMateListWishList = new UserPetMateListWishList();
+                                    userPetMateListWishList.setPetMateWishList(wishListPetMateListId);
+                                    checkRequestState = 1;
                                 }
-                                UserPetMateListWishList userPetMateListWishList = new UserPetMateListWishList();
-                                userPetMateListWishList.setPetMateListId(wishListPetMateListId);
-                                checkRequestState=1;
                             }
-                            JSONArray jsonArray = response.getJSONArray("showPetMateDetailsResponse");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        JSONArray jsonArray = null;
+                        try {
+                            jsonArray = response.getJSONArray("showPetMateDetailsResponse");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 try {
 
                                     JSONObject obj = jsonArray.getJSONObject(i);
                                     PetMateListItems petMateListItems = new PetMateListItems();
-									petMateListItems.setListId(replaceSpecialChars(obj.getString("id")));
+                                    petMateListItems.setListId(replaceSpecialChars(obj.getString("id")));
                                     petMateListItems.setPetMateBreed(replaceSpecialChars(obj.getString("pet_breed")));
                                     petMateListItems.setPetMatePostOwner(replaceSpecialChars(obj.getString("name")));
                                     petMateListItems.setFirstImagePath(obj.getString("first_image_path"));
@@ -76,15 +84,11 @@ public class PetMateFetchList {
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                         progressDialog.hide();
-                        // notifying list Adapter about data changes
-                        // so that it renders the list view with updated data
-
                     }
                 }, new Response.ErrorListener() {
             @Override

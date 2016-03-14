@@ -74,6 +74,10 @@ public class PetMate extends BaseActivity implements View.OnClickListener {
     ImageView secondImageOfPetMate;
     ImageView thirdImageOfPetMate;
     FloatingActionButton uploadButton;
+    CheckBox labelForRegisterdNo;
+    EditText alternateNo;
+
+    String txtAlternateNo="";
     String email;
     String petCategoryName;
     String petBreedName;
@@ -126,8 +130,23 @@ public class PetMate extends BaseActivity implements View.OnClickListener {
         secondImageOfPetMate = (ImageView) this.findViewById(R.id.secondImageOfPetMate);
         thirdImageOfPetMate = (ImageView) this.findViewById(R.id.thirdImageOfPetMate);
         uploadButton = (FloatingActionButton) this.findViewById(R.id.petMateFormSubmitFab);
+        alternateNo = (EditText) findViewById(R.id.alternateNotxt);
+        labelForRegisterdNo =(CheckBox) this.findViewById(R.id.contactNocheckBox);
 
         GenarateSpinerForAge();
+
+        labelForRegisterdNo.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (((CheckBox) v).isChecked()){
+                    //CheckBox is checked
+                    txtAlternateNo="";
+                    alternateNo.setEnabled(false);
+                }else{
+                    //CheckBox is unchecked
+                    alternateNo.setEnabled(true);
+                }
+            }
+        });
 
         petCategoryArrayList = new String[]{
                 "Select Pet Category"
@@ -182,11 +201,11 @@ public class PetMate extends BaseActivity implements View.OnClickListener {
             }
         });
 
-
+        alternateNo.addTextChangedListener(alternatePhoneNoChangeListener);
         selectImageButton.setOnClickListener(this);
-        //ageOfPet.addTextChangedListener(ageChangeListener);
         uploadButton.setOnClickListener(this);
     }
+
     public void GenarateSpinerForAge(){
         //for month
         stringArrayListForMonth = new String[]{
@@ -238,6 +257,23 @@ public class PetMate extends BaseActivity implements View.OnClickListener {
             }
         });
     }
+
+    private TextWatcher alternatePhoneNoChangeListener = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            new GetPetAlternateNo().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
+        }
+    };
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
@@ -489,37 +525,23 @@ public class PetMate extends BaseActivity implements View.OnClickListener {
         return image;
     }
 
-//    public class GetPetMateAge extends AsyncTask<Void, Void, Void> {
-//        String takePetAge;
-//        @Override
-//        protected Void doInBackground(Void... params) {
-//            try {
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        takePetAge = ageOfPet.getText().toString();
-//                        if(!takePetAge.equals("")) {
-//                            Integer takePetAgeInInteger = Integer.parseInt(takePetAge);
-//                            if(takePetAgeInInteger >= 100) {
-//                                ageOfPet.setError("Please enter valid age");
-//                                ageOfPet.setText(null);
-//                            }
-//                            else {
-//                                petAge = takePetAgeInInteger;
-//                            }
-//                        }
-//                        else if(takePetAge.equals("")) {
-//                            petAge = 0;
-//                        }
-//                    }
-//                });
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            return null;
-//        }
-//    }
+    public class GetPetAlternateNo extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        txtAlternateNo = alternateNo.getText().toString();
+                    }
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
 
     public class FetchCategoryListFromServer extends AsyncTask<Void, Void, Void> {
         @Override
@@ -653,7 +675,7 @@ public class PetMate extends BaseActivity implements View.OnClickListener {
         @Override
         public Void doInBackground(Void... params) {
             try {
-                PetMateFormUpload.uploadToRemoteServer(email, petCategoryName, petBreedName, petMateAgeMonthSpinner,petMateAgeYearSpinner, petGender, petDescription, firstImagePath, secondImagePath, thirdImagePath, PetMate.this);
+                PetMateFormUpload.uploadToRemoteServer(email, petCategoryName, petBreedName, petMateAgeMonthSpinner,petMateAgeYearSpinner, petGender, petDescription, firstImagePath, secondImagePath, thirdImagePath, txtAlternateNo, PetMate.this);
                 progressDialog.dismiss();
             } catch (Exception e) {
                 e.printStackTrace();

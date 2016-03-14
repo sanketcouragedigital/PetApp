@@ -22,9 +22,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.couragedigital.petapp.Adapter.ClinicReviewsListAdapter;
+import com.couragedigital.petapp.Adapter.FilterGenderAdapter;
 import com.couragedigital.petapp.Connectivity.ShowClinicFeedback;
 import com.couragedigital.petapp.Singleton.ClinicReviewInstance;
 import com.couragedigital.petapp.model.ClinicReviewsListItems;
+import com.couragedigital.petapp.model.FilterGenderList;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -43,13 +45,10 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
 
 
     ImageView clinicImage;
-    TextView clinicDoctorName;
     TextView address;
     TextView clinicnotestxt;
     ImageButton callbutton;
     ImageButton rateAndReviewButton;
-    //ImageButton mapButton;
-    Button emailbutton;
     String phoneno;
 
     Bitmap clinicDetailsbitmap;
@@ -59,8 +58,6 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
     AppBarLayout clinicDetailsAppBaLayoutr;
     NestedScrollView clinicDetailsNestedScrollView;
 
-    String clinicRatingValue;
-    String clinicFeebback;
     String clinicName;
     String clinicId;
     String email;
@@ -69,24 +66,17 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
     ProgressDialog progressDialog = null;
 
     RecyclerView recyclerView;
-    RecyclerView.Adapter adapter;
+    RecyclerView.Adapter reviewAdapter;
     LinearLayoutManager linearLayoutManager;
-    private int current_page = 1;
-
-    private String url;
     public List<ClinicReviewsListItems> clinicReviewsListItemsArrayList = new ArrayList<ClinicReviewsListItems>();
 
-    @TargetApi(23)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.clinic_details_new);
 
-        //setContentView(R.layout.petclinicdetails);
-        //setContentView(R.layout.aaa);
-         setContentView(R.layout.clinic_details_new);
-
-        ClinicReviewInstance clinicReviewInstance =new ClinicReviewInstance();
-        clinicReviewsListItemsArrayList=clinicReviewInstance.getClinicReviewsListItemsArrayList();
+        ClinicReviewInstance clinicReviewInstance = new ClinicReviewInstance();
+        clinicReviewsListItemsArrayList = clinicReviewInstance.getClinicReviewsListItemsArrayList();
 
         recyclerView = (RecyclerView) findViewById(R.id.clinicRateNReview);
         recyclerView.setHasFixedSize(true);
@@ -94,10 +84,9 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        adapter = new ClinicReviewsListAdapter(clinicReviewsListItemsArrayList);
-        // url= "http://192.168.0.7/PetAppAPI/api/petappapi.php?method=showClinicReviews&format=json&currentPage=" + current_page + "&clinicId=" + clinicId + "";
-        // new FetchClinicReviewListFromServer().execute(url);
-        recyclerView.setAdapter(adapter);
+        reviewAdapter = new ClinicReviewsListAdapter(clinicReviewsListItemsArrayList);
+
+        //new FetchReviewsList(adapter).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, clinicReviewsListItemsArrayList);
 //        LinearLayout.LayoutParams params = new
 //                LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
 //                ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -115,7 +104,6 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
             clinicaddress = intent.getStringExtra("CLINIC_ADDRESS");
             doctorname = intent.getStringExtra("DOCTOR_NAME");
             clinicnotes = intent.getStringExtra("CLINIC_NOTES");
-            //email = intent.getStringExtra("DOCTOR_EMAIL");
             phoneno = intent.getStringExtra("DOCTOR_CONTACT");
         }
 
@@ -135,15 +123,11 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
         clinicDetailsNestedScrollView = (NestedScrollView) findViewById(R.id.petClinicDetailsNestedScrollView);
 
         clinicImage = (ImageView) findViewById(R.id.petClicnicHeaderImage);
-        clinicDoctorName = (TextView) findViewById(R.id.clinicDoctorName);
         address = (TextView) findViewById(R.id.petClinicAddress);
         clinicnotestxt = (TextView) findViewById(R.id.petClinicNotes);
         callbutton = (ImageButton) findViewById(R.id.clinicDetailCallButton);
         rateAndReviewButton= (ImageButton) findViewById(R.id.clinicDetailsRateNReviewButton);
-        //mapButton= (ImageButton) findViewById(R.id.clinicDetailsMapButton);
-       // emailbutton = (Button) findViewById(R.id.clinicDetailsEmailButton);
 
-        //new FetchImageFromServer().execute();
         InputStream in = null;
         try {
             if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -184,14 +168,34 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
             public void run() {
                 int heightPx = getResources().getDisplayMetrics().heightPixels / 4;
                 setAppBarOffset(heightPx);
+                recyclerView.setAdapter(reviewAdapter);
             }
         });
 
         callbutton.setOnClickListener(this);
-        //mapButton.setOnClickListener(this);
         rateAndReviewButton.setOnClickListener(this);
-        //emailbutton.setOnClickListener(this);
-   }
+    }
+
+    private class FetchReviewsList extends AsyncTask<List, Void, Void> {
+
+        RecyclerView.Adapter reviewAdapter;
+        List<ClinicReviewsListItems> clinicReviewsListItemsArrayList = new ArrayList<ClinicReviewsListItems>();
+
+        public FetchReviewsList(RecyclerView.Adapter clinicReviewsListAdapter) {
+            super();
+            this.reviewAdapter = clinicReviewsListAdapter;
+        }
+
+        @Override
+        protected Void doInBackground(List... params) {
+            clinicReviewsListItemsArrayList = params[0];
+            ClinicReviewInstance clinicReviewInstance = new ClinicReviewInstance();
+            clinicReviewsListItemsArrayList = clinicReviewInstance.getClinicReviewsListItemsArrayList();
+            reviewAdapter.notifyDataSetChanged();
+            return null;
+        }
+    }
+
     private void copy(InputStream in, BufferedOutputStream out) throws IOException {
         byte[] b = new byte[4 * 1024];
         int read;
@@ -199,72 +203,12 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
             out.write(b, 0, read);
         }
     }
+
     private void setAppBarOffset(int i) {
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) clinicDetailsAppBaLayoutr.getLayoutParams();
         AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
         behavior.onNestedPreScroll(clinicDetailsCoordinatorLayout, clinicDetailsAppBaLayoutr, null, 0, i, new int[]{0, 0});
     }
-   /*public class FetchImageFromServer extends AsyncTask<String, String, Bitmap> {
-
-       @Override
-        protected Bitmap doInBackground(String... url) {
-            try {
-                InputStream in = null;
-                try {
-                    if (android.os.Build.VERSION.SDK_INT > 9) {
-                        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                                .permitAll().build();
-
-                        StrictMode.setThreadPolicy(policy);
-                    }
-                    in = new BufferedInputStream(new URL(image_path).openStream(), 4 * 1024);
-                } catch (NetworkOnMainThreadException e) {
-                    e.printStackTrace();
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                final ByteArrayOutputStream dataStream = new ByteArrayOutputStream();
-                BufferedOutputStream out = new BufferedOutputStream(dataStream, 4 * 1024);
-                try {
-                    copy(in, out);
-                    out.flush();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                final byte[] data = dataStream.toByteArray();
-                clinicDetailsbitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-            } catch (Exception e) {
-                e.printStackTrace();
-                progressDialog.dismiss();
-            }
-            return clinicDetailsbitmap;
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap bitmap) {
-            super.onPostExecute(bitmap);
-            clinicImage.setImageBitmap(bitmap);
-        }
-    }*/
-
-//   public class FetchClinicReviewListFromServer extends AsyncTask<String, String, String> {
-//        @Override
-//        protected String doInBackground(String... url) {
-//            try {
-//               ShowClinicFeedback.showClinicReviews(clinicReviewsListItemsArrayList,adapter, url[0]);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//                progressDialog.dismiss();
-//            }
-//            return null;
-//        }
-//   }
-
-
-
 
     @Override
     public void onBackPressed() {
@@ -273,7 +217,6 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-
         if (view.getId() == R.id.clinicDetailCallButton) {
             Intent callIntent = new Intent(Intent.ACTION_DIAL);
             callIntent.setData(Uri.parse("tel:" + phoneno));
@@ -284,10 +227,6 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
             gotorateAndReviewPage.putExtra("selectedClinicName",clinicName);
             startActivity(gotorateAndReviewPage);
         }
-//          else if (view.getId() == R.id.clinicDetailsEmailButton) {
-//            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", email, null));
-//            startActivity(Intent.createChooser(emailIntent, "Choose an Email client :"));
-//        }
     }
 }
 

@@ -1,16 +1,20 @@
 package com.couragedigital.petapp.Adapter;
-import android.app.ProgressDialog;
-import android.content.Context;
+
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.android.volley.toolbox.ImageLoader;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.couragedigital.petapp.Connectivity.WishListPetMateListAdd;
 import com.couragedigital.petapp.Connectivity.WishListPetMateListDelete;
 import com.couragedigital.petapp.ExpandableText;
@@ -21,6 +25,7 @@ import com.couragedigital.petapp.model.PetMateListItems;
 import com.couragedigital.petapp.R;
 import com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView;
 import com.couragedigital.petapp.app.AppController;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,11 +35,7 @@ public class PetMateListAdapter extends RecyclerView.Adapter<PetMateListAdapter.
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;
     ViewHolder viewHolder;
-	String petMateListId;
-    String email;
-    SessionManager sessionManager;
-	ProgressDialog progressDialog = null;
-    private Context Context;
+
     public PetMateListAdapter(List<PetMateListItems> petMateLists) {
         this.petMateLists = petMateLists;
     }
@@ -61,7 +62,7 @@ public class PetMateListAdapter extends RecyclerView.Adapter<PetMateListAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public RoundedNetworkImageView petMateImage;
+        public ImageView petMateImage;
         public TextView petMateBreed;
         public TextView petMatePostOwner;
         //  public TextView petMateDescription;
@@ -75,15 +76,18 @@ public class PetMateListAdapter extends RecyclerView.Adapter<PetMateListAdapter.
         int statusOfFavourite = 0;
         private PetMateListItems petMateListItems;
 
-		public ArrayList<String> wlPetMateListIdArray;
+        public ArrayList<String> wlPetMateListIdArray;
         public String PetMateListIdWishList;
         UserPetMateListWishList userPetMateListWishList= new UserPetMateListWishList();
+        String petMateListId;
+        String email;
+
         public ViewHolder(View itemView) {
             super(itemView);
             if (imageLoader == null) {
                 imageLoader = AppController.getInstance().getImageLoader();
             }
-            petMateImage = (RoundedNetworkImageView) itemView.findViewById(R.id.petMateImage);
+            petMateImage = (ImageView) itemView.findViewById(R.id.petMateImage);
             petMateBreed = (TextView) itemView.findViewById(R.id.petMateBreed);
             petMatePostOwner = (TextView) itemView.findViewById(R.id.petMatePostOwner);
             petMateListDescription = (ExpandableText) itemView.findViewById(R.id.petMateListDescription);
@@ -99,21 +103,30 @@ public class PetMateListAdapter extends RecyclerView.Adapter<PetMateListAdapter.
 
         public void bindPetList(PetMateListItems petMateListItems) {
             this.petMateListItems = petMateListItems;
-				wlPetMateListIdArray = userPetMateListWishList.getPetMateListId();
-            PetMateListIdWishList = petMateListItems.getListId();
-
-            if(wlPetMateListIdArray.contains(PetMateListIdWishList) ){
-                petFavourite.setBackgroundResource(R.drawable.favourite_enable);
-            }else{
-                petFavourite.setBackgroundResource(R.drawable.favourite_disable);
-            }
-            petMateImage.setImageUrl(petMateListItems.getFirstImagePath(), imageLoader);
+            Glide.with(petMateImage.getContext()).load(petMateListItems.getFirstImagePath()).asBitmap().centerCrop().into(new BitmapImageViewTarget(petMateImage) {
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(petMateImage.getContext().getResources(), resource);
+                    circularBitmapDrawable.setCircular(true);
+                    petMateImage.setImageDrawable(circularBitmapDrawable);
+                }
+            });
             petMateBreed.setText(petMateListItems.getPetMateBreed());
             petMatePostOwner.setText("Posted By : " + petMateListItems.getPetMatePostOwner());
             petMateListDescription.setText(petMateListItems.getPetMateDescription());
             petMateFavourite.setBackgroundResource(R.drawable.favourite_disable);
-            //      petMateFavourite.setVisibility(View.GONE);
             dividerLinePetMate.setBackgroundResource(R.color.list_internal_divider);
+
+            wlPetMateListIdArray = userPetMateListWishList.getPetMateWishList();
+            PetMateListIdWishList = petMateListItems.getListId();
+
+            if(wlPetMateListIdArray.contains(PetMateListIdWishList)) {
+                petMateFavourite.setBackgroundResource(R.drawable.favourite_enable);
+            }
+            else {
+                petMateFavourite.setBackgroundResource(R.drawable.favourite_disable);
+            }
         }
 
         @Override
@@ -125,24 +138,25 @@ public class PetMateListAdapter extends RecyclerView.Adapter<PetMateListAdapter.
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, sharingText);
                 v.getContext().startActivity(Intent.createChooser(sharingIntent, "Share using"));
             }  else if (v.getId() == R.id.petMateFavourite) {
-				SessionManager sessionManager = new SessionManager(v.getContext());
+                SessionManager sessionManager = new SessionManager(v.getContext());
                 HashMap<String, String> user = sessionManager.getUserDetails();
                 email = user.get(SessionManager.KEY_EMAIL);
-                petMateListId=petMateListItems.getListId();
+                petMateListId = petMateListItems.getListId();
                 if (statusOfFavourite == 0) {
                     petMateFavourite.setBackgroundResource(R.drawable.favourite_enable);
                     statusOfFavourite = 1;
-					try {
-                        WishListPetMateListAdd.addPetMateListToWishList(petMateListId,email);
+                    try {
+                        WishListPetMateListAdd.addPetMateListToWishList(email, petMateListId);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 } else if (statusOfFavourite == 1) {
                     petMateFavourite.setBackgroundResource(R.drawable.favourite_disable);
                     statusOfFavourite = 0;
-					try {
-                        WishListPetMateListDelete.deleteWishListPetMateFromServer(petMateListId,email);
-
+                    try {
+                        int pos = wlPetMateListIdArray.indexOf(petMateListId);
+                        wlPetMateListIdArray.remove(pos);
+                        WishListPetMateListDelete.deleteWishListPetMateFromServer(email, petMateListId);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -150,7 +164,7 @@ public class PetMateListAdapter extends RecyclerView.Adapter<PetMateListAdapter.
             } else {
                 if (this.petMateListItems != null) {
                     Intent petFullInformation = new Intent(v.getContext(), PetMateListDetails.class);
-					 petFullInformation.putExtra("LIST_ID", petMateListItems.getListId());
+                    petFullInformation.putExtra("LIST_ID", petMateListItems.getListId());
                     petFullInformation.putExtra("PET_FIRST_IMAGE", petMateListItems.getFirstImagePath());
                     petFullInformation.putExtra("PET_SECOND_IMAGE", petMateListItems.getSecondImagePath());
                     petFullInformation.putExtra("PET_THIRD_IMAGE", petMateListItems.getThirdImagePath());

@@ -35,7 +35,6 @@ public class WishListPetMateDetails extends AppCompatActivity implements View.On
     String gender = "";
     String description = "";
     String alternateNo = "";
-    String name = "";
 
     TextView wlPetMateDetailsImageText;
     View wlPetMateDetailsImagesDividerLine;
@@ -48,7 +47,6 @@ public class WishListPetMateDetails extends AppCompatActivity implements View.On
     TextView wlPetMateAgeInYear;
     TextView wlPetMateGender;
     TextView wlPetMateDescription;
-    TextView wlPetMateName;
     View wlPetMateDetailsContentDividerLine;
     Button wlPetListalternateNo;
 
@@ -78,7 +76,6 @@ public class WishListPetMateDetails extends AppCompatActivity implements View.On
             gender = intent.getStringExtra("PET_MATE_GENDER");
             description = intent.getStringExtra("PET_MATE_DESCRIPTION");
             alternateNo=intent.getStringExtra("ALTERNATE_NO");
-            name=intent.getStringExtra("NAME");
         }
 
         wlPetMateDetailstoolbar = (Toolbar) findViewById(R.id.wishlistPetMateDetailsToolbar);
@@ -113,7 +110,6 @@ public class WishListPetMateDetails extends AppCompatActivity implements View.On
         wlPetMateDescription = (TextView) findViewById(R.id.wishlistPetMateDescriptionInPetDetails);
         wlPetMateDetailsContentDividerLine = findViewById(R.id.wishlistPetMateDetailsContentDividerLine);
         wlPetListalternateNo =(Button) findViewById(R.id.pmWishListCallButton);
-        wlPetMateName = (TextView) findViewById(R.id.petMatePostedBy);
 
         wlPetMateDetailsFirstImageThumbnail.setOnClickListener(this);
         wlPetMateDetailsSecondImageThumbnail.setOnClickListener(this);
@@ -125,7 +121,6 @@ public class WishListPetMateDetails extends AppCompatActivity implements View.On
         wlPetMateDetailsCollapsingToolbar.setTitle("For Mating");
 
         wlPetMateDetailsImageText.setText("Images of " + breed);
-        //wlPetMateName.setText("Posted By :" + name);
         wlPetMateDetailsImagesDividerLine.setBackgroundResource(R.color.list_internal_divider);
         wlPetMateDetailsFirstImageThumbnail.setImageBitmap(wlPetMateDetailsbitmap);
         if (secondImagePath != null) {

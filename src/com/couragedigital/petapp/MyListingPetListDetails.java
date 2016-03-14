@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.NetworkOnMainThreadException;
 import android.os.StrictMode;
@@ -15,9 +16,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.*;
+import com.bumptech.glide.Glide;
 import com.couragedigital.petapp.model.MyListingPetListItems;
 
 import java.io.*;
@@ -59,7 +59,12 @@ public class MyListingPetListDetails extends AppCompatActivity implements View.O
     AppBarLayout mlPetDetailsAppBarLayout;
     NestedScrollView mlPetDetailsNestedScrollView;
     private int mlMutedColor;
+
     MyListingPetListItems petListItems = new MyListingPetListItems();
+
+    LinearLayout myListingPetListDetailsLinearLayout;
+    RelativeLayout myListingPetListDetailsFirstRelativeLayout;
+    RelativeLayout myListingPetListDetailsSecondRelativeLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -112,24 +117,24 @@ public class MyListingPetListDetails extends AppCompatActivity implements View.O
         mlPetPrice = (TextView) findViewById(R.id.myListingPetPriceInPetDetails);
         mlPetDescription = (TextView) findViewById(R.id.myListingPetDescriptionInPetDetails);
 
+        myListingPetListDetailsLinearLayout = (LinearLayout) findViewById(R.id.myListingPetListDetailsLinearLayout);
+        myListingPetListDetailsFirstRelativeLayout = (RelativeLayout) findViewById(R.id.myListingPetListDetailsFirstRelativeLayout);
+        myListingPetListDetailsSecondRelativeLayout = (RelativeLayout) findViewById(R.id.myListingPetListDetailsSecondRelativeLayout);
+
         mlPetDetailsFirstImageThumbnail.setOnClickListener(this);
         mlPetDetailsSecondImageThumbnail.setOnClickListener(this);
         mlPetDetailsThirdImageThumbnail.setOnClickListener(this);
 
-        mlPetDetailsbitmap = getBitmapImageFromURL(firstImagePath);
-        mlPetImage.setImageBitmap(mlPetDetailsbitmap);
+        new FetchImageFromServer().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, firstImagePath);
         mlPetDetailsCollapsingToolbar.setTitle(breed);
 
-        mlPetDetailsImageText.setText("Images of " + breed);
+        mlPetDetailsImageText.setText("Images");
         mlPetDetailsImagesDividerLine.setBackgroundResource(R.color.list_internal_divider);
-        mlPetDetailsFirstImageThumbnail.setImageBitmap(mlPetDetailsbitmap);
-        if (secondImagePath != null) {
-            mlPetDetailsbitmap = getBitmapImageFromURL(secondImagePath);
-            mlPetDetailsSecondImageThumbnail.setImageBitmap(mlPetDetailsbitmap);
+        if(secondImagePath != null) {
+            new FetchImageFromServer().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, secondImagePath);
         }
-        if (thirdImagePath != null) {
-            mlPetDetailsbitmap = getBitmapImageFromURL(thirdImagePath);
-            mlPetDetailsThirdImageThumbnail.setImageBitmap(mlPetDetailsbitmap);
+        if(thirdImagePath != null) {
+            new FetchImageFromServer().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, thirdImagePath);
         }
 
 
@@ -151,37 +156,47 @@ public class MyListingPetListDetails extends AppCompatActivity implements View.O
                 setAppBarOffset(heightPx);
             }
         });
+
+        myListingPetListDetailsLinearLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                Integer heightOfFirstRelativeLayout = myListingPetListDetailsFirstRelativeLayout.getHeight();
+                Integer heightOfSecondRelativeLayout = myListingPetListDetailsSecondRelativeLayout.getHeight();
+
+                myListingPetListDetailsLinearLayout.setMinimumHeight(heightOfFirstRelativeLayout + heightOfSecondRelativeLayout + 200);
+            }
+        });
     }
 
-    private Bitmap getBitmapImageFromURL(String imagePath) {
-        InputStream in = null;
-        try {
-            if (android.os.Build.VERSION.SDK_INT > 9) {
-                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                        .permitAll().build();
-
-                StrictMode.setThreadPolicy(policy);
+    public class FetchImageFromServer extends AsyncTask<String, String, String> {
+        String urlForFetch;
+        @Override
+        protected String doInBackground(String... url) {
+            try {
+                urlForFetch = url[0];
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            in = new BufferedInputStream(new URL(imagePath).openStream(), 4 * 1024);
-        } catch (NetworkOnMainThreadException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        final ByteArrayOutputStream dataStream = new ByteArrayOutputStream();
-        BufferedOutputStream out = new BufferedOutputStream(dataStream, 4 * 1024);
-        try {
-            copy(in, out);
-            out.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
+            return urlForFetch;
         }
 
-        final byte[] data = dataStream.toByteArray();
-        mlPetDetailsbitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-        return mlPetDetailsbitmap;
+        @Override
+        protected void onPostExecute(String url) {
+            super.onPostExecute(url);
+            if(urlForFetch.equals(firstImagePath)) {
+                Glide.with(mlPetImage.getContext()).load(url).centerCrop().crossFade().into(mlPetImage);
+                Glide.with(mlPetDetailsFirstImageThumbnail.getContext()).load(url).centerCrop().crossFade().into(mlPetDetailsFirstImageThumbnail);
+                mlPetDetailsFirstImageThumbnail.setOnClickListener(MyListingPetListDetails.this);
+            }
+            if(urlForFetch.equals(secondImagePath)) {
+                Glide.with(mlPetDetailsSecondImageThumbnail.getContext()).load(url).centerCrop().crossFade().into(mlPetDetailsSecondImageThumbnail);
+                mlPetDetailsSecondImageThumbnail.setOnClickListener(MyListingPetListDetails.this);
+            }
+            if(urlForFetch.equals(thirdImagePath)) {
+                Glide.with(mlPetDetailsThirdImageThumbnail.getContext()).load(url).centerCrop().crossFade().into(mlPetDetailsThirdImageThumbnail);
+                mlPetDetailsThirdImageThumbnail.setOnClickListener(MyListingPetListDetails.this);
+            }
+        }
     }
 
     private String setListingTypeTitle(String listingType) {
@@ -220,14 +235,11 @@ public class MyListingPetListDetails extends AppCompatActivity implements View.O
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.myListingPetDetailsFirstImageThumbnail) {
-            mlPetDetailsbitmap = getBitmapImageFromURL(firstImagePath);
-            mlPetImage.setImageBitmap(mlPetDetailsbitmap);
+            Glide.with(mlPetImage.getContext()).load(firstImagePath).centerCrop().crossFade().into(mlPetImage);
         } else if (view.getId() == R.id.myListingPetDetailsSecondImageThumbnail) {
-            mlPetDetailsbitmap = getBitmapImageFromURL(secondImagePath);
-            mlPetImage.setImageBitmap(mlPetDetailsbitmap);
+            Glide.with(mlPetImage.getContext()).load(secondImagePath).centerCrop().crossFade().into(mlPetImage);
         } else if (view.getId() == R.id.myListingPetDetailsThirdImageThumbnail) {
-            mlPetDetailsbitmap = getBitmapImageFromURL(thirdImagePath);
-            mlPetImage.setImageBitmap(mlPetDetailsbitmap);
+            Glide.with(mlPetImage.getContext()).load(thirdImagePath).centerCrop().crossFade().into(mlPetImage);
         }
     }
 }

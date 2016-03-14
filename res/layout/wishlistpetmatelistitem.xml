@@ -66,10 +66,9 @@
                             android:id="@+id/petMatePostedBy"
                             android:layout_marginTop="12dp"
                             android:layout_marginLeft="16dp"
-                            android:text="Posted By"
+                            android:text="Posted By "
                             android:layout_below="@+id/wishlistPetMateBreed"
-                            android:textSize="13sp"
-                            android:textColor="#da4836"/>
+                            android:textSize="13sp"/>
 
                 </RelativeLayout>
             </RelativeLayout>

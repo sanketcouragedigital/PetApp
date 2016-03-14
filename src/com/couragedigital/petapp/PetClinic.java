@@ -20,11 +20,13 @@ import com.couragedigital.petapp.Connectivity.PetFetchClinicList;
 import com.couragedigital.petapp.Connectivity.PetFetchHomeClinicList;
 import com.couragedigital.petapp.Listeners.PetFetchClinicListScrollListener;
 import com.couragedigital.petapp.SessionManager.SessionManager;
+import com.couragedigital.petapp.Singleton.URLInstance;
 import com.couragedigital.petapp.model.*;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,8 +40,7 @@ public class PetClinic extends BaseActivity implements
     RecyclerView.Adapter adapter;
     LinearLayoutManager linearLayoutManager;
 
-    private String url = "http://storage.couragedigital.com/dev/api/petappapi.php";
-   //private String url = "http://192.168.0.7/PetAppAPI/api/petappapi.php";
+    private String url = URLInstance.getUrl();
     private ProgressDialog progressDialog;
     public List<ClinicListItems> clinicListItemsArrayList = new ArrayList<ClinicListItems>();
 
@@ -98,8 +99,6 @@ public class PetClinic extends BaseActivity implements
         recyclerView.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        adapter = new ClinicListAdapter(clinicListItemsArrayList);
-        recyclerView.setAdapter(adapter);
         progressDialog = new ProgressDialog(this);
         buildGoogleApiClient();
     }
@@ -159,18 +158,13 @@ public class PetClinic extends BaseActivity implements
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case RequestLocationId: {
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    //gpsCoordinates = locationDetector.getLocation();
-                    getLocation();
-                } else {
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-                    Toast.makeText(this, "Loctaion Permission is Deined", Toast.LENGTH_LONG).show();
-                }
+        if(requestCode == RequestLocationId) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                recreate();
+            } else {
+                Toast.makeText(this, "Location Permission is Denied", Toast.LENGTH_LONG).show();
+                PetClinic.this.finish();
             }
-            break;
         }
     }
 
@@ -182,68 +176,66 @@ public class PetClinic extends BaseActivity implements
     @Override
     public void onConnected(@Nullable Bundle bundle) {
 
-        if (Build.VERSION.SDK_INT >= 23) {
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            homeornearbyLocationValue = extras.getInt("STATE_OF_CLICK");
+        }
+        if (Build.VERSION.SDK_INT >= 23 && homeornearbyLocationValue == 1) {
             if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                     ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                //  Toast.makeText(this, "App Required Loctaion Permission", Toast.LENGTH_LONG).show();
                 ActivityCompat.requestPermissions(this, permissions, RequestLocationId);
             } else {
                 lastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
                 getLocation();
             }
 
-        } else {
+        } else if(Build.VERSION.SDK_INT < 23 && homeornearbyLocationValue == 1) {
             lastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
             getLocation();
         }
 
+        adapter = new ClinicListAdapter(clinicListItemsArrayList);
+        recyclerView.setAdapter(adapter);
+        // Showing progress dialog before making http request
+        progressDialog.setMessage("Fetching List Of Clinics...");
+        progressDialog.show();
 
-        if (isFirstLocation || movedgreaterthanonekm) {
+        if (homeornearbyLocationValue == 0) {
+            clinicListItemsArrayList.clear();
+            adapter.notifyDataSetChanged();
+            sessionManager = new SessionManager(getApplicationContext());
+            HashMap<String, String> user = sessionManager.getUserDetails();
+            String email = user.get(SessionManager.KEY_EMAIL);
+            userEmail = email;
+            url = url + "?method=ClinicByAddress&format=json&currentPage=" + current_page + "&email=" + userEmail + "";
+            recyclerView.smoothScrollToPosition(0);
+            recyclerView.addOnScrollListener(new PetFetchClinicListScrollListener(linearLayoutManager, current_page) {
+                @Override
+                public void onLoadMore(int current_page) {
+                    url = "";
+                    url = URLInstance.getUrl();
+                    url = url + "?method=ClinicByAddress&format=json&currentPage=" + current_page + "&email=" + userEmail + "";
+                    grabURLOfHome(url);
+                }
+            });
+            grabURLOfHome(url);
+        }
+        else if (homeornearbyLocationValue == 1) {
+            clinicListItemsArrayList.clear();
+            adapter.notifyDataSetChanged();
+            url = url + "?method=ClinicByCurrentLocation&format=json&currentPage=" + current_page + "&latitude=" + gpsCoordinates.getLatitude() + "&longitude=" + gpsCoordinates.getLongitude() + "";
+            recyclerView.smoothScrollToPosition(0);
+            recyclerView.addOnScrollListener(new PetFetchClinicListScrollListener(linearLayoutManager, current_page) {
 
-            Bundle extras = getIntent().getExtras();
-            if (extras != null) {
-                homeornearbyLocationValue = extras.getInt("STATE_OF_CLICK");
-            }
-
-            // Showing progress dialog before making http request
-            progressDialog.setMessage("Fetching List Of Clinics...");
-            progressDialog.show();
-
-            if (homeornearbyLocationValue == 0) {
-                sessionManager = new SessionManager(getApplicationContext());
-                HashMap<String, String> user = sessionManager.getUserDetails();
-                String email = user.get(SessionManager.KEY_EMAIL);
-                userEmail = email;
-                url = url + "?method=ClinicByAddress&format=json&currentPage=" + current_page + "&email=" + userEmail + "";
-                recyclerView.smoothScrollToPosition(0);
-                recyclerView.addOnScrollListener(new PetFetchClinicListScrollListener(linearLayoutManager, current_page) {
-                    @Override
-                    public void onLoadMore(int current_page) {
-                        url = "";
-                        url = "http://storage.couragedigital.com/dev/api/petappapi.php";
-                        //url ="http://192.168.0.7/PetAppAPI/api/petappapi.php";
-                        url = url + "?method=ClinicByAddress&format=json&currentPage=" + current_page + "&email=" + userEmail + "";
-                        grabURLOfHome(url);
-                    }
-                });
-                grabURLOfHome(url);
-            } else if (homeornearbyLocationValue == 1) {
-                url = url + "?method=ClinicByCurrentLocation&format=json&currentPage=" + current_page + "&latitude=" + gpsCoordinates.getLatitude() + "&longitude=" + gpsCoordinates.getLongitude() + "";
-                recyclerView.smoothScrollToPosition(0);
-                recyclerView.addOnScrollListener(new PetFetchClinicListScrollListener(linearLayoutManager, current_page) {
-
-                    @Override
-                    public void onLoadMore(int current_page) {
-                        url = "";
-                        url = "http://storage.couragedigital.com/dev/api/petappapi.php";
-                        //url ="http://192.168.0.7/PetAppAPI/api/petappapi.php";
-                        url = url + "?method=ClinicByCurrentLocation&format=json&currentPage=" + current_page + "&latitude=" + gpsCoordinates.getLatitude() + "&longitude=" + gpsCoordinates.getLongitude() + "";
-                        grabURL(url);
-                    }
-                });
-                grabURL(url);
-            }
-
+                @Override
+                public void onLoadMore(int current_page) {
+                    url = "";
+                    url = URLInstance.getUrl();
+                    url = url + "?method=ClinicByCurrentLocation&format=json&currentPage=" + current_page + "&latitude=" + gpsCoordinates.getLatitude() + "&longitude=" + gpsCoordinates.getLongitude() + "";
+                    grabURL(url);
+                }
+            });
+            grabURL(url);
         }
     }
 

@@ -48,12 +48,10 @@ public class ModifySpinnerItemsAdapter extends ArrayAdapter {
             // Set the hint text color gray
             tv.setTextColor(Color.GRAY);
             tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
-            tv.setTypeface(null, Typeface.BOLD_ITALIC);
         }
         else {
             tv.setTextColor(Color.BLACK);
             tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
-            tv.setTypeface(null, Typeface.ITALIC);
         }
         return view;
     }

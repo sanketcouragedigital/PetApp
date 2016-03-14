@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.NetworkOnMainThreadException;
 import android.os.StrictMode;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.bumptech.glide.Glide;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -84,6 +86,45 @@ public class TabFragmentShelterDetails extends AppCompatActivity implements View
         emailbutton = (Button) findViewById(R.id.shelterDetailsEmailButton);
 
 
+        new FetchImageFromServer().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, image_path);
+        address.setText(shelteraddress);
+        shelterDetailsCollapsingToolbar.setTitle(sheltername);
+
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) shelterDetailsAppBaLayoutr.getLayoutParams();
+        layoutParams.height = getResources().getDisplayMetrics().widthPixels;
+
+        shelterDetailsAppBaLayoutr.post(new Runnable() {
+            @Override
+            public void run() {
+                int heightPx = getResources().getDisplayMetrics().heightPixels / 4;
+                setAppBarOffset(heightPx);
+            }
+        });
+
+        callbutton.setOnClickListener(this);
+        emailbutton.setOnClickListener(this);
+    }
+
+    public class FetchImageFromServer extends AsyncTask<String, String, String> {
+        String urlForFetch;
+        @Override
+        protected String doInBackground(String... url) {
+            try {
+                urlForFetch = url[0];
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return urlForFetch;
+        }
+
+        @Override
+        protected void onPostExecute(String url) {
+            super.onPostExecute(url);
+            Glide.with(shelterImage.getContext()).load(url).centerCrop().crossFade().into(shelterImage);
+        }
+    }
+
+    private Bitmap getBitmapImageFromURL(String imagePath) {
         InputStream in = null;
         try {
             if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -92,7 +133,7 @@ public class TabFragmentShelterDetails extends AppCompatActivity implements View
 
                 StrictMode.setThreadPolicy(policy);
             }
-            in = new BufferedInputStream(new URL(image_path).openStream(), 4 * 1024);
+            in = new BufferedInputStream(new URL(imagePath).openStream(), 4 * 1024);
         } catch (NetworkOnMainThreadException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
@@ -111,24 +152,9 @@ public class TabFragmentShelterDetails extends AppCompatActivity implements View
 
         final byte[] data = dataStream.toByteArray();
         shelterDetailsbitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-        shelterImage.setImageBitmap(shelterDetailsbitmap);
-        address.setText(shelteraddress);
-        shelterDetailsCollapsingToolbar.setTitle(sheltername);
-
-        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) shelterDetailsAppBaLayoutr.getLayoutParams();
-        layoutParams.height = getResources().getDisplayMetrics().widthPixels;
-
-        shelterDetailsAppBaLayoutr.post(new Runnable() {
-            @Override
-            public void run() {
-                int heightPx = getResources().getDisplayMetrics().heightPixels / 4;
-                setAppBarOffset(heightPx);
-            }
-        });
-
-        callbutton.setOnClickListener(this);
-        emailbutton.setOnClickListener(this);
+        return shelterDetailsbitmap;
     }
+
     private void copy(InputStream in, BufferedOutputStream out) throws IOException {
         byte[] b = new byte[4 * 1024];
         int read;

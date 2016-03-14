@@ -22,7 +22,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:visibility="gone"
-                android:text="Please Select Category First" />
+                android:text="Please Select Category First"/>
     </RelativeLayout>
 
     <android.support.design.widget.FloatingActionButton

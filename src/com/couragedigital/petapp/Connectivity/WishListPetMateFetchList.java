@@ -52,7 +52,6 @@ public class WishListPetMateFetchList {
                                     petMateLists.add(wishListPetMateListItem);
                                     adapter.notifyDataSetChanged();
 
-
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }

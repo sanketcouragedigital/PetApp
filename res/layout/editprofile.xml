@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res/com.couragedigital.petapp"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/signinbackground">
+                android:layout_height="wrap_content">
     <android.support.v7.widget.CardView
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/card_view"
             android:layout_marginTop="16dp"
-            android:layout_marginLeft="@dimen/signupcard_marginLeft"
-            android:layout_marginRight="@dimen/signupcard_marginRight"
-            android:layout_width="@dimen/signupcard_width"
-            android:layout_height="@dimen/signupcard_height"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             card_view:cardCornerRadius="2dp"
             android:layout_centerHorizontal="true">
 
@@ -185,3 +188,4 @@
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </RelativeLayout>
+</ScrollView>

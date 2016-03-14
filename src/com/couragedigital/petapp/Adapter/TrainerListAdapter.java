@@ -1,13 +1,19 @@
 package com.couragedigital.petapp.Adapter;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.couragedigital.petapp.CustomImageView.RoundedNetworkImageView;
 import com.couragedigital.petapp.ExpandableText;
 import com.couragedigital.petapp.PetClinicDetails;
@@ -48,7 +54,7 @@ public class TrainerListAdapter extends RecyclerView.Adapter<TrainerListAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public RoundedNetworkImageView trainerImage;
+        public ImageView trainerImage;
         public TextView trainerName;
         public TextView trainerAddress;
         public Button trainerFavourite;
@@ -66,7 +72,7 @@ public class TrainerListAdapter extends RecyclerView.Adapter<TrainerListAdapter.
             }
 
             trainerName = (TextView) itemView.findViewById(R.id.trainerName);
-            trainerImage = (RoundedNetworkImageView) itemView.findViewById(R.id.trainerImage);
+            trainerImage = (ImageView) itemView.findViewById(R.id.trainerImage);
             trainerDescription = (ExpandableText) itemView.findViewById(R.id.petServiceTrainerDescription);
 
             //  trainerAddress = (TextView) itemView.findViewById(R.id.trainerAddress);
@@ -82,7 +88,15 @@ public class TrainerListAdapter extends RecyclerView.Adapter<TrainerListAdapter.
 
         public void bindTrainerList(TrainerListItem trainerList) {
             this.trainerListItems = trainerList;
-            trainerImage.setImageUrl(trainerListItems.getTrainerImage_path(), imageLoader);
+            Glide.with(trainerImage.getContext()).load(trainerListItems.getTrainerImage_path()).asBitmap().centerCrop().into(new BitmapImageViewTarget(trainerImage) {
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(trainerImage.getContext().getResources(), resource);
+                    circularBitmapDrawable.setCircular(true);
+                    trainerImage.setImageDrawable(circularBitmapDrawable);
+                }
+            });
             trainerName.setText(trainerListItems.getTrainerName());
            // trainerAddress.setText(trainerListItems.getTrainerAdress());
             trainerDescription.setText(trainerListItems.getTrainerDescription());

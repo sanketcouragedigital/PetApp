@@ -31,7 +31,7 @@
 
             <View
                     android:layout_width="match_parent"
-                    android:layout_height="72dp"
+                    android:layout_height="@dimen/_72sdp"
                     android:background="@drawable/petdetail_image_background_gradient"
                     android:layout_gravity="center_horizontal|bottom"/>
 
@@ -65,17 +65,17 @@
                             android:layout_height="match_parent"
                             android:orientation="vertical"
                             android:id="@+id/myListingPetListDetailsFirstRelativeLayout"
-                            android:paddingTop="8dp">
+                            android:paddingTop="@dimen/_8sdp">
 
                 <android.support.v7.widget.CardView
                         xmlns:card_view="http://schemas.android.com/apk/res-auto"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        card_view:cardCornerRadius="2dp"
-                        card_view:cardElevation="2dp">
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginLeft="@dimen/_16sdp"
+                        android:layout_marginRight="@dimen/_16sdp"
+                        card_view:cardCornerRadius="@dimen/_2sdp"
+                        card_view:cardElevation="@dimen/_2sdp">
 
                     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                     android:layout_width="match_parent"
@@ -87,18 +87,18 @@
                                 android:id="@+id/myListingPetDetailsImageText"
                                 android:textStyle="bold"
                                 android:textColor="#CF3E3E"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginLeft="16dp"
-                                android:layout_marginRight="16dp"/>
+                                android:layout_marginTop="@dimen/_16sdp"
+                                android:layout_marginLeft="@dimen/_16sdp"
+                                android:layout_marginRight="@dimen/_16sdp"/>
 
                         <View
                                 android:layout_width="wrap_content"
-                                android:layout_height="1dp"
+                                android:layout_height="@dimen/_1sdp"
                                 android:id="@+id/myListingPetDetailsImagesDividerLine"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:layout_marginRight="@dimen/_10sdp"
                                 android:layout_below="@+id/myListingPetDetailsImageText"
-                                android:layout_marginTop="7dp"/>
+                                android:layout_marginTop="@dimen/_7sdp"/>
 
                         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                       android:layout_width="match_parent"
@@ -106,39 +106,39 @@
                                       android:orientation="horizontal"
                                       android:id="@+id/petDetailsImagesLinearLayout"
                                       android:layout_below="@+id/myListingPetDetailsImagesDividerLine"
-                                      android:layout_marginTop="16dp"
-                                      android:layout_marginLeft="16dp"
-                                      android:layout_marginRight="16dp"
-                                      android:layout_marginBottom="16dp">
+                                      android:layout_marginTop="@dimen/_16sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp"
+                                      android:layout_marginBottom="@dimen/_16sdp">
 
                             <ImageView
-                                    android:layout_width="75dp"
-                                    android:layout_height="75dp"
+                                    android:layout_width="@dimen/_75sdp"
+                                    android:layout_height="@dimen/_75sdp"
                                     android:id="@+id/myListingPetDetailsFirstImageThumbnail"
                                     android:adjustViewBounds="true"
                                     android:scaleType="fitCenter"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginBottom="5dp"/>
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:layout_marginBottom="@dimen/_5sdp"/>
 
                             <ImageView
-                                    android:layout_width="75dp"
-                                    android:layout_height="75dp"
+                                    android:layout_width="@dimen/_75sdp"
+                                    android:layout_height="@dimen/_75sdp"
                                     android:id="@+id/myListingPetDetailsSecondImageThumbnail"
                                     android:adjustViewBounds="true"
                                     android:scaleType="fitCenter"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_marginRight="5dp"/>
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:layout_marginBottom="@dimen/_5sdp"
+                                    android:layout_marginLeft="@dimen/_5sdp"
+                                    android:layout_marginRight="@dimen/_5sdp"/>
 
                             <ImageView
-                                    android:layout_width="75dp"
-                                    android:layout_height="75dp"
+                                    android:layout_width="@dimen/_75sdp"
+                                    android:layout_height="@dimen/_75sdp"
                                     android:id="@+id/myListingPetDetailsThirdImageThumbnail"
                                     android:adjustViewBounds="true"
                                     android:scaleType="fitCenter"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginBottom="5dp"/>
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:layout_marginBottom="@dimen/_5sdp"/>
 
                         </LinearLayout>
                     </RelativeLayout>
@@ -150,17 +150,17 @@
                             android:layout_height="match_parent"
                             android:orientation="vertical"
                             android:id="@+id/myListingPetListDetailsSecondRelativeLayout"
-                            android:paddingTop="4dp">
+                            android:paddingTop="@dimen/_4sdp">
 
                 <android.support.v7.widget.CardView
                         xmlns:card_view="http://schemas.android.com/apk/res-auto"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        card_view:cardCornerRadius="2dp"
-                        card_view:cardElevation="2dp">
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginLeft="@dimen/_16sdp"
+                        android:layout_marginRight="@dimen/_16sdp"
+                        card_view:cardCornerRadius="@dimen/_2sdp"
+                        card_view:cardElevation="@dimen/_2sdp">
 
                     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                     android:layout_width="match_parent"
@@ -172,9 +172,9 @@
                                       android:layout_width="match_parent"
                                       android:layout_height="match_parent"
                                       android:orientation="horizontal"
-                                      android:layout_marginTop="16dp"
-                                      android:layout_marginLeft="16dp"
-                                      android:layout_marginRight="16dp">
+                                      android:layout_marginTop="@dimen/_16sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp">
                             <TextView
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
@@ -193,12 +193,12 @@
                                       android:layout_width="match_parent"
                                       android:layout_height="match_parent"
                                       android:orientation="horizontal"
-                                      android:layout_marginTop="7dp"
-                                      android:layout_marginLeft="10dp"
-                                      android:layout_marginRight="10dp">
+                                      android:layout_marginTop="@dimen/_7sdp"
+                                      android:layout_marginLeft="@dimen/_10sdp"
+                                      android:layout_marginRight="@dimen/_10sdp">
                         <View
                                 android:layout_width="wrap_content"
-                                android:layout_height="1dp"
+                                android:layout_height="@dimen/_1sdp"
                                 android:id="@+id/myListingPetListDetailsContentDividerLine"
                                 android:background="#000000"/>
                         </LinearLayout>
@@ -210,9 +210,9 @@
                                       android:layout_width="match_parent"
                                       android:layout_height="match_parent"
                                       android:orientation="horizontal"
-                                      android:layout_marginTop="16dp"
-                                      android:layout_marginLeft="16dp"
-                                      android:layout_marginRight="16dp">
+                                      android:layout_marginTop="@dimen/_16sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp">
                             <TextView
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
@@ -231,9 +231,9 @@
                                       android:layout_width="match_parent"
                                       android:layout_height="match_parent"
                                       android:orientation="horizontal"
-                                      android:layout_marginTop="4dp"
-                                      android:layout_marginLeft="16dp"
-                                      android:layout_marginRight="16dp">
+                                      android:layout_marginTop="@dimen/_4sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp">
 
                             <TextView
                                     android:layout_width="0dp"
@@ -261,9 +261,9 @@
                                       android:layout_width="match_parent"
                                       android:layout_height="match_parent"
                                       android:orientation="horizontal"
-                                      android:layout_marginTop="4dp"
-                                      android:layout_marginLeft="16dp"
-                                      android:layout_marginRight="16dp">
+                                      android:layout_marginTop="@dimen/_4sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp">
 
                             <TextView
                                     android:layout_width="0dp"
@@ -300,9 +300,9 @@
                                       android:layout_width="match_parent"
                                       android:layout_height="match_parent"
                                       android:orientation="horizontal"
-                                      android:layout_marginTop="4dp"
-                                      android:layout_marginLeft="16dp"
-                                      android:layout_marginRight="16dp">
+                                      android:layout_marginTop="@dimen/_4sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp">
 
                             <TextView
                                     android:layout_width="0dp"
@@ -326,9 +326,9 @@
                                       android:layout_width="match_parent"
                                       android:layout_height="match_parent"
                                       android:orientation="horizontal"
-                                      android:layout_marginTop="4dp"
-                                      android:layout_marginLeft="16dp"
-                                      android:layout_marginRight="16dp"
+                                      android:layout_marginTop="@dimen/_4sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp"
                                       android:id="@+id/myListingPetPriceDetailsLayout"
                                       android:layout_below="@+id/myListingPetDetailsGenderLayout">
 
@@ -347,16 +347,18 @@
                                       android:layout_width="match_parent"
                                       android:layout_height="match_parent"
                                       android:orientation="horizontal"
-                                      android:layout_marginTop="4dp"
-                                      android:layout_marginLeft="16dp"
-                                      android:layout_marginRight="16dp"
-                                      android:layout_marginBottom="16dp"
+                                      android:layout_marginTop="@dimen/_4sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp"
+                                      android:layout_marginBottom="@dimen/_16sdp"
                                       android:id="@+id/myListingPetDetailsDescriptionLayout"
                                       android:layout_below="@+id/myListingPetPriceDetailsLayout">
                             <TextView
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:id="@+id/myListingPetDescriptionInPetDetails"/>
+                                    android:id="@+id/myListingPetDescriptionInPetDetails"
+                                    android:text="this is description of pet"
+                                    android:ellipsize="end"/>
                         </LinearLayout>
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>

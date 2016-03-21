@@ -45,4 +45,147 @@
 
     <dimen name="DialogListNames">17sp</dimen>
 
+    <dimen name="clinicdetailsview_height">72dp</dimen>
+    <dimen name="clinicDetailsViewDivider">2dp</dimen>
+
+    <dimen name="dialogeListMenuWidthHeight">24dp</dimen>
+    <dimen name="dialogeListMenuViewDialogDivider">2dp</dimen>
+    <dimen name="drawerheaderLayoutheight">172dp</dimen>
+
+    <dimen name="drawerImageWidthHeight">24dp</dimen>
+
+    <dimen name="editProfilrButtonHeight">40dp</dimen>
+    <dimen name="editProfilrButtonWidth">90dp</dimen>
+
+    <dimen name="listView_HomeMenu_CardViewHeight">150dp</dimen>
+    <dimen name="listView_HomeMenu_ViewHeight">2dp</dimen>
+
+    <dimen name="myListingPetListChangeCategory_textView">0dp</dimen>
+    <dimen name="myListingEditPetCategory_spinner_width">0dp</dimen>
+    <dimen name="myListingEditPetCategory_spinner_height">40dp</dimen>
+    <dimen name="myListingEditPetGenderRadioButton">0dp</dimen>
+    <dimen name="myListingEditPriceOfPet_editText">0dp</dimen>
+
+    <dimen name="myListingPetMateChangeCategory_textView">0dp</dimen>
+    <dimen name="myListingEditPetMateCategory_spinner_width">0dp</dimen>
+    <dimen name="myListingEditPetMateCategory_spinner_height">40dp</dimen>
+    <dimen name="myListingEditPetMateGenderRadioButton">0dp</dimen>
+
+    <dimen name="myListingPetList_textView">0dp</dimen>
+    <dimen name="myListingEditPetListDetailsImage_view">72dp</dimen>
+    <dimen name="myListingEditPetListDetailsText_view">1dp</dimen>
+    <dimen name="myListingEditPetListDetails_Imageview">75dp</dimen>
+    <dimen name="myListingEditPetListDetails_Imageview_height">1dp</dimen>
+
+
+    <dimen name="myListingViewImageSize">120dp</dimen>
+    <dimen name="myListingListItem_textViewLayout">120dp</dimen>
+    <dimen name="myListingListItem_view">1dp</dimen>
+
+    <dimen name="myListingPetMate_TextViewLayout">120dp</dimen>
+    <dimen name="myListingPetMateImageLayout_size">120dp</dimen>
+    <dimen name="myListingListpetmateItem_view">1dp</dimen>
+
+    <dimen name="myListingListpetmateListDetails_Imageview">1dp</dimen>
+    <dimen name="myListingListpetmateListDetails_view">1dp</dimen>
+
+    <dimen name="myListingPetMateListDetails_Imageview">75dp</dimen>
+    <dimen name="myListingPetMateListDetails_view">1dp</dimen>
+    <dimen name="myListingPetMateListDetails_TextView">0dp</dimen>
+
+    <dimen name="clinicItem_layout">120dp</dimen>
+    <dimen name="petForm_spinnerHeight">48dp</dimen>
+    <dimen name="petForm_TextView">0dp</dimen>
+    <dimen name="petForm_SpinnerAgeHeight">48dp</dimen>
+    <dimen name="petForm_SpinnerAgeWidth">0dp</dimen>
+    <dimen name="petForm_radio">0dp</dimen>
+    <dimen name="petForm_EditText">0dp</dimen>
+    <dimen name="petForm_ImageView">0dp</dimen>
+
+    
+	
+	
+	<dimen name="petStoresItem_Layout">120dp</dimen>
+	<dimen name="petStoresItem_Devider_view">1dp</dimen>
+	
+	<dimen name="petTrainnerItem_Layout">120dp</dimen>
+	<dimen name="petTrainnerItem_view">72dp</dimen>
+	<dimen name="petTrainnerItem_ImageView_height">48dp</dimen>
+	<dimen name="petTrainnerItem_ImageView_width">0dp</dimen>
+	<dimen name="petTrainnerItem_devider_view">1dp</dimen>
+	<dimen name="petTrainnerItem_TextView">0dp</dimen>
+	
+	<dimen name="petStoresItem_view">72dp</dimen>
+	<dimen name="petStoresItem_ImageView_height">48dp</dimen>
+	<dimen name="petStoresItem_ImageView_width">0dp</dimen>
+	<dimen name="petStoresItem_devider_view">1dp</dimen>
+	<dimen name="petStoresItem_TextView">0dp</dimen>
+	
+	<dimen name="petGroomerItem_Layout">120dp</dimen>
+	<dimen name="petGroomerItem_view">72dp</dimen>
+	<dimen name="petGroomerItem_ImageView_height">48dp</dimen>
+	<dimen name="petGroomerItem_ImageView_width">0dp</dimen>
+	<dimen name="petGroomerItem_devider_view">1dp</dimen>
+	<dimen name="petGroomerItem_TextView">0dp</dimen>
+	
+	<dimen name="petSheltererItem_Layout">120dp</dimen>
+	<dimen name="petSheltererItem_view">72dp</dimen>
+	<dimen name="petSheltererItem_ImageView_height">48dp</dimen>
+	<dimen name="petSheltererItem_ImageView_width">0dp</dimen>
+	<dimen name="petSheltererItem_devider_View">1dp</dimen>
+	<dimen name="petSheltererItem_TextView">0dp</dimen>
+	
+	
+    <dimen name="petListDetails_view">72dp</dimen>
+    <dimen name="petListDetails_Textview_view">1dp</dimen>
+    <dimen name="petListDetails_Imageview">75dp</dimen>
+    <dimen name="petListDetails_DividerView">1dp</dimen>
+    <dimen name="petListDetails_Textview">0dp</dimen>
+	
+	<dimen name="petListFilterAdoption_layout">56dp</dimen>
+	<dimen name="petListFilter_Breed_layout">56dp</dimen>
+	<dimen name="petListFilter_Category_layout">56dp</dimen>
+	<dimen name="petListFilter_Gender_layout">56dp</dimen>
+	<dimen name="petListFilter_RangeBar_layout">72dp</dimen>
+	
+	<dimen name="petListSubItems_layout">120dp</dimen>
+	<dimen name="petListSubItems_view">1dp</dimen>
+	<dimen name="petListSubItems_Button">24dp</dimen>
+	
+	<dimen name="petMate_TextView">0dp</dimen>
+    <dimen name="petMate_SpinnerAgeHeight">48dp</dimen>
+    <dimen name="petMate_SpinnerAgeWidth">0dp</dimen>
+	<dimen name="petMate_radio">0dp</dimen>
+	<dimen name="petMate_ImageView">0dp</dimen>
+	
+	<dimen name="whishListPetListDetails_view">72dp</dimen>
+	<dimen name="petMateListDetails_Textview_view">1dp</dimen>
+	<dimen name="petMateListDetails_Imageview">75dp</dimen>
+	<dimen name="petMateListDetails_TextView">0dp</dimen>
+	
+	<dimen name="whishListPetListDetails_view">72dp</dimen>
+	<dimen name="whishListPetListDetails_Textview_view">1dp</dimen>
+	<dimen name="whishListPetListDetails_Imageview">75dp</dimen>
+	<dimen name="whishListPetListDetails_TextView">0dp</dimen>
+
+    <dimen name="wishListPetListItem_layout">120dp</dimen>
+    <dimen name="wishListPetListItem_Devider_view">1dp</dimen>
+
+    <dimen name="whishListPetMateListDetails_view">72dp</dimen>
+    <dimen name="whishListPetMateListDetails_Textview_view">1dp</dimen>
+    <dimen name="whishListPetMateListDetails_Imageview">75dp</dimen>
+    <dimen name="whishListPetMateListDetails_TextView">0dp</dimen>
+
+    <dimen name="wishListPetMateListItem_layout">120dp</dimen>
+    <dimen name="wishListPetMateListItem_Devider_view">1dp</dimen>
+
+	<dimen name="petMateListSubItem_Layout">120dp</dimen>
+	<dimen name="petMateListSubItem_Devider_view">1dp</dimen>
+
+	
+	
+
+
+
+
 </resources>

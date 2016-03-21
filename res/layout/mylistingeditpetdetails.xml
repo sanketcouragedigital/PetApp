@@ -18,33 +18,33 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:focusable="true"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
+                        android:paddingLeft="@dimen/_16sdp"
+                        android:paddingRight="@dimen/_16sdp"
                         android:focusableInTouchMode="true">
             <TextView
                     android:id="@+id/myListingPetListSelectedCategory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:textSize="16sp"
-                    android:textColor="@color/edittxtcolor"/>
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:textSize="@dimen/_16sdp"
+                    android:textColor="@color/textColorPrimary"/>
 
             <LinearLayout android:layout_width="match_parent"
                           android:layout_height="wrap_content"
                           android:orientation="horizontal"
                           android:id="@+id/myListingPetListChangeCategoryLayout"
                           android:layout_below="@id/myListingPetListSelectedCategory"
-                          android:layout_marginTop="16dp">
+                          android:layout_marginTop="@dimen/_16sdp">
                 <TextView
                         android:id="@+id/myListingPetListChangeCategory"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:textColor="@color/edittxtcolor"
+                        android:textSize="@dimen/_16sdp"
+                        android:textColor="@color/textColorPrimary"
                         android:layout_weight="0.8"/>
                 <Spinner
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/_40sdp"
                         android:id="@+id/myListingEditPetCategory"
                         android:layout_weight="1.2"/>
             </LinearLayout>
@@ -53,9 +53,9 @@
                     android:id="@+id/myListingPetListSelectedBreed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:textSize="16sp"
-                    android:textColor="@color/edittxtcolor"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:textSize="@dimen/_16sdp"
+                    android:textColor="@color/textColorPrimary"
                     android:layout_below="@id/myListingPetListChangeCategoryLayout"/>
 
             <LinearLayout android:layout_width="match_parent"
@@ -63,18 +63,18 @@
                           android:orientation="horizontal"
                           android:id="@+id/myListingPetListChangeBreedLayout"
                           android:layout_below="@id/myListingPetListSelectedBreed"
-                          android:layout_marginTop="16dp">
+                          android:layout_marginTop="@dimen/_16sdp">
                 <TextView
                         android:id="@+id/myListingPetListChangeBreed"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:textColor="@color/edittxtcolor"
+                        android:textSize="@dimen/_16sdp"
+                        android:textColor="@color/textColorPrimary"
                         android:layout_weight="0.8"/>
 
                 <Spinner
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/_40sdp"
                         android:id="@+id/myListingEditPetBreed"
                         android:layout_weight="1.2"/>
             </LinearLayout>
@@ -83,19 +83,19 @@
                     android:id="@+id/myListingPetListCurrentAge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:textSize="16sp"
-                    android:textColor="@color/edittxtcolor"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:textSize="@dimen/_16sdp"
+                    android:textColor="@color/textColorPrimary"
                     android:layout_below="@+id/myListingPetListChangeBreedLayout"/>
 
             <TextView
                     android:id="@+id/myListingEditAgeOfPet"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/_16sdp"
                     android:text="Change Age To :"
-                    android:textColor="@color/edittxtcolor"
-                    android:layout_marginTop="16dp"
+                    android:textColor="@color/textColorPrimary"
+                    android:layout_marginTop="@dimen/_16sdp"
                     android:layout_below="@id/myListingPetListCurrentAge"/>
 
             <LinearLayout android:layout_width="match_parent"
@@ -103,33 +103,33 @@
                           android:orientation="horizontal"
                           android:id="@+id/myListingPetListChangeAgeLayout"
                           android:layout_below="@id/myListingEditAgeOfPet"
-                          android:layout_marginTop="16dp">
+                          android:layout_marginTop="@dimen/_16sdp">
                 <Spinner
                         android:id="@+id/myListingEditPetAgeInMonths"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/_40sdp"
                         android:layout_weight="1"/>
                 <Spinner
                         android:id="@+id/myListingEditPetAgeInYears"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/_40sdp"
                         android:layout_weight="1"/>
             </LinearLayout>
 
-            <LinearLayout android:layout_width="match_parent"
+           <LinearLayout android:layout_width="match_parent"
                           android:layout_height="wrap_content"
                           android:orientation="horizontal"
                           android:id="@+id/myListingPetListChangeGenderLayout"
                           android:layout_below="@id/myListingPetListChangeAgeLayout"
-                          android:layout_marginTop="16dp">
+                          android:layout_marginTop="@dimen/_16sdp">
                 <TextView
                         android:id="@+id/myListingEditPetGender"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:ems="4"
                         android:text="Gender"
-                        android:textSize="16sp"
-                        android:textColor="@color/edittxtcolor"
+                        android:textSize="@dimen/_16sdp"
+                        android:textColor="@color/textColorPrimary"
                         android:layout_weight="0.6"/>
 
                 <RadioGroup
@@ -158,17 +158,7 @@
                           android:orientation="horizontal"
                           android:id="@+id/myListingPetListChangePriceLayout"
                           android:layout_below="@id/myListingPetListChangeGenderLayout"
-                          android:layout_marginTop="16dp">
-                <EditText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:ems="4"
-                        android:id="@+id/myListingEditPriceOfPet"
-                        android:hint="Price"
-                        android:enabled="false"
-                        android:textColor="@color/textColorPrimary"
-                        android:layout_weight="0.6"/>
+                          android:layout_marginTop="@dimen/_16sdp">
 
                 <RadioGroup
                         android:layout_width="0dp"
@@ -191,6 +181,17 @@
                             android:text="Sell"
                             android:layout_weight="1"/>
                 </RadioGroup>
+
+                <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:ems="4"
+                        android:id="@+id/myListingEditPriceOfPet"
+                        android:hint="Price"
+                        android:enabled="false"
+                        android:textColor="@color/textColorPrimary"
+                        android:layout_weight="1"/>
             </LinearLayout>
 
             <EditText
@@ -203,8 +204,8 @@
                     android:gravity="top|left"
                     android:scrollbars="vertical"
                     android:layout_below="@+id/myListingPetListChangePriceLayout"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"/>
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginBottom="@dimen/_16sdp"/>
         </RelativeLayout>
     </ScrollView>
 
@@ -214,7 +215,7 @@
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_margin="@dimen/_16sdp"
             android:src="@drawable/form_submit"
             app:layout_anchor="@id/myListingApplyScrollView"
             app:layout_anchorGravity="bottom|right|end"

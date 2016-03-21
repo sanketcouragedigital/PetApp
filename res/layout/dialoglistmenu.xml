@@ -9,12 +9,12 @@
 
         <ImageView
                 android:id="@+id/iconimage"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="25dp"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginLeft="@dimen/_25sdp"
                 android:layout_alignParentLeft="true"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="@dimen/_8sdp"/>
 
         <TextView
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -23,12 +23,13 @@
                 android:id="@+id/listItemText"
                 android:ellipsize="marquee"
                 android:layout_toRightOf="@+id/iconimage"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="105dp"
+                android:layout_marginLeft="@dimen/_16sdp"
+                android:layout_marginRight="@dimen/_105sdp"
+                android:layout_marginTop="@dimen/_16sdp"
                 android:text="upload pet list"
-                android:textSize="16sp"
+                android:textSize="@dimen/_12sdp"
                 android:textStyle="normal"
-                android:layout_marginTop="16dp"/>
+                />
     </RelativeLayout>
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                  android:layout_width="match_parent"
@@ -37,9 +38,9 @@
         <View
                 android:id="@+id/viewDialogDivider"
                 android:layout_width="fill_parent"
-                android:layout_height="2dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="8dp"/>
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginLeft="@dimen/_16sdp"
+                android:layout_marginRight="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_8sdp"/>
     </FrameLayout>
 </RelativeLayout>

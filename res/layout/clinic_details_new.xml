@@ -1,6 +1,6 @@
 <android.support.design.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res/com.couragedigital.petapp"
+        xmlns:app="http://schemas.android.com/apk/res/com.couragedigital.peto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
@@ -27,7 +27,7 @@
                     app:layout_collapseMode="parallax"/>
             <View
                     android:layout_width="match_parent"
-                    android:layout_height="72dp"
+                    android:layout_height="@dimen/_72sdp"
                     android:background="@drawable/petdetail_image_background_gradient"
                     android:layout_gravity="center_horizontal|bottom"/>
             <android.support.v7.widget.Toolbar
@@ -52,7 +52,7 @@
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true">
+                            android:id="@+id/clinicFirstRelativeLayout">
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                               android:layout_width="match_parent"
                               android:layout_height="wrap_content"
@@ -63,55 +63,44 @@
                             android:layout_height="fill_parent"
                             android:id="@+id/clinicDetailCallButton"
                             android:background="@android:color/transparent"
-                            android:layout_centerVertical="true"
-                            android:layout_centerHorizontal="true"
-                            android:text="Call"
                             android:textColor="#CF3E3E"
                             android:layout_weight="1"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="@dimen/_10sdp"
                             android:src="@drawable/call24dp"/>
                     <View
                             android:id="@+id/clinicDetailsButtonDivider"
-                            android:layout_width="2dp"
+                            android:layout_width="@dimen/_2sdp"
                             android:layout_height="match_parent"
                             android:background="#FFFFFF"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_centerVertical="true"/>
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:layout_marginLeft="@dimen/_10sdp"/>
                     <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/clinicDetailsRateNReviewButton"
                             android:background="@android:color/transparent"
-                            android:layout_centerVertical="true"
-                            android:layout_centerHorizontal="true"
-                            android:text="Rate and Reviews"
                             android:textColor="#CF3E3E"
                             android:layout_weight="1"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="@dimen/_10sdp"
                             android:src="@drawable/rnr24dp"/>
                 </LinearLayout>
                 <View
                         android:id="@+id/clinicTabButtonDivider"
-                        android:layout_width="wrap_content"
-                        android:layout_height="2dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_2sdp"
                         android:background="@color/drawer_header_text"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_centerHorizontal="true"
                         android:layout_below="@+id/LinearLayoutForImageButtons"/>
             </RelativeLayout>
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/adresslayout"
+                            android:id="@+id/addresslayout"
                             android:orientation="horizontal"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_below="@+id/LinearLayoutForAddress">
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_10sdp">
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -119,15 +108,15 @@
                         android:textColor="#cf3e3e"
                         android:textStyle="bold"
                         android:id="@+id/petClinicAddressLabel"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginStart="2dp"/>
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"/>
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Abcd Xyzz"
                         android:id="@+id/petClinicAddress"
                         android:layout_alignTop="@+id/petClinicAddressLabel"
-                        android:layout_marginStart="112dp"/>
+                        android:layout_marginLeft="@dimen/_112sdp"/>
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -136,21 +125,22 @@
                         android:textStyle="bold"
                         android:id="@+id/petClinicTimeLabel"
                         android:layout_below="@+id/petClinicAddress"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginStart="2dp"/>
+                        android:layout_marginTop="@dimen/_16sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"/>
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Medium Text"
                         android:id="@+id/petClinicNotes"
                         android:layout_alignTop="@+id/petClinicTimeLabel"
+                        android:layout_alignLeft="@+id/petClinicAddress"
                         android:layout_alignStart="@+id/petClinicAddress"/>
                 <View
                         android:id="@+id/clinicAddressDividerLine"
-                        android:layout_width="wrap_content"
-                        android:layout_height="2dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_2sdp"
                         android:background="@color/drawer_header_text"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_centerHorizontal="true"
                         android:layout_below="@+id/petClinicNotes"/>
             </RelativeLayout>
@@ -160,19 +150,23 @@
                     android:text="Reviews:"
                     android:textColor="#cf3e3e"
                     android:id="@+id/reviewsLabel"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:ellipsize="end"
                     android:textStyle="bold"/>
+
+            <View
+                    android:id="@+id/clinicReviewsDividerLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_2sdp"
+                    android:background="@color/drawer_header_text"
+                    android:layout_marginTop="@dimen/_10sdp"/>
 
             <android.support.v7.widget.RecyclerView
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     android:id="@+id/clinicRateNReview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="8dp"
+                    android:paddingBottom="@dimen/_8sdp"
                     android:clipToPadding="false"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

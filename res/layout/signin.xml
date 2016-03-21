@@ -9,20 +9,21 @@
     <android.support.v7.widget.CardView
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:id="@+id/card_view"
-            android:layout_marginLeft="@dimen/signincard_marginLeft"
-            android:layout_marginRight="@dimen/signincard_marginRight"
-            android:layout_width="@dimen/signincard_width"
+            android:layout_marginLeft="@dimen/_30sdp"
+            android:layout_marginRight="@dimen/_30sdp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            card_view:cardCornerRadius="2dp"
+            card_view:cardCornerRadius="@dimen/_1sdp"
+            android:layout_centerVertical="true"
             android:layout_centerHorizontal="true">
 
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/signin_relativelayout_padding"
-                android:layout_marginRight="@dimen/signin_relativelayout_padding"
-                android:layout_marginTop="@dimen/signin_relativelayout_padding"
-                android:layout_marginEnd="@dimen/signin_relativelayout_marginBottom"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/cardLayout">
 
@@ -49,8 +50,8 @@
                         android:hint="Email"
                         android:singleLine="true"
                         android:id="@+id/txtemail"
-                        android:textSize="@dimen/signinhintbtn_textSize"
-                        android:layout_marginTop="@dimen/edittext_margintop"
+                        android:textSize="@dimen/_9sdp"
+                        android:layout_marginTop="@dimen/_9sdp"
                         android:textColor="@color/edittext"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -67,7 +68,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
                         android:hint="Password"
-                        android:textSize="@dimen/signinhintbtn_textSize"
+                        android:textSize="@dimen/_9sdp"
                         android:textColor="@color/edittext"
                         android:id="@+id/txtpassword"/>
 
@@ -77,35 +78,37 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Forgot Password ?"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_10sdp"
                     android:id="@+id/lblforgetpassword"
                     android:textColor="@color/edittxtcolor"
                     android:layout_below="@+id/textInputLayoutpassword"
-                    android:layout_marginTop="@dimen/lblforgetpassword_marginTop"
+                    android:layout_marginTop="@dimen/_14sdp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="24px"/>
+                    android:layout_marginRight="@dimen/_4sdp"/>
 
             <Button
-                    android:layout_width="@dimen/btnsignin_width"
-                    android:layout_height="@dimen/btnsignin_height"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:text="Sign Up"
                     android:id="@+id/btnsignup"
                     android:layout_toLeftOf="@+id/btnsignin"
-                    android:layout_marginRight="@dimen/btnpadding"
-                    android:layout_marginTop="@dimen/btnsignin_marginTop"
+                    android:layout_marginRight="@dimen/_4sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textSize="@dimen/_10sdp"
                     android:background="@null"
-                    android:layout_marginBottom="@dimen/btnpadding"
+                    android:layout_marginBottom="@dimen/_4sdp"
                     android:layout_below="@+id/lblforgetpassword"
                     android:textColor="@color/btnsignuptext"/>
 
             <Button
-                    android:layout_width="@dimen/btnsignin_width"
-                    android:layout_height="@dimen/btnsignin_height"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:text="Submit"
                     android:id="@+id/btnsignin"
                     android:layout_below="@+id/lblforgetpassword"
-                    android:layout_marginTop="@dimen/btnsignin_marginTop"
-                    android:layout_marginBottom="@dimen/btnpadding"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_4sdp"
+                    android:textSize="@dimen/_10sdp"
                     android:layout_alignParentRight="true"
                     android:background="@null"
                     android:textColor="@color/btnsignuptext"/>

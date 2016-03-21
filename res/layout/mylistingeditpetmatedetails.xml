@@ -18,35 +18,35 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:focusable="true"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
+                        android:paddingLeft="@dimen/_16sdp"
+                        android:paddingRight="@dimen/_16sdp"
                         android:focusableInTouchMode="true">
             <TextView
                     android:id="@+id/myListingPetMateSelectedCategory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:textSize="16sp"
-                    android:textColor="@color/edittxtcolor"/>
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:textSize="@dimen/_16sdp"
+                    android:textColor="@color/textColorPrimary"/>
 
             <LinearLayout android:layout_width="match_parent"
                           android:layout_height="wrap_content"
                           android:orientation="horizontal"
                           android:id="@+id/myListingPetMateListChangeCategoryLayout"
                           android:layout_below="@id/myListingPetMateSelectedCategory"
-                          android:layout_marginTop="16dp">
+                          android:layout_marginTop="@dimen/_16sdp">
                 <TextView
                         android:id="@+id/myListingPetMateChangeCategory"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:textColor="@color/edittxtcolor"
+                        android:textSize="@dimen/_16sdp"
+                        android:textColor="@color/textColorPrimary"
                         android:layout_weight="0.8"/>
 
                 <Spinner
                         android:id="@+id/myListingEditPetMateCategory"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/_40sdp"
                         android:layout_weight="1.2"/>
             </LinearLayout>
 
@@ -54,9 +54,9 @@
                     android:id="@+id/myListingPetMateSelectedBreed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:textSize="16sp"
-                    android:textColor="@color/edittxtcolor"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:textSize="@dimen/_16sdp"
+                    android:textColor="@color/textColorPrimary"
                     android:layout_below="@id/myListingPetMateListChangeCategoryLayout"/>
 
             <LinearLayout android:layout_width="match_parent"
@@ -64,18 +64,18 @@
                           android:orientation="horizontal"
                           android:id="@+id/myListingPetMateListChangeBreedLayout"
                           android:layout_below="@id/myListingPetMateSelectedBreed"
-                          android:layout_marginTop="16dp">
+                          android:layout_marginTop="@dimen/_16sdp">
                 <TextView
                         android:id="@+id/myListingPetMateChangeBreed"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:textColor="@color/edittxtcolor"
+                        android:textSize="@dimen/_16sdp"
+                        android:textColor="@color/textColorPrimary"
                         android:layout_weight="0.8"/>
                 <Spinner
                         android:id="@+id/myListingEditPetMateBreed"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/_40sdp"
                         android:layout_weight="1.2"/>
             </LinearLayout>
 
@@ -83,18 +83,18 @@
                     android:id="@+id/myListingPetMateCurrentAge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:textSize="16sp"
-                    android:textColor="@color/edittxtcolor"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:textSize="@dimen/_16sdp"
+                    android:textColor="@color/textColorPrimary"
                     android:layout_below="@+id/myListingPetMateListChangeBreedLayout"/>
             <TextView
                     android:id="@+id/myListingEditPetMateAgeOfPet"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/_16sdp"
                     android:text="Change Age To :"
-                    android:textColor="@color/edittxtcolor"
-                    android:layout_marginTop="16dp"
+                    android:textColor="@color/textColorPrimary"
+                    android:layout_marginTop="@dimen/_16sdp"
                     android:layout_below="@id/myListingPetMateCurrentAge"/>
 
             <LinearLayout android:layout_width="match_parent"
@@ -102,16 +102,16 @@
                           android:orientation="horizontal"
                           android:id="@+id/myListingPetMateListChangeAgeLayout"
                           android:layout_below="@id/myListingEditPetMateAgeOfPet"
-                          android:layout_marginTop="16dp">
+                          android:layout_marginTop="@dimen/_16sdp">
                 <Spinner
                         android:id="@+id/myListingEditPetMateAgeInMonths"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/_40sdp"
                         android:layout_weight="1"/>
                 <Spinner
                         android:id="@+id/myListingEditPetMateAgeInYears"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/_40sdp"
                         android:layout_weight="1"/>
             </LinearLayout>
 
@@ -120,15 +120,15 @@
                           android:orientation="horizontal"
                           android:id="@+id/myListingPetMateListChangeGenderLayout"
                           android:layout_below="@id/myListingPetMateListChangeAgeLayout"
-                          android:layout_marginTop="16dp">
+                          android:layout_marginTop="@dimen/_16sdp">
                 <TextView
                         android:id="@+id/myListingEditPetMateGender"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:ems="4"
                         android:text="Gender"
-                        android:textSize="16sp"
-                        android:textColor="@color/edittxtcolor"
+                        android:textSize="@dimen/_16sdp"
+                        android:textColor="@color/textColorPrimary"
                         android:layout_weight="0.6"/>
 
                 <RadioGroup
@@ -162,8 +162,8 @@
                     android:gravity="top|left"
                     android:scrollbars="vertical"
                     android:layout_below="@+id/myListingPetMateListChangeGenderLayout"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"/>
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginBottom="@dimen/_16sdp"/>
         </RelativeLayout>
     </ScrollView>
 
@@ -173,7 +173,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_margin="@dimen/_16sdp"
                 android:src="@drawable/form_submit"
                 app:layout_anchor="@id/myListingPetMateApplyScrollView"
                 app:layout_anchorGravity="bottom|right|end"

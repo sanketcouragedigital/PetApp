@@ -7,6 +7,8 @@
     <android.support.v7.widget.RecyclerView
             android:id="@+id/petClinicList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/_8sdp"
+            android:clipToPadding="false"/>
 
 </RelativeLayout>

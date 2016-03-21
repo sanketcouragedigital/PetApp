@@ -5,23 +5,23 @@
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="wrap_content"
-                    android:layout_height="56dp"
+                    android:layout_height="@dimen/_56sdp"
                     android:id="@+id/filterCategoryLayout">
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/filterCategoryText"
-                android:padding="10dp"
-                android:textSize="16sp"
+                android:padding="@dimen/_10sdp"
+                android:textSize="@dimen/_16sdp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"/>
+                android:layout_marginLeft="@dimen/_16sdp"/>
         <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/filterCategoryCheckBox"
-                android:padding="10dp"
+                android:padding="@dimen/_10sdp"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="6sp"
+                android:layout_marginRight="@dimen/_16sdp"
                 android:focusable="false"
                 android:layout_centerVertical="true"/>
     </RelativeLayout>

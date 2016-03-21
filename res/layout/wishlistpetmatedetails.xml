@@ -4,6 +4,7 @@
                                                  android:layout_width="match_parent"
                                                  android:layout_height="match_parent"
                                                  android:fitsSystemWindows="true"
+                                                 android:configChanges="orientation|screenSize|keyboardHidden"
                                                  android:id="@+id/wishlistPetMateDetailsCoordinatorLayout">
 
     <android.support.design.widget.AppBarLayout
@@ -31,7 +32,7 @@
 
             <View
                     android:layout_width="match_parent"
-                    android:layout_height="72dp"
+                    android:layout_height="@dimen/_72sdp"
                     android:background="@drawable/petdetail_image_background_gradient"
                     android:layout_gravity="center_horizontal|bottom"/>
 
@@ -57,23 +58,25 @@
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                       android:layout_width="match_parent"
                       android:layout_height="match_parent"
+                      android:id="@+id/petMateWishListDetailsLinearLayout"
                       android:orientation="vertical">
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
-                            android:paddingTop="8dp">
+                            android:id="@+id/petMateWishListDetailsFirstRelativeLayout"
+                            android:paddingTop="@dimen/_8sdp">
 
                 <android.support.v7.widget.CardView
                         xmlns:card_view="http://schemas.android.com/apk/res-auto"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        card_view:cardCornerRadius="2dp"
-                        card_view:cardElevation="2dp">
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginLeft="@dimen/_16sdp"
+                        android:layout_marginRight="@dimen/_16sdp"
+                        card_view:cardCornerRadius="@dimen/_2sdp"
+                        card_view:cardElevation="@dimen/_2sdp">
 
                     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                     android:layout_width="match_parent"
@@ -84,18 +87,19 @@
                                 android:layout_height="wrap_content"
                                 android:id="@+id/wishlistPetMateDetailsImageText"
                                 android:textStyle="bold"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginLeft="16dp"
-                                android:layout_marginRight="16dp"/>
+                                android:textColor="#CF3E3E"
+                                android:layout_marginTop="@dimen/_16sdp"
+                                android:layout_marginLeft="@dimen/_16sdp"
+                                android:layout_marginRight="@dimen/_16sdp"/>
 
                         <View
                                 android:layout_width="wrap_content"
-                                android:layout_height="1dp"
+                                android:layout_height="@dimen/_1sdp"
                                 android:id="@+id/wishlistPetMateDetailsImagesDividerLine"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:layout_marginRight="@dimen/_10sdp"
                                 android:layout_below="@+id/wishlistPetMateDetailsImageText"
-                                android:layout_marginTop="7dp"/>
+                                android:layout_marginTop="@dimen/_7sdp"/>
 
                         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                       android:layout_width="match_parent"
@@ -103,38 +107,38 @@
                                       android:orientation="horizontal"
                                       android:id="@+id/petDetailsImagesLinearLayout"
                                       android:layout_below="@+id/wishlistPetMateDetailsImagesDividerLine"
-                                      android:layout_marginTop="16dp"
-                                      android:layout_marginLeft="16dp"
-                                      android:layout_marginRight="16dp">
+                                      android:layout_marginTop="@dimen/_16sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp">
 
                             <ImageView
-                                    android:layout_width="75dp"
-                                    android:layout_height="75dp"
+                                    android:layout_width="@dimen/_75sdp"
+                                    android:layout_height="@dimen/_75sdp"
                                     android:id="@+id/wishlistPetMateDetailsFirstImageThumbnail"
                                     android:adjustViewBounds="true"
                                     android:scaleType="fitCenter"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginBottom="5dp"/>
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:layout_marginBottom="@dimen/_5sdp"/>
 
                             <ImageView
-                                    android:layout_width="75dp"
-                                    android:layout_height="75dp"
+                                    android:layout_width="@dimen/_75sdp"
+                                    android:layout_height="@dimen/_75sdp"
                                     android:id="@+id/wishlistPetMateDetailsSecondImageThumbnail"
                                     android:adjustViewBounds="true"
                                     android:scaleType="fitCenter"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginBottom="5dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_marginRight="5dp"/>
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:layout_marginBottom="@dimen/_5sdp"
+                                    android:layout_marginLeft="@dimen/_5sdp"
+                                    android:layout_marginRight="@dimen/_5sdp"/>
 
                             <ImageView
-                                    android:layout_width="75dp"
-                                    android:layout_height="75dp"
+                                    android:layout_width="@dimen/_75sdp"
+                                    android:layout_height="@dimen/_75sdp"
                                     android:id="@+id/wishlistPetMateDetailsThirdImageThumbnail"
                                     android:adjustViewBounds="true"
                                     android:scaleType="fitCenter"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginBottom="5dp"/>
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:layout_marginBottom="@dimen/_5sdp"/>
 
                         </LinearLayout>
                     </RelativeLayout>
@@ -145,17 +149,18 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
-                            android:paddingTop="8dp">
+                            android:id="@+id/petMateWishListDetailsSecondRelativeLayout"
+                            android:paddingTop="@dimen/_8sdp">
 
                 <android.support.v7.widget.CardView
                         xmlns:card_view="http://schemas.android.com/apk/res-auto"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        card_view:cardCornerRadius="2dp"
-                        card_view:cardElevation="2dp">
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginLeft="@dimen/_16sdp"
+                        android:layout_marginRight="@dimen/_16sdp"
+                        card_view:cardCornerRadius="@dimen/_2sdp"
+                        card_view:cardElevation="@dimen/_2sdp">
 
                     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                     android:layout_width="match_parent"
@@ -167,9 +172,9 @@
                                       android:layout_width="match_parent"
                                       android:layout_height="match_parent"
                                       android:orientation="horizontal"
-                                      android:layout_marginTop="16dp"
-                                      android:layout_marginLeft="16dp"
-                                      android:layout_marginRight="16dp">
+                                      android:layout_marginTop="@dimen/_16sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp">
 
                             <TextView
                                     android:id="@+id/wishlistPetMateDetailsLabel"
@@ -177,6 +182,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:textStyle="bold"
+                                    android:textColor="#CF3E3E"
                                     android:layout_weight="1"
                                     android:singleLine="true"
                                     android:ellipsize="end"/>
@@ -189,12 +195,12 @@
                                       android:layout_width="match_parent"
                                       android:layout_height="match_parent"
                                       android:orientation="horizontal"
-                                      android:layout_marginTop="7dp"
-                                      android:layout_marginLeft="10dp"
-                                      android:layout_marginRight="10dp">
+                                      android:layout_marginTop="@dimen/_7sdp"
+                                      android:layout_marginLeft="@dimen/_10sdp"
+                                      android:layout_marginRight="@dimen/_10sdp">
                             <View
                                     android:layout_width="wrap_content"
-                                    android:layout_height="1dp"
+                                    android:layout_height="@dimen/_1sdp"
                                     android:id="@+id/wishlistPetMateDetailsContentDividerLine"
                                     android:background="#000000"/>
                         </LinearLayout>
@@ -205,9 +211,9 @@
                                       android:layout_width="match_parent"
                                       android:layout_height="match_parent"
                                       android:orientation="horizontal"
-                                      android:layout_marginTop="16dp"
-                                      android:layout_marginLeft="16dp"
-                                      android:layout_marginRight="16dp">
+                                      android:layout_marginTop="@dimen/_16sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp">
 
                             <TextView
                                     android:id="@+id/wishlistPetBreedLabelInPetDetails"
@@ -235,9 +241,9 @@
                                       android:layout_width="match_parent"
                                       android:layout_height="match_parent"
                                       android:orientation="horizontal"
-                                      android:layout_marginTop="4dp"
-                                      android:layout_marginLeft="16dp"
-                                      android:layout_marginRight="16dp">
+                                      android:layout_marginTop="@dimen/_4sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp">
 
                             <TextView
                                     android:id="@+id/wishlistPetAgeLabelInPetDetails"
@@ -271,9 +277,9 @@
                                       android:layout_width="match_parent"
                                       android:layout_height="match_parent"
                                       android:orientation="horizontal"
-                                      android:layout_marginTop="4dp"
-                                      android:layout_marginLeft="16dp"
-                                      android:layout_marginRight="16dp">
+                                      android:layout_marginTop="@dimen/_4sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp">
 
                             <TextView
 
@@ -302,10 +308,10 @@
                                       android:layout_width="match_parent"
                                       android:layout_height="match_parent"
                                       android:orientation="horizontal"
-                                      android:layout_marginTop="4dp"
-                                      android:layout_marginBottom="16dp"
-                                      android:layout_marginLeft="16dp"
-                                      android:layout_marginRight="16dp">
+                                      android:layout_marginTop="@dimen/_4sdp"
+                                      android:layout_marginBottom="@dimen/_16sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp">
                             <TextView
                                     android:id="@+id/wishlistPetMateDescriptionInPetDetails"
                                     android:text="Description"
@@ -322,12 +328,12 @@
                                       android:layout_width="match_parent"
                                       android:layout_height="match_parent"
                                       android:orientation="horizontal"
-                                      android:layout_marginTop="7dp"
-                                      android:layout_marginLeft="10dp"
-                                      android:layout_marginRight="10dp">
+                                      android:layout_marginTop="@dimen/_7sdp"
+                                      android:layout_marginLeft="@dimen/_10sdp"
+                                      android:layout_marginRight="@dimen/_10sdp">
                             <View
                                     android:layout_width="wrap_content"
-                                    android:layout_height="1dp"
+                                    android:layout_height="@dimen/_1sdp"
                                     android:id="@+id/wishlistPetMateButonDividerLine"
                                     />
                         </LinearLayout>
@@ -338,17 +344,17 @@
                                       android:orientation="horizontal"
                                       android:id="@+id/petMateDetailsLinearLayoutThree"
                                       android:layout_below="@+id/wishlistPetMateDetailsDescriptionLayout"
-                                      android:layout_marginTop="4dp">
+                                      android:layout_marginTop="@dimen/_4sdp">
 
                             <Button
-                                    android:layout_width="0dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/pmWishListCallButton"
                                     android:background="@android:color/transparent"
                                     android:text="Call"
                                     android:layout_below="@+id/petMateDetailsDividerLine"
                                     android:textColor="#CF3E3E"
-                                    android:textSize="14sp"
+                                    android:textSize="@dimen/_14sdp"
                                     android:layout_weight="1"/>
                         </LinearLayout>
                     </RelativeLayout>

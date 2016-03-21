@@ -9,12 +9,12 @@
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/card_view"
-            android:layout_marginTop="@dimen/signupcard_margintop"
-            android:layout_marginLeft="@dimen/signupcard_marginLeft"
-            android:layout_marginRight="@dimen/signupcard_marginRight"
-            android:layout_width="@dimen/signupcard_width"
-            android:layout_height="@dimen/signupcard_height"
-            card_view:cardCornerRadius="2dp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/_16sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            card_view:cardCornerRadius="@dimen/_2sdp"
             android:layout_centerHorizontal="true">
 
         <RelativeLayout
@@ -23,13 +23,13 @@
                 android:layout_height="match_parent"
                 android:fillViewport="true"
                 android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/signup_relativelayout_padding"
-                android:layout_marginRight="@dimen/signup_relativelayout_padding">
+                android:layout_marginLeft="@dimen/_16sdp"
+                android:layout_marginRight="@dimen/_16sdp">
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/lblsignin"
-                    android:layout_marginTop="@dimen/lblsignup"
+                    android:layout_marginTop="@dimen/_16sdp"
                     android:layout_centerHorizontal="true"
                     android:text="SIGN UP"
                     android:textColor="@color/signinlblcolor"
@@ -47,8 +47,8 @@
                         android:inputType="textPersonName"
                         android:hint="Name"
                         android:id="@+id/txtname"
-                        android:textSize="@dimen/signuphintbtn_textSize"
-                        android:layout_marginTop="@dimen/signup_editText_marginTop"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_16sdp"
                         android:textColor="@color/edittext"/>
             </android.support.design.widget.TextInputLayout>
 
@@ -64,9 +64,9 @@
                         android:inputType="textPersonName"
                         android:hint="Building Name"
                         android:id="@+id/txtbuildingname"
-                        android:textSize="@dimen/signuphintbtn_textSize"
+                        android:textSize="@dimen/_10sdp"
                         android:textColor="@color/edittext"
-                        android:layout_marginTop="@dimen/signup_editText_marginTop"/>
+                        android:layout_marginTop="@dimen/_16sdp"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -81,9 +81,9 @@
                         android:inputType="textPersonName"
                         android:hint="Area "
                         android:id="@+id/txtarea"
-                        android:textSize="@dimen/signuphintbtn_textSize"
+                        android:textSize="@dimen/_10sdp"
                         android:textColor="@color/edittext"
-                        android:layout_marginTop="@dimen/signup_editText_marginTop"/>
+                        android:layout_marginTop="@dimen/_16sdp"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -99,9 +99,9 @@
                         android:inputType="textPersonName"
                         android:hint="City "
                         android:id="@+id/txtcity"
-                        android:textSize="@dimen/signuphintbtn_textSize"
+                        android:textSize="@dimen/_10sdp"
                         android:textColor="@color/edittext"
-                        android:layout_marginTop="@dimen/signup_editText_marginTop"/>
+                        android:layout_marginTop="@dimen/_16sdp"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -117,9 +117,9 @@
                         android:inputType="phone"
                         android:hint="Mobile No "
                         android:id="@+id/txtmobileno"
-                        android:textSize="@dimen/signuphintbtn_textSize"
+                        android:textSize="@dimen/_10sdp"
                         android:textColor="@color/edittext"
-                        android:layout_marginTop="@dimen/signup_editText_marginTop"/>
+                        android:layout_marginTop="@dimen/_16sdp"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -135,9 +135,9 @@
                         android:inputType="textEmailAddress"
                         android:hint="Email"
                         android:id="@+id/txtemail"
-                        android:textSize="@dimen/signuphintbtn_textSize"
+                        android:textSize="@dimen/_10sdp"
                         android:textColor="@color/edittext"
-                        android:layout_marginTop="@dimen/signup_editText_marginTop"/>
+                        android:layout_marginTop="@dimen/_16sdp"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -152,9 +152,9 @@
                         android:inputType="textPassword"
                         android:hint="Password"
                         android:id="@+id/txtpassword"
-                        android:textSize="@dimen/signuphintbtn_textSize"
+                        android:textSize="@dimen/_10sdp"
                         android:textColor="@color/edittext"
-                        android:layout_marginTop="@dimen/signup_editText_marginTop"/>
+                        android:layout_marginTop="@dimen/_16sdp"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -169,33 +169,33 @@
                         android:inputType="textPassword"
                         android:hint="Confirm Password"
                         android:id="@+id/txtconfirmpassword"
-                        android:textSize="@dimen/signuphintbtn_textSize"
+                        android:textSize="@dimen/_10sdp"
                         android:textColor="@color/edittext"
-                        android:layout_marginTop="@dimen/signup_editText_marginTop"/>
+                        android:layout_marginTop="@dimen/_16sdp"/>
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                    android:layout_width="@dimen/btnsignup_width"
-                    android:layout_height="@dimen/btnsignup_height"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:text="Submit"
                     android:id="@+id/btnsignup"
                     android:layout_below="@+id/textInputLayoutconfirmpassword"
                     android:layout_toLeftOf="@+id/btncancel"
-                    android:layout_marginRight="@dimen/signup_btnpadding_top"
+                    android:layout_marginRight="@dimen/_10sdp"
                     android:textColor="@color/btnsignuptext"
-                    android:layout_marginTop="@dimen/signup_btnpadding_top"
-                    android:layout_marginBottom="@dimen/signup_btnpadding_top"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
                     android:background="@null"/>
             <Button
-                    android:layout_width="@dimen/btnsignup_width"
-                    android:layout_height="@dimen/btnsignup_height"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:text="Cancel"
                     android:id="@+id/btncancel"
                     android:layout_below="@+id/textInputLayoutconfirmpassword"
                     android:layout_alignParentRight="true"
                     android:textColor="@color/btnsignuptext"
-                    android:layout_marginTop="@dimen/signup_btnpadding_top"
-                    android:layout_marginBottom="@dimen/signup_btnpadding_top"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
                     android:background="@null"/>
         </RelativeLayout>
     </android.support.v7.widget.CardView>

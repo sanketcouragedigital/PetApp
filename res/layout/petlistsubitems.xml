@@ -9,11 +9,11 @@
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            card_view:cardCornerRadius="2dp"
-            card_view:cardElevation="2dp">
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/_16sdp"
+            card_view:cardCornerRadius="@dimen/_2sdp"
+            card_view:cardElevation="@dimen/_2sdp">
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="fill_parent"
@@ -26,8 +26,8 @@
 
                 <RelativeLayout
                         android:id="@+id/petListImageRelativeLayout"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp">
+                        android:layout_width="@dimen/_120sdp"
+                        android:layout_height="@dimen/_120sdp">
 
                     <ImageView
                             android:id="@+id/petImage"
@@ -35,10 +35,10 @@
                             android:layout_height="fill_parent"
                             android:adjustViewBounds="true"
                             android:scaleType="centerCrop"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="17dp"/>
+                            android:layout_marginTop="@dimen/_16sdp"
+                            android:layout_marginBottom="@dimen/_16sdp"
+                            android:layout_marginLeft="@dimen/_16sdp"
+                            android:layout_marginRight="@dimen/_17sdp"/>
 
                 </RelativeLayout>
 
@@ -51,8 +51,8 @@
                             android:id="@+id/petBreed"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:layout_marginLeft="@dimen/_16sdp"
                             android:textSize="@dimen/petName"
                             android:textStyle="bold"
                             android:textColor="@color/list_pet_origin_text_color"
@@ -63,8 +63,8 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/petPostOwner"
                             android:layout_below="@+id/petBreed"
-                            android:layout_marginTop="12dp"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:layout_marginLeft="@dimen/_16sdp"
                             android:ellipsize="end"/>
 
                     <TextView
@@ -72,9 +72,9 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/petAdoptOrSell"
                             android:layout_below="@+id/petPostOwner"
-                            android:layout_marginTop="12dp"
-                            android:layout_marginLeft="16dp"
-                            android:textSize="13sp"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:layout_marginLeft="@dimen/_16sdp"
+                            android:textSize="@dimen/_13sdp"
                             android:textColor="#da4836"/>
                 </RelativeLayout>
             </RelativeLayout>
@@ -83,25 +83,25 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/petListDescriptionLayout"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="@dimen/_5sdp"
                             android:layout_below="@+id/petListImageAndTittleContentLayout">
 
-                <com.couragedigital.petapp.ExpandableText
+                <com.couragedigital.peto.ExpandableText
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/petListDescription"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_16sdp"
+                        android:layout_marginRight="@dimen/_16sdp"
                         android:ellipsize="end"/>
             </RelativeLayout>
             <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/_1sdp"
                     android:id="@+id/petListDividerLine"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_below="@+id/petListDescriptionLayout"/>
 
             <RelativeLayout android:layout_width="match_parent"
@@ -109,19 +109,19 @@
                             android:layout_below="@+id/petListDividerLine">
                 <Button
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_24sdp"
                         android:id="@+id/petListFavourite"
                         android:layout_centerVertical="true"
                         android:background="@drawable/favourite_enable"
-                        android:layout_marginLeft="92dp"/>
+                        android:layout_marginLeft="@dimen/_92sdp"/>
                 <ImageButton
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_24sdp"
                         android:id="@+id/petListShareImageButton"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginRight="92dp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_92sdp"
                         android:layout_centerVertical="true"
                         android:background="@drawable/share_icon"
                         android:layout_alignParentRight="true"/>

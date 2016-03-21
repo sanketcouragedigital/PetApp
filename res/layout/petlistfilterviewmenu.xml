@@ -29,12 +29,12 @@
             android:id="@+id/applyFilterFAB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_margin="@dimen/_16sdp"
             android:src="@drawable/filter_apply_check"
             app:layout_anchor="@id/filterViewMenuLayout"
             app:layout_anchorGravity="bottom|right|end"
-            app:elevation="6dp"
+            app:elevation="@dimen/_6sdp"
             app:fabSize="normal"
             app:backgroundTint="#DA4836"
-            app:layout_behavior="com.couragedigital.petapp.Behaviours.ScrollAwareFABBehavior"/>
+            app:layout_behavior="com.couragedigital.peto.Behaviours.ScrollAwareFABBehavior"/>
 </android.support.design.widget.CoordinatorLayout>

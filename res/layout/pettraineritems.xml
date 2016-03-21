@@ -7,15 +7,15 @@
 
     <android.support.v7.widget.CardView
             xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:card_view="http://schemas.android.com/apk/res/com.couragedigital.petapp"
+            xmlns:card_view="http://schemas.android.com/apk/res/com.couragedigital.peto"
             android:id="@+id/traineritems_cardview"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            card_view:cardCornerRadius="2dp"
-            card_view:cardElevation="2dp">
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/_16sdp"
+            card_view:cardCornerRadius="@dimen/_2sdp"
+            card_view:cardElevation="@dimen/_2sdp">
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="fill_parent"
@@ -28,8 +28,8 @@
 
                 <RelativeLayout
                         android:id="@+id/petTrainerImageRelativeLayout"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp">
+                        android:layout_width="@dimen/_120sdp"
+                        android:layout_height="@dimen/_120sdp">
 
                     <ImageView
                             android:id="@+id/trainerImage"
@@ -37,25 +37,25 @@
                             android:layout_height="fill_parent"
                             android:adjustViewBounds="true"
                             android:scaleType="centerCrop"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="17dp"/>
+                            android:layout_marginTop="@dimen/_16sdp"
+                            android:layout_marginBottom="@dimen/_16sdp"
+                            android:layout_marginLeft="@dimen/_16sdp"
+                            android:layout_marginRight="@dimen/_17sdp"/>
                 </RelativeLayout>
 
                 <RelativeLayout
                         android:id="@+id/petTrainerListContentRelativeLayout"
                         android:layout_width="fill_parent"
-                        android:layout_height="120dp"
+                        android:layout_height="@dimen/_120sdp"
                         android:layout_toRightOf="@+id/petTrainerImageRelativeLayout">
 
                     <TextView
                             android:id="@+id/trainerName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginLeft="16dp"
-                            android:textSize="@dimen/petName"
+                            android:layout_marginTop="@dimen/_16sdp"
+                            android:layout_marginLeft="@dimen/_16sdp"
+                            android:textSize="@dimen/_17sdp"
                             android:textStyle="bold"
                             android:textColor="@color/list_pet_origin_text_color"
                             android:ellipsize="end"/>
@@ -68,14 +68,14 @@
                     android:layout_width="wrap_content"
                     android:layout_below="@+id/trainerListImageAndNameContentLayout">
 
-                <com.couragedigital.petapp.ExpandableText
+                <com.couragedigital.peto.ExpandableText
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/petServiceTrainerDescription"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_16sdp"
+                        android:layout_marginRight="@dimen/_16sdp"
                         android:text="This is owner Description"
                         android:ellipsize="end"/>
             </RelativeLayout>
@@ -84,15 +84,15 @@
             <!--android:layout_height="1dp"-->
             <!--android:id="@+id/trainerDividerLine"-->
             <!--android:layout_below="@+id/petTrainerImageRelativeLayout"-->
-            <!--android:layout_marginLeft="10dp"-->
-            <!--android:layout_marginRight="10dp"/>-->
+            <!--android:layout_marginLeft="@dimen/_10sdp"-->
+            <!--android:layout_marginRight="@dimen/_10sdp"/>-->
 
             <!--<Button-->
             <!--style="?android:attr/buttonStyleSmall"-->
             <!--android:layout_width="24dp"-->
             <!--android:layout_height="24dp"-->
             <!--android:id="@+id/trainerFavourite"-->
-            <!--android:layout_marginRight="16dp"-->
+            <!--android:layout_marginRight="@dimen/_16sdp"-->
             <!--android:layout_alignBottom="@+id/trainerSeeMoreButton"-->
             <!--android:layout_centerHorizontal="true"/>-->
 

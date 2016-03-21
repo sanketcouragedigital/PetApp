@@ -8,7 +8,7 @@
             android:id="@+id/petTrainerList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="8dp"
+            android:paddingBottom="@dimen/_8sdp"
             android:clipToPadding="false"/>
 
 </RelativeLayout>

@@ -17,27 +17,27 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/petFormLayout"
                         android:focusable="true"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
+                        android:paddingLeft="@dimen/_16sdp"
+                        android:paddingRight="@dimen/_16sdp"
                         android:focusableInTouchMode="true">
             <Spinner
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="@dimen/_48sdp"
                     android:id="@+id/petCategory"
                     android:layout_alignParentStart="true"
-                    android:layout_marginTop="16dp"/>
+                    android:layout_marginTop="@dimen/_16sdp"/>
             <Spinner
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="@dimen/_48sdp"
                     android:id="@+id/petBreed"
                     android:layout_below="@+id/petCategory"
                     android:layout_alignParentStart="true"
-                    android:layout_marginTop="16dp"/>
+                    android:layout_marginTop="@dimen/_16sdp"/>
             <LinearLayout android:layout_width="fill_parent"
                           android:layout_height="wrap_content"
                           android:id="@+id/petAgeLayout"
                           android:orientation="horizontal"
-                          android:layout_marginTop="16dp"
+                          android:layout_marginTop="@dimen/_16sdp"
                           android:layout_below="@id/petBreed">
                 <TextView
                         android:id="@+id/ageOfPet"
@@ -46,25 +46,25 @@
                         android:inputType="number"
                         android:ems="4"
                         android:text="Age"
-                        android:textSize="16sp"
-                        android:textColor="@color/edittxtcolor"
+                        android:textSize="@dimen/_16sdp"
+                        android:textColor="@color/textColorPrimary"
                         android:layout_weight="0.6"/>
                 <Spinner
                         android:id="@+id/ageInMonths"
                         android:layout_width="0dp"
-                        android:layout_height="48dp"
+                        android:layout_height="@dimen/_40sdp"
                         android:layout_weight="1.2"/>
                 <Spinner
                         android:id="@+id/ageInYears"
                         android:layout_width="0dp"
-                        android:layout_height="48dp"
+                        android:layout_height="@dimen/_40sdp"
                         android:layout_weight="1.2"/>
             </LinearLayout>
             <LinearLayout android:layout_width="fill_parent"
                           android:layout_height="wrap_content"
                           android:id="@+id/petGenderLayout"
                           android:orientation="horizontal"
-                          android:layout_marginTop="16dp"
+                          android:layout_marginTop="@dimen/_16sdp"
                           android:layout_below="@id/petAgeLayout">
                 <TextView
                         android:id="@+id/petGender"
@@ -73,8 +73,8 @@
                         android:inputType="number"
                         android:ems="4"
                         android:text="Gender"
-                        android:textSize="16sp"
-                        android:textColor="@color/edittxtcolor"
+                        android:textSize="@dimen/_16sdp"
+                        android:textColor="@color/textColorPrimary"
                         android:layout_weight="0.6"/>
 
                 <RadioGroup
@@ -101,18 +101,8 @@
                           android:layout_height="wrap_content"
                           android:id="@+id/petPriceLayout"
                           android:orientation="horizontal"
-                          android:layout_marginTop="16dp"
+                          android:layout_marginTop="@dimen/_16sdp"
                           android:layout_below="@id/petGenderLayout">
-                <EditText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:ems="4"
-                        android:id="@+id/priceOfPet"
-                        android:hint="Price"
-                        android:enabled="false"
-                        android:textColor="@color/textColorPrimary"
-                        android:layout_weight="0.6"/>
 
                 <RadioGroup
                         android:layout_width="0dp"
@@ -123,18 +113,30 @@
                     <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Adoption"
+                            android:text="For Adoption"
                             android:id="@+id/forAdoptionOfPet"
                             android:layout_weight="1"/>
 
                     <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Sell"
+                            android:text="To Sell"
                             android:id="@+id/petSell"
                             android:ems="5"
                             android:layout_weight="1"/>
                 </RadioGroup>
+
+                <EditText
+                        android:layout_width="@dimen/petForm_EditText"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:ems="4"
+                        android:id="@+id/priceOfPet"
+                        android:hint="Price"
+                        android:textCursorDrawable="@null"
+                        android:enabled="false"
+                        android:textColor="@color/textColorPrimary"
+                        android:layout_weight="0.6"/>
             </LinearLayout>
 
             <EditText
@@ -143,13 +145,13 @@
                     android:inputType="textMultiLine"
                     android:id="@+id/descriptionOfPet"
                     android:hint="Description"
+                    android:textCursorDrawable="@null"
                     android:textColor="@color/textColorPrimary"
-                    android:lines="2"
                     android:gravity="top|left"
                     android:scrollbars="vertical"
                     android:layout_below="@+id/petPriceLayout"
                     android:layout_alignParentStart="true"
-                    android:layout_marginTop="16dp"/>
+                    android:layout_marginTop="@dimen/_16sdp"/>
 
             <CheckBox
                     android:layout_width="wrap_content"
@@ -158,7 +160,7 @@
                     android:id="@+id/contactNocheckBox"
                     android:layout_below="@+id/descriptionOfPet"
                     android:checked="true"
-                    android:layout_marginTop="16dp"/>
+                    android:layout_marginTop="@dimen/_16sdp"/>
 
             <EditText
                     android:layout_width="match_parent"
@@ -166,6 +168,7 @@
                     android:inputType="phone"
                     android:id="@+id/alternateNotxt"
                     android:hint="Alternate No"
+                    android:textCursorDrawable="@null"
                     android:textColor="@color/textColorPrimary"
                     android:lines="2"
                     android:enabled="false"
@@ -173,7 +176,7 @@
                     android:scrollbars="vertical"
                     android:layout_below="@+id/contactNocheckBox"
                     android:layout_alignParentStart="true"
-                    android:layout_marginTop="16dp"/>
+                    android:layout_marginTop="@dimen/_16sdp"/>
 
             <Button
                     android:layout_width="wrap_content"
@@ -185,18 +188,18 @@
                     android:theme="@style/Base.Theme.AppCompat"
                     android:layout_below="@+id/alternateNotxt"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="14dp"/>
+                    android:layout_marginTop="@dimen/_14sdp"/>
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                           android:orientation="horizontal"
                           android:layout_width="match_parent"
                           android:layout_height="match_parent"
-                          android:layout_marginBottom="30dp"
+                          android:layout_marginBottom="@dimen/_30sdp"
                           android:layout_below="@+id/selectImage">
                 <ImageView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/firstImageOfPet"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:adjustViewBounds="true"
                         android:scaleType="fitCenter"
                         android:layout_weight="1"/>
@@ -204,9 +207,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/secondImageOfPet"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="3dp"
-                        android:layout_marginRight="3dp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:layout_marginRight="@dimen/_3sdp"
                         android:adjustViewBounds="true"
                         android:scaleType="fitCenter"
                         android:layout_weight="1"/>
@@ -214,7 +217,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/thirdImageOfPet"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:adjustViewBounds="true"
                         android:scaleType="fitCenter"
                         android:layout_weight="1"/>
@@ -228,13 +231,13 @@
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_margin="@dimen/_16sdp"
             android:src="@drawable/form_submit"
             app:layout_anchor="@id/petFormLayout"
             app:layout_anchorGravity="bottom|right|end"
-            app:elevation="6dp"
+            app:elevation="@dimen/_6sdp"
             app:fabSize="normal"
             app:backgroundTint="#DA4836"
-            app:layout_behavior="com.couragedigital.petapp.Behaviours.ScrollAwareFABBehavior"/>
+            app:layout_behavior="com.couragedigital.peto.Behaviours.ScrollAwareFABBehavior"/>
 </android.support.design.widget.CoordinatorLayout>
 

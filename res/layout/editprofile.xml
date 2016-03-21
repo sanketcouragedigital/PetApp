@@ -11,13 +11,13 @@
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/card_view"
-            android:layout_marginTop="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            card_view:cardCornerRadius="2dp"
+            card_view:cardCornerRadius="@dimen/_2sdp"
             android:layout_centerHorizontal="true">
 
         <RelativeLayout
@@ -26,17 +26,19 @@
                 android:layout_height="match_parent"
                 android:fillViewport="true"
                 android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/signup_relativelayout_padding"
-                android:layout_marginRight="@dimen/signup_relativelayout_padding">
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/lblsignin"
-                    android:layout_marginTop="@dimen/lblsignup"
-                    android:layout_centerHorizontal="true"
-                    android:text="EDIT PROFILE"
-                    android:textColor="@color/signinlblcolor"
-                    android:id="@+id/signInTextView"/>
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:layout_marginLeft="@dimen/_16sdp"
+                android:layout_marginRight="@dimen/_16sdp">
+            <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textSize="@dimen/_20sdp"-->
+                    <!--android:layout_marginTop="@dimen/_10sdp"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:text="EDIT PROFILE"-->
+                    <!--android:textColor="@color/signinlblcolor"-->
+                    <!--android:id="@+id/signInTextView"/>-->
 
             <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
@@ -50,8 +52,8 @@
                         android:inputType="textPersonName"
                         android:hint="Name"
                         android:id="@+id/txtNameEditProfile"
-                        android:textSize="@dimen/signuphintbtn_textSize"
-                        android:layout_marginTop="@dimen/signup_editText_marginTop"
+                        android:textSize="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:textColor="@color/edittext"/>
             </android.support.design.widget.TextInputLayout>
 
@@ -67,9 +69,9 @@
                         android:inputType="textPersonName"
                         android:hint="Building Name"
                         android:id="@+id/txtBuildingnameEditProfile"
-                        android:textSize="@dimen/signuphintbtn_textSize"
+                        android:textSize="@dimen/_15sdp"
                         android:textColor="@color/edittext"
-                        android:layout_marginTop="@dimen/signup_editText_marginTop"/>
+                        android:layout_marginTop="@dimen/_10sdp"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -84,9 +86,9 @@
                         android:inputType="textPersonName"
                         android:hint="Area "
                         android:id="@+id/txtAreaEditProfile"
-                        android:textSize="@dimen/signuphintbtn_textSize"
+                        android:textSize="@dimen/_15sdp"
                         android:textColor="@color/edittext"
-                        android:layout_marginTop="@dimen/signup_editText_marginTop"/>
+                        android:layout_marginTop="@dimen/_10sdp"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -102,9 +104,9 @@
                         android:inputType="textPersonName"
                         android:hint="City "
                         android:id="@+id/txtCityEditProfile"
-                        android:textSize="@dimen/signuphintbtn_textSize"
+                        android:textSize="@dimen/_15sdp"
                         android:textColor="@color/edittext"
-                        android:layout_marginTop="@dimen/signup_editText_marginTop"/>
+                        android:layout_marginTop="@dimen/_10sdp"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -120,9 +122,9 @@
                         android:inputType="phone"
                         android:hint="Mobile No "
                         android:id="@+id/txtMobileNoEditProfile"
-                        android:textSize="@dimen/signuphintbtn_textSize"
+                        android:textSize="@dimen/_15sdp"
                         android:textColor="@color/edittext"
-                        android:layout_marginTop="@dimen/signup_editText_marginTop"/>
+                        android:layout_marginTop="@dimen/_10sdp"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -138,52 +140,61 @@
                         android:inputType="textEmailAddress"
                         android:hint="Email"
                         android:id="@+id/txtEmailEditProfile"
-                        android:textSize="@dimen/signuphintbtn_textSize"
+                        android:textSize="@dimen/_15sdp"
                         android:textColor="@color/edittext"
-                        android:layout_marginTop="@dimen/signup_editText_marginTop"/>
+                        android:layout_marginTop="@dimen/_10sdp"/>
             </android.support.design.widget.TextInputLayout>
 
-
+            <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Use Old Password"
+                    android:id="@+id/oldPasswordCheckBox"
+                    android:checked="true"
+                    android:layout_below="@+id/textInputLayoutemail"
+                    android:layout_marginTop="@dimen/_10sdp"/>
 
             <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/textInputLayoutconfirmpassword"
                     android:theme="@style/cardTheme"
-                    android:layout_below="@+id/textInputLayoutemail">
+                    android:layout_below="@+id/oldPasswordCheckBox">
+
                 <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
-                        android:hint="Confirm Password"
+                        android:hint="New Password"
+                        android:enabled="false"
                         android:id="@+id/txtConfirmPasswordEditProfile"
-                        android:textSize="@dimen/signuphintbtn_textSize"
+                        android:textSize="@dimen/_15sdp"
+
                         android:textColor="@color/edittext"
-                        android:layout_marginTop="@dimen/signup_editText_marginTop"/>
+                        android:layout_marginTop="@dimen/_10sdp"/>
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                    android:layout_width="@dimen/btnsignup_width"
-                    android:layout_height="@dimen/btnsignup_height"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:text="Submit"
                     android:id="@+id/btnSignUpEditProfile"
-                    android:layout_below="@+id/textInputLayoutconfirmpassword"
-                    android:layout_toLeftOf="@+id/btncancel"
-                    android:layout_marginRight="@dimen/signup_btnpadding_top"
+                    android:layout_marginRight="@dimen/_4sdp"
                     android:textColor="@color/btnsignuptext"
-                    android:layout_marginTop="@dimen/signup_btnpadding_top"
-                    android:layout_marginBottom="@dimen/signup_btnpadding_top"
-                    android:background="@null"/>
+                    android:textSize="@dimen/_10sdp"
+                    android:background="@null"
+                    android:layout_alignTop="@+id/btnCancelEditProfile" android:layout_centerHorizontal="true"/>
             <Button
-                    android:layout_width="@dimen/btnsignup_width"
-                    android:layout_height="@dimen/btnsignup_height"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:text="Cancel"
                     android:id="@+id/btnCancelEditProfile"
                     android:layout_below="@+id/textInputLayoutconfirmpassword"
                     android:layout_alignParentRight="true"
                     android:textColor="@color/btnsignuptext"
-                    android:layout_marginTop="@dimen/signup_btnpadding_top"
-                    android:layout_marginBottom="@dimen/signup_btnpadding_top"
+                    android:textSize="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_4sdp"
                     android:background="@null"/>
         </RelativeLayout>
     </android.support.v7.widget.CardView>

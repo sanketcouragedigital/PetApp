@@ -147,6 +147,15 @@
         <activity android:name="com.couragedigital.peto.WishListPetMateDetails"
                   android:configChanges="orientation" android:screenOrientation="portrait"
                   android:label="Wish List"/>
+				  
+        <activity android:name="com.couragedigital.peto.CheckPasswordForEditProfile"
+                  android:label="Edit Profile" android:screenOrientation="portrait"/>
+				  
+        <activity android:name="com.couragedigital.peto.NullRespone_DialogeBox"
+                   android:screenOrientation="portrait"/>
+				   
+        <activity android:name="com.couragedigital.peto.TimeOut_DialogeBox"
+                   android:screenOrientation="portrait"/>
 
     </application>
 

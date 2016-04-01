@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:card_view="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+
+    <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res/com.couragedigital.peto"
+            android:id="@+id/wishlist_cardview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="@dimen/_16sdp"
+            card_view:cardCornerRadius="@dimen/_2sdp"
+            card_view:cardElevation="@dimen/_2sdp">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/wishlistPetListImageAndTittleContentLayout">
+
+                <RelativeLayout
+                        android:id="@+id/wishlistImageRelativeLayout"
+                        android:layout_width="@dimen/_120sdp"
+                        android:layout_height="@dimen/_120sdp">
+
+                    <ImageView
+                            android:id="@+id/wishlistViewImage"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerCrop"
+                            android:layout_marginTop="@dimen/_16sdp"
+                            android:layout_marginBottom="@dimen/_16sdp"
+                            android:layout_marginLeft="@dimen/_16sdp"
+                            android:layout_marginRight="@dimen/_17sdp"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                        android:id="@+id/wishlistContentRelativeLayout"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/_120sdp"
+                        android:layout_toRightOf="@+id/wishlistImageRelativeLayout">
+
+                    <TextView
+                            android:id="@+id/wishlistViewBreed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_16sdp"
+                            android:layout_marginLeft="@dimen/_16sdp"
+                            android:textSize="@dimen/petName"
+                            android:textStyle="bold"
+                            android:textColor="@color/list_pet_origin_text_color"
+                            android:ellipsize="end"/>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/wishlistPetAdoptOrSell"
+                            android:layout_marginTop="@dimen/_12sdp"
+                            android:layout_marginLeft="@dimen/_16sdp"
+                            android:text="FOR ADOPTION"
+                            android:layout_below="@+id/wishlistViewBreed"
+                            android:textSize="@dimen/_13sdp"
+                            android:textColor="#da4836"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/petPostedBy"
+                            android:layout_marginTop="@dimen/_12sdp"
+                            android:layout_marginLeft="@dimen/_16sdp"
+                            android:text="Posted By"
+                            android:layout_below="@+id/wishlistPetAdoptOrSell"
+                            android:textSize="@dimen/_13sdp"/>
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/wishlistPetListDescriptionLayout"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_below="@+id/wishlistPetListImageAndTittleContentLayout">
+
+                <com.couragedigital.peto.ExpandableText
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/wishlistPetListDescription"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_16sdp"
+                        android:layout_marginRight="@dimen/_16sdp"
+                        android:text="This is owner Description"
+                        android:ellipsize="end"/>
+            </RelativeLayout>
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:id="@+id/wishlistDividerLine"
+                    android:layout_below="@+id/wishlistPetListDescriptionLayout"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"/>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:id="@+id/petMateDetailsLinearLayoutThree"
+                          android:layout_below="@+id/wishlistDividerLine"
+                          android:layout_marginTop="@dimen/_4sdp">
+
+                <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/wishlistPetListDelete"
+                        android:background="@android:color/transparent"
+                        android:text="delete"
+                        android:textColor="#CF3E3E"
+                        android:textSize="@dimen/_14sdp"
+                        android:layout_weight="1"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<familyset>
+
+
+    <family>
+        <nameset>
+            <name>montserrat</name>
+            <name>someFont</name>
+        </nameset>
+        <fileset>
+            <file>Montserrat-Regular.ttf</file>
+        </fileset>
+    </family>
+
+</familyset>

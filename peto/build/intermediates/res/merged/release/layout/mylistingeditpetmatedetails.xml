@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res/com.couragedigital.petapp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/myListingPetMateApplyScrollView">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:paddingLeft="@dimen/_16sdp"
+                        android:paddingRight="@dimen/_16sdp"
+                        android:focusableInTouchMode="true">
+            <TextView
+                    android:id="@+id/myListingPetMateSelectedCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:textSize="@dimen/_16sdp"
+                    android:textColor="@color/textColorPrimary"/>
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:id="@+id/myListingPetMateListChangeCategoryLayout"
+                          android:layout_below="@id/myListingPetMateSelectedCategory"
+                          android:layout_marginTop="@dimen/_16sdp">
+                <TextView
+                        android:id="@+id/myListingPetMateChangeCategory"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/_16sdp"
+                        android:textColor="@color/textColorPrimary"
+                        android:layout_weight="0.8"/>
+
+                <Spinner
+                        android:id="@+id/myListingEditPetMateCategory"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_weight="1.2"/>
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/myListingPetMateSelectedBreed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:textSize="@dimen/_16sdp"
+                    android:textColor="@color/textColorPrimary"
+                    android:layout_below="@id/myListingPetMateListChangeCategoryLayout"/>
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:id="@+id/myListingPetMateListChangeBreedLayout"
+                          android:layout_below="@id/myListingPetMateSelectedBreed"
+                          android:layout_marginTop="@dimen/_16sdp">
+                <TextView
+                        android:id="@+id/myListingPetMateChangeBreed"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/_16sdp"
+                        android:textColor="@color/textColorPrimary"
+                        android:layout_weight="0.8"/>
+                <Spinner
+                        android:id="@+id/myListingEditPetMateBreed"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_weight="1.2"/>
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/myListingPetMateCurrentAge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:textSize="@dimen/_16sdp"
+                    android:textColor="@color/textColorPrimary"
+                    android:layout_below="@+id/myListingPetMateListChangeBreedLayout"/>
+            <TextView
+                    android:id="@+id/myListingEditPetMateAgeOfPet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_16sdp"
+                    android:text="Change Age To :"
+                    android:textColor="@color/textColorPrimary"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_below="@id/myListingPetMateCurrentAge"/>
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:id="@+id/myListingPetMateListChangeAgeLayout"
+                          android:layout_below="@id/myListingEditPetMateAgeOfPet"
+                          android:layout_marginTop="@dimen/_16sdp">
+                <Spinner
+                        android:id="@+id/myListingEditPetMateAgeInMonths"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_weight="1"/>
+                <Spinner
+                        android:id="@+id/myListingEditPetMateAgeInYears"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_weight="1"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:id="@+id/myListingPetMateListChangeGenderLayout"
+                          android:layout_below="@id/myListingPetMateListChangeAgeLayout"
+                          android:layout_marginTop="@dimen/_16sdp">
+                <TextView
+                        android:id="@+id/myListingEditPetMateGender"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:ems="4"
+                        android:text="Gender"
+                        android:textSize="@dimen/_16sdp"
+                        android:textColor="@color/textColorPrimary"
+                        android:layout_weight="0.6"/>
+
+                <RadioGroup
+                        android:id="@+id/myListingEditPetMateGenderRadioGroup"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1.4">
+
+                    <RadioButton android:id="@+id/myListingEditPetMateGenderMale"
+                                 android:layout_width="0dp"
+                                 android:layout_height="wrap_content"
+                                 android:text="@string/pet_gender_male"
+                                 android:layout_weight="1"/>
+
+                    <RadioButton android:id="@+id/myListingEditPetMateGenderFemale"
+                                 android:layout_width="0dp"
+                                 android:layout_height="wrap_content"
+                                 android:text="@string/pet_gender_female"
+                                 android:layout_weight="1"/>
+                </RadioGroup>
+            </LinearLayout>
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:id="@+id/myListingEditPetMateDescription"
+                    android:hint="Description"
+                    android:textColor="@color/textColorPrimary"
+                    android:gravity="top|left"
+                    android:scrollbars="vertical"
+                    android:layout_below="@+id/myListingPetMateListChangeGenderLayout"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginBottom="@dimen/_16sdp"/>
+        </RelativeLayout>
+    </ScrollView>
+
+        <android.support.design.widget.FloatingActionButton
+                android:id="@+id/myListingPetMateSubmitFloatingButton"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_16sdp"
+                android:src="@drawable/form_submit"
+                app:layout_anchor="@id/myListingPetMateApplyScrollView"
+                app:layout_anchorGravity="bottom|right|end"
+                app:elevation="6dp"
+                app:fabSize="normal"
+                app:backgroundTint="#DA4836"/>
+
+</android.support.design.widget.CoordinatorLayout>
+

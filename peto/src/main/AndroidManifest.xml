@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.couragedigital.peto"
+          android:versionCode="2"
+          android:versionName="1.0.2">
+    <uses-sdk android:minSdkVersion="17"
+              android:targetSdkVersion="23"/>
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true"/>
+    <application android:theme="@style/AppTheme"
+                 android:name="com.couragedigital.peto.app.AppController"
+                 android:label="@string/app_name"
+                 android:icon="@drawable/ic_launcher">
+
+        <meta-data android:name="com.google.android.gms.version"
+                   android:value="@integer/google_play_services_version"/>
+
+        <receiver
+                android:name="com.couragedigital.peto.InternetConnectivity.NetworkChangeReceiver"
+                android:label="NetworkChangeReceiver" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name="com.couragedigital.peto.SplashScreen"
+                  android:label="@string/app_name"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.couragedigital.peto.Index"
+                  android:label="@string/app_name"
+                  android:configChanges="orientation" android:screenOrientation="portrait"/>
+
+        <activity android:name="com.couragedigital.peto.SignIn"
+                  android:label="@string/app_name" android:noHistory="true"
+                  android:configChanges="orientation" android:screenOrientation="portrait"/>
+
+        <activity android:name="com.couragedigital.peto.BaseActivity"
+                  android:configChanges="orientation" android:screenOrientation="portrait"/>
+
+        <activity android:name="com.couragedigital.peto.SignUp"
+                  android:label="Sign Up" android:noHistory="true"
+                  android:configChanges="orientation" android:screenOrientation="portrait"/>
+
+        <activity android:name="com.couragedigital.peto.SetNewPassword"
+                  android:configChanges="orientation" android:screenOrientation="portrait"
+                  android:label="Set New Password"/>
+
+        <activity android:name="com.couragedigital.peto.EmailForCode"
+                  android:configChanges="orientation" android:screenOrientation="portrait"
+                  android:label="Email for Code"/>
+
+        <activity android:name="com.couragedigital.peto.PetForm" android:label="Pet Form"
+                  android:configChanges="orientation" android:screenOrientation="portrait"/>
+
+        <activity android:name="com.couragedigital.peto.PetList" android:label="Pet List"
+                  android:configChanges="orientation" android:screenOrientation="portrait"/>
+
+        <activity android:name="com.couragedigital.peto.PetListDetails"
+                  android:configChanges="orientation" android:screenOrientation="portrait"/>
+
+        <activity android:name="com.couragedigital.peto.PetListFilter"
+                  android:configChanges="orientation" android:screenOrientation="portrait"
+                  android:label="Filter"/>
+
+        <activity android:name="com.couragedigital.peto.PetClinic"
+                  android:configChanges="orientation" android:screenOrientation="portrait"
+                  android:label="Clinics"/>
+
+        <activity android:name="com.couragedigital.peto.PetMate"
+                  android:configChanges="orientation" android:screenOrientation="portrait"
+                  android:label="Pet Mate Form"/>
+
+        <activity android:name="com.couragedigital.peto.PetMateList"
+                  android:configChanges="orientation" android:screenOrientation="portrait"
+                  android:label="Pet Mate List"/>
+
+        <activity android:name="com.couragedigital.peto.PetMateListDetails"
+                  android:configChanges="orientation" android:screenOrientation="portrait"/>
+
+        <activity android:name="com.couragedigital.peto.PetMateListFilter"
+                  android:configChanges="orientation" android:screenOrientation="portrait"/>
+
+        <activity android:name="com.couragedigital.peto.PetClinicDetails"
+                  android:configChanges="orientation" android:screenOrientation="portrait"/>
+
+        <activity android:name="com.couragedigital.peto.CropImage.MonitoredActivity"
+                  android:configChanges="orientation" android:screenOrientation="portrait"/>
+
+        <activity android:name="com.couragedigital.peto.CropImage.CropImage"
+                  android:configChanges="orientation" android:screenOrientation="portrait"/>
+
+        <activity android:name="com.couragedigital.peto.PetServices"
+                  android:configChanges="orientation" android:screenOrientation="portrait"
+                  android:label="Services"/>
+
+        <activity android:name="com.couragedigital.peto.TabFragmentTrainerDetails"
+                  android:configChanges="orientation" android:screenOrientation="portrait"/>
+
+        <activity android:name="com.couragedigital.peto.TabFragmentGroomerDetails"
+                  android:configChanges="orientation" android:screenOrientation="portrait"/>
+
+        <activity android:name="com.couragedigital.peto.TabFragmentShelterDetails"
+                  android:configChanges="orientation" android:screenOrientation="portrait"/>
+
+        <activity android:name="com.couragedigital.peto.TabFragmentStoresDetails"
+                  android:configChanges="orientation" android:screenOrientation="portrait"/>
+
+        <activity android:name="com.couragedigital.peto.Feedback"
+                  android:label="Feedback"
+                  android:configChanges="orientation" android:screenOrientation="portrait"/>
+
+        <activity android:name="com.couragedigital.peto.MyListing"
+                  android:configChanges="orientation" android:screenOrientation="portrait"
+                  android:label="My Listing"/>
+
+        <activity android:name="com.couragedigital.peto.MyListingPetListDetails"
+                  android:configChanges="orientation" android:screenOrientation="portrait"/>
+
+        <activity android:name="com.couragedigital.peto.MyListingPetMateListDetails"
+                  android:configChanges="orientation" android:screenOrientation="portrait"/>
+
+        <activity android:name="com.couragedigital.peto.ClinicRateNReview"
+                  android:configChanges="orientation" android:screenOrientation="portrait"/>
+
+        <activity android:name="com.couragedigital.peto.EditProfile"
+                  android:configChanges="orientation" android:screenOrientation="portrait"
+                  android:label="Edit Profile"/>
+
+        <activity android:name="com.couragedigital.peto.MyListingModifyPetDetails"
+                  android:configChanges="orientation" android:screenOrientation="portrait"
+                  android:label="Edit Listing"/>
+
+        <activity android:name="com.couragedigital.peto.MyListingModifyPetMateDetails"
+                  android:configChanges="orientation" android:screenOrientation="portrait"
+                  android:label="Edit Listing"/>
+
+        <activity android:name="com.couragedigital.peto.WishList"
+                  android:configChanges="orientation" android:screenOrientation="portrait"
+                  android:label="Wish List"/>
+
+        <activity android:name="com.couragedigital.peto.WishListPetListDetails"
+                  android:configChanges="orientation" android:screenOrientation="portrait"
+                  android:label="Wish List"/>
+
+        <activity android:name="com.couragedigital.peto.WishListPetMateDetails"
+                  android:configChanges="orientation" android:screenOrientation="portrait"
+                  android:label="Wish List"/>
+
+        <activity android:name="com.couragedigital.peto.CheckPasswordForEditProfile"
+            android:configChanges="orientation" android:screenOrientation="portrait"
+            android:label="Edit Profile"/>
+
+        <activity android:name="com.couragedigital.peto.DialogBox.NotifyNetworkConnectionMessage"
+                  android:configChanges="orientation" android:screenOrientation="portrait"/>
+
+        <activity android:name="com.couragedigital.peto.DialogBox.Data_NotSaved_DialogBox"
+            android:configChanges="orientation" android:screenOrientation="portrait"/>
+
+        <activity android:name="com.couragedigital.peto.DialogBox.TimeOut_DialogeBox"
+            android:configChanges="orientation" android:screenOrientation="portrait"/>
+
+        <activity android:name="com.couragedigital.peto.DialogBox.NullRespone_DialogeBox"
+            android:configChanges="orientation" android:screenOrientation="portrait"/>
+    </application>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+</manifest>

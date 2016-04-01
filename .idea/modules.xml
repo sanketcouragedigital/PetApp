@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$USER_HOME$/AppData/Local/Android/sdk/extras/android/support/v7/appcompat/android-support-v7-appcompat.iml" filepath="$USER_HOME$/AppData/Local/Android/sdk/extras/android/support/v7/appcompat/android-support-v7-appcompat.iml" />
-      <module fileurl="file://$PROJECT_DIR$/petapp.iml" filepath="$PROJECT_DIR$/petapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/peto.iml" filepath="$PROJECT_DIR$/peto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/peto/peto-peto.iml" filepath="$PROJECT_DIR$/peto/peto-peto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sdp/sdp.iml" filepath="$PROJECT_DIR$/sdp/sdp.iml" />
     </modules>
   </component>
 </project>

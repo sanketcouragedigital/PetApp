@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/drawerheaderimage">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/_172sdp"
+                    android:background="@drawable/drawerheader"
+                    android:id="@+id/drawerheader"
+                    android:clickable="true"
+                    android:fitsSystemWindows="true">
+        <TextView android:id="@+id/lblname"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="@dimen/_16sdp"
+                  android:textColor="#ffffff"
+                  android:textSize="@dimen/_16sdp"
+                  android:textStyle="bold"
+                  android:layout_above="@+id/lblemail"
+                  android:layout_alignParentLeft="true"
+                  android:paddingBottom="@dimen/_10sdp"/>
+        <TextView android:id="@+id/lblemail"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textColor="#ffffff"
+                  android:textSize="@dimen/_16sdp"
+                  android:text="hrishi@gmail.com"
+                  android:textStyle="normal"
+                  android:paddingBottom="@dimen/_10sdp"
+                  android:layout_alignParentBottom="true"
+                  android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4\\facebook_logo.png",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\drawable-ldpi\\facebook_logo.png"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\drawable-ldpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4\\signinbackground.png",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\drawable-ldpi\\signinbackground.png"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4\\googlelogo.png",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\drawable-ldpi\\googlelogo.png"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4\\submit_button.png",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\drawable-ldpi\\submit_button.png"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4\\form_submit.png",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\drawable-ldpi\\form_submit.png"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4\\list_bckgrnd.png",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\drawable-ldpi\\list_bckgrnd.png"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4\\card.png",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\drawable-ldpi\\card.png"
+    }
+]

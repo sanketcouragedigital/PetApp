@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/filterAgeFixedRangeValue"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/filterAgeRangeBar"/>
+
+    <com.couragedigital.peto.RangeBar.RangeBar
+            xmlns:custom="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/filterAgeRangeBar"
+            custom:tickStart="0"
+            custom:tickEnd="100"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/_16sdp"
+            android:layout_below="@+id/filterAgeFixedRangeValue"
+            android:layout_centerHorizontal="true"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:id="@+id/filterAgeChangeRangeValue"
+            android:layout_below="@+id/filterAgeRangeBar"
+            android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

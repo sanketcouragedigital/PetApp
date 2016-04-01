@@ -1,0 +1,59 @@
+-keep class com.couragedigital.peto.app.AppController {
+    <init>();
+    void attachBaseContext(android.content.Context);
+}
+-keep class com.couragedigital.peto.InternetConnectivity.NetworkChangeReceiver { <init>(); }
+-keep class com.couragedigital.peto.SplashScreen { <init>(); }
+-keep class com.couragedigital.peto.Index { <init>(); }
+-keep class com.couragedigital.peto.SignIn { <init>(); }
+-keep class com.couragedigital.peto.BaseActivity { <init>(); }
+-keep class com.couragedigital.peto.SignUp { <init>(); }
+-keep class com.couragedigital.peto.SetNewPassword { <init>(); }
+-keep class com.couragedigital.peto.EmailForCode { <init>(); }
+-keep class com.couragedigital.peto.PetForm { <init>(); }
+-keep class com.couragedigital.peto.PetList { <init>(); }
+-keep class com.couragedigital.peto.PetListDetails { <init>(); }
+-keep class com.couragedigital.peto.PetListFilter { <init>(); }
+-keep class com.couragedigital.peto.PetClinic { <init>(); }
+-keep class com.couragedigital.peto.PetMate { <init>(); }
+-keep class com.couragedigital.peto.PetMateList { <init>(); }
+-keep class com.couragedigital.peto.PetMateListDetails { <init>(); }
+-keep class com.couragedigital.peto.PetMateListFilter { <init>(); }
+-keep class com.couragedigital.peto.PetClinicDetails { <init>(); }
+-keep class com.couragedigital.peto.CropImage.MonitoredActivity { <init>(); }
+-keep class com.couragedigital.peto.CropImage.CropImage { <init>(); }
+-keep class com.couragedigital.peto.PetServices { <init>(); }
+-keep class com.couragedigital.peto.TabFragmentTrainerDetails { <init>(); }
+-keep class com.couragedigital.peto.TabFragmentGroomerDetails { <init>(); }
+-keep class com.couragedigital.peto.TabFragmentShelterDetails { <init>(); }
+-keep class com.couragedigital.peto.TabFragmentStoresDetails { <init>(); }
+-keep class com.couragedigital.peto.Feedback { <init>(); }
+-keep class com.couragedigital.peto.MyListing { <init>(); }
+-keep class com.couragedigital.peto.MyListingPetListDetails { <init>(); }
+-keep class com.couragedigital.peto.MyListingPetMateListDetails { <init>(); }
+-keep class com.couragedigital.peto.ClinicRateNReview { <init>(); }
+-keep class com.couragedigital.peto.EditProfile { <init>(); }
+-keep class com.couragedigital.peto.MyListingModifyPetDetails { <init>(); }
+-keep class com.couragedigital.peto.MyListingModifyPetMateDetails { <init>(); }
+-keep class com.couragedigital.peto.WishList { <init>(); }
+-keep class com.couragedigital.peto.WishListPetListDetails { <init>(); }
+-keep class com.couragedigital.peto.WishListPetMateDetails { <init>(); }
+-keep class com.couragedigital.peto.CheckPasswordForEditProfile { <init>(); }
+-keep class com.couragedigital.peto.DialogBox.NotifyNetworkConnectionMessage { <init>(); }
+-keep class com.couragedigital.peto.DialogBox.Data_NotSaved_DialogBox { <init>(); }
+-keep class com.couragedigital.peto.DialogBox.TimeOut_DialogeBox { <init>(); }
+-keep class com.couragedigital.peto.DialogBox.NullRespone_DialogeBox { <init>(); }
+-keep class com.google.android.gms.ads.AdActivity { <init>(); }
+-keep class com.google.android.gms.ads.purchase.InAppPurchaseActivity { <init>(); }
+-keep class com.google.android.gms.appinvite.PreviewActivity { <init>(); }
+-keep class com.google.android.gms.auth.api.signin.internal.SignInHubActivity { <init>(); }
+-keep class com.google.android.gms.auth.api.signin.RevocationBoundService { <init>(); }
+-keep class com.google.android.gms.measurement.AppMeasurementContentProvider { <init>(); }
+-keep class com.google.android.gms.measurement.AppMeasurementReceiver { <init>(); }
+-keep class com.google.android.gms.measurement.AppMeasurementService { <init>(); }
+-keep public class * extends android.app.backup.BackupAgent {
+    <init>();
+}
+-keep public class * extends java.lang.annotation.Annotation {
+    *;
+}

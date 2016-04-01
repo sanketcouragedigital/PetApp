@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Peto</string>
+    <string name="pet_gender_male">Male</string>
+    <string name="pet_gender_female">Female</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="my_profile">My Profile</string>
+    <string name="my_listing">My Listing</string>
+    <string name="about_us">About Us</string>
+    <string name="share_app">Share App</string>
+    <string name="logout">LogOut</string>
+    <string name="snackbartext">Hello Guys</string>
+    <string name="no_location_detected">No Location Detected Check Your Location Setting </string>
+    <string name="location_Changed">Location Changed </string>
+
+</resources>

@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,8 @@ public class CheckPasswordForEditProfile extends BaseActivity implements View.On
     String password = "";
     String email;
     public View v;
+    private long TIME = 5000;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +38,18 @@ public class CheckPasswordForEditProfile extends BaseActivity implements View.On
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(final View v) {
         if(v.getId() == R.id.passwordSubmit) {
+            v.setEnabled(false);
+
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    v.setEnabled(true);
+                }
+            }, TIME);
+
             password = userPassword.getText().toString();
             if(password.equals("")) {
                 userPassword.setError("Please Enter Your Password!");

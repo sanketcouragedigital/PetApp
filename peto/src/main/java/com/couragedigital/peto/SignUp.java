@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -39,6 +40,7 @@ public class SignUp extends AppCompatActivity {
     ProgressDialog progressDialog = null;
 
     String conf_password;
+    private long TIME = 5000;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,7 +71,17 @@ public class SignUp extends AppCompatActivity {
         btn_signup.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
+                    public void onClick(final View v) {
+                        v.setEnabled(false);
+
+                        new Handler().postDelayed(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                v.setEnabled(true);
+                            }
+                        }, TIME);
+
                         name = txt_name.getText().toString();
                         buildingname = txt_buildingname.getText().toString();
                         area = txt_area.getText().toString();

@@ -28,7 +28,7 @@ import java.util.List;
 
 
 public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetListAdapter.ViewHolder> {
-    List<WishListPetListItem> wishListPetListItem;
+    List<WishListPetListItem> wishListPetListItems;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;
     ViewHolder viewHolder;
@@ -38,7 +38,7 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
     public WishListPetListAdapter() {
     }
     public WishListPetListAdapter(List<WishListPetListItem> petLists) {
-        this.wishListPetListItem = petLists;
+        this.wishListPetListItems = petLists;
 
     }
 
@@ -51,13 +51,13 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        WishListPetListItem itemList = wishListPetListItem.get(i);
+        WishListPetListItem itemList = wishListPetListItems.get(i);
         viewHolder.bindPetList(itemList);
     }
 
     @Override
     public int getItemCount() {
-        return wishListPetListItem.size();
+        return wishListPetListItems.size();
     }
 
     private String setListingType(WishListPetListItem wishListPetListItem) {
@@ -119,8 +119,6 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
             nameForPetPost.setText("Posted By : "+wishListPetListItem.getName());
             petAdoptOrSell.setText(setListingType(wishListPetListItem));
             dividerLine.setBackgroundResource(R.color.list_internal_divider);
-            //petFavourite.setBackgroundResource(R.drawable.favourite_disable);
-            //petFavourite.setVisibility(View.GONE);
         }
 
         @Override
@@ -132,19 +130,10 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
                 petListId= String.valueOf(wishListPetListItem.getId());
 
                 if (this.wishListPetListItem != null) {
-//                    String url = URLInstance.getUrl();
-//                    int id = wishListPetListItem.getId();
-//                    String email = wishListPetListItem.getPetPostOwnerEmail();
-//                    url = url + "?method=deleteWishListPetList&format=json&id=" + id + "&email=" + email + "";
                     new DeletePetListFromServer().execute();
-                    deletebutton.setText("Deleted");
-                    deletebutton.setEnabled(false);
-//                    try {
-//                        WishListPetListDelete.deleteWishListPetListFromServer(email,petListId);
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                        progressDialog.dismiss();
-//                    }
+                    wishListPetListItems.remove(this.getAdapterPosition());
+                    notifyItemRemoved(this.getAdapterPosition());
+                    notifyItemRangeChanged(this.getAdapterPosition(), wishListPetListItems.size());
                 }
             } else {
                 if (this.wishListPetListItem != null) {
@@ -168,11 +157,9 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
         }
 
         public class DeletePetListFromServer extends AsyncTask<String, String, String> {
-            //String urlForFetch;
             @Override
             protected String doInBackground(String... url) {
                 try {
-                    //urlForFetch = url[0];
                     WishListPetListDelete wishListPetListDelete = new WishListPetListDelete(v);
                     wishListPetListDelete.deleteWishListPetListFromServer(email,petListId);
                 } catch (Exception e) {

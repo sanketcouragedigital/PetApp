@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
@@ -34,6 +35,8 @@ public class ClinicRateNReview extends BaseActivity {
     String clinicId;
     String email;
     ProgressDialog progressDialog = null;
+    private long TIME = 5000;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,22 +95,28 @@ public class ClinicRateNReview extends BaseActivity {
 
         btnSubmitFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-//                Toast.makeText(ClinicRateNReview.this,
-//                        String.valueOf(clinicRating.getRating()),
-//                        Toast.LENGTH_SHORT).show();
+            public void onClick(final View v) {
+                v.setEnabled(false);
+
+                new Handler().postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        v.setEnabled(true);
+                    }
+                }, TIME);
                 txtClinicName.setText(String.valueOf(clinicRating.getRating()));
 
                 clinicRatingValue = String.valueOf(clinicRating.getRating());
-                clinicFeebback= txtFeedback.getText().toString();
-                 try{
-                        SaveClinicFeedback saveClinicFeedback = new SaveClinicFeedback(ClinicRateNReview.this);
-                        saveClinicFeedback.saveFeedbackOnServer(clinicRatingValue,clinicFeebback,clinicId,email);
-                 }catch (Exception e){
-                     e.printStackTrace();
-                     progressDialog.dismiss();
-                     Toast.makeText(ClinicRateNReview.this, "Exception : " + e.getMessage(),Toast.LENGTH_LONG).show();
-                 }
+                clinicFeebback = txtFeedback.getText().toString();
+                try {
+                    SaveClinicFeedback saveClinicFeedback = new SaveClinicFeedback(ClinicRateNReview.this);
+                    saveClinicFeedback.saveFeedbackOnServer(clinicRatingValue, clinicFeebback, clinicId, email);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    progressDialog.dismiss();
+                    Toast.makeText(ClinicRateNReview.this, "Exception : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                }
                 finish();
             }
         });

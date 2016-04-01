@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +22,7 @@ public class Feedback extends BaseActivity implements View.OnClickListener {
 
     String emailOfUserFeedback = "";
     String userFeedback = "";
+    private long TIME = 5000;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,17 @@ public class Feedback extends BaseActivity implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(final View v) {
+        v.setEnabled(false);
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                v.setEnabled(true);
+            }
+        }, TIME);
+
         if(v.getId() == R.id.feedbackSubmit) {
             userFeedback = feedbackOfUser.getText().toString();
             if(emailOfUserFeedback.trim().equals("")) {

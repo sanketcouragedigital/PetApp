@@ -4,6 +4,7 @@ package com.couragedigital.peto.Adapter;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.couragedigital.peto.*;
+import com.couragedigital.peto.Connectivity.WishListPetListDelete;
 import com.couragedigital.peto.Connectivity.WishListPetMateListDelete;
 import com.couragedigital.peto.SessionManager.SessionManager;
 import com.couragedigital.peto.app.AppController;
@@ -28,7 +30,7 @@ import java.util.List;
 public class WishListPetMateListAdapter extends RecyclerView.Adapter
         <WishListPetMateListAdapter.ViewHolder> {
 
-    public List<WishListPetMateListItem> wishListPetMateArrayList;
+    public List<WishListPetMateListItem> wishListPetMateListItems;
     public ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;
     ViewHolder viewHolder;
@@ -39,7 +41,7 @@ public class WishListPetMateListAdapter extends RecyclerView.Adapter
     }
 
     public WishListPetMateListAdapter(List<WishListPetMateListItem> modelData) {
-        wishListPetMateArrayList = modelData;
+        wishListPetMateListItems = modelData;
     }
 
     @Override
@@ -51,13 +53,13 @@ public class WishListPetMateListAdapter extends RecyclerView.Adapter
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        WishListPetMateListItem wishListPetMateListItem = wishListPetMateArrayList.get(i);
+        WishListPetMateListItem wishListPetMateListItem = wishListPetMateListItems.get(i);
         viewHolder.bindPetList(wishListPetMateListItem);
     }
 
     @Override
     public int getItemCount() {
-        return wishListPetMateArrayList.size();
+        return wishListPetMateListItems.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -123,20 +125,10 @@ public class WishListPetMateListAdapter extends RecyclerView.Adapter
                 petMateListId= String.valueOf(wishListPetMateListItem.getId());
 
                 if(this.wishListPetMateListItem != null) {
-//                    String url = URLInstance.getUrl();
-//                    int id = wishListPetMateListItem.getId();
-//                    String email = wishListPetMateListItem.getPetMatePostOwnerEmail();
-//                    url = url + "?method=deleteMyListingPetMateList&format=json&id="+ id +"&email="+ email +"";
-                    //new DeletePetMateFromServer().execute();
-                    try {
-                        WishListPetMateListDelete wishListPetMateListDelete = new WishListPetMateListDelete(v);
-                        wishListPetMateListDelete.deleteWishListPetMateFromServer(email,petMateListId);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        progressDialog.dismiss();
-                    }
-                    deletebutton.setText("Deleted");
-                    deletebutton.setEnabled(false);
+                    new DeletePetMateListFromServer().execute();
+                    wishListPetMateListItems.remove(this.getAdapterPosition());
+                    notifyItemRemoved(this.getAdapterPosition());
+                    notifyItemRangeChanged(this.getAdapterPosition(), wishListPetMateListItems.size());
                 }
             }
             else {
@@ -159,19 +151,17 @@ public class WishListPetMateListAdapter extends RecyclerView.Adapter
             }
         }
 
-//        public class DeletePetMateFromServer extends AsyncTask<String, String, String> {
-//
-//            String urlForFetch;
-//            @Override
-//            protected String doInBackground(String... url) {
-//                try {
-//                    urlForFetch = url[0];
-//                    WishListPetMateListDelete.deleteFromRemoteServer(email,petMateListId);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//                return null;
-//            }
-//        }
+        public class DeletePetMateListFromServer extends AsyncTask<String, String, String> {
+            @Override
+            protected String doInBackground(String... url) {
+                try {
+                    WishListPetMateListDelete wishListPetMateListDelete = new WishListPetMateListDelete(v);
+                    wishListPetMateListDelete.deleteWishListPetMateFromServer(email,petMateListId);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+        }
     }
 }

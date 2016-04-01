@@ -30,9 +30,6 @@ public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetLi
     View v;
     ViewHolder viewHolder;
 
-    public MyListingPetListAdapter() {
-    }
-
     public MyListingPetListAdapter(List<MyListingPetListItems> petLists) {
         this.myListingpetLists = petLists;
     }
@@ -120,8 +117,6 @@ public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetLi
             deletebutton.setText("Delete");
             petAdoptOrSell.setText(setListingType(myListingPetListItem));
             dividerLine.setBackgroundResource(R.color.list_internal_divider);
-            //petFavourite.setBackgroundResource(R.drawable.favourite_disable);
-            //petFavourite.setVisibility(View.GONE);
         }
 
         @Override
@@ -145,9 +140,9 @@ public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetLi
                     String email = myListingPetListItem.getPetPostOwnerEmail();
                     url = url + "?method=deleteMyListingPetList&format=json&id=" + id + "&email=" + email + "";
                     new DeletePetListFromServer().execute(url);
-                    deletebutton.setText("Deleted");
-                    deletebutton.setEnabled(false);
-                    modify.setEnabled(false);
+                    myListingpetLists.remove(this.getAdapterPosition());
+                    notifyItemRemoved(this.getAdapterPosition());
+                    notifyItemRangeChanged(this.getAdapterPosition(), myListingpetLists.size());
                 }
             } else {
                 if (this.myListingPetListItem != null) {

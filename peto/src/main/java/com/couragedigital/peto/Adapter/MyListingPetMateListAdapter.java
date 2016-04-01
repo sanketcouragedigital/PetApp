@@ -22,16 +22,12 @@ import com.couragedigital.peto.model.MyListingPetMateListItem;
 
 import java.util.List;
 
-public class MyListingPetMateListAdapter extends RecyclerView.Adapter
-        <MyListingPetMateListAdapter.ViewHolder> {
+public class MyListingPetMateListAdapter extends RecyclerView.Adapter<MyListingPetMateListAdapter.ViewHolder> {
 
     public  List<MyListingPetMateListItem> myListingPetMateArrayList;
     public ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;
     ViewHolder viewHolder;
-
-    public MyListingPetMateListAdapter() {
-    }
 
     public MyListingPetMateListAdapter(List<MyListingPetMateListItem> modelData) {
         myListingPetMateArrayList = modelData;
@@ -129,9 +125,9 @@ public class MyListingPetMateListAdapter extends RecyclerView.Adapter
                     String email = myListingPetMateListItem.getPetMatePostOwnerEmail();
                     url = url + "?method=deleteMyListingPetMateList&format=json&id="+ id +"&email="+ email +"";
                     new DeletePetMateFromServer().execute(url);
-                    deletebutton.setText("Deleted");
-                    deletebutton.setEnabled(false);
-                    modify.setEnabled(false);
+                    myListingPetMateArrayList.remove(this.getAdapterPosition());
+                    notifyItemRemoved(this.getAdapterPosition());
+                    notifyItemRangeChanged(this.getAdapterPosition(), myListingPetMateArrayList.size());
                 }
             }
             else {

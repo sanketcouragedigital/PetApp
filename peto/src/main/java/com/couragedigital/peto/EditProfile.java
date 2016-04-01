@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -46,6 +47,7 @@ public class EditProfile extends BaseActivity  implements View.OnClickListener{
 
     View v;
     String urlForFetch;
+    private long TIME = 5000;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -105,13 +107,23 @@ public class EditProfile extends BaseActivity  implements View.OnClickListener{
         return android.util.Patterns.EMAIL_ADDRESS.matcher(emailForValidation).matches();
 
     }
+
     private boolean isValidMobile(String mobilenoValidation)
     {
         return android.util.Patterns.PHONE.matcher(mobilenoValidation).matches();
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(final View v) {
+        v.setEnabled(false);
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                v.setEnabled(true);
+            }
+        }, TIME);
         if (v.getId() == R.id.btnSignUpEditProfile) {
             name = txt_name.getText().toString();
             buildingname = txt_buildingname.getText().toString();

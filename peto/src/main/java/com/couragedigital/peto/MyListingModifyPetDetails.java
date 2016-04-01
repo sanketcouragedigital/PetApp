@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.text.Editable;
@@ -73,6 +74,7 @@ public class MyListingModifyPetDetails extends BaseActivity implements View.OnCl
     String[] stringArrayListForYear;
 
     private ProgressDialog progressDialog = null;
+    private long TIME = 5000;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -108,11 +110,19 @@ public class MyListingModifyPetDetails extends BaseActivity implements View.OnCl
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(final View v) {
+        v.setEnabled(false);
 
-        if (view.getId() == R.id.myListingEditPetFormSubmitFab) {
-                progressDialog = ProgressDialog.show(MyListingModifyPetDetails.this, "", "Uploading file...", true);
-                new UploadModifiedDataToServer().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                v.setEnabled(true);
+            }
+        }, TIME);
+        if (v.getId() == R.id.myListingEditPetFormSubmitFab) {
+            progressDialog = ProgressDialog.show(MyListingModifyPetDetails.this, "", "Uploading file...", true);
+            new UploadModifiedDataToServer().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
         }
     }
 

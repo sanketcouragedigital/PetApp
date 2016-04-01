@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.text.Editable;
@@ -61,6 +62,7 @@ public class MyListingModifyPetMateDetails extends BaseActivity implements View.
     private List<String> petAgeListInYear = new ArrayList<String>();
     String[] stringArrayListForMonth;
     String[] stringArrayListForYear;
+    private long TIME = 5000;
 
 
     @Override
@@ -92,9 +94,17 @@ public class MyListingModifyPetMateDetails extends BaseActivity implements View.
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(final View v) {
+        v.setEnabled(false);
 
-        if (view.getId() == R.id.myListingPetMateSubmitFloatingButton) {
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                v.setEnabled(true);
+            }
+        }, TIME);
+        if (v.getId() == R.id.myListingPetMateSubmitFloatingButton) {
             progressDialog = ProgressDialog.show(MyListingModifyPetMateDetails.this, "", "Uploading file...", true);
             new UploadModifiedPetMateDataToServer().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
         }

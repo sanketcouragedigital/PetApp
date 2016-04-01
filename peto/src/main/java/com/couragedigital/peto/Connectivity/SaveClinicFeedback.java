@@ -85,9 +85,6 @@ public class SaveClinicFeedback {
     public static void returnResponse(String response) {
         if (response.equals("CLINIC_FEEDBACK_SAVED")) {
             Toast.makeText(context, "Successfully Saved.", Toast.LENGTH_SHORT).show();
-//            Intent gotoPetClinicDetails = new Intent(context, PetClinicDetails.class);
-//            //gotoPetClinicDetails.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//            context.startActivity(gotoPetClinicDetails);
         } else if (response.equals("ERROR")) {
             Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
             Intent gotoRateNReview = new Intent(context, ClinicRateNReview.class);

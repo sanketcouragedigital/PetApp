@@ -18,6 +18,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 
 import android.support.annotation.NonNull;
@@ -115,7 +116,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
     String secondImagePath = "";
     String thirdImagePath = "";
 
-    //ContentResolver contentResolver = getContentResolver();
+    private long TIME = 5000;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -321,7 +322,17 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
-    public void onClick(View v) {
+    public void onClick(final View v) {
+        v.setEnabled(false);
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                v.setEnabled(true);
+            }
+        }, TIME);
+
         if(v.getId() == R.id.selectImage) {
             if(thirdImageOfPet.getDrawable() != null) {
                 Toast.makeText(PetForm.this, "Can not select more than 3 images", Toast.LENGTH_LONG).show();
@@ -338,7 +349,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
                         requestReadStoragePermission();
                     }
                     else {
-                            createPetFormSelectImageDialogChooser();
+                        createPetFormSelectImageDialogChooser();
                     }
                 }
             }

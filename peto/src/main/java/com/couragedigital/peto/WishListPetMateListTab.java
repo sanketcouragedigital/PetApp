@@ -1,10 +1,12 @@
 package com.couragedigital.peto;
 
 
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.couragedigital.peto.Adapter.WishListPetMateListAdapter;
 import com.couragedigital.peto.Connectivity.WishListPetMateFetchList;
+import com.couragedigital.peto.Connectivity.WishListPetMateListDelete;
 import com.couragedigital.peto.Listeners.WishListPetMateFetchListScrollListener;
 import com.couragedigital.peto.SessionManager.SessionManager;
 import com.couragedigital.peto.Singleton.URLInstance;
@@ -21,7 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class WishListPetMateListTab extends Fragment {
+public class WishListPetMateListTab extends Fragment implements WishListPetMateListAdapter.OnRecyclerWishListPetMateDeleteClickListener {
     RecyclerView.Adapter adapter;
     RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
@@ -57,7 +60,7 @@ public class WishListPetMateListTab extends Fragment {
         recyclerView.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
-        adapter = new WishListPetMateListAdapter(wishListPetMateArrayList);
+        adapter = new WishListPetMateListAdapter(wishListPetMateArrayList, this);
         recyclerView.setAdapter(adapter);
 
         sessionManager = new SessionManager(v.getContext());
@@ -91,6 +94,57 @@ public class WishListPetMateListTab extends Fragment {
                 urlForFetch = url[0];
                 WishListPetMateFetchList wishListPetMateFetchList = new WishListPetMateFetchList(v);
                 wishListPetMateFetchList.wishListPetMateFetchList(wishListPetMateArrayList, adapter, urlForFetch);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+
+    @Override
+    public void onRecyclerWishListPetMateDeleteClick(final List<WishListPetMateListItem> wishListPetMateListItems, final WishListPetMateListItem wishListPetMateListItem, final int position) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this.getContext());
+        alertDialogBuilder.setTitle("Delete This List!");
+        alertDialogBuilder.setMessage("Are you sure you want to delete this list?");
+        alertDialogBuilder.setCancelable(true);
+        alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                deleteWishListPetMate(wishListPetMateListItems, wishListPetMateListItem, position);
+            }
+        });
+        alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    private void deleteWishListPetMate(List<WishListPetMateListItem> wishListPetMateListItems, WishListPetMateListItem wishListPetMateListItem, int position) {
+        if(wishListPetMateListItem != null) {
+            SessionManager sessionManager = new SessionManager(v.getContext());
+            HashMap<String, String> user = sessionManager.getUserDetails();
+            String email = user.get(SessionManager.KEY_EMAIL);
+            String petMateListId = String.valueOf(wishListPetMateListItem.getId());
+            new DeletePetMateListFromServer().execute(email, petMateListId);
+            wishListPetMateListItems.remove(position);
+            adapter.notifyItemRemoved(position);
+            adapter.notifyItemRangeChanged(position, wishListPetMateListItems.size());
+        }
+    }
+
+    public class DeletePetMateListFromServer extends AsyncTask<String, String, String> {
+        String email;
+        String petMateListId;
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                email = params[0];
+                petMateListId = params[1];
+                WishListPetMateListDelete wishListPetMateListDelete = new WishListPetMateListDelete(v);
+                wishListPetMateListDelete.deleteWishListPetMateFromServer(email, petMateListId);
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -27,7 +27,7 @@ public class PetFetchGroomerList {
     }
 
     public static List petFetchGroomerList(final List<GroomerListItem> groomerList, final RecyclerView.Adapter adapter, String url, final ProgressDialog progressDialog) {
-        JsonObjectRequest petListReq = new JsonObjectRequest(Request.Method.GET, url, null,
+        JsonObjectRequest petFetchGroomerRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -73,11 +73,7 @@ public class PetFetchGroomerList {
                 progressDialog.hide();
             }
         });
-        /*petListReq.setRetryPolicy(new DefaultRetryPolicy(
-                MY_SOCKET_TIMEOUT_MS,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));*/
-        AppController.getInstance().addToRequestQueue(petListReq);
+        AppController.getInstance().addToRequestQueue(petFetchGroomerRequest);
         return groomerList;
     }
 

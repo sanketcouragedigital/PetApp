@@ -21,7 +21,7 @@ public class MyListingPetMateDelete {
     public static void deleteFromRemoteServer(String urlForFetch, final View v) throws Exception {
         context = v.getContext();
         url = urlForFetch;
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, url, null,
+        JsonObjectRequest myListingPetMateDeleteRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -45,6 +45,6 @@ public class MyListingPetMateDelete {
                 context.startActivity(gotoTimeOutError);
             }
         });
-        AppController.getInstance().addToRequestQueue(req);
+        AppController.getInstance().addToRequestQueue(myListingPetMateDeleteRequest);
     }
 }

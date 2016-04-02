@@ -24,11 +24,10 @@ public class WishListPetMateListDelete {
         context = v.getContext();
     }
 
-    //    public static void deleteFromRemoteServer(String urlForFetch, View v) throws Exception {
     public static void deleteWishListPetMateFromServer(String useremail, String petMateListId) throws Exception {
 
         url = URL + "?method=deleteWishListPetMateList&format=json&id=" + petMateListId + "&email=" + useremail + "";
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, url, null,
+        JsonObjectRequest wishListPetMateDeleteRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -52,7 +51,7 @@ public class WishListPetMateListDelete {
                 context.startActivity(gotoTimeOutError);
             }
         });
-        AppController.getInstance().addToRequestQueue(req);
+        AppController.getInstance().addToRequestQueue(wishListPetMateDeleteRequest);
     }
 
 }

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
+
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -78,7 +80,7 @@ public class PetMateFormUpload {
     public static class UploadToServerCustomRequest extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
-            CustomMultipartRequest mCustomRequest = new CustomMultipartRequest(Request.Method.POST, context, SERVER_URL, new Response.Listener<JSONObject>() {
+            CustomMultipartRequest petMateFormUploadCustomRequest = new CustomMultipartRequest(Request.Method.POST, context, SERVER_URL, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject jsonObject) {
                     Toast.makeText(context, "Succefully Uploaded", Toast.LENGTH_LONG).show();
@@ -92,7 +94,11 @@ public class PetMateFormUpload {
                    context.startActivity(gotoTimeOutError);
                 }
             }, filePartData, stringPart, headerPart);
-            AppController.getInstance().addToRequestQueue(mCustomRequest);
+            petMateFormUploadCustomRequest.setRetryPolicy(new DefaultRetryPolicy(
+                    0,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            AppController.getInstance().addToRequestQueue(petMateFormUploadCustomRequest);
             return null;
         }
     }

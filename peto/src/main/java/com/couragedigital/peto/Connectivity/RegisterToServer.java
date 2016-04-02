@@ -56,7 +56,7 @@ public class RegisterToServer {
         } catch (Exception e) {
 
         }
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, URL, params,
+        JsonObjectRequest signUpRequest = new JsonObjectRequest(Request.Method.POST, URL, params,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -77,7 +77,11 @@ public class RegisterToServer {
             }
         }
         );
-        AppController.getInstance().addToRequestQueue(req);
+        signUpRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        AppController.getInstance().addToRequestQueue(signUpRequest);
         return signupResponse;
     }
 

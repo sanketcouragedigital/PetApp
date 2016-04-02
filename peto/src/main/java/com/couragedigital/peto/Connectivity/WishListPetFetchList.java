@@ -23,7 +23,7 @@ public class WishListPetFetchList {
     private static Context context;
 
     public static List wishListPetFetchList(final List<WishListPetListItem> wishListPet, final RecyclerView.Adapter adapter, String url) {
-        JsonObjectRequest petListReq = new JsonObjectRequest(Request.Method.GET, url, null,
+        JsonObjectRequest wishListPetFetchRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -80,7 +80,7 @@ public class WishListPetFetchList {
                 context.startActivity(gotoTimeOutError);
             }
         });
-        AppController.getInstance().addToRequestQueue(petListReq);
+        AppController.getInstance().addToRequestQueue(wishListPetFetchRequest);
         return wishListPet;
     }
     public WishListPetFetchList(Context context) {

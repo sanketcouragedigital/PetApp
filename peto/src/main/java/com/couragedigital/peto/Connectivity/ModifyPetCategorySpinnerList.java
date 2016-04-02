@@ -35,7 +35,7 @@ public class ModifyPetCategorySpinnerList {
     }
 
     public static void fetchPetCategory(final List petCategoryList, final ModifySpinnerItemsAdapter adapter) {
-        JsonObjectRequest petCategoryReq = new JsonObjectRequest(Request.Method.GET, url, null,
+        JsonObjectRequest modifyPetCategoryRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -69,6 +69,6 @@ public class ModifyPetCategorySpinnerList {
                 context.startActivity(gotoTimeOutError);
             }
         });
-        AppController.getInstance().addToRequestQueue(petCategoryReq);
+        AppController.getInstance().addToRequestQueue(modifyPetCategoryRequest);
     }
 }

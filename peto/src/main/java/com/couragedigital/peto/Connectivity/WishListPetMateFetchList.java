@@ -28,7 +28,7 @@ public class WishListPetMateFetchList {
     }
 
     public static List wishListPetMateFetchList(final List<WishListPetMateListItem> petMateLists, final RecyclerView.Adapter adapter, String url) {
-        JsonObjectRequest petMateListReq = new JsonObjectRequest(Request.Method.GET, url, null,
+        JsonObjectRequest wishListPetMateFetchRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -84,7 +84,7 @@ public class WishListPetMateFetchList {
                 //context.startActivity(gotoTimeOutError);
             }
         });
-        AppController.getInstance().addToRequestQueue(petMateListReq);
+        AppController.getInstance().addToRequestQueue(wishListPetMateFetchRequest);
         return petMateLists;
     }
 

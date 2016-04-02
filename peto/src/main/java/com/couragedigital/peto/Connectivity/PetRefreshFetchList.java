@@ -28,7 +28,7 @@ public class PetRefreshFetchList {
     }
 
     public static List petRefreshFetchList(final List<PetListItems> petLists, final RecyclerView.Adapter adapter, String url, final SwipeRefreshLayout petListSwipeRefreshLayout) {
-        JsonObjectRequest petListReq = new JsonObjectRequest(Request.Method.GET, url, null,
+        JsonObjectRequest petRefreshFetchRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -91,7 +91,7 @@ public class PetRefreshFetchList {
                 context.startActivity(gotoTimeOutError);
             }
         });
-        AppController.getInstance().addToRequestQueue(petListReq);
+        AppController.getInstance().addToRequestQueue(petRefreshFetchRequest);
         return petLists;
     }
 

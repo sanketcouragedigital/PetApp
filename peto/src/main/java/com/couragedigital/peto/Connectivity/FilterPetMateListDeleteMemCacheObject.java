@@ -26,7 +26,7 @@ public class FilterPetMateListDeleteMemCacheObject {
     public static void deletePetMateListFilterObject(String email) {
 
         url = url + "?method=deleteFilterPetMateListObject&format=json&email="+email;
-        JsonObjectRequest petListReq = new JsonObjectRequest(Request.Method.GET, url, null,
+        JsonObjectRequest filterPetMateListDeleteMemCacheObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -46,6 +46,6 @@ public class FilterPetMateListDeleteMemCacheObject {
                 context.startActivity(gotoTimeOutError);
             }
         });
-        AppController.getInstance().addToRequestQueue(petListReq);
+        AppController.getInstance().addToRequestQueue(filterPetMateListDeleteMemCacheObjectRequest);
     }
 }

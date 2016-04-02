@@ -34,7 +34,6 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;
     ViewHolder viewHolder;
-    RecyclerView recyclerView;
 
     public PetListAdapter(List<PetListItems> petLists) {
         this.petLists = petLists;

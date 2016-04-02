@@ -75,7 +75,7 @@ public class MyListingModifyPetDetailUpload {
         } catch (Exception e) {
 
         }
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, SERVER_URL, params,
+        JsonObjectRequest myListingModifyPetDetailsRequest = new JsonObjectRequest(Request.Method.POST, SERVER_URL, params,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -97,7 +97,11 @@ public class MyListingModifyPetDetailUpload {
             }
         }
         );
-        AppController.getInstance().addToRequestQueue(req);
+        myListingModifyPetDetailsRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        AppController.getInstance().addToRequestQueue(myListingModifyPetDetailsRequest);
         return null;
     }
 }

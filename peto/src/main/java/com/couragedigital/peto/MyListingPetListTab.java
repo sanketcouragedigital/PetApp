@@ -1,9 +1,11 @@
 package com.couragedigital.peto;
 
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.couragedigital.peto.Adapter.MyListingPetListAdapter;
 import com.couragedigital.peto.Connectivity.MyListingPetFetchList;
+import com.couragedigital.peto.Connectivity.MyListingPetListDelete;
 import com.couragedigital.peto.Listeners.MyListingPetFetchListScrollListener;
 import com.couragedigital.peto.SessionManager.SessionManager;
 import com.couragedigital.peto.Singleton.URLInstance;
@@ -21,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class MyListingPetListTab extends Fragment {
+public class MyListingPetListTab extends Fragment implements MyListingPetListAdapter.OnRecyclerMyListingPetDeleteClickListener {
 
     RecyclerView.Adapter adapter;
     RecyclerView recyclerView;
@@ -56,7 +59,7 @@ public class MyListingPetListTab extends Fragment {
         recyclerView.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
-        adapter = new MyListingPetListAdapter(myListingPetArrayList);
+        adapter = new MyListingPetListAdapter(myListingPetArrayList, this);
         recyclerView.setAdapter(adapter);
 
         SessionManager sessionManager = new SessionManager(v.getContext());
@@ -90,6 +93,56 @@ public class MyListingPetListTab extends Fragment {
 
                 MyListingPetFetchList myListingPetFetchList = new MyListingPetFetchList(v);
                 myListingPetFetchList.myListingPetFetchList(myListingPetArrayList, adapter, urlForFetch);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+
+    @Override
+    public void onRecyclerMyListingPetDeleteClick(final List<MyListingPetListItems> myListingpetLists, final MyListingPetListItems myListingPetListItem, final int position) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this.getContext());
+        alertDialogBuilder.setTitle("Delete This List!");
+        alertDialogBuilder.setMessage("Are you sure you want to delete this list?");
+        alertDialogBuilder.setCancelable(true);
+        alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                deleteMyListingPet(myListingpetLists, myListingPetListItem, position);
+            }
+        });
+        alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    private void deleteMyListingPet(List<MyListingPetListItems> myListingpetLists, MyListingPetListItems myListingPetListItem, int position) {
+        if (myListingPetListItem != null) {
+            String url = URLInstance.getUrl();
+            int id = myListingPetListItem.getId();
+            String email = myListingPetListItem.getPetPostOwnerEmail();
+            url = url + "?method=deleteMyListingPetList&format=json&id=" + id + "&email=" + email + "";
+            new DeletePetListFromServer().execute(url);
+            myListingpetLists.remove(position);
+            adapter.notifyItemRemoved(position);
+            adapter.notifyItemRangeChanged(position, myListingpetLists.size());
+        }
+    }
+
+    public class DeletePetListFromServer extends AsyncTask<String, String, String> {
+
+        String urlForFetch;
+
+        @Override
+        protected String doInBackground(String... url) {
+            try {
+                urlForFetch = url[0];
+                MyListingPetListDelete.deleteFromRemoteServer(urlForFetch, v);
             } catch (Exception e) {
                 e.printStackTrace();
             }

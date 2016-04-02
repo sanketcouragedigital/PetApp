@@ -30,6 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class PetMateListAdapter extends RecyclerView.Adapter<PetMateListAdapter.ViewHolder> {
+
     List<PetMateListItems> petMateLists;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;

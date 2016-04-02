@@ -35,7 +35,7 @@ public class PetCategorySpinnerList {
 
     public static void fetchPetCategory(final List petCategoryList, final SpinnerItemsAdapter adapter) {
         String urlToFetch = url + "?method=showPetCategories&format=json";
-        JsonObjectRequest petCategoryReq = new JsonObjectRequest(Request.Method.GET, urlToFetch, null,
+        JsonObjectRequest petCategoryListRequest = new JsonObjectRequest(Request.Method.GET, urlToFetch, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -64,7 +64,7 @@ public class PetCategorySpinnerList {
                 context.startActivity(gotoTimeOutError);
             }
         });
-        AppController.getInstance().addToRequestQueue(petCategoryReq);
+        AppController.getInstance().addToRequestQueue(petCategoryListRequest);
     }
 
 }

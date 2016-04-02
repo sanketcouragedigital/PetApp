@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -31,7 +32,7 @@ public class FilterFetchPetMateCategoryList {
 
     public static List fetchPetMateCategory(final List petCategoryList, final FilterCategoryPetMateAdapter adapter) {
         String urlToFetch = url + "?method=showPetCategories&format=json";
-        JsonObjectRequest petCategoryReq = new JsonObjectRequest(Request.Method.GET, urlToFetch, null,
+        JsonObjectRequest filterFetchPetMateCategoryRequest = new JsonObjectRequest(Request.Method.GET, urlToFetch, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -62,7 +63,11 @@ public class FilterFetchPetMateCategoryList {
                 context.startActivity(gotoTimeOutError);
             }
         });
-        AppController.getInstance().addToRequestQueue(petCategoryReq);
+        filterFetchPetMateCategoryRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        AppController.getInstance().addToRequestQueue(filterFetchPetMateCategoryRequest);
         return petCategoryList;
     }
 }

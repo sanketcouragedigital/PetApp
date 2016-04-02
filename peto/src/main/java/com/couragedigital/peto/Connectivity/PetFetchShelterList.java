@@ -27,7 +27,7 @@ public class PetFetchShelterList {
     }
 
     public static List petFetchShelterList(final List<ShelterListItem> shelterList, final RecyclerView.Adapter adapter, String url, final ProgressDialog progressDialog) {
-        JsonObjectRequest petListReq = new JsonObjectRequest(Request.Method.GET, url, null,
+        JsonObjectRequest petFetchShelterRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -72,11 +72,7 @@ public class PetFetchShelterList {
                 progressDialog.hide();
             }
         });
-        /*petListReq.setRetryPolicy(new DefaultRetryPolicy(
-                MY_SOCKET_TIMEOUT_MS,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));*/
-        AppController.getInstance().addToRequestQueue(petListReq);
+        AppController.getInstance().addToRequestQueue(petFetchShelterRequest);
         return shelterList;
     }
 

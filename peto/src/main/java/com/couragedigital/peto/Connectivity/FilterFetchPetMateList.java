@@ -3,6 +3,8 @@ package com.couragedigital.peto.Connectivity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -59,7 +61,7 @@ public class FilterFetchPetMateList {
         params.put("filterSelectedAge", arrayOfSelectedFilterAge.toString());
         params.put("filterSelectedGender", arrayOfSelectedFilterGender.toString());
 
-        JsonObjectRequest petFilterCategoryReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
+        JsonObjectRequest filterFetchPetMateRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -110,7 +112,11 @@ public class FilterFetchPetMateList {
                 context.startActivity(gotoTimeOutError);
             }
         });
-        AppController.getInstance().addToRequestQueue(petFilterCategoryReq);
+        filterFetchPetMateRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        AppController.getInstance().addToRequestQueue(filterFetchPetMateRequest);
     }
 
     public static String replaceSpecialChars(String str) {

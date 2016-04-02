@@ -27,7 +27,7 @@ public class PetFetchTrainerList {
     }
 
     public static List petFetchTrainerList(final List<TrainerListItem> trainerList, final RecyclerView.Adapter adapter, String url, final ProgressDialog progressDialog) {
-        JsonObjectRequest petListReq = new JsonObjectRequest(Request.Method.GET, url, null,
+        JsonObjectRequest petFetchTrainerRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -73,11 +73,7 @@ public class PetFetchTrainerList {
                 progressDialog.hide();
             }
         });
-        /*petListReq.setRetryPolicy(new DefaultRetryPolicy(
-                MY_SOCKET_TIMEOUT_MS,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));*/
-        AppController.getInstance().addToRequestQueue(petListReq);
+        AppController.getInstance().addToRequestQueue(petFetchTrainerRequest);
         return trainerList;
     }
 

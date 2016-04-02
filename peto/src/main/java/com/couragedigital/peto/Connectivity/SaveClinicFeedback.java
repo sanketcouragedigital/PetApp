@@ -4,6 +4,8 @@ package com.couragedigital.peto.Connectivity;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
+
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -38,9 +40,8 @@ public class SaveClinicFeedback {
         clinicFeedback = feedback;
         selectedClinicId = clinicId;
         userEmail = email;
-
-        //final String URL="http://192.168.0.7/PetAppAPI/api/petappapi.php";
         final String URL = URLInstance.getUrl();
+
         JSONObject params=new JSONObject();
         try{
             params.put("method",method);
@@ -53,7 +54,7 @@ public class SaveClinicFeedback {
 
         }
 
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, URL, params,
+        JsonObjectRequest saveClinicFeedbackRequest = new JsonObjectRequest(Request.Method.POST, URL, params,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -74,7 +75,11 @@ public class SaveClinicFeedback {
             }
         }
         );
-        AppController.getInstance().addToRequestQueue(req);
+        saveClinicFeedbackRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        AppController.getInstance().addToRequestQueue(saveClinicFeedbackRequest);
 
         return clinicFeedbackResponse;
     }

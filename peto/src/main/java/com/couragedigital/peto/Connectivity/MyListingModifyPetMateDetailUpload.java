@@ -4,6 +4,8 @@ package com.couragedigital.peto.Connectivity;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
+
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -68,7 +70,7 @@ public class MyListingModifyPetMateDetailUpload {
         } catch (Exception e) {
 
         }
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, SERVER_URL, params,
+        JsonObjectRequest myListingModifyPetMateDetailsRequest = new JsonObjectRequest(Request.Method.POST, SERVER_URL, params,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -88,9 +90,12 @@ public class MyListingModifyPetMateDetailUpload {
                 Intent gotoTimeOutError = new Intent(context, TimeOut_DialogeBox.class);
                 context.startActivity(gotoTimeOutError);
             }
-        }
-        );
-        AppController.getInstance().addToRequestQueue(req);
+        });
+        myListingModifyPetMateDetailsRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        AppController.getInstance().addToRequestQueue(myListingModifyPetMateDetailsRequest);
         return null;
     }
 

@@ -35,7 +35,7 @@ public class ModifyPetBreedsSpinnerList {
 
     public static void fetchPetBreeds(final List petBreedsList, String petCategoryName, final ModifySpinnerItemsAdapter adapter) {
         String url = URLInstance.getUrl()+"?petCategory="+petCategoryName+"&method=showPetBreedsAsPerPetCategory&format=json";
-        JsonObjectRequest petCategoryReq = new JsonObjectRequest(Request.Method.GET, url, null,
+        JsonObjectRequest modifyPetBreedsRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
 
                     @Override
@@ -73,6 +73,6 @@ public class ModifyPetBreedsSpinnerList {
                 context.startActivity(gotoTimeOutError);
             }
         });
-        AppController.getInstance().addToRequestQueue(petCategoryReq);
+        AppController.getInstance().addToRequestQueue(modifyPetBreedsRequest);
     }
 }

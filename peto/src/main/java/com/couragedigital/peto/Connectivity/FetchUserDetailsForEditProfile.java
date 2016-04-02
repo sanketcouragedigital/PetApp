@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
+
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -47,7 +49,7 @@ public class FetchUserDetailsForEditProfile {
         params.put("oldEmail", userOldEmail);
         params.put("confirmpassword", userOldPassword);
 
-        JsonObjectRequest petFilterCategoryReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
+        JsonObjectRequest fetchUserDetailsRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -92,7 +94,11 @@ public class FetchUserDetailsForEditProfile {
                 context.startActivity(gotoTimeOutError);
             }
         });
-        AppController.getInstance().addToRequestQueue(petFilterCategoryReq);
+        fetchUserDetailsRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        AppController.getInstance().addToRequestQueue(fetchUserDetailsRequest);
         return detailsResponse;
     }
     public FetchUserDetailsForEditProfile(Context context) {

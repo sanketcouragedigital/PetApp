@@ -82,7 +82,7 @@ public  class PetListFormUpload {
     public static class UploadToServerCustomRequest extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
-            CustomMultipartRequest mCustomRequest = new CustomMultipartRequest(Request.Method.POST, context, SERVER_URL, new Response.Listener<JSONObject>() {
+            CustomMultipartRequest petFormUploadCustomRequest = new CustomMultipartRequest(Request.Method.POST, context, SERVER_URL, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject jsonObject) {
                     Toast.makeText(context, "Succefully Uploaded", Toast.LENGTH_LONG).show();
@@ -96,7 +96,11 @@ public  class PetListFormUpload {
                     context.startActivity(gotoTimeOutError);
                 }
             }, filePartData, stringPart, headerPart);
-            AppController.getInstance().addToRequestQueue(mCustomRequest);
+            petFormUploadCustomRequest.setRetryPolicy(new DefaultRetryPolicy(
+                    0,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            AppController.getInstance().addToRequestQueue(petFormUploadCustomRequest);
             return null;
         }
     }

@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.android.volley.toolbox.ImageLoader;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
@@ -28,18 +29,17 @@ import java.util.List;
 
 
 public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetListAdapter.ViewHolder> {
+    private final OnRecyclerWishListPetDeleteClickListener onRecyclerWishListPetDeleteClickListener;
     List<WishListPetListItem> wishListPetListItems;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;
     ViewHolder viewHolder;
-    String petListId;
     String email;
     ProgressDialog progressDialog = null;
-    public WishListPetListAdapter() {
-    }
-    public WishListPetListAdapter(List<WishListPetListItem> petLists) {
-        this.wishListPetListItems = petLists;
 
+    public WishListPetListAdapter(List<WishListPetListItem> wishListPetListItems, OnRecyclerWishListPetDeleteClickListener onRecyclerWishListPetDeleteClickListener) {
+        this.wishListPetListItems = wishListPetListItems;
+        this.onRecyclerWishListPetDeleteClickListener = onRecyclerWishListPetDeleteClickListener;
     }
 
     @Override
@@ -62,13 +62,17 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
 
     private String setListingType(WishListPetListItem wishListPetListItem) {
         String petListingTypeString = null;
-        if(wishListPetListItem.getListingType().equals("For Adoption")) {
+        if (wishListPetListItem.getListingType().equals("For Adoption")) {
             petListingTypeString = "TO ADOPT";
-        }
-        else {
+        } else {
             petListingTypeString = "TO SELL";
         }
         return petListingTypeString;
+    }
+
+    public interface OnRecyclerWishListPetDeleteClickListener {
+
+        void onRecyclerWishListPetDeleteClick(List<WishListPetListItem> wishListPetListItems, WishListPetListItem wishListPetListItem, int position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -92,7 +96,7 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
             }
             petImage = (ImageView) itemView.findViewById(R.id.wishlistViewImage);
             petBreed = (TextView) itemView.findViewById(R.id.wishlistViewBreed);
-            nameForPetPost  = (TextView) itemView.findViewById(R.id.petPostedBy);
+            nameForPetPost = (TextView) itemView.findViewById(R.id.petPostedBy);
             petAdoptOrSell = (TextView) itemView.findViewById(R.id.wishlistPetAdoptOrSell);
             dividerLine = itemView.findViewById(R.id.wishlistDividerLine);
             deletebutton = (Button) itemView.findViewById(R.id.wishlistPetListDelete);
@@ -102,6 +106,7 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
             cardView.setOnClickListener(this);
             deletebutton.setOnClickListener(this);
         }
+
         public void bindPetList(WishListPetListItem wishListPetListItem) {
             this.wishListPetListItem = wishListPetListItem;
             Glide.with(petImage.getContext()).load(wishListPetListItem.getFirstImagePath()).asBitmap().centerCrop().into(new BitmapImageViewTarget(petImage) {
@@ -116,7 +121,7 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
             petBreed.setText(wishListPetListItem.getPetBreed());
             wishlistPetListDescription.setText(wishListPetListItem.getPetDescription());
             deletebutton.setText("Delete");
-            nameForPetPost.setText("Posted By : "+wishListPetListItem.getName());
+            nameForPetPost.setText("Posted By : " + wishListPetListItem.getName());
             petAdoptOrSell.setText(setListingType(wishListPetListItem));
             dividerLine.setBackgroundResource(R.color.list_internal_divider);
         }
@@ -124,17 +129,7 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.wishlistPetListDelete) {
-                SessionManager sessionManager = new SessionManager(v.getContext());
-                HashMap<String, String> user = sessionManager.getUserDetails();
-                email = user.get(SessionManager.KEY_EMAIL);
-                petListId= String.valueOf(wishListPetListItem.getId());
-
-                if (this.wishListPetListItem != null) {
-                    new DeletePetListFromServer().execute();
-                    wishListPetListItems.remove(this.getAdapterPosition());
-                    notifyItemRemoved(this.getAdapterPosition());
-                    notifyItemRangeChanged(this.getAdapterPosition(), wishListPetListItems.size());
-                }
+                onRecyclerWishListPetDeleteClickListener.onRecyclerWishListPetDeleteClick(wishListPetListItems, wishListPetListItem, this.getAdapterPosition());
             } else {
                 if (this.wishListPetListItem != null) {
                     Intent wishListPetDetail = new Intent(v.getContext(), WishListPetListDetails.class);
@@ -153,19 +148,6 @@ public class WishListPetListAdapter extends RecyclerView.Adapter<WishListPetList
 
                     v.getContext().startActivity(wishListPetDetail);
                 }
-            }
-        }
-
-        public class DeletePetListFromServer extends AsyncTask<String, String, String> {
-            @Override
-            protected String doInBackground(String... url) {
-                try {
-                    WishListPetListDelete wishListPetListDelete = new WishListPetListDelete(v);
-                    wishListPetListDelete.deleteWishListPetListFromServer(email,petListId);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return null;
             }
         }
     }

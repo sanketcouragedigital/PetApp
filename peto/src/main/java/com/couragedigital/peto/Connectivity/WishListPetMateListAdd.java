@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -45,17 +46,11 @@ public class WishListPetMateListAdd {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, URL, params,
+        JsonObjectRequest wishListPetMateAddRequest = new JsonObjectRequest(Request.Method.POST, URL, params,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         VolleyLog.v("Response:%n %s", response.toString());
-                        PetList petList = new PetList();
-//                        try {
-//                            returnResponse(response.getString("savePetMateWishListResponse"));
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -64,9 +59,12 @@ public class WishListPetMateListAdd {
                 Intent gotoTimeOutError = new Intent(context, TimeOut_DialogeBox.class);
                 context.startActivity(gotoTimeOutError);
             }
-        }
-        );
-        AppController.getInstance().addToRequestQueue(req);
+        });
+        wishListPetMateAddRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        AppController.getInstance().addToRequestQueue(wishListPetMateAddRequest);
         return addPetMateWishList;
     }
 

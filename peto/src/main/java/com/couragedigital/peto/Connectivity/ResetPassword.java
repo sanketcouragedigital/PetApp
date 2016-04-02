@@ -4,6 +4,8 @@ package com.couragedigital.peto.Connectivity;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
+
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -45,7 +47,7 @@ public class ResetPassword {
         } catch (Exception e) {
 
         }
-        JsonObjectRequest signinReq = new JsonObjectRequest(Request.Method.POST, URL, params,
+        JsonObjectRequest resetPasswordRequest = new JsonObjectRequest(Request.Method.POST, URL, params,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -66,7 +68,11 @@ public class ResetPassword {
                     }
                 }
         );
-        AppController.getInstance().addToRequestQueue(signinReq);
+        resetPasswordRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        AppController.getInstance().addToRequestQueue(resetPasswordRequest);
         return setnewpasswordResponse;
 
     }

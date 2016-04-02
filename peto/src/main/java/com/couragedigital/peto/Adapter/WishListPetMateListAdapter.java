@@ -27,9 +27,9 @@ import com.couragedigital.peto.model.WishListPetMateListItem;
 import java.util.HashMap;
 import java.util.List;
 
-public class WishListPetMateListAdapter extends RecyclerView.Adapter
-        <WishListPetMateListAdapter.ViewHolder> {
+public class WishListPetMateListAdapter extends RecyclerView.Adapter<WishListPetMateListAdapter.ViewHolder> {
 
+    private final OnRecyclerWishListPetMateDeleteClickListener onRecyclerWishListPetMateDeleteClickListener;
     public List<WishListPetMateListItem> wishListPetMateListItems;
     public ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;
@@ -37,11 +37,10 @@ public class WishListPetMateListAdapter extends RecyclerView.Adapter
     String petMateListId;
     String email;
     ProgressDialog progressDialog = null;
-    public WishListPetMateListAdapter() {
-    }
 
-    public WishListPetMateListAdapter(List<WishListPetMateListItem> modelData) {
-        wishListPetMateListItems = modelData;
+    public WishListPetMateListAdapter(List<WishListPetMateListItem> wishListPetMateListItems, OnRecyclerWishListPetMateDeleteClickListener onRecyclerWishListPetMateDeleteClickListener) {
+        this.wishListPetMateListItems = wishListPetMateListItems;
+        this.onRecyclerWishListPetMateDeleteClickListener = onRecyclerWishListPetMateDeleteClickListener;
     }
 
     @Override
@@ -60,6 +59,11 @@ public class WishListPetMateListAdapter extends RecyclerView.Adapter
     @Override
     public int getItemCount() {
         return wishListPetMateListItems.size();
+    }
+
+    public interface OnRecyclerWishListPetMateDeleteClickListener {
+
+        void onRecyclerWishListPetMateDeleteClick(List<WishListPetMateListItem> wishListPetMateListItems, WishListPetMateListItem wishListPetMateListItem, int position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -119,17 +123,7 @@ public class WishListPetMateListAdapter extends RecyclerView.Adapter
         @Override
         public void onClick(View v) {
             if(v.getId() == R.id.wishlistPetMateDelete) {
-                SessionManager sessionManager = new SessionManager(v.getContext());
-                HashMap<String, String> user = sessionManager.getUserDetails();
-                email = user.get(SessionManager.KEY_EMAIL);
-                petMateListId= String.valueOf(wishListPetMateListItem.getId());
-
-                if(this.wishListPetMateListItem != null) {
-                    new DeletePetMateListFromServer().execute();
-                    wishListPetMateListItems.remove(this.getAdapterPosition());
-                    notifyItemRemoved(this.getAdapterPosition());
-                    notifyItemRangeChanged(this.getAdapterPosition(), wishListPetMateListItems.size());
-                }
+                onRecyclerWishListPetMateDeleteClickListener.onRecyclerWishListPetMateDeleteClick(wishListPetMateListItems, wishListPetMateListItem, this.getAdapterPosition());
             }
             else {
                 if (this.wishListPetMateListItem != null) {

@@ -18,19 +18,22 @@ import com.couragedigital.peto.*;
 import com.couragedigital.peto.Connectivity.MyListingPetMateDelete;
 import com.couragedigital.peto.Singleton.URLInstance;
 import com.couragedigital.peto.app.AppController;
+import com.couragedigital.peto.model.MyListingPetListItems;
 import com.couragedigital.peto.model.MyListingPetMateListItem;
 
 import java.util.List;
 
 public class MyListingPetMateListAdapter extends RecyclerView.Adapter<MyListingPetMateListAdapter.ViewHolder> {
 
+    private final OnRecyclerMyListingPetMateDeleteClickListener onRecyclerMyListingPetMateDeleteClickListener;
     public  List<MyListingPetMateListItem> myListingPetMateArrayList;
     public ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;
     ViewHolder viewHolder;
 
-    public MyListingPetMateListAdapter(List<MyListingPetMateListItem> modelData) {
+    public MyListingPetMateListAdapter(List<MyListingPetMateListItem> modelData, OnRecyclerMyListingPetMateDeleteClickListener onRecyclerMyListingPetMateDeleteClickListener) {
         myListingPetMateArrayList = modelData;
+        this.onRecyclerMyListingPetMateDeleteClickListener = onRecyclerMyListingPetMateDeleteClickListener;
     }
 
     @Override
@@ -49,6 +52,11 @@ public class MyListingPetMateListAdapter extends RecyclerView.Adapter<MyListingP
     @Override
     public int getItemCount() {
         return myListingPetMateArrayList.size();
+    }
+
+    public interface OnRecyclerMyListingPetMateDeleteClickListener {
+
+        void onRecyclerMyListingPetMateDeleteClick(List<MyListingPetMateListItem> myListingPetMateListItems, MyListingPetMateListItem myListingPetMateListItem, int position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -119,16 +127,7 @@ public class MyListingPetMateListAdapter extends RecyclerView.Adapter<MyListingP
                 v.getContext().startActivity(petMateInformation);
             }
             else if(v.getId() == R.id.myListingPetMateDelete) {
-                if(this.myListingPetMateListItem != null) {
-                    String url = URLInstance.getUrl();
-                    int id = myListingPetMateListItem.getId();
-                    String email = myListingPetMateListItem.getPetMatePostOwnerEmail();
-                    url = url + "?method=deleteMyListingPetMateList&format=json&id="+ id +"&email="+ email +"";
-                    new DeletePetMateFromServer().execute(url);
-                    myListingPetMateArrayList.remove(this.getAdapterPosition());
-                    notifyItemRemoved(this.getAdapterPosition());
-                    notifyItemRangeChanged(this.getAdapterPosition(), myListingPetMateArrayList.size());
-                }
+                onRecyclerMyListingPetMateDeleteClickListener.onRecyclerMyListingPetMateDeleteClick(myListingPetMateArrayList, myListingPetMateListItem, this.getAdapterPosition());
             }
             else {
                 if (this.myListingPetMateListItem != null) {
@@ -144,21 +143,6 @@ public class MyListingPetMateListAdapter extends RecyclerView.Adapter<MyListingP
 
                     v.getContext().startActivity(petFullInformation);
                 }
-            }
-        }
-
-        public class DeletePetMateFromServer extends AsyncTask<String, String, String> {
-
-            String urlForFetch;
-            @Override
-            protected String doInBackground(String... url) {
-                try {
-                    urlForFetch = url[0];
-                    MyListingPetMateDelete.deleteFromRemoteServer(urlForFetch, v);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return null;
             }
         }
     }

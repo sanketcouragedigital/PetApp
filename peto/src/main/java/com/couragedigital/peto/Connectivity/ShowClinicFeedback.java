@@ -27,7 +27,7 @@ public class ShowClinicFeedback {
 
     public static void showClinicReviews(final List<ClinicReviewsListItems> clinicReviewsListItemsArrayList, final RecyclerView.Adapter reviewAdapter, String url) {
 
-        JsonObjectRequest clinicReviewsListReq = new JsonObjectRequest(Request.Method.GET, url, null,
+        JsonObjectRequest showClinicReviewsListRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -61,6 +61,6 @@ public class ShowClinicFeedback {
                 //progressDialog.hide();
             }
         });
-        AppController.getInstance().addToRequestQueue(clinicReviewsListReq);
+        AppController.getInstance().addToRequestQueue(showClinicReviewsListRequest);
     }
 }

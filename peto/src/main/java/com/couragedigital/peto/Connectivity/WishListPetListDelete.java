@@ -30,21 +30,19 @@ public class WishListPetListDelete {
         context = v.getContext();
     }
 
-    // public static void deleteFromRemoteServer(String urlForFetch, View v) throws Exception {
-   public static void deleteWishListPetListFromServer(String useremail, String petListId) throws Exception {
+    public static void deleteWishListPetListFromServer(String useremail, String petListId) throws Exception {
 
-       url = URL + "?method=deleteWishListPetList&format=json&id=" + petListId + "&email=" + useremail + "";
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, url, null,
+        url = URL + "?method=deleteWishListPetList&format=json&id=" + petListId + "&email=" + useremail + "";
+        JsonObjectRequest wishListPetDeleteRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
                             String responseOfServer = response.getString("deleteWishListPetListResponse");
-                            if(responseOfServer.equals("WishList_Pet_Deleted")) {
+                            if (responseOfServer.equals("WishList_Pet_Deleted")) {
                                 //Toast.makeText(v.getContext(), "This post has been deleted!", Toast.LENGTH_LONG).show();
-                            }
-                            else {
-                               //Toast.makeText(v.getContext(), "This post has not been deleted!", Toast.LENGTH_LONG).show();
+                            } else {
+                                //Toast.makeText(v.getContext(), "This post has not been deleted!", Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -58,6 +56,6 @@ public class WishListPetListDelete {
                 context.startActivity(gotoTimeOutError);
             }
         });
-        AppController.getInstance().addToRequestQueue(req);
+        AppController.getInstance().addToRequestQueue(wishListPetDeleteRequest);
     }
 }

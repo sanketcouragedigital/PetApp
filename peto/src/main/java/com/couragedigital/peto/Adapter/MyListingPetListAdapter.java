@@ -25,13 +25,15 @@ import java.util.List;
 
 public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetListAdapter.ViewHolder> {
 
+    private final OnRecyclerMyListingPetDeleteClickListener onRecyclerMyListingPetDeleteClickListener;
     List<MyListingPetListItems> myListingpetLists;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;
     ViewHolder viewHolder;
 
-    public MyListingPetListAdapter(List<MyListingPetListItems> petLists) {
+    public MyListingPetListAdapter(List<MyListingPetListItems> petLists, OnRecyclerMyListingPetDeleteClickListener onRecyclerMyListingPetDeleteClickListener) {
         this.myListingpetLists = petLists;
+        this.onRecyclerMyListingPetDeleteClickListener = onRecyclerMyListingPetDeleteClickListener;
     }
 
     @Override
@@ -63,7 +65,10 @@ public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetLi
         return petListingTypeString;
     }
 
+    public interface OnRecyclerMyListingPetDeleteClickListener {
 
+        void onRecyclerMyListingPetDeleteClick(List<MyListingPetListItems> myListingpetLists, MyListingPetListItems myListingPetListItem, int position);
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -134,16 +139,7 @@ public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetLi
                 gotoEditPetList.putExtra("PET_DESCRIPTION", myListingPetListItem.getPetDescription());
                 v.getContext().startActivity(gotoEditPetList);
             } else if (v.getId() == R.id.myListingPetListDelete) {
-                if (this.myListingPetListItem != null) {
-                    String url = URLInstance.getUrl();
-                    int id = myListingPetListItem.getId();
-                    String email = myListingPetListItem.getPetPostOwnerEmail();
-                    url = url + "?method=deleteMyListingPetList&format=json&id=" + id + "&email=" + email + "";
-                    new DeletePetListFromServer().execute(url);
-                    myListingpetLists.remove(this.getAdapterPosition());
-                    notifyItemRemoved(this.getAdapterPosition());
-                    notifyItemRangeChanged(this.getAdapterPosition(), myListingpetLists.size());
-                }
+                onRecyclerMyListingPetDeleteClickListener.onRecyclerMyListingPetDeleteClick(myListingpetLists, myListingPetListItem, this.getAdapterPosition());
             } else {
                 if (this.myListingPetListItem != null) {
                     Intent myListingpetdetail = new Intent(v.getContext(), MyListingPetListDetails.class);
@@ -159,22 +155,6 @@ public class MyListingPetListAdapter extends RecyclerView.Adapter<MyListingPetLi
 
                     v.getContext().startActivity(myListingpetdetail);
                 }
-            }
-        }
-
-        public class DeletePetListFromServer extends AsyncTask<String, String, String> {
-
-            String urlForFetch;
-
-            @Override
-            protected String doInBackground(String... url) {
-                try {
-                    urlForFetch = url[0];
-                    MyListingPetListDelete.deleteFromRemoteServer(urlForFetch, v);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return null;
             }
         }
     }

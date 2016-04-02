@@ -54,7 +54,7 @@ public class PetClinic extends BaseActivity implements
     private int current_page = 1;
 
     private String userEmail;
-    int homeornearbyLocationValue;
+    static int homeornearbyLocationValue;
     SessionManager sessionManager;
 
     private String latitudeValue;
@@ -78,14 +78,7 @@ public class PetClinic extends BaseActivity implements
     @Override
     protected void onStart() {
         super.onStart();
-        final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER )) {
-            buildAlertMessageNoGps();
-        }
-        else {
-            mGoogleApiClient.connect();
-        }
+        mGoogleApiClient.connect();
     }
 
     @Override
@@ -96,6 +89,9 @@ public class PetClinic extends BaseActivity implements
         pm.setComponentEnabledSetting(component, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.GET_ACTIVITIES);
         if (mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
+        }
+        else {
+            mGoogleApiClient.connect();
         }
     }
 
@@ -128,6 +124,7 @@ public class PetClinic extends BaseActivity implements
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialog,  final int id) {
+                        mGoogleApiClient.disconnect();
                         startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
                     }
                 })
@@ -218,17 +215,30 @@ public class PetClinic extends BaseActivity implements
             homeornearbyLocationValue = extras.getInt("STATE_OF_CLICK");
         }
         if (Build.VERSION.SDK_INT >= 23 && homeornearbyLocationValue == 1) {
-            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                    ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, permissions, RequestLocationId);
-            } else {
+            final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+            if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER )) {
+                buildAlertMessageNoGps();
+            }
+            else {
+                if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                        ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(this, permissions, RequestLocationId);
+                } else {
+                    lastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+                    getLocation();
+                }
+            }
+        } else if(Build.VERSION.SDK_INT < 23 && homeornearbyLocationValue == 1) {
+            final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+            if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER )) {
+                buildAlertMessageNoGps();
+            }
+            else {
                 lastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
                 getLocation();
             }
-
-        } else if(Build.VERSION.SDK_INT < 23 && homeornearbyLocationValue == 1) {
-            lastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-            getLocation();
         }
 
         adapter = new ClinicListAdapter(clinicListItemsArrayList);

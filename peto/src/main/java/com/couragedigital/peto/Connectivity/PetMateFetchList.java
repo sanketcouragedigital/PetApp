@@ -33,7 +33,7 @@ public class PetMateFetchList {
 
     public static List petMateFetchList(final List<PetMateListItems> petMateLists, final RecyclerView.Adapter adapter, String url, int requestState, final ProgressDialog progressDialog) {
         checkRequestState = requestState;
-        JsonObjectRequest petMateListReq = new JsonObjectRequest(Request.Method.GET, url, null,
+        JsonObjectRequest petMateFetchRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -108,7 +108,7 @@ public class PetMateFetchList {
                 progressDialog.hide();
             }
         });
-        AppController.getInstance().addToRequestQueue(petMateListReq);
+        AppController.getInstance().addToRequestQueue(petMateFetchRequest);
         return petMateLists;
     }
 

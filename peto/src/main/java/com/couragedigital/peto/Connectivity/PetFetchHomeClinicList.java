@@ -29,7 +29,7 @@ public class PetFetchHomeClinicList {
     }
 
     public static List petFetchHomeClinicList(final List<ClinicListItems> clinicList, final RecyclerView.Adapter adapter, String url, final ProgressDialog progressDialog) {
-        JsonObjectRequest petListReq = new JsonObjectRequest(Request.Method.GET, url, null,
+        JsonObjectRequest petFetchHomeClinicRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -74,7 +74,7 @@ public class PetFetchHomeClinicList {
                 progressDialog.hide();
             }
         });
-        AppController.getInstance().addToRequestQueue(petListReq);
+        AppController.getInstance().addToRequestQueue(petFetchHomeClinicRequest);
         return clinicList;
     }
 

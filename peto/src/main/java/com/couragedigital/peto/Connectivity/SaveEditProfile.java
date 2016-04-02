@@ -4,6 +4,8 @@ package com.couragedigital.peto.Connectivity;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
+
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -48,7 +50,7 @@ public class SaveEditProfile {
         userOldEmail=oldEmail;
         userconfirmpassword = confirmpassword;
         final String URL = URLInstance.getUrl();
-        //final String URL = "http://192.168.0.6/PetAppAPI/api/petappapi.php";
+
         JSONObject params = new JSONObject();
         try {
             params.put("method", method);
@@ -64,7 +66,7 @@ public class SaveEditProfile {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, URL, params,
+        JsonObjectRequest saveEditProfileRequest = new JsonObjectRequest(Request.Method.POST, URL, params,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -83,9 +85,12 @@ public class SaveEditProfile {
                 Intent gotoTimeOutError = new Intent(context, TimeOut_DialogeBox.class);
                 context.startActivity(gotoTimeOutError);
             }
-        }
-        );
-        AppController.getInstance().addToRequestQueue(req);
+        });
+        saveEditProfileRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        AppController.getInstance().addToRequestQueue(saveEditProfileRequest);
         return editResponse;
     }
 

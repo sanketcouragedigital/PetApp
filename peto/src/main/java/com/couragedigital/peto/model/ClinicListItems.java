@@ -13,11 +13,13 @@ public class ClinicListItems {
     private String area;
     private String city;
     private  String notes;
+    private  String latitude;
+    private  String longitude;
 
     public ClinicListItems() {
     }
 
-    public ClinicListItems(String clinicId,String clinicname, String clinicaddress, String doctorname, String email, String contact, String image_path , String area ,String city,String notes) {
+    public ClinicListItems(String clinicId,String clinicname, String clinicaddress, String doctorname, String email, String contact, String image_path , String area ,String city,String notes,String latitude,String longitude) {
 
         this.clinic_Id = clinicId;
         this.clinic_name = clinicname;
@@ -29,6 +31,8 @@ public class ClinicListItems {
         this.area = area;
         this.city = city;
         this.notes = notes;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public String getClinicImage_path() {
@@ -109,5 +113,24 @@ public class ClinicListItems {
     public  void  setNotes(String notes){
         this.notes = notes;
     }
+
+    public  void  setLatitude(String latitude){
+        this.latitude = latitude;
+    }
+
+    public  String getlatitude(){
+        return  latitude;
+    }
+
+    public  void  setLongitude(String longitude){
+        this.longitude = longitude;
+    }
+
+    public  String getLongitude(){
+        return  longitude;
+    }
+
+
+
 
 }

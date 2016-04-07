@@ -43,6 +43,7 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
     TextView address;
     TextView clinicnotestxt;
     ImageButton callbutton;
+    ImageButton locationMapButton;
     ImageButton rateAndReviewButton;
     String phoneno;
 
@@ -56,6 +57,8 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
     String clinicName;
     String clinicId;
     String email;
+    String latitude;
+    String longitude;
 
     ProgressDialog progressDialog = null;
 
@@ -86,6 +89,7 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
         address = (TextView) findViewById(R.id.petClinicAddress);
         clinicnotestxt = (TextView) findViewById(R.id.petClinicNotes);
         callbutton = (ImageButton) findViewById(R.id.clinicDetailCallButton);
+        locationMapButton = (ImageButton) findViewById(R.id.clinicDetailsMapButton);
         rateAndReviewButton= (ImageButton) findViewById(R.id.clinicDetailsRateNReviewButton);
         clinicLinearLayout = (LinearLayout) findViewById(R.id.containerLayout);
         clinicFirstRelativeLayout = (RelativeLayout) findViewById(R.id.clinicFirstRelativeLayout);
@@ -119,6 +123,8 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
             doctorname = intent.getStringExtra("DOCTOR_NAME");
             clinicnotes = intent.getStringExtra("CLINIC_NOTES");
             phoneno = intent.getStringExtra("DOCTOR_CONTACT");
+            latitude = intent.getStringExtra("LATITUDE");
+            longitude = intent.getStringExtra("LONGITUDE");
         }
 
         clinicDetailsToolbar = (Toolbar) findViewById(R.id.petClinicDetailsToolbar);
@@ -186,6 +192,7 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
 
         callbutton.setOnClickListener(this);
         rateAndReviewButton.setOnClickListener(this);
+        locationMapButton.setOnClickListener(this);
 
         url = url + "?method=showClinicReviews&format=json&currentPage=" + current_page + "&clinicId=" + clinicId + "";
         grabURL(url);
@@ -260,6 +267,13 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
             gotorateAndReviewPage.putExtra("selectedClinicId",clinicId);
             gotorateAndReviewPage.putExtra("selectedClinicName",clinicName);
             startActivity(gotorateAndReviewPage);
+        } else if (view.getId() == R.id.clinicDetailsMapButton) {
+            Intent gotoClinicMap = new Intent(PetClinicDetails.this,ClinicMap.class);
+            gotoClinicMap.putExtra("selectedClinicId",clinicId);
+            gotoClinicMap.putExtra("selectedClinicName",clinicName);
+            gotoClinicMap.putExtra("selectedClinicLat",latitude);
+            gotoClinicMap.putExtra("selectedClinicLong",longitude);
+            startActivity(gotoClinicMap);
         }
     }
 

@@ -124,6 +124,8 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Vi
                 clinicInformation.putExtra("DOCTOR_NAME",listItems.getDoctorName());
                 clinicInformation.putExtra("DOCTOR_CONTACT",listItems.getContact());
                 clinicInformation.putExtra("CLINIC_NOTES",listItems.getNotes());
+                clinicInformation.putExtra("LATITUDE",listItems.getlatitude());
+                clinicInformation.putExtra("LONGITUDE",listItems.getLongitude());
                 view.getContext().startActivity(clinicInformation);
             } catch (Exception e) {
                 e.printStackTrace();

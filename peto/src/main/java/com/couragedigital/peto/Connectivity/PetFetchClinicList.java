@@ -31,7 +31,7 @@ public class PetFetchClinicList {
     }
 
     public static List petFetchClinicList(final List<ClinicListItems> clinicList, final RecyclerView.Adapter adapter, String url, final ProgressDialog progressDialog) {
-        JsonObjectRequest petFetchClinicRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+        JsonObjectRequest petListReq = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -52,6 +52,8 @@ public class PetFetchClinicList {
                                     clinicListItems.setCity(obj.getString("city"));
                                     clinicListItems.setArea(obj.getString("area"));
                                     clinicListItems.setNotes(obj.getString("notes"));
+                                    clinicListItems.setLatitude(obj.getString("latitude"));
+                                    clinicListItems.setLongitude(obj.getString("longitude"));
                                     // adding pet to pets array
                                     clinicList.add(clinicListItems);
                                     adapter.notifyDataSetChanged();
@@ -79,7 +81,7 @@ public class PetFetchClinicList {
                 progressDialog.hide();
             }
         });
-        AppController.getInstance().addToRequestQueue(petFetchClinicRequest);
+        AppController.getInstance().addToRequestQueue(petListReq);
         return clinicList;
     }
 }

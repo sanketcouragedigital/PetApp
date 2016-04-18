@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import com.couragedigital.peto.InternetConnectivity.NetworkChangeReceiver;
 import com.couragedigital.peto.Singleton.ClinicReviewInstance;
 import com.couragedigital.peto.Singleton.URLInstance;
 import com.couragedigital.peto.model.ClinicReviewsListItems;
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -95,6 +97,9 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
         clinicFirstRelativeLayout = (RelativeLayout) findViewById(R.id.clinicFirstRelativeLayout);
         clinicSecondRelativeLayout = (RelativeLayout) findViewById(R.id.addresslayout);
         reviewLabelTextView = (TextView) findViewById(R.id.reviewsLabel);
+
+      // recyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(this)
+        //                .color(R.color.list_internal_divider).build());
 
         reviewAdapter = new ClinicReviewsListAdapter(clinicReviewsListItemsArrayList);
         linearLayoutManager = new LinearLayoutManager(this);

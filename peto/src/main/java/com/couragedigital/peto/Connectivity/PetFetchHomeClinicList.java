@@ -49,6 +49,8 @@ public class PetFetchHomeClinicList {
                                         clinicListItems.setClinicImage_path(obj.getString("clinic_image"));
                                         clinicListItems.setCity(obj.getString("city"));
                                         clinicListItems.setNotes(obj.getString("notes"));
+                                        clinicListItems.setLatitude(obj.getString("latitude"));
+                                        clinicListItems.setLongitude(obj.getString("longitude"));
 
                                         // adding pet to pets array
                                         clinicList.add(clinicListItems);

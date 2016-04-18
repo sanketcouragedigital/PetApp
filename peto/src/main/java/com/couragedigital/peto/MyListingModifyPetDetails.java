@@ -56,6 +56,7 @@ public class MyListingModifyPetDetails extends BaseActivity implements View.OnCl
     RadioButton myListingEditGenderMale;
     RadioButton myListingEditGenderFemale;
     EditText myListingEditDescriptionOfPet;
+    EditText otherBreed;
     RadioGroup myListingEditGiveAwayType;
     RadioButton myListingEditPetsell;
     RadioButton myListingEditAdoptionOfPet;
@@ -104,6 +105,7 @@ public class MyListingModifyPetDetails extends BaseActivity implements View.OnCl
         myListingEditGiveAwayType = (RadioGroup) this.findViewById(R.id.myListingEditPetGiveAwayOfPet);
         myListingEditAdoptionOfPet = (RadioButton) findViewById(R.id.myListingEditPetForAdoption);
         myListingEditPetsell = (RadioButton) findViewById(R.id.myListingEditPetSell);
+        otherBreed = (EditText) findViewById(R.id.otherBreedtxtMyListingPet);
         myListingEditDescriptionOfPet = (EditText) this.findViewById(R.id.myListingEditPetDescriptionOfPet);
         myListingUploadFabButton = (FloatingActionButton) this.findViewById(R.id.myListingEditPetFormSubmitFab);
         fillData();
@@ -196,6 +198,9 @@ public class MyListingModifyPetDetails extends BaseActivity implements View.OnCl
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position > 0) {
                     petBreedName = (String) parent.getItemAtPosition(position);
+                    if(petBreedName.equals("Other")){
+                        otherBreed.setEnabled(true);
+                    }
                 }
             }
 
@@ -283,12 +288,27 @@ public class MyListingModifyPetDetails extends BaseActivity implements View.OnCl
                 }
             });
         }
-
+        otherBreed.addTextChangedListener(otherBreedNameChangeListener);
         myListingEditPriceOfPet.addTextChangedListener(priceChangeListener);
         myListingEditDescriptionOfPet.addTextChangedListener(descriptionChangeListener);
         myListingUploadFabButton.setOnClickListener(this);
     }
+    private TextWatcher otherBreedNameChangeListener = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            new GetBreedName().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
+        }
+    };
     private TextWatcher priceChangeListener = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -306,6 +326,23 @@ public class MyListingModifyPetDetails extends BaseActivity implements View.OnCl
         }
     };
 
+    public class GetBreedName extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        petBreedName = otherBreed.getText().toString();
+                    }
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
     public class GetPetPrice extends AsyncTask<Void, Void, Void> {
         String takePetPrice;
 

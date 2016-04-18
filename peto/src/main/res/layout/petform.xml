@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res/com.couragedigital.petapp"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -33,12 +33,28 @@
                     android:layout_below="@+id/petCategory"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="@dimen/_16sdp"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:id="@+id/otherBreedtxtPet"
+                    android:hint="Other Breed Name"
+                    android:textCursorDrawable="@null"
+                    android:textColor="@color/textColorPrimary"
+                    android:lines="2"
+                    android:enabled="false"
+                    android:gravity="top|left"
+                    android:scrollbars="vertical"
+                    android:layout_below="@+id/petBreed"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="@dimen/_16sdp"/>
+
             <LinearLayout android:layout_width="fill_parent"
                           android:layout_height="wrap_content"
                           android:id="@+id/petAgeLayout"
                           android:orientation="horizontal"
                           android:layout_marginTop="@dimen/_16sdp"
-                          android:layout_below="@id/petBreed">
+                          android:layout_below="@id/otherBreedtxtPet">
                 <TextView
                         android:id="@+id/ageOfPet"
                         android:layout_width="0dp"

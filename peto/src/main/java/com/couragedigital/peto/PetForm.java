@@ -82,10 +82,12 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
     FloatingActionButton uploadFabButton;
     CheckBox labelForRegisterdNo;
     EditText alternateNo;
+    EditText otherBreed;
 
     String txtAlternateNo="";
     String petCategoryName;
     String petBreedName;
+    String petBreedName2;
     String petAgeMonthSpinner = "0";
     String petAgeYearSpinner = "0";
     //Integer petAge;
@@ -95,6 +97,8 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
     Integer petPrice;
     String currentPhotoPath;
     String email;
+    String newBreedName;
+
 
     private List<String> petCategoryList = new ArrayList<String>();
     private List<String> petBreedsList = new ArrayList<String>();
@@ -139,6 +143,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
         petAgeInYears = (Spinner) this.findViewById(R.id.ageInYears);
         petsell = (RadioButton) findViewById(R.id.petSell);
         alternateNo = (EditText) findViewById(R.id.alternateNotxt);
+        otherBreed = (EditText) findViewById(R.id.otherBreedtxtPet);
         labelForRegisterdNo =(CheckBox) this.findViewById(R.id.contactNocheckBox);
 
         GenarateSpinerForAge();
@@ -175,17 +180,13 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position > 0){
                     petCategoryName = (String) parent.getItemAtPosition(position);
-
                     new FetchBreedListCategoryWiseFromServer().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
-
                     petBreed.setSelection(petBreedsList.indexOf(0));
                     adapter.notifyDataSetChanged();
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
@@ -202,13 +203,14 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position > 0){
-                    petBreedName = (String) parent.getItemAtPosition(position);
+                    petBreedName2 = (String) parent.getItemAtPosition(position);
+                    if(petBreedName2.equals("Other") ){
+                        otherBreed.setEnabled(true);
+                    }
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
@@ -230,6 +232,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
             }
         });
 
+        otherBreed.addTextChangedListener(otherBreedNameChangeListener);
         alternateNo.addTextChangedListener(alternatePhoneNoChangeListener);
         priceOfPet.addTextChangedListener(priceChangeListener);
         selectImageButton.setOnClickListener(this);
@@ -303,6 +306,23 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
         }
     };
 
+    private TextWatcher otherBreedNameChangeListener = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            new GetBreedName().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
+        }
+    };
+
     private TextWatcher priceChangeListener = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -360,7 +380,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
                 TextView errorText = (TextView) petCategory.getSelectedView();
                 errorText.setError("Please select Pet Category");
             }
-            else if(petBreedName == null || petBreedName.isEmpty()) {
+            else if(petBreedName2 == null || petBreedName2.isEmpty()) {
                 Toast.makeText(PetForm.this, "Please select Pet Breed.", Toast.LENGTH_LONG).show();
                 TextView errorText = (TextView) petBreed.getSelectedView();
                 errorText.setError("Please select Pet Breed");
@@ -382,6 +402,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
                 petGender = (String) gender.getText();
 
                 petDescription = descriptionOfPet.getText().toString();
+               // petBreedName = otherBreed.getText().toString();
 
                 new UploadToServer().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
             }
@@ -591,6 +612,24 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
                     @Override
                     public void run() {
                         txtAlternateNo = alternateNo.getText().toString();
+                    }
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+
+    public class GetBreedName extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        petBreedName = otherBreed.getText().toString();
                     }
                 });
 

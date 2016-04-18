@@ -78,6 +78,7 @@ public class PetMate extends BaseActivity implements View.OnClickListener {
     FloatingActionButton uploadButton;
     CheckBox labelForRegisterdNo;
     EditText alternateNo;
+    EditText otherBreed;
 
     String txtAlternateNo="";
     String email;
@@ -135,6 +136,7 @@ public class PetMate extends BaseActivity implements View.OnClickListener {
         thirdImageOfPetMate = (ImageView) this.findViewById(R.id.thirdImageOfPetMate);
         uploadButton = (FloatingActionButton) this.findViewById(R.id.petMateFormSubmitFab);
         alternateNo = (EditText) findViewById(R.id.alternateNotxt);
+        otherBreed = (EditText) findViewById(R.id.otherBreedNametxtPetMate);
         labelForRegisterdNo =(CheckBox) this.findViewById(R.id.contactNocheckBox);
 
         GenarateSpinerForAge();
@@ -196,16 +198,19 @@ public class PetMate extends BaseActivity implements View.OnClickListener {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position > 0){
                     petBreedName = (String) parent.getItemAtPosition(position);
+                    if(petBreedName.equals("Other")){
+                        otherBreed.setEnabled(true);
+                    }
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
+
         alternateNo.addTextChangedListener(alternatePhoneNoChangeListener);
+        otherBreed.addTextChangedListener(otherBreedNameChangeListener);
         selectImageButton.setOnClickListener(this);
         uploadButton.setOnClickListener(this);
     }
@@ -278,6 +283,23 @@ public class PetMate extends BaseActivity implements View.OnClickListener {
             new GetPetAlternateNo().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
         }
     };
+    private TextWatcher otherBreedNameChangeListener = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            new GetBreedName().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
+        }
+    };
+
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
@@ -336,7 +358,6 @@ public class PetMate extends BaseActivity implements View.OnClickListener {
                 petGender = (String) gender.getText();
 
                 petDescription = descriptionOfPet.getText().toString();
-
                 new UploadToServer().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
             }
         }
@@ -547,6 +568,23 @@ public class PetMate extends BaseActivity implements View.OnClickListener {
                     @Override
                     public void run() {
                         txtAlternateNo = alternateNo.getText().toString();
+                    }
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+    public class GetBreedName extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        petBreedName = otherBreed.getText().toString();
                     }
                 });
 

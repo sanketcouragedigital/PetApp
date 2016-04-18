@@ -7,7 +7,7 @@
         android:layout_height="match_parent">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res/com.couragedigital.petapp"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -77,8 +77,23 @@
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_40sdp"
                         android:layout_weight="1.2"/>
-            </LinearLayout>
 
+            </LinearLayout>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:id="@+id/otherBreedtxtMyListingPetMate"
+                    android:hint="Other Breed Name"
+                    android:textCursorDrawable="@null"
+                    android:textColor="@color/textColorPrimary"
+                    android:lines="2"
+                    android:enabled="false"
+                    android:gravity="top|left"
+                    android:scrollbars="vertical"
+                    android:layout_below="@+id/myListingPetMateListChangeBreedLayout"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="@dimen/_16sdp"/>
             <TextView
                     android:id="@+id/myListingPetMateCurrentAge"
                     android:layout_width="match_parent"
@@ -86,7 +101,7 @@
                     android:layout_marginTop="@dimen/_16sdp"
                     android:textSize="@dimen/_16sdp"
                     android:textColor="@color/textColorPrimary"
-                    android:layout_below="@+id/myListingPetMateListChangeBreedLayout"/>
+                    android:layout_below="@+id/otherBreedtxtMyListingPetMate"/>
             <TextView
                     android:id="@+id/myListingEditPetMateAgeOfPet"
                     android:layout_width="match_parent"

@@ -1,6 +1,8 @@
 package com.couragedigital.peto.Adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,11 +65,16 @@ public class ClinicReviewsListAdapter extends RecyclerView.Adapter<ClinicReviews
         public void bindClinicReviewsList(ClinicReviewsListItems clinicReviewsList) {
             //if(stateOfRatingStar == 0) {
                 userRatings=Integer.parseInt(clinicReviewsList.getClinicRatings());
+            DisplayMetrics metrics = v.getContext().getResources().getDisplayMetrics();
+            float dp = 20f;
+            float fpixels = metrics.density * dp;
+            int pixels = (int) (fpixels + 0.5f);
 
                 for(int i=0;i<userRatings;i++)
                 {
                     ImageView image = new ImageView(v.getContext());
-                    image.setLayoutParams(new android.view.ViewGroup.LayoutParams(40,40));
+                    image.setLayoutParams(new android.view.ViewGroup.LayoutParams(pixels,pixels));
+                   // image.setLayoutParams(new android.view.ViewGroup.LayoutParams(R.dimen.starSize,R.dimen.starSize));
                     image.setId(i);
                     image.setImageResource(R.drawable.ratingstar_yellow);
                     // Adds the view to the layout

@@ -1,28 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/filterBreedLayout">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_56sdp"
-                    android:id="@+id/filterBreedLayout">
+                   >
+
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/filterBreedText"
-                android:padding="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingRight="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:paddingTop="@dimen/_18sdp"
                 android:textSize="@dimen/_16sdp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/_16sdp"/>
-        <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/filterBreedCheckBox"
-                android:padding="@dimen/_10sdp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/_16sdp"
-                android:focusable="false"
-                android:layout_centerVertical="true"/>
-    </RelativeLayout>
+                android:text="fdad fsaefaefeffwefwfwwfw"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:layout_alignParentTop="true"
+                />
+
+        </RelativeLayout>
+    <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/filterBreedCheckBox"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:focusable="false"
+            android:layout_centerVertical="true"/>
+
 </RelativeLayout>

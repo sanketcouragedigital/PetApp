@@ -77,13 +77,13 @@ public class MyListingModifyPetMateDetails extends BaseActivity implements View.
         emailOfUser = user.get(SessionManager.KEY_EMAIL);
 
         getData();
-        petMateSelectedCategory = (TextView) this.findViewById(R.id.myListingPetMateSelectedCategory);
-        petMateSelectedBreed = (TextView) this.findViewById(R.id.myListingPetMateSelectedBreed);
+        //petMateSelectedCategory = (TextView) this.findViewById(R.id.myListingPetMateSelectedCategory);
+        //petMateSelectedBreed = (TextView) this.findViewById(R.id.myListingPetMateSelectedBreed);
         petMatechangeCategory = (TextView) this.findViewById(R.id.myListingPetMateChangeCategory);
         petMatechangeBreed = (TextView) this.findViewById(R.id.myListingPetMateChangeBreed);
         petMateMyListingEditPetCategory = (Spinner) this.findViewById(R.id.myListingEditPetMateCategory);
         petMateMyListingEditPetBreed = (Spinner) this.findViewById(R.id.myListingEditPetMateBreed);
-        petMatecurrentAge = (TextView) this.findViewById(R.id.myListingPetMateCurrentAge);
+        //petMatecurrentAge = (TextView) this.findViewById(R.id.myListingPetMateCurrentAge);
         petMateMyListingEditPetAgeInMonths = (Spinner) this.findViewById(R.id.myListingEditPetMateAgeInMonths);
         petMateMyListingEditPetAgeInYears = (Spinner) this.findViewById(R.id.myListingEditPetMateAgeInYears);
         petMateMyListingEditGenderOfPet = (RadioGroup) this.findViewById(R.id.myListingEditPetMateGenderRadioGroup);
@@ -128,17 +128,17 @@ public class MyListingModifyPetMateDetails extends BaseActivity implements View.
 
     private void fillData() {
 
-        petMateSelectedCategory.setText("Current Category : " + petCategoryName);
-        petMateSelectedBreed.setText("Current Breed : " + petBreedName);
-        petMatechangeCategory.setText("Change To : ");
-        petMatechangeBreed.setText("Change To : ");
-        petMatecurrentAge.setText("Current Age : " + petMateAgeMonthSpinner + " Month" + " , " + petMateAgeYearSpinner + " Years ");
+//        petMateSelectedCategory.setText("Current Category : " + petCategoryName);
+//        petMateSelectedBreed.setText("Current Breed : " + petBreedName);
+        petMatechangeCategory.setText("Category : ");
+        petMatechangeBreed.setText("Breed : ");
+//        petMatecurrentAge.setText("Current Age : " + petMateAgeMonthSpinner + " Month" + " , " + petMateAgeYearSpinner + " Years ");
 
         petMateMyListingEditDescriptionOfPet.setText(petMateDescription);
         GenarateSpinerForAge();
 
         petCategoryArrayList = new String[]{
-                "Select Category"
+                petCategoryName
         };
         petCategoryList = new ArrayList<>(Arrays.asList(petCategoryArrayList));
         adapter = new ModifySpinnerItemsAdapter(this, R.layout.spinneritem, petCategoryList);
@@ -238,7 +238,7 @@ public class MyListingModifyPetMateDetails extends BaseActivity implements View.
 
     public void GenarateSpinerForAge() {
         stringArrayListForMonth = new String[]{
-                "Months"
+                petMateAgeMonthSpinner+" "+"Months"
         };
         petAgeListInMonth = new ArrayList<>(Arrays.asList(stringArrayListForMonth));
         for (int i = 0; i <= 11; i++) {
@@ -263,7 +263,7 @@ public class MyListingModifyPetMateDetails extends BaseActivity implements View.
         });
 
         stringArrayListForYear = new String[]{
-                "Years"
+                petMateAgeYearSpinner+" "+"Years"
         };
         petAgeListInYear = new ArrayList<>(Arrays.asList(stringArrayListForYear));
         for (int i = 0; i <= 11; i++) {
@@ -365,7 +365,7 @@ public class MyListingModifyPetMateDetails extends BaseActivity implements View.
         protected Void doInBackground(Void... params) {
             try {
                 ModifyPetCategorySpinnerList modifyPetCategorySpinnerList = new ModifyPetCategorySpinnerList(MyListingModifyPetMateDetails.this);
-                modifyPetCategorySpinnerList.fetchPetCategory(petCategoryList, adapter);
+                modifyPetCategorySpinnerList.fetchPetCategory(petCategoryList,petCategoryName, adapter);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -378,7 +378,7 @@ public class MyListingModifyPetMateDetails extends BaseActivity implements View.
         protected Void doInBackground(Void... params) {
             try {
                 ModifyPetBreedsSpinnerList modifyPetBreedsSpinnerList = new ModifyPetBreedsSpinnerList(MyListingModifyPetMateDetails.this);
-                modifyPetBreedsSpinnerList.fetchPetBreeds(petBreedsList, petCategoryName, adapter);
+                modifyPetBreedsSpinnerList.fetchPetBreeds(petBreedsList, petCategoryName,petBreedName, adapter);
             } catch (Exception e) {
                 e.printStackTrace();
             }

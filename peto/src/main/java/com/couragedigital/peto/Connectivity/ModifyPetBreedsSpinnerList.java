@@ -24,7 +24,7 @@ public class ModifyPetBreedsSpinnerList {
 
     private static final String TAG = ModifyPetBreedsSpinnerList.class.getSimpleName();
     private static Context context;
-
+    private static  String oldBreedName;
     public ModifyPetBreedsSpinnerList(MyListingModifyPetDetails myListingModifyPetDetails) {
         this.context = myListingModifyPetDetails;
     }
@@ -33,7 +33,8 @@ public class ModifyPetBreedsSpinnerList {
         this.context = myListingModifyPetMateDetails;
     }
 
-    public static void fetchPetBreeds(final List petBreedsList, String petCategoryName, final ModifySpinnerItemsAdapter adapter) {
+    public static void fetchPetBreeds(final List petBreedsList, String petCategoryName, String petBreedName, final ModifySpinnerItemsAdapter adapter) {
+       oldBreedName= petBreedName;
         String url = URLInstance.getUrl()+"?petCategory="+petCategoryName+"&method=showPetBreedsAsPerPetCategory&format=json";
         JsonObjectRequest modifyPetBreedsRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -45,7 +46,7 @@ public class ModifyPetBreedsSpinnerList {
                         try {
                             JSONArray jsonArray = response.getJSONArray("showPetBreedsResponse");
                             if(jsonArray.length()!=0) {
-                            petBreedsList.add("Select  Pet Breed");
+                            petBreedsList.add(oldBreedName);
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     try {
                                         JSONObject obj = jsonArray.getJSONObject(i);

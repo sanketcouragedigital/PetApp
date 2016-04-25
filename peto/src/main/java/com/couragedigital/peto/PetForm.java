@@ -207,6 +207,9 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
                     if(petBreedName2.equals("Other") ){
                         otherBreed.setEnabled(true);
                     }
+                    else {
+                        petBreedName = petBreedName2;
+                    }
                 }
             }
             @Override

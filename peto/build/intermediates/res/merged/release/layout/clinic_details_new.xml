@@ -84,6 +84,23 @@
                             android:layout_weight="1"
                             android:layout_marginTop="@dimen/_10sdp"
                             android:src="@drawable/rnr24dp"/>
+                    <View
+                            android:id="@+id/clinicDetailsButtonDivider2"
+                            android:layout_width="@dimen/_2sdp"
+                            android:layout_height="match_parent"
+                            android:background="#FFFFFF"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:layout_marginLeft="@dimen/_10sdp"/>
+                    <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/clinicDetailsMapButton"
+                            android:background="@android:color/transparent"
+                            android:textColor="#CF3E3E"
+                            android:layout_weight="1"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:src="@drawable/map24dp"/>
                 </LinearLayout>
                 <View
                         android:id="@+id/clinicTabButtonDivider"
@@ -150,6 +167,7 @@
                     android:text="Reviews:"
                     android:textColor="#cf3e3e"
                     android:id="@+id/reviewsLabel"
+
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:ellipsize="end"
                     android:textStyle="bold"/>

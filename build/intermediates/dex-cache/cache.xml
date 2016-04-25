@@ -1,3 +1,362 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="2d7fe76982677315c4dc4edfb459c8ca718a9d4c">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.google.android.gms-play-services-gcm-8.4.0_b4648cd85e773b0676947b367379fbdb3684c4f6\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="1a78298e7724d5440d210bcb946b3493250d354d">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.google.android.gms-play-services-plus-8.4.0_c0271b6a306d5bacdfd381564433b8a5b79d339b\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.0.0-RC1\be7e96331952019f16dc52dce09ab25df29353d7\okhttp-3.0.0-RC1.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="be7e96331952019f16dc52dce09ab25df29353d7">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\okhttp-3.0.0-RC1_fa193a62cb7c240c533d7578da6f143e8e341c6a\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.2.1\support-annotations-23.2.1.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ccb693bc0774fcb637246f7360de25b4af7df318">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\support-annotations-23.2.1_77edcfbf254cc746123e5848d5db431403e4d5ea\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.7.0\9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4\glide-3.7.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\glide-3.7.0_6b789d8979decc696735b53aa27db0a293b2f676\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-tasks\1.4.0\d85884acf6810a3bbbecb587f239005cbc846dc4\bolts-tasks-1.4.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\bolts-tasks-1.4.0_56440974151a95134d44d7405d7180bad686da6d\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="3be474b1b21b31cf2fa93fe6bd641ae108d96452">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.android.support-support-v4-23.2.1_4cdefb84003c315ab54fbaa2c05bf709995743a6\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.2.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="e4d0cbb0b999604b349062f0214a0a228a7fd151">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.android.support-appcompat-v7-23.2.1_c083901a75e8c94c3f3dabf6ee1960c40b1e3021\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.1\jars\libs\internal_impl-23.2.1.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="607a3d0b8013b4ccbfeb0b7cb293351994e021fb">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\internal_impl-23.2.1_12fda4240cf2a1b1b8b961196ae08402f9e0d140\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.android.support\multidex\1.0.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.android.support-multidex-1.0.1_4219d95e1598ebc18ab91d0b926fa224f4646424\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="dfecc4d835cdabcdecf7e95f0d20a3ef1e9d8ef4">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.google.android.gms-play-services-vision-8.4.0_4b2b33758cccf351f158ccd23c97da98fa2a0080\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\incremental-runtime-classes\release\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="79e7deb1f9496fbafc2ce2e2c4b849e08926f00a">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\instant-run_e6b16997dae8b078f6512022aa1c030fccca0c74\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.google.android.gms\play-services-measurement\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="613298b7aa012f121ce542881c0a599ebd8078f2">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.google.android.gms-play-services-measurement-8.4.0_8ec7d586862e0eb9fa01da9be28577719d7aa302\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.github.bumptech.glide\volley-integration\1.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="bf9d9fedce7809e16ac57cb015bcffb9873237c3">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.github.bumptech.glide-volley-integration-1.4.0_edfdc93ea93f64497a05d92cd3dfca36fcc6e451\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="a8412b654dab86d57bf90683367488211c8a81f1">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.google.android.gms-play-services-location-8.4.0_c8102bf6d02cf7dd462bddb245f03c1c6104b416\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="3a364cc6b698d1b3b2d284f64618daaa7fe77ddf">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.google.android.gms-play-services-games-8.4.0_8fa0984735276d7b63fb9c76882344ada4673031\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="1c9f35e952b212c843f7bd2c7eec8e82ad95602e">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.google.android.gms-play-services-analytics-8.4.0_3ef3b1a0723e551a97edaffb911d54a975597cb3\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.6.0\98476622f10715998eacf9240d6b479f12c66143\okio-1.6.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\okio-1.6.0_0a3cad338212f6ec26525bc64e0394112477e5db\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-applinks\1.4.0\8ad21bf21784dacce5f2043afb97218cc377e835\bolts-applinks-1.4.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="8ad21bf21784dacce5f2043afb97218cc377e835">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\bolts-applinks-1.4.0_7ecc720c63b6a57712195d93a3ef706ec0a1248f\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.2.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="e3885783ff8926ed9e2fdcd16816c2e1e73e7aee">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.android.support-recyclerview-v7-23.2.1_b2da0a07ae10322fe51a3913a33c6aba855fb86a\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="9fe026fb4c7fce21bc5142f6e1bdf844f28061ac">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.google.android.gms-play-services-appinvite-8.4.0_23c4e1780473c8c29f102590645b5663665b92cf\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.5\686c608d1805b6d4d425ec4459e88164ffc85870\gson-2.5.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="686c608d1805b6d4d425ec4459e88164ffc85870">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\gson-2.5_ece9f3ed8c82d6c0eae046b396ba0252ea55ed3b\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="e167a34eaca0b31704212f43f9576ea84e05046f">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.google.android.gms-play-services-wearable-8.4.0_aabf3386be9bc6512bdc110b7ecda34e0ef14bb8\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.intuit.sdp\sdp-android\1.0.2\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="5831c1517a9c80bf19a6b76ad23b898a7d827c0f">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.intuit.sdp-sdp-android-1.0.2_b509467eb2099e7f7323d9d5d7283c1fd1dc550b\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.android.volley\volley\1.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="2cd4b982617e544728de0782d718a58ce1b06e3f">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.android.volley-volley-1.0.0_b4364baaede354f96412c79f4b5e4205ab88a6a4\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.pddstudio\urlshortener\1.0.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="680fff8f66e732e147a2e25ea533779901639d16">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.pddstudio-urlshortener-1.0.1_abea31bb71d9e70deb4ca8b434275b6d8d041b8a\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\incremental-classes\release\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="088fe8be31094537a1c116fe4abd33400d64335d">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\instant-run-bootstrap_d5749368abe25633a3b351568d5500092f0d6f92\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.2.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="cb86970df0f0f25f766d320b279c7858c1ca0003">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.android.support-cardview-v7-23.2.1_911021314153e0265bc9bf5d2880ddba9dcdec89\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="9cad249cf62751a323d9af568caf12284b7d6062">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.google.android.gms-play-services-nearby-8.4.0_79130b408f3445fb8e8602eb18b09787db730206\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\23.0.0\jars\libs\internal_impl-23.0.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="03d38bb042efe3e5ce27ba66b729a9523c36d8fe">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\internal_impl-23.0.0_d3391e6fed8fb4de5e70aa200123c546c634c556\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpcore\4.3.1\98e2eefcf524f757188f172642ecf5e2c7421947\httpcore-4.3.1.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="98e2eefcf524f757188f172642ecf5e2c7421947">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\httpcore-4.3.1_d3548e635b80967c7a9e0734584a892dd1e02224\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.android.support\customtabs\23.2.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="0e5a66a941515d873a34065fe44fbba6ef422a1b">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.android.support-customtabs-23.2.1_8bae0e57acdc014188eb38ab69630f393dd0fb44\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\23.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="d358b3dd49a7c67844622dcbc9cf4339e13952ce">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.android.support-mediarouter-v7-23.0.0_53d2d42e8d67166340cedac073418b78716d050c\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="04de44f90606c77f3b28cf44861f306290505aac">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.google.android.gms-play-services-maps-8.4.0_9130aba269626761a3ca3e4ea29589519f2b9732\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.2.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="673d77a5bbddd766037f088e775df525c46407f0">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.android.support-support-vector-drawable-23.2.1_bb8f3157a702b6be704259e115fd07b317cc785d\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.google.android.gms-play-services-basement-8.4.0_99d143e24d197131621ff5bf943eaaec6bb6c186\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.google.android.gms-play-services-base-8.4.0_2d8a7477ea58eb48db746dfac27aa51716f6ed06\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="b82b8e847173c28efffcd291b2a0b1ae9ad17fa4">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.google.android.gms-play-services-identity-8.4.0_4bef8bf9fdf1e41eb38f50e17629553b508e7c29\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="b36f30ac5ee5d5214f4b1e2ac49f11889d58e71a">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.google.android.gms-play-services-drive-8.4.0_4ee78b8a5c0abcb94b3d46abb52b00fcf96d6249\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="551e78f21acf69ebfb489c0e79647824c838013e">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.google.android.gms-play-services-cast-8.4.0_890fa16fe9262ab00238d0b3fe982de5952b3ae9\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.11.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="86da97c30f50a67ddabe2cf7040713ad17153fce">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.facebook.android-facebook-android-sdk-4.11.0_b39c4e8d6b2e5acada87060248ca9174f9f63416\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="c54246475c1bb64ac6857d1320364bfbfeda2c46">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.google.android.gms-play-services-fitness-8.4.0_43dc95577aeffb4e8f49f78e397e10f410930cc9\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.android.support\design\23.2.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="72961d8b453b46e277702f18de9d210bc019e36e">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.android.support-design-23.2.1_617e99b12355bedb41f9e8cb320037ae2775e1a3\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="0194a7409c40de94fb539d4ad9928ec5d47afeb7">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.google.android.gms-play-services-safetynet-8.4.0_1a8cf45f7f3546fb1ab77e504434dce4b9c6dcaa\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpmime\4.3.1\f7899276dddd01d8a42ecfe27e7031fcf9824422\httpmime-4.3.1.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="f7899276dddd01d8a42ecfe27e7031fcf9824422">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\httpmime-4.3.1_59083b460bb83c270a694dbafea7ba926215cddc\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.2.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="3469cb457f10f74c28cbc05f069b6c894f6cbdd0">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.android.support-animated-vector-drawable-23.2.1_16707600ce906f9ada8ba7d2486ee3f774449189\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="08d34b2d135c1cc96ab506fd8bf6916d1e2f391a">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.google.android.gms-play-services-panorama-8.4.0_ebc3bfd5cf65c42442cb68c8b711f9c1c60b46f4\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="65d086ee9daaf87b5af62ad24471edafa433354c">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.google.android.gms-play-services-appindexing-8.4.0_619fe6e2b0d2cd3ba086ff1fc4798f4819ef1fbf\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.google.android.gms\play-services-auth\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="966e5771a5a2ebfb31bf00d7cd6cd2546d245517">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.google.android.gms-play-services-auth-8.4.0_2c43a58781093de7e0eb8f4b42bb1b775111885e\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="b5e7892fb0708e792e0e933c4c0a0ca0ac7831fb">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.google.android.gms-play-services-ads-8.4.0_39cacce24203d6189fb6c3366e91562f28acc719\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="f2df436a8f02ce7e4d7d209671fc45f97c470f0e">
+        <dex dex="C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\dex\release\folders\1000\10\com.google.android.gms-play-services-wallet-8.4.0_94a7c80aa9dae6b56e41bb3cd6bb2e7b37cbedd7\classes.dex" />
+    </item>
+
+</items>

@@ -32,12 +32,27 @@
                     android:layout_below="@+id/petMateCategorySpinner"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="@dimen/_16sdp"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:id="@+id/otherBreedNametxtPetMate"
+                    android:hint="Other Breed Name"
+                    android:enabled="false"
+                    android:textCursorDrawable="@null"
+                    android:textColor="@color/textColorPrimary"
+                    android:lines="2"
+                    android:gravity="top|left"
+                    android:scrollbars="vertical"
+                    android:layout_below="@+id/petMateBreedSpinner"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="@dimen/_16sdp"/>
             <LinearLayout android:layout_width="fill_parent"
                           android:layout_height="wrap_content"
                           android:id="@+id/petMateAgeLayout"
                           android:orientation="horizontal"
                           android:layout_marginTop="@dimen/_16sdp"
-                          android:layout_below="@id/petMateBreedSpinner">
+                          android:layout_below="@id/otherBreedNametxtPetMate">
                 <TextView
                         android:id="@+id/ageOfPetMate"
                         android:layout_width="0dp"

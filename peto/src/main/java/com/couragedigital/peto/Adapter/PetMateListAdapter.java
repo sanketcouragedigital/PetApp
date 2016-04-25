@@ -21,6 +21,7 @@ import com.couragedigital.peto.ExpandableText;
 import com.couragedigital.peto.PetMateListDetails;
 import com.couragedigital.peto.SessionManager.SessionManager;
 import com.couragedigital.peto.Singleton.UserPetMateListWishList;
+import com.couragedigital.peto.model.PetListItems;
 import com.couragedigital.peto.model.PetMateListItems;
 import com.couragedigital.peto.R;
 import com.couragedigital.peto.app.AppController;
@@ -30,14 +31,15 @@ import java.util.HashMap;
 import java.util.List;
 
 public class PetMateListAdapter extends RecyclerView.Adapter<PetMateListAdapter.ViewHolder> {
-
+    private final OnRecyclerPetMateListShareClickListener onRecyclerPetMateListShareClickListener;
     List<PetMateListItems> petMateLists;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;
     ViewHolder viewHolder;
 
-    public PetMateListAdapter(List<PetMateListItems> petMateLists) {
+    public PetMateListAdapter(List<PetMateListItems> petMateLists, OnRecyclerPetMateListShareClickListener onRecyclerPetMateListShareClickListener) {
         this.petMateLists = petMateLists;
+        this.onRecyclerPetMateListShareClickListener = onRecyclerPetMateListShareClickListener;
     }
 
     @Override
@@ -59,6 +61,10 @@ public class PetMateListAdapter extends RecyclerView.Adapter<PetMateListAdapter.
         return petMateLists.size();
     }
 
+    public interface OnRecyclerPetMateListShareClickListener {
+
+        void onRecyclerPetMateListShareClick(PetMateListItems petMateListItems);
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -132,11 +138,7 @@ public class PetMateListAdapter extends RecyclerView.Adapter<PetMateListAdapter.
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.petMateShareImageButton) {
-                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-                sharingIntent.setType("text/plain");
-                String sharingText = "I want to share  Peto App Download it from Google PlayStore.";
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, sharingText);
-                v.getContext().startActivity(Intent.createChooser(sharingIntent, "Share using"));
+                onRecyclerPetMateListShareClickListener.onRecyclerPetMateListShareClick(petMateListItems);
             }  else if (v.getId() == R.id.petMateFavourite) {
                 SessionManager sessionManager = new SessionManager(v.getContext());
                 HashMap<String, String> user = sessionManager.getUserDetails();

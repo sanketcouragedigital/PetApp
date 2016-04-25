@@ -600,4 +600,5 @@
     <dimen name="_minus98sdp">-235.20dp</dimen>
     <dimen name="_minus99sdp">-237.60dp</dimen>
     <dimen name="_minus9sdp">-21.60dp</dimen>
+    <string name="dimension">values-sw720dp</string>
 </resources>

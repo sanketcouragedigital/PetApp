@@ -11,7 +11,8 @@
     <string name="share_app">Share App</string>
     <string name="logout">LogOut</string>
     <string name="snackbartext">Hello Guys</string>
-    <string name="no_location_detected">No Location Detected Check Your Location Setting </string>
-    <string name="location_Changed">Location Changed </string>
-
+    <string name="no_location_detected">No Location Detected Check Your Location Setting</string>
+    <string name="location_Changed">Location Changed</string>
+    <string name="facebook_app_id">1068872133154801</string>
+    <string name="google_api_key">AIzaSyBs9E4j3N-chcMq3VvlgQhaDRFX_IR3Gb8</string>
 </resources>

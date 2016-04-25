@@ -25,7 +25,7 @@ import com.couragedigital.peto.InternetConnectivity.NetworkChangeReceiver;
 import com.couragedigital.peto.Singleton.ClinicReviewInstance;
 import com.couragedigital.peto.Singleton.URLInstance;
 import com.couragedigital.peto.model.ClinicReviewsListItems;
-import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
+//import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.io.*;
 import java.util.ArrayList;

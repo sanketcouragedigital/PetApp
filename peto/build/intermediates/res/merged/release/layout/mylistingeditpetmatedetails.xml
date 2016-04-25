@@ -7,7 +7,7 @@
         android:layout_height="match_parent">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res/com.couragedigital.petapp"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -21,19 +21,18 @@
                         android:paddingLeft="@dimen/_16sdp"
                         android:paddingRight="@dimen/_16sdp"
                         android:focusableInTouchMode="true">
-            <TextView
-                    android:id="@+id/myListingPetMateSelectedCategory"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_16sdp"
-                    android:textSize="@dimen/_16sdp"
-                    android:textColor="@color/textColorPrimary"/>
+            <!--<TextView-->
+                    <!--android:id="@+id/myListingPetMateSelectedCategory"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="@dimen/_16sdp"-->
+                    <!--android:textSize="@dimen/_16sdp"-->
+                    <!--android:textColor="@color/textColorPrimary"/>-->
 
             <LinearLayout android:layout_width="match_parent"
                           android:layout_height="wrap_content"
                           android:orientation="horizontal"
                           android:id="@+id/myListingPetMateListChangeCategoryLayout"
-                          android:layout_below="@id/myListingPetMateSelectedCategory"
                           android:layout_marginTop="@dimen/_16sdp">
                 <TextView
                         android:id="@+id/myListingPetMateChangeCategory"
@@ -50,20 +49,20 @@
                         android:layout_weight="1.2"/>
             </LinearLayout>
 
-            <TextView
-                    android:id="@+id/myListingPetMateSelectedBreed"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_16sdp"
-                    android:textSize="@dimen/_16sdp"
-                    android:textColor="@color/textColorPrimary"
-                    android:layout_below="@id/myListingPetMateListChangeCategoryLayout"/>
+            <!--<TextView-->
+                    <!--android:id="@+id/myListingPetMateSelectedBreed"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="@dimen/_16sdp"-->
+                    <!--android:textSize="@dimen/_16sdp"-->
+                    <!--android:textColor="@color/textColorPrimary"-->
+                    <!--android:layout_below="@id/myListingPetMateListChangeCategoryLayout"/>-->
 
             <LinearLayout android:layout_width="match_parent"
                           android:layout_height="wrap_content"
                           android:orientation="horizontal"
                           android:id="@+id/myListingPetMateListChangeBreedLayout"
-                          android:layout_below="@id/myListingPetMateSelectedBreed"
+                          android:layout_below="@id/myListingPetMateListChangeCategoryLayout"
                           android:layout_marginTop="@dimen/_16sdp">
                 <TextView
                         android:id="@+id/myListingPetMateChangeBreed"
@@ -77,16 +76,31 @@
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_40sdp"
                         android:layout_weight="1.2"/>
-            </LinearLayout>
 
-            <TextView
-                    android:id="@+id/myListingPetMateCurrentAge"
+            </LinearLayout>
+            <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_16sdp"
-                    android:textSize="@dimen/_16sdp"
+                    android:inputType="text"
+                    android:id="@+id/otherBreedtxtMyListingPetMate"
+                    android:hint="Other Breed Name"
+                    android:textCursorDrawable="@null"
                     android:textColor="@color/textColorPrimary"
-                    android:layout_below="@+id/myListingPetMateListChangeBreedLayout"/>
+                    android:lines="2"
+                    android:enabled="false"
+                    android:gravity="top|left"
+                    android:scrollbars="vertical"
+                    android:layout_below="@+id/myListingPetMateListChangeBreedLayout"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="@dimen/_16sdp"/>
+            <!--<TextView-->
+                    <!--android:id="@+id/myListingPetMateCurrentAge"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="@dimen/_16sdp"-->
+                    <!--android:textSize="@dimen/_16sdp"-->
+                    <!--android:textColor="@color/textColorPrimary"-->
+                    <!--android:layout_below="@+id/otherBreedtxtMyListingPetMate"/>-->
             <TextView
                     android:id="@+id/myListingEditPetMateAgeOfPet"
                     android:layout_width="match_parent"
@@ -95,7 +109,7 @@
                     android:text="Change Age To :"
                     android:textColor="@color/textColorPrimary"
                     android:layout_marginTop="@dimen/_16sdp"
-                    android:layout_below="@id/myListingPetMateCurrentAge"/>
+                    android:layout_below="@id/otherBreedtxtMyListingPetMate"/>
 
             <LinearLayout android:layout_width="match_parent"
                           android:layout_height="wrap_content"

@@ -1,10 +1,21 @@
 package com.couragedigital.peto.Adapter;
 
+import android.app.Activity;
+import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.LabeledIntent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +33,14 @@ import com.couragedigital.peto.SessionManager.SessionManager;
 import com.couragedigital.peto.Singleton.UserPetListWishList;
 import com.couragedigital.peto.app.AppController;
 import com.couragedigital.peto.model.PetListItems;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.share.Sharer;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,14 +48,15 @@ import java.util.List;
 
 
 public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHolder> {
-
+    private final OnRecyclerPetListShareClickListener onRecyclerPetListShareClickListener;
     List<PetListItems> petLists;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;
     ViewHolder viewHolder;
 
-    public PetListAdapter(List<PetListItems> petLists) {
+    public PetListAdapter(List<PetListItems> petLists, OnRecyclerPetListShareClickListener onRecyclerPetListShareClickListener) {
         this.petLists = petLists;
+        this.onRecyclerPetListShareClickListener = onRecyclerPetListShareClickListener;
     }
 
     @Override
@@ -67,6 +87,11 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
             petListingTypeString = "TO SELL";
         }
         return petListingTypeString;
+    }
+
+    public interface OnRecyclerPetListShareClickListener {
+
+        void onRecyclerPetListShareClick(PetListItems petListItems);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -140,11 +165,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.petListShareImageButton) {
-                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-                sharingIntent.setType("text/plain");
-                String sharingText = "I want to share  Peto App Download it from Google PlayStore.";
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, sharingText);
-                v.getContext().startActivity(Intent.createChooser(sharingIntent, "Share using"));
+                onRecyclerPetListShareClickListener.onRecyclerPetListShareClick(petListItems);
             } else if (v.getId() == R.id.petListFavourite) {
                 SessionManager sessionManager = new SessionManager(v.getContext());
                 HashMap<String, String> user = sessionManager.getUserDetails();

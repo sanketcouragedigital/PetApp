@@ -1,38 +1,69 @@
 package com.couragedigital.peto;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import android.os.StrictMode;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import com.couragedigital.peto.Connectivity.FilterFetchPetList;
-import com.couragedigital.peto.Connectivity.FilterPetListDeleteMemCacheObject;
-import com.couragedigital.peto.Connectivity.PetFetchList;
-import com.couragedigital.peto.Connectivity.PetRefreshFetchList;
+
+import android.widget.Toast;
+import com.couragedigital.peto.Connectivity.*;
 import com.couragedigital.peto.InternetConnectivity.NetworkChangeReceiver;
 import com.couragedigital.peto.Listeners.PetFetchListScrollListener;
 import com.couragedigital.peto.Adapter.PetListAdapter;
 import com.couragedigital.peto.SessionManager.SessionManager;
+import com.couragedigital.peto.Shortner.GoogleURLShortener;
 import com.couragedigital.peto.Singleton.FilterPetListInstance;
 import com.couragedigital.peto.Singleton.URLInstance;
 import com.couragedigital.peto.model.PetListItems;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.share.ShareApi;
+import com.facebook.share.Sharer;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 import android.app.ProgressDialog;
 
-public class PetList extends BaseActivity {
+public class PetList extends BaseActivity implements PetListAdapter.OnRecyclerPetListShareClickListener {
 
     private static final String TAG = PetList.class.getSimpleName();
 
@@ -73,10 +104,27 @@ public class PetList extends BaseActivity {
     public List<String> filterSelectedInstanceGenderList = new ArrayList<String>();
     public List<String> filterSelectedInstanceAdoptionAndPriceList = new ArrayList<String>();
 
+    CallbackManager callbackManager;
+    private LoginManager facebookLoginManager;
+    List<String> facebookPermissionNeeds;
+
+    private static final int READ_STORAGE_PERMISSION_REQUEST = 2;
+    private static final int WRITE_STORAGE_PERMISSION_REQUEST = 3;
+    private PetListItems petListItems;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.petlist);
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
+
+        callbackManager = CallbackManager.Factory.create();
+
+
+        facebookPermissionNeeds = Arrays.asList("publish_actions");
+
+        facebookLoginManager = LoginManager.getInstance();
 
         recyclerView = (RecyclerView) findViewById(R.id.petList);
         emptyTextView = (TextView) findViewById(R.id.petListEmptyView);
@@ -90,18 +138,18 @@ public class PetList extends BaseActivity {
         HashMap<String, String> user = sessionManager.getUserDetails();
         email = user.get(SessionManager.KEY_EMAIL);
 
-        url = url+"?method=showPetDetails&format=json&currentPage="+current_page+"&email="+email+"";
+        url = url + "?method=showPetDetails&format=json&currentPage=" + current_page + "&email=" + email + "";
 
-        requestState=0;
+        requestState = 0;
 
-        recyclerView.addOnScrollListener(new PetFetchListScrollListener(layoutManager, current_page){
+        recyclerView.addOnScrollListener(new PetFetchListScrollListener(layoutManager, current_page) {
 
             @Override
             public void onLoadMore(int current_page) {
-                if(filterState == 0) {
+                if (filterState == 0) {
                     url = "";
                     url = URLInstance.getUrl();
-                    url = url+"?method=showPetDetails&format=json&currentPage="+current_page+"";
+                    url = url + "?method=showPetDetails&format=json&currentPage=" + current_page + "";
                     grabURL(url);
                 }
             }
@@ -109,7 +157,7 @@ public class PetList extends BaseActivity {
 
         recyclerView.smoothScrollToPosition(0);
 
-        adapter = new PetListAdapter(petLists);
+        adapter = new PetListAdapter(petLists, this);
         recyclerView.setAdapter(adapter);
 
         progressDialog = new ProgressDialog(this);
@@ -129,6 +177,111 @@ public class PetList extends BaseActivity {
 
     public void grabURL(String url) {
         new FetchListFromServer().execute(url);
+    }
+
+    @Override
+    public void onRecyclerPetListShareClick(final PetListItems petListItems) {
+        this.petListItems = petListItems;
+        if(ActivityCompat.checkSelfPermission(PetList.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestWriteStoragePermission();
+        }
+        else {
+            if(ActivityCompat.checkSelfPermission(PetList.this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                requestReadStoragePermission();
+            }
+            else {
+                shareList(petListItems);
+            }
+        }
+    }
+
+    public void shareList(final PetListItems petListItems) {
+
+        String petListingTypeString = null;
+        String price = null;
+        if(petListItems.getListingType().equals("For Adoption")) {
+            petListingTypeString = "TO ADOPT";
+            price = "0 Rs.";
+        }
+        else {
+            petListingTypeString = "TO SELL";
+            price = petListItems.getListingType() + " Rs.";
+        }
+
+        final String contentURL = "http://storage.couragedigital.com/prod/petProfile.php?method=profileOfPet&breed="+petListItems.getPetBreed()+"&imageURL="+petListItems.getFirstImagePath()+"&gender="+petListItems.getPetGender()+"&year="+petListItems.getPetAgeInYear()+"&month="+petListItems.getPetAgeInMonth()+"&petType="+petListingTypeString+"&price="+price+"&mobileNo="+petListItems.getPetPostOwnerMobileNo()+"&description="+petListItems.getPetDescription();
+
+        final String shortURL = GoogleURLShortener.shortner(contentURL);
+
+        final Intent i = new Intent(Intent.ACTION_SEND);
+        i.setType("image/*");
+
+        final List<ResolveInfo> activities = this.getPackageManager().queryIntentActivities(i, 0);
+
+        List<String> appNames = new ArrayList<String>();
+        for (ResolveInfo info : activities) {
+            appNames.add(info.loadLabel(this.getPackageManager()).toString());
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Share using...");
+        builder.setItems(appNames.toArray(new CharSequence[appNames.size()]), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+                ResolveInfo info = activities.get(item);
+                if (info.activityInfo.packageName.equals("com.facebook.katana")) {
+                    facebookLoginManager.logInWithPublishPermissions(PetList.this, facebookPermissionNeeds);
+                    if (ShareDialog.canShow(ShareLinkContent.class)) {
+                        ShareLinkContent facebookContent = new ShareLinkContent.Builder()
+                                .setContentTitle("Check out this pet!")
+                                .setContentUrl(Uri.parse(shortURL))
+                                .setImageUrl(Uri.parse(petListItems.getFirstImagePath()))
+                                .build();
+                        ShareDialog.show(PetList.this, facebookContent);
+                    }
+                }
+                else {
+                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                    StrictMode.setThreadPolicy(policy);
+
+                    URL url = null;
+                    InputStream input = null;
+                    try {
+                        url = new URL(petListItems.getFirstImagePath());
+
+                        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                        connection.setDoInput(true);
+                        connection.connect();
+                        input = connection.getInputStream();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    Bitmap immutableBpm = BitmapFactory.decodeStream(input);
+                    Bitmap mutableBitmap = immutableBpm.copy(Bitmap.Config.ARGB_8888, true);
+
+                    String path = MediaStore.Images.Media.insertImage(getContentResolver(), mutableBitmap, "", null);
+                    Uri imagePath = Uri.parse(path);
+
+                    i.putExtra(Intent.EXTRA_TEXT, "Check out this Pet!" + shortURL);
+                    i.putExtra(Intent.EXTRA_STREAM, imagePath);
+                    i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    i.setPackage(info.activityInfo.packageName);
+                    startActivity(i);
+                }
+                /*else if (info.activityInfo.packageName.equals("com.twitter.android")) {
+                    // Twitter was chosen
+                }
+                else if(info.activityInfo.packageName.equals("com.google.android.apps.plus")) {
+                    // Google+ was chosen
+                }*
+                // start the selected activity
+                /*i.setPackage(info.activityInfo.packageName);
+                startActivity(i);*/
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     public class FetchListFromServer extends AsyncTask<String, String, String> {
@@ -155,7 +308,7 @@ public class PetList extends BaseActivity {
             try {
                 url = "";
                 url = URLInstance.getUrl();
-                url = url+"?method=showPetSwipeRefreshList&format=json&date="+ URLEncoder.encode(date, "UTF-8")+"";
+                url = url + "?method=showPetSwipeRefreshList&format=json&date=" + URLEncoder.encode(date, "UTF-8") + "";
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
@@ -201,23 +354,24 @@ public class PetList extends BaseActivity {
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             Bundle res = data.getExtras();
             filterState = res.getInt("Filter_State");
-            if(filterState == 0) {
+            if (filterState == 0) {
                 petListSwipeRefreshLayout.setEnabled(true);
                 petLists.clear();
                 adapter.notifyDataSetChanged();
                 url = "";
                 url = URLInstance.getUrl();
-                url = url+"?method=showPetDetails&format=json&currentPage="+current_page+"";
-                recyclerView.addOnScrollListener(new PetFetchListScrollListener(layoutManager, current_page){
+                url = url + "?method=showPetDetails&format=json&currentPage=" + current_page + "";
+                recyclerView.addOnScrollListener(new PetFetchListScrollListener(layoutManager, current_page) {
 
                     @Override
                     public void onLoadMore(int current_page) {
                         url = "";
                         url = URLInstance.getUrl();
-                        url = url+"?method=showPetDetails&format=json&currentPage="+current_page+"";
+                        url = url + "?method=showPetDetails&format=json&currentPage=" + current_page + "";
                         grabURL(url);
                     }
                 });
@@ -230,8 +384,7 @@ public class PetList extends BaseActivity {
                         R.color.refresh_progress_4);
 
                 grabURL(url);
-            }
-            else if(filterState == 1) {
+            } else if (filterState == 1) {
                 petListSwipeRefreshLayout.setEnabled(false);
                 FilterPetListInstance filterPetListInstance = new FilterPetListInstance();
                 filterSelectedInstanceCategoryList = filterPetListInstance.getFilterCategoryListInstance();
@@ -241,7 +394,7 @@ public class PetList extends BaseActivity {
                 filterSelectedInstanceAdoptionAndPriceList = filterPetListInstance.getFilterAdoptionAndPriceListInstance();
                 new FetchFilterPetListFromServer().execute();
 
-                recyclerView.addOnScrollListener(new PetFetchListScrollListener(layoutManager, current_page){
+                recyclerView.addOnScrollListener(new PetFetchListScrollListener(layoutManager, current_page) {
 
                     @Override
                     public void onLoadMore(int current_page) {
@@ -266,6 +419,55 @@ public class PetList extends BaseActivity {
         }
     }
 
+    private void requestReadStoragePermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            ActivityCompat.requestPermissions(PetList.this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    READ_STORAGE_PERMISSION_REQUEST);
+        } else {
+            // Camera permission has not been granted yet. Request it directly.
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    READ_STORAGE_PERMISSION_REQUEST);
+        }
+    }
+
+    private void requestWriteStoragePermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            ActivityCompat.requestPermissions(PetList.this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    WRITE_STORAGE_PERMISSION_REQUEST);
+        } else {
+            // Camera permission has not been granted yet. Request it directly.
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    WRITE_STORAGE_PERMISSION_REQUEST);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+
+        if(requestCode == WRITE_STORAGE_PERMISSION_REQUEST) {
+            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                requestReadStoragePermission();
+            } else {
+                Toast.makeText(PetList.this, "Write storage permission was NOT granted.", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else if(requestCode == READ_STORAGE_PERMISSION_REQUEST) {
+            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                shareList(petListItems);
+            } else {
+                Toast.makeText(PetList.this, "Read storage permission was NOT granted.", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -274,7 +476,7 @@ public class PetList extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if(filterState == 1) {
+        if (filterState == 1) {
             FilterPetListDeleteMemCacheObject filterPetListDeleteMemCacheObject = new FilterPetListDeleteMemCacheObject(PetList.this);
             filterPetListDeleteMemCacheObject.deletePetListFilterObject(email);
             FilterPetListInstance filterPetListInstance = new FilterPetListInstance();

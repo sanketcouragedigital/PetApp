@@ -1,16 +1,28 @@
 package com.couragedigital.peto;
 
+import android.Manifest;
 import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import android.os.StrictMode;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 import com.couragedigital.peto.Adapter.PetMateListAdapter;
 import com.couragedigital.peto.Connectivity.FilterFetchPetMateList;
 import com.couragedigital.peto.Connectivity.FilterPetMateListDeleteMemCacheObject;
@@ -19,19 +31,31 @@ import com.couragedigital.peto.Connectivity.PetMateRefreshFetchList;
 import com.couragedigital.peto.InternetConnectivity.NetworkChangeReceiver;
 import com.couragedigital.peto.Listeners.PetMateFetchListScrollListener;
 import com.couragedigital.peto.SessionManager.SessionManager;
+import com.couragedigital.peto.Shortner.GoogleURLShortener;
 import com.couragedigital.peto.Singleton.FilterPetMateListInstance;
 import com.couragedigital.peto.Singleton.URLInstance;
+import com.couragedigital.peto.model.PetListItems;
 import com.couragedigital.peto.model.PetMateListItems;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 import android.app.ProgressDialog;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 
-public class PetMateList extends BaseActivity {
+public class PetMateList extends BaseActivity implements PetMateListAdapter.OnRecyclerPetMateListShareClickListener {
 
     private static final String TAG = PetMateList.class.getSimpleName();
 
@@ -72,14 +96,27 @@ public class PetMateList extends BaseActivity {
     public List<String> filterSelectedInstanceAgeList = new ArrayList<String>();
     public List<String> filterSelectedInstanceGenderList = new ArrayList<String>();
 
+    CallbackManager callbackManager;
+    private LoginManager facebookLoginManager;
+    List<String> facebookPermissionNeeds;
+
+    private static final int READ_STORAGE_PERMISSION_REQUEST = 2;
+    private static final int WRITE_STORAGE_PERMISSION_REQUEST = 3;
+    private PetMateListItems petMateListItems;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.petmatelist);
 
-        /*petlistView = (ListView) findViewById(R.id.petList);
-        Adapter = new PetListAdapter(this, petLists);
-        petlistView.setAdapter(Adapter);*/
+        FacebookSdk.sdkInitialize(getApplicationContext());
+
+        callbackManager = CallbackManager.Factory.create();
+
+
+        facebookPermissionNeeds = Arrays.asList("publish_actions");
+
+        facebookLoginManager = LoginManager.getInstance();
 
         recyclerView = (RecyclerView) findViewById(R.id.petMateList);
         petMateListSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.petMateListSwipeRefreshLayout);
@@ -113,7 +150,7 @@ public class PetMateList extends BaseActivity {
 
         //recyclerView.fling(0,1);
 
-        adapter = new PetMateListAdapter(petMateLists);
+        adapter = new PetMateListAdapter(petMateLists, this);
         recyclerView.setAdapter(adapter);
 
         progressDialog = new ProgressDialog(this);
@@ -133,6 +170,103 @@ public class PetMateList extends BaseActivity {
 
     public void grabURL(String url) {
         new FetchListFromServer().execute(url);
+    }
+
+    @Override
+    public void onRecyclerPetMateListShareClick(final PetMateListItems petMateListItems) {
+        this.petMateListItems = petMateListItems;
+        if(ActivityCompat.checkSelfPermission(PetMateList.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestWriteStoragePermission();
+        }
+        else {
+            if(ActivityCompat.checkSelfPermission(PetMateList.this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                requestReadStoragePermission();
+            }
+            else {
+                shareList(petMateListItems);
+            }
+        }
+    }
+
+    public void shareList(final PetMateListItems petMateListItems) {
+
+        String petListingTypeString = "";
+        String price = "";
+
+        final String contentURL = "http://storage.couragedigital.com/prod/petProfile.php?method=profileOfPetMate&breed="+petMateListItems.getPetMateBreed()+"&imageURL="+petMateListItems.getFirstImagePath()+"&gender="+petMateListItems.getPetMateGender()+"&year="+petMateListItems.getPetMateAgeInYear()+"&month="+petMateListItems.getPetMateAgeInMonth()+"&petType="+petListingTypeString+"&price="+price+"&mobileNo="+petMateListItems.getPetMatePostOwnerEmail()+"&description="+petMateListItems.getPetMateDescription();
+
+        final String shortURL = GoogleURLShortener.shortner(contentURL);
+
+        final Intent i = new Intent(Intent.ACTION_SEND);
+        i.setType("image/*");
+
+        final List<ResolveInfo> activities = this.getPackageManager().queryIntentActivities(i, 0);
+
+        List<String> appNames = new ArrayList<String>();
+        for (ResolveInfo info : activities) {
+            appNames.add(info.loadLabel(this.getPackageManager()).toString());
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Share using...");
+        builder.setItems(appNames.toArray(new CharSequence[appNames.size()]), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+                ResolveInfo info = activities.get(item);
+                if (info.activityInfo.packageName.equals("com.facebook.katana")) {
+                    facebookLoginManager.logInWithPublishPermissions(PetMateList.this, facebookPermissionNeeds);
+                    if (ShareDialog.canShow(ShareLinkContent.class)) {
+                        ShareLinkContent facebookContent = new ShareLinkContent.Builder()
+                                .setContentTitle("Check out this pet!")
+                                .setContentUrl(Uri.parse(shortURL))
+                                .setImageUrl(Uri.parse(petMateListItems.getFirstImagePath()))
+                                .build();
+                        ShareDialog.show(PetMateList.this, facebookContent);
+                    }
+                }
+                else {
+                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                    StrictMode.setThreadPolicy(policy);
+
+                    URL url = null;
+                    InputStream input = null;
+                    try {
+                        url = new URL(petMateListItems.getFirstImagePath());
+
+                        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                        connection.setDoInput(true);
+                        connection.connect();
+                        input = connection.getInputStream();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    Bitmap immutableBpm = BitmapFactory.decodeStream(input);
+                    Bitmap mutableBitmap = immutableBpm.copy(Bitmap.Config.ARGB_8888, true);
+
+                    String path = MediaStore.Images.Media.insertImage(getContentResolver(), mutableBitmap, "", null);
+                    Uri imagePath = Uri.parse(path);
+
+                    i.putExtra(Intent.EXTRA_TEXT, "Check out this Pet!" + shortURL);
+                    i.putExtra(Intent.EXTRA_STREAM, imagePath);
+                    i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    i.setPackage(info.activityInfo.packageName);
+                    startActivity(i);
+                }
+                /*else if (info.activityInfo.packageName.equals("com.twitter.android")) {
+                    // Twitter was chosen
+                }
+                else if(info.activityInfo.packageName.equals("com.google.android.apps.plus")) {
+                    // Google+ was chosen
+                }*
+                // start the selected activity
+                /*i.setPackage(info.activityInfo.packageName);
+                startActivity(i);*/
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     public class FetchListFromServer extends AsyncTask<String, String, String> {
@@ -267,6 +401,55 @@ public class PetMateList extends BaseActivity {
                 e.printStackTrace();
             }
             return null;
+        }
+    }
+
+    private void requestReadStoragePermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            ActivityCompat.requestPermissions(PetMateList.this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    READ_STORAGE_PERMISSION_REQUEST);
+        } else {
+            // Camera permission has not been granted yet. Request it directly.
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    READ_STORAGE_PERMISSION_REQUEST);
+        }
+    }
+
+    private void requestWriteStoragePermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            ActivityCompat.requestPermissions(PetMateList.this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    WRITE_STORAGE_PERMISSION_REQUEST);
+        } else {
+            // Camera permission has not been granted yet. Request it directly.
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    WRITE_STORAGE_PERMISSION_REQUEST);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+
+        if(requestCode == WRITE_STORAGE_PERMISSION_REQUEST) {
+            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                requestReadStoragePermission();
+            } else {
+                Toast.makeText(PetMateList.this, "Write storage permission was NOT granted.", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else if(requestCode == READ_STORAGE_PERMISSION_REQUEST) {
+            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                shareList(petMateListItems);
+            } else {
+                Toast.makeText(PetMateList.this, "Read storage permission was NOT granted.", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 

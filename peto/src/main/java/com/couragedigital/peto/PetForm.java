@@ -207,9 +207,6 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
                     if(petBreedName2.equals("Other") ){
                         otherBreed.setEnabled(true);
                     }
-                    else {
-                        petBreedName = petBreedName2;
-                    }
                 }
             }
             @Override
@@ -397,7 +394,6 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
             }
             else {
                 progressDialog = ProgressDialog.show(PetForm.this, "", "Uploading file...", true);
-
                 int selectedGender = genderOfPet.getCheckedRadioButtonId();
                 View genderSelected = genderOfPet.findViewById(selectedGender);
                 int selectedGenderId = genderOfPet.indexOfChild(genderSelected);

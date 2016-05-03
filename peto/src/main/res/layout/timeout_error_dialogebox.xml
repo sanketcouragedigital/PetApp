@@ -31,7 +31,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_15sdp"
                     android:layout_centerHorizontal="true"
-                    android:text="Please Cheack Your Internet Connection..."
+                    android:text="Please Check Your Internet Connection..."
                     android:layout_marginTop="@dimen/_10sdp"
                     android:textColor="@color/signinlblcolor"
                     android:id="@+id/timeoutErrorMessage"/>

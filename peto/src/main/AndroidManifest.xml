@@ -192,6 +192,22 @@
 
         <activity android:name=".ClinicMap"
             android:configChanges="orientation" android:screenOrientation="portrait"/>
+		
+		<activity android:name=".Pet_Shop_List"
+                  android:screenOrientation="portrait" android:label="Products"/>
+
+        <activity android:name=".Pet_Shop_List_Details"
+                  android:screenOrientation="portrait" />
+
+        <activity android:name=".MyOrders"
+                  android:screenOrientation="portrait" android:label="Orders"/>
+
+        <activity android:name=".MyOrder_List_Details"
+                  android:screenOrientation="portrait" />
+
+        <activity android:name=".PaymentActivity" />
+        <activity android:name="com.razorpay.CheckoutActivity"
+                  android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
 
         <activity android:name="com.facebook.FacebookActivity"
             android:configChanges=

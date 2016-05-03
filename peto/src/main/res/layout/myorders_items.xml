@@ -2,13 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:card_view="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content">
-
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
 
     <android.support.v7.widget.CardView
-            xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/mylisting_cardview"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
@@ -24,15 +22,15 @@
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/myListingPetListImageAndTittleContentLayout">
+                            android:id="@+id/orderProductListImageAndTittleContentLayout">
 
                 <RelativeLayout
-                        android:id="@+id/myListingImageRelativeLayout"
+                        android:id="@+id/orderProductListImageRelativeLayout"
                         android:layout_width="@dimen/_120sdp"
                         android:layout_height="@dimen/_120sdp">
 
                     <ImageView
-                            android:id="@+id/myListingViewImage"
+                            android:id="@+id/orderProductImage"
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
                             android:adjustViewBounds="true"
@@ -40,96 +38,85 @@
                             android:layout_marginTop="@dimen/_16sdp"
                             android:layout_marginBottom="@dimen/_16sdp"
                             android:layout_marginLeft="@dimen/_16sdp"
-                            android:layout_marginRight="17dp"/>
+                            android:layout_marginRight="@dimen/_17sdp"/>
+
                 </RelativeLayout>
 
                 <RelativeLayout
-                        android:id="@+id/myListingContentRelativeLayout"
+                        android:id="@+id/orderProductListContentRelativeLayout"
                         android:layout_width="fill_parent"
-                        android:layout_height="@dimen/_120sdp"
-                        android:layout_toRightOf="@+id/myListingImageRelativeLayout">
-
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/orderProductListImageRelativeLayout">
                     <TextView
-                            android:id="@+id/myListingViewBreed"
+                            android:id="@+id/orderProductName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_16sdp"
+                            android:layout_marginTop="@dimen/_2sdp"
                             android:layout_marginLeft="@dimen/_16sdp"
-                            android:layout_marginRight="@dimen/_3sdp"
-                            android:textSize="@dimen/petName"
+                            android:text="Product Name"
+                            android:paddingTop="@dimen/_10sdp"
+                            android:textSize="@dimen/_17sdp"
                             android:textStyle="bold"
                             android:textColor="@color/list_pet_origin_text_color"
                             android:ellipsize="end"/>
 
+                    <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:id="@+id/orderProductPostOwner"-->
+                            <!--android:text="Product Owner"-->
+                            <!--android:layout_below="@+id/orderProductName"-->
+                            <!--android:layout_marginTop="@dimen/_2sdp"-->
+                            <!--android:layout_marginLeft="@dimen/_16sdp"-->
+                            <!--android:ellipsize="end"/>-->
+
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/myListingPetAdoptOrSell"
+                            android:id="@+id/orderProductPrice"
+                            android:text="Product Price"
+                            android:layout_below="@+id/orderProductName"
                             android:layout_marginTop="@dimen/_2sdp"
                             android:layout_marginLeft="@dimen/_16sdp"
-                            android:text="FOR ADOPTION"
-                            android:layout_below="@+id/myListingViewBreed"
-                            android:textSize="@dimen/_13sdp"
-                            android:textColor="#da4836"/>
-
+                            android:textSize="@dimen/_13sdp"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/orderDate"
+                            android:text="Order Date"
+                            android:layout_below="@+id/orderProductPrice"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:layout_marginLeft="@dimen/_16sdp"
+                            android:textSize="@dimen/_13sdp"/>
                 </RelativeLayout>
             </RelativeLayout>
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/myListingPetListDescriptionLayout"
+                            android:id="@+id/orderProductListDescriptionLayout"
                             android:layout_marginTop="@dimen/_5sdp"
-                            android:layout_below="@+id/myListingPetListImageAndTittleContentLayout">
+                            android:layout_below="@+id/orderProductListImageAndTittleContentLayout">
 
                 <com.couragedigital.peto.ExpandableText
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/myListingPetListDescription"
+                        android:id="@+id/orderProductListDescription"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:layout_marginBottom="@dimen/_10sdp"
                         android:layout_marginLeft="@dimen/_16sdp"
                         android:layout_marginRight="@dimen/_16sdp"
-                        android:text="This is owner Description"
                         android:ellipsize="end"/>
             </RelativeLayout>
             <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/myListingListItem_view"
-                    android:id="@+id/myListingDividerLine"
-                    android:layout_below="@+id/myListingPetListDescriptionLayout"
+                    android:layout_height="@dimen/_1sdp"
+                    android:id="@+id/orderProductListDividerLine"
                     android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_10sdp"/>
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_below="@+id/orderProductListDescriptionLayout"/>
 
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                          android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal"
-                          android:id="@+id/petMateDetailsLinearLayoutThree"
-                          android:layout_below="@+id/myListingDividerLine"
-                          android:layout_marginTop="@dimen/_4sdp">
-                <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/myListingPetListModifyButton"
-                        android:background="@android:color/transparent"
-                        android:text="Modify"
-                        android:textColor="#CF3E3E"
-                        android:textSize="@dimen/_14sdp"
-                        android:layout_weight="1"/>
-                <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/myListingPetListDelete"
-                        android:background="@android:color/transparent"
-                        android:text="delete"
-                        android:textColor="#CF3E3E"
-                        android:textSize="@dimen/_14sdp"
-                        android:layout_weight="1"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"/>
-            </LinearLayout>
         </RelativeLayout>
-    </android.support.v7.widget.CardView>
 
+    </android.support.v7.widget.CardView>
 </LinearLayout>

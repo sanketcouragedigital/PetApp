@@ -63,4 +63,5 @@ dependencies {
     compile 'com.android.support:multidex:1.0.0'
     compile 'com.facebook.android:facebook-android-sdk:4.+'
     compile 'com.pddstudio:urlshortener:1.0.1'
+	compile 'com.razorpay:android:0.11.1'
 }

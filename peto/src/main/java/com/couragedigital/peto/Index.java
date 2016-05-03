@@ -77,9 +77,9 @@ public class Index extends BaseActivity {
         homeListCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.homeListCoordinatorLayout);
 
         //Home menus Tittle Names
-        final String[] titlename = new String[]{"Pets", "Pet Mate", "Clinics", "Services"};
-        final String[] description = new String[]{"Buy, Adopt or Sell", "Find your pet the perfect partner", "Nearby Pet Clinics", "All kinds of services for your pet"};
-        final int[] background = {R.drawable.pet_view_list, R.drawable.pet_mate, R.drawable.pet_doctors, R.drawable.pet_accessories};
+        final String[] titlename = new String[]{"Pets", "Pet Mate", "Clinics", "Services","Shop",};
+        final String[] description = new String[]{"Buy, Adopt or Sell", "Find your pet the perfect partner", "Nearby Pet Clinics", "All kinds of services for your pet", "Shop products for your pet"};
+        final int[] background = {R.drawable.pet_view_list, R.drawable.pet_mate, R.drawable.pet_doctors, R.drawable.pet_accessories, R.drawable.pet_accessories};
         indexListInfosArray = new ArrayList<IndexListInfo>();
         for (int i = 0; i < titlename.length; i++) {
             IndexListInfo lf = new IndexListInfo();

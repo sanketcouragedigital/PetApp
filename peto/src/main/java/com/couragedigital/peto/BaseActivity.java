@@ -49,9 +49,9 @@ public class BaseActivity extends AppCompatActivity {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         listItems.setLayoutManager(linearLayoutManager);
 
-        final String[] tittle = new String[]{"Home", "Edit Profile", "My Listings", "WishList", "Feedback" , "Share", "LogOut"};
+        final String[] tittle = new String[]{"Home", "Edit Profile", "My Listings", "WishList","My Orders", "Feedback" , "Share", "LogOut"};
 
-        final int[] icons = new int[] {R.drawable.home,R.drawable.profile,R.drawable.mylisting,R.drawable.favourite,0,0,0};
+        final int[] icons = new int[] {R.drawable.home,R.drawable.profile,R.drawable.mylisting,R.drawable.favourite,R.drawable.ordertruck,0,0,0};
         itemArrayList = new ArrayList<DrawerItems>();
         for (int i = 0; i < tittle.length; i++) {
             DrawerItems drawerItems = new DrawerItems();
@@ -60,7 +60,7 @@ public class BaseActivity extends AppCompatActivity {
             itemArrayList.add(drawerItems);
         }
 
-        final int[] selectedicons = new int[] {R.drawable.home_red,R.drawable.profile_red,R.drawable.mylisting_red,R.drawable.favourite_enable,0,0,0};
+        final int[] selectedicons = new int[] {R.drawable.home_red,R.drawable.profile_red,R.drawable.mylisting_red,R.drawable.favourite_enable,R.drawable.ordertruck_red,0,0,0};
         itemSelectedArrayList = new ArrayList<DrawerItems>();
         for (int i = 0; i < tittle.length; i++) {
             DrawerItems drawerItems = new DrawerItems();

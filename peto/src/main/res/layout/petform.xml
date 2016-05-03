@@ -77,41 +77,42 @@
                         android:layout_weight="1.2"/>
             </LinearLayout>
             <LinearLayout android:layout_width="fill_parent"
-                          android:layout_height="wrap_content"
-                          android:id="@+id/petGenderLayout"
-                          android:orientation="horizontal"
-                          android:layout_marginTop="@dimen/_16sdp"
-                          android:layout_below="@id/petAgeLayout">
-                <TextView
-                        android:id="@+id/petGender"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:ems="4"
-                        android:text="Gender"
-                        android:textSize="@dimen/_16sdp"
-                        android:textColor="@color/textColorPrimary"
-                        android:layout_weight="0.6"/>
+                                         android:layout_height="wrap_content"
+                                         android:id="@+id/petGenderLayout"
+                                         android:orientation="horizontal"
+                                         android:layout_marginTop="@dimen/_16sdp"
+                                         android:layout_below="@id/petAgeLayout">
+            <TextView
+                    android:id="@+id/petGender"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="4"
+                    android:text="Gender"
+                    android:textSize="@dimen/_16sdp"
+                    android:textColor="@color/textColorPrimary"
+                    android:layout_weight="0.6"/>
 
-                <RadioGroup
-                        android:id="@+id/genderOfPet"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_weight="1.4">
+            <RadioGroup
+                    android:id="@+id/genderOfPet"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1.4">
 
-                    <RadioButton android:id="@+id/genderMale"
-                                 android:layout_width="0dp"
-                                 android:layout_height="wrap_content"
-                                 android:text="@string/pet_gender_male"
-                                 android:layout_weight="1"/>
-                    <RadioButton android:id="@+id/genderFemale"
-                                 android:layout_width="0dp"
-                                 android:layout_height="wrap_content"
-                                 android:text="@string/pet_gender_female"
-                                 android:layout_weight="1"/>
-                </RadioGroup>
-            </LinearLayout>
+                <RadioButton android:id="@+id/genderMale"
+                             android:layout_width="0dp"
+                             android:layout_height="wrap_content"
+                             android:text="@string/pet_gender_male"
+                             android:layout_weight="1"/>
+
+                <RadioButton android:id="@+id/genderFemale"
+                             android:layout_width="0dp"
+                             android:layout_height="wrap_content"
+                             android:text="@string/pet_gender_female"
+                             android:layout_weight="1"/>
+            </RadioGroup>
+        </LinearLayout>
 
             <LinearLayout android:layout_width="fill_parent"
                           android:layout_height="wrap_content"

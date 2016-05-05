@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+    <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            card_view:cardCornerRadius="@dimen/_1sdp">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/legalMainlayout">
+            // layout1
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/legalPrivacyPolicyLabel"
+                    android:text="Privacy Policy"
+                    android:textStyle="bold"
+                    android:textColor="#CF3E3E"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginLeft="@dimen/_16sdp"
+                    android:layout_marginRight="@dimen/_16sdp"
+                    android:drawableRight="@drawable/for_show"
+
+                     />
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/legalPrivacyPolicyLayout"
+                android:layout_below="@+id/legalPrivacyPolicyLabel"
+                android:layout_marginTop="@dimen/_4sdp">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/legalPrivacyPolicyDetails"
+                        android:text="Legal one all details"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:layout_marginLeft="@dimen/_16sdp"
+                        android:layout_marginRight="@dimen/_16sdp"/>
+            </RelativeLayout>
+            // layout2
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/legalTNCLabel"
+                    android:text="Terms And Condition"
+                    android:textStyle="bold"
+                    android:textColor="#CF3E3E"
+                    android:layout_below="@id/legalPrivacyPolicyLayout"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginLeft="@dimen/_16sdp"
+                    android:layout_marginRight="@dimen/_16sdp"
+                    android:drawableRight="@drawable/for_show"/>
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:id="@+id/legalTNCLayout"
+                            android:layout_below="@+id/legalTNCLabel"
+                            android:layout_marginTop="@dimen/_4sdp">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/legalTNCDetails"
+                        android:text="Legal two all details"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:layout_marginLeft="@dimen/_16sdp"
+                        android:layout_marginRight="@dimen/_16sdp"/>
+            </RelativeLayout>
+            // layout 3
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/legalRefundLabel"
+                    android:text="Refund"
+                    android:textStyle="bold"
+                    android:textColor="#CF3E3E"
+                    android:layout_below="@id/legalTNCLayout"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginLeft="@dimen/_16sdp"
+                    android:layout_marginRight="@dimen/_16sdp"
+                    android:drawableRight="@drawable/for_show"/>
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:id="@+id/legalRefundLayout"
+                            android:layout_below="@+id/legalRefundLabel"
+                            android:layout_marginTop="@dimen/_4sdp">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/legalRefundDetails"
+                        android:text="Legal three all details"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:layout_marginLeft="@dimen/_16sdp"
+                        android:layout_marginRight="@dimen/_16sdp"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</ScrollView>
+</RelativeLayout>

@@ -204,6 +204,8 @@
 
         <activity android:name=".MyOrder_List_Details"
                   android:screenOrientation="portrait" />
+        <activity android:name=".Legal"
+                  android:screenOrientation="portrait" />
 
         <activity android:name=".PaymentActivity" />
         <activity android:name="com.razorpay.CheckoutActivity"

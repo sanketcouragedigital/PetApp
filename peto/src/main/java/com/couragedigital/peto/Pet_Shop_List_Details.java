@@ -91,8 +91,10 @@ public class Pet_Shop_List_Details extends AppCompatActivity implements View.OnC
     private int mutedColor;
 
     LinearLayout productListDetailsLinearLayout;
+    //RelativeLayout productListDetailsLinearLayout;
     RelativeLayout productListDetailsFirstRelativeLayout;
     RelativeLayout productListDetailsSecondRelativeLayout;
+    RelativeLayout shopRelativeLayoutForAddress;
     RelativeLayout shopLayoutForAddress;
 
 
@@ -159,9 +161,11 @@ public class Pet_Shop_List_Details extends AppCompatActivity implements View.OnC
         txt_pincode= (EditText) findViewById(R.id.txtPincode);
 
         productListDetailsLinearLayout = (LinearLayout) findViewById(R.id.productListDetailsLinearLayout);
+        //productListDetailsLinearLayout = (RelativeLayout) findViewById(R.id.detailsRelativeLayout);
         productListDetailsFirstRelativeLayout = (RelativeLayout) findViewById(R.id.productListDetailsFirstRelativeLayout);
         productListDetailsSecondRelativeLayout = (RelativeLayout) findViewById(R.id.productListDetailsSecondRelativeLayout);
-        shopLayoutForAddress= (RelativeLayout) findViewById(R.id.shopLayoutForAddress);
+        shopLayoutForAddress = (RelativeLayout) findViewById(R.id.shopLayoutForAddress);
+
         productListDetailsBuyNowButtonDividerLine=findViewById(R.id.shopDetailsDividerLine);
 
         productBuyNowButton.setOnClickListener(this);
@@ -202,25 +206,33 @@ public class Pet_Shop_List_Details extends AppCompatActivity implements View.OnC
             }
         });
 
-        productListDetailsLinearLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                Integer heightOfFirstRelativeLayout = productListDetailsFirstRelativeLayout.getHeight();
-                Integer heightOfSecondRelativeLayout = productListDetailsSecondRelativeLayout.getHeight();
-
-                productListDetailsLinearLayout.setMinimumHeight(heightOfFirstRelativeLayout + heightOfSecondRelativeLayout + 200);
-            }
-        });
         txt_buildingName.setText(buildingName);
         txt_area.setText(area);
         txt_city.setText(city);
         shopLayoutForAddress.setVisibility(View.GONE);
+
         addresscheckBox.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (((CheckBox) v).isChecked()){
                     shopLayoutForAddress.setVisibility(View.GONE);
+                    productListDetailsLinearLayout.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Integer heightOfFirstRelativeLayout = productListDetailsFirstRelativeLayout.getHeight();
+                            Integer heightOfSecondRelativeLayout = productListDetailsSecondRelativeLayout.getHeight();
+                            productListDetailsLinearLayout.setMinimumHeight(heightOfFirstRelativeLayout - heightOfSecondRelativeLayout - 200);
+                        }
+                    });
                 }else{
                     shopLayoutForAddress.setVisibility(View.VISIBLE);
+                    productListDetailsLinearLayout.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Integer heightOfFirstRelativeLayout = productListDetailsFirstRelativeLayout.getHeight();
+                            Integer heightOfSecondRelativeLayout = productListDetailsSecondRelativeLayout.getHeight();
+                            productListDetailsLinearLayout.setMinimumHeight(heightOfFirstRelativeLayout + heightOfSecondRelativeLayout + 200);
+                        }
+                    });
                 }
             }
         });

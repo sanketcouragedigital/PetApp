@@ -78,7 +78,7 @@
 
                     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
+                                    android:layout_height="wrap_content">
 
                         <TextView
                                 android:layout_width="wrap_content"
@@ -146,7 +146,7 @@
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:id="@+id/productListDetailsSecondRelativeLayout"
                             android:paddingTop="@dimen/_4sdp">
@@ -163,7 +163,8 @@
 
                     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/detailsRelativeLayout">
                         <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -264,6 +265,7 @@
                                 android:layout_below="@+id/productQtyDetailsLayout"
                                 android:text="Description"
                                 android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_marginBottom="@dimen/_10sdp"
                                 android:layout_marginLeft="@dimen/_16sdp"
                                 android:layout_marginRight="@dimen/_16sdp"
                                 android:ellipsize="end"/>
@@ -277,7 +279,7 @@
                                 android:checked="true"
                                 android:layout_marginLeft="@dimen/_10sdp"
                                 android:layout_marginRight="@dimen/_8sdp"
-                                android:layout_marginTop="@dimen/_20sdp"/>
+                                android:layout_marginTop="@dimen/_30sdp"/>
                         <EditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -291,9 +293,10 @@
                                 android:id="@+id/txtPincode"
                                 android:textSize="@dimen/_12sdp"/>
 
+
                         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                       android:layout_width="match_parent"
-                                      android:layout_height="match_parent"
+                                      android:layout_height="wrap_content"
                                       android:orientation="horizontal"
                                       android:id="@+id/shopLayoutForAddress"
                                       android:layout_below="@+id/txtPincode"
@@ -372,6 +375,7 @@
                                     android:textSize="14sp"
                                     android:layout_weight="1"/>
                         </LinearLayout>
+
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>
             </RelativeLayout>

@@ -10,13 +10,16 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import com.couragedigital.peto.Connectivity.UserAllDetails;
 import com.couragedigital.peto.DialogBox.NotifyNetworkConnectionMessage;
 import com.couragedigital.peto.Adapter.HomeListAdapter;
 import com.couragedigital.peto.InternetConnectivity.NetworkChangeReceiver;
+import com.couragedigital.peto.SessionManager.SessionManager;
 import com.couragedigital.peto.model.DialogListInformaion;
 import com.couragedigital.peto.model.IndexListInfo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Index extends BaseActivity {
@@ -28,6 +31,7 @@ public class Index extends BaseActivity {
 
     private static Index instance = new Index();
     static Context context;
+    String email;
 
     public List<DialogListInformaion> dialogListForViewPets = new ArrayList<DialogListInformaion>();
     public List<DialogListInformaion> dialogListForViewPetMets = new ArrayList<DialogListInformaion>();
@@ -43,6 +47,15 @@ public class Index extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.index);
+
+        SessionManager sessionManager = new SessionManager(Index.this);
+        HashMap<String, String> user = sessionManager.getUserDetails();
+        email = user.get(SessionManager.KEY_EMAIL);
+        try {
+            UserAllDetails.fetchContactNo(email);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         ConnectivityManager cm =
                 (ConnectivityManager)Index.this.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -77,9 +90,9 @@ public class Index extends BaseActivity {
         homeListCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.homeListCoordinatorLayout);
 
         //Home menus Tittle Names
-        final String[] titlename = new String[]{"Pets", "Pet Mate", "Clinics", "Services","Shop",};
-        final String[] description = new String[]{"Buy, Adopt or Sell", "Find your pet the perfect partner", "Nearby Pet Clinics", "All kinds of services for your pet", "Shop products for your pet"};
-        final int[] background = {R.drawable.pet_view_list, R.drawable.pet_mate, R.drawable.pet_doctors, R.drawable.pet_accessories, R.drawable.pet_accessories};
+        final String[] titlename = new String[]{"Pets", "Pet Mate", "Clinics", "Services","Shop","Help a pet",};
+        final String[] description = new String[]{"Buy, Adopt or Sell", "Find your pet the perfect partner", "Nearby Pet Clinics", "All kinds of services for your pet", "Shop products for your pet","Donate to NGO"};
+        final int[] background = {R.drawable.pet_view_list, R.drawable.pet_mate, R.drawable.pet_doctors, R.drawable.pet_accessories, R.drawable.pet_accessories,R.drawable.pet_accessories};
         indexListInfosArray = new ArrayList<IndexListInfo>();
         for (int i = 0; i < titlename.length; i++) {
             IndexListInfo lf = new IndexListInfo();

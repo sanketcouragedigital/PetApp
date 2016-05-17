@@ -6,20 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.view.View;
 import android.os.Bundle;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.view.View.OnClickListener;
 import android.util.Log;
 
 import com.couragedigital.peto.Connectivity.SendOrderConfirmationEmail;
-import com.couragedigital.peto.SessionManager.SessionManager;
-import com.couragedigital.peto.Singleton.ContactNoInstance;
 import com.razorpay.Checkout;
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.StringTokenizer;
 
 public class PaymentActivity extends AppCompatActivity
 {

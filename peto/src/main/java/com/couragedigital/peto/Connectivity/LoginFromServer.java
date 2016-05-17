@@ -13,6 +13,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.couragedigital.peto.DialogBox.TimeOut_DialogeBox;
 import com.couragedigital.peto.Index;
+import com.couragedigital.peto.Ngo_NotVerify;
 import com.couragedigital.peto.SessionManager.SessionManager;
 import com.couragedigital.peto.SignIn;
 import com.couragedigital.peto.Singleton.URLInstance;
@@ -29,6 +30,8 @@ public class LoginFromServer {
     private static String signInResponse;
     private static LayoutInflater layoutInflater;
     private String email;
+
+    private String IsNGO;
 
 
 
@@ -89,15 +92,35 @@ public class LoginFromServer {
 
         SessionManager sessionManager;
         sessionManager = new SessionManager(context);
-        if (response.equals("LOGIN_SUCCESS")) {
-            sessionManager.createUserLoginSession("Android Example", email);
+            //normal user login
+        if (response.equals("NOT_NGO")) {
+            //IsNGO="No";
+            sessionManager.createUserLoginSession( email,  "No");
             Intent gotoindexpage = new Intent(context, Index.class);
             gotoindexpage.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             gotoindexpage.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(gotoindexpage);
             Toast.makeText(context, "Logged In.", Toast.LENGTH_SHORT).show();
+        }
+            //ngo login
+        else if (response.equals("APPROVED_NGO")) {
+                //IsNGO="Yes";
+                sessionManager.createUserLoginSession( email, "Yes");
 
-        } else if (response.equals("LOGIN_FAILED")) {
+                Intent gotoindexpage = new Intent(context, Index.class);
+                gotoindexpage.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                gotoindexpage.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(gotoindexpage);
+                Toast.makeText(context, "Logged In.", Toast.LENGTH_SHORT).show();
+        }
+            //ngo not verified
+         else if (response.equals("NOT_APPROVED_NGO")) {
+            Toast.makeText(context, "You are not verified.", Toast.LENGTH_SHORT).show();
+            Intent gotoNgo_NotVerify = new Intent(context, Ngo_NotVerify.class);
+            context.startActivity(gotoNgo_NotVerify);
+        }
+            //wrong credentials
+        else if (response.equals("LOGIN_FAILED")) {
             Intent gotologinpage = new Intent(context, SignIn.class);
             context.startActivity(gotologinpage);
             Toast.makeText(context, "Enter Valid Credentials.", Toast.LENGTH_SHORT).show();

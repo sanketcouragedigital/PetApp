@@ -206,6 +206,23 @@
                   android:screenOrientation="portrait" />
         <activity android:name=".Legal"
                   android:screenOrientation="portrait" />
+        <activity android:name=".Campaign_Form" android:label="Campaign Form"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".Campaign_List" android:label="My Campaign List"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".Campaign_List_Details"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".Campaign_List_ForAll" android:label="Campaign List"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".Campaign_List_ForAll_Details"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".NGO_Donation"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".Campaign_Modify" android:label="Modify Campaign Form"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".Ngo_NotVerify" android:label="Not Verify"
+                  android:screenOrientation="portrait" />
+
 
         <activity android:name=".PaymentActivity" />
         <activity android:name="com.razorpay.CheckoutActivity"

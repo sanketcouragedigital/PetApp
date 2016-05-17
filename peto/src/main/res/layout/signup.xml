@@ -34,12 +34,39 @@
                     android:text="SIGN UP"
                     android:textColor="@color/signinlblcolor"
                     android:id="@+id/signInTextView"/>
+            <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" I am NGO"
+                    android:id="@+id/chkIsNgo"
+                    android:layout_below="@+id/signInTextView"
+                    android:checked="false"
+                    android:layout_marginTop="@dimen/_16sdp"/>
+
+
+                <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textInputLayouNgoUrl"
+                        android:layout_below="@+id/textInputLayoutname"
+                        android:theme="@style/cardTheme">
+                    <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPersonName"
+                            android:hint="NGO Url"
+                            android:id="@+id/txtNgoUrl"
+                            android:textSize="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_16sdp"
+                            android:textColor="@color/edittext"/>
+                </android.support.design.widget.TextInputLayout>
+
 
             <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/textInputLayoutname"
-                    android:layout_below="@+id/signInTextView"
+                    android:layout_below="@+id/chkIsNgo"
                     android:theme="@style/cardTheme">
                 <EditText
                         android:layout_width="match_parent"
@@ -57,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textInputLayoutbuildingname"
                     android:theme="@style/cardTheme"
-                    android:layout_below="@+id/textInputLayoutname">
+                    android:layout_below="@+id/textInputLayouNgoUrl">
                 <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

@@ -11,7 +11,6 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.couragedigital.peto.DialogBox.TimeOut_DialogeBox;
 import com.couragedigital.peto.Pet_Shop_List;
-import com.couragedigital.peto.Singleton.ContactNoInstance;
 import com.couragedigital.peto.Singleton.URLInstance;
 import com.couragedigital.peto.app.AppController;
 import com.couragedigital.peto.model.ProductListItems;

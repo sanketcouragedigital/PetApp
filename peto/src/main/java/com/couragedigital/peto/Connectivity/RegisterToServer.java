@@ -6,6 +6,7 @@ import android.widget.Toast;
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.couragedigital.peto.DialogBox.TimeOut_DialogeBox;
+import com.couragedigital.peto.Ngo_NotVerify;
 import com.couragedigital.peto.SignIn;
 import com.couragedigital.peto.SignUp;
 import com.couragedigital.peto.Singleton.URLInstance;
@@ -27,11 +28,13 @@ public class RegisterToServer {
     private static String userconfirmpassword;
     private static String method;
     private static String format;
+    private static String ngoOrNot;
+    private static String urlOfNgo;
     private static String signupResponse;
     private Response.Listener<JSONObject> listener;
     private Map<String, String> params;
 
-    public static String uploadToRemoteServer(String name, String buildingname, String area, String city, String mobileno, String email, String confirmpassword) throws Exception {
+    public static String uploadToRemoteServer(String name, String buildingname, String area, String city, String mobileno, String email, String confirmpassword,String strIsNgo,String ngoUrl) throws Exception {
         method = "userRegistration";
         format = "json";
         username = name;
@@ -41,6 +44,8 @@ public class RegisterToServer {
         usermobileno = mobileno;
         useremail = email;
         userconfirmpassword = confirmpassword;
+        ngoOrNot = strIsNgo;
+        urlOfNgo = ngoUrl;
         final String URL = URLInstance.getUrl();
         JSONObject params = new JSONObject();
         try {
@@ -53,6 +58,8 @@ public class RegisterToServer {
             params.put("mobileno", usermobileno);
             params.put("email", useremail);
             params.put("confirmpassword", userconfirmpassword);
+            params.put("isNGO", ngoOrNot);
+            params.put("urlOfNGO", urlOfNgo);
         } catch (Exception e) {
 
         }
@@ -94,7 +101,12 @@ public class RegisterToServer {
             Toast.makeText(context, "Successfully Registered.", Toast.LENGTH_SHORT).show();
             Intent gotologinpage = new Intent(context, SignIn.class);
             context.startActivity(gotologinpage);
-        } else if (response.equals("ERROR")) {
+        } else if (response.equals("NGO_DETAILS_SAVED")) {
+            Toast.makeText(context, "We are verifying.After verification, you can login.", Toast.LENGTH_SHORT).show();
+            Intent gotoNgo_NotVerify = new Intent(context, Ngo_NotVerify.class);
+            context.startActivity(gotoNgo_NotVerify);
+        }
+        else if (response.equals("ERROR")) {
             Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
             Intent gotosignupgae = new Intent(context, SignUp.class);
             context.startActivity(gotosignupgae);

@@ -60,11 +60,11 @@ public class Pet_Shop_List extends BaseActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        try {
-            UserAllDetails.fetchContactNo(email);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            UserAllDetails.fetchContactNo(email);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
         url = url+"?method=showShopProductsDetails&format=json&currentPage="+current_page+"";
 
@@ -156,12 +156,12 @@ public class Pet_Shop_List extends BaseActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.petlistmenu, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.petlistmenu, menu);
+//        return true;
+//    }
 
 
 

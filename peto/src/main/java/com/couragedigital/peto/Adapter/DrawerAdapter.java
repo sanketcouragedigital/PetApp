@@ -63,9 +63,9 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.ViewHolder
     @Override
     public int getItemViewType(int position) {
         int viewType = 0;
-        if (position <= 3) {
+        if (position <= 4) {
             viewType = 0;
-        } else if (position > 3) {
+        } else if (position > 4) {
             viewType = 1;
         }
         return viewType;
@@ -102,11 +102,11 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.ViewHolder
             if (drawerListInstance.getDrawerItemListImagePositionInstances() != null) {
                 positionOfItem = drawerListInstance.getDrawerItemListImagePositionInstances();
             }
-            if (i <= 3) {
+            if (i <= 4) {
                 vimageView.setImageResource(itemsList.getIcon());
                 vtextView.setText(itemsList.getTittle());
                 //vimageView.setEnabled(true);
-                if (i == 3) {
+                if (i == 4) {
                     drawerDivider.setVisibility(View.VISIBLE);
                 }
                 if (positionOfItem == 0 && itemsList.getIcon() == R.drawable.home) {
@@ -126,9 +126,13 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.ViewHolder
                 else if (positionOfItem == 3 && itemsList.getIcon() == R.drawable.favourite) {
                     vtextView.setText(itemsSelectedList.getTittle());
                     vimageView.setImageResource(itemsSelectedList.getIcon());
-                    drawerDivider.setVisibility(View.VISIBLE);
                 }
-            } else if (i > 3) {
+                else if (positionOfItem == 4 && itemsList.getIcon() == R.drawable.ordertruck) {
+                    vtextView.setText(itemsSelectedList.getTittle());
+                    vimageView.setImageResource(itemsSelectedList.getIcon());
+//                    drawerDivider.setVisibility(View.VISIBLE);
+                }
+            } else if (i > 4) {
                 vtext.setText(itemsList.getTittle());
             }
         }
@@ -156,10 +160,14 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.ViewHolder
                 v.getContext().startActivity(gotoWishList);
             }
             else if (this.getAdapterPosition() == 4) {
+                Intent gotoMyOrders = new Intent(v.getContext(), MyOrders.class);
+                v.getContext().startActivity(gotoMyOrders);
+            }
+            else if (this.getAdapterPosition() == 5) {
                 Intent gotofeedback = new Intent(v.getContext(), Feedback.class);
                 v.getContext().startActivity(gotofeedback);
             }
-            else if (this.getAdapterPosition() == 5) {
+            else if (this.getAdapterPosition() == 6) {
                 drawer.closeDrawers();
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
@@ -167,10 +175,18 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.ViewHolder
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, sharingText);
                 v.getContext().startActivity(Intent.createChooser(sharingIntent, "Share using"));
             }
-            else if (this.getAdapterPosition() == 6) {
+            else if (this.getAdapterPosition() == 7) {
+                Intent gotoLegal = new Intent(v.getContext(), Legal.class);
+                v.getContext().startActivity(gotoLegal);
+            }
+            else if (this.getAdapterPosition() == 8) {
                 sessionManager = new SessionManager(v.getContext());
                 sessionManager.logoutUser();
-            }
+          }
+//              else if (this.getAdapterPosition() == 9) {
+//                Intent gotoCampaignForm = new Intent(v.getContext(), Campaign_List.class);
+//                v.getContext().startActivity(gotoCampaignForm);
+//            }
             drawerListInstance.setDrawerItemListImagePositionInstances(positionOfItem);
             notifyDataSetChanged();
         }

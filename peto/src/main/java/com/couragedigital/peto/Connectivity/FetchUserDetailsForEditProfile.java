@@ -71,6 +71,7 @@ public class FetchUserDetailsForEditProfile {
                                         editProfileDetailsInstance.setMobileNo(obj.getString("mobileno"));
                                         editProfileDetailsInstance.setEmail(obj.getString("email"));
                                         editProfileDetailsInstance.setPassword(obj.getString("password"));
+                                        editProfileDetailsInstance.setNgoUrlInstance(obj.getString("ngo_url"));
 
                                     } catch (JSONException e) {
                                         e.printStackTrace();

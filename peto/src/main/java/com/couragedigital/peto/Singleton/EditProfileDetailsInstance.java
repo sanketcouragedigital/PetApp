@@ -9,6 +9,8 @@ public class EditProfileDetailsInstance {
     private static String mobileNoInstance;
     private static String emailInstance;
     private static String passwordInstance;
+    private static String ngoUrlInstance;
+
 
     public static String  getName() {
         return nameInstance;
@@ -45,4 +47,12 @@ public class EditProfileDetailsInstance {
     } public static void setPassword(String password) {
         passwordInstance = password;
     }
+
+    public static String  getNgoUrlInstance() {
+        return ngoUrlInstance;
+    } public static void setNgoUrlInstance(String ngoUrl) {
+        ngoUrlInstance = ngoUrl;
+    }
+
+
 }

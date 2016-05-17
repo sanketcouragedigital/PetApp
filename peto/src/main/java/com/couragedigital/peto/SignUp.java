@@ -4,11 +4,16 @@ import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -25,9 +30,12 @@ public class SignUp extends AppCompatActivity {
     private static EditText txt_email;
     private static EditText txt_password;
     private static EditText txt_confirmpassword;
+    private static EditText txt_ngoUrl;
     private static Button btn_signin;
     private static Button btn_signup;
     private static Button btn_cancel;
+    CheckBox isNgoCheckbox;
+    TextInputLayout ngoUrlLayout;
 
     String name;
     String buildingname;
@@ -37,6 +45,8 @@ public class SignUp extends AppCompatActivity {
     String email;
     String password;
     String confirmpassword;
+    String ngoUrl;
+    String strIsNgo;
     ProgressDialog progressDialog = null;
 
     String conf_password;
@@ -46,9 +56,64 @@ public class SignUp extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
+
+        isNgoCheckbox = (CheckBox) findViewById(R.id.chkIsNgo);
+        txt_ngoUrl= (EditText) findViewById(R.id.txtNgoUrl);
+        ngoUrlLayout =(TextInputLayout) findViewById(R.id.textInputLayouNgoUrl);
+
+        ngoUrlLayout.setVisibility(View.GONE);
+        isNgoCheckbox.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (((CheckBox) v).isChecked()){
+                    ngoUrlLayout.setVisibility(View.VISIBLE);
+                    strIsNgo="Yes";
+
+                }else{
+                    ngoUrlLayout.setVisibility(View.GONE);
+                    ngoUrl="";
+                    strIsNgo="";
+
+                }
+            }
+        });
+        txt_ngoUrl.addTextChangedListener(ngoUrlChangeListener);
         ButtonSignUp();
         ButtonCancel();
     }
+    private TextWatcher ngoUrlChangeListener = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            new GetNgoUrl().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
+        }
+    };
+    public class GetNgoUrl extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ngoUrl = txt_ngoUrl.getText().toString();
+                    }
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+
     public static boolean isValidEmail(String emailForValidation) {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(emailForValidation).matches();
 
@@ -67,6 +132,7 @@ public class SignUp extends AppCompatActivity {
         txt_password = (EditText) findViewById(R.id.txtpassword);
         txt_confirmpassword = (EditText) findViewById(R.id.txtconfirmpassword);
         btn_signup = (Button) findViewById(R.id.btnsignup);
+
 
         btn_signup.setOnClickListener(
                 new View.OnClickListener() {
@@ -91,16 +157,22 @@ public class SignUp extends AppCompatActivity {
                         password = txt_password.getText().toString();
                         conf_password = txt_confirmpassword.getText().toString();
 
-                        if (txt_name.getText().toString().isEmpty() || txt_buildingname.getText().toString().isEmpty() || txt_area.getText().toString().isEmpty() || txt_city.getText().toString().isEmpty() || txt_mobileno.getText().toString().isEmpty() || txt_email.getText().toString().isEmpty() || txt_confirmpassword.getText().toString().isEmpty() ) {
+
+                        if(isNgoCheckbox.isChecked() && txt_ngoUrl.getText().toString().isEmpty()){
+                            Toast.makeText(SignUp.this, "Enter Url", Toast.LENGTH_LONG).show();
+                        }
+                        else if (txt_name.getText().toString().isEmpty() || txt_buildingname.getText().toString().isEmpty() || txt_area.getText().toString().isEmpty() || txt_city.getText().toString().isEmpty() || txt_mobileno.getText().toString().isEmpty() || txt_email.getText().toString().isEmpty() || txt_confirmpassword.getText().toString().isEmpty() ) {
                             Toast.makeText(SignUp.this, "All Details are neccessory", Toast.LENGTH_LONG).show();
                             //Snackbar.make(SignIn.this,"Enter Username & Password",Snackbar.LENGTH_LONG).show();
                         } else {
+
                             if( (mobileno.length() < 6 || mobileno.length() > 13) ) {
                                 Toast.makeText(SignUp.this, "Mobile No is not valid", Toast.LENGTH_LONG).show();
                             }
                             else if(!isValidEmail(email)) {
                                 Toast.makeText(SignUp.this, "Email is not valid", Toast.LENGTH_LONG).show();
                             }
+
                             else if(password.equals(conf_password)) {
                                 progressDialog = new ProgressDialog(SignUp.this);
                                 progressDialog.setMessage("Registering Data Wait...");
@@ -109,7 +181,8 @@ public class SignUp extends AppCompatActivity {
                                     PasswordConverter passwordConverter=new PasswordConverter();
                                     confirmpassword = passwordConverter.ConvertPassword(conf_password);
                                     RegisterToServer registerToServer = new RegisterToServer(SignUp.this);
-                                    registerToServer.uploadToRemoteServer(name, buildingname, area, city, mobileno, email, confirmpassword);
+
+                                    registerToServer.uploadToRemoteServer(name, buildingname, area, city, mobileno, email, confirmpassword,strIsNgo,ngoUrl);
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                     progressDialog.dismiss();

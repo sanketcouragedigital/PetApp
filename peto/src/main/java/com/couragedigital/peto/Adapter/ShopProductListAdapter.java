@@ -1,36 +1,21 @@
 package com.couragedigital.peto.Adapter;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.os.AsyncTask;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.BitmapImageViewTarget;
-import com.couragedigital.peto.Connectivity.ShopProductFetchList;
-import com.couragedigital.peto.Connectivity.UserAllDetails;
-import com.couragedigital.peto.Connectivity.WishListPetListAdd;
-import com.couragedigital.peto.Connectivity.WishListPetListDelete;
 import com.couragedigital.peto.ExpandableText;
-import com.couragedigital.peto.PetListDetails;
 import com.couragedigital.peto.Pet_Shop_List_Details;
 import com.couragedigital.peto.R;
 import com.couragedigital.peto.SessionManager.SessionManager;
-import com.couragedigital.peto.Singleton.UserPetListWishList;
 import com.couragedigital.peto.app.AppController;
-import com.couragedigital.peto.model.PetListItems;
 import com.couragedigital.peto.model.ProductListItems;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 

@@ -21,7 +21,6 @@ import com.couragedigital.peto.ExpandableText;
 import com.couragedigital.peto.PetMateListDetails;
 import com.couragedigital.peto.SessionManager.SessionManager;
 import com.couragedigital.peto.Singleton.UserPetMateListWishList;
-import com.couragedigital.peto.model.PetListItems;
 import com.couragedigital.peto.model.PetMateListItems;
 import com.couragedigital.peto.R;
 import com.couragedigital.peto.app.AppController;

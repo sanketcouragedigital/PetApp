@@ -22,14 +22,11 @@ import android.widget.*;
 import com.bumptech.glide.Glide;
 import com.couragedigital.peto.InternetConnectivity.NetworkChangeReceiver;
 import com.couragedigital.peto.SessionManager.SessionManager;
-import com.couragedigital.peto.Singleton.ContactNoInstance;
 
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class MyOrder_List_Details extends AppCompatActivity implements View.OnClickListener {
     String firstImagePath = "";

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -27,6 +28,7 @@ public class EditProfile extends BaseActivity  implements View.OnClickListener{
     private static EditText txt_mobileno;
     private static EditText txt_email;
     private static EditText txt_confirmpassword;
+    private static EditText txt_NgoUrl;
     private static Button btn_signup;
     private static Button btn_cancel;
 
@@ -42,8 +44,11 @@ public class EditProfile extends BaseActivity  implements View.OnClickListener{
     String confirmpassword;
     String oldconfirmpassword;
     String convertedconfirmpassword;
+    String NgoUrl;
+    String Isngo;
     ProgressDialog progressDialog = null;
     String conf_password;
+    TextInputLayout ngoUrlLayout;
 
     View v;
     String urlForFetch;
@@ -58,6 +63,7 @@ public class EditProfile extends BaseActivity  implements View.OnClickListener{
         SessionManager sessionManager = new SessionManager(EditProfile.this);
         HashMap<String, String> user = sessionManager.getUserDetails();
         oldEmail = user.get(SessionManager.KEY_EMAIL);
+        Isngo= user.get(SessionManager.KEY_NGO);
 
         EditProfileDetailsInstance editProfileDetailsInstance= new EditProfileDetailsInstance();
         name=editProfileDetailsInstance.getName();
@@ -67,6 +73,7 @@ public class EditProfile extends BaseActivity  implements View.OnClickListener{
         mobileno=editProfileDetailsInstance.getMobileNo();
         email=editProfileDetailsInstance.getEmail();
         oldconfirmpassword=editProfileDetailsInstance.getPassword();
+        NgoUrl=editProfileDetailsInstance.getNgoUrlInstance();
 
         txt_name = (EditText) findViewById(R.id.txtNameEditProfile);
         txt_buildingname = (EditText) findViewById(R.id.txtBuildingnameEditProfile);
@@ -75,9 +82,12 @@ public class EditProfile extends BaseActivity  implements View.OnClickListener{
         txt_mobileno = (EditText) findViewById(R.id.txtMobileNoEditProfile);
         txt_email = (EditText) findViewById(R.id.txtEmailEditProfile);
         txt_confirmpassword = (EditText) findViewById(R.id.txtConfirmPasswordEditProfile);
+        txt_NgoUrl = (EditText) findViewById(R.id.txtNgoUrlEditProfile);
         btn_signup = (Button) findViewById(R.id.btnSignUpEditProfile);
         btn_cancel = (Button) findViewById(R.id.btnCancelEditProfile);
         labelForOldPassword =(CheckBox) this.findViewById(R.id.oldPasswordCheckBox);
+        ngoUrlLayout =(TextInputLayout) findViewById(R.id.textInputLayoutNgoUrl);
+
 
         txt_name.setText(name);
         txt_buildingname.setText(buildingname);
@@ -86,6 +96,13 @@ public class EditProfile extends BaseActivity  implements View.OnClickListener{
         txt_mobileno.setText(mobileno);
         txt_email.setText(email);
         //txt_confirmpassword.setText(oldconfirmpassword);
+
+        if(Isngo.equals("Yes")){
+            ngoUrlLayout.setVisibility(View.VISIBLE);
+            txt_NgoUrl.setText(NgoUrl);
+        }else{
+            ngoUrlLayout.setVisibility(View.GONE);
+        }
 
         btn_signup.setOnClickListener(this);
         btn_cancel.setOnClickListener(this);
@@ -132,6 +149,7 @@ public class EditProfile extends BaseActivity  implements View.OnClickListener{
             mobileno = txt_mobileno.getText().toString();
             email = txt_email.getText().toString();
             conf_password = txt_confirmpassword.getText().toString();
+            NgoUrl= txt_NgoUrl.getText().toString();
 
             if (txt_name.getText().toString().isEmpty() || txt_buildingname.getText().toString().isEmpty() || txt_area.getText().toString().isEmpty() || txt_city.getText().toString().isEmpty() || txt_mobileno.getText().toString().isEmpty() || txt_email.getText().toString().isEmpty() ) {
                 Toast.makeText(EditProfile.this, "All Details are neccessory", Toast.LENGTH_LONG).show();
@@ -150,7 +168,7 @@ public class EditProfile extends BaseActivity  implements View.OnClickListener{
                         confirmpassword = passwordConverter.ConvertPassword(conf_password);
                     }
                     SaveEditProfile saveEditProfile = new SaveEditProfile(EditProfile.this);
-                    saveEditProfile.uploadEditedDetails(name, buildingname, area, city, mobileno, email,oldEmail, confirmpassword);
+                    saveEditProfile.uploadEditedDetails(name, buildingname, area, city, mobileno, email,oldEmail, confirmpassword,NgoUrl);
                 } catch (Exception e) {
                     e.printStackTrace();
                     progressDialog.dismiss();

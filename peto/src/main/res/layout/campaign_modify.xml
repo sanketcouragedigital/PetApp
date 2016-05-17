@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/modifycampaignFromScrollView">
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/modifycampaignFormLayout"
+                        android:focusable="true"
+                        android:paddingLeft="@dimen/_16sdp"
+                        android:paddingRight="@dimen/_16sdp"
+                        android:focusableInTouchMode="true">
+            <EditText
+                    android:id="@+id/modifytxtNGOName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="NGO Name"
+                    android:textSize="@dimen/_16sdp"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:textColor="@color/textColorPrimary"
+                    android:layout_weight="0.52"/>
+            <EditText
+                    android:id="@+id/modifytxtCampaignName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="Campaign Name"
+                    android:layout_below="@+id/modifytxtNGOName"
+                    android:textSize="@dimen/_16sdp"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:textColor="@color/textColorPrimary"
+                    android:layout_weight="0.52"/>
+            <EditText
+                    android:id="@+id/modifytxtDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:hint="Description"
+                    android:layout_below="@+id/modifytxtCampaignName"
+                    android:textSize="@dimen/_16sdp"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:textColor="@color/textColorPrimary"
+                    android:layout_weight="0.52"/>
+            <EditText
+                    android:id="@+id/modifytxtCampaignActualAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:hint="Campaign Actual Amount"
+                    android:layout_below="@+id/modifytxtDescription"
+                    android:textSize="@dimen/_16sdp"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:textColor="@color/textColorPrimary"
+                    android:layout_weight="0.52"/>
+            <CheckBox
+                    android:id="@+id/modifychkMinmumAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Want To Set Minimum Amount"
+                    android:checked="false"
+                    android:layout_below="@+id/modifytxtCampaignActualAmount"
+                    android:layout_marginTop="@dimen/_16sdp"/>
+            <EditText
+                    android:id="@+id/modifytxtMinmumAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:hint="Campaign Miminum Amount"
+                    android:layout_below="@+id/modifychkMinmumAmount"
+                    android:textSize="@dimen/_16sdp"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:textColor="@color/textColorPrimary"
+                    android:layout_weight="0.52"/>
+            <EditText
+                    android:id="@+id/modifytxtCampaignLastDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    android:hint="Campign Close Date (01-01-2016)"
+                    android:layout_below="@+id/modifytxtMinmumAmount"
+                    android:textSize="@dimen/_16sdp"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:textColor="@color/textColorPrimary"
+                    android:layout_weight="0.52"/>
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Modify"
+                    android:textColor="@color/btnsignuptext"
+                    android:background="@null"
+                    android:id="@+id/modifyCampaignbtn"
+                    android:theme="@style/Base.Theme.AppCompat"
+                    android:layout_below="@+id/modifytxtCampaignLastDate"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_10sdp"/>
+
+            <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+                          <!--android:orientation="horizontal"-->
+                          <!--android:layout_width="match_parent"-->
+                          <!--android:layout_height="match_parent"-->
+                          <!--android:layout_marginBottom="@dimen/_30sdp"-->
+                          <!--android:layout_below="@+id/selectImage">-->
+                <!--<ImageView-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:id="@+id/firstImageOfPet"-->
+                        <!--android:layout_marginTop="@dimen/_10sdp"-->
+                        <!--android:adjustViewBounds="true"-->
+                        <!--android:scaleType="fitCenter"-->
+                        <!--android:layout_weight="1"/>-->
+                <!--<ImageView-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:id="@+id/secondImageOfPet"-->
+                        <!--android:layout_marginTop="@dimen/_10sdp"-->
+                        <!--android:layout_marginLeft="@dimen/_3sdp"-->
+                        <!--android:layout_marginRight="@dimen/_3sdp"-->
+                        <!--android:adjustViewBounds="true"-->
+                        <!--android:scaleType="fitCenter"-->
+                        <!--android:layout_weight="1"/>-->
+                <!--<ImageView-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:id="@+id/thirdImageOfPet"-->
+                        <!--android:layout_marginTop="@dimen/_10sdp"-->
+                        <!--android:adjustViewBounds="true"-->
+                        <!--android:scaleType="fitCenter"-->
+                        <!--android:layout_weight="1"/>-->
+            <!--</LinearLayout>-->
+        </RelativeLayout>
+    </ScrollView>
+</android.support.design.widget.CoordinatorLayout>
+

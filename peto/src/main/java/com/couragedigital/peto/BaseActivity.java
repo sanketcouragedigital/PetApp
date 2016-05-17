@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.*;
+import com.couragedigital.peto.Adapter.DrawerAdapterForNgo;
 import com.couragedigital.peto.SessionManager.SessionManager;
 import com.couragedigital.peto.Adapter.DrawerAdapter;
 import com.couragedigital.peto.model.DrawerItems;
@@ -18,9 +19,9 @@ import com.couragedigital.peto.model.DrawerItems;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class BaseActivity extends AppCompatActivity {
-
 
     Toolbar toolbar;
     ActionBarDrawerToggle drawerToggle;
@@ -34,9 +35,14 @@ public class BaseActivity extends AppCompatActivity {
     DrawerLayout drawer;
     FrameLayout frameLayout;
     LinearLayout linearLayout;
+    DrawerAdapterForNgo drawerAdapterForNgo;
     DrawerAdapter drawerAdapter;
+    String isNgo;
 
     public ArrayList<DrawerItems> itemArrayList;
+    public ArrayList<DrawerItems> itemSelectedArrayListForNgo;
+
+    public ArrayList<DrawerItems> itemArrayListForNgo;
     public ArrayList<DrawerItems> itemSelectedArrayList;
 
     @Override
@@ -49,32 +55,65 @@ public class BaseActivity extends AppCompatActivity {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         listItems.setLayoutManager(linearLayoutManager);
 
-        final String[] tittle = new String[]{"Home", "Edit Profile", "My Listings", "WishList","My Orders", "Feedback" , "Share", "LogOut"};
+        SessionManager sessionManagerNgo = new SessionManager(BaseActivity.this);
+        HashMap<String, String> userOrNgo = sessionManagerNgo.getUserDetails();
+        isNgo = userOrNgo.get(SessionManager.KEY_NGO);
 
-        final int[] icons = new int[] {R.drawable.home,R.drawable.profile,R.drawable.mylisting,R.drawable.favourite,R.drawable.ordertruck,0,0,0};
-        itemArrayList = new ArrayList<DrawerItems>();
-        for (int i = 0; i < tittle.length; i++) {
-            DrawerItems drawerItems = new DrawerItems();
-            drawerItems.setTittle(tittle[i]);
-            drawerItems.setIcons(icons[i]);
-            itemArrayList.add(drawerItems);
-        }
+        //for ngo user
+        if(isNgo.equals("Yes"))
+        {
+            final String[] tittleForNgo = new String[]{"Home", "Edit Profile", "My Listings", "WishList","My Orders", "Feedback" , "Share","Legal" , "LogOut","My Campaigns"};
 
-        final int[] selectedicons = new int[] {R.drawable.home_red,R.drawable.profile_red,R.drawable.mylisting_red,R.drawable.favourite_enable,R.drawable.ordertruck_red,0,0,0};
-        itemSelectedArrayList = new ArrayList<DrawerItems>();
-        for (int i = 0; i < tittle.length; i++) {
-            DrawerItems drawerItems = new DrawerItems();
-            drawerItems.setTittle(tittle[i]);
-            drawerItems.setIcons(selectedicons[i]);
-            itemSelectedArrayList.add(drawerItems);
+            final int[] iconsForNgo = new int[] {R.drawable.home,R.drawable.profile,R.drawable.mylisting,R.drawable.favourite,R.drawable.ordertruck,0,0,0,0,0};
+            itemArrayListForNgo = new ArrayList<DrawerItems>();
+            for (int i = 0; i < tittleForNgo.length; i++) {
+                DrawerItems drawerItems = new DrawerItems();
+                drawerItems.setTittle(tittleForNgo[i]);
+                drawerItems.setIcons(iconsForNgo[i]);
+                itemArrayListForNgo.add(drawerItems);
+            }
+
+            final int[] selectediconsForNgoForNgo = new int[] {R.drawable.home_red,R.drawable.profile_red,R.drawable.mylisting_red,R.drawable.favourite_enable,R.drawable.ordertruck_red,0,0,0,0,0};
+            itemSelectedArrayListForNgo = new ArrayList<DrawerItems>();
+            for (int i = 0; i < tittleForNgo.length; i++) {
+                DrawerItems drawerItems = new DrawerItems();
+                drawerItems.setTittle(tittleForNgo[i]);
+                drawerItems.setIcons(selectediconsForNgoForNgo[i]);
+                itemSelectedArrayListForNgo.add(drawerItems);
+            }
+            drawerAdapterForNgo = new DrawerAdapterForNgo(itemArrayListForNgo,itemSelectedArrayListForNgo ,drawer);
+            getLayoutInflater().inflate(layoutResID, frameLayout, true);
+            getLayoutInflater().inflate(layoutResID, linearLayout, true);
+            drawer.setClickable(true);
+            drawerAdapterForNgo.notifyDataSetChanged();
+            listItems.setAdapter(drawerAdapterForNgo);
         }
-//
-        drawerAdapter = new DrawerAdapter(itemArrayList,itemSelectedArrayList ,drawer);
-        getLayoutInflater().inflate(layoutResID, frameLayout, true);
-        getLayoutInflater().inflate(layoutResID, linearLayout, true);
-        drawer.setClickable(true);
-        drawerAdapter.notifyDataSetChanged();
-        listItems.setAdapter(drawerAdapter);
+        // for normal user
+        else {
+            final String[] tittle = new String[]{"Home", "Edit Profile", "My Listings", "WishList","My Orders", "Feedback" , "Share","Legal" , "LogOut"};
+            final int[] icons = new int[] {R.drawable.home,R.drawable.profile,R.drawable.mylisting,R.drawable.favourite,R.drawable.ordertruck,0,0,0,0};
+            itemArrayList = new ArrayList<DrawerItems>();
+            for (int i = 0; i < tittle.length; i++) {
+                DrawerItems drawerItems = new DrawerItems();
+                drawerItems.setTittle(tittle[i]);
+                drawerItems.setIcons(icons[i]);
+                itemArrayList.add(drawerItems);
+            }
+            final int[] selectedicons = new int[] {R.drawable.home_red,R.drawable.profile_red,R.drawable.mylisting_red,R.drawable.favourite_enable,R.drawable.ordertruck_red,0,0,0,0};
+            itemSelectedArrayList = new ArrayList<DrawerItems>();
+            for (int i = 0; i < tittle.length; i++) {
+                DrawerItems drawerItems = new DrawerItems();
+                drawerItems.setTittle(tittle[i]);
+                drawerItems.setIcons(selectedicons[i]);
+                itemSelectedArrayList.add(drawerItems);
+            }
+            drawerAdapter = new DrawerAdapter(itemArrayList,itemSelectedArrayList ,drawer);
+            getLayoutInflater().inflate(layoutResID, frameLayout, true);
+            getLayoutInflater().inflate(layoutResID, linearLayout, true);
+            drawer.setClickable(true);
+            drawerAdapter.notifyDataSetChanged();
+            listItems.setAdapter(drawerAdapter);
+        }
 
         toolbar = (Toolbar) drawer.findViewById(R.id.app_bar);
         if (toolbar != null) {
@@ -101,7 +140,7 @@ public class BaseActivity extends AppCompatActivity {
         lblEmail = (TextView) findViewById(R.id.lblemail);
 
         HashMap<String, String> user = sessionManager.getUserDetails();
-        String name = user.get(SessionManager.KEY_NAME); // get name
+
         String email = user.get(SessionManager.KEY_EMAIL);  // get email
      //   lblName.setText(name);   // Show user data on activity
         lblEmail.setText(email);

@@ -26,7 +26,6 @@ import com.couragedigital.peto.Connectivity.Generate_Order;
 import com.couragedigital.peto.InternetConnectivity.NetworkChangeReceiver;
 import com.couragedigital.peto.SessionManager.SessionManager;
 import com.couragedigital.peto.Singleton.ContactNoInstance;
-import com.couragedigital.peto.model.PetListItems;
 
 import java.io.*;
 import java.net.MalformedURLException;

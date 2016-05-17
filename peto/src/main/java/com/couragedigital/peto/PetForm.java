@@ -346,7 +346,6 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
         v.setEnabled(false);
 
         new Handler().postDelayed(new Runnable() {
-
             @Override
             public void run() {
                 v.setEnabled(true);

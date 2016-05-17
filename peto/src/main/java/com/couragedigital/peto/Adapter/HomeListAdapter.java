@@ -145,6 +145,10 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                 Intent gotoShopProduct = new Intent(v.getContext(), Pet_Shop_List.class);
                 v.getContext().startActivity(gotoShopProduct);
             }
+            if (position == 5) {
+                Intent gotoCampaign = new Intent(v.getContext(), Campaign_List_ForAll.class);
+                v.getContext().startActivity(gotoCampaign);
+            }
         }
 
     }

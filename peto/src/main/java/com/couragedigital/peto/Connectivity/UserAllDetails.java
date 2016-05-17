@@ -39,6 +39,9 @@ public class UserAllDetails {
                                     contactNoInstance.setArea(obj.getString("area"));
                                     contactNoInstance.setCity(obj.getString("city"));
                                     contactNoInstance.setMobileNo(obj.getString("mobileno"));
+                                    contactNoInstance.seIs_Ngo(obj.getString("is_ngo"));
+                                    contactNoInstance.seIs_Verified(obj.getString("is_verified"));
+
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }

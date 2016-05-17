@@ -60,9 +60,26 @@
             <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textInputLayoutbuildingname"
+                    android:id="@+id/textInputLayoutNgoUrl"
                     android:theme="@style/cardTheme"
                     android:layout_below="@+id/textInputLayoutname">
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:hint="NGO URL"
+                        android:id="@+id/txtNgoUrlEditProfile"
+                        android:textSize="@dimen/_15sdp"
+                        android:textColor="@color/edittext"
+                        android:layout_marginTop="@dimen/_10sdp"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textInputLayoutbuildingname"
+                    android:theme="@style/cardTheme"
+                    android:layout_below="@+id/textInputLayoutNgoUrl">
                 <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

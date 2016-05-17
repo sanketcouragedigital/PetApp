@@ -20,7 +20,6 @@ import com.couragedigital.peto.SHA_256.PasswordConverter;
 
 public class SignIn extends AppCompatActivity {
 
-
     private static EditText username;
     private static EditText password;
     private static Button signin_btn;

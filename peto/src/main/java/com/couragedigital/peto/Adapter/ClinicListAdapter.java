@@ -24,7 +24,6 @@ import java.util.List;
 
 public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.ViewHolder> {
 
-
     private int current_page = 1;
     private String url;
     String clinicId;

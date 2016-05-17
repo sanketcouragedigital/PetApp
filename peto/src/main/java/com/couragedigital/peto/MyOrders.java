@@ -105,12 +105,12 @@ public class MyOrders extends BaseActivity
     }
 
     // to add symbol on app bar [like filter symbol]
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.petlistmenu, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.petlistmenu, menu);
+//        return true;
+//    }
 
 
 

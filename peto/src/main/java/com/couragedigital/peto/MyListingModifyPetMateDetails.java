@@ -98,9 +98,7 @@ public class MyListingModifyPetMateDetails extends BaseActivity implements View.
     @Override
     public void onClick(final View v) {
         v.setEnabled(false);
-
         new Handler().postDelayed(new Runnable() {
-
             @Override
             public void run() {
                 v.setEnabled(true);

@@ -123,7 +123,6 @@ public class SendOrderConfirmationEmail {
             Toast.makeText(context, "Your transaction succsessfully done.", Toast.LENGTH_SHORT).show();
             Intent gotoPet_Shop_List = new Intent(context, Pet_Shop_List.class);
             context.startActivity(gotoPet_Shop_List);
-
         } else {
             Toast.makeText(context, "Please try again later.", Toast.LENGTH_SHORT).show();
         }

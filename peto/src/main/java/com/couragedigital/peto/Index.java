@@ -63,7 +63,10 @@ public class Index extends BaseActivity {
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         boolean isConnected = activeNetwork != null &&
                 activeNetwork.isConnected();
-        if(isConnected) {
+        if(isConnected && email == null) {
+            isCheckLogin();
+        }
+        else if(isConnected && email != null) {
             homeListMenu();
             isCheckLogin();
         }
@@ -90,9 +93,9 @@ public class Index extends BaseActivity {
         homeListCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.homeListCoordinatorLayout);
 
         //Home menus Tittle Names
-        final String[] titlename = new String[]{"Pets", "Pet Mate", "Clinics", "Services","Shop","Help a pet",};
-        final String[] description = new String[]{"Buy, Adopt or Sell", "Find your pet the perfect partner", "Nearby Pet Clinics", "All kinds of services for your pet", "Shop products for your pet","Donate to NGO"};
-        final int[] background = {R.drawable.pet_view_list, R.drawable.pet_mate, R.drawable.pet_doctors, R.drawable.pet_accessories, R.drawable.pet_accessories,R.drawable.pet_accessories};
+        final String[] titlename = new String[]{"Pets","Shop","Help a pet","Services", "Clinics","Pet Mate"};
+        final String[] description = new String[]{"Buy, Adopt or Sell", "Shop products for your pet","Donate to NGO", "All kinds of services for your pet", "Nearby Pet Clinics","Find your pet the perfect partner"};
+        final int[] background = {R.drawable.pet_view_list, R.drawable.pet_shop, R.drawable.pet_ngo, R.drawable.pet_services, R.drawable.pet_doctors,R.drawable.pet_mate};
         indexListInfosArray = new ArrayList<IndexListInfo>();
         for (int i = 0; i < titlename.length; i++) {
             IndexListInfo lf = new IndexListInfo();

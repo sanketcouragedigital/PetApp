@@ -301,15 +301,14 @@ public class Campaign_List_ForAll_Details extends AppCompatActivity implements V
     public void onClick(View v) {
         danationAmount = txt_doantionAmount.getText().toString();
 
-        int donatedAmount = Integer.parseInt(danationAmount);
-        int minAmount = Integer.parseInt(minimumAmounOfCampaign);
-
         if(v.getId() == R.id.donateNowButtonForAll) {
 
             if(danationAmount == null || danationAmount.isEmpty()) {
                 Toast.makeText(Campaign_List_ForAll_Details.this, "Please Enter Amount.", Toast.LENGTH_LONG).show();
             }
             else{
+                int donatedAmount = Integer.parseInt(danationAmount);
+                int minAmount = Integer.parseInt(minimumAmounOfCampaign);
                 if(donatedAmount < minAmount  || donatedAmount==0){
                     Toast.makeText(Campaign_List_ForAll_Details.this, "Please Enter Minimum "+minAmount+" rs.", Toast.LENGTH_LONG).show();
                 }else{

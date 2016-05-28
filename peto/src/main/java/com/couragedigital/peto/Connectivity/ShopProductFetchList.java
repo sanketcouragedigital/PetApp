@@ -9,6 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.couragedigital.peto.DialogBox.EmptyListDialoge;
 import com.couragedigital.peto.DialogBox.TimeOut_DialogeBox;
 import com.couragedigital.peto.Pet_Shop_List;
 import com.couragedigital.peto.Singleton.URLInstance;
@@ -41,32 +42,38 @@ public class ShopProductFetchList {
                     public void onResponse(JSONObject response) {
                         try {
                             JSONArray jsonArray = response.getJSONArray("showShopProductDetailsResponse");
-                            for (int i = 0; i < jsonArray.length(); i++) {
+                            if (jsonArray.length()==0) {
+                                Intent gotoEmptyList = new Intent(context, EmptyListDialoge.class);
+                                context.startActivity(gotoEmptyList);
+                            } else {
+
+                                for (int i = 0; i < jsonArray.length(); i++) {
                                 try {
                                     JSONObject obj = jsonArray.getJSONObject(i);
-                                        ProductListItems productListItems = new ProductListItems();
+                                    ProductListItems productListItems = new ProductListItems();
 
-                                        productListItems.setProductId(obj.getString("id"));
-                                        productListItems.setFirstImagePath(obj.getString("first_image_path"));
-                                        if (!obj.getString("second_image_path").isEmpty() && obj.getString("second_image_path") != null) {
-                                            productListItems.setSecondImagePath(obj.getString("second_image_path"));
-                                        }
-                                        if (!obj.getString("third_image_path").isEmpty() && obj.getString("third_image_path") != null) {
-                                            productListItems.setThirdImagePath(obj.getString("third_image_path"));
-                                        }
-                                        productListItems.setProductName(replaceSpecialChars(obj.getString("product_name")));
-                                        productListItems.setProductPrice(obj.getString("product_price"));
-                                        productListItems.setProductDescription(replaceSpecialChars(obj.getString("product_description")));
-                                        productListItems.setProductPostDate(obj.getString("post_date"));
+                                    productListItems.setProductId(obj.getString("id"));
+                                    productListItems.setFirstImagePath(obj.getString("first_image_path"));
+                                    if (!obj.getString("second_image_path").isEmpty() && obj.getString("second_image_path") != null) {
+                                        productListItems.setSecondImagePath(obj.getString("second_image_path"));
+                                    }
+                                    if (!obj.getString("third_image_path").isEmpty() && obj.getString("third_image_path") != null) {
+                                        productListItems.setThirdImagePath(obj.getString("third_image_path"));
+                                    }
+                                    productListItems.setProductName(replaceSpecialChars(obj.getString("product_name")));
+                                    productListItems.setProductPrice(obj.getString("product_price"));
+                                    productListItems.setProductDescription(replaceSpecialChars(obj.getString("product_description")));
+                                    productListItems.setProductPostDate(obj.getString("post_date"));
 
-                                        // adding pet to pets array
-                                        productLists.add(productListItems);
-                                        adapter.notifyDataSetChanged();
+                                    // adding pet to pets array
+                                    productLists.add(productListItems);
+                                    adapter.notifyDataSetChanged();
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
                             }
+                        }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

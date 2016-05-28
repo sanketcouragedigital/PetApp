@@ -84,6 +84,8 @@ public class Campaign_List_Details extends AppCompatActivity implements View.OnC
     NestedScrollView campaignDetailsNestedScrollView;
     private int mutedColor;
 
+    LinearLayout collectedAmountLayout;
+    LinearLayout remainingAmountLayout;
     LinearLayout campaignListDetailsLinearLayout;
     RelativeLayout campaignListDetailsFirstRelativeLayout;
     RelativeLayout campaignListDetailsSecondRelativeLayout;
@@ -112,9 +114,10 @@ public class Campaign_List_Details extends AppCompatActivity implements View.OnC
             postDateOfCampaign = intent.getStringExtra("CAMPAIGN_POST_DATE");
             collecetedAmountCampaign = intent.getStringExtra("CAMPAIGN_COLLECTED_AMOUNT");
             remainingAmountCampaign = intent.getStringExtra("CAMPAIGN_REMAINING_AMOUNT");
-            urlOfNgo=intent.getStringExtra("NGO_URL");
+            urlOfNgo = intent.getStringExtra("NGO_URL");
         }
-        ContactNoInstance contactNoInstance= new ContactNoInstance();
+
+        ContactNoInstance contactNoInstance = new ContactNoInstance();
         contactNo = contactNoInstance.getMobileNo();
 
 
@@ -156,10 +159,12 @@ public class Campaign_List_Details extends AppCompatActivity implements View.OnC
 
         campaignDetailsDividerLine = findViewById(R.id.campaignDetailsDividerLine);
         campaignListDetailsDividerLine = findViewById(R.id.campaignDetailsDividerLine);
+        collectedAmountLayout = (LinearLayout) findViewById(R.id.collectedAmountLayout);
+        remainingAmountLayout = (LinearLayout) findViewById(R.id.remainingAmountLayout);
         campaignListDetailsLinearLayout = (LinearLayout) findViewById(R.id.campaignListDetailsLinearLayout);
         campaignListDetailsFirstRelativeLayout = (RelativeLayout) findViewById(R.id.campaignListDetailsFirstRelativeLayout);
         campaignListDetailsSecondRelativeLayout = (RelativeLayout) findViewById(R.id.campaignListDetailsSecondRelativeLayout);
-        campaignListDetailsDonateNowButtonDividerLine=findViewById(R.id.campaignDetailsDividerLine);
+        campaignListDetailsDonateNowButtonDividerLine = findViewById(R.id.campaignDetailsDividerLine);
         donateNowButton.setOnClickListener(this);
         campaignDetailsCollapsingToolbar.setTitle(nameOfCampaign);
 
@@ -169,36 +174,52 @@ public class Campaign_List_Details extends AppCompatActivity implements View.OnC
         campaignDetailsImageText.setText("Images");
         campaignListDetailsDonateNowButtonDividerLine.setBackgroundResource(R.color.list_internal_divider);
         campaignDetailsImagesDividerLine.setBackgroundResource(R.color.list_internal_divider);
-        if(secondImagePath != null) {
+        if (secondImagePath != null) {
             new FetchImageFromServer().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, secondImagePath);
         }
-        if(thirdImagePath != null) {
+        if (thirdImagePath != null) {
             new FetchImageFromServer().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, thirdImagePath);
         }
 
-        String name =  nameOfCampaign;
-        campaignName.setText(Html.fromHtml(name));
-        String ngo =  nameOfNgo;
-        ngoName.setText(Html.fromHtml(ngo));
+        if (collecetedAmountCampaign.equals("null")|| remainingAmountCampaign.equals("null")) {
+            collectedAmountLayout.setVisibility(View.GONE);
+            remainingAmountLayout.setVisibility(View.GONE);
 
-        String url = urlOfNgo;
-        ngoUrl.setText(Html.fromHtml(url));
-
-        String Description =  descriptionOfCampaign;
-        campaignDescription.setText(Html.fromHtml(Description));
-        String minimumAmount =  minimumAmounOfCampaign;
-        campaignMinimumAmount.setText(Html.fromHtml(minimumAmount));
-        String actualAmount =  actualAmounOfCampaign;
-        campaignActualAmount.setText(Html.fromHtml(actualAmount));
-        String remainingAmount =  remainingAmountCampaign;
-        campaignRemainingAmount.setText(Html.fromHtml(remainingAmount));
-        String collectedAmount =  collecetedAmountCampaign;
-        campaignCollectedAmount.setText(Html.fromHtml(collectedAmount));
-
-        String lasDate =  lastDateOfCampaign;
-        campaignLastDate.setText(Html.fromHtml(lasDate));
-
-        campaignDetailsDividerLine.setBackgroundResource(R.color.list_internal_divider);
+            String name = nameOfCampaign;
+            campaignName.setText(Html.fromHtml(name));
+            String ngo = nameOfNgo;
+            ngoName.setText(Html.fromHtml(ngo));
+            String url = urlOfNgo;
+            ngoUrl.setText(Html.fromHtml(url));
+            String Description = descriptionOfCampaign;
+            campaignDescription.setText(Html.fromHtml(Description));
+            String minimumAmount = minimumAmounOfCampaign;
+            campaignMinimumAmount.setText(Html.fromHtml(minimumAmount));
+            String actualAmount = actualAmounOfCampaign;
+            campaignActualAmount.setText(Html.fromHtml(actualAmount));
+            String lasDate = lastDateOfCampaign;
+            campaignLastDate.setText(Html.fromHtml(lasDate));
+        } else {
+            String name = nameOfCampaign;
+            campaignName.setText(Html.fromHtml(name));
+            String ngo = nameOfNgo;
+            ngoName.setText(Html.fromHtml(ngo));
+            String url = urlOfNgo;
+            ngoUrl.setText(Html.fromHtml(url));
+            String Description = descriptionOfCampaign;
+            campaignDescription.setText(Html.fromHtml(Description));
+            String minimumAmount = minimumAmounOfCampaign;
+            campaignMinimumAmount.setText(Html.fromHtml(minimumAmount));
+            String actualAmount = actualAmounOfCampaign;
+            campaignActualAmount.setText(Html.fromHtml(actualAmount));
+            String remainingAmount = remainingAmountCampaign;
+            campaignRemainingAmount.setText(Html.fromHtml(remainingAmount));
+            String collectedAmount = collecetedAmountCampaign;
+            campaignCollectedAmount.setText(Html.fromHtml(collectedAmount));
+            String lasDate = lastDateOfCampaign;
+            campaignLastDate.setText(Html.fromHtml(lasDate));
+        }
+            campaignDetailsDividerLine.setBackgroundResource(R.color.list_internal_divider);
         campaignListDetailsDividerLine.setBackgroundResource(R.color.list_internal_divider);
 
         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) campaigntDetailsAppBarLayout.getLayoutParams();
@@ -307,15 +328,14 @@ public class Campaign_List_Details extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
         danationAmount = txt_doantionAmount.getText().toString();
 
-        int donatedAmount = Integer.parseInt(danationAmount);
-        int minAmount = Integer.parseInt(minimumAmounOfCampaign);
-
         if(v.getId() == R.id.donateNowButton) {
 
-            if(danationAmount == null || danationAmount.isEmpty()) {
+            if(danationAmount == null || danationAmount.isEmpty() || danationAmount.equals("") ) {
                 Toast.makeText(Campaign_List_Details.this, "Please Enter Amount.", Toast.LENGTH_LONG).show();
             }
             else{
+                int donatedAmount = Integer.parseInt(danationAmount);
+                int minAmount = Integer.parseInt(minimumAmounOfCampaign);
                 if(donatedAmount < minAmount  || donatedAmount==0){
                     Toast.makeText(Campaign_List_Details.this, "Please Enter Minimum "+minAmount+" rs.", Toast.LENGTH_LONG).show();
                 }else{

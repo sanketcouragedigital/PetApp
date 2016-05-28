@@ -111,10 +111,13 @@ public class EditProfile extends BaseActivity  implements View.OnClickListener{
             public void onClick(View v) {
                 if (((CheckBox) v).isChecked()){
                     //CheckBox is checked
-                    txt_confirmpassword.setEnabled(false);
+                    //txt_confirmpassword.setEnabled(false);
+                    txt_confirmpassword.setVisibility(View.GONE);
+
                 }else{
                     //CheckBox is unchecked
-                    txt_confirmpassword.setEnabled(true);
+                    //txt_confirmpassword.setEnabled(true);
+                    txt_confirmpassword.setVisibility(View.GONE);
                 }
             }
         });

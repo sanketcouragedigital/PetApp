@@ -45,6 +45,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -72,7 +73,7 @@ public class Campaign_Form extends BaseActivity implements View.OnClickListener,
     CheckBox campaignCHKMinimumAmount;
     EditText campaignMinimumAmount;
     //DatePicker campaignLastDate;
-    EditText campaignLastDate;
+    TextView campaignLastDate;
 
     Button selectImageButton;
     ImageView firstImageOfPet;
@@ -84,7 +85,7 @@ public class Campaign_Form extends BaseActivity implements View.OnClickListener,
     String campaignNameText ="";
     String campaignDescriptionText ="";
     String campaignActualAmountText ="";
-    String campaignMinimumAmountText = "";
+    String campaignMinimumAmountText = "0";
     String campaignLastDateText ="";
     String email;
 
@@ -99,6 +100,7 @@ public class Campaign_Form extends BaseActivity implements View.OnClickListener,
     File storageDir;
     File cropFile;
 
+    private int mYear, mMonth, mDay;
 
     private long TIME = 5000;
     @Override
@@ -111,7 +113,7 @@ public class Campaign_Form extends BaseActivity implements View.OnClickListener,
         campaignDescription = (EditText) this.findViewById(R.id.txtDescription);
         campaignActualAmount = (EditText) this.findViewById(R.id.txtCampaignActualAmount);
         campaignMinimumAmount = (EditText) findViewById(R.id.txtMinmumAmount);
-        campaignLastDate = (EditText) findViewById(R.id.txtCampaignLastDate);
+        campaignLastDate = (TextView) findViewById(R.id.txtCampaignLastDate);
 
         selectImageButton = (Button) this.findViewById(R.id.selectImage);
         firstImageOfPet = (ImageView) this.findViewById(R.id.firstImageOfPet);
@@ -123,6 +125,7 @@ public class Campaign_Form extends BaseActivity implements View.OnClickListener,
 
         selectImageButton.setOnClickListener(this);
         uploadFabButton.setOnClickListener(this);
+        campaignLastDate.setOnClickListener(this);
         campaignMinimumAmount.addTextChangedListener(campaignMinimumAmountChangeListener);
 
         campaignMinimumAmount.setVisibility(View.GONE);
@@ -518,7 +521,27 @@ public class Campaign_Form extends BaseActivity implements View.OnClickListener,
                     }
                 }
             }
-            //String campaignMinimumAmountText = "";
+            if (v == campaignLastDate) {
+                // Process to get Current Date
+                final Calendar c = Calendar.getInstance();
+                mYear = c.get(Calendar.YEAR);
+                mMonth = c.get(Calendar.MONTH);
+                mDay = c.get(Calendar.DAY_OF_MONTH);
+                // Launch Date Picker Dialog
+                DatePickerDialog dpd = new DatePickerDialog(this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // Display Selected date in textbox
+                                campaignLastDate.setText(dayOfMonth + "-"
+                                        + (monthOfYear + 1) + "-" + year);
+
+                            }
+                        }, mYear, mMonth, mDay);
+                dpd.show();
+            }
+                //String campaignMinimumAmountText = "";
             else if(v.getId() == R.id.campaignFormSubmitFab) {
                 ngoNameText = ngoName.getText().toString();
                 campaignNameText = campaignName.getText().toString();
@@ -540,7 +563,7 @@ public class Campaign_Form extends BaseActivity implements View.OnClickListener,
                 else if(campaignActualAmountText == null || campaignActualAmountText.isEmpty()) {
                     Toast.makeText(Campaign_Form.this, "Please Enter Amount.", Toast.LENGTH_LONG).show();
                 }
-                else if(campaignLastDateText == null || campaignLastDateText.isEmpty()) {
+                else if(campaignLastDateText.equals("")) {
                     Toast.makeText(Campaign_Form.this, "Please Enter Date.", Toast.LENGTH_LONG).show();
                 }
 

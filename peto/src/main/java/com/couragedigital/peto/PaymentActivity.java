@@ -112,7 +112,9 @@ public class PaymentActivity extends AppCompatActivity
      * Replace with your public key
      */
 
-    final String public_key = "rzp_test_OAmWaTCnP0PB50";
+   // final String public_key = "rzp_test_OAmWaTCnP0PB50";
+
+    final String public_key = "rzp_live_q18pNB7FUtMPxp";
 
     /**
      * You need to pass current activity in order to let razorpay create CheckoutActivity
@@ -127,11 +129,10 @@ public class PaymentActivity extends AppCompatActivity
 
     try{
       JSONObject options = new JSONObject("{" +
-        "description: 'Demoing Charges'," +
+        //"description: 'Demoing Charges'," +
         //"image: 'https://rzp-mobile.s3.amazonaws.com/images/rzp.png'," +
-              "image: 'http://storage.couragedigital.com/prod/ic_launcher.png'," +
-        //"image: '"+PetoImage+"'," +
-        "currency: 'INR'}"
+              "image: 'http://petoandme.com/API/ic_launcher.png'," +
+              "currency: 'INR'}"
       );
 
 
@@ -159,6 +160,8 @@ public class PaymentActivity extends AppCompatActivity
       try {
           SendOrderConfirmationEmail sendOrderConfirmationEmail = new SendOrderConfirmationEmail(PaymentActivity.this);
           sendOrderConfirmationEmail.SendConfirmationEmail(orderedNo,productId,nameOfProduct,priceOfProduct,qtyOfProduct, shippingChargesOfProduct,totalPriceOfProduct,custName, contactNo, email, custAddress, custArea,custCity,custPincode);
+          Intent gotoListPage = new Intent(this,Pet_Shop_List.class);
+          startActivity(gotoListPage);
       } catch (Exception e) {
         e.printStackTrace();
       }

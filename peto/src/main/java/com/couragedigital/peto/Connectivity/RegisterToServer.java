@@ -106,6 +106,11 @@ public class RegisterToServer {
             Intent gotoNgo_NotVerify = new Intent(context, Ngo_NotVerify.class);
             context.startActivity(gotoNgo_NotVerify);
         }
+        else if (response.equals("Email_Is_Already_Registered")) {
+            Toast.makeText(context, "This email is already registered with us.", Toast.LENGTH_SHORT).show();
+            Intent gotosignupgae = new Intent(context, SignUp.class);
+            context.startActivity(gotosignupgae);
+        }
         else if (response.equals("ERROR")) {
             Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
             Intent gotosignupgae = new Intent(context, SignUp.class);

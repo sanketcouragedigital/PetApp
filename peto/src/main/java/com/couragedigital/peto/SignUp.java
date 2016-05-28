@@ -12,10 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.*;
 
 import com.couragedigital.peto.Connectivity.RegisterToServer;
 import com.couragedigital.peto.InternetConnectivity.NetworkChangeReceiver;
@@ -34,6 +31,8 @@ public class SignUp extends AppCompatActivity {
     private static Button btn_signin;
     private static Button btn_signup;
     private static Button btn_cancel;
+    public View cardViewRegister;
+    RelativeLayout relativeLyoutForRegister;
     CheckBox isNgoCheckbox;
     TextInputLayout ngoUrlLayout;
 
@@ -60,6 +59,19 @@ public class SignUp extends AppCompatActivity {
         isNgoCheckbox = (CheckBox) findViewById(R.id.chkIsNgo);
         txt_ngoUrl= (EditText) findViewById(R.id.txtNgoUrl);
         ngoUrlLayout =(TextInputLayout) findViewById(R.id.textInputLayouNgoUrl);
+        cardViewRegister=(View) findViewById(R.id.card_view);
+        relativeLyoutForRegister=(RelativeLayout) findViewById(R.id.relativeLyoutForRegister);
+
+        relativeLyoutForRegister.post(new Runnable() {
+            @Override
+            public void run() {
+                //Integer heightOfFirstRelativeLayout = cardViewRegister.getHeight();
+                Integer heightOfSecondRelativeLayout = cardViewRegister.getHeight();
+                // cardViewRegister.setMinimumHeight(heightOfFirstRelativeLayout + heightOfSecondRelativeLayout + 200);
+                relativeLyoutForRegister.setMinimumHeight(heightOfSecondRelativeLayout + 200);
+            }
+        });
+
 
         ngoUrlLayout.setVisibility(View.GONE);
         isNgoCheckbox.setOnClickListener(new View.OnClickListener() {

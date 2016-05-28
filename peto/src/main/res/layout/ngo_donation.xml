@@ -74,7 +74,7 @@
                         android:id="@+id/otpValue"
                         android:paddingTop="0dp"
                         android:paddingBottom="5dp"
-                        android:textSize="20sp"
+                        android:textSize="16sp"
                         android:layout_margin="@dimen/_10sdp"
                         android:layout_gravity="center_horizontal" />
 
@@ -85,7 +85,7 @@
                         android:id="@+id/sender"
                         android:paddingTop="0dp"
                         android:paddingBottom="0dp"
-                        android:textSize="15sp"
+                        android:textSize="12sp"
                         android:layout_margin="@dimen/_10sdp"
                         android:layout_gravity="center_horizontal" />
                 <TextView
@@ -115,7 +115,7 @@
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Purchase"
+                        android:text="Donate"
                         android:id="@+id/pay_btn"
                         android:textSize="14sp"
                         android:layout_gravity="center_horizontal"

@@ -37,6 +37,7 @@ public class CampaignList_Adapter extends RecyclerView.Adapter<CampaignList_Adap
     String ngoNametxt;
     String ngoEmailtxt;
     String lastDatetxt;
+    String postDatetxt;
     String mobileNotxt;
 
     String userEmail;
@@ -122,7 +123,8 @@ public class CampaignList_Adapter extends RecyclerView.Adapter<CampaignList_Adap
              ngoNametxt = CampaignListItem.getNgoName();
              ngoEmailtxt = CampaignListItem.getEmail();
              lastDatetxt = CampaignListItem.getLastDate();
-            mobileNotxt = CampaignListItem.getMobileno();
+             postDatetxt = CampaignListItem.getPostDate();
+             mobileNotxt = CampaignListItem.getMobileno();
 
             dividerLine.setBackgroundResource(R.color.list_internal_divider);
         }
@@ -153,12 +155,6 @@ public class CampaignList_Adapter extends RecyclerView.Adapter<CampaignList_Adap
             else if(v.getId() == R.id.campaignDeletebtn) {
                 AlertDialog diaBox = AskOption(v);
                 diaBox.show();
-                /*try {
-
-                    CampaignDelete.campaignDeleteFromServer(campaignIdtxt, campaignNametxt,ngoNametxt,ngoEmailtxt,lastDatetxt,userEmail,mobileNotxt,);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }*/
             }
             else {
                 if (this.CampaignListItem != null) {
@@ -197,7 +193,7 @@ public class CampaignList_Adapter extends RecyclerView.Adapter<CampaignList_Adap
                             modifyCampaignDeletebtn.setEnabled(false);
                             try {
                                 CampaignDelete campaignDelete = new CampaignDelete(view.getContext());
-                                campaignDelete.campaignDeleteFromServer(campaignIdtxt, campaignNametxt,ngoNametxt,ngoEmailtxt,lastDatetxt,userEmail,mobileNotxt);
+                                campaignDelete.campaignDeleteFromServer(campaignIdtxt, campaignNametxt,ngoNametxt,ngoEmailtxt,lastDatetxt,postDatetxt,userEmail,mobileNotxt);
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }

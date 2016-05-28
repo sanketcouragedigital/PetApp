@@ -1,5 +1,6 @@
 package com.couragedigital.peto;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -20,6 +21,7 @@ import com.couragedigital.peto.InternetConnectivity.NetworkChangeReceiver;
 import com.couragedigital.peto.SessionManager.SessionManager;
 
 import java.io.File;
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class Campaign_Modify extends BaseActivity implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
@@ -31,7 +33,7 @@ public class Campaign_Modify extends BaseActivity implements View.OnClickListene
     EditText modifycampaignActualAmount;
     CheckBox modifycampaignCHKMinimumAmount;
     EditText modifycampaignMinimumAmount;
-    EditText modifycampaignLastDate;
+    TextView modifycampaignLastDate;
     Button modifyCampaignButton;
 
     String campaignId = "";
@@ -44,6 +46,8 @@ public class Campaign_Modify extends BaseActivity implements View.OnClickListene
     String postDateOfCampaign="";
     String campaignMinimumAmountText="";
     String nameOfCampaign="";
+
+    private int mYear, mMonth, mDay;
 
 
     String email;
@@ -59,11 +63,12 @@ public class Campaign_Modify extends BaseActivity implements View.OnClickListene
         modifycampaignDescription = (EditText) this.findViewById(R.id.modifytxtDescription);
         modifycampaignActualAmount = (EditText) this.findViewById(R.id.modifytxtCampaignActualAmount);
         modifycampaignMinimumAmount = (EditText) findViewById(R.id.modifytxtMinmumAmount);
-        modifycampaignLastDate = (EditText) findViewById(R.id.modifytxtCampaignLastDate);
+        modifycampaignLastDate = (TextView) findViewById(R.id.modifytxtCampaignLastDate);
         modifyCampaignButton = (Button) this.findViewById(R.id.modifyCampaignbtn);
         modifycampaignCHKMinimumAmount = (CheckBox) this.findViewById(R.id.modifychkMinmumAmount);
 
         modifyCampaignButton.setOnClickListener(this);
+        modifycampaignLastDate.setOnClickListener(this);
         modifycampaignMinimumAmount.addTextChangedListener(campaignMinimumAmountChangeListener);
         modifycampaignMinimumAmount.setVisibility(View.GONE);
         modifycampaignCHKMinimumAmount.setOnClickListener(new View.OnClickListener() {
@@ -157,6 +162,26 @@ public class Campaign_Modify extends BaseActivity implements View.OnClickListene
 
             progressDialog = ProgressDialog.show(Campaign_Modify.this, "", "Uploading file...", true);
             new UploadModifiedCampaignDataToServer().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
+        }
+        if (v == modifycampaignLastDate) {
+            // Process to get Current Date
+            final Calendar c = Calendar.getInstance();
+            mYear = c.get(Calendar.YEAR);
+            mMonth = c.get(Calendar.MONTH);
+            mDay = c.get(Calendar.DAY_OF_MONTH);
+            // Launch Date Picker Dialog
+            DatePickerDialog dpd = new DatePickerDialog(this,
+                    new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker view, int year,
+                                              int monthOfYear, int dayOfMonth) {
+                            // Display Selected date in textbox
+                            modifycampaignLastDate.setText(dayOfMonth + "-"
+                                    + (monthOfYear + 1) + "-" + year);
+
+                        }
+                    }, mYear, mMonth, mDay);
+            dpd.show();
         }
 
     }

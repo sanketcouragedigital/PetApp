@@ -112,12 +112,10 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.ViewHolder
                 if (positionOfItem == 0 && itemsList.getIcon() == R.drawable.home) {
                     vtextView.setText(itemsSelectedList.getTittle());
                     vimageView.setImageResource(itemsSelectedList.getIcon());
-
                 }
                 else if (positionOfItem == 1 && itemsList.getIcon() == R.drawable.profile) {
                     vtextView.setText(itemsSelectedList.getTittle());
                     vimageView.setImageResource(itemsSelectedList.getIcon());
-
                 }
                 else if (positionOfItem == 2 && itemsList.getIcon() == R.drawable.mylisting) {
                     vtextView.setText(itemsSelectedList.getTittle());

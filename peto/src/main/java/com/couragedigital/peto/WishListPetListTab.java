@@ -40,6 +40,8 @@ public class WishListPetListTab extends Fragment implements WishListPetListAdapt
     View v;
     private String email;
 
+    WishListPetFetchList wishListPetFetchList;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +51,7 @@ public class WishListPetListTab extends Fragment implements WishListPetListAdapt
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.wishlistpetlist, container, false);
+        wishListPetFetchList = new WishListPetFetchList(v.getContext());
         return v;
     }
 
@@ -90,7 +93,8 @@ public class WishListPetListTab extends Fragment implements WishListPetListAdapt
         protected String doInBackground(String... url) {
             try {
                 urlForFetch = url[0];
-                WishListPetFetchList.wishListPetFetchList(wishlistPetArrayList, adapter, urlForFetch);
+
+                wishListPetFetchList.wishListPetFetchList(wishlistPetArrayList, adapter, urlForFetch);
             } catch (Exception e) {
                 e.printStackTrace();
             }

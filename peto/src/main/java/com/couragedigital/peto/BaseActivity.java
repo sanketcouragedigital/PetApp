@@ -59,60 +59,65 @@ public class BaseActivity extends AppCompatActivity {
         HashMap<String, String> userOrNgo = sessionManagerNgo.getUserDetails();
         isNgo = userOrNgo.get(SessionManager.KEY_NGO);
 
-        //for ngo user
-        if(isNgo.equals("Yes"))
-        {
-            final String[] tittleForNgo = new String[]{"Home", "Edit Profile", "My Listings", "WishList","My Orders", "Feedback" , "Share","Legal" , "LogOut","My Campaigns"};
+        if (isNgo == null) {
+            sessionManager = new SessionManager(BaseActivity.this);
+            sessionManager.logoutUser();
 
-            final int[] iconsForNgo = new int[] {R.drawable.home,R.drawable.profile,R.drawable.mylisting,R.drawable.favourite,R.drawable.ordertruck,0,0,0,0,0};
-            itemArrayListForNgo = new ArrayList<DrawerItems>();
-            for (int i = 0; i < tittleForNgo.length; i++) {
-                DrawerItems drawerItems = new DrawerItems();
-                drawerItems.setTittle(tittleForNgo[i]);
-                drawerItems.setIcons(iconsForNgo[i]);
-                itemArrayListForNgo.add(drawerItems);
-            }
+        } else {
+            //for ngo user
+            if (isNgo.equals("Yes")) {
+                final String[] tittleForNgo = new String[]{"Home", "Edit Profile", "My Listings", "WishList", "My Orders", "My Campaigns" ,"Feedback", "Share", "Legal", "LogOut"};
 
-            final int[] selectediconsForNgoForNgo = new int[] {R.drawable.home_red,R.drawable.profile_red,R.drawable.mylisting_red,R.drawable.favourite_enable,R.drawable.ordertruck_red,0,0,0,0,0};
-            itemSelectedArrayListForNgo = new ArrayList<DrawerItems>();
-            for (int i = 0; i < tittleForNgo.length; i++) {
-                DrawerItems drawerItems = new DrawerItems();
-                drawerItems.setTittle(tittleForNgo[i]);
-                drawerItems.setIcons(selectediconsForNgoForNgo[i]);
-                itemSelectedArrayListForNgo.add(drawerItems);
+                final int[] iconsForNgo = new int[]{R.drawable.home, R.drawable.profile, R.drawable.mylisting, R.drawable.favourite, R.drawable.ordertruck, R.drawable.campaign, 0, 0, 0, 0};
+                itemArrayListForNgo = new ArrayList<DrawerItems>();
+                for (int i = 0; i < tittleForNgo.length; i++) {
+                    DrawerItems drawerItems = new DrawerItems();
+                    drawerItems.setTittle(tittleForNgo[i]);
+                    drawerItems.setIcons(iconsForNgo[i]);
+                    itemArrayListForNgo.add(drawerItems);
+                }
+
+                final int[] selectediconsForNgoForNgo = new int[]{R.drawable.home_red, R.drawable.profile_red, R.drawable.mylisting_red, R.drawable.favourite_enable, R.drawable.ordertruck_red,  R.drawable.campaign_red, 0, 0, 0, 0};
+                itemSelectedArrayListForNgo = new ArrayList<DrawerItems>();
+                for (int i = 0; i < tittleForNgo.length; i++) {
+                    DrawerItems drawerItems = new DrawerItems();
+                    drawerItems.setTittle(tittleForNgo[i]);
+                    drawerItems.setIcons(selectediconsForNgoForNgo[i]);
+                    itemSelectedArrayListForNgo.add(drawerItems);
+                }
+                drawerAdapterForNgo = new DrawerAdapterForNgo(itemArrayListForNgo, itemSelectedArrayListForNgo, drawer);
+                getLayoutInflater().inflate(layoutResID, frameLayout, true);
+                getLayoutInflater().inflate(layoutResID, linearLayout, true);
+                drawer.setClickable(true);
+                drawerAdapterForNgo.notifyDataSetChanged();
+                listItems.setAdapter(drawerAdapterForNgo);
             }
-            drawerAdapterForNgo = new DrawerAdapterForNgo(itemArrayListForNgo,itemSelectedArrayListForNgo ,drawer);
-            getLayoutInflater().inflate(layoutResID, frameLayout, true);
-            getLayoutInflater().inflate(layoutResID, linearLayout, true);
-            drawer.setClickable(true);
-            drawerAdapterForNgo.notifyDataSetChanged();
-            listItems.setAdapter(drawerAdapterForNgo);
-        }
-        // for normal user
-        else {
-            final String[] tittle = new String[]{"Home", "Edit Profile", "My Listings", "WishList","My Orders", "Feedback" , "Share","Legal" , "LogOut"};
-            final int[] icons = new int[] {R.drawable.home,R.drawable.profile,R.drawable.mylisting,R.drawable.favourite,R.drawable.ordertruck,0,0,0,0};
-            itemArrayList = new ArrayList<DrawerItems>();
-            for (int i = 0; i < tittle.length; i++) {
-                DrawerItems drawerItems = new DrawerItems();
-                drawerItems.setTittle(tittle[i]);
-                drawerItems.setIcons(icons[i]);
-                itemArrayList.add(drawerItems);
+            // for normal user
+            else {
+                final String[] tittle = new String[]{"Home", "Edit Profile", "My Listings", "WishList", "My Orders", "Feedback", "Share", "Legal", "LogOut"};
+                final int[] icons = new int[]{R.drawable.home, R.drawable.profile, R.drawable.mylisting, R.drawable.favourite, R.drawable.ordertruck, 0, 0, 0, 0};
+                itemArrayList = new ArrayList<DrawerItems>();
+                for (int i = 0; i < tittle.length; i++) {
+                    DrawerItems drawerItems = new DrawerItems();
+                    drawerItems.setTittle(tittle[i]);
+                    drawerItems.setIcons(icons[i]);
+                    itemArrayList.add(drawerItems);
+                }
+                final int[] selectedicons = new int[]{R.drawable.home_red, R.drawable.profile_red, R.drawable.mylisting_red, R.drawable.favourite_enable, R.drawable.ordertruck_red, 0, 0, 0, 0};
+                itemSelectedArrayList = new ArrayList<DrawerItems>();
+                for (int i = 0; i < tittle.length; i++) {
+                    DrawerItems drawerItems = new DrawerItems();
+                    drawerItems.setTittle(tittle[i]);
+                    drawerItems.setIcons(selectedicons[i]);
+                    itemSelectedArrayList.add(drawerItems);
+                }
+                drawerAdapter = new DrawerAdapter(itemArrayList, itemSelectedArrayList, drawer);
+                getLayoutInflater().inflate(layoutResID, frameLayout, true);
+                getLayoutInflater().inflate(layoutResID, linearLayout, true);
+                drawer.setClickable(true);
+                drawerAdapter.notifyDataSetChanged();
+                listItems.setAdapter(drawerAdapter);
             }
-            final int[] selectedicons = new int[] {R.drawable.home_red,R.drawable.profile_red,R.drawable.mylisting_red,R.drawable.favourite_enable,R.drawable.ordertruck_red,0,0,0,0};
-            itemSelectedArrayList = new ArrayList<DrawerItems>();
-            for (int i = 0; i < tittle.length; i++) {
-                DrawerItems drawerItems = new DrawerItems();
-                drawerItems.setTittle(tittle[i]);
-                drawerItems.setIcons(selectedicons[i]);
-                itemSelectedArrayList.add(drawerItems);
-            }
-            drawerAdapter = new DrawerAdapter(itemArrayList,itemSelectedArrayList ,drawer);
-            getLayoutInflater().inflate(layoutResID, frameLayout, true);
-            getLayoutInflater().inflate(layoutResID, linearLayout, true);
-            drawer.setClickable(true);
-            drawerAdapter.notifyDataSetChanged();
-            listItems.setAdapter(drawerAdapter);
         }
 
         toolbar = (Toolbar) drawer.findViewById(R.id.app_bar);

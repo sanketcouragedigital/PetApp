@@ -2,6 +2,7 @@ package com.couragedigital.peto.Adapter;
 
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +63,7 @@ public class ShopProductListAdapter extends RecyclerView.Adapter<ShopProductList
         public ImageView productImage;
         public TextView productName;
         public TextView productPrice;
+        String amount;
 
         public View dividerLine;
         public View cardView;
@@ -100,7 +102,12 @@ public class ShopProductListAdapter extends RecyclerView.Adapter<ShopProductList
 //            });
             Glide.with(productImage.getContext()).load(productListItems.getFirstImagePath()).centerCrop().crossFade().into(productImage);
             productName.setText(productListItems.getProductName());
-            productPrice.setText(productListItems.getProductPrice());
+
+            amount = productListItems.getProductPrice();
+            String productPriceLabel =  "Rs.: "+amount;
+            productPrice.setText(Html.fromHtml(productPriceLabel));
+
+
             productDescription.setText(productListItems.getProductDescription());
             dividerLine.setBackgroundResource(R.color.list_internal_divider);
 

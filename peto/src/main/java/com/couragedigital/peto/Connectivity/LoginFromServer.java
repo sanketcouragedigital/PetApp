@@ -1,5 +1,6 @@
 package com.couragedigital.peto.Connectivity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -35,7 +36,7 @@ public class LoginFromServer {
 
 
 
-    public String CheckToRemoteServer(String email, String confirmpassword) throws Exception {
+    public String CheckToRemoteServer(String email, String confirmpassword, final ProgressDialog progressDialog) throws Exception {
 
         String method = "userLogin";
         String format = "json";
@@ -61,6 +62,7 @@ public class LoginFromServer {
                     public void onResponse(JSONObject response) {
                         VolleyLog.v("Response: %n %s", response.toString());
                         try {
+                            progressDialog.hide();
                             returnResponse(response.getString("loginDetailsResponse"));
                         } catch (JSONException e) {
                             e.printStackTrace();

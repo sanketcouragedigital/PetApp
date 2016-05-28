@@ -10,6 +10,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.couragedigital.peto.DialogBox.EmptyListDialoge;
 import com.couragedigital.peto.DialogBox.NullRespone_DialogeBox;
 import com.couragedigital.peto.app.AppController;
 import com.couragedigital.peto.model.WishListPetMateListItem;
@@ -23,8 +24,9 @@ public class WishListPetMateFetchList {
     private static final String TAG = WishListPetMateFetchList.class.getSimpleName();
     private static Context context;
 
-    public WishListPetMateFetchList(View v) {
-        context = v.getContext();
+
+    public WishListPetMateFetchList(Context contextforpetmateWishList) {
+        context = contextforpetmateWishList;
     }
 
     public static List wishListPetMateFetchList(final List<WishListPetMateListItem> petMateLists, final RecyclerView.Adapter adapter, String url) {
@@ -34,7 +36,10 @@ public class WishListPetMateFetchList {
                     public void onResponse(JSONObject response) {
                         try {
                             JSONArray jsonArray = response.getJSONArray("showPetMateWishListResponse");
-                            if(jsonArray.length()!=0) {
+                            if (jsonArray.length()==0) {
+                                Intent gotoEmptyList = new Intent(context, NullRespone_DialogeBox.class);
+                                context.startActivity(gotoEmptyList);
+                            } else {
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     try {
 
@@ -42,10 +47,10 @@ public class WishListPetMateFetchList {
                                         WishListPetMateListItem wishListPetMateListItem = new WishListPetMateListItem();
                                         wishListPetMateListItem.setId(obj.getInt("id"));
                                         wishListPetMateListItem.setFirstImagePath(obj.getString("first_image_path"));
-                                        if(!obj.getString("second_image_path").isEmpty() && obj.getString("second_image_path") != null) {
+                                        if (!obj.getString("second_image_path").isEmpty() && obj.getString("second_image_path") != null) {
                                             wishListPetMateListItem.setSecondImagePath(obj.getString("second_image_path"));
                                         }
-                                        if(!obj.getString("third_image_path").isEmpty() && obj.getString("third_image_path") != null) {
+                                        if (!obj.getString("third_image_path").isEmpty() && obj.getString("third_image_path") != null) {
                                             wishListPetMateListItem.setThirdImagePath(obj.getString("third_image_path"));
                                         }
                                         wishListPetMateListItem.setPetMateCategory(replaceSpecialChars(obj.getString("pet_category")));
@@ -55,22 +60,17 @@ public class WishListPetMateFetchList {
                                         wishListPetMateListItem.setPetMateGender(replaceSpecialChars(obj.getString("pet_gender")));
                                         wishListPetMateListItem.setPetMateDescription(replaceSpecialChars(obj.getString("pet_description")));
                                         wishListPetMateListItem.setPetMatePostDate(obj.getString("post_date"));
-                                       // wishListPetMateListItem.setPetMatePostOwnerEmail(replaceSpecialChars(obj.getString("email")));
+                                        // wishListPetMateListItem.setPetMatePostOwnerEmail(replaceSpecialChars(obj.getString("email")));
                                         wishListPetMateListItem.setAlternateNo(obj.getString("alternateNo"));
                                         wishListPetMateListItem.setName(obj.getString("name"));
 
                                         // adding pet to pets array
                                         petMateLists.add(wishListPetMateListItem);
                                         adapter.notifyDataSetChanged();
-
-
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
                                 }
-                            }else{
-                                Intent gotoNullError = new Intent(context, NullRespone_DialogeBox.class);
-                                context.startActivity(gotoNullError);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

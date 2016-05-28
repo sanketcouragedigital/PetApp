@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.couragedigital.peto"
-          android:versionCode="2"
-          android:versionName="1.0.2">
+          android:versionCode="4"
+          android:versionName="1.0.4">
     <uses-sdk android:minSdkVersion="17"
               android:targetSdkVersion="23"/>
     <uses-feature
@@ -71,11 +71,11 @@
 
         <activity android:name=".SetNewPassword"
                   android:configChanges="orientation" android:screenOrientation="portrait"
-                  android:label="Set New Password"/>
+                  android:label="Set New Password" android:noHistory="true"/>
 
         <activity android:name=".EmailForCode"
                   android:configChanges="orientation" android:screenOrientation="portrait"
-                  android:label="Email for Code"/>
+                  android:label="Email for Code" android:noHistory="true"/>
 
         <activity android:name=".PetForm" android:label="Pet Form"
                   android:configChanges="orientation" android:screenOrientation="portrait"/>
@@ -221,6 +221,8 @@
         <activity android:name=".Campaign_Modify" android:label="Modify Campaign Form"
                   android:screenOrientation="portrait" />
         <activity android:name=".Ngo_NotVerify" android:label="Not Verify"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".DialogBox.EmptyListDialoge" android:label="No List"
                   android:screenOrientation="portrait" />
 
 

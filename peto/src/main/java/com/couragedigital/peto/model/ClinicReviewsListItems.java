@@ -7,18 +7,19 @@ public class ClinicReviewsListItems {
     public String clinic_reviews;
     public String email;
     public String time;
+    public String emptyKey;
 
     public ClinicReviewsListItems() {
     }
 
-    public ClinicReviewsListItems(String clinicId,String clinicRatings, String clinicReviews  ,String email, String time) {
+    public ClinicReviewsListItems(String clinicId,String clinicRatings, String clinicReviews  ,String email, String time,String emptyKey) {
 
         this.clinic_Id = clinicId;
         this.clinic_reviews = clinicReviews;
         this.clinic_ratings = clinicRatings;
         this.email = email;
         this.time = time;
-
+        this.emptyKey = emptyKey;
     }
 
 
@@ -52,6 +53,13 @@ public class ClinicReviewsListItems {
     }
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getEmptyKey() {
+        return emptyKey;
+    }
+    public void setEmptyKey(String emptyKey) {
+        this.emptyKey = emptyKey;
     }
 
     public String getTime() {

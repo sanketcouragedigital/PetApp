@@ -30,11 +30,13 @@ public class RegisterToServer {
     private static String format;
     private static String ngoOrNot;
     private static String urlOfNgo;
+    private static String nameOfNgo;
+
     private static String signupResponse;
     private Response.Listener<JSONObject> listener;
     private Map<String, String> params;
 
-    public static String uploadToRemoteServer(String name, String buildingname, String area, String city, String mobileno, String email, String confirmpassword,String strIsNgo,String ngoUrl) throws Exception {
+    public static String uploadToRemoteServer(String name, String buildingname, String area, String city, String mobileno, String email, String confirmpassword,String strIsNgo,String ngoUrl,String ngoName) throws Exception {
         method = "userRegistration";
         format = "json";
         username = name;
@@ -46,6 +48,7 @@ public class RegisterToServer {
         userconfirmpassword = confirmpassword;
         ngoOrNot = strIsNgo;
         urlOfNgo = ngoUrl;
+        nameOfNgo = ngoName;
         final String URL = URLInstance.getUrl();
         JSONObject params = new JSONObject();
         try {
@@ -60,6 +63,7 @@ public class RegisterToServer {
             params.put("confirmpassword", userconfirmpassword);
             params.put("isNGO", ngoOrNot);
             params.put("urlOfNGO", urlOfNgo);
+            params.put("nameOfNGO", nameOfNgo);
         } catch (Exception e) {
 
         }
@@ -105,6 +109,11 @@ public class RegisterToServer {
             Toast.makeText(context, "We are verifying.After verification, you can login.", Toast.LENGTH_SHORT).show();
             Intent gotoNgo_NotVerify = new Intent(context, Ngo_NotVerify.class);
             context.startActivity(gotoNgo_NotVerify);
+        }
+        else if (response.equals("Email_Is_Already_Registered")) {
+            Toast.makeText(context, "This email is already registered with us.", Toast.LENGTH_SHORT).show();
+            Intent gotosignupgae = new Intent(context, SignUp.class);
+            context.startActivity(gotosignupgae);
         }
         else if (response.equals("ERROR")) {
             Toast.makeText(context, "", Toast.LENGTH_SHORT).show();

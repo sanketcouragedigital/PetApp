@@ -35,6 +35,7 @@ import com.couragedigital.peto.Adapter.PetListAdapter;
 import com.couragedigital.peto.SessionManager.SessionManager;
 import com.couragedigital.peto.Shortner.GoogleURLShortener;
 import com.couragedigital.peto.Singleton.FilterPetListInstance;
+import com.couragedigital.peto.Singleton.ProfileURLInstance;
 import com.couragedigital.peto.Singleton.URLInstance;
 import com.couragedigital.peto.model.PetListItems;
 import com.facebook.CallbackManager;
@@ -210,7 +211,9 @@ public class PetList extends BaseActivity implements PetListAdapter.OnRecyclerPe
             price = petListItems.getListingType() + " Rs.";
         }
 
-        final String contentURL = "http://storage.couragedigital.com/prod/petProfile.php?method=profileOfPet&breed="+petListItems.getPetBreed()+"&imageURL="+petListItems.getFirstImagePath()+"&gender="+petListItems.getPetGender()+"&year="+petListItems.getPetAgeInYear()+"&month="+petListItems.getPetAgeInMonth()+"&petType="+petListingTypeString+"&price="+price+"&mobileNo="+petListItems.getPetPostOwnerMobileNo()+"&description="+petListItems.getPetDescription();
+        String shareURL = ProfileURLInstance.getUrl();
+
+        final String contentURL = shareURL + "?method=profileOfPet&breed="+petListItems.getPetBreed()+"&imageURL="+petListItems.getFirstImagePath()+"&gender="+petListItems.getPetGender()+"&year="+petListItems.getPetAgeInYear()+"&month="+petListItems.getPetAgeInMonth()+"&petType="+petListingTypeString+"&price="+price+"&mobileNo="+petListItems.getPetPostOwnerMobileNo()+"&description="+petListItems.getPetDescription();
 
         final String shortURL = GoogleURLShortener.shortner(contentURL);
 

@@ -19,7 +19,6 @@ import java.util.Map;
 
 public class ModifyCampaignDetails{
     private static Context context = null;
-    private static String ngoName;
     private static String campaignName;
     private static String description;
     private static String actualAmount;
@@ -33,10 +32,9 @@ public class ModifyCampaignDetails{
     private Response.Listener<JSONObject> listener;
     private Map<String, String> params;
 
-    public static String updateCampaignDetails (String nameOfNgo, String nameOfCampaign, String descriptionOfCampaign, String actualAmounOfCampaign, String minimumAmounOfCampaign, String lastDateOfCampaign, String ngoEmail,String ngoCampaignId,final Campaign_Modify campaign_Modify) throws Exception {
+    public static String updateCampaignDetails (String nameOfCampaign, String descriptionOfCampaign, String actualAmounOfCampaign, String minimumAmounOfCampaign, String lastDateOfCampaign, String ngoEmail,String ngoCampaignId,final Campaign_Modify campaign_Modify) throws Exception {
         method = "ModifyCampaign";
         format = "json";
-        ngoName = nameOfNgo;
         campaignName = nameOfCampaign;
         description = descriptionOfCampaign;
         actualAmount = actualAmounOfCampaign;
@@ -51,7 +49,6 @@ public class ModifyCampaignDetails{
         try {
             params.put("method", method);
             params.put("format", format);
-            params.put("ngoName", ngoName);
             params.put("campaignName", campaignName);
             params.put("description", description);
             params.put("actualAmount", actualAmount);

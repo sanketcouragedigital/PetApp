@@ -28,8 +28,8 @@ public class ClinicMap extends FragmentActivity implements OnMapReadyCallback,Ac
 
         Intent intent = getIntent();
         if (null != intent) {
-            latitude = intent.getStringExtra("selectedClinicLat");
-            longitude = intent.getStringExtra("selectedClinicLong");
+            latitude = intent.getStringExtra("selectedLat");
+            longitude = intent.getStringExtra("selectedLong");
         }
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -47,7 +47,7 @@ public class ClinicMap extends FragmentActivity implements OnMapReadyCallback,Ac
         lat = Double.parseDouble(latitude);
         longi =  Double.parseDouble(longitude);
         // Add a marker in Mumbai, India, and move the camera.
-        LatLng mumbai = new LatLng(lat,longi);
+        LatLng destination = new LatLng(lat,longi);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
@@ -58,13 +58,11 @@ public class ClinicMap extends FragmentActivity implements OnMapReadyCallback,Ac
 
         //mMap.setMyLocationEnabled(true);
         //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(mumbai));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mumbai, 13));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(destination));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(destination, 11));
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap.addMarker(new MarkerOptions()
-                .title("mumbai")
-                .snippet("The most populous city in India.")
-                .position(mumbai));
+                .position(destination));
     }
 }
 

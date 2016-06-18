@@ -27,13 +27,11 @@ public class Campaign_Create {
     private static Map<String, String> stringPart;
     public static Campaign_Form campaignFormActivity;
 
-
-    public static void uploadCampaignDetails(String ngoNameText, String campaignNameText, String campaignDescriptionText, String campaignActualAmountText, String campaignMinimumAmountText, String campaignLastDateText, String firstImagePath, String secondImagePath, String thirdImagePath, String emailOfNGO, Campaign_Form campaign_form) throws Exception {
+    public static void uploadCampaignDetails(String campaignNameText, String campaignDescriptionText, String campaignActualAmountText, String campaignMinimumAmountText, String campaignLastDateText, String firstImagePath, String secondImagePath, String thirdImagePath, String emailOfNGO, Campaign_Form campaign_form) throws Exception {
         campaignFormActivity = campaign_form;
         context = campaign_form.getApplicationContext();
         int serverResponseCode = 0;
 
-        String ngoName = ngoNameText;
         String campaignName = campaignNameText;
         String description= campaignDescriptionText;
         String actualAmount= campaignActualAmountText;
@@ -62,7 +60,6 @@ public class Campaign_Create {
 
         //String part
         stringPart = new HashMap<>();
-        stringPart.put("ngoName", ngoName);
         stringPart.put("campaignName", campaignName);
         stringPart.put("description", description);
         stringPart.put("actualAmount", actualAmount);

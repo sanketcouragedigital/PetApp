@@ -32,7 +32,7 @@
                     android:textSize="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_centerHorizontal="true"
-                    android:text="Data Is Not Available For These Request.."
+                    android:text="Sorry, we could not find anything in this section at this time. If you expected to see something here please write to us at feedback@petoandme.com."
                     android:textColor="@color/signinlblcolor"
                     android:id="@+id/nullErrorMessage"/>
 

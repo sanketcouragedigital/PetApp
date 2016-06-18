@@ -53,6 +53,7 @@ public class ShelterListAdapter extends RecyclerView.Adapter<ShelterListAdapter.
 
         public ImageView shelterImage;
         public TextView shelterName;
+        public TextView shelterContactno;
         public TextView shelterAddress;
         public Button shelterFavourite;
         public Button shelterSeeMoreBtn;
@@ -71,6 +72,7 @@ public class ShelterListAdapter extends RecyclerView.Adapter<ShelterListAdapter.
             }
 
             shelterName = (TextView) itemView.findViewById(R.id.shelterName);
+            shelterContactno= (TextView) itemView.findViewById(R.id.shelterContactno);
             shelterAddress = (TextView) itemView.findViewById(R.id.shelterAddress);
             shelterImage = (ImageView) itemView.findViewById(R.id.shelterImage);
             //shelterSeeMoreBtn = (Button) itemView.findViewById(R.id.shelterSeeMoreButton);
@@ -98,6 +100,7 @@ public class ShelterListAdapter extends RecyclerView.Adapter<ShelterListAdapter.
                 }
             });
             shelterName.setText(shelterListItems.getShelterName());
+            shelterContactno.setText(shelterListItems.getContact());
             if(area.equals("")) {
                 area = city;
             }
@@ -121,9 +124,16 @@ public class ShelterListAdapter extends RecyclerView.Adapter<ShelterListAdapter.
                 shelterInformation.putExtra("SHELTER_NAME", shelterListItems.getShelterName());
                 shelterInformation.putExtra("SHELTER_ADDRESS", shelterListItems.getShelterAdress());
                 shelterInformation.putExtra("SHELTER_EMAIL", shelterListItems.getEmail());
-                shelterInformation.putExtra("GROOMER_CITY", shelterListItems.getCity());
-                shelterInformation.putExtra("GROOMER_AREA", shelterListItems.getArea());
+                shelterInformation.putExtra("SHELTER_CITY", shelterListItems.getCity());
+                shelterInformation.putExtra("SHELTER_AREA", shelterListItems.getArea());
                 shelterInformation.putExtra("SHELTER_CONTACT", shelterListItems.getContact());
+                shelterInformation.putExtra("SHELTER_ID", shelterListItems.getShelter_Id());
+                shelterInformation.putExtra("SHELTER_NOTES", shelterListItems.getNotes());
+                shelterInformation.putExtra("LATITUDE", shelterListItems.getlatitude());
+                shelterInformation.putExtra("LONGITUDE", shelterListItems.getLongitude());
+                shelterInformation.putExtra("SHELTER_DESCRIPTION", shelterListItems.getDescription());
+
+
                 v.getContext().startActivity(shelterInformation);
             }
         }

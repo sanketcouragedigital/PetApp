@@ -1,5 +1,6 @@
 package com.couragedigital.peto;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -11,6 +12,9 @@ import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.*;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -20,22 +24,22 @@ import com.couragedigital.peto.InternetConnectivity.NetworkChangeReceiver;
 import com.couragedigital.peto.SessionManager.SessionManager;
 
 import java.io.File;
+import java.util.Calendar;
 import java.util.HashMap;
 
-public class Campaign_Modify extends BaseActivity implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
+public class Campaign_Modify extends AppCompatActivity implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
 
     private ProgressDialog progressDialog = null;
-    EditText modifyngoName;
+
     EditText modifycampaignName;
     EditText modifycampaignDescription;
     EditText modifycampaignActualAmount;
     CheckBox modifycampaignCHKMinimumAmount;
     EditText modifycampaignMinimumAmount;
-    EditText modifycampaignLastDate;
+    TextView modifycampaignLastDate;
     Button modifyCampaignButton;
 
     String campaignId = "";
-    String nameOfNgo = "";
     String descriptionOfCampaign = "";
     String actualAmounOfCampaign;
     String minimumAmounOfCampaign="";
@@ -45,25 +49,38 @@ public class Campaign_Modify extends BaseActivity implements View.OnClickListene
     String campaignMinimumAmountText="";
     String nameOfCampaign="";
 
-
+    private int mYear, mMonth, mDay;
     String email;
 
     private long TIME = 5000;
+    private Toolbar modifyCampaignToolbar;
+    private SessionManager sessionManager;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.campaign_modify);
 
-        modifyngoName = (EditText) this.findViewById(R.id.modifytxtNGOName);
+        modifyCampaignToolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.modifyCampaignToolbar);
+        setSupportActionBar(modifyCampaignToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        modifyCampaignToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         modifycampaignName = (EditText) this.findViewById(R.id.modifytxtCampaignName);
         modifycampaignDescription = (EditText) this.findViewById(R.id.modifytxtDescription);
         modifycampaignActualAmount = (EditText) this.findViewById(R.id.modifytxtCampaignActualAmount);
         modifycampaignMinimumAmount = (EditText) findViewById(R.id.modifytxtMinmumAmount);
-        modifycampaignLastDate = (EditText) findViewById(R.id.modifytxtCampaignLastDate);
+        modifycampaignLastDate = (TextView) findViewById(R.id.modifytxtCampaignLastDate);
         modifyCampaignButton = (Button) this.findViewById(R.id.modifyCampaignbtn);
         modifycampaignCHKMinimumAmount = (CheckBox) this.findViewById(R.id.modifychkMinmumAmount);
 
         modifyCampaignButton.setOnClickListener(this);
+        modifycampaignLastDate.setOnClickListener(this);
         modifycampaignMinimumAmount.addTextChangedListener(campaignMinimumAmountChangeListener);
         modifycampaignMinimumAmount.setVisibility(View.GONE);
         modifycampaignCHKMinimumAmount.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +96,7 @@ public class Campaign_Modify extends BaseActivity implements View.OnClickListene
             }
         });
 
+        
         HashMap<String, String> user = sessionManager.getUserDetails();
         email = user.get(SessionManager.KEY_EMAIL);
         getData();
@@ -90,7 +108,6 @@ public class Campaign_Modify extends BaseActivity implements View.OnClickListene
         if (null != intent) {
             campaignId = intent.getStringExtra("CAMPAIGN_ID");
             nameOfCampaign = intent.getStringExtra("CAMPAIGN_NAME");
-            nameOfNgo = intent.getStringExtra("CAMPAIGN_NGO_NAME");
             descriptionOfCampaign = intent.getStringExtra("CAMPAIGN_DESCRIPTION");
             actualAmounOfCampaign = intent.getStringExtra("CAMPAIGN_ACTUAL_AMOUNT");
             minimumAmounOfCampaign = intent.getStringExtra("CAMPAIGN_MINIMUM_AMOUNT");
@@ -101,7 +118,6 @@ public class Campaign_Modify extends BaseActivity implements View.OnClickListene
         }
     }
     private void fillData() {
-        modifyngoName.setText(nameOfNgo);
         modifycampaignName.setText(nameOfCampaign);
         modifycampaignDescription.setText(descriptionOfCampaign);
         modifycampaignActualAmount.setText(actualAmounOfCampaign);
@@ -148,7 +164,6 @@ public class Campaign_Modify extends BaseActivity implements View.OnClickListene
         }, TIME);
         if (v.getId() == R.id.modifyCampaignbtn) {
 
-            nameOfNgo  = modifyngoName.getText().toString();
             nameOfCampaign  = modifycampaignName.getText().toString();
             descriptionOfCampaign  = modifycampaignDescription.getText().toString();
             actualAmounOfCampaign  = modifycampaignActualAmount.getText().toString();
@@ -158,13 +173,33 @@ public class Campaign_Modify extends BaseActivity implements View.OnClickListene
             progressDialog = ProgressDialog.show(Campaign_Modify.this, "", "Uploading file...", true);
             new UploadModifiedCampaignDataToServer().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
         }
+        if (v == modifycampaignLastDate) {
+            // Process to get Current Date
+            final Calendar c = Calendar.getInstance();
+            mYear = c.get(Calendar.YEAR);
+            mMonth = c.get(Calendar.MONTH);
+            mDay = c.get(Calendar.DAY_OF_MONTH);
+            // Launch Date Picker Dialog
+            DatePickerDialog dpd = new DatePickerDialog(this,
+                    new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker view, int year,
+                                              int monthOfYear, int dayOfMonth) {
+                            // Display Selected date in textbox
+                            modifycampaignLastDate.setText(dayOfMonth + "-"
+                                    + (monthOfYear + 1) + "-" + year);
+
+                        }
+                    }, mYear, mMonth, mDay);
+            dpd.show();
+        }
 
     }
     public class UploadModifiedCampaignDataToServer extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
             try {
-                ModifyCampaignDetails.updateCampaignDetails(nameOfNgo, nameOfCampaign, descriptionOfCampaign, actualAmounOfCampaign, minimumAmounOfCampaign, lastDateOfCampaign, email, campaignId, Campaign_Modify.this);
+                ModifyCampaignDetails.updateCampaignDetails(nameOfCampaign, descriptionOfCampaign, actualAmounOfCampaign, minimumAmounOfCampaign, lastDateOfCampaign, email, campaignId, Campaign_Modify.this);
                 progressDialog.dismiss();
             } catch (Exception e) {
                 e.printStackTrace();

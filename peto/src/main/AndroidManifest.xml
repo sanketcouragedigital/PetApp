@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.couragedigital.peto"
-          android:versionCode="2"
-          android:versionName="1.0.2">
+          android:versionCode="5"
+          android:versionName="1.0.5">
     <uses-sdk android:minSdkVersion="17"
               android:targetSdkVersion="23"/>
     <uses-feature
@@ -71,13 +71,13 @@
 
         <activity android:name=".SetNewPassword"
                   android:configChanges="orientation" android:screenOrientation="portrait"
-                  android:label="Set New Password"/>
+                  android:label="Set New Password" android:noHistory="true"/>
 
         <activity android:name=".EmailForCode"
                   android:configChanges="orientation" android:screenOrientation="portrait"
-                  android:label="Email for Code"/>
+                  android:label="Email for Code" android:noHistory="true"/>
 
-        <activity android:name=".PetForm" android:label="Pet Form"
+        <activity android:name=".PetForm" android:label="Upload Details"
                   android:configChanges="orientation" android:screenOrientation="portrait"/>
 
         <activity android:name=".PetList" android:label="Pet List"
@@ -96,7 +96,7 @@
 
         <activity android:name=".PetMate"
                   android:configChanges="orientation" android:screenOrientation="portrait"
-                  android:label="Pet Mate Form"/>
+                  android:label="Upload Details"/>
 
         <activity android:name=".PetMateList"
                   android:configChanges="orientation" android:screenOrientation="portrait"
@@ -194,7 +194,7 @@
             android:configChanges="orientation" android:screenOrientation="portrait"/>
 		
 		<activity android:name=".Pet_Shop_List"
-                  android:screenOrientation="portrait" android:label="Products"/>
+                  android:screenOrientation="portrait" android:label="Shop"/>
 
         <activity android:name=".Pet_Shop_List_Details"
                   android:screenOrientation="portrait" />
@@ -206,7 +206,7 @@
                   android:screenOrientation="portrait" />
         <activity android:name=".Legal"
                   android:screenOrientation="portrait" />
-        <activity android:name=".Campaign_Form" android:label="Campaign Form"
+        <activity android:name=".Campaign_Form" android:label="Upload Details"
                   android:screenOrientation="portrait" />
         <activity android:name=".Campaign_List" android:label="My Campaign List"
                   android:screenOrientation="portrait" />
@@ -218,9 +218,14 @@
                   android:screenOrientation="portrait" />
         <activity android:name=".NGO_Donation"
                   android:screenOrientation="portrait" />
-        <activity android:name=".Campaign_Modify" android:label="Modify Campaign Form"
+        <activity android:name=".Campaign_Modify" android:label="Modify Campaign Details"
                   android:screenOrientation="portrait" />
         <activity android:name=".Ngo_NotVerify" android:label="Not Verify"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".DialogBox.EmptyListDialoge" android:label="No List"
+                  android:screenOrientation="portrait" />
+
+        <activity android:name=".ServiceRateNReview" android:label="Feedback"
                   android:screenOrientation="portrait" />
 
 

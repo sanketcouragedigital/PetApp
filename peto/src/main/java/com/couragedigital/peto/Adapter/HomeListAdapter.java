@@ -100,23 +100,18 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                 alertDialog.show();
             }
             if (position == 1) {
-                adapter = new DialogListAdapter(dialogListForViewPetMets);
-                builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        if (i == 0) {
-                            Intent gotoformupload = new Intent(v.getContext(), PetMate.class);
-                            v.getContext().startActivity(gotoformupload);
-                        } else if (i == 1) {
-                            Intent gotolistofpet = new Intent(v.getContext(), PetMateList.class);
-                            v.getContext().startActivity(gotolistofpet);
-                        }
-                    }
-                });
-                alertDialog = builder.create();
-                alertDialog.show();
+                Intent gotoShopProduct = new Intent(v.getContext(), Pet_Shop_List.class);
+                v.getContext().startActivity(gotoShopProduct);
             }
             if (position == 2) {
+                Intent gotoCampaign = new Intent(v.getContext(), Campaign_List_ForAll.class);
+                v.getContext().startActivity(gotoCampaign);
+            }
+            if (position == 3) {
+                Intent gotoPetServices = new Intent(v.getContext(), PetServices.class);
+                v.getContext().startActivity(gotoPetServices);
+            }
+            if (position == 4) {
                 adapter = new DialogListAdapter(dialogListForPetClinic);
                 final Intent gotoPetClinic = new Intent(v.getContext(), PetClinic.class);
                 builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
@@ -137,18 +132,25 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                 alertDialog = builder.create();
                 alertDialog.show();
             }
-            if (position == 3) {
-                Intent gotoPetServices = new Intent(v.getContext(), PetServices.class);
-                v.getContext().startActivity(gotoPetServices);
-            }
-            if (position == 4) {
-                Intent gotoShopProduct = new Intent(v.getContext(), Pet_Shop_List.class);
-                v.getContext().startActivity(gotoShopProduct);
-            }
             if (position == 5) {
-                Intent gotoCampaign = new Intent(v.getContext(), Campaign_List_ForAll.class);
-                v.getContext().startActivity(gotoCampaign);
+                adapter = new DialogListAdapter(dialogListForViewPetMets);
+                builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (i == 0) {
+                            Intent gotoformupload = new Intent(v.getContext(), PetMate.class);
+                            v.getContext().startActivity(gotoformupload);
+                        } else if (i == 1) {
+                            Intent gotolistofpet = new Intent(v.getContext(), PetMateList.class);
+                            v.getContext().startActivity(gotolistofpet);
+                        }
+                    }
+                });
+                alertDialog = builder.create();
+                alertDialog.show();
             }
+
+
         }
 
     }

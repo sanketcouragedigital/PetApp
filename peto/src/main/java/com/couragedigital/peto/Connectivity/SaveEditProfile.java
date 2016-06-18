@@ -33,13 +33,14 @@ public class SaveEditProfile {
     private static String userOldEmail;
     private static String userconfirmpassword;
     private static String urlOfNgo;
+    private static String urlOfName;
     private static String method;
     private static String format;
     private static String editResponse;
     private Response.Listener<JSONObject> listener;
     private Map<String, String> params;
 
-    public static String uploadEditedDetails(String name, String buildingname, String area, String city, String mobileno, String email, String oldEmail,String confirmpassword, String NgoUrl) throws Exception {
+    public static String uploadEditedDetails(String name, String buildingname, String area, String city, String mobileno, String email, String oldEmail,String confirmpassword, String NgoUrl,String NgoName) throws Exception {
         method = "editProfile";
         format = "json";
         username = name;
@@ -51,6 +52,7 @@ public class SaveEditProfile {
         userOldEmail=oldEmail;
         userconfirmpassword = confirmpassword;
         urlOfNgo=NgoUrl;
+        urlOfName=NgoName;
         final String URL = URLInstance.getUrl();
 
         JSONObject params = new JSONObject();
@@ -66,6 +68,7 @@ public class SaveEditProfile {
             params.put("oldEmail", userOldEmail);
             params.put("confirmpassword", userconfirmpassword);
             params.put("ngoUrl", urlOfNgo);
+            params.put("ngoName", urlOfName);
         } catch (Exception e) {
             e.printStackTrace();
         }

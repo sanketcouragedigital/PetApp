@@ -64,6 +64,7 @@
                 android:orientation="vertical"
                 android:paddingTop="15dp"
                 android:paddingBottom="20dp"
+                android:paddingLeft="@dimen/_10sdp"
                 android:gravity="center"
                 android:id="@+id/innerbox"
                 android:background="#f2f2f2">
@@ -75,7 +76,7 @@
                     android:id="@+id/otpValue"
                     android:paddingTop="0dp"
                     android:paddingBottom="5dp"
-                    android:textSize="20sp"
+                    android:textSize="12sp"
                     android:layout_gravity="center_horizontal" />
 
                 <TextView
@@ -95,7 +96,6 @@
                         android:paddingTop="5dp"
                         android:paddingBottom="0dp"
                         android:textSize="12sp"
-                        android:textStyle="italic"
                         android:layout_gravity="center_horizontal" />
                 <TextView
                         android:layout_width="wrap_content"
@@ -105,7 +105,6 @@
                         android:paddingTop="5dp"
                         android:paddingBottom="0dp"
                         android:textSize="12sp"
-                        android:textStyle="italic"
                         android:layout_gravity="center_horizontal" />
                 <TextView
                         android:layout_width="wrap_content"
@@ -115,7 +114,6 @@
                         android:paddingTop="5dp"
                         android:paddingBottom="0dp"
                         android:textSize="12sp"
-                        android:textStyle="italic"
                         android:layout_gravity="center_horizontal" />
 
                 <!--<TextView-->

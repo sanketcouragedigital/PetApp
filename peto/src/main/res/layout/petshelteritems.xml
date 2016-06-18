@@ -47,6 +47,7 @@
                         android:id="@+id/petShelterListContentRelativeLayout"
                         android:layout_width="fill_parent"
                         android:layout_height="@dimen/_120sdp"
+                        android:layout_marginBottom="@dimen/_15sdp"
                         android:layout_toRightOf="@+id/petShelterImageRelativeLayout">
 
                     <TextView
@@ -58,7 +59,7 @@
                             android:textSize="@dimen/_17sdp"
                             android:textStyle="bold"
                             android:textColor="@color/list_pet_origin_text_color"
-                            android:singleLine="true"
+                            android:layout_marginRight="@dimen/_5sdp"
                             android:ellipsize="end"/>
 
                     <TextView
@@ -67,7 +68,15 @@
                             android:id="@+id/shelterAddress"
                             android:textColor="@color/textColorPrimary"
                             android:layout_below="@+id/shelterName"
-                            android:layout_marginTop="@dimen/_2sdp"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginLeft="@dimen/_16sdp"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/shelterContactno"
+                            android:textColor="@color/textColorPrimary"
+                            android:layout_below="@+id/shelterAddress"
+                            android:layout_marginTop="@dimen/_8sdp"
                             android:layout_marginLeft="@dimen/_16sdp"/>
 
                 </RelativeLayout>

@@ -12,10 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.*;
 
 import com.couragedigital.peto.Connectivity.RegisterToServer;
 import com.couragedigital.peto.InternetConnectivity.NetworkChangeReceiver;
@@ -31,11 +28,15 @@ public class SignUp extends AppCompatActivity {
     private static EditText txt_password;
     private static EditText txt_confirmpassword;
     private static EditText txt_ngoUrl;
+    private static EditText txt_ngoName;
     private static Button btn_signin;
     private static Button btn_signup;
     private static Button btn_cancel;
+    public View cardViewRegister;
+    RelativeLayout relativeLyoutForRegister;
     CheckBox isNgoCheckbox;
     TextInputLayout ngoUrlLayout;
+    TextInputLayout ngoNameLayout;
 
     String name;
     String buildingname;
@@ -46,6 +47,7 @@ public class SignUp extends AppCompatActivity {
     String password;
     String confirmpassword;
     String ngoUrl;
+    String ngoName;
     String strIsNgo;
     ProgressDialog progressDialog = null;
 
@@ -59,17 +61,35 @@ public class SignUp extends AppCompatActivity {
 
         isNgoCheckbox = (CheckBox) findViewById(R.id.chkIsNgo);
         txt_ngoUrl= (EditText) findViewById(R.id.txtNgoUrl);
+        txt_ngoName= (EditText) findViewById(R.id.txtNgoName);
         ngoUrlLayout =(TextInputLayout) findViewById(R.id.textInputLayouNgoUrl);
+        ngoNameLayout =(TextInputLayout) findViewById(R.id.textInputLayouNgoName);
+        cardViewRegister=(View) findViewById(R.id.card_view);
+        relativeLyoutForRegister=(RelativeLayout) findViewById(R.id.relativeLyoutForRegister);
+
+        relativeLyoutForRegister.post(new Runnable() {
+            @Override
+            public void run() {
+                //Integer heightOfFirstRelativeLayout = cardViewRegister.getHeight();
+                Integer heightOfSecondRelativeLayout = cardViewRegister.getHeight();
+                // cardViewRegister.setMinimumHeight(heightOfFirstRelativeLayout + heightOfSecondRelativeLayout + 200);
+                relativeLyoutForRegister.setMinimumHeight(heightOfSecondRelativeLayout + 200);
+            }
+        });
 
         ngoUrlLayout.setVisibility(View.GONE);
+        ngoNameLayout.setVisibility(View.GONE);
+
         isNgoCheckbox.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (((CheckBox) v).isChecked()){
                     ngoUrlLayout.setVisibility(View.VISIBLE);
+                    ngoNameLayout.setVisibility(View.VISIBLE);
                     strIsNgo="Yes";
 
                 }else{
                     ngoUrlLayout.setVisibility(View.GONE);
+                    ngoNameLayout.setVisibility(View.GONE);
                     ngoUrl="";
                     strIsNgo="";
 
@@ -77,8 +97,42 @@ public class SignUp extends AppCompatActivity {
             }
         });
         txt_ngoUrl.addTextChangedListener(ngoUrlChangeListener);
+        txt_ngoName.addTextChangedListener(ngoNameChangeListener);
         ButtonSignUp();
         ButtonCancel();
+    }
+    private TextWatcher ngoNameChangeListener = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            new GetNgoName().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
+        }
+    };
+    public class GetNgoName extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ngoName = txt_ngoName.getText().toString();
+                    }
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
     }
     private TextWatcher ngoUrlChangeListener = new TextWatcher() {
         @Override
@@ -161,18 +215,18 @@ public class SignUp extends AppCompatActivity {
                         if(isNgoCheckbox.isChecked() && txt_ngoUrl.getText().toString().isEmpty()){
                             Toast.makeText(SignUp.this, "Enter Url", Toast.LENGTH_LONG).show();
                         }
+                        else if(isNgoCheckbox.isChecked()  && txt_ngoName.getText().toString().isEmpty()){
+                            Toast.makeText(SignUp.this, "Enter NGO Name", Toast.LENGTH_LONG).show();
+                        }
                         else if (txt_name.getText().toString().isEmpty() || txt_buildingname.getText().toString().isEmpty() || txt_area.getText().toString().isEmpty() || txt_city.getText().toString().isEmpty() || txt_mobileno.getText().toString().isEmpty() || txt_email.getText().toString().isEmpty() || txt_confirmpassword.getText().toString().isEmpty() ) {
                             Toast.makeText(SignUp.this, "All Details are neccessory", Toast.LENGTH_LONG).show();
-                            //Snackbar.make(SignIn.this,"Enter Username & Password",Snackbar.LENGTH_LONG).show();
                         } else {
-
                             if( (mobileno.length() < 6 || mobileno.length() > 13) ) {
                                 Toast.makeText(SignUp.this, "Mobile No is not valid", Toast.LENGTH_LONG).show();
                             }
                             else if(!isValidEmail(email)) {
                                 Toast.makeText(SignUp.this, "Email is not valid", Toast.LENGTH_LONG).show();
                             }
-
                             else if(password.equals(conf_password)) {
                                 progressDialog = new ProgressDialog(SignUp.this);
                                 progressDialog.setMessage("Registering Data Wait...");
@@ -181,8 +235,7 @@ public class SignUp extends AppCompatActivity {
                                     PasswordConverter passwordConverter=new PasswordConverter();
                                     confirmpassword = passwordConverter.ConvertPassword(conf_password);
                                     RegisterToServer registerToServer = new RegisterToServer(SignUp.this);
-
-                                    registerToServer.uploadToRemoteServer(name, buildingname, area, city, mobileno, email, confirmpassword,strIsNgo,ngoUrl);
+                                    registerToServer.uploadToRemoteServer(name, buildingname, area, city, mobileno, email, confirmpassword,strIsNgo,ngoUrl,ngoName);
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                     progressDialog.dismiss();

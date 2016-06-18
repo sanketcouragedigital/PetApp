@@ -58,13 +58,13 @@ public class NGO_Donation  extends AppCompatActivity
         nameOfNgo = (TextView) findViewById(R.id.sender);
         donationAmount = (TextView) findViewById(R.id.totalPrice);
 
-        String ngoname =  "NGO: "+ngoName;
+        String ngoname =  "<b>NGO: </b>"+ngoName;
         nameOfNgo.setText(Html.fromHtml(ngoname));
 
-        String campaignname =  "Campaign: "+campaignName;
+        String campaignname =  "<b>Campaign: </b>"+campaignName;
         nameOfCampaign.setText(Html.fromHtml(campaignname));
 
-        String donatonamount =  "Donation Amount: "+amount;
+        String donatonamount =  "<b>Donation Amount: </b>"+amount;
         donationAmount.setText(Html.fromHtml(donatonamount));
 
         totalPrice= Integer.parseInt(amount);
@@ -84,8 +84,9 @@ public class NGO_Donation  extends AppCompatActivity
          * Replace with your public key
          */
 
-        final String public_key = "rzp_test_OAmWaTCnP0PB50";
+       // final String public_key = "rzp_test_OAmWaTCnP0PB50";
 
+         final String public_key = "rzp_live_q18pNB7FUtMPxp";
         /**
          * You need to pass current activity in order to let razorpay create CheckoutActivity
          */
@@ -99,7 +100,7 @@ public class NGO_Donation  extends AppCompatActivity
 
         try{
             JSONObject options = new JSONObject("{" +
-                    "description: 'Demoing Charges'," +
+                   // "description: 'Demoing Charges'," +
                     //"image: 'https://rzp-mobile.s3.amazonaws.com/images/rzp.png'," +
                     "image: 'http://storage.couragedigital.com/prod/ic_launcher.png'," +
                     //"image: '"+PetoImage+"'," +
@@ -131,6 +132,8 @@ public class NGO_Donation  extends AppCompatActivity
             try {
                 Donate_For_Ngo donate_For_NGO = new Donate_For_Ngo(NGO_Donation.this);
                 donate_For_NGO.CollectDonationInfo(campaignId,donarEmail,amount,ngoEmail);
+                Intent gotoListPage = new Intent(this,Campaign_List_ForAll.class);
+                startActivity(gotoListPage);
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -25,6 +25,8 @@ public class CampaignDelete {
     private static String ngoName;
     private static String ngoEmail;
     private static String lastDate;
+    private static String postDate;
+
     private static String mobileNo;
     private static String OrderResponse;
 
@@ -37,7 +39,7 @@ public class CampaignDelete {
     private Map<String, String> params;
 
 
-    public String campaignDeleteFromServer(String campaignIdtxt, String campaignNametxt,String ngoNametxt,String ngoEmailtxt,String lastDatetxt,String userEmailtxt,String mobileNotxt) throws Exception {
+    public String campaignDeleteFromServer(String campaignIdtxt, String campaignNametxt,String ngoNametxt,String ngoEmailtxt,String lastDatetxt,String postDatetxt,String userEmailtxt,String mobileNotxt) throws Exception {
 
         method = "deleteCampaign";
         format = "json";
@@ -46,6 +48,7 @@ public class CampaignDelete {
         ngoName = ngoNametxt;
         ngoEmail = ngoEmailtxt;
         lastDate = lastDatetxt;
+        postDate =  postDatetxt;
         userEmail = userEmailtxt;
         mobileNo = mobileNotxt;
 
@@ -60,6 +63,7 @@ public class CampaignDelete {
             params.put("ngoName", ngoName);
             params.put("ngoEmail", ngoEmail);
             params.put("lastDate", lastDate);
+            params.put("postDate", postDate);
             params.put("userEmail", userEmail);
             params.put("mobileNo", mobileNo);
 

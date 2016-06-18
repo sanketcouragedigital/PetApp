@@ -10,6 +10,7 @@ public class EditProfileDetailsInstance {
     private static String emailInstance;
     private static String passwordInstance;
     private static String ngoUrlInstance;
+    private static String ngoNameInstance;
 
 
     public static String  getName() {
@@ -52,6 +53,12 @@ public class EditProfileDetailsInstance {
         return ngoUrlInstance;
     } public static void setNgoUrlInstance(String ngoUrl) {
         ngoUrlInstance = ngoUrl;
+    }
+
+    public static String  getNgoNameInstance() {
+        return ngoNameInstance;
+    } public static void setNgoNameInstance(String ngoName) {
+        ngoNameInstance = ngoName;
     }
 
 

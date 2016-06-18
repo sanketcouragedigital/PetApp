@@ -38,10 +38,16 @@ public class ShowClinicFeedback {
                                     try {
                                         JSONObject obj = jsonArray.getJSONObject(i);
                                         ClinicReviewsListItems clinicReviewsListItems = new ClinicReviewsListItems();
-                                        clinicReviewsListItems.setEmail(obj.getString("name"));
-                                        clinicReviewsListItems.setClinicRatings(obj.getString("ratings"));
-                                        clinicReviewsListItems.setClinicReviews(obj.getString("reviews"));
-                                        clinicReviewsListItemsArrayList.add(clinicReviewsListItems);
+                                        if((obj.getString("emptyKey").equals("Empty"))){
+                                            clinicReviewsListItems.setEmptyKey(obj.getString("emptyKey"));
+                                            clinicReviewsListItemsArrayList.add(clinicReviewsListItems);
+                                        }else {
+                                            clinicReviewsListItems.setEmail(obj.getString("name"));
+                                            clinicReviewsListItems.setClinicRatings(obj.getString("ratings"));
+                                            clinicReviewsListItems.setClinicReviews(obj.getString("reviews"));
+                                            clinicReviewsListItems.setEmptyKey(obj.getString("emptyKey"));
+                                            clinicReviewsListItemsArrayList.add(clinicReviewsListItems);
+                                        }
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }

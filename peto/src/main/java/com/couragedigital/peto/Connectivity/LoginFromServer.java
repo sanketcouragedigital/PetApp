@@ -1,5 +1,6 @@
 package com.couragedigital.peto.Connectivity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -35,7 +36,7 @@ public class LoginFromServer {
 
 
 
-    public String CheckToRemoteServer(String email, String confirmpassword) throws Exception {
+    public String CheckToRemoteServer(String email, String confirmpassword, final ProgressDialog progressDialog) throws Exception {
 
         String method = "userLogin";
         String format = "json";
@@ -61,6 +62,7 @@ public class LoginFromServer {
                     public void onResponse(JSONObject response) {
                         VolleyLog.v("Response: %n %s", response.toString());
                         try {
+                            progressDialog.hide();
                             returnResponse(response.getString("loginDetailsResponse"));
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -94,6 +96,15 @@ public class LoginFromServer {
         sessionManager = new SessionManager(context);
             //normal user login
         if (response.equals("NOT_NGO")) {
+            //IsNGO="No";
+            sessionManager.createUserLoginSession( email,  "No");
+            Intent gotoindexpage = new Intent(context, Index.class);
+            gotoindexpage.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            gotoindexpage.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(gotoindexpage);
+            Toast.makeText(context, "Logged In.", Toast.LENGTH_SHORT).show();
+        }
+        else if (response.equals("ADMIN_USER")) {
             //IsNGO="No";
             sessionManager.createUserLoginSession( email,  "No");
             Intent gotoindexpage = new Intent(context, Index.class);

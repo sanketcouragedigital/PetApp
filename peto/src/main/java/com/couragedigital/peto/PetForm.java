@@ -25,6 +25,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ContextThemeWrapper;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -46,9 +47,10 @@ import java.io.*;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
+import android.support.v7.widget.Toolbar;
 
 
-public class PetForm extends BaseActivity implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
+public class PetForm extends AppCompatActivity implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
 
     private static final int CAMERA_REQUEST = 1;
     private static final int GALLERY_REQUEST = 2;
@@ -121,12 +123,22 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
     String thirdImagePath = "";
 
     private long TIME = 5000;
+    private Toolbar petFormToolbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.petform);
 
+      petFormToolbar = (Toolbar) findViewById(R.id.petFormToolbar);
+        setSupportActionBar(petFormToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        petFormToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         petCategory = (Spinner) this.findViewById(R.id.petCategory);
         petBreed = (Spinner) this.findViewById(R.id.petBreed);
         //ageOfPet = (EditText) this.findViewById(R.id.ageOfPet);
@@ -161,6 +173,7 @@ public class PetForm extends BaseActivity implements View.OnClickListener, Activ
             }
         });
 
+        SessionManager sessionManager = new SessionManager(PetForm.this.getApplicationContext());
         HashMap<String, String> user = sessionManager.getUserDetails();
         email = user.get(SessionManager.KEY_EMAIL);
 

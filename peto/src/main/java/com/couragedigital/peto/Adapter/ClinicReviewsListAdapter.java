@@ -46,6 +46,8 @@ public class ClinicReviewsListAdapter extends RecyclerView.Adapter<ClinicReviews
         public TextView clinicReviews;
         public TextView email;
         public View clinicListDividerLine;
+        public TextView EmptyKeyResponse;
+
         public int userRatings;
         LinearLayout layout;
         RelativeLayout relativeLayoutOfReviewItem;
@@ -59,42 +61,45 @@ public class ClinicReviewsListAdapter extends RecyclerView.Adapter<ClinicReviews
             email = (TextView) itemView.findViewById(R.id.usersName);
             clinicListDividerLine = itemView.findViewById(R.id.viewdividerline);
             relativeLayoutOfReviewItem = (RelativeLayout) itemView.findViewById(R.id.reviewLayout);
+            EmptyKeyResponse = (TextView) itemView.findViewById(R.id.emptyText);
         }
 
         public void bindClinicReviewsList(ClinicReviewsListItems clinicReviewsList) {
-            //if(stateOfRatingStar == 0) {
-                userRatings=Integer.parseInt(clinicReviewsList.getClinicRatings());
+            if (clinicReviewsList.getEmptyKey().equals("Empty")) {
+                EmptyKeyResponse.setVisibility(View.VISIBLE);
+                EmptyKeyResponse.setText("No reviews yet.");
+                relativeLayoutOfReviewItem.setVisibility(View.GONE);
+            } else {
+
+            userRatings = Integer.parseInt(clinicReviewsList.getClinicRatings());
             DisplayMetrics metrics = v.getContext().getResources().getDisplayMetrics();
             float dp = 20f;
             float fpixels = metrics.density * dp;
             int pixels = (int) (fpixels + 0.5f);
 
-                for(int i=0;i<userRatings;i++)
-                {
-                    ImageView image = new ImageView(v.getContext());
-                    image.setLayoutParams(new android.view.ViewGroup.LayoutParams(pixels,pixels));
-                   // image.setLayoutParams(new android.view.ViewGroup.LayoutParams(R.dimen.starSize,R.dimen.starSize));
-                    image.setId(i);
-                    image.setImageResource(R.drawable.ratingstar_yellow);
-                    // Adds the view to the layout
-                    image.setPadding(3, 3, 3, 3);
-                    layout.addView(image);
-                }
-                //stateOfRatingStar = 1;
-            //}
+            for (int i = 0; i < userRatings; i++) {
+                ImageView image = new ImageView(v.getContext());
+                image.setLayoutParams(new android.view.ViewGroup.LayoutParams(pixels, pixels));
+                // image.setLayoutParams(new android.view.ViewGroup.LayoutParams(R.dimen.starSize,R.dimen.starSize));
+                image.setId(i);
+                image.setImageResource(R.drawable.ratingstar_yellow);
+                // Adds the view to the layout
+                image.setPadding(3, 3, 3, 3);
+                layout.addView(image);
+            }
+
             clinicReviews.setText(clinicReviewsList.getClinicReviews());
             email.setText(clinicReviewsList.getEmail());
             clinicListDividerLine.setBackgroundResource(R.color.list_internal_divider);
 
             Integer previousLayoutHeight = clinicReviewInstance.getRelativeLayoutHeightInstance();
             Integer layoutHeight = relativeLayoutOfReviewItem.getHeight();
-            if(previousLayoutHeight > layoutHeight) {
+            if (previousLayoutHeight > layoutHeight) {
                 clinicReviewInstance.setRelativeLayoutHeightInstance(previousLayoutHeight);
-            }
-            else {
+            } else {
                 clinicReviewInstance.setRelativeLayoutHeightInstance(layoutHeight);
             }
-
+        }
         }
     }
 

@@ -60,9 +60,9 @@ public class DrawerAdapterForNgo extends RecyclerView.Adapter<DrawerAdapterForNg
     @Override
     public int getItemViewType(int position) {
         int viewType = 0;
-        if (position <= 4) {
+        if (position <= 5) {
             viewType = 0;
-        } else if (position > 4) {
+        } else if (position > 5) {
             viewType = 1;
         }
         return viewType;
@@ -99,22 +99,20 @@ public class DrawerAdapterForNgo extends RecyclerView.Adapter<DrawerAdapterForNg
             if (drawerListInstance.getDrawerItemListImagePositionInstances() != null) {
                 positionOfItem = drawerListInstance.getDrawerItemListImagePositionInstances();
             }
-            if (i <= 4) {
+            if (i <= 5) {
                 vimageView.setImageResource(itemsList.getIcon());
                 vtextView.setText(itemsList.getTittle());
                 //vimageView.setEnabled(true);
-                if (i == 4) {
+                if (i == 5) {
                     drawerDivider.setVisibility(View.VISIBLE);
                 }
                 if (positionOfItem == 0 && itemsList.getIcon() == R.drawable.home) {
                     vtextView.setText(itemsSelectedList.getTittle());
                     vimageView.setImageResource(itemsSelectedList.getIcon());
-
                 }
                 else if (positionOfItem == 1 && itemsList.getIcon() == R.drawable.profile) {
                     vtextView.setText(itemsSelectedList.getTittle());
                     vimageView.setImageResource(itemsSelectedList.getIcon());
-
                 }
                 else if (positionOfItem == 2 && itemsList.getIcon() == R.drawable.mylisting) {
                     vtextView.setText(itemsSelectedList.getTittle());
@@ -127,9 +125,12 @@ public class DrawerAdapterForNgo extends RecyclerView.Adapter<DrawerAdapterForNg
                 else if (positionOfItem == 4 && itemsList.getIcon() == R.drawable.ordertruck) {
                     vtextView.setText(itemsSelectedList.getTittle());
                     vimageView.setImageResource(itemsSelectedList.getIcon());
-//                    drawerDivider.setVisibility(View.VISIBLE);
                 }
-            } else if (i > 4) {
+                else if (positionOfItem == 5 && itemsList.getIcon() == R.drawable.campaign) {
+                    vtextView.setText(itemsSelectedList.getTittle());
+                    vimageView.setImageResource(itemsSelectedList.getIcon());
+                }
+            } else if (i > 5) {
                 vtext.setText(itemsList.getTittle());
             }
         }
@@ -138,6 +139,7 @@ public class DrawerAdapterForNgo extends RecyclerView.Adapter<DrawerAdapterForNg
         public void onClick(View view) {
             positionOfItem = this.getAdapterPosition();
             if (this.getAdapterPosition() == 0) {
+                drawer.closeDrawers();
                 Intent gotoformupload = new Intent(view.getContext(), Index.class);
                 view.getContext().startActivity(gotoformupload);
             }
@@ -157,14 +159,21 @@ public class DrawerAdapterForNgo extends RecyclerView.Adapter<DrawerAdapterForNg
                 v.getContext().startActivity(gotoWishList);
             }
             else if (this.getAdapterPosition() == 4) {
+                drawer.closeDrawers();
                 Intent gotoMyOrders = new Intent(v.getContext(), MyOrders.class);
                 v.getContext().startActivity(gotoMyOrders);
             }
             else if (this.getAdapterPosition() == 5) {
+                drawer.closeDrawers();
+                Intent gotoCampaignForm = new Intent(v.getContext(), Campaign_List.class);
+                v.getContext().startActivity(gotoCampaignForm);
+            }
+            else if (this.getAdapterPosition() == 6) {
+                drawer.closeDrawers();
                 Intent gotofeedback = new Intent(v.getContext(), Feedback.class);
                 v.getContext().startActivity(gotofeedback);
             }
-            else if (this.getAdapterPosition() == 6) {
+            else if (this.getAdapterPosition() == 7) {
                 drawer.closeDrawers();
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
@@ -172,16 +181,15 @@ public class DrawerAdapterForNgo extends RecyclerView.Adapter<DrawerAdapterForNg
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, sharingText);
                 v.getContext().startActivity(Intent.createChooser(sharingIntent, "Share using"));
             }
-            else if (this.getAdapterPosition() == 7) {
+            else if (this.getAdapterPosition() == 8) {
+                drawer.closeDrawers();
                 Intent gotoLegal = new Intent(v.getContext(), Legal.class);
                 v.getContext().startActivity(gotoLegal);
             }
-            else if (this.getAdapterPosition() == 8) {
+            else if (this.getAdapterPosition() == 9) {
+                drawer.closeDrawers();
                 sessionManager = new SessionManager(v.getContext());
                 sessionManager.logoutUser();
-            } else if (this.getAdapterPosition() == 9) {
-                Intent gotoCampaignForm = new Intent(v.getContext(), Campaign_List.class);
-                v.getContext().startActivity(gotoCampaignForm);
             }
             drawerListInstance.setDrawerItemListImagePositionInstances(positionOfItem);
             notifyDataSetChanged();

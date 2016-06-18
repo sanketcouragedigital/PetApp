@@ -149,6 +149,7 @@
                             android:layout_height="match_parent"
                             android:orientation="vertical"
                             android:id="@+id/petListDetailsSecondRelativeLayout"
+                            android:layout_marginBottom="@dimen/_80sdp"
                             android:paddingTop="@dimen/_4sdp">
 
                 <android.support.v7.widget.CardView
@@ -159,11 +160,13 @@
                         android:layout_marginLeft="@dimen/_16sdp"
                         android:layout_marginRight="@dimen/_16sdp"
                         card_view:cardCornerRadius="@dimen/_2sdp"
+
                         card_view:cardElevation="@dimen/_2sdp">
 
                     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
+                                    android:layout_height="match_parent"
+                                    >
                         <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"

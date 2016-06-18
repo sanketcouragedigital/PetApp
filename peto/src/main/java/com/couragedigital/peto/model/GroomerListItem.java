@@ -11,10 +11,16 @@ public class GroomerListItem {
     private String area;
     private String city;
 
+    public String groomer_Id;
+    private String notes;
+    private  String latitude;
+    private  String longitude;
+    private String description;
+
     public GroomerListItem() {
     }
 
-    public GroomerListItem(String groomername, String groomeraddress, String email, String contact, String image_path, String area, String city) {
+    public GroomerListItem(String groomerId,String groomername, String groomeraddress, String email, String contact, String image_path, String area, String city,String notes,String latitude,String longitude, String description) {
 
         this.groomer_name = groomername;
         this.groomer_address = groomeraddress;
@@ -23,6 +29,48 @@ public class GroomerListItem {
         this.image_path = image_path;
         this.area = area;
         this.city = city;
+
+        this.groomer_Id = groomerId;
+        this.notes = notes;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.description = description;
+    }
+
+    public String getGroomer_Id() {
+        return groomer_Id;
+    }
+    public void setGroomer_Id(String groomer_Id) {
+        this.groomer_Id = groomer_Id;
+    }
+    public  String getNotes(){
+        return  notes;
+    }
+    public  void  setNotes(String notes){
+        this.notes = notes;
+    }
+
+    public  void  setLatitude(String latitude){
+        this.latitude = latitude;
+    }
+
+    public  String getlatitude(){
+        return  latitude;
+    }
+
+    public  void  setLongitude(String longitude){
+        this.longitude = longitude;
+    }
+
+    public  String getLongitude(){
+        return  longitude;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public String getGroomerImage_path() {

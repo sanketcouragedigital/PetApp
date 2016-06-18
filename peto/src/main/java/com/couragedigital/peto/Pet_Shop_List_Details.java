@@ -352,12 +352,13 @@ public class Pet_Shop_List_Details extends AppCompatActivity implements View.OnC
         area = txt_area.getText().toString();
         city = txt_city.getText().toString();
         pincode = txt_pincode.getText().toString();
+
         if(v.getId() == R.id.productBuyNowButton) {
             if (productQtySpinner == null || productQtySpinner.isEmpty()) {
                 Toast.makeText(Pet_Shop_List_Details.this, "Please select Quantity.", Toast.LENGTH_LONG).show();
                 TextView errorText = (TextView) productQty.getSelectedView();
                 errorText.setError("Please select Quantity");
-            } else if(buildingName == null || buildingName.isEmpty()) {
+            }else if(buildingName == null || buildingName.isEmpty()) {
                 Toast.makeText(Pet_Shop_List_Details.this, "Please Enter Address.", Toast.LENGTH_LONG).show();
             }else if(area == null || area.isEmpty()) {
                 Toast.makeText(Pet_Shop_List_Details.this, "Please Enter Area.", Toast.LENGTH_LONG).show();
@@ -366,6 +367,8 @@ public class Pet_Shop_List_Details extends AppCompatActivity implements View.OnC
                 Toast.makeText(Pet_Shop_List_Details.this, "Please Enter City.", Toast.LENGTH_LONG).show();
             }else if(pincode.equals("") || pincode.isEmpty()) {
                 Toast.makeText(Pet_Shop_List_Details.this, "Please Enter Pincode.", Toast.LENGTH_LONG).show();
+            }else if( pincode.length()!= 6){
+                Toast.makeText(Pet_Shop_List_Details.this, "Enter Valid Pincode.", Toast.LENGTH_LONG).show();
             }
             else{
                 progressDialog = ProgressDialog.show(Pet_Shop_List_Details.this, "", "Loading...", true);

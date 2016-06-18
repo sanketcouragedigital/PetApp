@@ -50,6 +50,7 @@
                         android:id="@+id/clinicName"
                         android:layout_marginTop="@dimen/_16sdp"
                         android:layout_marginLeft="@dimen/_16sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
                         android:textSize="@dimen/petName"
                         android:textStyle="bold"
                         android:textColor="@color/list_pet_origin_text_color"

@@ -38,12 +38,18 @@ public class PetFetchTrainerList {
                                     try {
                                         JSONObject obj = jsonArray.getJSONObject(i);
                                         TrainerListItem trainerListItem = new TrainerListItem();
+                                        trainerListItem.setTrainer_Id(obj.getString("id"));
                                         trainerListItem.setTrainerName(obj.getString("name"));
                                         trainerListItem.setTrainerAdress(obj.getString("address"));
                                         trainerListItem.setContact(obj.getString("contact"));
                                         trainerListItem.setEmail(obj.getString("email"));
                                         trainerListItem.setTrainerImage_path(obj.getString("image"));
                                         trainerListItem.setTrainerDescription(obj.getString("description"));
+                                        trainerListItem.setCity(obj.getString("city"));
+                                        trainerListItem.setArea(obj.getString("area"));
+                                        trainerListItem.setNotes(obj.getString("timing"));
+                                        trainerListItem.setLatitude(obj.getString("latitude"));
+                                        trainerListItem.setLongitude(obj.getString("longitude"));
                                         // adding pet to pets array
                                         trainerList.add(trainerListItem);
                                         adapter.notifyDataSetChanged();

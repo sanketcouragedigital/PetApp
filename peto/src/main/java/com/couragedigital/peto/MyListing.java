@@ -5,19 +5,33 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 import com.couragedigital.peto.Adapter.MyListingPagerAdapter;
 import com.couragedigital.peto.InternetConnectivity.NetworkChangeReceiver;
 
 
-public class MyListing extends BaseActivity {
+public class MyListing extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private Toolbar myListingToolbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mylisting);
+
+        myListingToolbar = (Toolbar) findViewById(R.id.myListingToolbar);
+        setSupportActionBar(myListingToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        myListingToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         tabLayout = (TabLayout) findViewById(R.id.mylistingtablayout);
         tabLayout.addTab(tabLayout.newTab().setText("Pet List"));
@@ -44,6 +58,11 @@ public class MyListing extends BaseActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        MyListing.this.finish();
     }
 
     @Override

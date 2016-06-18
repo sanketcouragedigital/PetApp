@@ -45,6 +45,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -64,15 +65,13 @@ public class Campaign_Form extends BaseActivity implements View.OnClickListener,
     public ArrayAdapter<String> dialogAdapter;
 
 
-
-    EditText ngoName;
     EditText campaignName;
     EditText campaignDescription;
     EditText campaignActualAmount;
     CheckBox campaignCHKMinimumAmount;
     EditText campaignMinimumAmount;
     //DatePicker campaignLastDate;
-    EditText campaignLastDate;
+    TextView campaignLastDate;
 
     Button selectImageButton;
     ImageView firstImageOfPet;
@@ -80,11 +79,10 @@ public class Campaign_Form extends BaseActivity implements View.OnClickListener,
     ImageView thirdImageOfPet;
     FloatingActionButton uploadFabButton;
 
-    String ngoNameText ="";
     String campaignNameText ="";
     String campaignDescriptionText ="";
     String campaignActualAmountText ="";
-    String campaignMinimumAmountText = "";
+    String campaignMinimumAmountText = "0";
     String campaignLastDateText ="";
     String email;
 
@@ -99,6 +97,7 @@ public class Campaign_Form extends BaseActivity implements View.OnClickListener,
     File storageDir;
     File cropFile;
 
+    private int mYear, mMonth, mDay;
 
     private long TIME = 5000;
     @Override
@@ -106,12 +105,12 @@ public class Campaign_Form extends BaseActivity implements View.OnClickListener,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.campaign_form);
 
-        ngoName = (EditText) this.findViewById(R.id.txtNGOName);
+        //ngoName = (EditText) this.findViewById(R.id.txtNGOName);
         campaignName = (EditText) this.findViewById(R.id.txtCampaignName);
         campaignDescription = (EditText) this.findViewById(R.id.txtDescription);
         campaignActualAmount = (EditText) this.findViewById(R.id.txtCampaignActualAmount);
         campaignMinimumAmount = (EditText) findViewById(R.id.txtMinmumAmount);
-        campaignLastDate = (EditText) findViewById(R.id.txtCampaignLastDate);
+        campaignLastDate = (TextView) findViewById(R.id.txtCampaignLastDate);
 
         selectImageButton = (Button) this.findViewById(R.id.selectImage);
         firstImageOfPet = (ImageView) this.findViewById(R.id.firstImageOfPet);
@@ -123,6 +122,7 @@ public class Campaign_Form extends BaseActivity implements View.OnClickListener,
 
         selectImageButton.setOnClickListener(this);
         uploadFabButton.setOnClickListener(this);
+        campaignLastDate.setOnClickListener(this);
         campaignMinimumAmount.addTextChangedListener(campaignMinimumAmountChangeListener);
 
         campaignMinimumAmount.setVisibility(View.GONE);
@@ -518,9 +518,29 @@ public class Campaign_Form extends BaseActivity implements View.OnClickListener,
                     }
                 }
             }
-            //String campaignMinimumAmountText = "";
+            if (v == campaignLastDate) {
+
+                // Process to get Current Date
+                final Calendar c = Calendar.getInstance();
+                mYear = c.get(Calendar.YEAR);
+                mMonth = c.get(Calendar.MONTH);
+                mDay = c.get(Calendar.DAY_OF_MONTH);
+                // Launch Date Picker Dialog
+                DatePickerDialog dpd = new DatePickerDialog(this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // Display Selected date in textbox
+                                campaignLastDate.setText(dayOfMonth + "-"
+                                        + (monthOfYear + 1) + "-" + year);
+                            }
+                        }, mYear, mMonth, mDay);
+                dpd.show();
+            }
+                //String campaignMinimumAmountText = "";
             else if(v.getId() == R.id.campaignFormSubmitFab) {
-                ngoNameText = ngoName.getText().toString();
+                //ngoNameText = ngoName.getText().toString();
                 campaignNameText = campaignName.getText().toString();
                 campaignDescriptionText = campaignDescription.getText().toString();
                 campaignActualAmountText = campaignActualAmount.getText().toString();
@@ -528,10 +548,7 @@ public class Campaign_Form extends BaseActivity implements View.OnClickListener,
                 campaignLastDateText = campaignLastDate.getText().toString();
                 //campaignLastDateText= campaignLastDate.getYear() +"-"+(campaignLastDate.getMonth()+1) +"-"+campaignLastDate.getDayOfMonth();
 
-                if (ngoNameText == null || ngoNameText.isEmpty()) {
-                    Toast.makeText(Campaign_Form.this, "Please Enter NGO Name.", Toast.LENGTH_LONG).show();
-                }
-                else if(campaignNameText == null || campaignNameText.isEmpty()) {
+                if(campaignNameText == null || campaignNameText.isEmpty()) {
                     Toast.makeText(Campaign_Form.this, "Please Enter Name For Campaign.", Toast.LENGTH_LONG).show();
                 }
                 else if(campaignDescriptionText == null || campaignDescriptionText.isEmpty()) {
@@ -540,7 +557,7 @@ public class Campaign_Form extends BaseActivity implements View.OnClickListener,
                 else if(campaignActualAmountText == null || campaignActualAmountText.isEmpty()) {
                     Toast.makeText(Campaign_Form.this, "Please Enter Amount.", Toast.LENGTH_LONG).show();
                 }
-                else if(campaignLastDateText == null || campaignLastDateText.isEmpty()) {
+                else if(campaignLastDateText.equals("")) {
                     Toast.makeText(Campaign_Form.this, "Please Enter Date.", Toast.LENGTH_LONG).show();
                 }
 
@@ -559,7 +576,7 @@ public class Campaign_Form extends BaseActivity implements View.OnClickListener,
         @Override
         protected Void doInBackground(Void... params) {
             try {
-                Campaign_Create.uploadCampaignDetails(ngoNameText, campaignNameText, campaignDescriptionText,campaignActualAmountText,campaignMinimumAmountText, campaignLastDateText, firstImagePath, secondImagePath, thirdImagePath, email,Campaign_Form.this);
+                Campaign_Create.uploadCampaignDetails(campaignNameText, campaignDescriptionText,campaignActualAmountText,campaignMinimumAmountText, campaignLastDateText, firstImagePath, secondImagePath, thirdImagePath, email,Campaign_Form.this);
                 progressDialog.dismiss();
             } catch (Exception e) {
                 e.printStackTrace();

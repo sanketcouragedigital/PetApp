@@ -38,6 +38,7 @@ public class WishListPetMateListTab extends Fragment implements WishListPetMateL
 
     int current_page = 1;
     public String email;
+    WishListPetMateFetchList wishListPetMateFetchList;
     View v;
 
     @Override
@@ -49,6 +50,7 @@ public class WishListPetMateListTab extends Fragment implements WishListPetMateL
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.wishlistpetmatelist, container, false);
+        wishListPetMateFetchList = new WishListPetMateFetchList(v.getContext());
         return v;
     }
 
@@ -92,7 +94,7 @@ public class WishListPetMateListTab extends Fragment implements WishListPetMateL
         protected String doInBackground(String... url) {
             try {
                 urlForFetch = url[0];
-                WishListPetMateFetchList wishListPetMateFetchList = new WishListPetMateFetchList(v);
+
                 wishListPetMateFetchList.wishListPetMateFetchList(wishListPetMateArrayList, adapter, urlForFetch);
             } catch (Exception e) {
                 e.printStackTrace();

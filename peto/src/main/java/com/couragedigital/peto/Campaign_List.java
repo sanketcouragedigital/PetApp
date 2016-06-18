@@ -1,7 +1,9 @@
 package com.couragedigital.peto;
 
 import android.app.ProgressDialog;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -15,6 +17,7 @@ import com.couragedigital.peto.Adapter.CampaignList_Adapter;
 import com.couragedigital.peto.Adapter.ShopProductListAdapter;
 import com.couragedigital.peto.Connectivity.Campaign_ShowList;
 import com.couragedigital.peto.Connectivity.UserAllDetails;
+import com.couragedigital.peto.InternetConnectivity.NetworkChangeReceiver;
 import com.couragedigital.peto.Listeners.PetFetchListScrollListener;
 import com.couragedigital.peto.SessionManager.SessionManager;
 import com.couragedigital.peto.Singleton.URLInstance;
@@ -85,7 +88,7 @@ public class Campaign_List extends BaseActivity implements View.OnClickListener{
 
         progressDialog = new ProgressDialog(this);
         // Showing progress dialog before making http request
-        progressDialog.setMessage("Fetching List Of Campaign...");
+        progressDialog.setMessage("Fetching List Of Campaign.");
         progressDialog.show();
 
         grabURL(url);
@@ -118,7 +121,21 @@ public class Campaign_List extends BaseActivity implements View.OnClickListener{
         }
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        PackageManager pm = Campaign_List.this.getPackageManager();
+        ComponentName component = new ComponentName(Campaign_List.this, NetworkChangeReceiver.class);
+        pm.setComponentEnabledSetting(component, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        PackageManager pm = Campaign_List.this.getPackageManager();
+        ComponentName component = new ComponentName(Campaign_List.this, NetworkChangeReceiver.class);
+        pm.setComponentEnabledSetting(component, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.GET_ACTIVITIES);
+    }
 
 
 }

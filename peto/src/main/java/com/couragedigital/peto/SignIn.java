@@ -76,7 +76,7 @@ public class SignIn extends AppCompatActivity {
                                 PasswordConverter passwordConverter = new PasswordConverter();
                                 userpassword = passwordConverter.ConvertPassword(password.getText().toString());
                                 LoginFromServer loginFromServer = new LoginFromServer(SignIn.this);
-                                loginFromServer.CheckToRemoteServer(email, userpassword);
+                                loginFromServer.CheckToRemoteServer(email, userpassword, progressDialog);
                             } catch (Exception e) {
                                 e.printStackTrace();
                                 progressDialog.dismiss();

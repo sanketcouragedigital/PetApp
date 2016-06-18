@@ -9,6 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.couragedigital.peto.DialogBox.EmptyListDialoge;
 import com.couragedigital.peto.DialogBox.TimeOut_DialogeBox;
 import com.couragedigital.peto.MyOrders;
 import com.couragedigital.peto.Singleton.URLInstance;
@@ -41,7 +42,12 @@ public class MyOrderFetchList {
                     public void onResponse(JSONObject response) {
                         try {
                             JSONArray jsonArray = response.getJSONArray("showOrderDetailsResponse");
-                            for (int i = 0; i < jsonArray.length(); i++) {
+                            if (jsonArray.length()==0) {
+                                Intent gotoEmptyList = new Intent(context, EmptyListDialoge.class);
+                                context.startActivity(gotoEmptyList);
+                            }
+                             else {
+                                for (int i = 0; i < jsonArray.length(); i++) {
                                 try {
                                     JSONObject obj = jsonArray.getJSONObject(i);
                                     OrderListItems orderListItems = new OrderListItems();
@@ -53,7 +59,7 @@ public class MyOrderFetchList {
                                     orderListItems.setOrderProductCustomer_name(obj.getString("customer_name"));
                                     orderListItems.setOrderProductCustomer_contact(obj.getString("customer_contact"));
                                     orderListItems.setOrderProductCustomer_email(obj.getString("customer_email"));
-                                    orderListItems.setOrderProductBuidling_name(obj.getString("buidling_name"));
+                                    orderListItems.setOrderProductBuidling_name(obj.getString("address"));
                                     orderListItems.setOrderProductArea(obj.getString("area"));
                                     orderListItems.setOrderProductCity(obj.getString("city"));
                                     orderListItems.setOrderProductPostDate(obj.getString("post_date"));
@@ -78,6 +84,7 @@ public class MyOrderFetchList {
                                     e.printStackTrace();
                                 }
                             }
+                        }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

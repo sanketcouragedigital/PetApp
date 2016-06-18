@@ -45,6 +45,11 @@ public class PetFetchShelterList {
                                         shelterListItem.setShelterImage_path(obj.getString("image"));
                                         shelterListItem.setArea(obj.getString("area"));
                                         shelterListItem.setCity(obj.getString("city"));
+                                        shelterListItem.setDescription(obj.getString("description"));
+                                        shelterListItem.setNotes(obj.getString("timing"));
+                                        shelterListItem.setLatitude(obj.getString("latitude"));
+                                        shelterListItem.setLongitude(obj.getString("longitude"));
+                                        shelterListItem.setShelter_Id(obj.getString("id"));
                                         // adding pet to pets array
                                         shelterList.add(shelterListItem);
                                         adapter.notifyDataSetChanged();

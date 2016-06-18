@@ -25,6 +25,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ContextThemeWrapper;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -46,8 +47,9 @@ import java.io.*;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
+import android.support.v7.widget.Toolbar;
 
-public class PetMate extends BaseActivity implements View.OnClickListener {
+public class PetMate extends AppCompatActivity implements View.OnClickListener {
 
     private static final int CAMERA_REQUEST = 1;
     private static final int GALLERY_REQUEST = 2;
@@ -113,11 +115,21 @@ public class PetMate extends BaseActivity implements View.OnClickListener {
     String thirdImagePath = "";
 
     private long TIME = 5000;
-
+    private Toolbar petMateToolbar;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.petmate);
+
+        petMateToolbar = (Toolbar) findViewById(R.id.petMateToolbar);
+        setSupportActionBar(petMateToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        petMateToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         sessionManager = new SessionManager(getApplicationContext());
         HashMap<String, String> user = sessionManager.getUserDetails();

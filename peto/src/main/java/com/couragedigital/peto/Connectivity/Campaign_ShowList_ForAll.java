@@ -11,6 +11,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.couragedigital.peto.Campaign_List_ForAll;
+import com.couragedigital.peto.DialogBox.EmptyListDialoge;
 import com.couragedigital.peto.DialogBox.TimeOut_DialogeBox;
 import com.couragedigital.peto.Singleton.URLInstance;
 import com.couragedigital.peto.app.AppController;
@@ -40,7 +41,11 @@ public class Campaign_ShowList_ForAll {
                     public void onResponse(JSONObject response) {
                         try {
                             JSONArray jsonArray = response.getJSONArray("showCampaignDetailsForAllResponse");
-                            for (int i = 0; i < jsonArray.length(); i++) {
+                            if (jsonArray.length()==0) {
+                                Intent gotoEmptyList = new Intent(context, EmptyListDialoge.class);
+                                context.startActivity(gotoEmptyList);
+                            } else {
+                                for (int i = 0; i < jsonArray.length(); i++) {
                                 try {
                                     JSONObject obj = jsonArray.getJSONObject(i);
                                     CampaignListItem campaignListItem = new CampaignListItem();
@@ -51,7 +56,7 @@ public class Campaign_ShowList_ForAll {
                                     campaignListItem.setEmail(obj.getString("ngo_email"));
                                     campaignListItem.setId(obj.getString("campaign_id"));
                                     campaignListItem.setCampaignName(obj.getString("campaignName"));
-                                    campaignListItem.setNgoName(obj.getString("ngoName"));
+                                    campaignListItem.setNgoName(obj.getString("ngo_name"));
                                     campaignListItem.setDescription(obj.getString("description"));
                                     campaignListItem.setMinimumAmount(obj.getString("minimumAmount"));
                                     campaignListItem.setLastDate(obj.getString("lastDate"));
@@ -73,6 +78,7 @@ public class Campaign_ShowList_ForAll {
                                     e.printStackTrace();
                                 }
                             }
+                        }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

@@ -53,6 +53,7 @@ public class GroomerListAdapter extends RecyclerView.Adapter<GroomerListAdapter.
 
         public ImageView groomerImage;
         public TextView groomerName;
+        public TextView groomerContactno;
         public TextView groomerAddress;
         public View groomerCardView;
         public Button groomerFavourite;
@@ -72,6 +73,7 @@ public class GroomerListAdapter extends RecyclerView.Adapter<GroomerListAdapter.
             }
 
             groomerName = (TextView) itemView.findViewById(R.id.groomerName);
+            groomerContactno= (TextView) itemView.findViewById(R.id.groomerContactno);
             groomerAddress = (TextView) itemView.findViewById(R.id.groomerAddress);
             groomerImage = (ImageView) itemView.findViewById(R.id.groomerImage);
             //    groomerSeeMoreBtn = (Button) itemView.findViewById(R.id.groomerSeeMoreButton);
@@ -99,6 +101,7 @@ public class GroomerListAdapter extends RecyclerView.Adapter<GroomerListAdapter.
                 }
             });
             groomerName.setText(groomerListItems.getGroomerName());
+            groomerContactno.setText(groomerListItems.getContact());
             if(area.equals("")) {
                 areawithcity = city;
             }
@@ -124,6 +127,12 @@ public class GroomerListAdapter extends RecyclerView.Adapter<GroomerListAdapter.
                 groomerInformation.putExtra("GROOMER_CITY", groomerListItems.getCity());
                 groomerInformation.putExtra("GROOMER_AREA", groomerListItems.getArea());
                 groomerInformation.putExtra("GROOMER_CONTACT", groomerListItems.getContact());
+
+                groomerInformation.putExtra("GROOMER_ID", groomerListItems.getGroomer_Id());
+                groomerInformation.putExtra("GROOMER_NOTES", groomerListItems.getNotes());
+                groomerInformation.putExtra("LATITUDE", groomerListItems.getlatitude());
+                groomerInformation.putExtra("LONGITUDE", groomerListItems.getLongitude());
+                groomerInformation.putExtra("GROOMER_DESCRIPTION", groomerListItems.getDescription());
                 v.getContext().startActivity(groomerInformation);
             }
 

@@ -89,12 +89,12 @@ public class Pet_Shop_List extends BaseActivity {
         progressDialog.setMessage("Fetching List Of Products...");
         progressDialog.show();
 
-        petShopListSwipeRefreshLayout.setOnRefreshListener(shopProductListSwipeRefreshListener);
-        petShopListSwipeRefreshLayout.setColorSchemeResources(
-                R.color.refresh_progress_1,
-                R.color.refresh_progress_2,
-                R.color.refresh_progress_3,
-                R.color.refresh_progress_4);
+//        petShopListSwipeRefreshLayout.setOnRefreshListener(shopProductListSwipeRefreshListener);
+//        petShopListSwipeRefreshLayout.setColorSchemeResources(
+//                R.color.refresh_progress_1,
+//                R.color.refresh_progress_2,
+//                R.color.refresh_progress_3,
+//                R.color.refresh_progress_4);
 
         grabURL(url);
     }
@@ -118,43 +118,43 @@ public class Pet_Shop_List extends BaseActivity {
         }
     }
 
-    private SwipeRefreshLayout.OnRefreshListener shopProductListSwipeRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
-        @Override
-        public void onRefresh() {
-            ProductListItems productListItems = productLists.get(0);
-            String date = productListItems.getProductPostDate();
-            //date = date.replace(" ", "+");
-            try {
-                url = "";
-                url = URLInstance.getUrl();
-                url = url+"?method=showShopProductSwipeRefreshList&format=json&date="+ URLEncoder.encode(date, "UTF-8")+"";
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-            new FetchRefreshListFromServer().execute(url);
-        }
-    };
+//    private SwipeRefreshLayout.OnRefreshListener shopProductListSwipeRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+//        @Override
+//        public void onRefresh() {
+//            ProductListItems productListItems = productLists.get(0);
+//            String date = productListItems.getProductPostDate();
+//            //date = date.replace(" ", "+");
+//            try {
+//                url = "";
+//                url = URLInstance.getUrl();
+//                url = url+"?method=showShopProductSwipeRefreshList&format=json&date="+ URLEncoder.encode(date, "UTF-8")+"";
+//            } catch (UnsupportedEncodingException e) {
+//                e.printStackTrace();
+//            }
+//            new FetchRefreshListFromServer().execute(url);
+//        }
+//    };
 
-    public class FetchRefreshListFromServer extends AsyncTask<String, String, String> {
-        @Override
-        protected String doInBackground(String... url) {
-            try {
-                urlForFetch = url[0];
-                ShopProductRefreshFetchList shopProductRefreshFetchList = new ShopProductRefreshFetchList(Pet_Shop_List.this);
-                shopProductRefreshFetchList.productRefreshFetchList(productLists, adapter, urlForFetch, petShopListSwipeRefreshLayout);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-    }
-
-    private void hideProgressDialog() {
-        if (progressDialog != null) {
-            progressDialog.dismiss();
-            progressDialog = null;
-        }
-    }
+//    public class FetchRefreshListFromServer extends AsyncTask<String, String, String> {
+//        @Override
+//        protected String doInBackground(String... url) {
+//            try {
+//                urlForFetch = url[0];
+//                ShopProductRefreshFetchList shopProductRefreshFetchList = new ShopProductRefreshFetchList(Pet_Shop_List.this);
+//                shopProductRefreshFetchList.productRefreshFetchList(productLists, adapter, urlForFetch, petShopListSwipeRefreshLayout);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            return null;
+//        }
+//    }
+//
+//    private void hideProgressDialog() {
+//        if (progressDialog != null) {
+//            progressDialog.dismiss();
+//            progressDialog = null;
+//        }
+//    }
 
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {

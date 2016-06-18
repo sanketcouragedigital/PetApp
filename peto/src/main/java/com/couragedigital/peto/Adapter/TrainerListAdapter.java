@@ -55,6 +55,8 @@ public class TrainerListAdapter extends RecyclerView.Adapter<TrainerListAdapter.
         public ImageView trainerImage;
         public TextView trainerName;
         public TextView trainerAddress;
+        public TextView trainerContactno;
+
         public Button trainerFavourite;
         public Button trainerSeeMoreBtn;
         public View trainerdividerLine;
@@ -62,6 +64,10 @@ public class TrainerListAdapter extends RecyclerView.Adapter<TrainerListAdapter.
         public ExpandableText trainerDescription;
         private TrainerListItem trainerListItems;
         int statusOftrainerFavourite = 0;
+        String area;
+        String city;
+        String areawithcity;
+        String contactno;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -71,8 +77,9 @@ public class TrainerListAdapter extends RecyclerView.Adapter<TrainerListAdapter.
 
             trainerName = (TextView) itemView.findViewById(R.id.trainerName);
             trainerImage = (ImageView) itemView.findViewById(R.id.trainerImage);
-            trainerDescription = (ExpandableText) itemView.findViewById(R.id.petServiceTrainerDescription);
-
+            trainerAddress = (TextView) itemView.findViewById(R.id.trainerAddress);
+            trainerContactno= (TextView) itemView.findViewById(R.id.trainerContactno);
+            //trainerDescription = (ExpandableText) itemView.findViewById(R.id.petServiceTrainerDescription);
             //  trainerAddress = (TextView) itemView.findViewById(R.id.trainerAddress);
             //  trainerSeeMoreBtn = (Button) itemView.findViewById(R.id.trainerSeeMoreButton);
             //  trainerFavourite = (Button) itemView.findViewById(R.id.trainerFavourite);
@@ -86,6 +93,10 @@ public class TrainerListAdapter extends RecyclerView.Adapter<TrainerListAdapter.
 
         public void bindTrainerList(TrainerListItem trainerList) {
             this.trainerListItems = trainerList;
+            area = trainerListItems.getArea();
+            city = trainerListItems.getCity();
+            contactno = trainerListItems.getContact();
+
             Glide.with(trainerImage.getContext()).load(trainerListItems.getTrainerImage_path()).asBitmap().centerCrop().into(new BitmapImageViewTarget(trainerImage) {
                 @Override
                 protected void setResource(Bitmap resource) {
@@ -95,9 +106,18 @@ public class TrainerListAdapter extends RecyclerView.Adapter<TrainerListAdapter.
                     trainerImage.setImageDrawable(circularBitmapDrawable);
                 }
             });
+
+            //trainerAddress.setText(trainerListItems.getTrainerAdress());
+            //trainerDescription.setText(trainerListItems.getTrainerDescription());
             trainerName.setText(trainerListItems.getTrainerName());
-           // trainerAddress.setText(trainerListItems.getTrainerAdress());
-            trainerDescription.setText(trainerListItems.getTrainerDescription());
+            trainerContactno.setText(trainerListItems.getContact());
+            if(area.equals("")) {
+                areawithcity = city;
+            }
+            else {
+                areawithcity = area + " " + city;
+            }
+            trainerAddress.setText(areawithcity);
 
            // trainerSeeMoreBtn.setText("See More");
             //  trainerFavourite.setBackgroundResource(R.drawable.favourite_disable);
@@ -109,6 +129,12 @@ public class TrainerListAdapter extends RecyclerView.Adapter<TrainerListAdapter.
         public void onClick(View view) {
             if (this.trainerListItems != null) {
                 Intent trainerInformation = new Intent(v.getContext(), TabFragmentTrainerDetails.class);
+                trainerInformation.putExtra("TRAINER_ID", trainerListItems.getTrainer_Id());
+                trainerInformation.putExtra("TRAINER_NOTES", trainerListItems.getNotes());
+                trainerInformation.putExtra("TRAINER_CITY", trainerListItems.getCity());
+                trainerInformation.putExtra("TRAINER_AREA", trainerListItems.getArea());
+                trainerInformation.putExtra("LATITUDE", trainerListItems.getlatitude());
+                trainerInformation.putExtra("LONGITUDE", trainerListItems.getLongitude());
                 trainerInformation.putExtra("TRAINER_IMAGE", trainerListItems.getTrainerImage_path());
                 trainerInformation.putExtra("TRAINER_NAME", trainerListItems.getTrainerName());
                 trainerInformation.putExtra("TRAINER_ADDRESS", trainerListItems.getTrainerAdress());

@@ -8,8 +8,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.couragedigital.peto.DialogBox.EmptyListDialoge;
 import com.couragedigital.peto.DialogBox.NullRespone_DialogeBox;
 import com.couragedigital.peto.DialogBox.TimeOut_DialogeBox;
+import com.couragedigital.peto.WishListPetListTab;
 import com.couragedigital.peto.app.AppController;
 import com.couragedigital.peto.model.WishListPetListItem;
 import org.json.JSONArray;
@@ -22,6 +24,10 @@ public class WishListPetFetchList {
     private static final String TAG = PetFetchList.class.getSimpleName();
     private static Context context;
 
+    public WishListPetFetchList(Context contextforWishList) {
+        context = contextforWishList;
+    }
+
     public static List wishListPetFetchList(final List<WishListPetListItem> wishListPet, final RecyclerView.Adapter adapter, String url) {
         JsonObjectRequest wishListPetFetchRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -29,17 +35,20 @@ public class WishListPetFetchList {
                     public void onResponse(JSONObject response) {
                         try {
                             JSONArray jsonArray = response.getJSONArray("showPetWishListResponse");
-                            if(jsonArray.length()!=0) {
+                            if (jsonArray.length()==0) {
+                                Intent gotoEmptyList = new Intent(context, NullRespone_DialogeBox.class);
+                                context.startActivity(gotoEmptyList);
+                            }else {
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     try {
                                         JSONObject obj = jsonArray.getJSONObject(i);
                                         WishListPetListItem wishListPetListItem = new WishListPetListItem();
                                         wishListPetListItem.setId(obj.getInt("id"));
                                         wishListPetListItem.setFirstImagePath(obj.getString("first_image_path"));
-                                        if(!obj.getString("second_image_path").isEmpty() && obj.getString("second_image_path") != null) {
+                                        if (!obj.getString("second_image_path").isEmpty() && obj.getString("second_image_path") != null) {
                                             wishListPetListItem.setSecondImagePath(obj.getString("second_image_path"));
                                         }
-                                        if(!obj.getString("third_image_path").isEmpty() && obj.getString("third_image_path") != null) {
+                                        if (!obj.getString("third_image_path").isEmpty() && obj.getString("third_image_path") != null) {
                                             wishListPetListItem.setThirdImagePath(obj.getString("third_image_path"));
                                         }
                                         if (!obj.getString("pet_adoption").equals("")) {
@@ -64,10 +73,8 @@ public class WishListPetFetchList {
                                         e.printStackTrace();
                                     }
                                 }
-                            }else{
-                                Intent gotoNullError = new Intent(context, NullRespone_DialogeBox.class);
-                                context.startActivity(gotoNullError);
-                            }
+
+                        }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -82,9 +89,6 @@ public class WishListPetFetchList {
         });
         AppController.getInstance().addToRequestQueue(wishListPetFetchRequest);
         return wishListPet;
-    }
-    public WishListPetFetchList(Context context) {
-        this.context = context;
     }
 
     public static String replaceSpecialChars(String str) {

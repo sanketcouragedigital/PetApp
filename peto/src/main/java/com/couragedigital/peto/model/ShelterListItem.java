@@ -11,10 +11,16 @@ public class ShelterListItem {
     private String area;
     private String city;
 
+    public String shelter_Id;
+    private String notes;
+    private  String latitude;
+    private  String longitude;
+    private String description;
+
     public ShelterListItem() {
     }
 
-    public ShelterListItem(String sheltername, String shelteraddress, String email, String contact, String image_path,String area, String city) {
+    public ShelterListItem(String shelterId,String sheltername, String shelteraddress, String email, String contact, String image_path,String area, String city,String notes,String latitude,String longitude, String description) {
 
         this.shelter_name = sheltername;
         this.shelter_address = shelteraddress;
@@ -24,7 +30,50 @@ public class ShelterListItem {
         this.area = area;
         this.city = city;
 
+        this.shelter_Id = shelterId;
+        this.notes = notes;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.description = description;
+
     }
+
+    public String getShelter_Id() {
+        return shelter_Id;
+    }
+    public void setShelter_Id(String shelter_Id) {
+        this.shelter_Id = shelter_Id;
+    }
+    public  String getNotes(){
+        return  notes;
+    }
+    public  void  setNotes(String notes){
+        this.notes = notes;
+    }
+
+    public  void  setLatitude(String latitude){
+        this.latitude = latitude;
+    }
+
+    public  String getlatitude(){
+        return  latitude;
+    }
+
+    public  void  setLongitude(String longitude){
+        this.longitude = longitude;
+    }
+
+    public  String getLongitude(){
+        return  longitude;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
 
     public String getShelterImage_path() {
         return image_path;

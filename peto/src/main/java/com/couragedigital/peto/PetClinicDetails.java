@@ -275,8 +275,8 @@ public class PetClinicDetails extends AppCompatActivity implements View.OnClickL
             Intent gotoClinicMap = new Intent(PetClinicDetails.this,ClinicMap.class);
             gotoClinicMap.putExtra("selectedClinicId",clinicId);
             gotoClinicMap.putExtra("selectedClinicName",clinicName);
-            gotoClinicMap.putExtra("selectedClinicLat",latitude);
-            gotoClinicMap.putExtra("selectedClinicLong",longitude);
+            gotoClinicMap.putExtra("selectedLat",latitude);
+            gotoClinicMap.putExtra("selectedLong",longitude);
             startActivity(gotoClinicMap);
         }
     }

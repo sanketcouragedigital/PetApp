@@ -23,8 +23,6 @@ import java.util.List;
 
 public class CampaignList_ForAll_Adapter extends RecyclerView.Adapter<CampaignList_ForAll_Adapter.ViewHolder>{
 
-
-
     List<CampaignListItem> campaignListItem;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;
@@ -85,7 +83,6 @@ public class CampaignList_ForAll_Adapter extends RecyclerView.Adapter<CampaignLi
             cardView.setOnClickListener(this);
 
         }
-
         public void bindCampaignList(CampaignListItem CampaignListItem) {
             this.CampaignListItem = CampaignListItem;
             Glide.with(campaignProductImage.getContext()).load(CampaignListItem.getFirstImagePath()).centerCrop().crossFade().into(campaignProductImage);

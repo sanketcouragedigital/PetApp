@@ -53,6 +53,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_2sdp"
                             android:layout_marginLeft="@dimen/_16sdp"
+                            android:layout_marginRight="@dimen/_5sdp"
                             android:text="Product Name"
                             android:paddingTop="@dimen/_10sdp"
                             android:textSize="@dimen/_17sdp"

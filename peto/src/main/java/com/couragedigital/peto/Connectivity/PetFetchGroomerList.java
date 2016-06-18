@@ -45,6 +45,11 @@ public class PetFetchGroomerList {
                                         groomerListItem.setGroomerImage_path(obj.getString("image"));
                                         groomerListItem.setCity(obj.getString("city"));
                                         groomerListItem.setArea(obj.getString("area"));
+                                        groomerListItem.setDescription(obj.getString("description"));
+                                        groomerListItem.setNotes(obj.getString("timing"));
+                                        groomerListItem.setLatitude(obj.getString("latitude"));
+                                        groomerListItem.setLongitude(obj.getString("longitude"));
+                                        groomerListItem.setGroomer_Id(obj.getString("id"));
                                         // adding pet to pets array
                                         groomerList.add(groomerListItem);
                                         adapter.notifyDataSetChanged();

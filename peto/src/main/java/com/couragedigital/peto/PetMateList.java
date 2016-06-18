@@ -33,6 +33,7 @@ import com.couragedigital.peto.Listeners.PetMateFetchListScrollListener;
 import com.couragedigital.peto.SessionManager.SessionManager;
 import com.couragedigital.peto.Shortner.GoogleURLShortener;
 import com.couragedigital.peto.Singleton.FilterPetMateListInstance;
+import com.couragedigital.peto.Singleton.ProfileURLInstance;
 import com.couragedigital.peto.Singleton.URLInstance;
 import com.couragedigital.peto.model.PetListItems;
 import com.couragedigital.peto.model.PetMateListItems;
@@ -195,7 +196,9 @@ public class PetMateList extends BaseActivity implements PetMateListAdapter.OnRe
         String petListingTypeString = "";
         String price = "";
 
-        final String contentURL = "http://storage.couragedigital.com/prod/petProfile.php?method=profileOfPetMate&breed="+petMateListItems.getPetMateBreed()+"&imageURL="+petMateListItems.getFirstImagePath()+"&gender="+petMateListItems.getPetMateGender()+"&year="+petMateListItems.getPetMateAgeInYear()+"&month="+petMateListItems.getPetMateAgeInMonth()+"&petType="+petListingTypeString+"&price="+price+"&mobileNo="+petMateListItems.getPetMatePostOwnerEmail()+"&description="+petMateListItems.getPetMateDescription();
+        String shareURL = ProfileURLInstance.getUrl();
+
+        final String contentURL = shareURL + "?method=profileOfPetMate&breed="+petMateListItems.getPetMateBreed()+"&imageURL="+petMateListItems.getFirstImagePath()+"&gender="+petMateListItems.getPetMateGender()+"&year="+petMateListItems.getPetMateAgeInYear()+"&month="+petMateListItems.getPetMateAgeInMonth()+"&petType="+petListingTypeString+"&price="+price+"&mobileNo="+petMateListItems.getPetMatePostOwnerEmail()+"&description="+petMateListItems.getPetMateDescription();
 
         final String shortURL = GoogleURLShortener.shortner(contentURL);
 

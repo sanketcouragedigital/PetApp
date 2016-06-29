@@ -1,20 +1,25 @@
 -injars 'C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\transforms\jarMerging\release\jars\1\1f\combined.jar'
 -outjars 'C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\multi-dex\release\componentClasses.jar'
 
--libraryjars 'C:\Users\comp1\AppData\Local\Android\Sdk\build-tools\23.0.3\lib\shrinkedAndroid.jar'
+-libraryjars 'C:\Users\comp1\AppData\Local\Android\Sdk\build-tools\24.0.0\lib\shrinkedAndroid.jar'
 
 -forceprocessing
 -dontoptimize
 -dontobfuscate
 -dontusemixedcaseclassnames
 -dontpreverify
--dontwarn
+-dontnote **,com.android.tools.fd.**,android.support.multidex.MultiDexExtractor
+-dontwarn **
 -printconfiguration 'C:\Users\comp1\StudioProjects\peto\peto\build\intermediates\multi-dex\release\components.flags'
 
 
 -keep class com.couragedigital.peto.app.AppController {
     <init>();
     void attachBaseContext(android.content.Context);
+}
+
+-keep class com.facebook.FacebookContentProvider {
+    <init>();
 }
 
 -keep class com.couragedigital.peto.InternetConnectivity.NetworkChangeReceiver {
@@ -181,11 +186,95 @@
     <init>();
 }
 
+-keep class com.couragedigital.peto.ClinicMap {
+    <init>();
+}
+
+-keep class com.couragedigital.peto.Pet_Shop_List {
+    <init>();
+}
+
+-keep class com.couragedigital.peto.Pet_Shop_List_Details {
+    <init>();
+}
+
+-keep class com.couragedigital.peto.MyOrders {
+    <init>();
+}
+
+-keep class com.couragedigital.peto.MyOrder_List_Details {
+    <init>();
+}
+
+-keep class com.couragedigital.peto.Legal {
+    <init>();
+}
+
+-keep class com.couragedigital.peto.Campaign_Form {
+    <init>();
+}
+
+-keep class com.couragedigital.peto.Campaign_List {
+    <init>();
+}
+
+-keep class com.couragedigital.peto.Campaign_List_Details {
+    <init>();
+}
+
+-keep class com.couragedigital.peto.Campaign_List_ForAll {
+    <init>();
+}
+
+-keep class com.couragedigital.peto.Campaign_List_ForAll_Details {
+    <init>();
+}
+
+-keep class com.couragedigital.peto.NGO_Donation {
+    <init>();
+}
+
+-keep class com.couragedigital.peto.Campaign_Modify {
+    <init>();
+}
+
+-keep class com.couragedigital.peto.Ngo_NotVerify {
+    <init>();
+}
+
+-keep class com.couragedigital.peto.DialogBox.EmptyListDialoge {
+    <init>();
+}
+
+-keep class com.couragedigital.peto.ServiceRateNReview {
+    <init>();
+}
+
+-keep class com.couragedigital.peto.PaymentActivity {
+    <init>();
+}
+
+-keep class com.razorpay.CheckoutActivity {
+    <init>();
+}
+
+-keep class com.facebook.FacebookActivity {
+    <init>();
+}
+
 -keep class com.google.android.gms.ads.AdActivity {
     <init>();
 }
 
 -keep class com.google.android.gms.ads.purchase.InAppPurchaseActivity {
+    <init>();
+}
+
+-keep class com.google.android.gms.common.api.GoogleApiActivity {
+    <init>();
+}
+
+-keep class com.google.firebase.provider.FirebaseInitProvider {
     <init>();
 }
 
@@ -201,7 +290,23 @@
     <init>();
 }
 
--keep class com.google.android.gms.measurement.AppMeasurementContentProvider {
+-keep class com.google.firebase.iid.FirebaseInstanceIdReceiver {
+    <init>();
+}
+
+-keep class com.google.firebase.iid.FirebaseInstanceIdInternalReceiver {
+    <init>();
+}
+
+-keep class com.google.firebase.iid.FirebaseInstanceIdService {
+    <init>();
+}
+
+-keep class com.google.firebase.crash.internal.service.FirebaseCrashReceiverService {
+    <init>();
+}
+
+-keep class com.google.firebase.crash.internal.service.FirebaseCrashSenderService {
     <init>();
 }
 
@@ -213,11 +318,32 @@
     <init>();
 }
 
+-keep class com.google.firebase.messaging.FirebaseMessagingService {
+    <init>();
+}
+
+-keep class com.google.android.gms.tagmanager.TagManagerService {
+    <init>();
+}
+
+-keep class com.google.android.gms.tagmanager.TagManagerPreviewActivity {
+    <init>();
+}
+
+-keep class com.facebook.CustomTabActivity {
+    <init>();
+}
+
 -keep public class * extends android.app.backup.BackupAgent {
     <init>();
 }
 
 -keep public class * extends java.lang.annotation.Annotation {
+    <fields>;
+    <methods>;
+}
+
+-keep class com.android.tools.fd.** {
     <fields>;
     <methods>;
 }

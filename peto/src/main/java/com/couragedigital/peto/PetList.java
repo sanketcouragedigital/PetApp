@@ -66,24 +66,15 @@ import android.app.ProgressDialog;
 
 public class PetList extends BaseActivity implements PetListAdapter.OnRecyclerPetListShareClickListener {
 
-    private static final String TAG = PetList.class.getSimpleName();
-
-    // http://c/dev/api/petappapi.php?method=showPetDetails&format=json
-    // "http://storage.couragedigital.com/dev/api/petappapi.php"
     private static String url = URLInstance.getUrl();
     private ProgressDialog progressDialog;
     public List<PetListItems> petLists = new ArrayList<PetListItems>();
-
-    public List<PetListItems> petListsForFilter = new ArrayList<PetListItems>();
-    public PetListAdapter adapterForFilter;
 
     public static RecyclerView recyclerView;
     public static TextView emptyTextView;
     LinearLayoutManager layoutManager;
     RecyclerView.Adapter adapter;
     SwipeRefreshLayout petListSwipeRefreshLayout;
-
-    public List<PetListItems> originalpetLists = new ArrayList<PetListItems>();
 
     static String urlForFetch;
 
@@ -94,8 +85,6 @@ public class PetList extends BaseActivity implements PetListAdapter.OnRecyclerPe
     int FILTER_STATE_RESULT = 1;
 
     int requestState;
-
-    public String petListId;
 
     public String email;
 

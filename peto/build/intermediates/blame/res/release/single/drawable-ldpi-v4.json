@@ -24,11 +24,19 @@
         "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\drawable-ldpi\\googlelogo.png"
     },
     {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\drawable-ldpi-v4\\rzp.png",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\drawable-ldpi\\rzp.png"
+    },
+    {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\drawable-ldpi-v4\\list_bckgrnd.png",
         "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\drawable-ldpi\\list_bckgrnd.png"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\drawable-ldpi-v4\\ic_launcher.png",
         "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\drawable-ldpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\drawable-ldpi-v4\\common_ic_googleplayservices.png",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\drawable-ldpi-v4\\common_ic_googleplayservices.png"
     }
 ]

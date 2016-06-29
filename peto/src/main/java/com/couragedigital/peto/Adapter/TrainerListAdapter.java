@@ -2,6 +2,7 @@ package com.couragedigital.peto.Adapter;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.provider.Settings;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
@@ -15,39 +16,67 @@ import com.android.volley.toolbox.ImageLoader;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.couragedigital.peto.ExpandableText;
+import com.couragedigital.peto.Holder.AdMobViewHolder;
 import com.couragedigital.peto.R;
 import com.couragedigital.peto.TabFragmentTrainerDetails;
 import com.couragedigital.peto.app.AppController;
 import com.couragedigital.peto.model.TrainerListItem;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.NativeExpressAdView;
 
 import java.util.List;
 
-public class TrainerListAdapter extends RecyclerView.Adapter<TrainerListAdapter.ViewHolder> {
+public class TrainerListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private static final int CONTENT_TYPE = 0;
+    private static final int AD_TYPE = 1;
     List<TrainerListItem> trainerListItem;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;
-    ViewHolder viewHolder;
+    RecyclerView.ViewHolder viewHolder;
 
     public TrainerListAdapter(List<TrainerListItem> trainerListArrayList) {
         this.trainerListItem = trainerListArrayList;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.pettraineritems, viewGroup, false);
-        viewHolder = new ViewHolder(v);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        if(i == CONTENT_TYPE) {
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.pettraineritems, viewGroup, false);
+            viewHolder = new ViewHolder(v);
+        }
+        else if (i == AD_TYPE) {
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.smalladnativeexpresslistitem, viewGroup, false);
+            viewHolder = new AdMobViewHolder(v);
+        }
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        TrainerListItem trainerListArrayListItems = trainerListItem.get(i);
-        viewHolder.bindTrainerList(trainerListArrayListItems);
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        if(viewHolder.getItemViewType() == CONTENT_TYPE) {
+            TrainerListItem trainerListArrayListItems = trainerListItem.get(i);
+            ViewHolder viewHolderForTrainerList = (ViewHolder) viewHolder;
+            viewHolderForTrainerList.bindTrainerList(trainerListArrayListItems);
+        }
+        else if(viewHolder.getItemViewType() == AD_TYPE) {
+            AdMobViewHolder viewHolderForAdMob = (AdMobViewHolder) viewHolder;
+            viewHolderForAdMob.bindAds();
+        }
     }
 
     @Override
     public int getItemCount() {
         return trainerListItem.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (position % 7 == 0 && position != 0) {
+            return AD_TYPE;
+        }
+        else {
+            return CONTENT_TYPE;
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -57,9 +86,6 @@ public class TrainerListAdapter extends RecyclerView.Adapter<TrainerListAdapter.
         public TextView trainerAddress;
         public TextView trainerContactno;
 
-        public Button trainerFavourite;
-        public Button trainerSeeMoreBtn;
-        public View trainerdividerLine;
         public View cardViewPetTrainer;
         public ExpandableText trainerDescription;
         private TrainerListItem trainerListItems;
@@ -79,16 +105,9 @@ public class TrainerListAdapter extends RecyclerView.Adapter<TrainerListAdapter.
             trainerImage = (ImageView) itemView.findViewById(R.id.trainerImage);
             trainerAddress = (TextView) itemView.findViewById(R.id.trainerAddress);
             trainerContactno= (TextView) itemView.findViewById(R.id.trainerContactno);
-            //trainerDescription = (ExpandableText) itemView.findViewById(R.id.petServiceTrainerDescription);
-            //  trainerAddress = (TextView) itemView.findViewById(R.id.trainerAddress);
-            //  trainerSeeMoreBtn = (Button) itemView.findViewById(R.id.trainerSeeMoreButton);
-            //  trainerFavourite = (Button) itemView.findViewById(R.id.trainerFavourite);
-            //  trainerdividerLine = itemView.findViewById(R.id.trainerDividerLine);
 
             cardViewPetTrainer = itemView;
             cardViewPetTrainer.setOnClickListener(this);
-            //trainerSeeMoreBtn.setOnClickListener(this);
-            //trainerFavourite.setOnClickListener(this);
         }
 
         public void bindTrainerList(TrainerListItem trainerList) {
@@ -106,9 +125,6 @@ public class TrainerListAdapter extends RecyclerView.Adapter<TrainerListAdapter.
                     trainerImage.setImageDrawable(circularBitmapDrawable);
                 }
             });
-
-            //trainerAddress.setText(trainerListItems.getTrainerAdress());
-            //trainerDescription.setText(trainerListItems.getTrainerDescription());
             trainerName.setText(trainerListItems.getTrainerName());
             trainerContactno.setText(trainerListItems.getContact());
             if(area.equals("")) {
@@ -118,11 +134,6 @@ public class TrainerListAdapter extends RecyclerView.Adapter<TrainerListAdapter.
                 areawithcity = area + " " + city;
             }
             trainerAddress.setText(areawithcity);
-
-           // trainerSeeMoreBtn.setText("See More");
-            //  trainerFavourite.setBackgroundResource(R.drawable.favourite_disable);
-            //  trainerFavourite.setVisibility(View.GONE);
-            //  trainerdividerLine.setBackgroundResource(R.color.list_internal_divider);
         }
 
         @Override

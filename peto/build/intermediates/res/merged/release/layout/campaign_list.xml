@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:orientation="vertical"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/filterViewMenuLayout">
+
+    <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/campaignList"/>
+
+</RelativeLayout>
+
+<android.support.design.widget.FloatingActionButton
+        android:id="@+id/createCampaignFormFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_16sdp"
+        android:src="@drawable/plus"
+        app:layout_anchor="@id/filterViewMenuLayout"
+        app:layout_anchorGravity="bottom|right|end"
+        app:elevation="@dimen/_6sdp"
+        app:fabSize="normal"
+        app:backgroundTint="#DA4836"
+        app:layout_behavior="com.couragedigital.peto.Behaviours.ScrollAwareFABBehavior"/>
+</android.support.design.widget.CoordinatorLayout>

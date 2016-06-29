@@ -601,6 +601,7 @@
     <dimen name="_minus99sdp">-198.00dp</dimen>
     <dimen name="_minus9sdp">-18.00dp</dimen>
     <dimen name="abc_action_bar_content_inset_material">24dp</dimen>
+    <dimen name="abc_action_bar_content_inset_with_nav">80dp</dimen>
     <dimen name="abc_action_bar_default_height_material">64dp</dimen>
     <dimen name="abc_action_bar_default_padding_end_material">8dp</dimen>
     <dimen name="abc_action_bar_default_padding_start_material">8dp</dimen>
@@ -616,7 +617,6 @@
     <dimen name="design_snackbar_padding_vertical_2lines">@dimen/design_snackbar_padding_vertical</dimen>
     <dimen name="design_tab_scrollable_min_width">160dp</dimen>
     <dimen name="mr_media_route_controller_art_max_height">480dp</dimen>
-    <integer name="abc_max_action_buttons">5</integer>
     <integer name="design_snackbar_text_max_lines">1</integer>
     <string name="dimension">values-sw600dp</string>
     <style name="Widget.Design.TabLayout" parent="Base.Widget.Design.TabLayout">

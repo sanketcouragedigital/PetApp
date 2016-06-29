@@ -2,6 +2,7 @@ package com.couragedigital.peto.Adapter;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.provider.Settings;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
@@ -14,39 +15,68 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.couragedigital.peto.Holder.AdMobViewHolder;
 import com.couragedigital.peto.R;
 import com.couragedigital.peto.TabFragmentGroomerDetails;
 import com.couragedigital.peto.app.AppController;
+import com.couragedigital.peto.model.ClinicListItems;
 import com.couragedigital.peto.model.GroomerListItem;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.NativeExpressAdView;
 
 import java.util.List;
 
-public class GroomerListAdapter extends RecyclerView.Adapter<GroomerListAdapter.ViewHolder> {
+public class GroomerListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private static final int CONTENT_TYPE = 0;
+    private static final int AD_TYPE = 1;
     List<GroomerListItem> groomerListItem;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;
-    ViewHolder viewHolder;
+    RecyclerView.ViewHolder viewHolder;
 
     public GroomerListAdapter(List<GroomerListItem> groomerListArrayList) {
         this.groomerListItem = groomerListArrayList;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.petgroomeritems, viewGroup, false);
-        viewHolder = new ViewHolder(v);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        if(i == CONTENT_TYPE) {
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.petgroomeritems, viewGroup, false);
+            viewHolder = new ViewHolder(v);
+        }
+        else if (i == AD_TYPE) {
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.smalladnativeexpresslistitem, viewGroup, false);
+            viewHolder = new AdMobViewHolder(v);
+        }
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        GroomerListItem groomerListArrayListItems = groomerListItem.get(i);
-        viewHolder.bindGroomerList(groomerListArrayListItems);
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        if(viewHolder.getItemViewType() == CONTENT_TYPE) {
+            GroomerListItem groomerListArrayListItems = groomerListItem.get(i);
+            ViewHolder viewHolderForGroomerList = (ViewHolder) viewHolder;
+            viewHolderForGroomerList.bindGroomerList(groomerListArrayListItems);
+        }
+        else if(viewHolder.getItemViewType() == AD_TYPE) {
+            AdMobViewHolder viewHolderForAdMob = (AdMobViewHolder) viewHolder;
+            viewHolderForAdMob.bindAds();
+        }
     }
 
     @Override
     public int getItemCount() {
         return groomerListItem.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (position % 7 == 0 && position != 0) {
+            return AD_TYPE;
+        }
+        else {
+            return CONTENT_TYPE;
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

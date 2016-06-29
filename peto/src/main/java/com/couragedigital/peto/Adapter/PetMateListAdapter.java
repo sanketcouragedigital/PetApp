@@ -2,6 +2,7 @@ package com.couragedigital.peto.Adapter;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.provider.Settings;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
@@ -18,23 +19,28 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.couragedigital.peto.Connectivity.WishListPetMateListAdd;
 import com.couragedigital.peto.Connectivity.WishListPetMateListDelete;
 import com.couragedigital.peto.ExpandableText;
+import com.couragedigital.peto.Holder.AdMobViewHolder;
 import com.couragedigital.peto.PetMateListDetails;
 import com.couragedigital.peto.SessionManager.SessionManager;
 import com.couragedigital.peto.Singleton.UserPetMateListWishList;
 import com.couragedigital.peto.model.PetMateListItems;
 import com.couragedigital.peto.R;
 import com.couragedigital.peto.app.AppController;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.NativeExpressAdView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class PetMateListAdapter extends RecyclerView.Adapter<PetMateListAdapter.ViewHolder> {
+public class PetMateListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private static final int CONTENT_TYPE = 0;
+    private static final int AD_TYPE = 1;
     private final OnRecyclerPetMateListShareClickListener onRecyclerPetMateListShareClickListener;
     List<PetMateListItems> petMateLists;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;
-    ViewHolder viewHolder;
+    RecyclerView.ViewHolder viewHolder;
 
     public PetMateListAdapter(List<PetMateListItems> petMateLists, OnRecyclerPetMateListShareClickListener onRecyclerPetMateListShareClickListener) {
         this.petMateLists = petMateLists;
@@ -42,22 +48,44 @@ public class PetMateListAdapter extends RecyclerView.Adapter<PetMateListAdapter.
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.petmatelistsubitems, viewGroup, false);
-        viewHolder = new ViewHolder(v);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        if(i == CONTENT_TYPE) {
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.petmatelistsubitems, viewGroup, false);
+            viewHolder = new ViewHolder(v);
+        }
+        else if (i == AD_TYPE) {
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.adnativeexpresslistitem, viewGroup, false);
+            viewHolder = new AdMobViewHolder(v);
+        }
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        PetMateListItems petMateListItems = petMateLists.get(i);
-        viewHolder.bindPetList(petMateListItems);
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        if(viewHolder.getItemViewType() == CONTENT_TYPE) {
+            PetMateListItems petMateListItems = petMateLists.get(i);
+            ViewHolder viewHolderForPetMateList = (ViewHolder) viewHolder;
+            viewHolderForPetMateList.bindPetMateList(petMateListItems);
+        }
+        else if(viewHolder.getItemViewType() == AD_TYPE) {
+            AdMobViewHolder viewHolderForAdMob = (AdMobViewHolder) viewHolder;
+            viewHolderForAdMob.bindAds();
+        }
     }
 
     @Override
     public int getItemCount() {
         return petMateLists.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (position % 7 == 0 && position != 0) {
+            return AD_TYPE;
+        }
+        else {
+            return CONTENT_TYPE;
+        }
     }
 
     public interface OnRecyclerPetMateListShareClickListener {
@@ -106,7 +134,7 @@ public class PetMateListAdapter extends RecyclerView.Adapter<PetMateListAdapter.
             petMateFavourite.setOnClickListener(this);
         }
 
-        public void bindPetList(PetMateListItems petMateListItems) {
+        public void bindPetMateList(PetMateListItems petMateListItems) {
             this.petMateListItems = petMateListItems;
             Glide.with(petMateImage.getContext()).load(petMateListItems.getFirstImagePath()).asBitmap().centerCrop().into(new BitmapImageViewTarget(petMateImage) {
                 @Override

@@ -4,26 +4,26 @@
     api-level="23"
     density="hdpi"
     format="7"
-    timestamp="17995485080465" >
+    timestamp="9944552521473"
+    token="8910327699636317193" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="43974" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="19956" />
     <task
         name="verifier"
-        duration="0" />
+        duration="6422" />
 
-    <build timestamp="16646773355676" >
+    <build timestamp="29147577771144" >
         <artifact
             location="C:\Users\comp1\StudioProjects\peto\peto\build\outputs\apk\peto-release.apk"
             type="MAIN" />
     </build>
-    <build timestamp="17995485080465" />
 
 </instant-run>

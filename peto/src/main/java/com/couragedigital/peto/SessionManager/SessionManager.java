@@ -27,7 +27,6 @@ public class SessionManager {
 
     public static final String KEY_NGO = "isNgo";
 
-
     public SessionManager(Context c) {
         this.context = c;
         pref = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);

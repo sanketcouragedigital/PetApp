@@ -13,11 +13,8 @@
     <attr format="reference" name="mediaRouteSettingsDrawable"/>
     <attr format="string" name="title"/>
     <bool name="abc_action_bar_embed_tabs">true</bool>
-    <bool name="abc_action_bar_embed_tabs_pre_jb">false</bool>
-    <bool name="abc_action_bar_expanded_action_views_exclusive">true</bool>
     <bool name="abc_allow_stacked_button_bar">true</bool>
     <bool name="abc_config_actionMenuItemAllCaps">true</bool>
-    <bool name="abc_config_allowActionMenuItemTextWithIcon">false</bool>
     <bool name="abc_config_closeDialogWhenTouchOutside">true</bool>
     <bool name="abc_config_showMenuShortcutsWhenKeyboardPresent">false</bool>
     <color name="TextView_Color">#757575</color>
@@ -128,8 +125,8 @@
     <color name="place_autocomplete_prediction_primary_text">#212121</color>
     <color name="place_autocomplete_prediction_primary_text_highlight">#757575</color>
     <color name="place_autocomplete_prediction_secondary_text">#757575</color>
-    <color name="place_autocomplete_search_hint">#42000000</color>
-    <color name="place_autocomplete_search_text">#DE000000</color>
+    <color name="place_autocomplete_search_hint">#BDBDBD</color>
+    <color name="place_autocomplete_search_text">#212121</color>
     <color name="place_autocomplete_separator">#1F000000</color>
     <color name="primary_dark_material_dark">@android:color/black</color>
     <color name="primary_dark_material_light">@color/material_grey_600</color>
@@ -169,7 +166,7 @@
     <color name="wallet_holo_blue_light">#ff33b5e5</color>
     <color name="wallet_link_text_light">#0000ee</color>
     <color name="windowBackground">#DADADA</color>
-    <declare-styleable name="ActionBar"><attr name="navigationMode"><enum name="normal" value="0"/><enum name="listMode" value="1"/><enum name="tabMode" value="2"/></attr><attr name="displayOptions"><flag name="none" value="0"/><flag name="useLogo" value="0x1"/><flag name="showHome" value="0x2"/><flag name="homeAsUp" value="0x4"/><flag name="showTitle" value="0x8"/><flag name="showCustom" value="0x10"/><flag name="disableHome" value="0x20"/></attr><attr name="title"/><attr format="string" name="subtitle"/><attr format="reference" name="titleTextStyle"/><attr format="reference" name="subtitleTextStyle"/><attr format="reference" name="icon"/><attr format="reference" name="logo"/><attr format="reference" name="divider"/><attr format="reference" name="background"/><attr format="reference|color" name="backgroundStacked"/><attr format="reference|color" name="backgroundSplit"/><attr format="reference" name="customNavigationLayout"/><attr name="height"/><attr format="reference" name="homeLayout"/><attr format="reference" name="progressBarStyle"/><attr format="reference" name="indeterminateProgressStyle"/><attr format="dimension" name="progressBarPadding"/><attr name="homeAsUpIndicator"/><attr format="dimension" name="itemPadding"/><attr format="boolean" name="hideOnContentScroll"/><attr format="dimension" name="contentInsetStart"/><attr format="dimension" name="contentInsetEnd"/><attr format="dimension" name="contentInsetLeft"/><attr format="dimension" name="contentInsetRight"/><attr format="dimension" name="elevation"/><attr format="reference" name="popupTheme"/></declare-styleable>
+    <declare-styleable name="ActionBar"><attr name="navigationMode"><enum name="normal" value="0"/><enum name="listMode" value="1"/><enum name="tabMode" value="2"/></attr><attr name="displayOptions"><flag name="none" value="0"/><flag name="useLogo" value="0x1"/><flag name="showHome" value="0x2"/><flag name="homeAsUp" value="0x4"/><flag name="showTitle" value="0x8"/><flag name="showCustom" value="0x10"/><flag name="disableHome" value="0x20"/></attr><attr name="title"/><attr format="string" name="subtitle"/><attr format="reference" name="titleTextStyle"/><attr format="reference" name="subtitleTextStyle"/><attr format="reference" name="icon"/><attr format="reference" name="logo"/><attr format="reference" name="divider"/><attr format="reference" name="background"/><attr format="reference|color" name="backgroundStacked"/><attr format="reference|color" name="backgroundSplit"/><attr format="reference" name="customNavigationLayout"/><attr name="height"/><attr format="reference" name="homeLayout"/><attr format="reference" name="progressBarStyle"/><attr format="reference" name="indeterminateProgressStyle"/><attr format="dimension" name="progressBarPadding"/><attr name="homeAsUpIndicator"/><attr format="dimension" name="itemPadding"/><attr format="boolean" name="hideOnContentScroll"/><attr format="dimension" name="contentInsetStart"/><attr format="dimension" name="contentInsetEnd"/><attr format="dimension" name="contentInsetLeft"/><attr format="dimension" name="contentInsetRight"/><attr format="dimension" name="contentInsetStartWithNavigation"/><attr format="dimension" name="contentInsetEndWithActions"/><attr format="dimension" name="elevation"/><attr format="reference" name="popupTheme"/></declare-styleable>
     <declare-styleable name="ActionBarLayout"><attr name="android:layout_gravity"/></declare-styleable>
     <declare-styleable name="ActionMenuItemView"><attr name="android:minWidth"/></declare-styleable>
     <declare-styleable name="ActionMenuView"/>
@@ -178,24 +175,34 @@
     <declare-styleable name="AdsAttrs"><attr format="string" name="adSize"/><attr format="string" name="adSizes"/><attr format="string" name="adUnitId"/></declare-styleable>
     <declare-styleable name="AlertDialog"><attr name="android:layout"/><attr format="reference" name="buttonPanelSideLayout"/><attr format="reference" name="listLayout"/><attr format="reference" name="multiChoiceItemLayout"/><attr format="reference" name="singleChoiceItemLayout"/><attr format="reference" name="listItemLayout"/></declare-styleable>
     <declare-styleable name="AppBarLayout"><attr name="elevation"/><attr name="android:background"/><attr format="boolean" name="expanded"/></declare-styleable>
-    <declare-styleable name="AppBarLayout_LayoutParams"><attr name="layout_scrollFlags"><flag name="scroll" value="0x1"/><flag name="exitUntilCollapsed" value="0x2"/><flag name="enterAlways" value="0x4"/><flag name="enterAlwaysCollapsed" value="0x8"/><flag name="snap" value="0x10"/></attr><attr format="reference" name="layout_scrollInterpolator"/></declare-styleable>
+    <declare-styleable name="AppBarLayoutStates"><attr format="boolean" name="state_collapsed"/><attr format="boolean" name="state_collapsible"/></declare-styleable>
+    <declare-styleable name="AppBarLayout_Layout"><attr name="layout_scrollFlags"><flag name="scroll" value="0x1"/><flag name="exitUntilCollapsed" value="0x2"/><flag name="enterAlways" value="0x4"/><flag name="enterAlwaysCollapsed" value="0x8"/><flag name="snap" value="0x10"/></attr><attr format="reference" name="layout_scrollInterpolator"/></declare-styleable>
     <declare-styleable name="AppCompatImageView"><attr name="android:src"/><attr format="reference" name="srcCompat"/></declare-styleable>
+    <declare-styleable name="AppCompatSeekBar"><attr name="android:thumb"/><attr format="reference" name="tickMark"/><attr format="color" name="tickMarkTint"/><attr name="tickMarkTintMode"><enum name="src_over" value="3"/><enum name="src_in" value="5"/><enum name="src_atop" value="9"/><enum name="multiply" value="14"/><enum name="screen" value="15"/><enum name="add" value="16"/></attr></declare-styleable>
     <declare-styleable name="AppCompatTextView"><attr format="reference|boolean" name="textAllCaps"/><attr name="android:textAppearance"/></declare-styleable>
-    <declare-styleable name="AppCompatTheme"><attr format="boolean" name="windowActionBar"/><attr format="boolean" name="windowNoTitle"/><attr format="boolean" name="windowActionBarOverlay"/><attr format="boolean" name="windowActionModeOverlay"/><attr format="dimension|fraction" name="windowFixedWidthMajor"/><attr format="dimension|fraction" name="windowFixedHeightMinor"/><attr format="dimension|fraction" name="windowFixedWidthMinor"/><attr format="dimension|fraction" name="windowFixedHeightMajor"/><attr format="dimension|fraction" name="windowMinWidthMajor"/><attr format="dimension|fraction" name="windowMinWidthMinor"/><attr name="android:windowIsFloating"/><attr name="android:windowAnimationStyle"/><attr format="reference" name="actionBarTabStyle"/><attr format="reference" name="actionBarTabBarStyle"/><attr format="reference" name="actionBarTabTextStyle"/><attr format="reference" name="actionOverflowButtonStyle"/><attr format="reference" name="actionOverflowMenuStyle"/><attr format="reference" name="actionBarPopupTheme"/><attr format="reference" name="actionBarStyle"/><attr format="reference" name="actionBarSplitStyle"/><attr format="reference" name="actionBarTheme"/><attr format="reference" name="actionBarWidgetTheme"/><attr format="dimension" name="actionBarSize"><enum name="wrap_content" value="0"/></attr><attr format="reference" name="actionBarDivider"/><attr format="reference" name="actionBarItemBackground"/><attr format="reference" name="actionMenuTextAppearance"/><attr format="color|reference" name="actionMenuTextColor"/><attr format="reference" name="actionModeStyle"/><attr format="reference" name="actionModeCloseButtonStyle"/><attr format="reference" name="actionModeBackground"/><attr format="reference" name="actionModeSplitBackground"/><attr format="reference" name="actionModeCloseDrawable"/><attr format="reference" name="actionModeCutDrawable"/><attr format="reference" name="actionModeCopyDrawable"/><attr format="reference" name="actionModePasteDrawable"/><attr format="reference" name="actionModeSelectAllDrawable"/><attr format="reference" name="actionModeShareDrawable"/><attr format="reference" name="actionModeFindDrawable"/><attr format="reference" name="actionModeWebSearchDrawable"/><attr format="reference" name="actionModePopupWindowStyle"/><attr format="reference" name="textAppearanceLargePopupMenu"/><attr format="reference" name="textAppearanceSmallPopupMenu"/><attr format="reference" name="dialogTheme"/><attr format="dimension" name="dialogPreferredPadding"/><attr format="reference" name="listDividerAlertDialog"/><attr format="reference" name="actionDropDownStyle"/><attr format="dimension" name="dropdownListPreferredItemHeight"/><attr format="reference" name="spinnerDropDownItemStyle"/><attr format="reference" name="homeAsUpIndicator"/><attr format="reference" name="actionButtonStyle"/><attr format="reference" name="buttonBarStyle"/><attr format="reference" name="buttonBarButtonStyle"/><attr format="reference" name="selectableItemBackground"/><attr format="reference" name="selectableItemBackgroundBorderless"/><attr format="reference" name="borderlessButtonStyle"/><attr format="reference" name="dividerVertical"/><attr format="reference" name="dividerHorizontal"/><attr format="reference" name="activityChooserViewStyle"/><attr format="reference" name="toolbarStyle"/><attr format="reference" name="toolbarNavigationButtonStyle"/><attr format="reference" name="popupMenuStyle"/><attr format="reference" name="popupWindowStyle"/><attr format="reference|color" name="editTextColor"/><attr format="reference" name="editTextBackground"/><attr format="reference" name="imageButtonStyle"/><attr format="reference" name="textAppearanceSearchResultTitle"/><attr format="reference" name="textAppearanceSearchResultSubtitle"/><attr format="reference|color" name="textColorSearchUrl"/><attr format="reference" name="searchViewStyle"/><attr format="dimension" name="listPreferredItemHeight"/><attr format="dimension" name="listPreferredItemHeightSmall"/><attr format="dimension" name="listPreferredItemHeightLarge"/><attr format="dimension" name="listPreferredItemPaddingLeft"/><attr format="dimension" name="listPreferredItemPaddingRight"/><attr format="reference" name="dropDownListViewStyle"/><attr format="reference" name="listPopupWindowStyle"/><attr format="reference" name="textAppearanceListItem"/><attr format="reference" name="textAppearanceListItemSmall"/><attr format="reference" name="panelBackground"/><attr format="dimension" name="panelMenuListWidth"/><attr format="reference" name="panelMenuListTheme"/><attr format="reference" name="listChoiceBackgroundIndicator"/><attr format="color" name="colorPrimary"/><attr format="color" name="colorPrimaryDark"/><attr format="color" name="colorAccent"/><attr format="color" name="colorControlNormal"/><attr format="color" name="colorControlActivated"/><attr format="color" name="colorControlHighlight"/><attr format="color" name="colorButtonNormal"/><attr format="color" name="colorSwitchThumbNormal"/><attr format="reference" name="controlBackground"/><attr format="reference" name="alertDialogStyle"/><attr format="reference" name="alertDialogButtonGroupStyle"/><attr format="boolean" name="alertDialogCenterButtons"/><attr format="reference" name="alertDialogTheme"/><attr format="reference|color" name="textColorAlertDialogListItem"/><attr format="reference" name="buttonBarPositiveButtonStyle"/><attr format="reference" name="buttonBarNegativeButtonStyle"/><attr format="reference" name="buttonBarNeutralButtonStyle"/><attr format="reference" name="autoCompleteTextViewStyle"/><attr format="reference" name="buttonStyle"/><attr format="reference" name="buttonStyleSmall"/><attr format="reference" name="checkboxStyle"/><attr format="reference" name="checkedTextViewStyle"/><attr format="reference" name="editTextStyle"/><attr format="reference" name="radioButtonStyle"/><attr format="reference" name="ratingBarStyle"/><attr format="reference" name="ratingBarStyleIndicator"/><attr format="reference" name="ratingBarStyleSmall"/><attr format="reference" name="seekBarStyle"/><attr format="reference" name="spinnerStyle"/><attr format="reference" name="switchStyle"/></declare-styleable>
-    <declare-styleable name="BottomSheetBehavior_Params"><attr format="dimension" name="behavior_peekHeight"/><attr format="boolean" name="behavior_hideable"/></declare-styleable>
+    <declare-styleable name="AppCompatTheme"><attr format="boolean" name="windowActionBar"/><attr format="boolean" name="windowNoTitle"/><attr format="boolean" name="windowActionBarOverlay"/><attr format="boolean" name="windowActionModeOverlay"/><attr format="dimension|fraction" name="windowFixedWidthMajor"/><attr format="dimension|fraction" name="windowFixedHeightMinor"/><attr format="dimension|fraction" name="windowFixedWidthMinor"/><attr format="dimension|fraction" name="windowFixedHeightMajor"/><attr format="dimension|fraction" name="windowMinWidthMajor"/><attr format="dimension|fraction" name="windowMinWidthMinor"/><attr name="android:windowIsFloating"/><attr name="android:windowAnimationStyle"/><attr format="reference" name="actionBarTabStyle"/><attr format="reference" name="actionBarTabBarStyle"/><attr format="reference" name="actionBarTabTextStyle"/><attr format="reference" name="actionOverflowButtonStyle"/><attr format="reference" name="actionOverflowMenuStyle"/><attr format="reference" name="actionBarPopupTheme"/><attr format="reference" name="actionBarStyle"/><attr format="reference" name="actionBarSplitStyle"/><attr format="reference" name="actionBarTheme"/><attr format="reference" name="actionBarWidgetTheme"/><attr format="dimension" name="actionBarSize"><enum name="wrap_content" value="0"/></attr><attr format="reference" name="actionBarDivider"/><attr format="reference" name="actionBarItemBackground"/><attr format="reference" name="actionMenuTextAppearance"/><attr format="color|reference" name="actionMenuTextColor"/><attr format="reference" name="actionModeStyle"/><attr format="reference" name="actionModeCloseButtonStyle"/><attr format="reference" name="actionModeBackground"/><attr format="reference" name="actionModeSplitBackground"/><attr format="reference" name="actionModeCloseDrawable"/><attr format="reference" name="actionModeCutDrawable"/><attr format="reference" name="actionModeCopyDrawable"/><attr format="reference" name="actionModePasteDrawable"/><attr format="reference" name="actionModeSelectAllDrawable"/><attr format="reference" name="actionModeShareDrawable"/><attr format="reference" name="actionModeFindDrawable"/><attr format="reference" name="actionModeWebSearchDrawable"/><attr format="reference" name="actionModePopupWindowStyle"/><attr format="reference" name="textAppearanceLargePopupMenu"/><attr format="reference" name="textAppearanceSmallPopupMenu"/><attr format="reference" name="textAppearancePopupMenuHeader"/><attr format="reference" name="dialogTheme"/><attr format="dimension" name="dialogPreferredPadding"/><attr format="reference" name="listDividerAlertDialog"/><attr format="reference" name="actionDropDownStyle"/><attr format="dimension" name="dropdownListPreferredItemHeight"/><attr format="reference" name="spinnerDropDownItemStyle"/><attr format="reference" name="homeAsUpIndicator"/><attr format="reference" name="actionButtonStyle"/><attr format="reference" name="buttonBarStyle"/><attr format="reference" name="buttonBarButtonStyle"/><attr format="reference" name="selectableItemBackground"/><attr format="reference" name="selectableItemBackgroundBorderless"/><attr format="reference" name="borderlessButtonStyle"/><attr format="reference" name="dividerVertical"/><attr format="reference" name="dividerHorizontal"/><attr format="reference" name="activityChooserViewStyle"/><attr format="reference" name="toolbarStyle"/><attr format="reference" name="toolbarNavigationButtonStyle"/><attr format="reference" name="popupMenuStyle"/><attr format="reference" name="popupWindowStyle"/><attr format="reference|color" name="editTextColor"/><attr format="reference" name="editTextBackground"/><attr format="reference" name="imageButtonStyle"/><attr format="reference" name="textAppearanceSearchResultTitle"/><attr format="reference" name="textAppearanceSearchResultSubtitle"/><attr format="reference|color" name="textColorSearchUrl"/><attr format="reference" name="searchViewStyle"/><attr format="dimension" name="listPreferredItemHeight"/><attr format="dimension" name="listPreferredItemHeightSmall"/><attr format="dimension" name="listPreferredItemHeightLarge"/><attr format="dimension" name="listPreferredItemPaddingLeft"/><attr format="dimension" name="listPreferredItemPaddingRight"/><attr format="reference" name="dropDownListViewStyle"/><attr format="reference" name="listPopupWindowStyle"/><attr format="reference" name="textAppearanceListItem"/><attr format="reference" name="textAppearanceListItemSmall"/><attr format="reference" name="panelBackground"/><attr format="dimension" name="panelMenuListWidth"/><attr format="reference" name="panelMenuListTheme"/><attr format="reference" name="listChoiceBackgroundIndicator"/><attr format="color" name="colorPrimary"/><attr format="color" name="colorPrimaryDark"/><attr format="color" name="colorAccent"/><attr format="color" name="colorControlNormal"/><attr format="color" name="colorControlActivated"/><attr format="color" name="colorControlHighlight"/><attr format="color" name="colorButtonNormal"/><attr format="color" name="colorSwitchThumbNormal"/><attr format="reference" name="controlBackground"/><attr format="color" name="colorBackgroundFloating"/><attr format="reference" name="alertDialogStyle"/><attr format="reference" name="alertDialogButtonGroupStyle"/><attr format="boolean" name="alertDialogCenterButtons"/><attr format="reference" name="alertDialogTheme"/><attr format="reference|color" name="textColorAlertDialogListItem"/><attr format="reference" name="buttonBarPositiveButtonStyle"/><attr format="reference" name="buttonBarNegativeButtonStyle"/><attr format="reference" name="buttonBarNeutralButtonStyle"/><attr format="reference" name="autoCompleteTextViewStyle"/><attr format="reference" name="buttonStyle"/><attr format="reference" name="buttonStyleSmall"/><attr format="reference" name="checkboxStyle"/><attr format="reference" name="checkedTextViewStyle"/><attr format="reference" name="editTextStyle"/><attr format="reference" name="radioButtonStyle"/><attr format="reference" name="ratingBarStyle"/><attr format="reference" name="ratingBarStyleIndicator"/><attr format="reference" name="ratingBarStyleSmall"/><attr format="reference" name="seekBarStyle"/><attr format="reference" name="spinnerStyle"/><attr format="reference" name="switchStyle"/><attr format="reference" name="listMenuViewStyle"/></declare-styleable>
+    <declare-styleable name="AppDataSearch"/>
+    <declare-styleable name="BottomSheetBehavior_Layout"><attr format="dimension" name="behavior_peekHeight"/><attr format="boolean" name="behavior_hideable"/><attr format="boolean" name="behavior_skipCollapsed"/></declare-styleable>
     <declare-styleable name="ButtonBarLayout"><attr format="boolean" name="allowStacking"/></declare-styleable>
     <declare-styleable name="CardView"><attr format="color" name="cardBackgroundColor"/><attr format="dimension" name="cardCornerRadius"/><attr format="dimension" name="cardElevation"/><attr format="dimension" name="cardMaxElevation"/><attr format="boolean" name="cardUseCompatPadding"/><attr format="boolean" name="cardPreventCornerOverlap"/><attr format="dimension" name="contentPadding"/><attr format="dimension" name="contentPaddingLeft"/><attr format="dimension" name="contentPaddingRight"/><attr format="dimension" name="contentPaddingTop"/><attr format="dimension" name="contentPaddingBottom"/><attr name="android:minWidth"/><attr name="android:minHeight"/></declare-styleable>
-    <declare-styleable name="CollapsingAppBarLayout_LayoutParams"><attr name="layout_collapseMode"><enum name="none" value="0"/><enum name="pin" value="1"/><enum name="parallax" value="2"/></attr><attr format="float" name="layout_collapseParallaxMultiplier"/></declare-styleable>
-    <declare-styleable name="CollapsingToolbarLayout"><attr format="dimension" name="expandedTitleMargin"/><attr format="dimension" name="expandedTitleMarginStart"/><attr format="dimension" name="expandedTitleMarginTop"/><attr format="dimension" name="expandedTitleMarginEnd"/><attr format="dimension" name="expandedTitleMarginBottom"/><attr format="reference" name="expandedTitleTextAppearance"/><attr format="reference" name="collapsedTitleTextAppearance"/><attr format="color" name="contentScrim"/><attr format="color" name="statusBarScrim"/><attr format="reference" name="toolbarId"/><attr name="collapsedTitleGravity"><flag name="top" value="0x30"/><flag name="bottom" value="0x50"/><flag name="left" value="0x03"/><flag name="right" value="0x05"/><flag name="center_vertical" value="0x10"/><flag name="fill_vertical" value="0x70"/><flag name="center_horizontal" value="0x01"/><flag name="center" value="0x11"/><flag name="start" value="0x00800003"/><flag name="end" value="0x00800005"/></attr><attr name="expandedTitleGravity"><flag name="top" value="0x30"/><flag name="bottom" value="0x50"/><flag name="left" value="0x03"/><flag name="right" value="0x05"/><flag name="center_vertical" value="0x10"/><flag name="fill_vertical" value="0x70"/><flag name="center_horizontal" value="0x01"/><flag name="center" value="0x11"/><flag name="start" value="0x00800003"/><flag name="end" value="0x00800005"/></attr><attr format="boolean" name="titleEnabled"/><attr name="title"/></declare-styleable>
+    <declare-styleable name="CollapsingToolbarLayout"><attr format="dimension" name="expandedTitleMargin"/><attr format="dimension" name="expandedTitleMarginStart"/><attr format="dimension" name="expandedTitleMarginTop"/><attr format="dimension" name="expandedTitleMarginEnd"/><attr format="dimension" name="expandedTitleMarginBottom"/><attr format="reference" name="expandedTitleTextAppearance"/><attr format="reference" name="collapsedTitleTextAppearance"/><attr format="color" name="contentScrim"/><attr format="color" name="statusBarScrim"/><attr format="reference" name="toolbarId"/><attr format="dimension" name="scrimVisibleHeightTrigger"/><attr format="integer" name="scrimAnimationDuration"/><attr name="collapsedTitleGravity"><flag name="top" value="0x30"/><flag name="bottom" value="0x50"/><flag name="left" value="0x03"/><flag name="right" value="0x05"/><flag name="center_vertical" value="0x10"/><flag name="fill_vertical" value="0x70"/><flag name="center_horizontal" value="0x01"/><flag name="center" value="0x11"/><flag name="start" value="0x00800003"/><flag name="end" value="0x00800005"/></attr><attr name="expandedTitleGravity"><flag name="top" value="0x30"/><flag name="bottom" value="0x50"/><flag name="left" value="0x03"/><flag name="right" value="0x05"/><flag name="center_vertical" value="0x10"/><flag name="fill_vertical" value="0x70"/><flag name="center_horizontal" value="0x01"/><flag name="center" value="0x11"/><flag name="start" value="0x00800003"/><flag name="end" value="0x00800005"/></attr><attr format="boolean" name="titleEnabled"/><attr name="title"/></declare-styleable>
+    <declare-styleable name="CollapsingToolbarLayout_Layout"><attr name="layout_collapseMode"><enum name="none" value="0"/><enum name="pin" value="1"/><enum name="parallax" value="2"/></attr><attr format="float" name="layout_collapseParallaxMultiplier"/></declare-styleable>
+    <declare-styleable name="ColorStateListItem"><attr name="android:color"/><attr format="float" name="alpha"/><attr name="android:alpha"/></declare-styleable>
     <declare-styleable name="CompoundButton"><attr name="android:button"/><attr format="color" name="buttonTint"/><attr name="buttonTintMode"><enum name="src_over" value="3"/><enum name="src_in" value="5"/><enum name="src_atop" value="9"/><enum name="multiply" value="14"/><enum name="screen" value="15"/></attr></declare-styleable>
     <declare-styleable name="CoordinatorLayout"><attr format="reference" name="keylines"/><attr format="reference" name="statusBarBackground"/></declare-styleable>
-    <declare-styleable name="CoordinatorLayout_LayoutParams"><attr name="android:layout_gravity"/><attr format="string" name="layout_behavior"/><attr format="reference" name="layout_anchor"/><attr format="integer" name="layout_keyline"/><attr name="layout_anchorGravity"><flag name="top" value="0x30"/><flag name="bottom" value="0x50"/><flag name="left" value="0x03"/><flag name="right" value="0x05"/><flag name="center_vertical" value="0x10"/><flag name="fill_vertical" value="0x70"/><flag name="center_horizontal" value="0x01"/><flag name="fill_horizontal" value="0x07"/><flag name="center" value="0x11"/><flag name="fill" value="0x77"/><flag name="clip_vertical" value="0x80"/><flag name="clip_horizontal" value="0x08"/><flag name="start" value="0x00800003"/><flag name="end" value="0x00800005"/></attr></declare-styleable>
+    <declare-styleable name="CoordinatorLayout_Layout"><attr name="android:layout_gravity"/><attr format="string" name="layout_behavior"/><attr format="reference" name="layout_anchor"/><attr format="integer" name="layout_keyline"/><attr name="layout_anchorGravity"><flag name="top" value="0x30"/><flag name="bottom" value="0x50"/><flag name="left" value="0x03"/><flag name="right" value="0x05"/><flag name="center_vertical" value="0x10"/><flag name="fill_vertical" value="0x70"/><flag name="center_horizontal" value="0x01"/><flag name="fill_horizontal" value="0x07"/><flag name="center" value="0x11"/><flag name="fill" value="0x77"/><flag name="clip_vertical" value="0x80"/><flag name="clip_horizontal" value="0x08"/><flag name="start" value="0x00800003"/><flag name="end" value="0x00800005"/></attr></declare-styleable>
+    <declare-styleable name="Corpus"><attr format="string" name="corpusId"/><attr format="string" name="corpusVersion"/><attr format="string" name="contentProviderUri"/><attr format="boolean" name="trimmable"/><attr format="string" name="schemaOrgType"/><attr format="boolean" name="semanticallySearchable"/><attr format="boolean" name="perAccountTemplate"/></declare-styleable>
     <declare-styleable name="CustomWalletTheme"><attr format="enum" name="windowTransitionStyle"><enum name="slide" value="1"/><enum name="none" value="2"/></attr></declare-styleable>
     <declare-styleable name="DesignTheme"><attr format="reference" name="bottomSheetDialogTheme"/><attr format="reference" name="bottomSheetStyle"/><attr format="color" name="textColorError"/></declare-styleable>
     <declare-styleable name="DrawerArrowToggle"><attr format="color" name="color"/><attr format="boolean" name="spinBars"/><attr format="dimension" name="drawableSize"/><attr format="dimension" name="gapBetweenBars"/><attr format="dimension" name="arrowHeadLength"/><attr format="dimension" name="arrowShaftLength"/><attr format="dimension" name="barLength"/><attr format="dimension" name="thickness"/></declare-styleable>
     <declare-styleable name="ExpandableText"><attr format="integer" name="trimLength"/></declare-styleable>
-    <declare-styleable name="FloatingActionButton"><attr name="backgroundTint"/><attr name="backgroundTintMode"/><attr format="color" name="rippleColor"/><attr name="fabSize"><enum name="normal" value="0"/><enum name="mini" value="1"/></attr><attr name="elevation"/><attr format="dimension" name="pressedTranslationZ"/><attr format="dimension" name="borderWidth"/><attr format="boolean" name="useCompatPadding"/></declare-styleable>
+    <declare-styleable name="FeatureParam"><attr format="string" name="paramName"/><attr format="string" name="paramValue"/></declare-styleable>
+    <declare-styleable name="FloatingActionButton"><attr name="backgroundTint"/><attr name="backgroundTintMode"/><attr format="color" name="rippleColor"/><attr name="fabSize"><enum name="auto" value="-1"/><enum name="normal" value="0"/><enum name="mini" value="1"/></attr><attr name="elevation"/><attr format="dimension" name="pressedTranslationZ"/><attr format="dimension" name="borderWidth"/><attr format="boolean" name="useCompatPadding"/></declare-styleable>
     <declare-styleable name="ForegroundLinearLayout"><attr name="android:foreground"/><attr name="android:foregroundGravity"/><attr format="boolean" name="foregroundInsidePadding"/></declare-styleable>
+    <declare-styleable name="GlobalSearch"><attr format="boolean" name="searchEnabled"/><attr format="string" localization="suggested" name="searchLabel"/><attr format="string" localization="suggested" name="settingsDescription"/><attr format="string" name="defaultIntentAction"/><attr format="string" name="defaultIntentData"/><attr format="string" name="defaultIntentActivity"/></declare-styleable>
+    <declare-styleable name="GlobalSearchCorpus"><attr format="boolean" name="allowShortcuts"/></declare-styleable>
+    <declare-styleable name="GlobalSearchSection"><attr format="enum" name="sectionType"><enum name="text1" value="0"/><enum name="text2" value="1"/><enum name="icon_uri" value="2"/><enum name="intent_action" value="3"/><enum name="intent_data" value="4"/><enum name="intent_data_id" value="5"/><enum name="intent_extra_data" value="6"/><enum name="large_icon_uri" value="7"/><enum name="intent_activity" value="8"/><enum name="thing_proto" value="9"/></attr><attr format="string" localization="suggested" name="sectionContent"/></declare-styleable>
+    <declare-styleable name="IMECorpus"><attr format="boolean" name="inputEnabled"/><attr format="enum" name="sourceClass"><enum name="email" value="0"/><enum name="contact" value="1"/><enum name="instant_message" value="2"/></attr><attr format="string" name="userInputTag"/><attr format="string" name="userInputSection"/><attr format="string" name="userInputValue"/><attr format="string" name="toAddressesSection"/></declare-styleable>
     <declare-styleable name="LinearLayoutCompat"><attr name="android:orientation"/><attr name="android:gravity"/><attr name="android:baselineAligned"/><attr name="android:baselineAlignedChildIndex"/><attr name="android:weightSum"/><attr format="boolean" name="measureWithLargestChild"/><attr name="divider"/><attr name="showDividers"><flag name="none" value="0"/><flag name="beginning" value="1"/><flag name="middle" value="2"/><flag name="end" value="4"/></attr><attr format="dimension" name="dividerPadding"/></declare-styleable>
     <declare-styleable name="LinearLayoutCompat_Layout"><attr name="android:layout_width"/><attr name="android:layout_height"/><attr name="android:layout_weight"/><attr name="android:layout_gravity"/></declare-styleable>
     <declare-styleable name="ListPopupWindow"><attr name="android:dropDownVerticalOffset"/><attr name="android:dropDownHorizontalOffset"/></declare-styleable>
@@ -204,24 +211,26 @@
     <declare-styleable name="MediaRouteButton"><attr format="reference" name="externalRouteEnabledDrawable"/><attr name="android:minWidth"/><attr name="android:minHeight"/></declare-styleable>
     <declare-styleable name="MenuGroup"><attr name="android:id"/><attr name="android:menuCategory"/><attr name="android:orderInCategory"/><attr name="android:checkableBehavior"/><attr name="android:visible"/><attr name="android:enabled"/></declare-styleable>
     <declare-styleable name="MenuItem"><attr name="android:id"/><attr name="android:menuCategory"/><attr name="android:orderInCategory"/><attr name="android:title"/><attr name="android:titleCondensed"/><attr name="android:icon"/><attr name="android:alphabeticShortcut"/><attr name="android:numericShortcut"/><attr name="android:checkable"/><attr name="android:checked"/><attr name="android:visible"/><attr name="android:enabled"/><attr name="android:onClick"/><attr name="showAsAction"><flag name="never" value="0"/><flag name="ifRoom" value="1"/><flag name="always" value="2"/><flag name="withText" value="4"/><flag name="collapseActionView" value="8"/></attr><attr format="reference" name="actionLayout"/><attr format="string" name="actionViewClass"/><attr format="string" name="actionProviderClass"/></declare-styleable>
-    <declare-styleable name="MenuView"><attr name="android:itemTextAppearance"/><attr name="android:horizontalDivider"/><attr name="android:verticalDivider"/><attr name="android:headerBackground"/><attr name="android:itemBackground"/><attr name="android:windowAnimationStyle"/><attr name="android:itemIconDisabledAlpha"/><attr format="boolean" name="preserveIconSpacing"/></declare-styleable>
+    <declare-styleable name="MenuView"><attr name="android:itemTextAppearance"/><attr name="android:horizontalDivider"/><attr name="android:verticalDivider"/><attr name="android:headerBackground"/><attr name="android:itemBackground"/><attr name="android:windowAnimationStyle"/><attr name="android:itemIconDisabledAlpha"/><attr format="boolean" name="preserveIconSpacing"/><attr format="reference" name="subMenuArrow"/></declare-styleable>
     <declare-styleable name="NavigationView"><attr name="android:background"/><attr name="android:fitsSystemWindows"/><attr name="android:maxWidth"/><attr name="elevation"/><attr format="reference" name="menu"/><attr format="color" name="itemIconTint"/><attr format="color" name="itemTextColor"/><attr format="reference" name="itemBackground"/><attr format="reference" name="itemTextAppearance"/><attr format="reference" name="headerLayout"/></declare-styleable>
-    <declare-styleable name="PopupWindow"><attr format="boolean" name="overlapAnchor"/><attr name="android:popupBackground"/></declare-styleable>
+    <declare-styleable name="PopupWindow"><attr format="boolean" name="overlapAnchor"/><attr name="android:popupBackground"/><attr name="android:popupAnimationStyle"/></declare-styleable>
     <declare-styleable name="PopupWindowBackgroundState"><attr format="boolean" name="state_above_anchor"/></declare-styleable>
     <declare-styleable name="RangeBar"><attr format="float" name="tickStart"/><attr format="float" name="tickEnd"/><attr format="float" name="tickInterval"/><attr format="dimension" name="tickHeight"/><attr format="color" name="tickColor"/><attr format="dimension" name="barWeight"/><attr format="reference|color" name="rangeBarColor"/><attr format="reference|color" name="textColor"/><attr format="reference|color" name="pinColor"/><attr format="dimension" name="selectorSize"/><attr format="dimension" name="pinPadding"/><attr format="dimension" name="pinMinFont"/><attr format="dimension" name="pinMaxFont"/><attr format="dimension" name="rangeBarPaddingBottom"/><attr format="reference|color" name="selectorColor"/><attr format="boolean" name="rangeBar"/><attr format="boolean" name="temporaryPins"/><attr format="dimension" name="connectingLineWeight"/><attr format="reference|color" name="connectingLineColor"/><attr format="dimension" name="pinRadius"/></declare-styleable>
-    <declare-styleable name="RecyclerView"><attr format="string" name="layoutManager"/><attr name="android:orientation"/><attr format="integer" name="spanCount"/><attr format="boolean" name="reverseLayout"/><attr format="boolean" name="stackFromEnd"/></declare-styleable>
+    <declare-styleable name="RecyclerView"><attr format="string" name="layoutManager"/><attr name="android:orientation"/><attr name="android:descendantFocusability"/><attr format="integer" name="spanCount"/><attr format="boolean" name="reverseLayout"/><attr format="boolean" name="stackFromEnd"/></declare-styleable>
     <declare-styleable name="ScrimInsetsFrameLayout"><attr format="color|reference" name="insetForeground"/></declare-styleable>
-    <declare-styleable name="ScrollingViewBehavior_Params"><attr format="dimension" name="behavior_overlapTop"/></declare-styleable>
+    <declare-styleable name="ScrollingViewBehavior_Layout"><attr format="dimension" name="behavior_overlapTop"/></declare-styleable>
     <declare-styleable name="SearchView"><attr format="reference" name="layout"/><attr format="boolean" name="iconifiedByDefault"/><attr name="android:maxWidth"/><attr format="string" name="queryHint"/><attr format="string" name="defaultQueryHint"/><attr name="android:imeOptions"/><attr name="android:inputType"/><attr format="reference" name="closeIcon"/><attr format="reference" name="goIcon"/><attr format="reference" name="searchIcon"/><attr format="reference" name="searchHintIcon"/><attr format="reference" name="voiceIcon"/><attr format="reference" name="commitIcon"/><attr format="reference" name="suggestionRowLayout"/><attr format="reference" name="queryBackground"/><attr format="reference" name="submitBackground"/><attr name="android:focusable"/></declare-styleable>
+    <declare-styleable name="Section"><attr format="string" name="sectionId"/><attr format="enum" name="sectionFormat"><enum name="plain" value="0"/><enum name="html" value="1"/><enum name="rfc822" value="2"/><enum name="url" value="3"/></attr><attr format="boolean" name="noIndex"/><attr format="integer" name="sectionWeight"/><attr format="boolean" name="indexPrefixes"/><attr format="string" name="subsectionSeparator"/><attr format="string" name="schemaOrgProperty"/></declare-styleable>
+    <declare-styleable name="SectionFeature"><attr format="enum" name="featureType"><enum name="match_global_nicknames" value="1"/><enum name="demote_common_words" value="2"/><enum name="demote_rfc822_hostnames" value="3"/><enum name="omnibox_url_section" value="4"/><enum name="omnibox_title_section" value="5"/><enum name="index_entity_types" value="6"/></attr></declare-styleable>
     <declare-styleable name="SignInButton"><attr format="reference|enum" name="buttonSize"><enum name="standard" value="0"/><enum name="wide" value="1"/><enum name="icon_only" value="2"/></attr><attr format="reference|enum" name="colorScheme"><enum name="dark" value="0"/><enum name="light" value="1"/><enum name="auto" value="2"/></attr><attr format="reference|string" name="scopeUris"/></declare-styleable>
     <declare-styleable name="SnackbarLayout"><attr name="android:maxWidth"/><attr name="elevation"/><attr format="dimension" name="maxActionInlineWidth"/></declare-styleable>
     <declare-styleable name="Spinner"><attr name="android:prompt"/><attr name="popupTheme"/><attr name="android:popupBackground"/><attr name="android:dropDownWidth"/><attr name="android:entries"/></declare-styleable>
-    <declare-styleable name="SwitchCompat"><attr name="android:thumb"/><attr format="reference" name="track"/><attr name="android:textOn"/><attr name="android:textOff"/><attr format="dimension" name="thumbTextPadding"/><attr format="reference" name="switchTextAppearance"/><attr format="dimension" name="switchMinWidth"/><attr format="dimension" name="switchPadding"/><attr format="boolean" name="splitTrack"/><attr format="boolean" name="showText"/></declare-styleable>
+    <declare-styleable name="SwitchCompat"><attr name="android:thumb"/><attr format="color" name="thumbTint"/><attr name="thumbTintMode"><enum name="src_over" value="3"/><enum name="src_in" value="5"/><enum name="src_atop" value="9"/><enum name="multiply" value="14"/><enum name="screen" value="15"/><enum name="add" value="16"/></attr><attr format="reference" name="track"/><attr format="color" name="trackTint"/><attr name="trackTintMode"><enum name="src_over" value="3"/><enum name="src_in" value="5"/><enum name="src_atop" value="9"/><enum name="multiply" value="14"/><enum name="screen" value="15"/><enum name="add" value="16"/></attr><attr name="android:textOn"/><attr name="android:textOff"/><attr format="dimension" name="thumbTextPadding"/><attr format="reference" name="switchTextAppearance"/><attr format="dimension" name="switchMinWidth"/><attr format="dimension" name="switchPadding"/><attr format="boolean" name="splitTrack"/><attr format="boolean" name="showText"/></declare-styleable>
     <declare-styleable name="TabItem"><attr name="android:text"/><attr name="android:icon"/><attr name="android:layout"/></declare-styleable>
     <declare-styleable name="TabLayout"><attr format="color" name="tabIndicatorColor"/><attr format="dimension" name="tabIndicatorHeight"/><attr format="dimension" name="tabContentStart"/><attr format="reference" name="tabBackground"/><attr name="tabMode"><enum name="scrollable" value="0"/><enum name="fixed" value="1"/></attr><attr name="tabGravity"><enum name="fill" value="0"/><enum name="center" value="1"/></attr><attr format="dimension" name="tabMinWidth"/><attr format="dimension" name="tabMaxWidth"/><attr format="reference" name="tabTextAppearance"/><attr format="color" name="tabTextColor"/><attr format="color" name="tabSelectedTextColor"/><attr format="dimension" name="tabPaddingStart"/><attr format="dimension" name="tabPaddingTop"/><attr format="dimension" name="tabPaddingEnd"/><attr format="dimension" name="tabPaddingBottom"/><attr format="dimension" name="tabPadding"/></declare-styleable>
     <declare-styleable name="TextAppearance"><attr name="android:textSize"/><attr name="android:textColor"/><attr name="android:textStyle"/><attr name="android:typeface"/><attr name="textAllCaps"/><attr name="android:shadowColor"/><attr name="android:shadowDy"/><attr name="android:shadowDx"/><attr name="android:shadowRadius"/></declare-styleable>
     <declare-styleable name="TextInputLayout"><attr format="reference" name="hintTextAppearance"/><attr name="android:hint"/><attr format="boolean" name="hintEnabled"/><attr format="boolean" name="errorEnabled"/><attr format="reference" name="errorTextAppearance"/><attr format="boolean" name="counterEnabled"/><attr format="integer" name="counterMaxLength"/><attr format="reference" name="counterTextAppearance"/><attr format="reference" name="counterOverflowTextAppearance"/><attr name="android:textColorHint"/><attr format="boolean" name="hintAnimationEnabled"/></declare-styleable>
-    <declare-styleable name="Toolbar"><attr format="reference" name="titleTextAppearance"/><attr format="reference" name="subtitleTextAppearance"/><attr name="title"/><attr name="subtitle"/><attr name="android:gravity"/><attr format="dimension" name="titleMargins"/><attr format="dimension" name="titleMarginStart"/><attr format="dimension" name="titleMarginEnd"/><attr format="dimension" name="titleMarginTop"/><attr format="dimension" name="titleMarginBottom"/><attr name="contentInsetStart"/><attr name="contentInsetEnd"/><attr name="contentInsetLeft"/><attr name="contentInsetRight"/><attr format="dimension" name="maxButtonHeight"/><attr format="reference" name="collapseIcon"/><attr format="string" name="collapseContentDescription"/><attr name="popupTheme"/><attr format="reference" name="navigationIcon"/><attr format="string" name="navigationContentDescription"/><attr name="android:minHeight"/><attr name="logo"/><attr format="string" name="logoDescription"/><attr format="color" name="titleTextColor"/><attr format="color" name="subtitleTextColor"/></declare-styleable>
+    <declare-styleable name="Toolbar"><attr format="reference" name="titleTextAppearance"/><attr format="reference" name="subtitleTextAppearance"/><attr name="title"/><attr name="subtitle"/><attr name="android:gravity"/><attr format="dimension" name="titleMargin"/><attr format="dimension" name="titleMarginStart"/><attr format="dimension" name="titleMarginEnd"/><attr format="dimension" name="titleMarginTop"/><attr format="dimension" name="titleMarginBottom"/><attr format="dimension" name="titleMargins"/><attr name="contentInsetStart"/><attr name="contentInsetEnd"/><attr name="contentInsetLeft"/><attr name="contentInsetRight"/><attr name="contentInsetStartWithNavigation"/><attr name="contentInsetEndWithActions"/><attr format="dimension" name="maxButtonHeight"/><attr name="buttonGravity"><flag name="top" value="0x30"/><flag name="bottom" value="0x50"/></attr><attr format="reference" name="collapseIcon"/><attr format="string" name="collapseContentDescription"/><attr name="popupTheme"/><attr format="reference" name="navigationIcon"/><attr format="string" name="navigationContentDescription"/><attr name="logo"/><attr format="string" name="logoDescription"/><attr format="color" name="titleTextColor"/><attr format="color" name="subtitleTextColor"/><attr name="android:minHeight"/></declare-styleable>
     <declare-styleable name="View"><attr format="dimension" name="paddingStart"/><attr format="dimension" name="paddingEnd"/><attr name="android:focusable"/><attr format="reference" name="theme"/><attr name="android:theme"/></declare-styleable>
     <declare-styleable name="ViewBackgroundHelper"><attr name="android:background"/><attr format="color" name="backgroundTint"/><attr name="backgroundTintMode"><enum name="src_over" value="3"/><enum name="src_in" value="5"/><enum name="src_atop" value="9"/><enum name="multiply" value="14"/><enum name="screen" value="15"/></attr></declare-styleable>
     <declare-styleable name="ViewStubCompat"><attr name="android:layout"/><attr name="android:inflatedId"/><attr name="android:id"/></declare-styleable>
@@ -832,6 +841,7 @@
     <dimen name="_minus99sdp">-99.00dp</dimen>
     <dimen name="_minus9sdp">-9.00dp</dimen>
     <dimen name="abc_action_bar_content_inset_material">16dp</dimen>
+    <dimen name="abc_action_bar_content_inset_with_nav">72dp</dimen>
     <dimen name="abc_action_bar_default_height_material">56dp</dimen>
     <dimen name="abc_action_bar_default_padding_end_material">0dp</dimen>
     <dimen name="abc_action_bar_default_padding_start_material">0dp</dimen>
@@ -851,6 +861,7 @@
     <dimen name="abc_button_inset_vertical_material">6dp</dimen>
     <dimen name="abc_button_padding_horizontal_material">8dp</dimen>
     <dimen name="abc_button_padding_vertical_material">@dimen/abc_control_padding_material</dimen>
+    <dimen name="abc_cascading_menus_min_smallest_width">720dp</dimen>
     <dimen name="abc_config_prefDialogWidth">320dp</dimen>
     <dimen name="abc_control_corner_material">2dp</dimen>
     <dimen name="abc_control_inset_material">4dp</dimen>
@@ -875,8 +886,9 @@
     <dimen name="abc_floating_window_z">16dp</dimen>
     <dimen name="abc_list_item_padding_horizontal_material">@dimen/abc_action_bar_content_inset_material</dimen>
     <dimen name="abc_panel_menu_list_width">296dp</dimen>
+    <dimen name="abc_progress_bar_height_material">4dp</dimen>
+    <dimen name="abc_search_view_preferred_height">48dip</dimen>
     <dimen name="abc_search_view_preferred_width">320dip</dimen>
-    <dimen name="abc_search_view_text_min_width">160dip</dimen>
     <dimen name="abc_seekbar_track_background_height_material">2dp</dimen>
     <dimen name="abc_seekbar_track_progress_height_material">2dp</dimen>
     <dimen name="abc_select_dialog_padding_start_material">20dp</dimen>
@@ -892,6 +904,7 @@
     <dimen name="abc_text_size_headline_material">24sp</dimen>
     <dimen name="abc_text_size_large_material">22sp</dimen>
     <dimen name="abc_text_size_medium_material">18sp</dimen>
+    <dimen name="abc_text_size_menu_header_material">14sp</dimen>
     <dimen name="abc_text_size_menu_material">16sp</dimen>
     <dimen name="abc_text_size_small_material">14sp</dimen>
     <dimen name="abc_text_size_subhead_material">16sp</dimen>
@@ -1121,6 +1134,7 @@
     <item name="action_menu_divider" type="id"/>
     <item name="action_menu_presenter" type="id"/>
     <item name="cast_notification_id" type="id"/>
+    <item name="crash_reporting_present" type="id"/>
     <item name="home" type="id"/>
     <item name="item_touch_helper_previous_elevation" type="id"/>
     <item name="progress_circular" type="id"/>
@@ -1130,12 +1144,194 @@
     <item name="view_offset_helper" type="id"/>
     <integer name="abc_config_activityDefaultDur">220</integer>
     <integer name="abc_config_activityShortDur">150</integer>
-    <integer name="abc_max_action_buttons">2</integer>
     <integer name="bottom_sheet_slide_duration">150</integer>
     <integer name="cancel_button_image_alpha">127</integer>
     <integer name="design_snackbar_text_max_lines">2</integer>
-    <integer name="google_play_services_version">8487000</integer>
+    <integer name="google_play_services_version">9080000</integer>
     <integer name="status_bar_notification_info_maxnum">999</integer>
+    <string name="PrivacyPolicy">
+        
+        &lt;h3>WHAT DO WE DO WITH YOUR INFORMATION?&lt;/h3>
+        &lt;p>When you purchase something from our store, as part of the buying and selling process, we collect the personal information you give us such as your name, address and email address.&lt;/p>
+        &lt;p>When you browse our store, we also automatically receive your computer’s internet protocol (IP) address in order to provide us with information that helps us learn about your browser and operating system.&lt;/p>
+        &lt;p>Email marketing (if applicable): With your permission, we may send you emails about our store, new products and other updates.&lt;/p>
+
+        &lt;h3>CONSENT&lt;/h3>
+        &lt;p>How do you get my consent?&lt;/p>
+        &lt;p>When you provide us with personal information to complete a transaction, verify your credit card, place an order, arrange for a delivery or return a purchase, we imply that you consent to our collecting it and using it for that specific reason only.&lt;/p>
+        &lt;p>If we ask for your personal information for a secondary reason, like marketing, we will either ask you directly for your expressed consent, or provide you with an opportunity to say no.&lt;/p>
+        &lt;p>How do I withdraw my consent?&lt;/p>
+        &lt;p>If after you opt-in, you change your mind, you may withdraw your consent for us to contact you, for the continued collection, use or disclosure of your information, at anytime, by contacting us at mypeto@petoandme.com or mailing us at: 43 Ram Mahal, Senapati Bapat Marg, Opp Mahim Station, Mahim, Mumbai, 400016&lt;/p>
+
+        &lt;h3>DISCLOSURE&lt;/h3>
+        &lt;p>We may disclose your personal information if we are required by law to do so or if you violate our Terms of Service.&lt;/p>
+
+        &lt;h3>PAYMENT&lt;/h3>
+        &lt;p>We use Razorpay for processing payments. We/Razorpay do not store your card data on their servers. The data is encrypted through the Payment Card Industry Data Security Standard (PCI-DSS) when processing payment. Your purchase transaction data is only used as long as is necessary to complete your purchase transaction. After that is complete, your purchase transaction information is not saved.&lt;/p>
+        &lt;p>Our payment gateway adheres to the standards set by PCI-DSS as managed by the PCI Security Standards Council, which is a joint effort of brands like Visa, MasterCard, American Express and Discover.&lt;/p>
+        &lt;p>PCI-DSS requirements help ensure the secure handling of credit card information by our store and its service providers&lt;/p>
+        &lt;p>For more insight, you may also want to read terms and conditions of razorpay on https://razorpay.com&lt;/p>
+
+        &lt;h3>THIRD-PARTY SERVICES&lt;/h3>
+        &lt;p>In general, the third-party providers used by us will only collect, use and disclose your information to the extent necessary to allow them to perform the services they provide to us.&lt;/p>
+        &lt;p>However, certain third-party service providers, such as payment gateways and other payment transaction processors, have their own privacy policies in respect to the information we are required to provide to them for your purchase-related transactions.&lt;/p>
+        &lt;p>For these providers, we recommend that you read their privacy policies so you can understand the manner in which your personal information will be handled by these providers.&lt;/p>
+        &lt;p>In particular, remember that certain providers may be located in or have facilities that are located a different jurisdiction than either you or us. So if you elect to proceed with a transaction that involves the services of a third-party service provider, then your information may become subject to the laws of the jurisdiction(s) in which that service provider or its facilities are located.&lt;/p>
+        &lt;p>Once you leave our store’s website or are redirected to a third-party website or application, you are no longer governed by this Privacy Policy or our website’s Terms of Service. &lt;/p>
+
+        &lt;h3>Links&lt;/h3>
+        &lt;p>When you click on links on our store, they may direct you away from our site. We are not responsible for the privacy practices of other sites and encourage you to read their privacy statements.&lt;/p>
+
+        &lt;h3>SECURITY&lt;/h3>
+        &lt;p>To protect your personal information, we take reasonable precautions and follow industry best practices to make sure it is not inappropriately lost, misused, accessed, disclosed, altered or destroyed.&lt;/p>
+
+        &lt;h3>COOKIES&lt;/h3>
+        &lt;p>We use cookies to maintain session of your user. It is not used to personally identify you on other websites.&lt;/p>
+
+        &lt;h3>AGE OF CONSENT&lt;/h3>
+        &lt;p>By using this site, you represent that you are at least the age of majority in your state or province of residence, or that you are the age of majority in your state or province of residence and you have given us your consent to allow any of your minor dependents to use this site.&lt;/p>
+
+        &lt;h3>CHANGES TO THIS PRIVACY POLICY &lt;/h3>
+        &lt;p>We reserve the right to modify this privacy policy at any time, so please review it frequently. Changes and clarifications will take effect immediately upon their posting on the website. If we make material changes to this policy, we will notify you here that it has been updated, so that you are aware of what information we collect, how we use it, and under what circumstances, if any, we use and/or disclose it.&lt;/p>
+        &lt;p>If our store is acquired or merged with another company, your information may be transferred to the new owners so that we may continue to sell products to you.&lt;/p>
+
+        &lt;h3>QUESTIONS AND CONTACT INFORMATION&lt;/h3>
+        &lt;p>If you would like to: access, correct, amend or delete any personal information we have about you, register a complaint, or simply want more information contact our Privacy Compliance Officer at ourpeto@petoandme.com or by mail at 43 Ram Mahal, Senapati Bapat Marg, Opp Mahim Station, Mahim, Mumbai, 400016&lt;/p>
+        
+    </string>
+    <string name="Refund">
+        
+
+        &lt;h3>Returns&lt;/h3>
+        &lt;p>Our return policy lasts 7 days for consideration. If 7 days have gone by since your purchase, unfortunately we can’t offer you a refund or exchange.&lt;/p>
+        &lt;p>To be eligible for a return, your item must be unused and in the same condition that you received it. It must also be in the original packaging.&lt;/p>
+        &lt;p>Several types of goods are exempt from being returned. Perishable goods such as food, flowers, newspapers or magazines cannot be returned. We also do not accept products that are intimate or sanitary goods, hazardous materials, or flammable liquids or gases.&lt;/p>
+        &lt;p>&lt;b>Additional non-returnable items:&lt;/b>&lt;/ br> Gift cards. &lt;/ br> Downloadable software products. &lt;/ br> ome health and personal care items.&lt;/p>
+        &lt;p>To complete your return, we require a receipt or proof of purchase.&lt;/p>
+        &lt;p>Please do not send your purchase back to the manufacturer.&lt;/p>
+        &lt;p>There are certain situations where only partial refunds are granted: (if applicable)Book with obvious signs of use CD, DVD, VHS tape, software, video game, cassette tape, or vinyl record that has been opened.Any item not in its original condition, is damaged or missing parts for reasons not due to our error.Any item that is returned more than 7 days after delivery&lt;/p>
+
+        &lt;h3>Refunds &lt;/h3>
+        &lt;p>Once your return is received and inspected, we will send you an email to notify you that we have received your returned item. We will also notify you of the approval or rejection of your refund.If you are approved, then your refund will be processed, and a credit will automatically be applied to your credit card or original method of payment, within a certain amount of days.&lt;/p>
+
+        &lt;h3>Late or missing refunds &lt;/h3>
+        &lt;p>.If you haven’t received a refund yet, first check your bank account again.Then contact your credit card company, it may take some time before your refund is officially posted &lt;/p>
+        &lt;p>Next contact your bank. There is often some processing time before a refund is posted.If you’ve done all of this and you still have not received your refund yet, please contact us at ourpeto@petoandme.com&lt;/p>
+
+        &lt;h3>Sale items &lt;/h3>
+        &lt;p>Only regular priced items may be refunded, unfortunately sale items cannot be refunded.&lt;/p>
+
+        &lt;h3>Shipping &lt;/h3>
+        &lt;p>To return your product, you should mail your product to: 43 Ram Mahal, Senapati Bapat Marg, Opposite Mahim Station, Mumbai 400016.&lt;/p>
+
+        &lt;h3>Refund Shipping&lt;/h3>
+        &lt;p>You will be responsible for paying for your own shipping costs for returning your item. Shipping costs are non-refundable. If you receive a refund, the cost of return shipping will be deducted from your refund.&lt;/p>
+        &lt;p>Depending on where you live, the time it may take for your exchanged product to reach you, may vary.&lt;/p>
+        &lt;p>If you are shipping an item over Rs. 5000, you should consider using a trackable shipping service or purchasing shipping insurance. We don’t guarantee that we will receive your returned item.&lt;/p>
+        
+    </string>
+    <string name="TNC1">
+        
+
+        &lt;h3>OVERVIEW&lt;/h3>
+        &lt;p>This website is operated by CourageComm Solutions Private Limited. Throughout the site, the terms “we”, “us” and “our” refer to CourageComm Solutions Private Limited. CourageComm Solutions Private Limited. offers this website, including all information, tools and services available from this site to you, the user, conditioned upon your acceptance of all terms, conditions, policies and notices stated here.&lt;/p>
+        &lt;p>By visiting our site and/ or purchasing something from us, you engage in our “Service” and agree to be bound by the following terms and conditions (“Terms of Service”, “Terms”), including those additional terms and conditions and policies referenced herein and/or available by hyperlink. These Terms of Service apply  to all users of the site, including without limitation users who are browsers, vendors, customers, merchants, and/ or contributors of content.&lt;/p>
+        &lt;p>Please read these Terms of Service carefully before accessing or using our website. By accessing or using any part of the site, you agree to be bound by these Terms of Service. If you do not agree to all the terms and conditions of this agreement, then you may not access the website or use any services. If these Terms of Service are considered an offer, acceptance is expressly limited to these Terms of Service.&lt;/p>
+        &lt;p>Any new features or tools which are added to the current store shall also be subject to the Terms of Service. You can review the most current version of the Terms of Service at any time on this page. We reserve the right to update, change or replace any part of these Terms of Service by posting updates and/or changes to our website. It is your responsibility to check this page periodically for changes. Your continued use of or access to the website following the posting of any changes constitutes acceptance of those changes&lt;/p>
+
+        &lt;h3>ONLINE STORE TERMS&lt;/h3>
+        &lt;p>By agreeing to these Terms of Service, you represent that you are at least the age of majority in your state or province of residence, or that you are the age of majority in your state or province of residence and you have given us your consent to allow any of your minor dependents to use this site&lt;/p>
+        &lt;p>You may not use our products for any illegal or unauthorized purpose nor may you, in the use of the Service, violate any laws in your jurisdiction (including but not limited to copyright laws).&lt;/p>
+        &lt;p>You must not transmit any worms or viruses or any code of a destructive nature.&lt;/p>
+        &lt;p>A breach or violation of any of the Terms will result in an immediate termination of your Services.&lt;/p>
+
+        &lt;h3>GENERAL CONDITIONS&lt;/h3>
+        &lt;p>We reserve the right to refuse service to anyone for any reason at any time.&lt;/p>
+        &lt;p>You understand that your content (not including credit card information), may be transferred unencrypted and involve (a) transmissions over various networks; and (b) changes to conform and adapt to technical requirements of connecting networks or devices. Credit card information is always encrypted during transfer over networks.&lt;/p>
+        &lt;p>You agree not to reproduce, duplicate, copy, sell, resell or exploit any portion of the Service, use of the Service, or access to the Service or any contact on the website through which the service is provided, without express written permission by us.&lt;/p>
+        &lt;p>The headings used in this agreement are included for convenience only and will not limit or otherwise affect these Terms.&lt;/p>
+
+        &lt;h3>ACCURACY, COMPLETENESS AND TIMELINESS OF INFORMATION&lt;/h3>
+        &lt;p>We are not responsible if information made available on this site is not accurate, complete or current. The material on this site is provided for general information only and should not be relied upon or used as the sole basis for making decisions without consulting primary, more accurate, more complete or more timely sources of information. Any reliance on the material on this site is at your own risk&lt;/p>
+        &lt;p>This site may contain certain historical information. Historical information, necessarily, is not current and is provided for your reference only. We reserve the right to modify the contents of this site at any time, but we have no obligation to update any information on our site. You agree that it is your responsibility to monitor changes to our site.&lt;/p>
+
+        &lt;h3>MODIFICATIONS TO THE SERVICE AND PRICES&lt;/h3>
+        &lt;p>Prices for our products are subject to change without notice.&lt;/p>
+        &lt;p>We reserve the right at any time to modify or discontinue the Service (or any part or content thereof) without notice at any time.&lt;/p>
+        &lt;p>We shall not be liable to you or to any third-party for any modification, price change, suspension or discontinuance of the Service.&lt;/p>
+
+        &lt;h3>PRODUCTS OR SERVICES&lt;/h3>
+        &lt;p>Certain products or services may be available exclusively online through the website. These products or services may have limited quantities and are subject to return or exchange only according to our Return Policy.We have made every effort to display as accurately as possible the colors and images of our products that appear at the store. We cannot guarantee that your computer monitor\'s display of any color will be accurate.&lt;/p>
+        &lt;p>We reserve the right, but are not obligated, to limit the sales of our products or Services to any person, geographic region or jurisdiction. We may exercise this right on a case-by-case basis. We reserve the right to limit the quantities of any products or services that we offer. All descriptions of products or product pricing are subject to change at anytime without notice, at the sole discretion of us. We reserve the right to discontinue any product at any time. Any offer for any product or service made on this site is void where prohibited.&lt;/p>
+        &lt;p>We do not warrant that the quality of any products, services, information, or other material purchased or obtained by you will meet your expectations, or that any errors in the Service will be corrected.&lt;/p>
+
+        &lt;h3>ACCURACY OF BILLING AND ACCOUNT INFORMATION&lt;/h3>
+        &lt;p>We reserve the right to refuse any order you place with us. We may, in our sole discretion, limit or cancel quantities purchased per person, per household or per order. These restrictions may include orders placed by or under the same customer account, the same credit card, and/or orders that use the same billing and/or shipping address. In the event that we make a change to or cancel an order, we may attempt to notify you by contacting the e-mail and/or billing address/phone number provided at the time the order was made. We reserve the right to limit or prohibit orders that, in our sole judgment, appear to be placed by dealers, resellers or distributors.&lt;/p>
+        &lt;p>You agree to provide current, complete and accurate purchase and account information for all purchases made at our store. You agree to promptly update your account and other information, including your email address and credit card numbers and expiration dates, so that we can complete your transactions and contact you as needed.&lt;/p>
+        &lt;p>For more detail, please review our Returns Policy.&lt;/p>
+
+        &lt;h3>OPTIONAL TOOLS&lt;/h3>
+        &lt;p>We may provide you with access to third-party tools over which we neither monitor nor have any control nor input.&lt;/p>
+        &lt;p>You acknowledge and agree that we provide access to such tools ”as is” and “as available” without any warranties, representations or conditions of any kind and without any endorsement. We shall have no liability whatsoever arising from or relating to your use of optional third-party tools.&lt;/p>
+        &lt;p>Any use by you of optional tools offered through the site is entirely at your own risk and discretion and you should ensure that you are familiar with and approve of the terms on which tools are provided by the relevant third-party provider(s).&lt;/p>
+        &lt;p>We may also, in the future, offer new services and/or features through the website (including, the release of new tools and resources). Such new features and/or services shall also be subject to these Terms of Service.&lt;/p>
+
+        &lt;h3>THIRD-PARTY LINKS&lt;/h3>
+        &lt;p>Certain content, products and services available via our Service may include materials from third-parties.&lt;/p>
+        &lt;p>Third-party links on this site may direct you to third-party websites that are not affiliated with us. We are not responsible for examining or evaluating the content or accuracy and we do not warrant and will not have any liability or responsibility for any third-party materials or websites, or for any other materials, products, or services of third-parties.&lt;/p>
+        &lt;p>We are not liable for any harm or damages related to the purchase or use of goods, services, resources, content, or any other transactions made in connection with any third-party websites. Please review carefully the third-party\'s policies and practices and make sure you understand them before you engage in any transaction. Complaints, claims, concerns, or questions regarding third-party products should be directed to the third-party.&lt;/p>
+
+        &lt;h3>USER COMMENTS, FEEDBACK AND OTHER SUBMISSIONS&lt;/h3>
+        &lt;p>If, at our request, you send certain specific submissions (for example contest entries) or without a request from us you send creative ideas, suggestions, proposals, plans, or other materials, whether online, by email, by postal mail, or otherwise (collectively, \'comments\'), you agree that we may, at any time, without restriction, edit, copy, publish, distribute, translate and otherwise use in any medium any comments that you forward to us.&lt;/p>
+        &lt;p>We are and shall be under no obligation (1) to maintain any comments in confidence; (2) to pay compensation for any comments; or (3) to respond to any comments.We may, but have no obligation to, monitor, edit or remove content that we determine in our sole discretion are unlawful, offensive, threatening, libelous, defamatory, pornographic, obscene or otherwise objectionable or violates any party’s intellectual property or these Terms of Service.&lt;/p>
+        &lt;p>You agree that your comments will not violate any right of any third-party, including copyright, trademark, privacy, personality or other personal or proprietary right. You further agree that your comments will not contain libelous or otherwise unlawful, abusive or obscene material, or contain any computer virus or other malware that could in any way affect the operation of the Service or any related website.&lt;/p>
+        &lt;p>You may not use a false e-mail address, pretend to be someone other than yourself, or otherwise mislead us or third-parties as to the origin of any comments. You are solely responsible for any comments you make and their accuracy. We take no responsibility and assume no liability for any comments posted by you or any third-party.&lt;/p>
+
+        &lt;h3>PERSONAL INFORMATION&lt;/h3>
+        &lt;p>Your submission of personal information through the store is governed by our Privacy Policy. &lt;/p>
+
+        &lt;h3>ERRORS, INACCURACIES AND OMISSIONS&lt;/h3>
+        &lt;p>Occasionally there may be information on our site or in the Service that contains typographical errors, inaccuracies or omissions that may relate to product descriptions, pricing, promotions, offers, product shipping charges, transit times and availability. We reserve the right to correct any errors, inaccuracies or omissions, and to change or update information or cancel orders if any information in the Service or on any related website is inaccurate at any time without prior notice (including after you have submitted your order).&lt;/p>
+        &lt;p>We undertake no obligation to update, amend or clarify information in the Service or on any related website, including without limitation, pricing information, except as required by law. No specified update or refresh date applied in the Service or on any related website, should be taken to indicate that all information in the Service or on any related website has been modified or updated.&lt;/p>
+
+        &lt;h3>PROHIBITED USES&lt;/h3>
+        &lt;p>In addition to other prohibitions as set forth in the Terms of Service, you are prohibited from using the site or its content: (a) for any unlawful purpose; (b) to solicit others to perform or participate in any unlawful acts; (c) to violate any international, federal, provincial or state regulations, rules, laws, or local ordinances; (d) to infringe upon or violate our intellectual property rights or the intellectual property rights of others; (e) to harass, abuse, insult, harm, defame, slander, disparage, intimidate, or discriminate based on gender, sexual orientation, religion, ethnicity, race, age, national origin, or disability; (f) to submit false or misleading information; (g) to upload or transmit viruses or any other type of malicious code that will or may be used in any way that will affect the functionality or operation of the Service or of any related website, other websites, or the Internet; (h) to collect or track the personal information of others; (i) to spam, phish, pharm, pretext, spider, crawl, or scrape; (j) for any obscene or immoral purpose; or (k) to interfere with or circumvent the security features of the Service or any related website, other websites, or the Internet. We reserve the right to terminate your use of the Service or any related website for violating any of the prohibited uses.&lt;/p>
+
+        &lt;h3>DISCLAIMER OF WARRANTIES; LIMITATION OF LIABILITY&lt;/h3>
+        &lt;p>We do not guarantee, represent or warrant that your use of our service will be uninterrupted, timely, secure or error-free.&lt;/p>
+        &lt;p>We do not warrant that the results that may be obtained from the use of the service will be accurate or reliable.&lt;/p>
+        &lt;p>You agree that from time to time we may remove the service for indefinite periods of time or cancel the service at any time, without notice to you.&lt;/p>
+        &lt;p>You expressly agree that your use of, or inability to use, the service is at your sole risk. The service and all products and services delivered to you through the service are (except as expressly stated by us) provided \'as is \' and  \'as available \' for your use, without any representation, warranties or conditions of any kind, either express or implied, including all implied warranties or conditions of merchantability, merchantable quality, fitness for a particular purpose, durability, title, and non-infringement.&lt;/p>
+        &lt;p>In no case shall CourageComm Solutions Private Limited, our directors, officers, employees, affiliates, agents, contractors, interns, suppliers, service providers or licensors be liable for any injury, loss, claim, or any direct, indirect, incidental, punitive, special, or consequential damages of any kind, including, without limitation lost profits, lost revenue, lost savings, loss of data, replacement costs, or any similar damages, whether based in contract, tort (including negligence), strict liability or otherwise, arising from your use of any of the service or any products procured using the service, or for any other claim related in any way to your use of the service or any product, including, but not limited to, any errors or omissions in any content, or any loss or damage of any kind incurred as a result of the use of the service or any content (or product) posted, transmitted, or otherwise made available via the service, even if advised of their possibility. Because some states or jurisdictions do not allow the exclusion or the limitation of liability for consequential or incidental damages, in such states or jurisdictions, our liability shall be limited to the maximum extent permitted by law.&lt;/p>
+
+        &lt;h3>INDEMNIFICATION&lt;/h3>
+        &lt;p>You agree to indemnify, defend and hold harmless CourageComm Solutions Private Limited and our parent, subsidiaries, affiliates, partners, officers, directors, agents, contractors, licensors, service providers, subcontractors, suppliers, interns and employees, harmless from any claim or demand, including reasonable attorneys’ fees, made by any third-party due to or arising out of your breach of these Terms of Service or the documents they incorporate by reference, or your violation of any law or the rights of a third-party.&lt;/p>
+
+        &lt;h3>SEVERABILITY&lt;/h3>
+        &lt;p>In the event that any provision of these Terms of Service is determined to be unlawful, void or unenforceable, such provision shall nonetheless be enforceable to the fullest extent permitted by applicable law, and the unenforceable portion shall be deemed to be severed from these Terms of Service, such determination shall not affect the validity and enforceability of any other remaining provisions.&lt;/p>
+
+        &lt;h3>TERMINATION&lt;/h3>
+        &lt;p>The obligations and liabilities of the parties incurred prior to the termination date shall survive the termination of this agreement for all purposes.&lt;/p>
+        &lt;p>These Terms of Service are effective unless and until terminated by either you or us. You may terminate these Terms of Service at any time by notifying us that you no longer wish to use our Services, or when you cease using our site.&lt;/p>
+        &lt;p>If in our sole judgment you fail, or we suspect that you have failed, to comply with any term or provision of these Terms of Service, we also may terminate this agreement at any time without notice and you will remain liable for all amounts due up to and including the date of termination; and/or accordingly may deny you access to our Services (or any part thereof).&lt;/p>
+
+        &lt;h3>ENTIRE AGREEMENT&lt;/h3>
+        &lt;p>The failure of us to exercise or enforce any right or provision of these Terms of Service shall not constitute a waiver of such right or provision.&lt;/p>
+        &lt;p>These Terms of Service and any policies or operating rules posted by us on this site or in respect to The Service constitutes the entire agreement and understanding between you and us and govern your use of the Service, superseding any prior or contemporaneous agreements, communications and proposals, whether oral or written, between you and us (including, but not limited to, any prior versions of the Terms of Service).&lt;/p>
+        &lt;p>Any ambiguities in the interpretation of these Terms of Service shall not be construed against the drafting party.&lt;/p>
+
+        &lt;h3>GOVERNING LAW&lt;/h3>
+        &lt;p>These Terms of Service and any separate agreements whereby we provide you Services shall be governed by and construed in accordance with the laws of India and jurisdiction of Jaipur, Rajasthan&lt;/p>
+
+
+        &lt;h3>CHANGES TO TERMS OF SERVICE&lt;/h3>
+        &lt;p>You can review the most current version of the Terms of Service at any time at this page.&lt;/p>
+        &lt;p>We reserve the right, at our sole discretion, to update, change or replace any part of these Terms of Service by posting updates and changes to our website. It is your responsibility to check our website periodically for changes. Your continued use of or access to our website or the Service following the posting of any changes to these Terms of Service constitutes acceptance of those changes.&lt;/p>
+
+        &lt;h3>CONTACT INFORMATION&lt;/h3>
+        &lt;p>Questions about the Terms of Service should be sent to us at ourpeto@petoandme.com.&lt;/p>
+        
+    </string>
     <string name="abc_action_bar_home_description">Navigate home</string>
     <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
     <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>
@@ -1146,6 +1342,18 @@
     <string name="abc_activitychooserview_choose_application">Choose an app</string>
     <string name="abc_capital_off">OFF</string>
     <string name="abc_capital_on">ON</string>
+    <string name="abc_font_family_body_1_material">sans-serif</string>
+    <string name="abc_font_family_body_2_material">sans-serif-medium</string>
+    <string name="abc_font_family_button_material">sans-serif-medium</string>
+    <string name="abc_font_family_caption_material">sans-serif</string>
+    <string name="abc_font_family_display_1_material">sans-serif</string>
+    <string name="abc_font_family_display_2_material">sans-serif</string>
+    <string name="abc_font_family_display_3_material">sans-serif</string>
+    <string name="abc_font_family_display_4_material">sans-serif-light</string>
+    <string name="abc_font_family_headline_material">sans-serif</string>
+    <string name="abc_font_family_menu_material">sans-serif</string>
+    <string name="abc_font_family_subhead_material">sans-serif</string>
+    <string name="abc_font_family_title_material">sans-serif-medium</string>
     <string name="abc_search_hint">Search…</string>
     <string name="abc_searchview_description_clear">Clear query</string>
     <string name="abc_searchview_description_query">Search query</string>
@@ -1157,10 +1365,10 @@
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <string name="about_us">About Us</string>
     <string name="accept">Accept</string>
+    <string name="admob_native_unit_id">ca-app-pub-4292452205227856/6050036729</string>
     <string name="app_name">Peto</string>
+    <string name="app_nameForLegal">Legal</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
-    <string name="auth_google_play_services_client_facebook_display_name">Facebook</string>
-    <string name="auth_google_play_services_client_google_display_name">Google</string>
     <string name="bottom_sheet_behavior" translatable="false">android.support.design.widget.BottomSheetBehavior</string>
     <string name="cast_notification_connected_message">Connected to <ns1:g id="name">%1$s</ns1:g></string>
     <string name="cast_notification_connecting_message">Connecting to <ns1:g id="name">%1$s</ns1:g></string>
@@ -1196,6 +1404,8 @@
     <string name="common_google_play_services_network_error_text">A data connection is required to connect to Google Play services.</string>
     <string name="common_google_play_services_network_error_title">Network Error</string>
     <string name="common_google_play_services_notification_ticker">Google Play services error</string>
+    <string name="common_google_play_services_resolution_required_text">Please complete action required by <ns1:g id="app_name">%1$s</ns1:g>.</string>
+    <string name="common_google_play_services_resolution_required_title">Google Play services requires an action</string>
     <string name="common_google_play_services_restricted_profile_text">Accessing accounts from a restricted profile is not supported.</string>
     <string name="common_google_play_services_restricted_profile_title">Restricted Profile</string>
     <string name="common_google_play_services_sign_in_failed_text">Error signing in the specified account. Please choose a different account.</string>
@@ -1215,11 +1425,18 @@
     <string name="create_calendar_message">Allow Ad to create a calendar event?</string>
     <string name="create_calendar_title">Create calendar event</string>
     <string name="decline">Decline</string>
+    <string name="default_web_client_id" translatable="false">421693898393-0l69s8lp4vofdi02868ik4a12gtj6q1a.apps.googleusercontent.com</string>
     <string name="dimension">values</string>
     <string name="drawer_close">Close</string>
     <string name="drawer_open">Open</string>
     <string name="facebook_app_id">1068872133154801</string>
-    <string name="google_api_key">AIzaSyBs9E4j3N-chcMq3VvlgQhaDRFX_IR3Gb8</string>
+    <string name="firebase_database_url" translatable="false">https://admob-app-id-7703396723.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">421693898393</string>
+    <string name="google_api_key" translatable="false">AIzaSyA_uKW-rsBu1mA2bMZZB7VkuSqYOEKAnGo</string>
+    <string name="google_app_id" translatable="false">1:421693898393:android:2b7c1e5d874454a2</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyA_uKW-rsBu1mA2bMZZB7VkuSqYOEKAnGo</string>
+    <string name="google_key_api">AIzaSyBs9E4j3N-chcMq3VvlgQhaDRFX_IR3Gb8</string>
+    <string name="google_storage_bucket" translatable="false">admob-app-id-7703396723.appspot.com</string>
     <string name="location_Changed">Location Changed</string>
     <string name="logout">LogOut</string>
     <string name="messenger_send_button_text">Send</string>
@@ -1237,6 +1454,7 @@
     <string name="my_listing">My Listing</string>
     <string name="my_profile">My Profile</string>
     <string name="no_location_detected">No Location Detected Check Your Location Setting</string>
+    <string name="notVerifiedNgoMsg"> Hi there !\n\nThank you for signing up your NGO with us ! We are excited to work together in the future. At this point we need to verify a few details before your account can be activated.  Generally activation should not take more than 1 working day.\n \nIf there is anything urgent please send us an email at: donations@petoandme.com and we will respond to you at the earliest (within 24 hours).</string>
     <string name="pet_gender_female">Female</string>
     <string name="pet_gender_male">Male</string>
     <string name="place_autocomplete_clear_button">Clear search</string>
@@ -1246,6 +1464,9 @@
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="store_picture_message">"Allow Ad to store image in Picture gallery?"</string>
     <string name="store_picture_title">Save image</string>
+    <string name="tagmanager_preview_dialog_button">Continue</string>
+    <string name="tagmanager_preview_dialog_message">Preview mode updated.</string>
+    <string name="tagmanager_preview_dialog_title">Preview</string>
     <string name="wallet_buy_button_place_holder">Buy with Google</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
@@ -1358,10 +1579,6 @@
         <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
         <item name="android:textColorHint">?android:attr/textColorHintInverse</item>
     </style>
-    <style name="Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Large" parent="TextAppearance.AppCompat.Menu">
-    </style>
-    <style name="Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Small" parent="TextAppearance.AppCompat.Menu">
-    </style>
     <style name="Base.TextAppearance.AppCompat.Medium">
         <item name="android:textSize">@dimen/abc_text_size_medium_material</item>
         <item name="android:textColor">?android:attr/textColorSecondary</item>
@@ -1439,10 +1656,12 @@
     <style name="Base.TextAppearance.AppCompat.Widget.DropDownItem" parent="android:TextAppearance.Small">
         <item name="android:textColor">?android:attr/textColorPrimaryDisableOnly</item>
     </style>
-    <style name="Base.TextAppearance.AppCompat.Widget.PopupMenu.Large" parent="TextAppearance.AppCompat.Menu">
+    <style name="Base.TextAppearance.AppCompat.Widget.PopupMenu.Header" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/abc_text_size_menu_header_material</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
     </style>
-    <style name="Base.TextAppearance.AppCompat.Widget.PopupMenu.Small" parent="TextAppearance.AppCompat.Menu">
-    </style>
+    <style name="Base.TextAppearance.AppCompat.Widget.PopupMenu.Large" parent="TextAppearance.AppCompat.Menu"/>
+    <style name="Base.TextAppearance.AppCompat.Widget.PopupMenu.Small" parent="TextAppearance.AppCompat.Menu"/>
     <style name="Base.TextAppearance.AppCompat.Widget.Switch" parent="TextAppearance.AppCompat.Button"/>
     <style name="Base.TextAppearance.AppCompat.Widget.TextView.SpinnerItem" parent="TextAppearance.AppCompat.Menu"/>
     <style name="Base.TextAppearance.Widget.AppCompat.ExpandedMenu.Item" parent="android:TextAppearance.Medium">
@@ -1539,6 +1758,11 @@
         <item name="colorControlNormal">?android:attr/textColorPrimary</item>
         <item name="searchViewStyle">@style/Widget.AppCompat.SearchView.ActionBar</item>
     </style>
+    <style name="Base.ThemeOverlay.AppCompat.Dialog" parent="Base.V7.ThemeOverlay.AppCompat.Dialog"/>
+    <style name="Base.ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
+        <item name="windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
+    </style>
     <style name="Base.ThemeOverlay.AppCompat.Light" parent="Platform.ThemeOverlay.AppCompat.Light">
         <item name="android:windowBackground">@color/background_material_light</item>
         <item name="android:colorForeground">@color/foreground_material_light</item>
@@ -1573,13 +1797,15 @@
         <item name="windowActionModeOverlay">false</item>
         <item name="actionBarPopupTheme">@null</item>
 
+        <item name="colorBackgroundFloating">@color/background_floating_material_dark</item>
+
         <!-- Used by MediaRouter -->
         <item name="isLightTheme">false</item>
 
         <item name="selectableItemBackground">@drawable/abc_item_background_holo_dark</item>
         <item name="selectableItemBackgroundBorderless">?attr/selectableItemBackground</item>
         <item name="borderlessButtonStyle">@style/Widget.AppCompat.Button.Borderless</item>
-        <item name="homeAsUpIndicator">@drawable/abc_ic_ab_back_mtrl_am_alpha</item>
+        <item name="homeAsUpIndicator">@drawable/abc_ic_ab_back_material</item>
 
         <item name="dividerVertical">@drawable/abc_list_divider_mtrl_alpha</item>
         <item name="dividerHorizontal">@drawable/abc_list_divider_mtrl_alpha</item>
@@ -1608,7 +1834,7 @@
         <item name="actionModeStyle">@style/Widget.AppCompat.ActionMode</item>
         <item name="actionModeBackground">@drawable/abc_cab_background_top_material</item>
         <item name="actionModeSplitBackground">?attr/colorPrimaryDark</item>
-        <item name="actionModeCloseDrawable">@drawable/abc_ic_ab_back_mtrl_am_alpha</item>
+        <item name="actionModeCloseDrawable">@drawable/abc_ic_ab_back_material</item>
         <item name="actionModeCloseButtonStyle">@style/Widget.AppCompat.ActionButton.CloseMode</item>
 
         <item name="actionModeCutDrawable">@drawable/abc_ic_menu_cut_mtrl_alpha</item>
@@ -1646,8 +1872,10 @@
         <item name="popupMenuStyle">@style/Widget.AppCompat.PopupMenu</item>
         <item name="textAppearanceLargePopupMenu">@style/TextAppearance.AppCompat.Widget.PopupMenu.Large</item>
         <item name="textAppearanceSmallPopupMenu">@style/TextAppearance.AppCompat.Widget.PopupMenu.Small</item>
+        <item name="textAppearancePopupMenuHeader">@style/TextAppearance.AppCompat.Widget.PopupMenu.Header</item>
         <item name="listPopupWindowStyle">@style/Widget.AppCompat.ListPopupWindow</item>
         <item name="dropDownListViewStyle">?android:attr/dropDownListViewStyle</item>
+        <item name="listMenuViewStyle">@style/Widget.AppCompat.ListMenuView</item>
 
         <!-- SearchView attributes -->
         <item name="searchViewStyle">@style/Widget.AppCompat.SearchView</item>
@@ -1705,10 +1933,10 @@
         <item name="buttonBarNeutralButtonStyle">?attr/buttonBarButtonStyle</item>
 
         <!-- Dialog attributes -->
-        <item name="dialogTheme">@style/Theme.AppCompat.Dialog</item>
+        <item name="dialogTheme">@style/ThemeOverlay.AppCompat.Dialog</item>
         <item name="dialogPreferredPadding">@dimen/abc_dialog_padding_material</item>
 
-        <item name="alertDialogTheme">@style/Theme.AppCompat.Dialog.Alert</item>
+        <item name="alertDialogTheme">@style/ThemeOverlay.AppCompat.Dialog.Alert</item>
         <item name="alertDialogStyle">@style/AlertDialog.AppCompat</item>
         <item name="alertDialogCenterButtons">false</item>
         <item name="textColorAlertDialogListItem">@color/abc_primary_text_material_dark</item>
@@ -1722,13 +1950,13 @@
         <item name="windowFixedHeightMinor">0dp</item>
     </style>
     <style name="Base.V7.Theme.AppCompat.Dialog" parent="Base.Theme.AppCompat">
-        <item name="android:colorBackground">@color/background_floating_material_dark</item>
+        <item name="android:colorBackground">?attr/colorBackgroundFloating</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
 
         <item name="android:windowFrame">@null</item>
         <item name="android:windowTitleStyle">@style/RtlOverlay.DialogWindowTitle.AppCompat</item>
         <item name="android:windowTitleBackgroundStyle">@style/Base.DialogWindowTitleBackground.AppCompat</item>
-        <item name="android:windowBackground">@drawable/abc_dialog_material_background_dark</item>
+        <item name="android:windowBackground">@drawable/abc_dialog_material_background</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -1750,13 +1978,15 @@
         <item name="windowActionModeOverlay">false</item>
         <item name="actionBarPopupTheme">@null</item>
 
+        <item name="colorBackgroundFloating">@color/background_floating_material_light</item>
+
         <!-- Used by MediaRouter -->
         <item name="isLightTheme">true</item>
 
         <item name="selectableItemBackground">@drawable/abc_item_background_holo_light</item>
         <item name="selectableItemBackgroundBorderless">?attr/selectableItemBackground</item>
         <item name="borderlessButtonStyle">@style/Widget.AppCompat.Button.Borderless</item>
-        <item name="homeAsUpIndicator">@drawable/abc_ic_ab_back_mtrl_am_alpha</item>
+        <item name="homeAsUpIndicator">@drawable/abc_ic_ab_back_material</item>
 
         <item name="dividerVertical">@drawable/abc_list_divider_mtrl_alpha</item>
         <item name="dividerHorizontal">@drawable/abc_list_divider_mtrl_alpha</item>
@@ -1782,7 +2012,7 @@
         <item name="actionModeStyle">@style/Widget.AppCompat.ActionMode</item>
         <item name="actionModeBackground">@drawable/abc_cab_background_top_material</item>
         <item name="actionModeSplitBackground">?attr/colorPrimaryDark</item>
-        <item name="actionModeCloseDrawable">@drawable/abc_ic_ab_back_mtrl_am_alpha</item>
+        <item name="actionModeCloseDrawable">@drawable/abc_ic_ab_back_material</item>
         <item name="actionModeCloseButtonStyle">@style/Widget.AppCompat.ActionButton.CloseMode</item>
 
         <item name="actionModeCutDrawable">@drawable/abc_ic_menu_cut_mtrl_alpha</item>
@@ -1823,8 +2053,10 @@
         <item name="popupMenuStyle">@style/Widget.AppCompat.Light.PopupMenu</item>
         <item name="textAppearanceLargePopupMenu">@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large</item>
         <item name="textAppearanceSmallPopupMenu">@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Small</item>
+        <item name="textAppearancePopupMenuHeader">@style/TextAppearance.AppCompat.Widget.PopupMenu.Header</item>
         <item name="listPopupWindowStyle">@style/Widget.AppCompat.ListPopupWindow</item>
         <item name="dropDownListViewStyle">?android:attr/dropDownListViewStyle</item>
+        <item name="listMenuViewStyle">@style/Widget.AppCompat.ListMenuView</item>
 
         <!-- SearchView attributes -->
         <item name="searchViewStyle">@style/Widget.AppCompat.Light.SearchView</item>
@@ -1882,7 +2114,7 @@
         <item name="buttonBarNeutralButtonStyle">?attr/buttonBarButtonStyle</item>
 
         <!-- Dialog attributes -->
-        <item name="dialogTheme">@style/Theme.AppCompat.Light.Dialog</item>
+        <item name="dialogTheme">@style/ThemeOverlay.AppCompat.Dialog</item>
         <item name="dialogPreferredPadding">@dimen/abc_dialog_padding_material</item>
 
         <item name="alertDialogTheme">@style/Theme.AppCompat.Light.Dialog.Alert</item>
@@ -1899,13 +2131,35 @@
         <item name="windowFixedHeightMinor">0dp</item>
     </style>
     <style name="Base.V7.Theme.AppCompat.Light.Dialog" parent="Base.Theme.AppCompat.Light">
-        <item name="android:colorBackground">@color/background_floating_material_light</item>
+        <item name="android:colorBackground">?attr/colorBackgroundFloating</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
 
         <item name="android:windowFrame">@null</item>
         <item name="android:windowTitleStyle">@style/RtlOverlay.DialogWindowTitle.AppCompat</item>
         <item name="android:windowTitleBackgroundStyle">@style/Base.DialogWindowTitleBackground.AppCompat</item>
-        <item name="android:windowBackground">@drawable/abc_dialog_material_background_light</item>
+        <item name="android:windowBackground">@drawable/abc_dialog_material_background</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@style/Animation.AppCompat.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowActionModeOverlay">true</item>
+
+        <item name="listPreferredItemPaddingLeft">24dip</item>
+        <item name="listPreferredItemPaddingRight">24dip</item>
+
+        <item name="android:listDivider">@null</item>
+    </style>
+    <style name="Base.V7.ThemeOverlay.AppCompat.Dialog" parent="Base.ThemeOverlay.AppCompat">
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:colorBackground">?attr/colorBackgroundFloating</item>
+
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowTitleStyle">@style/RtlOverlay.DialogWindowTitle.AppCompat</item>
+        <item name="android:windowTitleBackgroundStyle">@style/Base.DialogWindowTitleBackground.AppCompat</item>
+        <item name="android:windowBackground">@drawable/abc_dialog_material_background</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -1949,6 +2203,7 @@
 
         <item name="android:gravity">center_vertical</item>
         <item name="contentInsetStart">@dimen/abc_action_bar_content_inset_material</item>
+        <item name="contentInsetStartWithNavigation">@dimen/abc_action_bar_content_inset_with_nav</item>
         <item name="contentInsetEnd">@dimen/abc_action_bar_content_inset_material</item>
         <item name="elevation">8dp</item>
         <item name="popupTheme">?attr/actionBarPopupTheme</item>
@@ -1995,7 +2250,7 @@
         <item name="android:background">?attr/controlBackground</item>
     </style>
     <style name="Base.Widget.AppCompat.ActionButton.Overflow" parent="RtlUnderlay.Widget.AppCompat.ActionButton.Overflow">
-        <item name="android:src">@drawable/abc_ic_menu_moreoverflow_mtrl_alpha</item>
+        <item name="srcCompat">@drawable/abc_ic_menu_overflow_material</item>
         <item name="android:background">?attr/actionBarItemBackground</item>
         <item name="android:contentDescription">@string/abc_action_menu_overflow_description</item>
         <item name="android:minWidth">@dimen/abc_action_button_min_width_overflow_material</item>
@@ -2030,7 +2285,7 @@
         <item name="android:background">@drawable/abc_btn_borderless_material</item>
     </style>
     <style name="Base.Widget.AppCompat.Button.Borderless.Colored">
-        <item name="android:textColor">?attr/colorAccent</item>
+        <item name="android:textColor">@color/abc_btn_colored_borderless_text_material</item>
     </style>
     <style name="Base.Widget.AppCompat.Button.ButtonBar.AlertDialog" parent="Widget.AppCompat.Button.Borderless.Colored">
         <item name="android:minWidth">64dp</item>
@@ -2114,6 +2369,9 @@
         <item name="overlapAnchor">true</item>
         <item name="android:dropDownHorizontalOffset">-4dip</item>
     </style>
+    <style name="Base.Widget.AppCompat.ListMenuView" parent="android:Widget">
+        <item name="subMenuArrow">@drawable/abc_ic_arrow_drop_right_black_24dp</item>
+    </style>
     <style name="Base.Widget.AppCompat.ListPopupWindow" parent="">
         <item name="android:dropDownSelector">?attr/listChoiceBackgroundIndicator</item>
         <item name="android:popupBackground">@drawable/abc_popup_background_mtrl_mult</item>
@@ -2148,8 +2406,8 @@
     <style name="Base.Widget.AppCompat.ProgressBar.Horizontal" parent="android:Widget.ProgressBar.Horizontal">
     </style>
     <style name="Base.Widget.AppCompat.RatingBar" parent="android:Widget.RatingBar">
-        <item name="android:progressDrawable">@drawable/abc_ratingbar_full_material</item>
-        <item name="android:indeterminateDrawable">@drawable/abc_ratingbar_full_material</item>
+        <item name="android:progressDrawable">@drawable/abc_ratingbar_material</item>
+        <item name="android:indeterminateDrawable">@drawable/abc_ratingbar_material</item>
     </style>
     <style name="Base.Widget.AppCompat.RatingBar.Indicator" parent="android:Widget.RatingBar">
         <item name="android:progressDrawable">@drawable/abc_ratingbar_indicator_material</item>
@@ -2171,11 +2429,11 @@
         <item name="layout">@layout/abc_search_view</item>
         <item name="queryBackground">@drawable/abc_textfield_search_material</item>
         <item name="submitBackground">@drawable/abc_textfield_search_material</item>
-        <item name="closeIcon">@drawable/abc_ic_clear_mtrl_alpha</item>
-        <item name="searchIcon">@drawable/abc_ic_search_api_mtrl_alpha</item>
-        <item name="searchHintIcon">@drawable/abc_ic_search_api_mtrl_alpha</item>
-        <item name="goIcon">@drawable/abc_ic_go_search_api_mtrl_alpha</item>
-        <item name="voiceIcon">@drawable/abc_ic_voice_search_api_mtrl_alpha</item>
+        <item name="closeIcon">@drawable/abc_ic_clear_material</item>
+        <item name="searchIcon">@drawable/abc_ic_search_api_material</item>
+        <item name="searchHintIcon">@drawable/abc_ic_search_api_material</item>
+        <item name="goIcon">@drawable/abc_ic_go_search_api_material</item>
+        <item name="voiceIcon">@drawable/abc_ic_voice_search_api_material</item>
         <item name="commitIcon">@drawable/abc_ic_commit_search_api_mtrl_alpha</item>
         <item name="suggestionRowLayout">@layout/abc_search_dropdown_item_icons_2line</item>
     </style>
@@ -2193,6 +2451,9 @@
         <item name="android:focusable">true</item>
         <item name="android:paddingLeft">16dip</item>
         <item name="android:paddingRight">16dip</item>
+    </style>
+    <style name="Base.Widget.AppCompat.SeekBar.Discrete">
+        <item name="tickMark">@drawable/abc_seekbar_tick_mark_material</item>
     </style>
     <style name="Base.Widget.AppCompat.Spinner" parent="Platform.Widget.AppCompat.Spinner">
         <item name="android:background">@drawable/abc_spinner_mtrl_am_alpha</item>
@@ -2217,11 +2478,13 @@
         <item name="titleTextAppearance">@style/TextAppearance.Widget.AppCompat.Toolbar.Title</item>
         <item name="subtitleTextAppearance">@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle</item>
         <item name="android:minHeight">?attr/actionBarSize</item>
-        <item name="titleMargins">4dp</item>
+        <item name="titleMargin">4dp</item>
         <item name="maxButtonHeight">@dimen/abc_action_bar_default_height_material</item>
+        <item name="buttonGravity">top</item>
         <item name="collapseIcon">?attr/homeAsUpIndicator</item>
         <item name="collapseContentDescription">@string/abc_toolbar_collapse_description</item>
         <item name="contentInsetStart">16dp</item>
+        <item name="contentInsetStartWithNavigation">@dimen/abc_action_bar_content_inset_with_nav</item>
         <item name="android:paddingLeft">@dimen/abc_action_bar_default_padding_start_material</item>
         <item name="android:paddingRight">@dimen/abc_action_bar_default_padding_end_material</item>
     </style>
@@ -2229,6 +2492,9 @@
         <item name="android:background">?attr/controlBackground</item>
         <item name="android:minWidth">56dp</item>
         <item name="android:scaleType">center</item>
+    </style>
+    <style name="Base.Widget.Design.AppBarLayout" parent="android:Widget">
+        <item name="android:background">?attr/colorPrimary</item>
     </style>
     <style name="Base.Widget.Design.TabLayout" parent="android:Widget">
         <item name="tabMaxWidth">@dimen/design_tab_max_width</item>
@@ -2483,10 +2749,8 @@
     <style name="TextAppearance.AppCompat.Large.Inverse" parent="Base.TextAppearance.AppCompat.Large.Inverse"/>
     <style name="TextAppearance.AppCompat.Light.SearchResult.Subtitle" parent="TextAppearance.AppCompat.SearchResult.Subtitle"/>
     <style name="TextAppearance.AppCompat.Light.SearchResult.Title" parent="TextAppearance.AppCompat.SearchResult.Title"/>
-    <style name="TextAppearance.AppCompat.Light.Widget.PopupMenu.Large" parent="Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Large">
-    </style>
-    <style name="TextAppearance.AppCompat.Light.Widget.PopupMenu.Small" parent="Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Small">
-    </style>
+    <style name="TextAppearance.AppCompat.Light.Widget.PopupMenu.Large" parent="TextAppearance.AppCompat.Widget.PopupMenu.Large"/>
+    <style name="TextAppearance.AppCompat.Light.Widget.PopupMenu.Small" parent="TextAppearance.AppCompat.Widget.PopupMenu.Small"/>
     <style name="TextAppearance.AppCompat.Medium" parent="Base.TextAppearance.AppCompat.Medium"/>
     <style name="TextAppearance.AppCompat.Medium.Inverse" parent="Base.TextAppearance.AppCompat.Medium.Inverse"/>
     <style name="TextAppearance.AppCompat.Menu" parent="Base.TextAppearance.AppCompat.Menu"/>
@@ -2518,10 +2782,9 @@
     <style name="TextAppearance.AppCompat.Widget.Button.Inverse" parent="Base.TextAppearance.AppCompat.Widget.Button.Inverse"/>
     <style name="TextAppearance.AppCompat.Widget.DropDownItem" parent="Base.TextAppearance.AppCompat.Widget.DropDownItem">
     </style>
-    <style name="TextAppearance.AppCompat.Widget.PopupMenu.Large" parent="Base.TextAppearance.AppCompat.Widget.PopupMenu.Large">
-    </style>
-    <style name="TextAppearance.AppCompat.Widget.PopupMenu.Small" parent="Base.TextAppearance.AppCompat.Widget.PopupMenu.Small">
-    </style>
+    <style name="TextAppearance.AppCompat.Widget.PopupMenu.Header" parent="Base.TextAppearance.AppCompat.Widget.PopupMenu.Header"/>
+    <style name="TextAppearance.AppCompat.Widget.PopupMenu.Large" parent="Base.TextAppearance.AppCompat.Widget.PopupMenu.Large"/>
+    <style name="TextAppearance.AppCompat.Widget.PopupMenu.Small" parent="Base.TextAppearance.AppCompat.Widget.PopupMenu.Small"/>
     <style name="TextAppearance.AppCompat.Widget.Switch" parent="Base.TextAppearance.AppCompat.Widget.Switch"/>
     <style name="TextAppearance.AppCompat.Widget.TextView.SpinnerItem" parent="Base.TextAppearance.AppCompat.Widget.TextView.SpinnerItem"/>
     <style name="TextAppearance.Design.CollapsingToolbar.Expanded" parent="TextAppearance.AppCompat.Display1">
@@ -2650,6 +2913,8 @@
     <style name="ThemeOverlay.AppCompat.ActionBar" parent="Base.ThemeOverlay.AppCompat.ActionBar"/>
     <style name="ThemeOverlay.AppCompat.Dark" parent="Base.ThemeOverlay.AppCompat.Dark"/>
     <style name="ThemeOverlay.AppCompat.Dark.ActionBar" parent="Base.ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="ThemeOverlay.AppCompat.Dialog" parent="Base.ThemeOverlay.AppCompat.Dialog"/>
+    <style name="ThemeOverlay.AppCompat.Dialog.Alert" parent="Base.ThemeOverlay.AppCompat.Dialog.Alert"/>
     <style name="ThemeOverlay.AppCompat.Light" parent="Base.ThemeOverlay.AppCompat.Light"/>
     <style name="WalletFragmentDefaultButtonTextAppearance">
         <item name="android:textColor">@color/wallet_primary_text_holo_light</item>
@@ -2743,20 +3008,18 @@
     <style name="Widget.AppCompat.Light.DropDownItem.Spinner" parent="Widget.AppCompat.DropDownItem.Spinner"/>
     <style name="Widget.AppCompat.Light.ListPopupWindow" parent="Widget.AppCompat.ListPopupWindow"/>
     <style name="Widget.AppCompat.Light.ListView.DropDown" parent="Widget.AppCompat.ListView.DropDown"/>
-    <style name="Widget.AppCompat.Light.PopupMenu" parent="Base.Widget.AppCompat.Light.PopupMenu">
-    </style>
+    <style name="Widget.AppCompat.Light.PopupMenu" parent="Base.Widget.AppCompat.Light.PopupMenu"/>
     <style name="Widget.AppCompat.Light.PopupMenu.Overflow" parent="Base.Widget.AppCompat.Light.PopupMenu.Overflow">
     </style>
     <style name="Widget.AppCompat.Light.SearchView" parent="Widget.AppCompat.SearchView"/>
     <style name="Widget.AppCompat.Light.Spinner.DropDown.ActionBar" parent="Widget.AppCompat.Spinner.DropDown.ActionBar"/>
+    <style name="Widget.AppCompat.ListMenuView" parent="Base.Widget.AppCompat.ListMenuView"/>
     <style name="Widget.AppCompat.ListPopupWindow" parent="Base.Widget.AppCompat.ListPopupWindow">
     </style>
     <style name="Widget.AppCompat.ListView" parent="Base.Widget.AppCompat.ListView"/>
     <style name="Widget.AppCompat.ListView.DropDown" parent="Base.Widget.AppCompat.ListView.DropDown"/>
-    <style name="Widget.AppCompat.ListView.Menu" parent="Base.Widget.AppCompat.ListView.Menu">
-    </style>
-    <style name="Widget.AppCompat.PopupMenu" parent="Base.Widget.AppCompat.PopupMenu">
-    </style>
+    <style name="Widget.AppCompat.ListView.Menu" parent="Base.Widget.AppCompat.ListView.Menu"/>
+    <style name="Widget.AppCompat.PopupMenu" parent="Base.Widget.AppCompat.PopupMenu"/>
     <style name="Widget.AppCompat.PopupMenu.Overflow" parent="Base.Widget.AppCompat.PopupMenu.Overflow">
     </style>
     <style name="Widget.AppCompat.PopupWindow" parent="Base.Widget.AppCompat.PopupWindow">
@@ -2771,6 +3034,7 @@
     <style name="Widget.AppCompat.SearchView" parent="Base.Widget.AppCompat.SearchView"/>
     <style name="Widget.AppCompat.SearchView.ActionBar" parent="Base.Widget.AppCompat.SearchView.ActionBar"/>
     <style name="Widget.AppCompat.SeekBar" parent="Base.Widget.AppCompat.SeekBar"/>
+    <style name="Widget.AppCompat.SeekBar.Discrete" parent="Base.Widget.AppCompat.SeekBar.Discrete"/>
     <style name="Widget.AppCompat.Spinner" parent="Base.Widget.AppCompat.Spinner"/>
     <style name="Widget.AppCompat.Spinner.DropDown"/>
     <style name="Widget.AppCompat.Spinner.DropDown.ActionBar"/>
@@ -2778,15 +3042,14 @@
     <style name="Widget.AppCompat.TextView.SpinnerItem" parent="Base.Widget.AppCompat.TextView.SpinnerItem"/>
     <style name="Widget.AppCompat.Toolbar" parent="Base.Widget.AppCompat.Toolbar"/>
     <style name="Widget.AppCompat.Toolbar.Button.Navigation" parent="Base.Widget.AppCompat.Toolbar.Button.Navigation"/>
-    <style name="Widget.Design.AppBarLayout" parent="android:Widget">
-        <item name="elevation">@dimen/design_appbar_elevation</item>
-        <item name="android:background">?attr/colorPrimary</item>
+    <style name="Widget.Design.AppBarLayout" parent="Base.Widget.Design.AppBarLayout">
     </style>
     <style name="Widget.Design.BottomSheet.Modal" parent="android:Widget">
         <item name="android:background">?android:attr/colorBackground</item>
         <item name="android:elevation">@dimen/design_bottom_sheet_modal_elevation</item>
         <item name="behavior_peekHeight">@dimen/design_bottom_sheet_modal_peek_height</item>
         <item name="behavior_hideable">true</item>
+        <item name="behavior_skipCollapsed">false</item>
     </style>
     <style name="Widget.Design.CollapsingToolbar" parent="android:Widget">
         <item name="expandedTitleMargin">32dp</item>
@@ -2798,7 +3061,7 @@
     <style name="Widget.Design.FloatingActionButton" parent="android:Widget">
         <item name="android:background">@drawable/design_fab_background</item>
         <item name="backgroundTint">?attr/colorAccent</item>
-        <item name="fabSize">normal</item>
+        <item name="fabSize">auto</item>
         <item name="elevation">@dimen/design_fab_elevation</item>
         <item name="pressedTranslationZ">@dimen/design_fab_translation_z_pressed</item>
         <item name="rippleColor">?attr/colorControlHighlight</item>

@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+                                                 android:fitsSystemWindows="true"
+                                                 android:id="@+id/orderProductDetailsCoordinatorLayout">
+
+    <android.support.design.widget.AppBarLayout
+            android:id="@+id/orderProductDetailsAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/orderProductListingTypeInPetDetailsCollapsingToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <ImageView
+                    android:id="@+id/orderProductHeaderImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    app:layout_collapseMode="parallax"/>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_72sdp"
+                    android:background="@drawable/petdetail_image_background_gradient"
+                    android:layout_gravity="center_horizontal|bottom"/>
+
+            <android.support.v7.widget.Toolbar
+                    android:id="@+id/orderProductDetailsToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+            android:id="@+id/orderProductDetailsNestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_vertical"
+            android:clipToPadding="false"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/orderProductListDetailsLinearLayout"
+                      android:orientation="vertical">
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:id="@+id/orderProductListDetailsFirstRelativeLayout"
+                            android:paddingTop="@dimen/_8sdp">
+
+                <android.support.v7.widget.CardView
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginLeft="@dimen/_16sdp"
+                        android:layout_marginRight="@dimen/_16sdp"
+                        card_view:cardCornerRadius="@dimen/_2sdp"
+                        card_view:cardElevation="@dimen/_2sdp">
+
+                    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/orderProductDetailsImageText"
+                                android:textStyle="bold"
+                                android:textColor="#CF3E3E"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_marginLeft="@dimen/_16sdp"
+                                android:layout_marginRight="@dimen/_16sdp"/>
+
+                        <View
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_1sdp"
+                                android:id="@+id/orderProductDetailsImagesDividerLine"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:layout_marginRight="@dimen/_10sdp"
+                                android:layout_below="@+id/orderProductDetailsImageText"
+                                android:layout_marginTop="@dimen/_10sdp"/>
+
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:id="@+id/orderProductDetailsImagesLinearLayout"
+                                      android:layout_below="@+id/orderProductDetailsImagesDividerLine"
+                                      android:layout_marginTop="@dimen/_10sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp"
+                                      android:layout_marginBottom="@dimen/_10sdp">
+
+                            <ImageView
+                                    android:layout_width="@dimen/_75sdp"
+                                    android:layout_height="@dimen/_75sdp"
+                                    android:id="@+id/orderProductDetailsFirstImageThumbnail"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitCenter"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:layout_marginBottom="@dimen/_5sdp"/>
+
+                            <ImageView
+                                    android:layout_width="@dimen/_75sdp"
+                                    android:layout_height="@dimen/_75sdp"
+                                    android:id="@+id/orderProductDetailsSecondImageThumbnail"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitCenter"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:layout_marginBottom="@dimen/_5sdp"
+                                    android:layout_marginLeft="@dimen/_5sdp"
+                                    android:layout_marginRight="@dimen/_5sdp"/>
+
+                            <ImageView
+                                    android:layout_width="@dimen/_75sdp"
+                                    android:layout_height="@dimen/_75sdp"
+                                    android:id="@+id/orderProductDetailsThirdImageThumbnail"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitCenter"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:layout_marginBottom="@dimen/_5sdp"/>
+
+                        </LinearLayout>
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+            </RelativeLayout>
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:id="@+id/orderProductListDetailsSecondRelativeLayout"
+                            android:paddingTop="@dimen/_4sdp">
+
+                <android.support.v7.widget.CardView
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:layout_marginLeft="@dimen/_16sdp"
+                        android:layout_marginRight="@dimen/_16sdp"
+                        card_view:cardCornerRadius="@dimen/_2sdp"
+                        card_view:cardElevation="@dimen/_2sdp">
+
+                    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/orderProductDetailsLabel"
+                                android:text="Order Details"
+                                android:textStyle="bold"
+                                android:textColor="#CF3E3E"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_marginLeft="@dimen/_16sdp"
+                                android:layout_marginRight="@dimen/_16sdp"/>
+
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_marginTop="@dimen/_4sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp"
+                                      android:id="@+id/orderProductNameLayout"
+                                      android:layout_below="@+id/orderProductDetailsLabel">
+                            <TextView
+                                    android:layout_width="@dimen/petListDetails_Textview"
+                                    android:layout_height="wrap_content"
+                                    android:text="Product Name"
+                                    android:layout_weight="0.52"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
+                                    android:id="@+id/orderProductNameLabel"/>
+                            <TextView
+                                    android:layout_width="@dimen/petListDetails_Textview"
+                                    android:layout_height="wrap_content"
+                                    android:text="Dog traveller bag"
+                                    android:layout_weight="0.52"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
+                                    android:id="@+id/orderProductNameText"/>
+                        </LinearLayout>
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_marginTop="@dimen/_4sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp"
+                                      android:id="@+id/orderIdLayout"
+                                      android:layout_below="@+id/orderProductNameLayout">
+                            <TextView
+                                    android:layout_width="@dimen/petListDetails_Textview"
+                                    android:layout_height="wrap_content"
+                                    android:text="order Id"
+                                    android:layout_weight="0.52"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
+                                    android:id="@+id/orderIdLabel"/>
+                            <TextView
+                                    android:layout_width="@dimen/petListDetails_Textview"
+                                    android:layout_height="wrap_content"
+                                    android:text="1000001"
+                                    android:layout_weight="0.52"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
+                                    android:id="@+id/orderedId" />
+                        </LinearLayout>
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_marginTop="@dimen/_4sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp"
+                                      android:id="@+id/orderProductIdLayout"
+                                      android:layout_below="@+id/orderIdLayout">
+                            <TextView
+                                    android:layout_width="@dimen/petListDetails_Textview"
+                                    android:layout_height="wrap_content"
+                                    android:text="Product Id"
+                                    android:layout_weight="0.52"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
+                                    android:id="@+id/orderProductIdLabel"/>
+                            <TextView
+                                    android:layout_width="@dimen/petListDetails_Textview"
+                                    android:layout_height="wrap_content"
+                                    android:text="1000001"
+                                    android:layout_weight="0.52"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
+                                    android:id="@+id/orderedProductId" />
+                        </LinearLayout>
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_marginTop="@dimen/_4sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp"
+                                      android:id="@+id/orderDateDetailsLayout"
+                                      android:layout_below="@+id/orderProductIdLayout">
+                            <TextView
+                                    android:layout_width="@dimen/petListDetails_Textview"
+                                    android:layout_height="wrap_content"
+                                    android:text="Ordered Date"
+                                    android:layout_weight="0.52"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
+                                    android:id="@+id/orderDateLabel"/>
+                            <TextView
+                                    android:id="@+id/orderedDate"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="10 march 2016"
+                                    android:layout_weight="0.52" />
+                        </LinearLayout>
+
+
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_marginTop="@dimen/_4sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp"
+                                      android:id="@+id/orderProductPriceDetailsLayout"
+                                      android:layout_below="@+id/orderDateDetailsLayout">
+                            <TextView
+                                    android:layout_width="@dimen/petListDetails_Textview"
+                                    android:layout_height="wrap_content"
+                                    android:text="Product Price"
+                                    android:layout_weight="0.52"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
+                                    android:id="@+id/orderProductPriceLabel"/>
+                            <TextView
+                                    android:layout_width="@dimen/petListDetails_Textview"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/orderProductPrice"
+                                    android:text="Price"
+                                    android:layout_weight="0.52"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"/>
+                        </LinearLayout>
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_marginTop="@dimen/_4sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp"
+                                      android:id="@+id/orderProductQtyDetailsLayout"
+                                      android:layout_below="@+id/orderProductPriceDetailsLayout">
+                            <TextView
+                                    android:layout_width="@dimen/petListDetails_Textview"
+                                    android:layout_height="wrap_content"
+                                    android:text="Quantity "
+                                    android:layout_weight="0.52"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
+                                    android:id="@+id/orderProductQtyLabel"/>
+                            <TextView
+                                    android:id="@+id/orderedProductQuantity"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="1234 "
+                                    android:layout_weight="0.52" />
+                        </LinearLayout>
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_marginTop="@dimen/_4sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp"
+                                      android:id="@+id/orderProductShippingChargesDetailsLayout"
+                                      android:layout_below="@+id/orderProductQtyDetailsLayout">
+                            <TextView
+                                    android:layout_width="@dimen/petListDetails_Textview"
+                                    android:layout_height="wrap_content"
+                                    android:text="Shipping Charges "
+                                    android:layout_weight="0.52"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
+                                    android:id="@+id/orderProductShippingChargesLabel"/>
+                            <TextView
+                                    android:id="@+id/orderedProductShipping_charges"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="110"
+                                    android:layout_weight="0.52" />
+                        </LinearLayout>
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_marginTop="@dimen/_4sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp"
+                                      android:id="@+id/orderProductTotalPriceDetailsLayout"
+                                      android:layout_below="@+id/orderProductShippingChargesDetailsLayout">
+                        <TextView
+                                android:layout_width="@dimen/petListDetails_Textview"
+                                android:layout_height="wrap_content"
+                                android:text="Total Price "
+                                android:layout_weight="0.52"
+                                android:singleLine="true"
+                                android:ellipsize="end"
+                                android:id="@+id/orderProductTotalPriceLabel"/>
+                        <TextView
+                                android:id="@+id/orderedProductTotal_price"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="eg 1200"
+                                android:layout_weight="0.52" />
+                    </LinearLayout>
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_marginTop="@dimen/_4sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp"
+                                      android:id="@+id/orderProductLayoutForDescription"
+                                      android:layout_below="@+id/orderProductTotalPriceDetailsLayout">
+                            <TextView
+                                    android:layout_width="@dimen/petListDetails_Textview"
+                                    android:layout_height="wrap_content"
+                                    android:text="Description "
+                                    android:layout_weight="0.52"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
+                                    android:id="@+id/orderProductDescriptionLabel"/>
+                            <TextView
+                                    android:layout_width="@dimen/petListDetails_Textview"
+                                    android:layout_height="wrap_content"
+                                    android:text="product quality is awsm "
+                                    android:layout_weight="0.52"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
+                                    android:id="@+id/orderProductDescription"/>
+                        </LinearLayout>
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_marginTop="@dimen/_10sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp"
+                                      android:id="@+id/orderDeliveryDetailsLayout"
+                                      android:layout_below="@+id/orderProductLayoutForDescription">
+                            <TextView
+                                    android:layout_width="@dimen/petListDetails_Textview"
+                                    android:layout_height="wrap_content"
+                                    android:text="Delivery Address Details"
+                                    android:layout_weight="0.52"
+                                    android:textStyle="bold"
+                                    android:textColor="#CF3E3E"
+                                    android:id="@+id/orderDeliveryDetailsLabel"/>
+
+                        </LinearLayout>
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_marginTop="@dimen/_4sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp"
+                                      android:id="@+id/orderProductBuildingNameDetailsLayout"
+                                      android:layout_below="@+id/orderDeliveryDetailsLayout">
+                            <TextView
+                                    android:layout_width="@dimen/petListDetails_Textview"
+                                    android:layout_height="wrap_content"
+                                    android:text="Address"
+                                    android:layout_weight="0.52"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
+                                    android:id="@+id/orderProductBuildingNameLabel"/>
+                            <TextView
+                                    android:id="@+id/orderedBuildingName"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="xyz Apt"
+                                    android:layout_weight="0.52" />
+                        </LinearLayout>
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_marginTop="@dimen/_4sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp"
+                                      android:id="@+id/orderProductAreaDetailsLayout"
+                                      android:layout_below="@+id/orderProductBuildingNameDetailsLayout">
+                            <TextView
+                                    android:layout_width="@dimen/petListDetails_Textview"
+                                    android:layout_height="wrap_content"
+                                    android:text="Area"
+                                    android:layout_weight="0.52"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
+                                    android:id="@+id/orderProductAreaLabel"/>
+                            <TextView
+                                    android:id="@+id/orderedArea"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="Pqor area "
+                                    android:layout_weight="0.52" />
+                        </LinearLayout>
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_marginTop="@dimen/_4sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp"
+                                      android:id="@+id/orderProductCityDetailsLayout"
+                                      android:layout_below="@+id/orderProductAreaDetailsLayout">
+                            <TextView
+                                    android:layout_width="@dimen/petListDetails_Textview"
+                                    android:layout_height="wrap_content"
+                                    android:text="City"
+                                    android:layout_weight="0.52"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
+                                    android:id="@+id/orderProductCityLabel"/>
+                            <TextView
+                                    android:id="@+id/orderedCity"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="Abc City "
+                                    android:layout_weight="0.52" />
+                        </LinearLayout>
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:layout_marginTop="@dimen/_4sdp"
+                                      android:layout_marginLeft="@dimen/_16sdp"
+                                      android:layout_marginRight="@dimen/_16sdp"
+                                      android:id="@+id/orderProductPincodeDetailsLayout"
+                                      android:layout_below="@+id/orderProductCityDetailsLayout">
+                            <TextView
+                                    android:layout_width="@dimen/petListDetails_Textview"
+                                    android:layout_height="wrap_content"
+                                    android:text="Pin Code"
+                                    android:layout_weight="0.52"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
+                                    android:id="@+id/orderProductPincodeLabel"/>
+                            <TextView
+                                    android:id="@+id/orderedPincode"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="400001 "
+                                    android:layout_weight="0.52" />
+                        </LinearLayout>
+                        <View
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_1sdp"
+                                android:id="@+id/orderDetailsDividerLine"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:layout_marginRight="@dimen/_10sdp"
+                                android:layout_below="@+id/orderProductCityDetailsLayout"
+                                android:layout_marginTop="@dimen/_16sdp"/>
+
+                        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                      android:layout_width="match_parent"
+                                      android:layout_height="match_parent"
+                                      android:orientation="horizontal"
+                                      android:id="@+id/orderDetailsLinearLayoutThree"
+                                      android:layout_below="@+id/orderDetailsDividerLine"
+                                      android:layout_marginTop="@dimen/_4sdp">
+                            <Button
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/orderProductCancelNowButton"
+                                    android:background="@android:color/transparent"
+                                    android:text="Cancel Now"
+                                    android:textColor="#CF3E3E"
+                                    android:textSize="14sp"
+                                    android:layout_weight="1"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+            </RelativeLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

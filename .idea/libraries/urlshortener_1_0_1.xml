@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="urlshortener-1.0.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/peto/build/intermediates/exploded-aar/com.pddstudio/urlshortener/1.0.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/peto/build/intermediates/exploded-aar/com.pddstudio/urlshortener/1.0.1/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.pddstudio/urlshortener/1.0.1/2444ea3ee2a5817647423f6c38a6a9e19b9a54d3/urlshortener-1.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

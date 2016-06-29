@@ -57,9 +57,6 @@ public class PetFetchShelterList {
                                         e.printStackTrace();
                                     }
                                 }
-                            }else{
-                                Intent gotoNullError = new Intent(context, NullRespone_DialogeBox.class);
-                                context.startActivity(gotoNullError);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -3,7 +3,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="#FFFFFF"
+                android:background="@drawable/signinbackground"
               android:weightSum="1">
     <android.support.v7.widget.CardView
             xmlns:card_view="http://schemas.android.com/apk/res-auto"

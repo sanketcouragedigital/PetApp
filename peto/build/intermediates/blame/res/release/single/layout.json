@@ -1,7 +1,7 @@
 [
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\design_navigation_menu.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout\\design_navigation_menu.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_navigation_menu.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\petstoresitems.xml",
@@ -9,31 +9,43 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\support_simple_spinner_dropdown_item.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\support_simple_spinner_dropdown_item.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\support_simple_spinner_dropdown_item.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\notification_media_cancel_action.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\notification_media_cancel_action.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\notification_media_cancel_action.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\wishlistpetlistitem.xml",
         "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\wishlistpetlistitem.xml"
     },
     {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\service_rate_review.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\service_rate_review.xml"
+    },
+    {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_action_mode_bar.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_action_mode_bar.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_action_mode_bar.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\drawermenulist.xml",
         "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\drawermenulist.xml"
     },
     {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_popup_menu_header_item_layout.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_popup_menu_header_item_layout.xml"
+    },
+    {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\design_bottom_sheet_dialog.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout\\design_bottom_sheet_dialog.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_bottom_sheet_dialog.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\petmatelistsubitems.xml",
         "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\petmatelistsubitems.xml"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\campaign_list_items.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\campaign_list_items.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\tabfragment_stores_details.xml",
@@ -41,19 +53,23 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_action_menu_item_layout.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_action_menu_item_layout.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_action_menu_item_layout.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\design_layout_tab_text.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout\\design_layout_tab_text.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_layout_tab_text.xml"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\campaign_modify.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\campaign_modify.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\design_layout_snackbar_include.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout\\design_layout_snackbar_include.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_layout_snackbar_include.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\design_navigation_item_subheader.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout\\design_navigation_item_subheader.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_navigation_item_subheader.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\petmate.xml",
@@ -65,7 +81,7 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_activity_chooser_view_list_item.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_activity_chooser_view_list_item.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_activity_chooser_view_list_item.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\listview_homemenu.xml",
@@ -73,7 +89,7 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_popup_menu_item_layout.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_popup_menu_item_layout.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_popup_menu_item_layout.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\data_notsaved_dialogbox.xml",
@@ -89,11 +105,15 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_list_menu_item_radio.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_list_menu_item_radio.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_list_menu_item_radio.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\design_navigation_item_separator.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout\\design_navigation_item_separator.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_navigation_item_separator.xml"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\legal.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\legal.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\tab_fragment_groomer.xml",
@@ -109,23 +129,27 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\com_facebook_activity_layout.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\layout\\com_facebook_activity_layout.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\layout\\com_facebook_activity_layout.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\messenger_button_send_blue_round.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\layout\\messenger_button_send_blue_round.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\layout\\messenger_button_send_blue_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\campaign_list_forall_items.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\campaign_list_forall_items.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\select_dialog_item_material.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\select_dialog_item_material.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\select_dialog_item_material.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_action_bar_title_item.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_action_bar_title_item.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_action_bar_title_item.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_search_dropdown_item_icons_2line.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\wishlistpetlist.xml",
@@ -133,7 +157,7 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_list_menu_item_layout.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_list_menu_item_layout.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_list_menu_item_layout.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\clinic_map.xml",
@@ -141,11 +165,15 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\place_autocomplete_item_prediction.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_item_prediction.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\9.0.2\\res\\layout\\place_autocomplete_item_prediction.xml"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\campaign_list_details.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\campaign_list_details.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\com_facebook_login_fragment.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\layout\\com_facebook_login_fragment.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\layout\\com_facebook_login_fragment.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\petlistfilterviewmenu.xml",
@@ -161,7 +189,7 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\place_autocomplete_progress.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_progress.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\9.0.2\\res\\layout\\place_autocomplete_progress.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\tabfragment_shelter_details.xml",
@@ -170,6 +198,10 @@
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\drawer.xml",
         "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\drawer.xml"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\campaign_form.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\campaign_form.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\password_for_edit_profile.xml",
@@ -181,7 +213,7 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\com_facebook_device_auth_dialog_fragment.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\layout\\com_facebook_device_auth_dialog_fragment.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\layout\\com_facebook_device_auth_dialog_fragment.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\mylistingeditpetdetails.xml",
@@ -193,11 +225,19 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\design_navigation_item_header.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout\\design_navigation_item_header.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_navigation_item_header.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\select_dialog_singlechoice_material.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\select_dialog_singlechoice_material.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\select_dialog_singlechoice_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\pet_shop_list_details.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\pet_shop_list_details.xml"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\adnativeexpresslistitem.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\adnativeexpresslistitem.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\sdp_example.xml",
@@ -209,19 +249,27 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\messenger_button_send_blue_large.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\layout\\messenger_button_send_blue_large.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\layout\\messenger_button_send_blue_large.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\splashscreen.xml",
         "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\splashscreen.xml"
     },
     {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\payment.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\payment.xml"
+    },
+    {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_action_bar_view_list_nav_layout.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_action_bar_view_list_nav_layout.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_action_bar_view_list_nav_layout.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_action_bar_up_container.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_action_bar_up_container.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_action_bar_up_container.xml"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\campaign_list_forall.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\campaign_list_forall.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\setnewpassword.xml",
@@ -233,7 +281,7 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\notification_media_action.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\notification_media_action.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\notification_media_action.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\spinneritem.xml",
@@ -249,31 +297,47 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_activity_chooser_view.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_activity_chooser_view.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_activity_chooser_view.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\mylistingpetmatelistdetail.xml",
         "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\mylistingpetmatelistdetail.xml"
     },
     {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\campaign_list_forall_details.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\campaign_list_forall_details.xml"
+    },
+    {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\messenger_button_send_white_large.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\layout\\messenger_button_send_white_large.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\layout\\messenger_button_send_white_large.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\drawerheaderimage.xml",
         "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\drawerheaderimage.xml"
     },
     {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\myorders_items.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\myorders_items.xml"
+    },
+    {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\signup.xml",
         "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\signup.xml"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\smalladnativeexpresslistitem.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\smalladnativeexpresslistitem.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\wishlistpetmatedetails.xml",
         "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\wishlistpetmatedetails.xml"
     },
     {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\pet_shop_list.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\pet_shop_list.xml"
+    },
+    {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_big_media_narrow.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\notification_template_big_media_narrow.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\notification_template_big_media_narrow.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\petlistfiltercategory.xml",
@@ -281,7 +345,7 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\design_menu_item_action_area.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout\\design_menu_item_action_area.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_menu_item_action_area.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\mylistingpetlistdetails.xml",
@@ -289,7 +353,11 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_alert_dialog_button_bar_material.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\service_review_list_items.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\service_review_list_items.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\tab_fragment_shelter.xml",
@@ -317,7 +385,7 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\place_autocomplete_item_powered_by_google.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_item_powered_by_google.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\9.0.2\\res\\layout\\place_autocomplete_item_powered_by_google.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\draweritemtext.xml",
@@ -329,11 +397,15 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_screen_simple_overlay_action_mode.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\mylistingpetmateitem.xml",
         "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\mylistingpetmateitem.xml"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\myorder_list_details.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\myorder_list_details.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\petclinicitems.xml",
@@ -341,7 +413,11 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\design_navigation_item.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout\\design_navigation_item.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_navigation_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\myorders.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\myorders.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\toolbar.xml",
@@ -349,7 +425,7 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\com_facebook_tooltip_bubble.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\layout\\com_facebook_tooltip_bubble.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\layout\\com_facebook_tooltip_bubble.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\petlistdetails.xml",
@@ -361,7 +437,7 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_action_mode_close_item_material.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_action_mode_close_item_material.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_action_mode_close_item_material.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\clinic_details_new.xml",
@@ -373,7 +449,7 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_screen_content_include.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_screen_content_include.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_screen_content_include.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\draweritems.xml",
@@ -385,7 +461,7 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_list_menu_item_checkbox.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_list_menu_item_checkbox.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_list_menu_item_checkbox.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\index.xml",
@@ -401,19 +477,23 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_media.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\notification_template_media.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\notification_template_media.xml"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\ngo_notverify.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\ngo_notverify.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\place_autocomplete_fragment.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.4.0\\res\\layout\\place_autocomplete_fragment.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\9.0.2\\res\\layout\\place_autocomplete_fragment.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_list_menu_item_icon.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_list_menu_item_icon.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_list_menu_item_icon.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_lines.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\notification_template_lines.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\notification_template_lines.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\petmatelist.xml",
@@ -421,11 +501,11 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\design_layout_tab_icon.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout\\design_layout_tab_icon.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_layout_tab_icon.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\messenger_button_send_white_round.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\layout\\messenger_button_send_white_round.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\layout\\messenger_button_send_white_round.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\petform.xml",
@@ -441,15 +521,15 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_dialog_title_material.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_dialog_title_material.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_dialog_title_material.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\messenger_button_send_blue_small.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\layout\\messenger_button_send_blue_small.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\layout\\messenger_button_send_blue_small.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_screen_simple.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_screen_simple.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_screen_simple.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\petfilteroptionsubitems.xml",
@@ -465,39 +545,39 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_alert_dialog_material.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_alert_dialog_material.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_alert_dialog_material.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_search_view.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_search_view.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_search_view.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\design_layout_snackbar.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout\\design_layout_snackbar.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_layout_snackbar.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_expanded_menu_layout.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_expanded_menu_layout.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_expanded_menu_layout.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_big_media.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\notification_template_big_media.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\notification_template_big_media.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_action_menu_layout.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_action_menu_layout.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_action_menu_layout.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\messenger_button_send_white_small.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\layout\\messenger_button_send_white_small.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\layout\\messenger_button_send_white_small.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_select_dialog_material.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_select_dialog_material.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_select_dialog_material.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_part_chronometer.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\notification_template_part_chronometer.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\notification_template_part_chronometer.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\mr_media_route_controller_material_dialog_b.xml",
@@ -505,7 +585,7 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\select_dialog_multichoice_material.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\select_dialog_multichoice_material.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\select_dialog_multichoice_material.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\petservices.xml",
@@ -513,19 +593,19 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\design_navigation_menu_item.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout\\design_navigation_menu_item.xml"
-    },
-    {
-        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\petclinic.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\petclinic.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_navigation_menu_item.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\wishlistpetmatelistitem.xml",
         "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\wishlistpetmatelistitem.xml"
     },
     {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\petclinic.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\petclinic.xml"
+    },
+    {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_part_time.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\notification_template_part_time.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\notification_template_part_time.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\petgroomeritems.xml",
@@ -549,11 +629,19 @@
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\abc_screen_toolbar.xml",
-        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_screen_toolbar.xml"
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_screen_toolbar.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\tabfragment_trainer_details.xml",
         "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\tabfragment_trainer_details.xml"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\emptylist_dialoge.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\emptylist_dialoge.xml"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\ngo_donation.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\ngo_donation.xml"
     },
     {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\petlistemptyview.xml",
@@ -564,7 +652,15 @@
         "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\clinic_review_list_items.xml"
     },
     {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\pet_shop_list_subitems.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\pet_shop_list_subitems.xml"
+    },
+    {
         "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\wishlistpetmatelist.xml",
         "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\wishlistpetmatelist.xml"
+    },
+    {
+        "merged": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\res\\merged\\release\\layout\\campaign_list.xml",
+        "source": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\src\\main\\res\\layout\\campaign_list.xml"
     }
 ]

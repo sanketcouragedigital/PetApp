@@ -2,8 +2,10 @@ package com.couragedigital.peto.Adapter;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.provider.Settings;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.bumptech.glide.Glide;
@@ -18,22 +22,28 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.couragedigital.peto.*;
 import com.couragedigital.peto.Connectivity.WishListPetListAdd;
 import com.couragedigital.peto.Connectivity.WishListPetListDelete;
+import com.couragedigital.peto.Holder.AdMobViewHolder;
 import com.couragedigital.peto.SessionManager.SessionManager;
 import com.couragedigital.peto.Singleton.UserPetListWishList;
 import com.couragedigital.peto.app.AppController;
 import com.couragedigital.peto.model.PetListItems;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.NativeExpressAdView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 
-public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHolder> {
+public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private static final int CONTENT_TYPE = 0;
+    private static final int AD_TYPE = 1;
     private final OnRecyclerPetListShareClickListener onRecyclerPetListShareClickListener;
     List<PetListItems> petLists;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;
-    ViewHolder viewHolder;
+    RecyclerView.ViewHolder viewHolder;
 
     public PetListAdapter(List<PetListItems> petLists, OnRecyclerPetListShareClickListener onRecyclerPetListShareClickListener) {
         this.petLists = petLists;
@@ -41,22 +51,45 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.petlistsubitems, viewGroup, false);
-        viewHolder = new ViewHolder(v);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        if(i == CONTENT_TYPE) {
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.petlistsubitems, viewGroup, false);
+            viewHolder = new ViewHolder(v);
+        }
+        else if (i == AD_TYPE) {
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.adnativeexpresslistitem, viewGroup, false);
+            viewHolder = new AdMobViewHolder(v);
+        }
+
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        PetListItems petListItems = petLists.get(i);
-        viewHolder.bindPetList(petListItems);
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        if(viewHolder.getItemViewType() == CONTENT_TYPE) {
+            PetListItems petListItems = petLists.get(i);
+            ViewHolder viewHolderForPetList = (ViewHolder) viewHolder;
+            viewHolderForPetList.bindPetList(petListItems);
+        }
+        else if(viewHolder.getItemViewType() == AD_TYPE) {
+            AdMobViewHolder viewHolderForAdMob = (AdMobViewHolder) viewHolder;
+            viewHolderForAdMob.bindAds();
+        }
     }
 
     @Override
     public int getItemCount() {
         return petLists.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (position % 7 == 0 && position != 0) {
+            return AD_TYPE;
+        }
+        else {
+            return CONTENT_TYPE;
+        }
     }
 
     private String setListingType(PetListItems petListItems) {

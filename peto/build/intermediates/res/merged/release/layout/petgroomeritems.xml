@@ -47,6 +47,7 @@
                         android:id="@+id/petGroomerListContentRelativeLayout"
                         android:layout_width="fill_parent"
                         android:layout_height="@dimen/_120sdp"
+                        android:layout_marginBottom="@dimen/_15sdp"
                         android:layout_toRightOf="@+id/petGroomerImageRelativeLayout">
 
                     <TextView
@@ -55,10 +56,10 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_16sdp"
                             android:layout_marginLeft="@dimen/_16sdp"
+                            android:layout_marginRight="@dimen/_5sdp"
                             android:textSize="@dimen/_17sdp"
                             android:textStyle="bold"
                             android:textColor="@color/list_pet_origin_text_color"
-                            android:singleLine="true"
                             android:ellipsize="end"/>
 
                     <TextView
@@ -67,9 +68,16 @@
                             android:id="@+id/groomerAddress"
                             android:textColor="@color/textColorPrimary"
                             android:layout_below="@+id/groomerName"
-                            android:layout_marginTop="@dimen/_2sdp"
-                            android:layout_marginLeft="@dimen/_16sdp"
-                            android:layout_marginBottom="@dimen/_16sdp"/>
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginLeft="@dimen/_16sdp"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/groomerContactno"
+                            android:textColor="@color/textColorPrimary"
+                            android:layout_below="@+id/groomerAddress"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginLeft="@dimen/_16sdp"/>
 
                 </RelativeLayout>
             </RelativeLayout>

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "421693898393",
+    "firebase_url": "https://admob-app-id-7703396723.firebaseio.com",
+    "project_id": "admob-app-id-7703396723",
+    "storage_bucket": "admob-app-id-7703396723.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:421693898393:android:2b7c1e5d874454a2",
+        "android_client_info": {
+          "package_name": "com.couragedigital.peto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "421693898393-0l69s8lp4vofdi02868ik4a12gtj6q1a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_uKW-rsBu1mA2bMZZB7VkuSqYOEKAnGo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

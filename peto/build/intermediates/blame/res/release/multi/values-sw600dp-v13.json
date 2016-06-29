@@ -11411,7 +11411,7 @@
                     "endOffset": 27397
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -11426,17 +11426,17 @@
                     "startLine": 603,
                     "startColumn": 4,
                     "startOffset": 27402,
-                    "endColumn": 69,
-                    "endOffset": 27467
+                    "endColumn": 68,
+                    "endOffset": 27466
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
                         "startOffset": 124,
-                        "endColumn": 69,
-                        "endOffset": 189
+                        "endColumn": 68,
+                        "endOffset": 188
                     }
                 }
             },
@@ -11444,18 +11444,18 @@
                 "to": {
                     "startLine": 604,
                     "startColumn": 4,
-                    "startOffset": 27472,
-                    "endColumn": 73,
-                    "endOffset": 27541
+                    "startOffset": 27471,
+                    "endColumn": 69,
+                    "endOffset": 27536
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
-                        "startOffset": 194,
-                        "endColumn": 73,
-                        "endOffset": 263
+                        "startOffset": 193,
+                        "endColumn": 69,
+                        "endOffset": 258
                     }
                 }
             },
@@ -11463,18 +11463,18 @@
                 "to": {
                     "startLine": 605,
                     "startColumn": 4,
-                    "startOffset": 27546,
-                    "endColumn": 75,
-                    "endOffset": 27617
+                    "startOffset": 27541,
+                    "endColumn": 73,
+                    "endOffset": 27610
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
-                        "startOffset": 268,
-                        "endColumn": 75,
-                        "endOffset": 339
+                        "startOffset": 263,
+                        "endColumn": 73,
+                        "endOffset": 332
                     }
                 }
             },
@@ -11482,18 +11482,18 @@
                 "to": {
                     "startLine": 606,
                     "startColumn": 4,
-                    "startOffset": 27622,
-                    "endColumn": 58,
-                    "endOffset": 27676
+                    "startOffset": 27615,
+                    "endColumn": 75,
+                    "endOffset": 27686
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
-                        "startOffset": 344,
-                        "endColumn": 58,
-                        "endOffset": 398
+                        "startOffset": 337,
+                        "endColumn": 75,
+                        "endOffset": 408
                     }
                 }
             },
@@ -11501,18 +11501,18 @@
                 "to": {
                     "startLine": 607,
                     "startColumn": 4,
-                    "startOffset": 27681,
-                    "endColumn": 70,
-                    "endOffset": 27747
+                    "startOffset": 27691,
+                    "endColumn": 58,
+                    "endOffset": 27745
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
-                        "startOffset": 403,
-                        "endColumn": 70,
-                        "endOffset": 469
+                        "startOffset": 413,
+                        "endColumn": 58,
+                        "endOffset": 467
                     }
                 }
             },
@@ -11520,18 +11520,18 @@
                 "to": {
                     "startLine": 608,
                     "startColumn": 4,
-                    "startOffset": 27752,
-                    "endColumn": 67,
-                    "endOffset": 27815
+                    "startOffset": 27750,
+                    "endColumn": 70,
+                    "endOffset": 27816
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
-                        "startOffset": 474,
-                        "endColumn": 67,
-                        "endOffset": 537
+                        "startOffset": 472,
+                        "endColumn": 70,
+                        "endOffset": 538
                     }
                 }
             },
@@ -11539,12 +11539,31 @@
                 "to": {
                     "startLine": 609,
                     "startColumn": 4,
-                    "startOffset": 27820,
-                    "endColumn": 59,
-                    "endOffset": 27875
+                    "startOffset": 27821,
+                    "endColumn": 67,
+                    "endOffset": 27884
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 543,
+                        "endColumn": 67,
+                        "endOffset": 606
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 610,
+                    "startColumn": 4,
+                    "startOffset": 27889,
+                    "endColumn": 59,
+                    "endOffset": 27944
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -11556,14 +11575,14 @@
             },
             {
                 "to": {
-                    "startLine": 610,
+                    "startLine": 611,
                     "startColumn": 4,
-                    "startOffset": 27880,
+                    "startOffset": 27949,
                     "endColumn": 69,
-                    "endOffset": 27945
+                    "endOffset": 28014
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -11575,14 +11594,14 @@
             },
             {
                 "to": {
-                    "startLine": 611,
+                    "startLine": 612,
                     "startColumn": 4,
-                    "startOffset": 27950,
+                    "startOffset": 28019,
                     "endColumn": 70,
-                    "endOffset": 28016
+                    "endOffset": 28085
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -11594,14 +11613,14 @@
             },
             {
                 "to": {
-                    "startLine": 612,
+                    "startLine": 613,
                     "startColumn": 4,
-                    "startOffset": 28021,
+                    "startOffset": 28090,
                     "endColumn": 71,
-                    "endOffset": 28088
+                    "endOffset": 28157
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -11613,14 +11632,14 @@
             },
             {
                 "to": {
-                    "startLine": 613,
+                    "startLine": 614,
                     "startColumn": 4,
-                    "startOffset": 28093,
+                    "startOffset": 28162,
                     "endColumn": 57,
-                    "endOffset": 28146
+                    "endOffset": 28215
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -11632,14 +11651,14 @@
             },
             {
                 "to": {
-                    "startLine": 614,
+                    "startLine": 615,
                     "startColumn": 4,
-                    "startOffset": 28151,
+                    "startOffset": 28220,
                     "endColumn": 57,
-                    "endOffset": 28204
+                    "endOffset": 28273
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -11651,14 +11670,14 @@
             },
             {
                 "to": {
-                    "startLine": 615,
+                    "startLine": 616,
                     "startColumn": 4,
-                    "startOffset": 28209,
+                    "startOffset": 28278,
                     "endColumn": 105,
-                    "endOffset": 28310
+                    "endOffset": 28379
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -11670,14 +11689,14 @@
             },
             {
                 "to": {
-                    "startLine": 616,
+                    "startLine": 617,
                     "startColumn": 4,
-                    "startOffset": 28315,
+                    "startOffset": 28384,
                     "endColumn": 63,
-                    "endOffset": 28374
+                    "endOffset": 28443
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
@@ -11689,11 +11708,11 @@
             },
             {
                 "to": {
-                    "startLine": 617,
+                    "startLine": 618,
                     "startColumn": 4,
-                    "startOffset": 28379,
+                    "startOffset": 28448,
                     "endColumn": 72,
-                    "endOffset": 28447
+                    "endOffset": 28516
                 },
                 "from": {
                     "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\23.0.0\\res\\values-sw600dp\\values-sw600dp.xml",
@@ -11708,33 +11727,14 @@
             },
             {
                 "to": {
-                    "startLine": 618,
-                    "startColumn": 4,
-                    "startOffset": 28452,
-                    "endColumn": 54,
-                    "endOffset": 28502
-                },
-                "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
-                    "position": {
-                        "startLine": 9,
-                        "startColumn": 4,
-                        "startOffset": 542,
-                        "endColumn": 54,
-                        "endOffset": 592
-                    }
-                }
-            },
-            {
-                "to": {
                     "startLine": 619,
                     "startColumn": 4,
-                    "startOffset": 28507,
+                    "startOffset": 28521,
                     "endColumn": 62,
-                    "endOffset": 28565
+                    "endOffset": 28579
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
@@ -11748,9 +11748,9 @@
                 "to": {
                     "startLine": 620,
                     "startColumn": 4,
-                    "startOffset": 28570,
+                    "startOffset": 28584,
                     "endColumn": 52,
-                    "endOffset": 28618
+                    "endOffset": 28632
                 },
                 "from": {
                     "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.intuit.sdp\\sdp-android\\1.0.2\\res\\values-sw600dp\\values-sw600dp.xml",
@@ -11767,13 +11767,13 @@
                 "to": {
                     "startLine": 621,
                     "startColumn": 4,
-                    "startOffset": 28623,
+                    "startOffset": 28637,
                     "endLine": 624,
                     "endColumn": 12,
-                    "endOffset": 28800
+                    "endOffset": 28814
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,

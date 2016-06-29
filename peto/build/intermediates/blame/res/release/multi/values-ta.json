@@ -6,18 +6,18 @@
                 "to": {
                     "startLine": 2,
                     "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 157,
-                    "endOffset": 208
+                    "startOffset": 105,
+                    "endColumn": 196,
+                    "endOffset": 297
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\values-ta\\values-ta.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\values-ta\\values-ta.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
                         "startOffset": 55,
-                        "endColumn": 157,
-                        "endOffset": 208
+                        "endColumn": 196,
+                        "endOffset": 247
                     }
                 }
             },
@@ -25,18 +25,18 @@
                 "to": {
                     "startLine": 3,
                     "startColumn": 4,
-                    "startOffset": 213,
+                    "startOffset": 302,
                     "endColumn": 112,
-                    "endOffset": 321
+                    "endOffset": 410
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\values-ta\\values-ta.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\values-ta\\values-ta.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
-                        "startOffset": 213,
+                        "startOffset": 252,
                         "endColumn": 112,
-                        "endOffset": 321
+                        "endOffset": 360
                     }
                 }
             },
@@ -44,18 +44,18 @@
                 "to": {
                     "startLine": 4,
                     "startColumn": 4,
-                    "startOffset": 326,
+                    "startOffset": 415,
                     "endColumn": 112,
-                    "endOffset": 434
+                    "endOffset": 523
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\values-ta\\values-ta.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\values-ta\\values-ta.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
-                        "startOffset": 326,
+                        "startOffset": 365,
                         "endColumn": 112,
-                        "endOffset": 434
+                        "endOffset": 473
                     }
                 }
             },
@@ -63,18 +63,18 @@
                 "to": {
                     "startLine": 5,
                     "startColumn": 4,
-                    "startOffset": 439,
+                    "startOffset": 528,
                     "endColumn": 93,
-                    "endOffset": 528
+                    "endOffset": 617
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\values-ta\\values-ta.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\values-ta\\values-ta.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
-                        "startOffset": 439,
+                        "startOffset": 478,
                         "endColumn": 93,
-                        "endOffset": 528
+                        "endOffset": 567
                     }
                 }
             },
@@ -82,18 +82,18 @@
                 "to": {
                     "startLine": 6,
                     "startColumn": 4,
-                    "startOffset": 533,
+                    "startOffset": 622,
                     "endColumn": 74,
-                    "endOffset": 603
+                    "endOffset": 692
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\values-ta\\values-ta.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\values-ta\\values-ta.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
-                        "startOffset": 533,
+                        "startOffset": 572,
                         "endColumn": 74,
-                        "endOffset": 603
+                        "endOffset": 642
                     }
                 }
             },
@@ -101,18 +101,18 @@
                 "to": {
                     "startLine": 7,
                     "startColumn": 4,
-                    "startOffset": 608,
+                    "startOffset": 697,
                     "endColumn": 72,
-                    "endOffset": 676
+                    "endOffset": 765
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\values-ta\\values-ta.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\values-ta\\values-ta.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
-                        "startOffset": 608,
+                        "startOffset": 647,
                         "endColumn": 72,
-                        "endOffset": 676
+                        "endOffset": 715
                     }
                 }
             },
@@ -120,18 +120,18 @@
                 "to": {
                     "startLine": 8,
                     "startColumn": 4,
-                    "startOffset": 681,
+                    "startOffset": 770,
                     "endColumn": 62,
-                    "endOffset": 739
+                    "endOffset": 828
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\values-ta\\values-ta.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\values-ta\\values-ta.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
-                        "startOffset": 681,
+                        "startOffset": 720,
                         "endColumn": 62,
-                        "endOffset": 739
+                        "endOffset": 778
                     }
                 }
             },
@@ -139,18 +139,18 @@
                 "to": {
                     "startLine": 9,
                     "startColumn": 4,
-                    "startOffset": 744,
+                    "startOffset": 833,
                     "endColumn": 74,
-                    "endOffset": 814
+                    "endOffset": 903
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\values-ta\\values-ta.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\values-ta\\values-ta.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
-                        "startOffset": 744,
+                        "startOffset": 783,
                         "endColumn": 74,
-                        "endOffset": 814
+                        "endOffset": 853
                     }
                 }
             },
@@ -158,18 +158,18 @@
                 "to": {
                     "startLine": 10,
                     "startColumn": 4,
-                    "startOffset": 819,
+                    "startOffset": 908,
                     "endColumn": 74,
-                    "endOffset": 889
+                    "endOffset": 978
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\values-ta\\values-ta.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\values-ta\\values-ta.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
-                        "startOffset": 819,
+                        "startOffset": 858,
                         "endColumn": 74,
-                        "endOffset": 889
+                        "endOffset": 928
                     }
                 }
             },
@@ -177,18 +177,18 @@
                 "to": {
                     "startLine": 11,
                     "startColumn": 4,
-                    "startOffset": 894,
+                    "startOffset": 983,
                     "endColumn": 97,
-                    "endOffset": 987
+                    "endOffset": 1076
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\values-ta\\values-ta.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\values-ta\\values-ta.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
-                        "startOffset": 894,
+                        "startOffset": 933,
                         "endColumn": 97,
-                        "endOffset": 987
+                        "endOffset": 1026
                     }
                 }
             },
@@ -196,18 +196,18 @@
                 "to": {
                     "startLine": 12,
                     "startColumn": 4,
-                    "startOffset": 992,
+                    "startOffset": 1081,
                     "endColumn": 74,
-                    "endOffset": 1062
+                    "endOffset": 1151
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\values-ta\\values-ta.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\values-ta\\values-ta.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
-                        "startOffset": 992,
+                        "startOffset": 1031,
                         "endColumn": 74,
-                        "endOffset": 1062
+                        "endOffset": 1101
                     }
                 }
             },
@@ -215,18 +215,18 @@
                 "to": {
                     "startLine": 13,
                     "startColumn": 4,
-                    "startOffset": 1067,
+                    "startOffset": 1156,
                     "endColumn": 74,
-                    "endOffset": 1137
+                    "endOffset": 1226
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\values-ta\\values-ta.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\values-ta\\values-ta.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
-                        "startOffset": 1067,
+                        "startOffset": 1106,
                         "endColumn": 74,
-                        "endOffset": 1137
+                        "endOffset": 1176
                     }
                 }
             },
@@ -234,18 +234,18 @@
                 "to": {
                     "startLine": 14,
                     "startColumn": 4,
-                    "startOffset": 1142,
+                    "startOffset": 1231,
                     "endColumn": 91,
-                    "endOffset": 1229
+                    "endOffset": 1318
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\values-ta\\values-ta.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\values-ta\\values-ta.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
-                        "startOffset": 1142,
+                        "startOffset": 1181,
                         "endColumn": 91,
-                        "endOffset": 1229
+                        "endOffset": 1268
                     }
                 }
             },
@@ -253,18 +253,18 @@
                 "to": {
                     "startLine": 15,
                     "startColumn": 4,
-                    "startOffset": 1234,
+                    "startOffset": 1323,
                     "endColumn": 111,
-                    "endOffset": 1341
+                    "endOffset": 1430
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\values-ta\\values-ta.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\values-ta\\values-ta.xml",
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
-                        "startOffset": 1234,
+                        "startOffset": 1273,
                         "endColumn": 111,
-                        "endOffset": 1341
+                        "endOffset": 1380
                     }
                 }
             },
@@ -272,18 +272,18 @@
                 "to": {
                     "startLine": 16,
                     "startColumn": 4,
-                    "startOffset": 1346,
+                    "startOffset": 1435,
                     "endColumn": 65,
-                    "endOffset": 1407
+                    "endOffset": 1496
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\values-ta\\values-ta.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\values-ta\\values-ta.xml",
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
-                        "startOffset": 1346,
+                        "startOffset": 1385,
                         "endColumn": 65,
-                        "endOffset": 1407
+                        "endOffset": 1446
                     }
                 }
             },
@@ -291,18 +291,18 @@
                 "to": {
                     "startLine": 17,
                     "startColumn": 4,
-                    "startOffset": 1412,
+                    "startOffset": 1501,
                     "endColumn": 64,
-                    "endOffset": 1472
+                    "endOffset": 1561
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\values-ta\\values-ta.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\values-ta\\values-ta.xml",
                     "position": {
                         "startLine": 17,
                         "startColumn": 4,
-                        "startOffset": 1412,
+                        "startOffset": 1451,
                         "endColumn": 64,
-                        "endOffset": 1472
+                        "endOffset": 1511
                     }
                 }
             },
@@ -310,18 +310,18 @@
                 "to": {
                     "startLine": 18,
                     "startColumn": 4,
-                    "startOffset": 1477,
+                    "startOffset": 1566,
                     "endColumn": 152,
-                    "endOffset": 1625
+                    "endOffset": 1714
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\values-ta\\values-ta.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\values-ta\\values-ta.xml",
                     "position": {
                         "startLine": 18,
                         "startColumn": 4,
-                        "startOffset": 1477,
+                        "startOffset": 1516,
                         "endColumn": 152,
-                        "endOffset": 1625
+                        "endOffset": 1664
                     }
                 }
             },
@@ -329,18 +329,645 @@
                 "to": {
                     "startLine": 19,
                     "startColumn": 4,
-                    "startOffset": 1630,
-                    "endColumn": 62,
-                    "endOffset": 1688
+                    "startOffset": 1719,
+                    "endColumn": 261,
+                    "endOffset": 1976
                 },
                 "from": {
-                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.11.0\\res\\values-ta\\values-ta.xml",
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 323,
+                        "endColumn": 261,
+                        "endOffset": 580
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 1981,
+                    "endColumn": 126,
+                    "endOffset": 2103
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 585,
+                        "endColumn": 126,
+                        "endOffset": 707
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 21,
+                    "startColumn": 4,
+                    "startOffset": 2108,
+                    "endColumn": 183,
+                    "endOffset": 2287
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 712,
+                        "endColumn": 183,
+                        "endOffset": 891
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 22,
+                    "startColumn": 4,
+                    "startOffset": 2292,
+                    "endColumn": 128,
+                    "endOffset": 2416
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 896,
+                        "endColumn": 128,
+                        "endOffset": 1020
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 23,
+                    "startColumn": 4,
+                    "startOffset": 2421,
+                    "endColumn": 128,
+                    "endOffset": 2545
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 1025,
+                        "endColumn": 128,
+                        "endOffset": 1149
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 24,
+                    "startColumn": 4,
+                    "startOffset": 2550,
+                    "endColumn": 224,
+                    "endOffset": 2770
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 1154,
+                        "endColumn": 224,
+                        "endOffset": 1374
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 25,
+                    "startColumn": 4,
+                    "startOffset": 2775,
+                    "endColumn": 229,
+                    "endOffset": 3000
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 1379,
+                        "endColumn": 229,
+                        "endOffset": 1604
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 26,
+                    "startColumn": 4,
+                    "startOffset": 3005,
+                    "endColumn": 129,
+                    "endOffset": 3130
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 1609,
+                        "endColumn": 129,
+                        "endOffset": 1734
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 27,
+                    "startColumn": 4,
+                    "startOffset": 3135,
+                    "endColumn": 185,
+                    "endOffset": 3316
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 12,
+                        "startColumn": 4,
+                        "startOffset": 1739,
+                        "endColumn": 185,
+                        "endOffset": 1920
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 28,
+                    "startColumn": 4,
+                    "startOffset": 3321,
+                    "endColumn": 120,
+                    "endOffset": 3437
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 4,
+                        "startOffset": 1925,
+                        "endColumn": 120,
+                        "endOffset": 2041
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 29,
+                    "startColumn": 4,
+                    "startOffset": 3442,
+                    "endColumn": 154,
+                    "endOffset": 3592
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 14,
+                        "startColumn": 4,
+                        "startOffset": 2046,
+                        "endColumn": 154,
+                        "endOffset": 2196
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 30,
+                    "startColumn": 4,
+                    "startOffset": 3597,
+                    "endColumn": 116,
+                    "endOffset": 3709
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 4,
+                        "startOffset": 2201,
+                        "endColumn": 116,
+                        "endOffset": 2313
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 31,
+                    "startColumn": 4,
+                    "startOffset": 3714,
+                    "endColumn": 129,
+                    "endOffset": 3839
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 16,
+                        "startColumn": 4,
+                        "startOffset": 2318,
+                        "endColumn": 129,
+                        "endOffset": 2443
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 32,
+                    "startColumn": 4,
+                    "startOffset": 3844,
+                    "endColumn": 181,
+                    "endOffset": 4021
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 17,
+                        "startColumn": 4,
+                        "startOffset": 2448,
+                        "endColumn": 181,
+                        "endOffset": 2625
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 33,
+                    "startColumn": 4,
+                    "startOffset": 4026,
+                    "endColumn": 152,
+                    "endOffset": 4174
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 18,
+                        "startColumn": 4,
+                        "startOffset": 2630,
+                        "endColumn": 152,
+                        "endOffset": 2778
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 34,
+                    "startColumn": 4,
+                    "startOffset": 4179,
+                    "endColumn": 180,
+                    "endOffset": 4355
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
                     "position": {
                         "startLine": 19,
                         "startColumn": 4,
-                        "startOffset": 1630,
+                        "startOffset": 2783,
+                        "endColumn": 180,
+                        "endOffset": 2959
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 35,
+                    "startColumn": 4,
+                    "startOffset": 4360,
+                    "endColumn": 140,
+                    "endOffset": 4496
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 2964,
+                        "endColumn": 140,
+                        "endOffset": 3100
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 36,
+                    "startColumn": 4,
+                    "startOffset": 4501,
+                    "endColumn": 178,
+                    "endOffset": 4675
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 21,
+                        "startColumn": 4,
+                        "startOffset": 3105,
+                        "endColumn": 178,
+                        "endOffset": 3279
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 37,
+                    "startColumn": 4,
+                    "startOffset": 4680,
+                    "endColumn": 123,
+                    "endOffset": 4799
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 22,
+                        "startColumn": 4,
+                        "startOffset": 3284,
+                        "endColumn": 123,
+                        "endOffset": 3403
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 38,
+                    "startColumn": 4,
+                    "startOffset": 4804,
+                    "endColumn": 237,
+                    "endOffset": 5037
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-basement\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 323,
+                        "endColumn": 237,
+                        "endOffset": 556
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 39,
+                    "startColumn": 4,
+                    "startOffset": 5042,
+                    "endColumn": 231,
+                    "endOffset": 5269
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 23,
+                        "startColumn": 4,
+                        "startOffset": 3408,
+                        "endColumn": 231,
+                        "endOffset": 3635
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 40,
+                    "startColumn": 4,
+                    "startOffset": 5274,
+                    "endColumn": 122,
+                    "endOffset": 5392
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 24,
+                        "startColumn": 4,
+                        "startOffset": 3640,
+                        "endColumn": 122,
+                        "endOffset": 3758
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 41,
+                    "startColumn": 4,
+                    "startOffset": 5397,
+                    "endColumn": 108,
+                    "endOffset": 5501
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 25,
+                        "startColumn": 4,
+                        "startOffset": 3763,
+                        "endColumn": 108,
+                        "endOffset": 3867
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 42,
+                    "startColumn": 4,
+                    "startOffset": 5506,
+                    "endColumn": 183,
+                    "endOffset": 5685
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 26,
+                        "startColumn": 4,
+                        "startOffset": 3872,
+                        "endColumn": 183,
+                        "endOffset": 4051
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 43,
+                    "startColumn": 4,
+                    "startOffset": 5690,
+                    "endColumn": 136,
+                    "endOffset": 5822
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 27,
+                        "startColumn": 4,
+                        "startOffset": 4056,
+                        "endColumn": 136,
+                        "endOffset": 4188
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 44,
+                    "startColumn": 4,
+                    "startOffset": 5827,
+                    "endColumn": 212,
+                    "endOffset": 6035
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 28,
+                        "startColumn": 4,
+                        "startOffset": 4193,
+                        "endColumn": 212,
+                        "endOffset": 4401
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 45,
+                    "startColumn": 4,
+                    "startOffset": 6040,
+                    "endColumn": 138,
+                    "endOffset": 6174
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 29,
+                        "startColumn": 4,
+                        "startOffset": 4406,
+                        "endColumn": 138,
+                        "endOffset": 4540
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 46,
+                    "startColumn": 4,
+                    "startOffset": 6179,
+                    "endColumn": 185,
+                    "endOffset": 6360
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 30,
+                        "startColumn": 4,
+                        "startOffset": 4545,
+                        "endColumn": 185,
+                        "endOffset": 4726
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 47,
+                    "startColumn": 4,
+                    "startOffset": 6365,
+                    "endColumn": 91,
+                    "endOffset": 6452
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 31,
+                        "startColumn": 4,
+                        "startOffset": 4731,
+                        "endColumn": 91,
+                        "endOffset": 4818
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 48,
+                    "startColumn": 4,
+                    "startOffset": 6457,
+                    "endColumn": 92,
+                    "endOffset": 6545
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 32,
+                        "startColumn": 4,
+                        "startOffset": 4823,
+                        "endColumn": 92,
+                        "endOffset": 4911
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 49,
+                    "startColumn": 4,
+                    "startOffset": 6550,
+                    "endColumn": 109,
+                    "endOffset": 6655
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 33,
+                        "startColumn": 4,
+                        "startOffset": 4916,
+                        "endColumn": 109,
+                        "endOffset": 5021
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 50,
+                    "startColumn": 4,
+                    "startOffset": 6660,
+                    "endColumn": 62,
+                    "endOffset": 6718
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.13.1\\res\\values-ta\\values-ta.xml",
+                    "position": {
+                        "startLine": 19,
+                        "startColumn": 4,
+                        "startOffset": 1669,
                         "endColumn": 62,
-                        "endOffset": 1688
+                        "endOffset": 1727
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 51,
+                    "startColumn": 4,
+                    "startOffset": 6723,
+                    "endColumn": 105,
+                    "endOffset": 6824
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 275,
+                        "endColumn": 105,
+                        "endOffset": 376
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 52,
+                    "startColumn": 4,
+                    "startOffset": 6829,
+                    "endColumn": 94,
+                    "endOffset": 6919
+                },
+                "from": {
+                    "file": "C:\\Users\\comp1\\StudioProjects\\peto\\peto\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\9.0.2\\res\\values-ta\\values.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 381,
+                        "endColumn": 94,
+                        "endOffset": 471
                     }
                 }
             }

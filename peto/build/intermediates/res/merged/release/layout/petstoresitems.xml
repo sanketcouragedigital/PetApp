@@ -42,6 +42,7 @@
                     android:id="@+id/petStoresListContentRelativeLayout"
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/_120sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
                     android:layout_toRightOf="@+id/petStoresImageRelativeLayout">
 
                 <TextView
@@ -51,9 +52,9 @@
                         android:layout_marginTop="@dimen/_16sdp"
                         android:layout_marginLeft="@dimen/_16sdp"
                         android:textSize="@dimen/_17sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
                         android:textStyle="bold"
                         android:textColor="@color/list_pet_origin_text_color"
-                        android:singleLine="true"
                         android:ellipsize="end"/>
 
                 <TextView

@@ -3,6 +3,7 @@ package com.couragedigital.peto.Adapter;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.provider.Settings;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
@@ -15,46 +16,72 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.couragedigital.peto.Holder.AdMobViewHolder;
 import com.couragedigital.peto.PetClinicDetails;
 import com.couragedigital.peto.R;
 import com.couragedigital.peto.app.AppController;
 import com.couragedigital.peto.model.ClinicListItems;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.NativeExpressAdView;
 
 import java.util.List;
 
-public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.ViewHolder> {
-
+public class ClinicListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private static final int CONTENT_TYPE = 0;
+    private static final int AD_TYPE = 1;
     private int current_page = 1;
     private String url;
     String clinicId;
     ProgressDialog progressDialog = null;
 
-
     private List<ClinicListItems> clinicListsItem;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     View v;
-    ViewHolder viewHolder;
+    RecyclerView.ViewHolder viewHolder;
 
     public ClinicListAdapter(List<ClinicListItems> clinicListArrayList) {
         this.clinicListsItem = clinicListArrayList;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.petclinicitems, viewGroup, false);
-        viewHolder = new ViewHolder(v);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        if(i == CONTENT_TYPE) {
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.petclinicitems, viewGroup, false);
+            viewHolder = new ViewHolder(v);
+        }
+        else if (i == AD_TYPE) {
+            v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.adnativeexpresslistitem, viewGroup, false);
+            viewHolder = new AdMobViewHolder(v);
+        }
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        ClinicListItems clinicListItems = clinicListsItem.get(i);
-        viewHolder.bindPetList(clinicListItems);
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        if(viewHolder.getItemViewType() == CONTENT_TYPE) {
+            ClinicListItems clinicListItems = clinicListsItem.get(i);
+            ViewHolder viewHolderForClinicList = (ViewHolder) viewHolder;
+            viewHolderForClinicList.bindClinicList(clinicListItems);
+        }
+        else if(viewHolder.getItemViewType() == AD_TYPE) {
+            AdMobViewHolder viewHolderForAdMob = (AdMobViewHolder) viewHolder;
+            viewHolderForAdMob.bindAds();
+        }
     }
 
     @Override
     public int getItemCount() {
         return clinicListsItem.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (position % 7 == 0 && position != 0) {
+            return AD_TYPE;
+        }
+        else {
+            return CONTENT_TYPE;
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -63,7 +90,6 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Vi
         public TextView clinicName;
         public TextView clinicAddress;
         public Button clinicFavourite;
-        //  public Button clinicSeeMoreBtn;
         public View clinicdividerLine;
         public View cardViewclinicList;
         private ClinicListItems listItems;
@@ -81,16 +107,12 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Vi
             clinicName = (TextView) itemView.findViewById(R.id.clinicName);
             clinicAddress = (TextView) itemView.findViewById(R.id.clinicAddress);
             clinicImage = (ImageView) itemView.findViewById(R.id.clinicImage);
-            // clinicSeeMoreBtn = (Button) itemView.findViewById(R.id.clinicSeeMoreButton);
-            // clinicdividerLine = itemView.findViewById(R.id.clinicDividerLine);
 
             cardViewclinicList = itemView;
             cardViewclinicList.setOnClickListener(this);
-            // clinicSeeMoreBtn.setOnClickListener(this);
-            // clinicFavourite.setOnClickListener(this);
         }
 
-        public void bindPetList(ClinicListItems clinicList) {
+        public void bindClinicList(ClinicListItems clinicList) {
             this.listItems = clinicList;
             area = listItems.getArea();
             city = listItems.getCity();
@@ -107,8 +129,6 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Vi
             clinicName.setText(clinicList.getClinicName());
             areawithcity = area + ", " + city;
             clinicAddress.setText(areawithcity);
-
-            // clinicdividerLine.setBackgroundResource(R.color.list_internal_divider);
         }
 
         @Override
@@ -130,36 +150,6 @@ public class ClinicListAdapter extends RecyclerView.Adapter<ClinicListAdapter.Vi
                 e.printStackTrace();
                 progressDialog.dismiss();
             }
-            //new FetchClinicReviewListFromServer().execute(url);
-//
-//            if (this.listItems != null) {
-//                Intent clinicInformation = new Intent(v.getContext(), PetClinicDetails.class);
-//				clinicInformation.putExtra("CLINIC_ID", listItems.getClinicId());
-//                clinicInformation.putExtra("CLINIC_NAME", listItems.getClinicName());
-//                clinicInformation.putExtra("CLINIC_IMAGE", listItems.getClinicImage_path());
-//                clinicInformation.putExtra("CLINIC_ADDRESS", listItems.getClinicAddress());
-//                clinicInformation.putExtra("DOCTOR_NAME", listItems.getDoctorName());
-//              //  clinicInformation.putExtra("DOCTOR_EMAIL", listItems.getEmail());
-//                clinicInformation.putExtra("DOCTOR_CONTACT", listItems.getContact());
-//                clinicInformation.putExtra("CLINIC_NOTES", listItems.getNotes());
-//                v.getContext().startActivity(clinicInformation);
-//            }
-
-
-
         }
-//        public class FetchClinicReviewListFromServer extends AsyncTask<String, String, String> {
-//            @Override
-//            protected String doInBackground(String... clinicIdForReviews) {
-//                try {
-//                    List<ClinicReviewsListItems> clinicReviewsListItems = new ArrayList<ClinicReviewsListItems>();
-//                    ShowClinicFeedback.showClinicReviews(clinicId, v,clinicReviewsListItems);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                    progressDialog.dismiss();
-//                }
-//                return null;
-//            }
-//        }
     }
 }

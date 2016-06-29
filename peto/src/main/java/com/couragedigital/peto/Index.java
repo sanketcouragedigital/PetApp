@@ -90,7 +90,7 @@ public class Index extends BaseActivity {
     
     private void homeListMenu() {
 
-        homeListCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.homeListCoordinatorLayout);
+        homeListCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.indexListCoordinatorLayout);
 
         //Home menus Tittle Names
         final String[] titlename = new String[]{"Pets","Shop","Help a pet","Services", "Clinics","Pet Mate"};
@@ -134,7 +134,7 @@ public class Index extends BaseActivity {
             dialogListForpetClinic.add(dialogListpetclinic);
         }
 
-        recyclerView = (RecyclerView) findViewById(R.id.indexpagelst);
+        recyclerView = (RecyclerView) findViewById(R.id.indexList);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);

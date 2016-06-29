@@ -4,7 +4,7 @@
                                                  android:layout_width="match_parent"
                                                  android:layout_height="match_parent"
                                                  android:fitsSystemWindows="true"
-                                                 android:id="@+id/homeListCoordinatorLayout">
+                                                 android:id="@+id/indexListCoordinatorLayout">
 
 <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,7 +12,7 @@
                 android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
-            android:id="@+id/indexpagelst"
+            android:id="@+id/indexList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -26,6 +26,3 @@
     </android.support.v7.widget.RecyclerView>
 </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>
-
-
-

@@ -55,6 +55,7 @@
                             android:layout_marginTop="@dimen/_16sdp"
                             android:paddingTop="@dimen/_10sdp"
                             android:layout_marginLeft="@dimen/_16sdp"
+                            android:layout_marginRight="@dimen/_5sdp"
                             android:textSize="@dimen/_17sdp"
                             android:textStyle="bold"
                             android:textColor="@color/list_pet_origin_text_color"

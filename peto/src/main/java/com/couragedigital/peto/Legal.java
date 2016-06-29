@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.Spanned;
 import android.view.View;
@@ -33,11 +34,22 @@ public class Legal extends AppCompatActivity implements View.OnClickListener {
     int lauoyt3State =0;
 
     ProgressDialog progressDialog;
+    private Toolbar legalToolbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.legal);
+
+        legalToolbar = (Toolbar) findViewById(R.id.legalToolbar);
+        setSupportActionBar(legalToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        legalToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         legalPrivacyPolicyLabel= (TextView) findViewById(R.id.legalPrivacyPolicyLabel);
         legalTNCLabel= (TextView) findViewById(R.id.legalTNCLabel);

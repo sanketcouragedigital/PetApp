@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
@@ -25,6 +26,7 @@ import android.text.Html;
 import android.text.Spanned;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import android.widget.Toast;
@@ -64,7 +66,7 @@ import java.util.List;
 
 import android.app.ProgressDialog;
 
-public class PetList extends BaseActivity implements PetListAdapter.OnRecyclerPetListShareClickListener {
+public class PetList extends BaseActivity implements PetListAdapter.OnRecyclerPetListShareClickListener, View.OnClickListener {
 
     private static String url = URLInstance.getUrl();
     private ProgressDialog progressDialog;
@@ -101,6 +103,8 @@ public class PetList extends BaseActivity implements PetListAdapter.OnRecyclerPe
     private static final int READ_STORAGE_PERMISSION_REQUEST = 2;
     private static final int WRITE_STORAGE_PERMISSION_REQUEST = 3;
     private PetListItems petListItems;
+
+    public static FloatingActionButton petListFormFAB;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -163,6 +167,9 @@ public class PetList extends BaseActivity implements PetListAdapter.OnRecyclerPe
                 R.color.refresh_progress_4);
 
         grabURL(url);
+
+        petListFormFAB = (FloatingActionButton) findViewById(R.id.addPetFabButton);
+        petListFormFAB.setOnClickListener(this);
     }
 
     public void grabURL(String url) {
@@ -274,6 +281,12 @@ public class PetList extends BaseActivity implements PetListAdapter.OnRecyclerPe
         });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent gotoformupload = new Intent(view.getContext(), PetForm.class);
+        view.getContext().startActivity(gotoformupload);
     }
 
     public class FetchListFromServer extends AsyncTask<String, String, String> {

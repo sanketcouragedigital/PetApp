@@ -88,11 +88,14 @@ public class PetMateFetchList {
                                     // adding pet to pets array
                                     petMateLists.add(petMateListItems);
                                     adapter.notifyDataSetChanged();
-
-
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
+                            }
+                            if(jsonArray.length() == 10){
+                                PetMateListItems petMateListItems = new PetMateListItems();
+                                petMateLists.add(petMateListItems);
+                                adapter.notifyDataSetChanged();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

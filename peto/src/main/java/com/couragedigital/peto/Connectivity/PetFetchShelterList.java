@@ -57,6 +57,11 @@ public class PetFetchShelterList {
                                         e.printStackTrace();
                                     }
                                 }
+                                if(jsonArray.length() == 10){
+                                    ShelterListItem shelterListItem = new ShelterListItem();
+                                    shelterList.add(shelterListItem);
+                                    adapter.notifyDataSetChanged();
+                                }
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

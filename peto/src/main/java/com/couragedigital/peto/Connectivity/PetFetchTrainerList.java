@@ -32,7 +32,7 @@ public class PetFetchTrainerList {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                                JSONArray jsonArray = response.getJSONArray("showPetTrainerResponse");
+                            JSONArray jsonArray = response.getJSONArray("showPetTrainerResponse");
                             if(jsonArray.length()!=0) {
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     try {
@@ -57,6 +57,11 @@ public class PetFetchTrainerList {
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
+                                }
+                                if(jsonArray.length() == 10){
+                                    TrainerListItem trainerListItem = new TrainerListItem();
+                                    trainerList.add(trainerListItem);
+                                    adapter.notifyDataSetChanged();
                                 }
                             }
                         } catch (JSONException e) {

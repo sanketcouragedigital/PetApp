@@ -61,7 +61,12 @@ public class PetFetchClinicList {
                                     e.printStackTrace();
                                 }
                             }
-                        }else{
+                            if(jsonArray.length() == 10){
+                                ClinicListItems clinicListItems = new ClinicListItems();
+                                clinicList.add(clinicListItems);
+                                adapter.notifyDataSetChanged();
+                            }
+                        } else{
                             Intent gotoNullError = new Intent(context, NullRespone_DialogeBox.class);
                             context.startActivity(gotoNullError);
                         }

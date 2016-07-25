@@ -49,7 +49,7 @@
     <dimen name="clinicDetailsViewDivider">2dp</dimen>
 
     <dimen name="dialogeListMenuWidthHeight">24dp</dimen>
-    <dimen name="dialogeListMenuViewDialogDivider">2dp</dimen>
+    <dimen name="dialogeListMenuViewDialogDivider">0.5dp</dimen>
     <dimen name="drawerheaderLayoutheight">172dp</dimen>
 
     <dimen name="drawerImageWidthHeight">24dp</dimen>

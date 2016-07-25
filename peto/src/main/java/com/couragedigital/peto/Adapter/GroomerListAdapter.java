@@ -71,7 +71,7 @@ public class GroomerListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public int getItemViewType(int position) {
-        if (position % 7 == 0 && position != 0) {
+        if (groomerListItem.get(position).getGroomerName() == null && groomerListItem.get(position).getGroomerAdress() == null && groomerListItem.get(position).getContact() == null) {
             return AD_TYPE;
         }
         else {

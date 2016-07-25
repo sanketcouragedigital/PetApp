@@ -100,6 +100,11 @@ public class PetFetchList {
                                     e.printStackTrace();
                                 }
                             }
+                            if(jsonArray.length() == 10){
+                                PetListItems petListItems = new PetListItems();
+                                petLists.add(petListItems);
+                                adapter.notifyDataSetChanged();
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

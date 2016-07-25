@@ -76,7 +76,7 @@ public class ClinicListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public int getItemViewType(int position) {
-        if (position % 7 == 0 && position != 0) {
+        if (clinicListsItem.get(position).getClinicName() == null && clinicListsItem.get(position).getClinicAddress() == null && clinicListsItem.get(position).getContact() == null) {
             return AD_TYPE;
         }
         else {

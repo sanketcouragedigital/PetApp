@@ -15,6 +15,7 @@ import com.couragedigital.peto.DialogBox.TimeOut_DialogeBox;
 import com.couragedigital.peto.PetMateList;
 import com.couragedigital.peto.Singleton.URLInstance;
 import com.couragedigital.peto.app.AppController;
+import com.couragedigital.peto.model.PetListItems;
 import com.couragedigital.peto.model.PetMateListItems;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -95,6 +96,11 @@ public class FilterFetchPetMateList {
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
+                                }
+                                if(jsonArray.length() == 10){
+                                    PetMateListItems petMateListItems = new PetMateListItems();
+                                    petMateLists.add(petMateListItems);
+                                    adapter.notifyDataSetChanged();
                                 }
                             }else{
                                 Intent gotoNullError = new Intent(context, NullRespone_DialogeBox.class);

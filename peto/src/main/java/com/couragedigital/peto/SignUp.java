@@ -235,7 +235,7 @@ public class SignUp extends AppCompatActivity {
                                     PasswordConverter passwordConverter=new PasswordConverter();
                                     confirmpassword = passwordConverter.ConvertPassword(conf_password);
                                     RegisterToServer registerToServer = new RegisterToServer(SignUp.this);
-                                    registerToServer.uploadToRemoteServer(name, buildingname, area, city, mobileno, email, confirmpassword,strIsNgo,ngoUrl,ngoName);
+                                    registerToServer.uploadToRemoteServer(name, buildingname, area, city, mobileno, email, confirmpassword, strIsNgo, ngoUrl, ngoName);
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                     progressDialog.dismiss();

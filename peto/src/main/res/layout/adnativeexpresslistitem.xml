@@ -17,7 +17,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/adLayout">
 
             <com.google.android.gms.ads.NativeExpressAdView
                 android:id="@+id/adView"
@@ -26,6 +27,87 @@
                 android:layout_centerHorizontal="true"
                 ads:adUnitId="@string/admob_native_unit_id"
                 ads:adSize="280x250"/>
+
+            <RelativeLayout
+                android:id="@+id/avocarrotAdImageRelativeLayout"
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="@dimen/_120sdp">
+
+                <ImageView
+                    android:id="@+id/avocarrotAdIcon"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginBottom="@dimen/_16sdp"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_17sdp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/avocarrotAdContentRelativeLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:layout_toEndOf="@+id/avocarrotAdImageRelativeLayout">
+
+                <TextView
+                    android:id="@+id/avocarrotAdHeading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:textSize="@dimen/_17sdp"
+                    android:textStyle="bold"
+                    android:textColor="@color/list_pet_origin_text_color"
+                    android:ellipsize="end"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/avocarrotAdDescription"
+                    android:textColor="@color/textColorPrimary"
+                    android:layout_below="@+id/avocarrotAdHeading"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginStart="@dimen/_16sdp"/>
+                <com.avocarrot.androidsdk.ui.AdChoicesView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/avocarrotAdChoices"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"/>
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/avocarrotAdImage"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/avocarrotAdImageRelativeLayout"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"/>
+
+            <!--<com.avocarrot.androidsdk.VideoView
+                android:id="@+id/avocarrotAdVideo"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/avocarrotAdImageRelativeLayout"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"/>-->
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/avocarrotAdButton"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:background="@android:color/transparent"
+                android:textColor="#CF3E3E"
+                android:layout_below="@+id/avocarrotAdImage"/>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

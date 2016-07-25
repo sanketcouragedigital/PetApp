@@ -17,7 +17,7 @@ public class SessionManager {
     SessionManager sessionManager;
 
     // Sharedpref file name
-    private static final String PREF_NAME = "AndroidHivePref";
+    private static final String PREF_NAME = "PetoPreference";
 
     // All Shared Preferences Keys
     private static final String IS_LOGIN = "IsLoggedIn";
@@ -26,6 +26,10 @@ public class SessionManager {
     public static final String KEY_EMAIL = "email";
 
     public static final String KEY_NGO = "isNgo";
+
+    public static final String KEY_FIREBASE_TOKEN = "isFirebaseToken";
+
+    public static final String REGISTERED = "registered";
 
     public SessionManager(Context c) {
         this.context = c;
@@ -48,6 +52,18 @@ public class SessionManager {
         editor.commit();
     }
 
+    public void createUserFirebaseNotificationToken(String isFirebaseToken) {
+        // Storing login value as TRUE
+        editor.putBoolean(REGISTERED, true);
+        editor.commit();
+
+        // Storing firebsase token in pref
+        editor.putString(KEY_FIREBASE_TOKEN, isFirebaseToken);
+
+        // commit changes
+        editor.commit();
+    }
+
     public HashMap<String, String> getUserDetails() {
         HashMap<String, String> user = new HashMap<String, String>();
         // user email id
@@ -60,6 +76,14 @@ public class SessionManager {
         return user;
     }
 
+    public HashMap<String, String> getUserFirebaseNotificationToken() {
+        HashMap<String, String> user = new HashMap<String, String>();
+        // user email id
+        user.put(KEY_FIREBASE_TOKEN, pref.getString(KEY_FIREBASE_TOKEN, null));
+
+        // return user
+        return user;
+    }
 
     public void logoutUser() {
         // Clearing all data from Shared Preferences
@@ -82,7 +106,10 @@ public class SessionManager {
 
     public boolean isLoggedIn() {
         return pref.getBoolean(IS_LOGIN, false);
+    }
 
+    public boolean isRegisteredToken() {
+        return pref.getBoolean(REGISTERED, false);
     }
 
 }

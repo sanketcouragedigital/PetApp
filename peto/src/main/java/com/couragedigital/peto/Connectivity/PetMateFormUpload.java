@@ -3,6 +3,7 @@ package com.couragedigital.peto.Connectivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.provider.Settings;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -46,6 +47,9 @@ public class PetMateFormUpload {
         String method = "savePetMateDetails";
         String format = "json";
 
+        String android_id = Settings.Secure.getString(context.getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+
         //Auth header
         headerPart = new HashMap<>();
         headerPart.put("Content-type", "multipart/form-data;");
@@ -71,6 +75,7 @@ public class PetMateFormUpload {
         stringPart.put("descriptionOfPet", descriptionOfPet);
         stringPart.put("email", email);
         stringPart.put("alternateNo", alternateNo);
+        stringPart.put("deviceId", android_id);
         stringPart.put("method", method);
         stringPart.put("format", format);
 

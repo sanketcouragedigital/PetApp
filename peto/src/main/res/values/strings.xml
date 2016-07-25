@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Peto</string>
+    <string name="app_short_name">P</string>
     <string name="pet_gender_male">Male</string>
     <string name="pet_gender_female">Female</string>
     <string name="drawer_open">Open</string>
@@ -17,4 +18,6 @@
     <string name="google_key_api">AIzaSyBs9E4j3N-chcMq3VvlgQhaDRFX_IR3Gb8</string>
     <string name="notVerifiedNgoMsg"> Hi there !\n\nThank you for signing up your NGO with us ! We are excited to work together in the future. At this point we need to verify a few details before your account can be activated.  Generally activation should not take more than 1 working day.\n \nIf there is anything urgent please send us an email at: donations@petoandme.com and we will respond to you at the earliest (within 24 hours).</string>
     <string name="admob_native_unit_id">ca-app-pub-4292452205227856/6050036729</string>
+    <string name="avocarrot_native_api_key">9634b98c7b14e4697147a2c410cf7ecece805757</string>
+    <string name="avocarrot_native_placement_key">e15b5e5717ebc66afd6dc76a16eeb4bc8ee9edeb</string>
 </resources>

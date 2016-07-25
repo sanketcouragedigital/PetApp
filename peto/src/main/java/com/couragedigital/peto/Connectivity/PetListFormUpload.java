@@ -3,6 +3,7 @@ package com.couragedigital.peto.Connectivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.provider.Settings;
 import android.widget.Toast;
 import com.android.volley.*;
 import com.couragedigital.peto.DialogBox.TimeOut_DialogeBox;
@@ -46,6 +47,9 @@ public  class PetListFormUpload {
         String method = "savePetDetails";
         String format = "json";
 
+        String android_id = Settings.Secure.getString(context.getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+
         //Auth header
         headerPart = new HashMap<>();
         headerPart.put("Content-type", "multipart/form-data;");
@@ -73,6 +77,7 @@ public  class PetListFormUpload {
         stringPart.put("priceOfPet", String.valueOf(priceOfPet));
         stringPart.put("email", email);
         stringPart.put("alternateNo", alternateNo);
+        stringPart.put("deviceId", android_id);
         stringPart.put("method", method);
         stringPart.put("format", format);
 
@@ -93,6 +98,7 @@ public  class PetListFormUpload {
                 public void onErrorResponse(VolleyError volleyError) {
                     Toast.makeText(context, "Error Uploading Form", Toast.LENGTH_LONG).show();
                     Intent gotoTimeOutError = new Intent(context, TimeOut_DialogeBox.class);
+                    gotoTimeOutError.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(gotoTimeOutError);
                 }
             }, filePartData, stringPart, headerPart);

@@ -89,7 +89,6 @@ public class PetForm extends AppCompatActivity implements View.OnClickListener, 
     String txtAlternateNo="";
     String petCategoryName;
     String petBreedName;
-    String petBreedName2;
     String petAgeMonthSpinner = "0";
     String petAgeYearSpinner = "0";
     //Integer petAge;
@@ -99,7 +98,6 @@ public class PetForm extends AppCompatActivity implements View.OnClickListener, 
     Integer petPrice;
     String currentPhotoPath;
     String email;
-    String newBreedName;
 
 
     private List<String> petCategoryList = new ArrayList<String>();
@@ -216,8 +214,8 @@ public class PetForm extends AppCompatActivity implements View.OnClickListener, 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position > 0){
-                    petBreedName2 = (String) parent.getItemAtPosition(position);
-                    if(petBreedName2.equals("Other") ){
+                    petBreedName = (String) parent.getItemAtPosition(position);
+                    if(petBreedName.equals("Other") ){
                         otherBreed.setEnabled(true);
                     }
                 }
@@ -251,6 +249,7 @@ public class PetForm extends AppCompatActivity implements View.OnClickListener, 
         selectImageButton.setOnClickListener(this);
         uploadFabButton.setOnClickListener(this);
     }
+
     public void GenarateSpinerForAge(){
         stringArrayListForMonth = new String[]{
                 "Months"
@@ -392,7 +391,7 @@ public class PetForm extends AppCompatActivity implements View.OnClickListener, 
                 TextView errorText = (TextView) petCategory.getSelectedView();
                 errorText.setError("Please select Pet Category");
             }
-            else if(petBreedName2 == null || petBreedName2.isEmpty()) {
+            else if(petBreedName == null || petBreedName.isEmpty()) {
                 Toast.makeText(PetForm.this, "Please select Pet Breed.", Toast.LENGTH_LONG).show();
                 TextView errorText = (TextView) petBreed.getSelectedView();
                 errorText.setError("Please select Pet Breed");

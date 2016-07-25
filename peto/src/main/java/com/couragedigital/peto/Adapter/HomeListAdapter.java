@@ -83,21 +83,8 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
             AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(v.getContext(), R.style.HomePageDialogboxCustom));
 
             if (position == 0) {
-                adapter = new DialogListAdapter(dialogListForViewPets);
-                builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        if (i == 0) {
-                            Intent gotoformupload = new Intent(v.getContext(), PetForm.class);
-                            v.getContext().startActivity(gotoformupload);
-                        } else if (i == 1) {
-                            Intent gotolistofpet = new Intent(v.getContext(), PetList.class);
-                            v.getContext().startActivity(gotolistofpet);
-                        }
-                    }
-                });
-                alertDialog = builder.create();
-                alertDialog.show();
+                Intent gotolistofpet = new Intent(v.getContext(), PetList.class);
+                v.getContext().startActivity(gotolistofpet);
             }
             if (position == 1) {
                 Intent gotoShopProduct = new Intent(v.getContext(), Pet_Shop_List.class);
@@ -133,21 +120,8 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                 alertDialog.show();
             }
             if (position == 5) {
-                adapter = new DialogListAdapter(dialogListForViewPetMets);
-                builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        if (i == 0) {
-                            Intent gotoformupload = new Intent(v.getContext(), PetMate.class);
-                            v.getContext().startActivity(gotoformupload);
-                        } else if (i == 1) {
-                            Intent gotolistofpet = new Intent(v.getContext(), PetMateList.class);
-                            v.getContext().startActivity(gotolistofpet);
-                        }
-                    }
-                });
-                alertDialog = builder.create();
-                alertDialog.show();
+                Intent gotolistofpet = new Intent(v.getContext(), PetMateList.class);
+                v.getContext().startActivity(gotolistofpet);
             }
 
 

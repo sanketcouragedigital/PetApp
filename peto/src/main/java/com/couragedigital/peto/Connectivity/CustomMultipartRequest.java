@@ -65,14 +65,11 @@ public class CustomMultipartRequest extends Request<JSONObject> {
                     fileExtension.toLowerCase());
         }
         return mimeType;
-
-
     }
 
     private void buildMultipartFileEntity() {
         for (Map.Entry<String, File> entry : mFilePartData.entrySet()) {
             try {
-
                 String key = entry.getKey();
                 File file = entry.getValue();
                 String mimeType = getMimeType(mContext, file.toString());
@@ -132,5 +129,4 @@ public class CustomMultipartRequest extends Request<JSONObject> {
     protected void deliverResponse(JSONObject response) {
         mListener.onResponse(response);
     }
-
 }

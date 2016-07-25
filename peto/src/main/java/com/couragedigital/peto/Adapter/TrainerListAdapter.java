@@ -71,7 +71,7 @@ public class TrainerListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public int getItemViewType(int position) {
-        if (position % 7 == 0 && position != 0) {
+        if (trainerListItem.get(position).getTrainerName() == null && trainerListItem.get(position).getTrainerAdress() == null && trainerListItem.get(position).getContact() == null) {
             return AD_TYPE;
         }
         else {

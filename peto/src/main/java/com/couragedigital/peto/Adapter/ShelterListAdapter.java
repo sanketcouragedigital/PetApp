@@ -70,7 +70,7 @@ public class ShelterListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public int getItemViewType(int position) {
-        if (position % 7 == 0 && position != 0) {
+        if (shelterListItem.get(position).getShelterName() == null && shelterListItem.get(position).getShelterAdress() == null && shelterListItem.get(position).getContact() == null) {
             return AD_TYPE;
         }
         else {

@@ -12,6 +12,8 @@ import com.couragedigital.peto.DialogBox.NullRespone_DialogeBox;
 import com.couragedigital.peto.DialogBox.TimeOut_DialogeBox;
 import com.couragedigital.peto.app.AppController;
 import com.couragedigital.peto.model.GroomerListItem;
+import com.couragedigital.peto.model.TrainerListItem;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,6 +58,11 @@ public class PetFetchGroomerList {
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
+                                }
+                                if(jsonArray.length() == 10){
+                                    GroomerListItem groomerListItem = new GroomerListItem();
+                                    groomerList.add(groomerListItem);
+                                    adapter.notifyDataSetChanged();
                                 }
                             }
                         } catch (JSONException e) {

@@ -80,7 +80,7 @@ public class PetMateListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public int getItemViewType(int position) {
-        if (position % 7 == 0 && position != 0) {
+        if (petMateLists.get(position).getPetMateCategory() == null && petMateLists.get(position).getPetMateBreed() == null) {
             return AD_TYPE;
         }
         else {

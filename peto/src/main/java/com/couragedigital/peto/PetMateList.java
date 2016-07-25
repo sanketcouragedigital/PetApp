@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
@@ -22,6 +23,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 import com.couragedigital.peto.Adapter.PetMateListAdapter;
 import com.couragedigital.peto.Connectivity.FilterFetchPetMateList;
@@ -56,7 +58,7 @@ import com.facebook.login.LoginManager;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 
-public class PetMateList extends BaseActivity implements PetMateListAdapter.OnRecyclerPetMateListShareClickListener {
+public class PetMateList extends BaseActivity implements PetMateListAdapter.OnRecyclerPetMateListShareClickListener, View.OnClickListener {
 
     private static final String TAG = PetMateList.class.getSimpleName();
 
@@ -104,6 +106,8 @@ public class PetMateList extends BaseActivity implements PetMateListAdapter.OnRe
     private static final int READ_STORAGE_PERMISSION_REQUEST = 2;
     private static final int WRITE_STORAGE_PERMISSION_REQUEST = 3;
     private PetMateListItems petMateListItems;
+
+    public static FloatingActionButton petMateListFormFAB;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -167,6 +171,9 @@ public class PetMateList extends BaseActivity implements PetMateListAdapter.OnRe
                 R.color.refresh_progress_4);
 
         grabURL(url);
+
+        petMateListFormFAB = (FloatingActionButton) findViewById(R.id.addPetMateFabButton);
+        petMateListFormFAB.setOnClickListener(this);
     }
 
     public void grabURL(String url) {
@@ -270,6 +277,12 @@ public class PetMateList extends BaseActivity implements PetMateListAdapter.OnRe
         });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent gotoformupload = new Intent(view.getContext(), PetMate.class);
+        view.getContext().startActivity(gotoformupload);
     }
 
     public class FetchListFromServer extends AsyncTask<String, String, String> {

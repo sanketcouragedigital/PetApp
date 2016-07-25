@@ -13,5 +13,6 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        maven { url "https://s3.amazonaws.com/avocarrot-android-builds/dist" }
     }
 }
